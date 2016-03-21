@@ -31,11 +31,6 @@ public class SplashActivity extends ActionBarActivity {
 
 
 
-
-
-
-
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
