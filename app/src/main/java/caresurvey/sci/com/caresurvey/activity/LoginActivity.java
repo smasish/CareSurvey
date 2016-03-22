@@ -1,4 +1,4 @@
-package caresurvey.sci.com.caresurvey;
+package caresurvey.sci.com.caresurvey.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import caresurvey.sci.com.caresurvey.R;
 import utils.InternetConnection;
 import utils.SharedPreferenceHelper;
 import utils.Utils;
@@ -100,7 +101,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         btn_login.setOnClickListener(this);
 
 
-    
+
 
 
 
