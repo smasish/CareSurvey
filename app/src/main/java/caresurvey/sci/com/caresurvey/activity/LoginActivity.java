@@ -1,4 +1,4 @@
-package caresurvey.sci.com.caresurvey.activity;
+package caresurvey.sci.com.caresurvey;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,18 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import caresurvey.sci.com.caresurvey.R;
 import utils.InternetConnection;
 import utils.SharedPreferenceHelper;
 import utils.Utils;
 
 
-/**
- * Created by Dinesh on 4/19/2015.
- * @author israt.jahan
- */
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
-
+    int p;
     Context context;
     static InternetConnection internetConnection;
     static Boolean isConected = false;
@@ -73,7 +68,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
 
 
-
     }
 
     private void initWidget(){
@@ -99,9 +93,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         btn_login = (Button)findViewById(R.id.btn_login);
 
         btn_login.setOnClickListener(this);
-
-
-
 
 
 

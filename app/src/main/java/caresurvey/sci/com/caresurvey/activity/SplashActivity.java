@@ -1,4 +1,4 @@
-package caresurvey.sci.com.caresurvey.activity;
+package caresurvey.sci.com.caresurvey;
 
 /**
  * Created by asish on 4/03/2016.
@@ -11,7 +11,7 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
-import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.activity.LoginActivity1;
 
 public class SplashActivity extends ActionBarActivity {
 
@@ -37,7 +37,7 @@ public class SplashActivity extends ActionBarActivity {
             @Override
             public void run() {
                 /* start the activity */
-                startActivity(new Intent(context, FormActivity.class));
+                startActivity(new Intent(context, LoginActivity1.class));
                 //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 overridePendingTransition(0,0);
                 finish();

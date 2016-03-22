@@ -18,6 +18,12 @@
     <color name="list_devider">#1b2136</color>
     <color name="list_text_bg">#2f3448</color>
     <color name="textview_bg">#15192a</color>
+    <color name="Light_purple">#DCABC1</color>
+    <color name="Login_color">#611436</color>
+    <color name="dark_yellow">#F8C34B</color>
+
+    F8C34B
+
     <!--1F253D-->
     <color name="list_text_bottom">#55000000</color>
 
