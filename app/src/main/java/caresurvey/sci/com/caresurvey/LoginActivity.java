@@ -19,10 +19,6 @@ import utils.SharedPreferenceHelper;
 import utils.Utils;
 
 
-/**
- * Created by Dinesh on 4/19/2015.
- * @author israt.jahan
- */
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
 
     Context context;
@@ -72,7 +68,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
 
 
-
     }
 
     private void initWidget(){
@@ -98,9 +93,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         btn_login = (Button)findViewById(R.id.btn_login);
 
         btn_login.setOnClickListener(this);
-
-
-    
 
 
 
