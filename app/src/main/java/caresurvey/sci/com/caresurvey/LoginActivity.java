@@ -31,10 +31,6 @@ import utils.InternetConnection;
 import utils.SharedPreferenceHelper;
 import utils.Utils;
 
-
-/**
- * Created by Dinesh on 4/19/2015.
- */
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
 
     Context context;
@@ -112,7 +108,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         btn_login.setOnClickListener(this);
 
 
-        logwith = (TextView)findViewById(R.id.logwith_id);
+       // logwith = (TextView)findViewById(R.id.logwith_id);
 
 
 
