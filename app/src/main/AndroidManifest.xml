@@ -27,8 +27,8 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".LoginActivity1"
-            android:label="@string/title_activity_login1" >
+            android:name=".SurveyActivity"
+            android:label="@string/title_activity_survey" >
         </activity>
     </application>
 

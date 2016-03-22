@@ -10,11 +10,14 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class SplashActivity extends ActionBarActivity {
 
     Context context;
+    Spinner spinner2,spinner3,spinner4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class SplashActivity extends ActionBarActivity {
             @Override
             public void run() {
                 /* start the activity */
-                startActivity(new Intent(context, LoginActivity1.class));
+                startActivity(new Intent(context, LoginActivity.class));
                 //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 overridePendingTransition(0,0);
                 finish();
