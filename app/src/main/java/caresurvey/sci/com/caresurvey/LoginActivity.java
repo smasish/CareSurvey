@@ -20,7 +20,7 @@ import utils.Utils;
 
 
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
-
+    int p;
     Context context;
     static InternetConnection internetConnection;
     static Boolean isConected = false;
