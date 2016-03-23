@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     Button login;

@@ -1,4 +1,4 @@
-package caresurvey.sci.com.caresurvey;
+package caresurvey.sci.com.caresurvey.activity;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+
+import caresurvey.sci.com.caresurvey.R;
 
 public class SurveyActivity extends AppCompatActivity {
 
