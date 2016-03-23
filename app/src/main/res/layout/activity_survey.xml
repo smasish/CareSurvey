@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:text="   Survey   "
                         android:background="@color/dark_yellow"
-                        android:id="@+id/button3" />
+                        android:id="@+id/survey_button" />
                 </LinearLayout>
 
                 <LinearLayout

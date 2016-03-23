@@ -1,11 +1,14 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 import caresurvey.sci.com.caresurvey.R;
 
 public class SurveyActivity extends AppCompatActivity {
-
+    Button Survey;
     ProgressBar progressBar,progressBar1,progressBar2,progressBar3,progressBar4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,16 @@ public class SurveyActivity extends AppCompatActivity {
 
         progressBar3.getProgressDrawable().setColorFilter(
                 Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
+
+        Survey = (Button)findViewById(R.id.survey_button);
+        Survey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent= new Intent(SurveyActivity.this, FormActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //progressBar3.getLayoutParams().height = 20;
         //  progressBar3.invalidate();

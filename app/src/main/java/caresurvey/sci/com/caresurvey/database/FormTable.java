@@ -149,6 +149,28 @@ public class FormTable {
         return false;
     }
 
+
+
+    public ArrayList<FormItem> getAll() {
+        ArrayList<FormItem> FieldList = new ArrayList<>();
+        //System.out.println(cat_id+"  "+sub_cat_id);
+        SQLiteDatabase db = openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                FieldList.add(cursorToSubCatList(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return FieldList;
+    }
+
+
+
+
     private long updateItem(int patientid, String bloodpressure, String hemoglobintest,
                                String urinetest, String pregnancyfood, String pregnancydanger,
                                String fourparts, String delivery, String feedbaby,
@@ -183,10 +205,8 @@ public class FormTable {
         String _hemoglobintest = cursor.getString(2);
         String _urinetest = cursor.getString(3);
         String _pregnancyfood =cursor.getString(4);
-
         String _pregnancydanger = cursor.getString(5);
         String _fourparts = cursor.getString(6);
-
         String _delivery = cursor.getString(7);
         String _feedbaby = cursor.getString(8);
         String _sixmonths = cursor.getString(9);
