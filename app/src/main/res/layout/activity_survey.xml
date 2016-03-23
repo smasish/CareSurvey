@@ -35,7 +35,8 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Survey"
+                        android:text="   Survey   "
+                        android:background="@color/dark_yellow"
                         android:id="@+id/button3" />
                 </LinearLayout>
 
@@ -49,13 +50,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Facility:"
+                        android:text="Facility:     "
+                        android:textSize="32dp"
                         android:id="@+id/textView3" />
 
                     <Spinner
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:id="@+id/spinner"
+
+                        android:background="@color/purple"
+                        android:popupBackground="@color/purple"
+
                         android:spinnerMode="dropdown" />
                 </LinearLayout>
             </LinearLayout>
@@ -77,13 +83,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Large Text"
+                        android:text="Survey  "
+                        android:textSize="24dp"
                         android:id="@+id/textView4" />
 
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
                         android:background="@android:color/darker_gray" />
 
                 </LinearLayout>
@@ -91,12 +99,15 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="0.80">
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="0dp"
+                        android:background="@drawable/colortransition"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="25dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.80">
 
@@ -104,11 +115,17 @@
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_weight="0.80">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+
                                 android:textAppearance="?android:attr/textAppearanceLarge"
                                 android:text="Inventory of Satelite Clinic"
                                 android:id="@+id/textView5" />
@@ -123,7 +140,7 @@
                             <ProgressBar
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:id="@+id/progressBar3" />
 
 
@@ -140,7 +157,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Large Text"
                             android:id="@+id/textView6" />
                     </LinearLayout>
                 </LinearLayout>
@@ -156,34 +172,72 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.32">
+                    android:layout_weight="0.20">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Observations  "
+                        android:textSize="24dp"
+                        android:id="@+id/textView45" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/darker_gray" />
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4">
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.32">
+                        android:background="@drawable/colortransition"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="0.40">
 
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.70">
+                            android:layout_weight="0.84">
 
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:text="Antenatal Care"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:id="@+id/textView7" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.30">
+                            android:layout_weight="0.16">
 
                             <ProgressBar
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/progressBar" />
+                                android:layout_height="wrap_content"
+                                android:id="@+id/progressBar2" />
                         </LinearLayout>
 
 
@@ -192,14 +246,27 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="0dp"
+                        android:background="@drawable/full_complete"
+
                         android:layout_height="match_parent"
-                        android:layout_weight="0.32">
+                        android:layout_weight="0.4">
 
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.80"></LinearLayout>
+                            android:layout_weight="0.80">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:text="Antenatal Care"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:id="@+id/textView74" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:orientation="horizontal"
@@ -210,11 +277,8 @@
                             <ProgressBar
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/progressBar2" />
-
-
-
+                                android:layout_height="wrap_content"
+                                android:id="@+id/progressBar" />
                         </LinearLayout>
 
 
@@ -231,6 +295,7 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="0dp"
+                        android:background="@drawable/colortransition"
                         android:layout_height="match_parent"
                         android:layout_weight="0.32">
 
@@ -238,22 +303,30 @@
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.80"></LinearLayout>
+                            android:layout_weight="0.84">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:text="Antenatal Care"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:id="@+id/textView78" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.20">
+                            android:layout_weight="0.16">
 
                             <ProgressBar
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:id="@+id/progressBar4" />
-
-
-
+                                android:layout_height="wrap_content"
+                                android:id="@+id/progressBar1" />
                         </LinearLayout>
 
 

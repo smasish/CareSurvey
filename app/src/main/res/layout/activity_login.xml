@@ -133,7 +133,8 @@
                                 android:text="Login"
                                 android:textColor="@color/white"
                                 android:background="@drawable/round_shaped"
-                                android:id="@+id/button2" />
+                                android:id="@+id/Login"
+                                />
 
 
                         </LinearLayout>

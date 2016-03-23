@@ -1,5 +1,6 @@
 package caresurvey.sci.com.caresurvey;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,18 +32,38 @@ public class SurveyActivity extends AppCompatActivity {
         progressBar2.setMax(5);
         progressBar2.setProgress(2);
 
-        progressBar3=(ProgressBar)findViewById(R.id.progressBar4);
+        progressBar3=(ProgressBar)findViewById(R.id.progressBar1);
         progressBar3.setMax(5);
         progressBar3.setProgress(2);
+        progressBar2.setScaleY(9f);
+        progressBar.setScaleY(9f);
+        progressBar1.setScaleY(9f);
+        progressBar3.setScaleY(9f);
+        progressBar2.getProgressDrawable().setColorFilter(
+                Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
+
+        progressBar.getProgressDrawable().setColorFilter(
+                Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
+
+
+        progressBar1.getProgressDrawable().setColorFilter(
+                Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
+
+        progressBar3.getProgressDrawable().setColorFilter(
+                Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
+
+        //progressBar3.getLayoutParams().height = 20;
+        //  progressBar3.invalidate();
+
 
 
 
         ArrayList<String> survey_result = new ArrayList<String>();
+        survey_result.add("District Hospital");
+        survey_result.add("Upozila Health Complex");
         survey_result.add("Union health and family welfare center");
-        survey_result.add("Union health and family welfare center");
-        survey_result.add("Union health and family welfare center");
-        survey_result.add("Union health and family welfare center");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, survey_result);
+        survey_result.add("Satellite Clinic");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, survey_result);
         Spinner spin = (Spinner)findViewById(R.id.spinner);
         spin.setAdapter(adapter);
 

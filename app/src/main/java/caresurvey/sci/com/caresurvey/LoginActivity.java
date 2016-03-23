@@ -1,19 +1,36 @@
 package caresurvey.sci.com.caresurvey;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
+    Button login;
     TextView text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         text=(TextView)findViewById(R.id.normal_text);
+
+
+        login =(Button)findViewById(R.id.Login);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent in = new Intent(LoginActivity.this,SurveyActivity.class);
+                startActivity(in);
+
+            }
+        });
 
         text.setText("MaMoni Health System Strengthening \n           (MaMoni HSS) Project");
         text.setTextSize(25);
