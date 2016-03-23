@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/Savebtn"
+        android:layout_alignTop="@+id/Submitbtn"
+        android:layout_toLeftOf="@+id/Submitbtn"
+        android:layout_toStartOf="@+id/Submitbtn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/Submitbtn"
+        android:layout_below="@+id/folictabletimportance"
+        android:layout_toLeftOf="@+id/folictabletimportance"
+        android:layout_toStartOf="@+id/folictabletimportance" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/bloodpressure">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/ques1rad1"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/ques1rad2"
+            android:layout_toStartOf="@+id/ques1rad2" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/ques1rad2"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques2"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/bloodpressure"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/hemoglobintest"
+        android:layout_below="@+id/bloodpressure"
+        android:layout_alignLeft="@+id/bloodpressure"
+        android:layout_alignStart="@+id/bloodpressure">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton3"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton4"
+            android:layout_toStartOf="@+id/radioButton4" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton4"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/urinetest"
+        android:layout_below="@+id/hemoglobintest"
+        android:layout_alignLeft="@+id/hemoglobintest"
+        android:layout_alignStart="@+id/hemoglobintest">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton2"
+            android:layout_toStartOf="@+id/radioButton2" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton2"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/pregnancyfood"
+        android:layout_below="@+id/urinetest"
+        android:layout_alignLeft="@+id/urinetest"
+        android:layout_alignStart="@+id/urinetest">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton5"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton6"
+            android:layout_toStartOf="@+id/radioButton6" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton6"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/pregnancydanger"
+        android:layout_below="@+id/pregnancyfood"
+        android:layout_alignLeft="@+id/pregnancyfood"
+        android:layout_alignStart="@+id/pregnancyfood">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton7"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton8"
+            android:layout_toStartOf="@+id/radioButton8" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton8"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/fourparts"
+        android:layout_below="@+id/pregnancydanger"
+        android:layout_alignLeft="@+id/pregnancydanger"
+        android:layout_alignStart="@+id/pregnancydanger">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton9"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton10"
+            android:layout_toStartOf="@+id/radioButton10" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton10"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/delivery"
+        android:layout_below="@+id/fourparts"
+        android:layout_alignLeft="@+id/fourparts"
+        android:layout_alignStart="@+id/fourparts">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton11"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton12"
+            android:layout_toStartOf="@+id/radioButton12" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton12"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/feedbaby"
+        android:layout_below="@+id/delivery"
+        android:layout_alignLeft="@+id/delivery"
+        android:layout_alignStart="@+id/delivery">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton13"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton14"
+            android:layout_toStartOf="@+id/radioButton14" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton14"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/sixmonths"
+        android:layout_below="@+id/feedbaby"
+        android:layout_alignLeft="@+id/feedbaby"
+        android:layout_alignStart="@+id/feedbaby">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton15"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton16"
+            android:layout_toStartOf="@+id/radioButton16" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton16"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/familyplanning"
+        android:layout_below="@+id/sixmonths"
+        android:layout_alignLeft="@+id/sixmonths"
+        android:layout_alignStart="@+id/sixmonths">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton17"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton18"
+            android:layout_toStartOf="@+id/radioButton18" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton18"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/folictablet"
+        android:layout_below="@+id/familyplanning"
+        android:layout_alignLeft="@+id/familyplanning"
+        android:layout_alignStart="@+id/familyplanning">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton19"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton20"
+            android:layout_toStartOf="@+id/radioButton20" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton20"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/folictabletimportance"
+        android:layout_below="@+id/folictablet"
+        android:layout_alignLeft="@+id/folictablet"
+        android:layout_alignStart="@+id/folictablet">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/radioButton21"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/radioButton22"
+            android:layout_toStartOf="@+id/radioButton22" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/radioButton22"
+            android:checked="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="59dp"
+            android:layout_marginEnd="59dp" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/hemoglobintest"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/urinetest"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/pregnancyfood"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView6"
+        android:layout_alignTop="@+id/fourparts"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/fourparts"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/delivery"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView9"
+        android:layout_alignTop="@+id/sixmonths"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView10"
+        android:layout_below="@+id/sixmonths"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/familyplanning"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ques1"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/folictablet"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

@@ -16,7 +16,9 @@
         completions."
     </string>
     <string name="title_activity_login1">LoginActivity1</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_survey">SurveyActivity</string>
+    <string name="ques1">১। বাংলা লেখার চেষ্টা</string>
+    <string name="ques2">২। বাংলা দেখার চেষ্টা</string>
+    <string name="form">Form</string>
 </resources>

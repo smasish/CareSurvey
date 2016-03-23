@@ -6,12 +6,13 @@ package caresurvey.sci.com.caresurvey;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import caresurvey.sci.com.caresurvey.activity.LoginActivity1;
 
 public class SplashActivity extends ActionBarActivity {
 
