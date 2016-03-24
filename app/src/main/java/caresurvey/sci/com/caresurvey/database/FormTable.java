@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ import caresurvey.sci.com.caresurvey.model.FormItem;
  *
  * @author israt
  */
-public class FormTable {
+public class FormTable  {
     private static final String TAG = FormTable.class.getSimpleName();
 
     private static final String TABLE_NAME = DatabaseHelper.FORM;
@@ -171,11 +172,66 @@ public class FormTable {
 
 
 
-    private long updateItem(int patientid, String bloodpressure, String hemoglobintest,
+    public ArrayList<FormItem> getSpecificItem(int cat_id) {
+        ArrayList<FormItem> subCatList = new ArrayList<>();
+        //System.out.println(cat_id+"  "+sub_cat_id);
+        SQLiteDatabase db = openDB();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE "+ KEY_ID+"="+cat_id, null);
+
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                subCatList.add(cursorToSubCatList(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return subCatList;
+    }
+
+
+
+
+    public long updateItem(int patientid, String bloodpressure, String hemoglobintest,
                                String urinetest, String pregnancyfood, String pregnancydanger,
                                String fourparts, String delivery, String feedbaby,
                                String sixmonths, String familyplanning, String folictablet,
                                String folictabletimportance) {
+
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, patientid);
+        values.put(KEY_BLOOD, bloodpressure);
+        values.put(KEY_HEMO, hemoglobintest);
+        values.put(KEY_URINE, urinetest);
+        values.put(KEY_PREGFOOD, pregnancyfood);
+        values.put(KEY_PREGDANGER, pregnancydanger);
+        values.put(KEY_FOURCENTER, fourparts);
+        values.put(KEY_DELIVERY, delivery);
+        values.put(KEY_FEED, feedbaby);
+        values.put(KEY_SIXMONTHS, sixmonths);
+        values.put(KEY_FAMILY, familyplanning);
+        values.put(KEY_FOLICTAB, folictablet);
+        values.put(KEY_FOLICIMP, folictabletimportance);
+
+        SQLiteDatabase db = openDB();
+        long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
+                new String[]{patientid + ""});
+        closeDB();
+        return ret;
+    }
+
+
+    private long Updatedata(int patientid, String bloodpressure, String hemoglobintest,
+                            String urinetest, String pregnancyfood, String pregnancydanger,
+                            String fourparts, String delivery, String feedbaby,
+                            String sixmonths, String familyplanning, String folictablet,
+                            String folictabletimportance) {
+
+
         ContentValues values = new ContentValues();
         values.put(KEY_ID, patientid);
         values.put(KEY_BLOOD, bloodpressure);
@@ -227,4 +283,6 @@ public class FormTable {
         //Lg.d(TAG, "Table dropped and recreated.");
         closeDB();
     }
+
+
 }

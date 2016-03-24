@@ -21,7 +21,7 @@ import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 
 public class FormActivity extends AppCompatActivity {
-    Button Save, Submit;
+    Button Save, Submit,sub;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
     RadioGroup bloodpressure, hemoglobintest,
@@ -65,6 +65,18 @@ public class FormActivity extends AppCompatActivity {
         familyplanning = (RadioGroup) findViewById(R.id.familyplanning);
         folictablet = (RadioGroup) findViewById(R.id.folictablet);
         folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
+        sub=(Button)findViewById(R.id.sub);
+
+
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent1= new Intent(FormActivity.this, TestActivity.class);
+                startActivity(intent1);
+            }
+        });
+
 
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,11 +93,11 @@ public class FormActivity extends AppCompatActivity {
                 try {
 
 
-                        if ((formTable.insertItem(formItem)) == 1&&p==1) {
+                    if ((formTable.insertItem(formItem)) == 1&&p==1) {
 
-                            Toast.makeText(getApplicationContext(), "Data inserted successfully for patient_id " + i, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data inserted successfully for patient_id " + i, Toast.LENGTH_SHORT).show();
 
-                        }
+                    }
 
 
 
@@ -150,6 +162,8 @@ public class FormActivity extends AppCompatActivity {
             RadioButton rb1 = (RadioButton) findViewById(selectedq1);
             bl_status = rb1.getText().toString();
             bloodpressure.clearCheck();
+
+
             RadioButton rb2 = (RadioButton) findViewById(selectedq2);
             hem_status = rb2.getText().toString();
 
