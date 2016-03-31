@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -24,13 +27,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="activity.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".activity.SurveyActivity"
             android:label="@string/title_activity_survey" >
-            android:name=".activity.LoginActivity1"
-            android:label="@string/title_activity_login">
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/title_activity_survey" >
         </activity>
         <activity
             android:name=".activity.FormActivity"
@@ -46,6 +51,18 @@
         <activity
             android:name=".activity.TestActivity"
             android:label="@string/title_activity_test" >
+        </activity>
+        <activity
+            android:name=".activity.Supervisor_verificationActivity"
+            android:label="@string/title_activity_supervisor_verification" >
+        </activity>
+        <activity
+            android:name=".activity.DisplayAll_Activity"
+            android:label="@string/title_activity_display_all_" >
+        </activity>
+        <activity
+            android:name=".activity.UserActivity"
+            android:label="@string/title_activity_user" >
         </activity>
     </application>
 

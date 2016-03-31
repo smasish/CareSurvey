@@ -31,7 +31,7 @@ public class SplashActivity extends ActionBarActivity {
         context = this;
         //getActionBar().setBackgroundDrawable((getResources().getDrawable(R.drawable.actionbar)));
 
-        TextView text = (TextView)findViewById(R.id.notice_id);
+        TextView text = (TextView)findViewById(R.id.falsetice_id);
 
 
 
@@ -41,7 +41,7 @@ public class SplashActivity extends ActionBarActivity {
             @Override
             public void run() {
                 /* start the activity */
-                startActivity(new Intent(context, caresurvey.sci.com.caresurvey.LoginActivity.class));
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 overridePendingTransition(0,0);
                 finish();

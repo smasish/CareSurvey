@@ -20,12 +20,19 @@ public class FormItem {
     private String familyplanning;
     private String folictablet;
     private String folictabletimportance;
+    private int status;
+    private String global_id;
+    private String name;
+    private String comments;
+    private String fields;
 
 
 
     public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
                     String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
-                    String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance) {
+                    String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
+                    int status, String global_id, String name, String comments, String fields
+    ) {
         this.patientid = patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
@@ -39,7 +46,48 @@ public class FormItem {
         this.familyplanning = familyplanning;
         this.folictablet = folictablet;
         this.folictabletimportance = folictabletimportance;
+        this.status=status;
+        this.global_id=global_id;
+        this.name=name;
+        this.comments=comments;
+        this.fields=fields;
 
+    }
+
+    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance, String global_id) {
+        this.patientid=patientid;
+        this.bloodpressure = bloodpressure;
+        this.hemoglobintest = hemoglobintest;
+        this.urinetest = urinetest;
+        this.pregnancyfood = pregnancyfood;
+        this.pregnancydanger = pregnancydanger;
+        this.fourparts = fourparts;
+        this.delivery = delivery;
+        this.feedbaby = feedbaby;
+        this.sixmonths = sixmonths;
+        this.familyplanning = familyplanning;
+        this.folictablet = folictablet;
+        this.folictabletimportance = folictabletimportance;
+        this.global_id = global_id;}
+
+    public String getComments() {
+        return comments;
+    }
+
+    public String getFields() {
+        return fields;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public String getGlobal_id() {
+        return global_id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getPatientid() {
@@ -148,9 +196,8 @@ public class FormItem {
 
 
 
-
-    public FormItem parseFormItem(JSONObject jo) throws JSONException {
-        int _id = jo.getInt("patientid");
+   public static FormItem parseFormItem(int patientid,String global_id,JSONObject jo) throws JSONException {
+        int _patientId=patientid;
         String _bloodpressure = jo.getString("bloodpressure");
         String _hemoglobintest = jo.getString("hemoglobintest");
         String _urinetest = jo.getString("urinetest");
@@ -165,10 +212,10 @@ public class FormItem {
         String _familyplanning = jo.getString("familyplanning");
         String _folictablet = jo.getString("folictablet");
         String _folictabletimportance = jo.getString("folictabletimportance");
+        String _globalId = global_id;
 
 
-
-        return new FormItem(_id,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance);
+        return new FormItem(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_globalId);
     }
 }

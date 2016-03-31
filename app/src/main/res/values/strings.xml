@@ -18,8 +18,24 @@
     <string name="title_activity_login1">LoginActivity1</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_survey">SurveyActivity</string>
-    <string name="ques1">১। বাংলা লেখার চেষ্টা</string>
-    <string name="ques2">২। বাংলা দেখার চেষ্টা</string>
+    <string name="ques1">১।  গর্ভবতী মহিলার ব্লাড প্রেসার/ রক্তচাপ পরিমাপ করেছে</string>
+    <string name="ques2">২। হিমোগ্লোবিন টেস্ট করেছেন অথবা পরীক্ষা করার জন্য রেফার করেছেন</string>
+    <string name="ques3">৩। ইউরিন প্রোটিন টেস্ট অথবা পরীক্ষা করার জন্য রেফার করেছেন</string>
+    <string name="ques4">৪। গর্ভাবস্থায় পুস্টি সম্পর্কে আলোচনা করেছেন (পরিমানে বেশীও, মান সম্পন্ন খাবার খেতে বলেছেন)</string>
+    <string name="ques5">৫। গর্ভকালীন বিপদচিনহ/ জটিলতা সম্পর্কে ক্লায়েন্ডকে বলেছেন</string>
+    <string name="ques6">৬। কমপক্ষে ৪ টি অঘুঈ পরিদর্শনের গুরুত্ব আলোচুনা করেছেন </string>
+    <string name="ques7">৭। একজন দক্ষ স্বাস্থ্য কর্মী দিয়ে ডেলিভারী করানোর জন্য ক্লায়েন্টকে পরামর্শ দিয়েছেন </string>
+    <string name="ques8">৮। জন্মের এক ঘন্টার মধ্যে বুকের দুধ খাওয়ানোর বিষয়ে আলোচনা করেছেন</string>
+    <string name="ques9">৯। ৬ মাস পর্যন্ত শুধু বুকের দুধ খাওয়ানোর বিষয়ে আলোচনা করেছেন। </string>
+    <string name="ques10">১০। প্রসব পরবর্তী পরিবার পরিকল্পনা পদ্ধতি সম্পর্কে আলোচনা করেছেন  </string>
+    <string name="ques11">১১। আয়রন ফলিক এসিড দিয়েছিন বা প্রেসক্রিপশন করেছেন</string>
+    <string name="ques12">১২। আয়রন ফলিক এসিডের প্রয়োজনীয়তা ব্যাক্ষ্যা করেছেন </string>
+    <string name="ques13">গর্ভবতী মহিলার ব্ল্যাড প্রেসার/ রক্তচাপ পরিমাপ করেছে </string>
+
+
     <string name="form">Form</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_supervisor_verification">Supervisor_verificationActivity</string>
+    <string name="title_activity_display_all_">DisplayAll_Activity</string>
+    <string name="title_activity_user">UserActivity</string>
 </resources>

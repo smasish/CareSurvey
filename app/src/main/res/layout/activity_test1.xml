@@ -50,7 +50,7 @@
                     android:text="No"
                     android:id="@+id/ques1rad2"
                     android:checked="false"
-                    />
+                   />
 
             </RadioGroup>
         </LinearLayout>
@@ -75,7 +75,8 @@
 
             <RadioGroup
                 android:layout_width="0dp"
-                android:layout_weight="0.28"                android:layout_height="wrap_content"
+                android:layout_weight="0.28"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/hemoglobintest"
@@ -88,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:text="Yes"
                     android:id="@+id/radioButton3"
-                    />
+                 />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -96,7 +97,7 @@
                     android:text="No"
                     android:id="@+id/radioButton4"
                     android:checked="false"
-                    />
+                   />
             </RadioGroup>
         </LinearLayout>
 
@@ -124,14 +125,14 @@
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/urinetest"
-                >
+       >
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes"
                     android:id="@+id/radioButton"
-                    />
+                   />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -139,7 +140,7 @@
                     android:text="No"
                     android:id="@+id/radioButton2"
                     android:checked="false"
-                    />
+              />
             </RadioGroup>
         </LinearLayout>
 
@@ -166,14 +167,14 @@
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/pregnancyfood"
-                >
+            >
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes"
                     android:id="@+id/radioButton5"
-                    />
+                     />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -181,7 +182,7 @@
                     android:text="No"
                     android:id="@+id/radioButton6"
                     android:checked="false"
-                    />
+                   />
             </RadioGroup>
         </LinearLayout>
 
@@ -198,7 +199,7 @@
                 android:textSize="16dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/ques5"
+                android:text="@string/ques6"
                 android:id="@+id/textView18" />
 
 
@@ -223,7 +224,7 @@
                     android:text="No"
                     android:id="@+id/radioButton8"
                     android:checked="false"
-                    />
+                  />
             </RadioGroup>
         </LinearLayout>
 
@@ -240,7 +241,7 @@
                 android:textSize="16dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/ques6"
+                android:text="@string/ques7"
                 android:id="@+id/textView19" />
 
 
@@ -250,7 +251,7 @@
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/fourparts"
-                >
+             >
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -265,8 +266,7 @@
                     android:text="No"
                     android:id="@+id/radioButton10"
                     android:checked="false"
-
-                    />
+                   />
             </RadioGroup>
 
         </LinearLayout>
@@ -285,7 +285,7 @@
 
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/ques7"
+                android:text="@string/ques2"
                 android:id="@+id/textView20" />
 
             <RadioGroup
@@ -294,14 +294,14 @@
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/delivery"
-                >
+               >
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes"
                     android:id="@+id/radioButton11"
-                    />
+                   />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -309,7 +309,7 @@
                     android:text="No"
                     android:id="@+id/radioButton12"
                     android:checked="false"
-                    />
+                 />
             </RadioGroup>
 
         </LinearLayout>
@@ -337,7 +337,7 @@
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/feedbaby"
-                >
+              >
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -352,7 +352,7 @@
                     android:text="No"
                     android:id="@+id/radioButton14"
                     android:checked="false"
-                    />
+                  />
             </RadioGroup>
         </LinearLayout>
 
@@ -387,7 +387,7 @@
                     android:layout_height="wrap_content"
                     android:text="Yes"
                     android:id="@+id/radioButton15"
-                    />
+                   />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -395,7 +395,7 @@
                     android:text="No"
                     android:id="@+id/radioButton16"
                     android:checked="false"
-                    />
+                 />
             </RadioGroup>
 
 
@@ -411,7 +411,7 @@
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
 
-            android:layout_height="wrap_content">
+                        android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="0dp"
@@ -445,7 +445,7 @@
                     android:text="No"
                     android:id="@+id/radioButton18"
                     android:checked="false"
-                    />
+                     />
             </RadioGroup>
 
 
@@ -478,14 +478,14 @@
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/folictablet"
-                >
+             >
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes"
                     android:id="@+id/radioButton19"
-                    />
+                   />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -493,7 +493,7 @@
                     android:text="No"
                     android:id="@+id/radioButton20"
                     android:checked="false"
-                    />
+                     />
             </RadioGroup>
 
 
@@ -518,12 +518,11 @@
 
             <RadioGroup
                 android:layout_width="0dp"
-                android:layout_weight="0.28"
-                android:layout_height="wrap_content"
+                android:layout_weight="0.28"                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:id="@+id/folictabletimportance"
-                >
+              >
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -540,7 +539,7 @@
                     android:text="No"
                     android:id="@+id/radioButton22"
                     android:checked="false"
-                    />
+                  />
             </RadioGroup>
 
         </LinearLayout>
@@ -556,16 +555,16 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Insert"
+                android:text="Update"
                 android:id="@+id/Savebtn"
-                />
+              />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
                 android:id="@+id/Submit"
-                />
+               />
 
 
 
@@ -578,8 +577,5 @@
 
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3">
-
-
-    </LinearLayout>
+        android:layout_weight="0.3"></LinearLayout>
 </LinearLayout>

@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/notice_id"
+        android:id="@+id/falsetice_id"
         android:gravity="center"
         android:text="Care Survey App"
 android:layout_marginBottom="20dp"

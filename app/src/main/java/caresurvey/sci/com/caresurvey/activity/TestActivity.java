@@ -1,5 +1,7 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.content.Intent;
+import android.renderscript.Sampler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +13,20 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
@@ -20,6 +35,9 @@ import caresurvey.sci.com.caresurvey.model.FormItem;
 public class TestActivity extends AppCompatActivity {
 
 
+
+    int intValue;
+    ArrayList<String> form;
     Button Save, Submit;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
@@ -29,17 +47,18 @@ public class TestActivity extends AppCompatActivity {
             sixmonths, familyplanning, folictablet,
             folictabletimportance;
 
+    ArrayList<FormItem> formItemAll;
 
     TextView tv1,tv2,tv3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_test1);
 
 
 
         Save = (Button) findViewById(R.id.Savebtn);
-        Submit = (Button) findViewById(R.id.Submitbtn);
+        Submit = (Button) findViewById(R.id.Submit);
         bloodpressure = (RadioGroup) findViewById(R.id.bloodpressure);
         hemoglobintest = (RadioGroup) findViewById(R.id.hemoglobintest);
         urinetest = (RadioGroup) findViewById(R.id.urinetest);
@@ -57,6 +76,21 @@ public class TestActivity extends AppCompatActivity {
 
 
 
+        Intent mIntent = getIntent();
+        intValue = mIntent.getIntExtra("position", 0)+1;
+
+        ArrayList<FormItem> formItems;
+        ArrayList<FormItem> formItems1;
+
+
+
+
+        final FormTable formTable = new FormTable(TestActivity.this);
+        formItems= formTable.getSpecificItem(intValue);
+        formItems1= formTable.getSpecificItem(intValue);
+        FormItem formItem;
+
+
 
 
         Save.setOnClickListener(new View.OnClickListener() {
@@ -65,18 +99,28 @@ public class TestActivity extends AppCompatActivity {
 
                 StorevaluesinVar();
 
+                int status = 1;
+                String global_id= "";
+                String name = "";
+                String comments= "";
+                String fields= "";
+
                 FormItem formItem = new FormItem(1, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status);
+                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
+
+
                 FormTable formTable = new FormTable(TestActivity.this);
 
 
                 try {
 
 
-                    if ((formTable.updateItem(1, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                            , del_status, feed_status, six_status, family_status, foltab_status, folimp_status)) == 1) {
 
-                        Toast.makeText(getApplicationContext(), "Data updated successfully for patient_id " + 1, Toast.LENGTH_SHORT).show();
+
+                    if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+                            , del_status, feed_status, six_status, family_status, foltab_status,status,global_id,name)) == 1) {
+
+                        Toast.makeText(getApplicationContext(), "Data updated successfully for patient_id " +intValue, Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -103,12 +147,8 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-        ArrayList<FormItem> formItems;
 
-        FormItem formItem;
 
-        FormTable formTable = new FormTable(TestActivity.this);
-        formItems= formTable.getSpecificItem(1);
 
 
 
@@ -118,7 +158,6 @@ public class TestActivity extends AppCompatActivity {
 
         {
 
-            tv1.setText("" + ft.getDelivery());
             if(ft.getBloodpressure().equals("Yes"))
                 bloodpressure.check(R.id.ques1rad1);
             else
@@ -126,7 +165,7 @@ public class TestActivity extends AppCompatActivity {
 
             if(ft.getHemoglobintest().equals("Yes"))
                 hemoglobintest.check(R.id.radioButton3);
-                   else
+            else
                 hemoglobintest.check(R.id.radioButton4);
 
             if(ft.getUrinetest().equals("Yes"))
@@ -185,7 +224,133 @@ public class TestActivity extends AppCompatActivity {
         }
 
 
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                formItemAll=formTable.getAll();
+
+                String tag_json_obj = "json_obj_req";
+
+                String url = "http://www.kolorob.net/mamoni/survey/api/form";
+
+
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                            }
+                        }) {
+
+                    @Override
+                    protected Map<String, String> getParams() {
+
+
+
+
+                        Map<String, String> params = new HashMap<>();
+
+                        try {
+                            //record ====================================1
+                            //record
+                            JSONArray requests = new JSONArray();
+//                            JSONArray jsonArray =new JSONArray();
+                            for(FormItem formItem1: formItemAll)
+                            {
+                                JSONObject jf= new JSONObject();
+                                JSONObject fs=new JSONObject();
+
+                                fs.put("type", "add");
+                                fs.put("form_type", "dh_antenantals");
+                                jf.put("hemoglobintest",formItem1.getHemoglobintest());
+                                jf.put("bloodpressure",formItem1.getBloodpressure());
+                                jf.put("urinetest",formItem1.getUrinetest());
+                                jf.put("pregnancyfood",formItem1.getPregnancyfood());
+                                jf.put("pregnancydanger",formItem1.getPregnancydanger());
+                                jf.put("fourparts",formItem1.getFourparts());
+                                jf.put("delivery",formItem1.getDelivery());
+                                jf.put("feedbaby",formItem1.getFeedbaby());
+                                jf.put("sixmonths",formItem1.getSixmonths());
+                                jf.put("familyplanning",formItem1.getFamilyplanning());
+                                jf.put("folictablet",formItem1.getFolictablet());
+                                jf.put("folictabletimportance",formItem1.getFolictabletimportance());
+
+                                fs.put("data",jf);
+
+
+
+                                requests.put(fs);
+
+
+
+                            }
+
+
+                            //      jsonArray.put(formItemAll);
+//                            JSONObject record = new JSONObject();
+//                            record.put("hemoglobintest", false);
+//                            record.put("urinetest", false);
+
+
+                            //request
+                            JSONObject request = new JSONObject();
+                            request.put("type", "add");
+                            request.put("form_type", "dh_antenantals");
+                            request.put("data", formItemAll);
+
+
+
+
+
+                            //record ====================================2
+                            //record
+                            JSONObject record2 = new JSONObject();
+                            record2.put("hemoglobintest", true);
+                            record2.put("urinetest", true);
+
+
+                            //request
+                            JSONObject request2 = new JSONObject();
+                            request2.put("type", "add");
+                            request2.put("form_type", "dh_antenantals");
+                            //       request2.put("data", record);
+
+
+                            //requests
+
+
+                            //data
+                            JSONObject data = new JSONObject();
+                            data.put("username", "taw_khan@yahoo.com");
+                            data.put("password", "taw1994");
+                            data.put("requests", requests);
+
+                            params.put("data", data.toString());
+                        }
+                        catch (Exception e){
+
+                        }
+
+                        return params;
+                    }
+
+                };
+
+// Adding request to request queue
+
+                RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
+                requestQueue.add(stringRequest);
+
+            }
+        });
 
 
 
@@ -213,70 +378,70 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-            RadioButton rb1 = (RadioButton) findViewById(selectedq1);
-            bl_status = rb1.getText().toString();
-            bloodpressure.clearCheck();
+        RadioButton rb1 = (RadioButton) findViewById(selectedq1);
+        bl_status = rb1.getText().toString();
+        bloodpressure.clearCheck();
 
 
-            RadioButton rb2 = (RadioButton) findViewById(selectedq2);
-            hem_status = rb2.getText().toString();
+        RadioButton rb2 = (RadioButton) findViewById(selectedq2);
+        hem_status = rb2.getText().toString();
 
-            hemoglobintest.clearCheck();
-
-
-            RadioButton rb3 = (RadioButton) findViewById(selectedq3);
-
-            uri_status = rb3.getText().toString();
-            urinetest.clearCheck();
+        hemoglobintest.clearCheck();
 
 
-            RadioButton rb4 = (RadioButton) findViewById(selectedq4);
+        RadioButton rb3 = (RadioButton) findViewById(selectedq3);
 
-            pregfood_status = rb4.getText().toString();
-            pregnancyfood.clearCheck();
-
-
-            RadioButton rb5 = (RadioButton) findViewById(selectedq5);
-
-            pregdan_status = rb5.getText().toString();
-            pregnancydanger.clearCheck();
+        uri_status = rb3.getText().toString();
+        urinetest.clearCheck();
 
 
-            RadioButton rb6 = (RadioButton) findViewById(selectedq6);
+        RadioButton rb4 = (RadioButton) findViewById(selectedq4);
 
-            four_status = rb6.getText().toString();
-            fourparts.clearCheck();
-
-
-            RadioButton rb7 = (RadioButton) findViewById(selectedq7);
-
-            del_status = rb7.getText().toString();
-            delivery.clearCheck();
+        pregfood_status = rb4.getText().toString();
+        pregnancyfood.clearCheck();
 
 
-            RadioButton rb8 = (RadioButton) findViewById(selectedq8);
-            feed_status = rb8.getText().toString();
-            feedbaby.clearCheck();
+        RadioButton rb5 = (RadioButton) findViewById(selectedq5);
+
+        pregdan_status = rb5.getText().toString();
+        pregnancydanger.clearCheck();
 
 
-            RadioButton rb9 = (RadioButton) findViewById(selectedq9);
-            six_status = rb9.getText().toString();
-            sixmonths.clearCheck();
+        RadioButton rb6 = (RadioButton) findViewById(selectedq6);
+
+        four_status = rb6.getText().toString();
+        fourparts.clearCheck();
 
 
-            RadioButton rb10 = (RadioButton) findViewById(selectedq10);
-            family_status = rb10.getText().toString();
-            familyplanning.clearCheck();
+        RadioButton rb7 = (RadioButton) findViewById(selectedq7);
 
-            RadioButton rb11 = (RadioButton) findViewById(selectedq11);
-
-            foltab_status = rb11.getText().toString();
-            folictablet.clearCheck();
+        del_status = rb7.getText().toString();
+        delivery.clearCheck();
 
 
-            RadioButton rb12 = (RadioButton) findViewById(selectedq12);
-            folimp_status = rb12.getText().toString();
-            folictabletimportance.clearCheck();
+        RadioButton rb8 = (RadioButton) findViewById(selectedq8);
+        feed_status = rb8.getText().toString();
+        feedbaby.clearCheck();
+
+
+        RadioButton rb9 = (RadioButton) findViewById(selectedq9);
+        six_status = rb9.getText().toString();
+        sixmonths.clearCheck();
+
+
+        RadioButton rb10 = (RadioButton) findViewById(selectedq10);
+        family_status = rb10.getText().toString();
+        familyplanning.clearCheck();
+
+        RadioButton rb11 = (RadioButton) findViewById(selectedq11);
+
+        foltab_status = rb11.getText().toString();
+        folictablet.clearCheck();
+
+
+        RadioButton rb12 = (RadioButton) findViewById(selectedq12);
+        folimp_status = rb12.getText().toString();
+        folictabletimportance.clearCheck();
 
 
     }

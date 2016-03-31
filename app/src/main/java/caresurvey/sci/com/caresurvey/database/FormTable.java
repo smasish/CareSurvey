@@ -4,16 +4,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
 import caresurvey.sci.com.caresurvey.model.FormItem;
 
 /**
- *  Created by israt.jahan on 3/6/2016.
+ *  Created by mazharul.islam on 3/6/2016.
  *
- * @author israt
+ * @author arafat
  */
 public class FormTable  {
     private static final String TAG = FormTable.class.getSimpleName();
@@ -33,6 +32,12 @@ public class FormTable  {
     private static final String KEY_FAMILY = "_familyplanning"; // 2 - text
     private static final String KEY_FOLICTAB = "_folictablet"; // 1 - text
     private static final String KEY_FOLICIMP = "_folictabletimportance"; // 1 - text
+    private static final String KEY_STATUS = "_status"; // 1 - text
+    private static final String KEY_GLOBAL_ID = "_globalId"; // 1 - text
+    private static final String KEY_NAME = "_names"; // 1 - text
+    private static final String KEY_COMMENT = "_comments"; // 1 - text
+    private static final String KEY_FIELDS = "_fields"; // 1 - text
+
 
 
 
@@ -49,7 +54,7 @@ public class FormTable  {
 
         String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
                 + "( "
-                + KEY_ID + " INTEGER PRIMARY KEY, " // 0 - int
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " // 0 - int
                 + KEY_BLOOD + " TEXT, "              // 1 - text
                 + KEY_HEMO + " TEXT, "
                 + KEY_URINE + " TEXT, "              // 1 - text
@@ -60,8 +65,17 @@ public class FormTable  {
                 + KEY_FEED + " TEXT, "
                 + KEY_SIXMONTHS + " TEXT, "              // 1 - text
                 + KEY_FAMILY + " TEXT, "
-                + KEY_FOLICTAB + " TEXT, "              // 1 - text
-                + KEY_FOLICIMP + " TEXT "
+                + KEY_FOLICTAB + " TEXT, "
+                + KEY_FOLICIMP + " TEXT, "// 1 - text
+                + KEY_STATUS + " TEXT, "
+                + KEY_GLOBAL_ID + " TEXT, "
+                + KEY_NAME + " TEXT, "
+                + KEY_COMMENT + " TEXT,"
+                + KEY_FIELDS + " TEXT "
+
+
+
+
 
                 // 2 - text
                 + " )";
@@ -80,19 +94,19 @@ public class FormTable  {
         return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
                 formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
                 formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
-                formItem.getFolictabletimportance());
+                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields());
     }
     public long insertItem(int patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance) {
+                           String folictabletimportance, int status, String globalId, String name,String comments, String fields) {
         if (isFieldExist(patientid)) {
             return updateItem(patientid,bloodpressure, hemoglobintest,
                     urinetest, pregnancyfood, pregnancydanger,
                     fourparts, delivery,feedbaby,
                     sixmonths, familyplanning,folictablet,
-                    folictabletimportance);
+                    folictabletimportance,status,globalId,name,comments,fields);
         }
         ContentValues values = new ContentValues();
         values.put(KEY_ID, patientid);
@@ -108,6 +122,11 @@ public class FormTable  {
         values.put(KEY_FAMILY, familyplanning);
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folictabletimportance);
+        values.put(KEY_STATUS, status);
+        values.put(KEY_GLOBAL_ID, globalId);
+        values.put(KEY_NAME, name);
+        values.put(KEY_COMMENT, comments);
+        values.put(KEY_FIELDS, fields);
 
 
 
@@ -192,6 +211,28 @@ public class FormTable  {
         return subCatList;
     }
 
+    public ArrayList<FormItem> getAllItem(int cat_id) {
+        ArrayList<FormItem> subCatList = new ArrayList<>();
+        //System.out.println(cat_id+"  "+sub_cat_id);
+        SQLiteDatabase db = openDB();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME , null);
+
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                subCatList.add(cursorToSubCatList(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return subCatList;
+    }
+
+
+
 
 
 
@@ -199,7 +240,7 @@ public class FormTable  {
                                String urinetest, String pregnancyfood, String pregnancydanger,
                                String fourparts, String delivery, String feedbaby,
                                String sixmonths, String familyplanning, String folictablet,
-                               String folictabletimportance) {
+                               String folictabletimportance,int status, String globalId, String name, String comments, String fields) {
 
 
         ContentValues values = new ContentValues();
@@ -216,6 +257,11 @@ public class FormTable  {
         values.put(KEY_FAMILY, familyplanning);
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folictabletimportance);
+        values.put(KEY_STATUS, status);
+        values.put(KEY_GLOBAL_ID, globalId);
+        values.put(KEY_NAME, name);
+        values.put(KEY_COMMENT, comments);
+        values.put(KEY_FIELDS,fields);
 
         SQLiteDatabase db = openDB();
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
@@ -223,6 +269,65 @@ public class FormTable  {
         closeDB();
         return ret;
     }
+
+    public long updateItemq(int patientid, String bloodpressure, String hemoglobintest,
+                           String urinetest, String pregnancyfood, String pregnancydanger,
+                           String fourparts, String delivery, String feedbaby,
+                           String sixmonths, String familyplanning, String folictablet, int status, String globalId, String name) {
+
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, patientid);
+        values.put(KEY_BLOOD, bloodpressure);
+        values.put(KEY_HEMO, hemoglobintest);
+        values.put(KEY_URINE, urinetest);
+        values.put(KEY_PREGFOOD, pregnancyfood);
+        values.put(KEY_PREGDANGER, pregnancydanger);
+        values.put(KEY_FOURCENTER, fourparts);
+        values.put(KEY_DELIVERY, delivery);
+        values.put(KEY_FEED, feedbaby);
+        values.put(KEY_SIXMONTHS, sixmonths);
+        values.put(KEY_FAMILY, familyplanning);
+        values.put(KEY_FOLICTAB, folictablet);
+        values.put(KEY_STATUS, status);
+        values.put(KEY_GLOBAL_ID, globalId);
+        values.put(KEY_NAME, name);
+
+
+        SQLiteDatabase db = openDB();
+        long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
+                new String[]{patientid + ""});
+        closeDB();
+        return ret;
+    }
+
+
+
+
+
+
+    public long updatefieldforuser(String globalId, int status, String comments,
+                            String fields) {
+
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_GLOBAL_ID, globalId);
+        values.put(KEY_STATUS, status);
+        values.put(KEY_COMMENT, comments);
+        values.put(KEY_FIELDS, fields);
+
+
+
+        SQLiteDatabase db = openDB();
+        long ret = db.update(TABLE_NAME, values, KEY_GLOBAL_ID + " = ?",
+                new String[]{globalId + ""});
+        closeDB();
+        return ret;
+    }
+
+
+
+
 
 
     private long Updatedata(int patientid, String bloodpressure, String hemoglobintest,
@@ -269,11 +374,16 @@ public class FormTable  {
         String _familyplanning =cursor.getString(10);
         String _folictablet = cursor.getString(11);
         String _folictabletimportance = cursor.getString(12);
+        int _status = cursor.getInt(13);
+        String _globalId = cursor.getString(14);
+        String _name = cursor.getString(15);
+        String _comments = cursor.getString(16);
+        String _fields= cursor.getString(17);
 
 
 
         return new FormItem(_id,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance);
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields);
     }
 
     public void dropTable() {

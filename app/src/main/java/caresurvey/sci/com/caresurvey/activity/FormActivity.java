@@ -22,6 +22,7 @@ import caresurvey.sci.com.caresurvey.model.FormItem;
 
 public class FormActivity extends AppCompatActivity {
     Button Save, Submit,sub;
+    Boolean vs;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
     RadioGroup bloodpressure, hemoglobintest,
@@ -52,7 +53,7 @@ public class FormActivity extends AppCompatActivity {
 
     private void addListenerOnButton() {
         Save = (Button) findViewById(R.id.Savebtn);
-        Submit = (Button) findViewById(R.id.Submitbtn);
+        //Submit = (Button) findViewById(R.id.Submitbtn);
         bloodpressure = (RadioGroup) findViewById(R.id.bloodpressure);
         hemoglobintest = (RadioGroup) findViewById(R.id.hemoglobintest);
         urinetest = (RadioGroup) findViewById(R.id.urinetest);
@@ -65,17 +66,7 @@ public class FormActivity extends AppCompatActivity {
         familyplanning = (RadioGroup) findViewById(R.id.familyplanning);
         folictablet = (RadioGroup) findViewById(R.id.folictablet);
         folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
-        sub=(Button)findViewById(R.id.sub);
 
-
-        sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent1= new Intent(FormActivity.this, TestActivity.class);
-                startActivity(intent1);
-            }
-        });
 
 
         Save.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +74,13 @@ public class FormActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i++;
                 StorevaluesinVar();
+                int status =1;
+                String global_id="";
+                String name = "";
+                String comments="";
+                String fields = "";
                 FormItem formItem = new FormItem(i, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status);
+                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
 
 
 
@@ -154,13 +150,16 @@ public class FormActivity extends AppCompatActivity {
         if(selectedq1<0||selectedq2<0||selectedq3<0||selectedq4<0||selectedq5<0||selectedq6<0||selectedq7<0||
                 selectedq8<0||selectedq9<0||selectedq10<0||selectedq11<0||selectedq12<0) {
             wrongData();
-           p=0;
+            p=0;
         }
 
         else {
             p=1;
             RadioButton rb1 = (RadioButton) findViewById(selectedq1);
             bl_status = rb1.getText().toString();
+
+
+
             bloodpressure.clearCheck();
 
 
@@ -225,9 +224,13 @@ public class FormActivity extends AppCompatActivity {
             folictabletimportance.clearCheck();
         }
 
-        }
-
     }
+
+
+
+
+
+}
 
 
 
