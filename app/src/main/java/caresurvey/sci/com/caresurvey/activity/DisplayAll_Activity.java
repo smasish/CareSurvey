@@ -225,6 +225,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
                                         comments=fields.getString("comments");
                                         fieldss=fields.getString("fields");
 
+
                                         formTable.updatefieldforuser(global_id,status,comments,fieldss);
 
                                         //formTable.insertItem(et);
@@ -317,18 +318,18 @@ public class DisplayAll_Activity extends AppCompatActivity {
             final int[] status= new int[f];
 
 
-//            for(FormItem ft: formItems)
-//
-//            {
-//                id[k]= Integer.parseInt(ft.getGlobal_id());
-//                name[k]=ft.getName();
-//                status[k]=ft.getStatus();
-//
-//                k++;
-//
-//
-//
-//            }
+            if(!formItems.isEmpty()) {
+                for (FormItem ft : formItems)
+
+                {
+                    id[k] = ft.getPatientid();
+                    name[k] = ft.getName();
+                    status[k] = ft.getStatus();
+                    k++;
+
+
+                }
+            }
             DisplayNamesWithStatusAdapter adapter=new DisplayNamesWithStatusAdapter(this,id,name,status);
 
             listView.setAdapter(adapter);

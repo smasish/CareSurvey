@@ -31,7 +31,7 @@ public class FormItem {
     public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
                     String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
                     String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
-                    int status, String global_id, String name, String comments, String fields
+                    int status,String global_id, String name, String comments, String fields
     ) {
         this.patientid = patientid;
         this.bloodpressure = bloodpressure;
@@ -54,7 +54,7 @@ public class FormItem {
 
     }
 
-    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance, String global_id) {
+    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,String global_id) {
         this.patientid=patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
@@ -196,7 +196,7 @@ public class FormItem {
 
 
 
-   public static FormItem parseFormItem(int patientid,String global_id,JSONObject jo) throws JSONException {
+    public static FormItem parseFormItem(int patientid,String global_id,JSONObject jo) throws JSONException {
         int _patientId=patientid;
         String _bloodpressure = jo.getString("bloodpressure");
         String _hemoglobintest = jo.getString("hemoglobintest");

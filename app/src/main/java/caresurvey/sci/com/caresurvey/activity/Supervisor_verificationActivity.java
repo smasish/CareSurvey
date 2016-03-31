@@ -37,6 +37,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
     Button Save, Submit;
     EditText et1,et2;
     String point,comment;
+    String s1;
+    String s2;
 
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
@@ -202,12 +204,12 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Submit.setClickable(false);
+                //Save.setClickable(false);
 
 
-              //  Submit.setClickable(false);
-               // Save.setClickable(false);
-
-
+             //   s1=et1.getText().toString();
+               //  s2=et2.getText().toString();
 
                 String url = "http://www.kolorob.net/mamoni/survey/api/form";
 
@@ -245,8 +247,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                 JSONObject jf= new JSONObject();
                                 JSONObject meta=new JSONObject();
 
-                                meta.put("comments", et1.getText().toString());
-                                meta.put("fields", et2.getText().toString());
+                                meta.put("comments", "THis is good enough");
+                                meta.put("fields", "2,3,4");
 
                                 requests.put("meta",meta);
                                 requests.put("form_id",formItem1.getGlobal_id());
@@ -296,6 +298,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
                 RequestQueue requestQueue = Volley.newRequestQueue(Supervisor_verificationActivity.this);
                 requestQueue.add(stringRequest);
+
 
             }
         });

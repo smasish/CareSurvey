@@ -21,6 +21,9 @@ import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 
 public class FormActivity extends AppCompatActivity {
+
+
+
     Button Save, Submit,sub;
     Boolean vs;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
@@ -69,16 +72,29 @@ public class FormActivity extends AppCompatActivity {
 
 
 
+
+
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i++;
+
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+
+
+                int i = pref.getInt("id", 0)+1;
+
+
                 StorevaluesinVar();
                 int status =1;
                 String global_id="";
                 String name = "";
                 String comments="";
                 String fields = "";
+
+
+
+                i++;
                 FormItem formItem = new FormItem(i, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
                         , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
 
@@ -89,9 +105,14 @@ public class FormActivity extends AppCompatActivity {
                 try {
 
 
-                    if ((formTable.insertItem(formItem)) == 1&&p==1) {
+                    if ((formTable.insertItem(formItem)) == 1) {
 
                         Toast.makeText(getApplicationContext(), "Data inserted successfully for patient_id " + i, Toast.LENGTH_SHORT).show();
+
+
+
+                        editor.putInt("id", i);
+                        editor.commit();
 
                     }
 

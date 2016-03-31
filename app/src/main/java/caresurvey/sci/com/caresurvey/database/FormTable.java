@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -237,10 +239,10 @@ public class FormTable  {
 
 
     public long updateItem(int patientid, String bloodpressure, String hemoglobintest,
-                               String urinetest, String pregnancyfood, String pregnancydanger,
-                               String fourparts, String delivery, String feedbaby,
-                               String sixmonths, String familyplanning, String folictablet,
-                               String folictabletimportance,int status, String globalId, String name, String comments, String fields) {
+                           String urinetest, String pregnancyfood, String pregnancydanger,
+                           String fourparts, String delivery, String feedbaby,
+                           String sixmonths, String familyplanning, String folictablet,
+                           String folictabletimportance,int status, String globalId, String name, String comments, String fields) {
 
 
         ContentValues values = new ContentValues();
@@ -271,9 +273,9 @@ public class FormTable  {
     }
 
     public long updateItemq(int patientid, String bloodpressure, String hemoglobintest,
-                           String urinetest, String pregnancyfood, String pregnancydanger,
-                           String fourparts, String delivery, String feedbaby,
-                           String sixmonths, String familyplanning, String folictablet, int status, String globalId, String name) {
+                            String urinetest, String pregnancyfood, String pregnancydanger,
+                            String fourparts, String delivery, String feedbaby,
+                            String sixmonths, String familyplanning, String folictablet, int status, String globalId, String name) {
 
 
         ContentValues values = new ContentValues();
@@ -307,7 +309,7 @@ public class FormTable  {
 
 
     public long updatefieldforuser(String globalId, int status, String comments,
-                            String fields) {
+                                   String fields) {
 
 
         ContentValues values = new ContentValues();
@@ -327,9 +329,18 @@ public class FormTable  {
 
 
 
-
-
-
+       public long updateglobalId(String globalId, int patientId) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_GLOBAL_ID, globalId);
+        values.put(KEY_ID, patientId);
+        SQLiteDatabase db = openDB();
+           Log.d(".....>>>>>>>>>>","...");
+           Log.d(".....>>>>>>>>>>","..."+patientId);
+        long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
+                new String[]{patientId + ""});
+        closeDB();
+        return ret;
+    }
     private long Updatedata(int patientid, String bloodpressure, String hemoglobintest,
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
@@ -382,7 +393,7 @@ public class FormTable  {
 
 
 
-        return new FormItem(_id,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
+        return new FormItem(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
                 _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields);
     }
 

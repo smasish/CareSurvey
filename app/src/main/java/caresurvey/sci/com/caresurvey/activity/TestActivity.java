@@ -1,9 +1,11 @@
 package caresurvey.sci.com.caresurvey.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.renderscript.Sampler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -240,6 +243,38 @@ public class TestActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
+
+                                try {
+                                    JSONObject jo = new JSONObject(response);
+                                    JSONArray responses = jo.getJSONArray("responses");
+                                    Log.d(".....>>>>>>>>>>", "..." + responses.length());
+                                    for(i=1;i<=responses.length();i++) {
+
+                                        JSONObject data= responses.getJSONObject(i);
+                                        JSONObject data1= responses.getJSONObject(i);
+                                        JSONObject global_id= data.getJSONObject("form_id");
+                                        int id=intValue;
+                                        String global_ida;
+                                        global_ida=global_id.toString();
+
+                                       FormTable formTable1= new FormTable(TestActivity.this);
+                                        Log.d(".....>>>>>>>>>>", "...");
+                                        formTable1.updateglobalId(global_ida,id);
+
+                                    }
+//
+                                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    editor.putString("Timestamp_supervisor", jo.getJSONObject("updated_at").toString());
+                                    editor.commit();
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
+
+
                                 Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
                             }
                         },
@@ -282,6 +317,8 @@ public class TestActivity extends AppCompatActivity {
                                 jf.put("familyplanning",formItem1.getFamilyplanning());
                                 jf.put("folictablet",formItem1.getFolictablet());
                                 jf.put("folictabletimportance",formItem1.getFolictabletimportance());
+
+
 
                                 fs.put("data",jf);
 
