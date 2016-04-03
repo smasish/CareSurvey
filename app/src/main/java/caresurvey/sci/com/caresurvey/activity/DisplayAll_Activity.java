@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,89 +41,21 @@ public class DisplayAll_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_all_);
-        ListView listView=(ListView)findViewById(R.id.user_list);
+        listView=(ListView)findViewById(R.id.user_list);
         btn=(Button)findViewById(R.id.addForm);
-        user= "collecter";
+        user= "supervisor";
+
+        Intent mIntent = getIntent();
+        user = mIntent.getStringExtra("user");
 
 
-        if(user.equals("supervisor"))
+        //   user= "collecter";
+
+
+        if(user.equals("admin"))
         {
-            String tag_json_obj = "json_obj_req";
 
-            String url = "http://www.kolorob.net/mamoni/survey/api/sync";
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            //     Toast.makeText(DisplayAll_Activity.this,response,Toast.LENGTH_SHORT).show();
-
-                            try {
-                                JSONObject jo = new JSONObject(response);
-                                JSONArray forms = jo.getJSONArray("forms");
-//                                JSONObject joes = new JSONObject();
-//                                joes= jo.getJSONObject("forms");
-                                // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
-                                FormTable formTable = new FormTable(DisplayAll_Activity.this);
-                                // formTable.dropTable();
-                                int formItemCount = forms.length();
-                                for (int i = 0; i < formItemCount; i++) {
-                                    try {
-                                        JSONObject record = forms.getJSONObject(i);
-                                        JSONObject fields = record.getJSONObject("data");
-                                        FormItem et = FormItem.parseFormItem(i, record.getString("form_id"), fields);
-                                        int q;
-                                        q=record.getInt("form_id");
-                                        formTable.insertItem(et);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = pref.edit();
-                                editor.putString("Timestamp_supervisor", jo.getJSONObject("updated_at").toString());
-                                editor.commit();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(DisplayAll_Activity.this,error.toString(),Toast.LENGTH_LONG).show();
-                        }
-                    }) {
-
-                @Override
-                protected Map<String, String> getParams() {
-
-                    Map<String, String> params = new HashMap<>();
-
-                    try {
-                        //data
-                        JSONObject data = new JSONObject();
-                        data.put("username", "taw_khan1@yahoo.com");
-                        data.put("password", "taw1994");
-                        data.put("get_all", true);
-
-                        params.put("data", data.toString());
-                    }
-                    catch (Exception e){
-
-                    }
-
-                    return params;
-                }
-
-            };
-
-// Adding request to request queue
-
-            RequestQueue requestQueue = Volley.newRequestQueue(DisplayAll_Activity.this);
-            requestQueue.add(stringRequest);
 
 
 
@@ -131,13 +64,6 @@ public class DisplayAll_Activity extends AppCompatActivity {
 
 
             ArrayList<FormItem> formItems;
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent in = new Intent(DisplayAll_Activity.this, FormActivity.class);
-                    startActivity(in);
-                }
-            });
 
             FormItem formItem;
 
@@ -184,108 +110,22 @@ public class DisplayAll_Activity extends AppCompatActivity {
             });
 
 
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(DisplayAll_Activity.this, FormActivity.class);
+                    startActivity(in);
+                }
+            });
+
+
+
         }
 
 
 
-        else if(user.equals("collecter"))
+        else if(user.equals("user"))
         {
-
-            String tag_json_obj = "json_obj_req";
-
-            String url = "http://www.kolorob.net/mamoni/survey/api/sync";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                             Toast.makeText(DisplayAll_Activity.this,response,Toast.LENGTH_SHORT).show();
-
-                            try {
-                                JSONObject jo = new JSONObject(response);
-                                JSONArray forms = jo.getJSONArray("forms");
-//                                JSONObject joes = new JSONObject();
-//                                joes= jo.getJSONObject("forms");
-                                // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
-                                FormTable formTable = new FormTable(DisplayAll_Activity.this);
-                                int formItemCount = forms.length();
-
-
-
-
-                                for (int i = 0; i < formItemCount; i++) {
-                                    try {
-                                        JSONObject record = forms.getJSONObject(i);
-                                        JSONObject fields = record.getJSONObject("meta");
-                                  //      FormItem et = FormItem.parseFormItem(i,record.getString("form_id"),fields);
-                                        int status;
-                                        String global_id,comments,fieldss;
-                                        status=record.getInt("status");
-                                        global_id=record.getString("form_id");
-                                        comments=fields.getString("comments");
-                                        fieldss=fields.getString("fields");
-
-
-                                        formTable.updatefieldforuser(global_id,status,comments,fieldss);
-
-                                        //formTable.insertItem(et);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-
-
-
-
-
-
-                                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = pref.edit();
-                                editor.putString("Timestamp", jo.getJSONObject("updated_at").toString());
-                                editor.commit();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(DisplayAll_Activity.this,error.toString(),Toast.LENGTH_LONG).show();
-                        }
-                    }) {
-
-                @Override
-                protected Map<String, String> getParams() {
-
-                    Map<String, String> params = new HashMap<>();
-
-                    try {
-                        //data
-                        JSONObject data = new JSONObject();
-                        data.put("username", "taw_khan@yahoo.com");
-                        data.put("password", "taw1994");
-                        data.put("timestamp", "2016-03-24 11:20:29");
-
-                        params.put("data", data.toString());
-                    }
-                    catch (Exception e){
-
-                    }
-
-                    return params;
-                }
-
-            };
-
-// Adding request to request queue
-
-            RequestQueue requestQueue = Volley.newRequestQueue(DisplayAll_Activity.this);
-            requestQueue.add(stringRequest);
-
 
 
 
@@ -315,8 +155,8 @@ public class DisplayAll_Activity extends AppCompatActivity {
 
             int[] id=new int[f];
             String[] name=new String[f];
-            final int[] status= new int[f];
 
+            final int[] status= new int[f];
 
             if(!formItems.isEmpty()) {
                 for (FormItem ft : formItems)
@@ -355,7 +195,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
 
 
 
-        }
+    }
 
 
 
@@ -386,5 +226,16 @@ public class DisplayAll_Activity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        listView.invalidate();
+        Log.d("......",">>>>>>>"+listView);
+
+
+
     }
 }

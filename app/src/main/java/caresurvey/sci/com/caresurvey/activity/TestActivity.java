@@ -50,9 +50,12 @@ public class TestActivity extends AppCompatActivity {
             sixmonths, familyplanning, folictablet,
             folictabletimportance;
 
+    int id=intValue;
+    String global_ida;
+
     ArrayList<FormItem> formItemAll;
 
-    TextView tv1,tv2,tv3;
+    TextView tv1,tv2,tv3,comment,field;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +77,8 @@ public class TestActivity extends AppCompatActivity {
         familyplanning = (RadioGroup) findViewById(R.id.familyplanning);
         folictablet = (RadioGroup) findViewById(R.id.folictablet);
         folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
+        comment=(TextView)findViewById(R.id.comment);
+        field = (TextView)findViewById(R.id.field);
 
         tv1=(TextView)findViewById(R.id.textView3);
 
@@ -92,6 +97,8 @@ public class TestActivity extends AppCompatActivity {
         formItems= formTable.getSpecificItem(intValue);
         formItems1= formTable.getSpecificItem(intValue);
         FormItem formItem;
+
+
 
 
 
@@ -121,7 +128,7 @@ public class TestActivity extends AppCompatActivity {
 
 
                     if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                            , del_status, feed_status, six_status, family_status, foltab_status,status,global_id,name)) == 1) {
+                            , del_status, feed_status, six_status, family_status, foltab_status,folimp_status,status,global_id,name)) == 1) {
 
                         Toast.makeText(getApplicationContext(), "Data updated successfully for patient_id " +intValue, Toast.LENGTH_SHORT).show();
 
@@ -218,6 +225,19 @@ public class TestActivity extends AppCompatActivity {
                 folictablet.check(R.id.radioButton19);
             else
                 folictablet.check(R.id.radioButton20);
+//            if(!ft.getComments().equals(null))
+//            {
+//                comment.setVisibility(View.VISIBLE);
+//                comment.setText(ft.getComments());
+//
+//            }
+
+            if(!ft.getFields().equals(null))
+            {
+                field.setVisibility(View.VISIBLE);
+                field.setText(ft.getFields());
+
+            }
 
             if(ft.getFolictabletimportance().equals("Yes"))
                 folictabletimportance.check(R.id.radioButton21);
@@ -231,7 +251,7 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                formItemAll=formTable.getAll();
+                formItemAll=formTable.getSpecificItem(intValue);
 
                 String tag_json_obj = "json_obj_req";
 
@@ -247,20 +267,37 @@ public class TestActivity extends AppCompatActivity {
                                 try {
                                     JSONObject jo = new JSONObject(response);
                                     JSONArray responses = jo.getJSONArray("responses");
-                                    Log.d(".....>>>>>>>>>>", "..." + responses.length());
-                                    for(i=1;i<=responses.length();i++) {
+                                    //Log.d(".....>>>>>>>>>>", "..." + responses.length());
+                                    for(i=0;i<=responses.length();i++) {
 
                                         JSONObject data= responses.getJSONObject(i);
+                                        Log.d(".....>>>>>>>>>>", "response length" + responses.length());
                                         JSONObject data1= responses.getJSONObject(i);
-                                        JSONObject global_id= data.getJSONObject("form_id");
-                                        int id=intValue;
-                                        String global_ida;
-                                        global_ida=global_id.toString();
+                                        JSONObject data2= data.getJSONObject("data");
+                                        int ids =intValue;
+                                        String datax= data2.toString();
+                                        String global_ida= data2.getString("form_id");
 
-                                       FormTable formTable1= new FormTable(TestActivity.this);
-                                        Log.d(".....>>>>>>>>>>", "...");
-                                        formTable1.updateglobalId(global_ida,id);
 
+
+                                        String global_id = global_ida;
+
+
+
+
+
+
+                                        //  JSONObject idx= global_idx.getJSONObject("form_id");
+                                        //  JSONObject idxv= global_idx.getJSONObject("form_id");
+                                        //                        JSONObject global_id1= data2.getJSONObject("form_id");
+
+                                        //  global_ida=global_id.toString();
+
+                                        FormTable formTable1= new FormTable(TestActivity.this);
+                                        //   Log.d(".....>>>>>>>>>>", "...");
+                                        formTable1.updateglobalId(global_ida, intValue);
+                                        //   Log.d(".....>>>>>>>>>>", "..." + intValue);
+                                        //  Log.d(".....>>>>>>>>>>", "..."+global_ida);
                                     }
 //
                                     SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
@@ -304,6 +341,9 @@ public class TestActivity extends AppCompatActivity {
                                 JSONObject fs=new JSONObject();
 
                                 fs.put("type", "add");
+
+
+
                                 fs.put("form_type", "dh_antenantals");
                                 jf.put("hemoglobintest",formItem1.getHemoglobintest());
                                 jf.put("bloodpressure",formItem1.getBloodpressure());

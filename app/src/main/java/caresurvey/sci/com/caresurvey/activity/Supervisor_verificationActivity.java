@@ -1,14 +1,19 @@
 package caresurvey.sci.com.caresurvey.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,11 +39,13 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
     int intValue;
     ArrayList<String> form;
-    Button Save, Submit;
+    Button Save, Submit,revert1;
     EditText et1,et2;
     String point,comment;
-    String s1;
-    String s2;
+    String ChekboxText;
+    CheckBox cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8,cb9,cb10,cb11,cb12;
+    Spinner com_incom;
+    LinearLayout linearLayout;
 
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
@@ -74,23 +81,62 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
         familyplanning = (RadioGroup) findViewById(R.id.familyplanning);
         folictablet = (RadioGroup) findViewById(R.id.folictablet);
         folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
+        com_incom = (Spinner)findViewById(R.id.spinner_com);
+        linearLayout= (LinearLayout)findViewById(R.id.revertlayout);
+        revert1= (Button)findViewById(R.id.Submit1);
+
+
+        revert1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                linearLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        ArrayList<String> com_incomList = new ArrayList<String>();
+
+        com_incomList.add("Select Cause");
+        com_incomList.add("Incomplete");
+        com_incomList.add("Complete");
+
+
+        ArrayAdapter<String> adapterissue = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,com_incomList);
+        com_incom.setAdapter(adapterissue);
 
         tv1=(TextView)findViewById(R.id.textView3);
 
-        et1=(EditText)findViewById(R.id.et1);
-        et1=(EditText)findViewById(R.id.et2);
+//        et1=(EditText)findViewById(R.id.comment);
+        et2=(EditText)findViewById(R.id.comment);
 
 
-     //   point=et1.getText().toString();
-       // comment=et2.getText().toString();
+
+        cb1=(CheckBox)findViewById(R.id.checkBox);
+        cb2=(CheckBox)findViewById(R.id.checkBox2);
+        cb3=(CheckBox)findViewById(R.id.checkBox3);
+        cb4=(CheckBox)findViewById(R.id.checkBox5);
+        cb5=(CheckBox)findViewById(R.id.checkBox6);
+        cb6=(CheckBox)findViewById(R.id.checkBox7);
+        cb7=(CheckBox)findViewById(R.id.checkBox8);
+        cb8=(CheckBox)findViewById(R.id.checkBox9);
+        cb9=(CheckBox)findViewById(R.id.checkBox10);
+        cb10=(CheckBox)findViewById(R.id.checkBox11);
+        cb11=(CheckBox)findViewById(R.id.checkBox12);
+        cb12=(CheckBox)findViewById(R.id.checkBox4);
+
+
+
+
+
 
 
 
         Intent mIntent = getIntent();
-        intValue = mIntent.getIntExtra("position", 0)+1;
+        intValue = mIntent.getIntExtra("position", 0);
 
 
-        ArrayList<FormItem> formItems1;
+        final ArrayList<FormItem> formItems1;
 
 
 
@@ -103,12 +149,27 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Submit.setClickable(false);
+
+
+
+                // Submit.setClickable(false);
                 //Save.setClickable(false);
 
 
+                //  if(!et1.equals(null))
+                //      point=et1.getText().toString();
+                //     if(!et2.equals(null))
+                //    comment=et2.getText().toString();
+                // Log.d(".....>>>>>>>>>>", "point1 " + point);
+                // Log.d(".....>>>>>>>>>>", "comment1 " + et1.getText().toString().trim());
+                //    Log.d(".....>>>>>>>>>>", "point2 " + et2.getText().toString().trim());
+
 
                 String url = "http://www.kolorob.net/mamoni/survey/api/form";
+
+                //Log.d(".....>>>>>>>>>>", "ChekboxText " + ChekboxText);
+                // Log.d(".....>>>>>>>>>>", "ChekboxText " + ChekboxText);
+
 
 
 
@@ -116,6 +177,30 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
+
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    int status;
+                                    status= jsonObject.getInt("status");
+                                    Log.d(".....>>>>>>>>>>", "response length" + et1.getText().toString().trim());
+
+                                    if (status==2){
+                                        FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
+                                        for(FormItem formItem1: formItems)
+                                        {
+                                            String global_id= formItem1.getGlobal_id();
+                                            formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
+                                        }
+                                    }
+
+
+
+                                }
+
+                                catch (Exception e)
+                                {
+
+                                }
                                 Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
                             }
                         },
@@ -128,12 +213,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
                     @Override
                     protected Map<String, String> getParams() {
-
-
-
-
                         Map<String, String> params = new HashMap<>();
-
                         try {
                             //record ====================================1
                             //record
@@ -143,22 +223,13 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                             {
                                 JSONObject jf= new JSONObject();
                                 JSONObject meta=new JSONObject();
-
-                                meta.put("comments", "");
+                                meta.put("comments","");
                                 meta.put("fields", "");
-
                                 requests.put("meta",meta);
                                 requests.put("form_id",formItem1.getGlobal_id());
                                 requests.put("type","update");
                                 requests.put("status",1);
-
                                 jsonArray.put(requests);
-
-
-
-
-
-
                             }
 
 
@@ -204,12 +275,77 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Submit.setClickable(false);
-                //Save.setClickable(false);
 
 
-             //   s1=et1.getText().toString();
-               //  s2=et2.getText().toString();
+
+                ChekboxText=com_incom.getSelectedItem().toString();
+                if(cb1.isChecked()) {
+                    String value= cb1.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb2.isChecked()) {
+                    String value= cb2.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb3.isChecked()) {
+                    String value= cb3.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb4.isChecked()) {
+                    String value= cb4.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb5.isChecked()) {
+                    String value= cb5.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb6.isChecked()) {
+                    String value= cb6.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;                }
+                if(cb7.isChecked()) {
+                    String value= cb7.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb8.isChecked()) {
+                    String value= cb8.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb9.isChecked()) {
+                    String value= cb9.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb10.isChecked()) {
+                    String value= cb10.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb11.isChecked()) {
+                    String value= cb11.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(cb12.isChecked()) {
+                    String value= cb12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+
+                Log.d(".....>>>>>>>>>>", "ChekboxText " + ChekboxText);
+
+                //  Submit.setClickable(false);
+                // Save.setClickable(false);
+
+
 
                 String url = "http://www.kolorob.net/mamoni/survey/api/form";
 
@@ -220,6 +356,31 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    int status;
+                                    status= jsonObject.getInt("status");
+
+                                    if (status==2){
+                                        FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
+                                        for(FormItem formItem1: formItems)
+                                        {
+                                            String global_id= formItem1.getGlobal_id();
+                                            formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
+                                        }
+                                    }
+
+
+
+                                }
+
+                                catch (Exception e)
+                                {
+
+                                }
+
+
                             }
                         },
                         new Response.ErrorListener() {
@@ -247,8 +408,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                 JSONObject jf= new JSONObject();
                                 JSONObject meta=new JSONObject();
 
-                                meta.put("comments", "THis is good enough");
-                                meta.put("fields", "2,3,4");
+                                meta.put("comments",et2.getText().toString());
+                                meta.put("fields", ChekboxText);
 
                                 requests.put("meta",meta);
                                 requests.put("form_id",formItem1.getGlobal_id());
@@ -299,7 +460,6 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                 RequestQueue requestQueue = Volley.newRequestQueue(Supervisor_verificationActivity.this);
                 requestQueue.add(stringRequest);
 
-
             }
         });
 
@@ -309,7 +469,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
 
 
-    //    ArrayList<FormItem> formItems;
+        //    ArrayList<FormItem> formItems;
 
 
 //        FormItem formItem;

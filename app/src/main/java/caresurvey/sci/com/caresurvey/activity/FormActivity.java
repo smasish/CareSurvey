@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -82,11 +83,11 @@ public class FormActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = pref.edit();
 
 
-                int i = pref.getInt("id", 0)+1;
+                int i = pref.getInt("id", 0);
 
 
                 StorevaluesinVar();
-                int status =1;
+                int status =3;
                 String global_id="";
                 String name = "";
                 String comments="";
@@ -103,20 +104,28 @@ public class FormActivity extends AppCompatActivity {
                 FormTable formTable = new FormTable(FormActivity.this);
 
                 try {
-
-
-                    if ((formTable.insertItem(formItem)) == 1) {
+                    long vs;
+                    vs= formTable.insertItem(formItem);
+                    Log.d(".....>>>>>>>>>>", "successful  " + i);
+                    if (vs==1) {
 
                         Toast.makeText(getApplicationContext(), "Data inserted successfully for patient_id " + i, Toast.LENGTH_SHORT).show();
+                        Log.d(".....>>>>>>>>>>", "form_insert Successful" + formTable.insertItem(formItem));
 
 
 
-                        editor.putInt("id", i);
-                        editor.commit();
 
                     }
 
 
+
+
+//                    else
+//                        i;
+
+                    Log.d(".....>>>>>>>>>>", "response length" + i);
+                    Log.d(".....>>>>>>>>>>", "p" + i);
+                    Log.d(".....>>>>>>>>>>", "form_insert Test  " + formTable.insertItem(formItem));
 
 
 
@@ -126,6 +135,10 @@ public class FormActivity extends AppCompatActivity {
                 } catch (Exception e) {
 
                 }
+
+
+                editor.putInt("id", i);
+                editor.commit();
 
 
 //                Intent in =new Intent(FormActivity.this, TestActivity.class);
@@ -252,6 +265,3 @@ public class FormActivity extends AppCompatActivity {
 
 
 }
-
-
-

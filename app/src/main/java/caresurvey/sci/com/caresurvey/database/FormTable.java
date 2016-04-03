@@ -56,7 +56,7 @@ public class FormTable  {
 
         String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
                 + "( "
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " // 0 - int
+                + KEY_ID + " INTEGER PRIMARY KEY, " // 0 - int
                 + KEY_BLOOD + " TEXT, "              // 1 - text
                 + KEY_HEMO + " TEXT, "
                 + KEY_URINE + " TEXT, "              // 1 - text
@@ -275,7 +275,7 @@ public class FormTable  {
     public long updateItemq(int patientid, String bloodpressure, String hemoglobintest,
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
-                            String sixmonths, String familyplanning, String folictablet, int status, String globalId, String name) {
+                            String sixmonths, String familyplanning, String folictablet, String folimp_status, int status, String globalId, String name) {
 
 
         ContentValues values = new ContentValues();
@@ -291,6 +291,7 @@ public class FormTable  {
         values.put(KEY_SIXMONTHS, sixmonths);
         values.put(KEY_FAMILY, familyplanning);
         values.put(KEY_FOLICTAB, folictablet);
+        values.put(KEY_FOLICIMP, folimp_status);
         values.put(KEY_STATUS, status);
         values.put(KEY_GLOBAL_ID, globalId);
         values.put(KEY_NAME, name);
@@ -329,13 +330,13 @@ public class FormTable  {
 
 
 
-       public long updateglobalId(String globalId, int patientId) {
+    public long updateglobalId(String globalId, int patientId) {
         ContentValues values = new ContentValues();
         values.put(KEY_GLOBAL_ID, globalId);
         values.put(KEY_ID, patientId);
         SQLiteDatabase db = openDB();
-           Log.d(".....>>>>>>>>>>","...");
-           Log.d(".....>>>>>>>>>>","..."+patientId);
+        Log.d(".....>>>>>>>>>>","...");
+        Log.d(".....>>>>>>>>>>","..."+patientId);
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
                 new String[]{patientId + ""});
         closeDB();
