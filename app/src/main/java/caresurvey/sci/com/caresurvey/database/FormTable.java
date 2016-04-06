@@ -344,7 +344,7 @@ public class FormTable  {
 
     public long updateglobalId(String globalId, int patientId) {
         ContentValues values = new ContentValues();
-        values.put(KEY_INS, globalId);
+        values.put(KEY_STATUS, globalId);
         values.put(KEY_ID, patientId);
         SQLiteDatabase db = openDB();
         Log.d(".....>>>>>>>>>>","...");

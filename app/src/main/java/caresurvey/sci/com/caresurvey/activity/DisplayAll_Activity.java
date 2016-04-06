@@ -108,10 +108,20 @@ public class DisplayAll_Activity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Status.......OnResume", "response length" + status_admin[position]);
+                Log.d("Status.......OnResume", "response length");
+                if(status_admin[position]==1||status_admin[position]==3)
+                {
+                    Toast.makeText(DisplayAll_Activity.this, "You can not edit until supervisor review it",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);
+                    iiv.putExtra("position",position);
+                   // iiv.putExtra("name",names);
 
-                Intent iiv = new Intent(DisplayAll_Activity.this, Supervisor_verificationActivity.class);
-                iiv.putExtra("position", position);
-                startActivity(iiv);
+                    startActivity(iiv);
+                }
 
             }
         });
@@ -207,11 +217,24 @@ public class DisplayAll_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);
-                iiv.putExtra("position",position);
-                startActivity(iiv);
+                Log.d("Status.......OnResume", "response length" + status_admin[position]);
+                Log.d("Status.......OnResume", "response length");
+                if(status_admin[position]==1||status_admin[position]==3)
+                {
+                    Toast.makeText(DisplayAll_Activity.this, "You can not edit until supervisor review it",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);
+                    iiv.putExtra("position",position);
+                    // iiv.putExtra("name",names);
+
+                    startActivity(iiv);
+                }
 
             }
+
+
         });
 
 

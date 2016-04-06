@@ -1,5 +1,6 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -205,10 +206,17 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                             int intValue = Supervisor_verificationActivity.this.intValue;
                                             String global_id= String.valueOf(intValue);
                                             long ts;
-                                            formTable.updateglobalId("3",intValue);
+                                            formTable.updateglobalId("1",intValue);
                                             ts= formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
-                                            Log.d(".....>>>>>>>>>>", "ChekboxText " + ts);
+                                            Log.d(".....>>>>>>>>>>", "ChekboxText ");
+                                            Log.d(".....>>>>>>>>>>"+global_id, "ChekboxText " + ts);
+
                                         }
+
+                                        Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
+                                        Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
+                                        startActivity(intent);
+                                        Log.d(".....>>>>>>>>>>", "ChekboxText ");
                                     }
 
 
@@ -388,11 +396,20 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                         {
                                             String global_id= String.valueOf(intValue);
                                             long vvs;
-                                            formTable.updateglobalId("3",intValue);
+                                            formTable.updateglobalId("2",intValue);
                                             vvs=formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
                                             Log.d(".....>>>>>>>>>>", "TestForUpdatingsupervisor " + vvs);
 
+
+
                                         }
+
+
+                                        Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
+                                        Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
+                                        startActivity(intent);
+                                        Log.d(".....>>>>>>>>>>", "ChekboxText ");
+
                                     }
 
 
