@@ -1,6 +1,7 @@
 package caresurvey.sci.com.caresurvey.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -43,7 +44,10 @@ public class LoginActivity extends AppCompatActivity {
     EditText username,password;
     Button login;
     TextView text;
-    String xp;
+    String user="",pass="";
+    private Context con;
+    private boolean flag = false;
+    Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,23 +55,18 @@ public class LoginActivity extends AppCompatActivity {
         text=(TextView)findViewById(R.id.falsermal_text);
 
 
+        con = this;
         username=(EditText)findViewById(R.id.us);
-
+        flag = false;
 
 
         password=(EditText)findViewById(R.id.password);
         //    p=username.getText().toString();
 
 
-        Log.d(".....>>>>>>>>>>", "response length      " + xp);
+        Log.d(".....>>>>>>>>>>", "response length      " + user);
 
         //      p= "admin";
-
-
-
-
-
-
 
 
 
@@ -77,43 +76,46 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                xp=username.getText().toString();
-                Log.d(".....>>>>>>>>>>", "response lengthcc   " + xp);
-
-                if(xp.equals("admin")) {
-
+                user = username.getText().toString();
+                pass = password.getText().toString();
+                Log.d(".....>>>>>>>>>>", "response lengthcc   " + user);
+                if (user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
+                    AlertMessage.showMessage(con, getString(R.string.title),
+                            getString(R.string.msg));
+                } else if (user.equals("admin") && pass.equalsIgnoreCase("admin")) {
 
 
                     LoadDataSupervisor();
-
+                    flag = true;
 
                     //      k = "supervisor";
-                }
-                else
-                {
+                } else if (user.equals("user") && pass.equalsIgnoreCase("user")) {
 
                     LoadDataCollector();
+                    flag = true;
                 }
                 //  k="collector";
 
-                Handler handler = new Handler();
+
+                if (flag) {
+
+
+
+                handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                 /* start the activity */
                         pd.dismiss();
 
-                        if(xp.equals("admin"))  {
-                            Intent intent=new Intent(LoginActivity.this,DisplayAll_Activity.class);
+                        if (user.equals("admin")) {
+                            Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
                             startActivity(intent);
 
-                        }
-                        else if(xp.equals("user")) {
+                        } else if (user.equals("user")) {
                             Intent intentX = new Intent(LoginActivity.this, UserActivity.class);
                             startActivity(intentX);
                         }
-
-
 
 
                         //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -123,12 +125,15 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }, 6000);
 
-                //
+            }
+            //
 //              Intent in = new Intent(LoginActivity.this,DisplayAll_Activity.class);
 //             startActivity(in);
 
-            }
-        });
+        }
+    });
+
+
 
         text.setText("MaMoni Health System Strengthening \n           (MaMoni HSS) Project");
         text.setTextSize(25);
