@@ -40,4 +40,9 @@
     <string name="title_activity_user">UserActivity</string>
     <string name="title_activity_display_user">DisplayUserActivity</string>
     <string name="title_activity_address_insert">AddressInsertActivity</string>
+
+
+    <string name="title">Empty Field</string>
+    <string name="msg">Please Enter User ID</string>
+
 </resources>
