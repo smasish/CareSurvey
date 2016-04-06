@@ -281,7 +281,7 @@ public class FormTableUser {
     public long updateItemq(int patientid, String bloodpressure, String hemoglobintest,
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
-                            String sixmonths, String familyplanning, String folictablet, String folimp_status,String names,String status) {
+                            String sixmonths, String familyplanning, String folictablet, String folimp_status,String status) {
 
 
         ContentValues values = new ContentValues();
@@ -298,7 +298,7 @@ public class FormTableUser {
         values.put(KEY_FAMILY, familyplanning);
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folimp_status);
-        values.put(KEY_NAME, names);
+
         values.put(KEY_INS, status);
 
 

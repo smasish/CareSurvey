@@ -119,7 +119,7 @@ public class FormActivity extends AppCompatActivity {
                     Log.d(".....>>>>>>>>>>", "successful  " + i);
                     if (vs==1) {
 
-                        Toast.makeText(getApplicationContext(), "Data inserted successfully for patient_id " + value, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data inserted successfully for patient " + namex, Toast.LENGTH_SHORT).show();
                         Log.d(".....>>>>>>>>>>", "form_insert Successful" + formTable.insertItem(formItem));
 
 

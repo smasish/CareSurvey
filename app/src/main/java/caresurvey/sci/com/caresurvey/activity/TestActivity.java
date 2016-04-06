@@ -90,7 +90,7 @@ public class TestActivity extends AppCompatActivity {
 
         Intent mIntent = getIntent();
         intValue = mIntent.getIntExtra("position", 0)+1;
-        names = mIntent.getStringExtra("name");
+       // names = mIntent.getStringExtra("name");
 
 
         Log.d(".....>>>>>>>>>>", "response length" + names);
@@ -138,7 +138,7 @@ public class TestActivity extends AppCompatActivity {
 
 
                     if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                            , del_status, feed_status, six_status, family_status, foltab_status,folimp_status,name,status)) == 1) {
+                            , del_status, feed_status, six_status, family_status, foltab_status,folimp_status,status)) == 1) {
 
                         Toast.makeText(getApplicationContext(), "Data Update successfully for patient  " +name, Toast.LENGTH_SHORT).show();
 
@@ -298,6 +298,11 @@ public class TestActivity extends AppCompatActivity {
                                         FormTableUser formtableuser= new FormTableUser(TestActivity.this);
                                         formtableuser.updateglobalI(intValue,3);
 
+
+                                        Intent intent = new Intent(TestActivity.this,DisplayUserActivity.class);
+                                        startActivity(intent);
+
+
                                     }
 
                                 }
@@ -422,6 +427,11 @@ public class TestActivity extends AppCompatActivity {
 
                 RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
                 requestQueue.add(stringRequest);
+
+
+
+
+
 
             }
         });
