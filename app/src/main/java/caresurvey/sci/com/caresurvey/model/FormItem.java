@@ -223,12 +223,13 @@ public class FormItem {
         String _familyplanning = jo.getString("familyplanning");
         String _folictablet = jo.getString("folictablet");
         String _folictabletimportance = jo.getString("folictabletimportance");
+        String _status = inS;
         String _globalId = global_id;
         String _ins= inS;
         String _c_name= c_name;
 
 
         return new FormItem(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_globalId,_ins,_c_name);
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_ins,_c_name);
     }
 }

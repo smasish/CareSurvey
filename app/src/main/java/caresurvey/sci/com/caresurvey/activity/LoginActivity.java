@@ -214,6 +214,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
 //                                JSONObject joes = new JSONObject();
 //                                joes= jo.getJSONObject("forms");
                             // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
@@ -230,7 +231,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Log.d(".....>>>>>>>>>>", "response length" + record);
                                     JSONObject fields = record.getJSONObject("data");
 
-                                    FormItem et = FormItem.parseFormItem(i+1, record.getString("form_id"),"4", fields,record.getString("submitted_by"));
+                                    FormItem et = FormItem.parseFormItem(i+1, record.getString("form_id"),record.getString("status"), fields,record.getString("submitted_by"));
                                     int q;
                                     q=record.getInt("form_id");
                                     formTable.insertItem(et);

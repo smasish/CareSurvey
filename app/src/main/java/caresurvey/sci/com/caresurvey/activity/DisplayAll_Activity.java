@@ -193,7 +193,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
         final int[] status_admin= new int[f];
 
 
-        for(FormItem ft: formItems)
+         for(FormItem ft: formItems)
 
         {
 
