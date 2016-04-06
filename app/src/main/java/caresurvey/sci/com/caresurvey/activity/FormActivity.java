@@ -28,6 +28,7 @@ public class FormActivity extends AppCompatActivity {
 
 
     Button Save, Submit,sub;
+    int value;
     Boolean vs;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
@@ -50,6 +51,13 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form);
         addListenerOnButton();
+
+
+        Intent intent=getIntent();
+        value= intent.getIntExtra("id",0);
+        int value1= intent.getIntExtra("id",0);
+
+
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -81,11 +89,7 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
 
-
-                int i = pref.getInt("id", 0);
 
 
                 StorevaluesinVar();
@@ -98,8 +102,8 @@ public class FormActivity extends AppCompatActivity {
 
 
 
-                i++;
-                FormItemUser formItem = new FormItemUser(i, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+
+                FormItemUser formItem = new FormItemUser(value, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
                         , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields,ins);
 
 
@@ -112,13 +116,18 @@ public class FormActivity extends AppCompatActivity {
                     Log.d(".....>>>>>>>>>>", "successful  " + i);
                     if (vs==1) {
 
-                        Toast.makeText(getApplicationContext(), "Data inserted successfully for patient_id " + i, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data inserted successfully for patient_id " + value, Toast.LENGTH_SHORT).show();
                         Log.d(".....>>>>>>>>>>", "form_insert Successful" + formTable.insertItem(formItem));
 
 
 
 
                     }
+
+
+
+                    Intent intent = new Intent(FormActivity.this, DisplayUserActivity.class);
+                    startActivity(intent);
 
 
 
@@ -140,8 +149,7 @@ public class FormActivity extends AppCompatActivity {
                 }
 
 
-                editor.putInt("id", i);
-                editor.commit();
+
 
 
 //                Intent in =new Intent(FormActivity.this, TestActivity.class);

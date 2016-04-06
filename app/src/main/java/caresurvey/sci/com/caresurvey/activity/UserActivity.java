@@ -18,6 +18,7 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class UserActivity extends AppCompatActivity {
     Boolean  firstRun;
+    int first_value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +32,20 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String username = user.getText().toString();
+                String username= user.getText().toString();
 
+
+
+
+
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor1 = pref.edit();
+
+                int first_value = pref.getInt("id", 1);
+
+                first_value++;
+                editor1.putInt("id",first_value);
+                editor1.commit();
 
                 FormTableUser formTable = new FormTableUser(UserActivity.this);
 
@@ -41,13 +54,19 @@ public class UserActivity extends AppCompatActivity {
                 firstRun = settings.getBoolean("firstRun", false);
 
 
+
+
+
+
+
+
                 if (firstRun == false)//if running for first time
                 {
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putBoolean("firstRun", true);
                     editor.commit();
 
-                    for (int i = 1; i <= 30; i++) {
+                    for(int i=1;i<=30;i++) {
 
                         FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
                                 , "No", "No", "No", "No", "No", "No", 4, "", "", "", "", "3");
@@ -61,8 +80,10 @@ public class UserActivity extends AppCompatActivity {
                 }
 
 
-                Intent intent = new Intent(UserActivity.this, AddressInsertActivity.class);
-                intent.putExtra("name", username);
+
+                Intent intent = new Intent(UserActivity.this,AddressInsertActivity.class);
+                intent.putExtra("name",username);
+                intent.putExtra("id",first_value);
                 startActivity(intent);
             }
         });

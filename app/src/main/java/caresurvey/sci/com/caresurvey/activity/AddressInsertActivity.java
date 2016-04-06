@@ -1,8 +1,8 @@
 package caresurvey.sci.com.caresurvey.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import caresurvey.sci.com.caresurvey.R;
 
 public class AddressInsertActivity extends AppCompatActivity {
-     Spinner sp1,sp2,sp3,sp4,sp5;
+    Spinner sp1,sp2,sp3,sp4,sp5;
     String name;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,9 @@ public class AddressInsertActivity extends AppCompatActivity {
         sp5=(Spinner)findViewById(R.id.spinner6);
 
         Intent intent= getIntent();
-       name= intent.getStringExtra("name");
+        name= intent.getStringExtra("name");
+        id= intent.getIntExtra("id",1);
+
 
 
         EditText user= (EditText)findViewById(R.id.user);
@@ -98,8 +101,9 @@ public class AddressInsertActivity extends AppCompatActivity {
 
 
 
-                Intent intent = new Intent(AddressInsertActivity.this,DisplayUserActivity.class);
+                Intent intent = new Intent(AddressInsertActivity.this,FormActivity.class);
                 intent.putExtra("name",name);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });
