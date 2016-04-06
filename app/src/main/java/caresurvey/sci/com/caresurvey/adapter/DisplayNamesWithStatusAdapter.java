@@ -100,7 +100,7 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
         else if(inS[position].equals("2"))
             button.setText("Submitted");
         else if(inS[position].equals("3"))
-            button.setText("Not");
+            button.setText("Not Inserted");
         else
             button.setText("Not Reviewed");
 

@@ -566,7 +566,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="270dp"
-                android:text="Insert"
+                android:text="Update"
                 android:background="@color/purple"
                 android:textColor="@color/white"
                 android:id="@+id/Savebtn"

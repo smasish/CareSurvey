@@ -30,6 +30,7 @@ public class FormActivity extends AppCompatActivity {
     Button Save, Submit,sub;
     int value;
     Boolean vs;
+    String namex;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
     RadioGroup bloodpressure, hemoglobintest,
@@ -55,7 +56,9 @@ public class FormActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         value= intent.getIntExtra("id",0);
-        int value1= intent.getIntExtra("id",0);
+
+        namex= intent.getStringExtra("name");
+
 
 
 
@@ -104,7 +107,7 @@ public class FormActivity extends AppCompatActivity {
 
 
                 FormItemUser formItem = new FormItemUser(value, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields,ins);
+                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,namex,comments,fields,ins);
 
 
 

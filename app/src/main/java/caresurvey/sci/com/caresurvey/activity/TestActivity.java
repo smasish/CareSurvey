@@ -140,7 +140,12 @@ public class TestActivity extends AppCompatActivity {
                     if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
                             , del_status, feed_status, six_status, family_status, foltab_status,folimp_status,name,status)) == 1) {
 
-                        Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " +name, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data Update successfully for patient  " +name, Toast.LENGTH_SHORT).show();
+
+                   Intent intent = new Intent(TestActivity.this,DisplayUserActivity.class);
+                        startActivity(intent);
+
+
 
                     }
 
