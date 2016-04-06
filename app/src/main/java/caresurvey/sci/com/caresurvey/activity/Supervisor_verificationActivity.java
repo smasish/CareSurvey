@@ -46,6 +46,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
     CheckBox cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8,cb9,cb10,cb11,cb12;
     Spinner com_incom;
     LinearLayout linearLayout;
+    Boolean check=false;
 
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
@@ -90,7 +91,20 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                linearLayout.setVisibility(View.VISIBLE);
+
+                if(check) {
+                    linearLayout.setVisibility(View.GONE);
+                    check= false;
+                    Log.d("......false", ">>>>>>>" + check);
+                }
+                else {
+                    linearLayout.setVisibility(View.VISIBLE);
+                    check = true;
+                    Log.d("......true",">>>>>>>"+check);
+                }
+
+
+
             }
         });
 
@@ -133,7 +147,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
 
         Intent mIntent = getIntent();
-        intValue = mIntent.getIntExtra("position", 0);
+        intValue = mIntent.getIntExtra("position", 0)+1;
 
 
         final ArrayList<FormItem> formItems1;
@@ -188,8 +202,12 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                         FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
                                         for(FormItem formItem1: formItems)
                                         {
-                                            String global_id= formItem1.getGlobal_id();
-                                            formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
+                                            int intValue = Supervisor_verificationActivity.this.intValue;
+                                            String global_id= String.valueOf(intValue);
+                                            long ts;
+                                            formTable.updateglobalId("3",intValue);
+                                            ts= formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
+                                            Log.d(".....>>>>>>>>>>", "ChekboxText " + ts);
                                         }
                                     }
 
@@ -226,8 +244,10 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                 meta.put("comments","");
                                 meta.put("fields", "");
                                 requests.put("meta",meta);
+                                requests.put("submitted_by","collector");
                                 requests.put("form_id",formItem1.getGlobal_id());
-                                requests.put("type","update");
+                                Log.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                                requests.put("form_type","dh_antenantals");
                                 requests.put("status",1);
                                 jsonArray.put(requests);
                             }
@@ -247,8 +267,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
                             //data
                             JSONObject data = new JSONObject();
-                            data.put("username", "taw_khan1@yahoo.com");
-                            data.put("password", "taw1994");
+                            data.put("username", "supervisor");
+                            data.put("password", "supervisor");
                             data.put("requests", jsonArray);
 
                             params.put("data", data.toString());
@@ -366,8 +386,12 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                         FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
                                         for(FormItem formItem1: formItems)
                                         {
-                                            String global_id= formItem1.getGlobal_id();
-                                            formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
+                                            String global_id= String.valueOf(intValue);
+                                            long vvs;
+                                            formTable.updateglobalId("3",intValue);
+                                            vvs=formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
+                                            Log.d(".....>>>>>>>>>>", "TestForUpdatingsupervisor " + vvs);
+
                                         }
                                     }
 
@@ -407,15 +431,14 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                             {
                                 JSONObject jf= new JSONObject();
                                 JSONObject meta=new JSONObject();
-
-                                meta.put("comments",et2.getText().toString());
-                                meta.put("fields", ChekboxText);
-
+                                meta.put("comments",formItem1.getComments());
+                                meta.put("fields", formItem1.getFields());
                                 requests.put("meta",meta);
+                                requests.put("submitted_by","collector");
                                 requests.put("form_id",formItem1.getGlobal_id());
-                                requests.put("type","update");
+                                Log.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                                requests.put("form_type","dh_antenantals");
                                 requests.put("status",2);
-
                                 jsonArray.put(requests);
 
 
@@ -440,8 +463,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
                             //data
                             JSONObject data = new JSONObject();
-                            data.put("username", "taw_khan1@yahoo.com");
-                            data.put("password", "taw1994");
+                            data.put("username", "supervisor");
+                            data.put("password", "supervisor");
                             data.put("requests", jsonArray);
 
                             params.put("data", data.toString());

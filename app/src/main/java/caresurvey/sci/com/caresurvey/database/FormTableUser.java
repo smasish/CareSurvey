@@ -4,22 +4,22 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
+
 
 /**
  *  Created by mazharul.islam on 3/6/2016.
  *
  * @author arafat
  */
-public class FormTable  {
+public class FormTableUser {
     private static final String TAG = FormTable.class.getSimpleName();
 
-    private static final String TABLE_NAME = DatabaseHelper.FORM;
+    private static final String TABLE_NAME = DatabaseHelper.FORM_USER;
 
     private static final String KEY_ID = "_id"; // 0 -integer
     private static final String KEY_BLOOD = "_bloodpressure"; // 1 - text
@@ -40,8 +40,6 @@ public class FormTable  {
     private static final String KEY_COMMENT = "_comments"; // 1 - text
     private static final String KEY_FIELDS = "_fields"; // 1 - text
     private static final String KEY_INS = "_ins"; // 1 - text
-    private static final String KEY_CNAME = "_cname"; // 1 - text
-
 
 
 
@@ -50,7 +48,7 @@ public class FormTable  {
 
     private Context tContext;
 
-    public FormTable (Context context) {
+    public FormTableUser(Context context) {
         tContext = context;
         createTable();
     }
@@ -78,9 +76,7 @@ public class FormTable  {
                 + KEY_NAME + " TEXT, "
                 + KEY_COMMENT + " TEXT,"
                 + KEY_FIELDS + " TEXT, "
-                + KEY_INS + " TEXT, "
-                + KEY_CNAME + " TEXT "
-
+                + KEY_INS + " TEXT "
 
 
 
@@ -100,23 +96,23 @@ public class FormTable  {
     private void closeDB() {
         DatabaseManager.getInstance(tContext).closeDatabase();
     }
-    public long insertItem(FormItem formItem) {
+    public long insertItem(FormItemUser formItem) {
         return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
                 formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
                 formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
-                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getC_name());
+                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS());
     }
     public long insertItem(int patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS,String c_name) {
+                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS) {
         if (isFieldExist(patientid)) {
             return updateItem(patientid,bloodpressure, hemoglobintest,
                     urinetest, pregnancyfood, pregnancydanger,
                     fourparts, delivery,feedbaby,
                     sixmonths, familyplanning,folictablet,
-                    folictabletimportance,status,globalId,name,comments,fields,inS,c_name);
+                    folictabletimportance,status,globalId,name,comments,fields,inS);
         }
         ContentValues values = new ContentValues();
         values.put(KEY_ID, patientid);
@@ -138,8 +134,6 @@ public class FormTable  {
         values.put(KEY_COMMENT, comments);
         values.put(KEY_FIELDS, fields);
         values.put(KEY_INS, inS);
-        values.put(KEY_CNAME, c_name);
-
 
 
 
@@ -148,8 +142,8 @@ public class FormTable  {
         closeDB();
         return ret;
     }
-    public ArrayList<FormItem> getAllInfo() {
-        ArrayList<FormItem> subCatList = new ArrayList<>();
+    public ArrayList<FormItemUser> getAllInfo() {
+        ArrayList<FormItemUser> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME , null);
@@ -184,8 +178,8 @@ public class FormTable  {
 
 
 
-    public ArrayList<FormItem> getAll() {
-        ArrayList<FormItem> FieldList = new ArrayList<>();
+    public ArrayList<FormItemUser> getAll() {
+        ArrayList<FormItemUser> FieldList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
@@ -204,8 +198,8 @@ public class FormTable  {
 
 
 
-    public ArrayList<FormItem> getSpecificItem(int cat_id) {
-        ArrayList<FormItem> subCatList = new ArrayList<>();
+    public ArrayList<FormItemUser> getSpecificItem(int cat_id) {
+        ArrayList<FormItemUser> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
 
@@ -224,8 +218,8 @@ public class FormTable  {
         return subCatList;
     }
 
-    public ArrayList<FormItem> getAllItem(int cat_id) {
-        ArrayList<FormItem> subCatList = new ArrayList<>();
+    public ArrayList<FormItemUser> getAllItem(int cat_id) {
+        ArrayList<FormItemUser> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
 
@@ -253,7 +247,7 @@ public class FormTable  {
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance,int status, String globalId, String name, String comments, String fields,String inS,String cname) {
+                           String folictabletimportance,int status, String globalId, String name, String comments, String fields, String inS) {
 
 
         ContentValues values = new ContentValues();
@@ -276,7 +270,6 @@ public class FormTable  {
         values.put(KEY_COMMENT, comments);
         values.put(KEY_FIELDS,fields);
         values.put(KEY_INS,inS);
-        values.put(KEY_INS,cname);
 
         SQLiteDatabase db = openDB();
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
@@ -288,7 +281,7 @@ public class FormTable  {
     public long updateItemq(int patientid, String bloodpressure, String hemoglobintest,
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
-                            String sixmonths, String familyplanning, String folictablet, String folimp_status, String inS) {
+                            String sixmonths, String familyplanning, String folictablet, String folimp_status,String names,String status) {
 
 
         ContentValues values = new ContentValues();
@@ -305,7 +298,9 @@ public class FormTable  {
         values.put(KEY_FAMILY, familyplanning);
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folimp_status);
-        values.put(KEY_INS, inS);
+        values.put(KEY_NAME, names);
+        values.put(KEY_INS, status);
+
 
 
 
@@ -318,15 +313,28 @@ public class FormTable  {
 
 
 
+    public long updateSupervisor(String globalId, int patientId) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_GLOBAL_ID, globalId);
+        values.put(KEY_ID, patientId);
+        SQLiteDatabase db = openDB();
+        Log.d(".....>>>>>>>>>>", "...");
+        Log.d(".....>>>>>>>>>>", "..." + patientId);
+        long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
+                new String[]{patientId + ""});
+        closeDB();
+        return ret;
+    }
 
 
 
-    public long updatefieldforuser(String globalId, int status, String comments,
+
+    public long updatefieldforuser(int patientId, int status, String comments,
                                    String fields) {
 
 
         ContentValues values = new ContentValues();
-        values.put(KEY_GLOBAL_ID, globalId);
+        values.put(KEY_ID, patientId);
         values.put(KEY_STATUS, status);
         values.put(KEY_COMMENT, comments);
         values.put(KEY_FIELDS, fields);
@@ -335,6 +343,40 @@ public class FormTable  {
 
         SQLiteDatabase db = openDB();
         long ret = db.update(TABLE_NAME, values, KEY_GLOBAL_ID + " = ?",
+                new String[]{patientId + ""});
+        Log.d("......false", ">>>>>>>" + patientId);
+
+        closeDB();
+        return ret;
+    }
+
+
+
+    public long updateglobalId(int globalId, int patientId, String comments,String fields) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, globalId);
+        values.put(KEY_STATUS, patientId);
+        values.put(KEY_COMMENT, comments);
+        values.put(KEY_FIELDS, fields);
+        SQLiteDatabase db = openDB();
+
+        Log.d(".....>>>>>>>>>>", "Status " +patientId);
+        long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
+                new String[]{globalId + ""});
+        closeDB();
+        return ret;
+    }
+
+
+    public long updateglobalI(int globalId, int patientId) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, globalId);
+        values.put(KEY_STATUS, patientId);
+
+        SQLiteDatabase db = openDB();
+
+        Log.d(".....>>>>>>>>>>", "Status " +patientId);
+        long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
                 new String[]{globalId + ""});
         closeDB();
         return ret;
@@ -342,9 +384,10 @@ public class FormTable  {
 
 
 
-    public long updateglobalId(String globalId, int patientId) {
+
+    public long updateIns(String ins, int patientId) {
         ContentValues values = new ContentValues();
-        values.put(KEY_INS, globalId);
+        values.put(KEY_INS, ins);
         values.put(KEY_ID, patientId);
         SQLiteDatabase db = openDB();
         Log.d(".....>>>>>>>>>>","...");
@@ -354,6 +397,9 @@ public class FormTable  {
         closeDB();
         return ret;
     }
+
+
+
     private long Updatedata(int patientid, String bloodpressure, String hemoglobintest,
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
@@ -384,7 +430,7 @@ public class FormTable  {
     }
 
 
-    public FormItem cursorToSubCatList(Cursor cursor) {
+    public FormItemUser cursorToSubCatList(Cursor cursor) {
         int _id = cursor.getInt(0);
         String _bloodpressure = cursor.getString(1);
         String _hemoglobintest = cursor.getString(2);
@@ -403,14 +449,12 @@ public class FormTable  {
         String _name = cursor.getString(15);
         String _comments = cursor.getString(16);
         String _fields= cursor.getString(17);
-        String _ins= cursor.getString(18);
-        String _cname= cursor.getString(19);
+        String _inS= cursor.getString(18);
 
 
 
-
-        return new FormItem(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_ins,_cname);
+        return new FormItemUser(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_inS);
     }
 
     public void dropTable() {

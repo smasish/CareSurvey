@@ -64,6 +64,14 @@
             android:name=".activity.UserActivity"
             android:label="@string/title_activity_user" >
         </activity>
+        <activity
+            android:name=".activity.DisplayUserActivity"
+            android:label="@string/title_activity_display_user" >
+        </activity>
+        <activity
+            android:name=".activity.AddressInsertActivity"
+            android:label="@string/title_activity_address_insert" >
+        </activity>
     </application>
 
 </manifest>

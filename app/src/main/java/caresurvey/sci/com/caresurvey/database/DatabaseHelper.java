@@ -15,6 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final int DB_VERSION = 1;
 
     public static final String FORM= "form";
+    public static final String FORM_USER= "formuser";
 
     public Context context;
     public boolean mDataBaseExist;

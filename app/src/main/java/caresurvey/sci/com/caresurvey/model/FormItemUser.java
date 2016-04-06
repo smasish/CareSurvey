@@ -4,9 +4,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by israt.jahan on 3/6/2016.
+ * Created by mazharul.islam on 3/6/2016.
  */
-public class FormItem {
+public class FormItemUser {
     private int patientid;
     private String bloodpressure;
     private String hemoglobintest;
@@ -26,14 +26,13 @@ public class FormItem {
     private String comments;
     private String fields;
     private String inS;
-    private String c_name;
 
 
 
-    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
-                    String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
-                    String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
-                    int status,String global_id, String name, String comments, String fields,String inS, String c_name
+    public FormItemUser(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
+                        String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
+                        String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
+                        int status, String global_id, String name, String comments, String fields, String inS
     ) {
         this.patientid = patientid;
         this.bloodpressure = bloodpressure;
@@ -54,10 +53,10 @@ public class FormItem {
         this.comments=comments;
         this.fields=fields;
         this.inS=inS;
-        this.c_name=c_name;
+
     }
 
-    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,String global_id,String inS,String c_name) {
+    public FormItemUser(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance, String global_id) {
         this.patientid=patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
@@ -71,9 +70,7 @@ public class FormItem {
         this.familyplanning = familyplanning;
         this.folictablet = folictablet;
         this.folictabletimportance = folictabletimportance;
-        this.global_id = global_id;
-        this.inS = inS;
-        this.c_name=c_name;}
+        this.global_id = global_id;}
 
     public String getComments() {
         return comments;
@@ -175,10 +172,6 @@ public class FormItem {
         this.sixmonths = sixmonths;
     }
 
-    public String getInS() {
-        return inS;
-    }
-
     public String getFamilyplanning() {
         return familyplanning;
     }
@@ -203,11 +196,11 @@ public class FormItem {
         this.folictabletimportance = folictabletimportance;
     }
 
-    public String getC_name() {
-        return c_name;
+    public String getInS() {
+        return inS;
     }
 
-    public static FormItem parseFormItem(int patientid,String global_id,String inS,JSONObject jo,String c_name) throws JSONException {
+    public static FormItemUser parseFormItem(int patientid,String global_id,JSONObject jo) throws JSONException {
         int _patientId=patientid;
         String _bloodpressure = jo.getString("bloodpressure");
         String _hemoglobintest = jo.getString("hemoglobintest");
@@ -224,11 +217,9 @@ public class FormItem {
         String _folictablet = jo.getString("folictablet");
         String _folictabletimportance = jo.getString("folictabletimportance");
         String _globalId = global_id;
-        String _ins= inS;
-        String _c_name= c_name;
 
 
-        return new FormItem(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_globalId,_ins,_c_name);
+        return new FormItemUser(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_globalId);
     }
 }

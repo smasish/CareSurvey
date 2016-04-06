@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -33,15 +34,18 @@ import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
+import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class TestActivity extends AppCompatActivity {
 
 
-
+    String add_update,names;
     int intValue;
     ArrayList<String> form;
     Button Save, Submit;
+    LinearLayout test;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
     RadioGroup bloodpressure, hemoglobintest,
@@ -53,7 +57,7 @@ public class TestActivity extends AppCompatActivity {
     int id=intValue;
     String global_ida;
 
-    ArrayList<FormItem> formItemAll;
+    ArrayList<FormItemUser> formItemAll;
 
     TextView tv1,tv2,tv3,comment,field;
     @Override
@@ -62,7 +66,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test1);
 
 
-
+        test= (LinearLayout)findViewById(R.id.commentSection);
         Save = (Button) findViewById(R.id.Savebtn);
         Submit = (Button) findViewById(R.id.Submit);
         bloodpressure = (RadioGroup) findViewById(R.id.bloodpressure);
@@ -86,17 +90,23 @@ public class TestActivity extends AppCompatActivity {
 
         Intent mIntent = getIntent();
         intValue = mIntent.getIntExtra("position", 0)+1;
-
-        ArrayList<FormItem> formItems;
-        ArrayList<FormItem> formItems1;
+        names = mIntent.getStringExtra("name");
 
 
+        Log.d(".....>>>>>>>>>>", "response length" + names);
 
 
-        final FormTable formTable = new FormTable(TestActivity.this);
+
+        ArrayList<FormItemUser> formItems;
+        ArrayList<FormItemUser> formItems1;
+
+
+
+
+        final FormTableUser formTable = new FormTableUser(TestActivity.this);
         formItems= formTable.getSpecificItem(intValue);
         formItems1= formTable.getSpecificItem(intValue);
-        FormItem formItem;
+        FormItemUser formItem;
 
 
 
@@ -109,17 +119,17 @@ public class TestActivity extends AppCompatActivity {
 
                 StorevaluesinVar();
 
-                int status = 1;
-                String global_id= "";
-                String name = "";
+                String status = "1";
+                String global_id= "1";
+                String name = names;
                 String comments= "";
                 String fields= "";
 
-                FormItem formItem = new FormItem(1, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
+//                FormItemUser formItem = new FormItemUser(1, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+//                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
 
 
-                FormTable formTable = new FormTable(TestActivity.this);
+                FormTableUser formTable = new FormTableUser(TestActivity.this);
 
 
                 try {
@@ -128,9 +138,9 @@ public class TestActivity extends AppCompatActivity {
 
 
                     if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                            , del_status, feed_status, six_status, family_status, foltab_status,folimp_status,status,global_id,name)) == 1) {
+                            , del_status, feed_status, six_status, family_status, foltab_status,folimp_status,name,status)) == 1) {
 
-                        Toast.makeText(getApplicationContext(), "Data updated successfully for patient_id " +intValue, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " +name, Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -164,7 +174,7 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-        for(FormItem ft: formItems)
+        for(FormItemUser ft: formItems)
 
         {
 
@@ -225,14 +235,17 @@ public class TestActivity extends AppCompatActivity {
                 folictablet.check(R.id.radioButton19);
             else
                 folictablet.check(R.id.radioButton20);
-//            if(!ft.getComments().equals(null))
-//            {
-//                comment.setVisibility(View.VISIBLE);
-//                comment.setText(ft.getComments());
-//
-//            }
+            if(!ft.getComments().equals(""))
+            {
+                comment.setVisibility(View.VISIBLE);
+                comment.setText(ft.getComments());
 
-            if(!ft.getFields().equals(null))
+            }
+
+            if(ft.getStatus()==1)
+                test.setVisibility(View.INVISIBLE);
+
+            if(!ft.getFields().equals(""))
             {
                 field.setVisibility(View.VISIBLE);
                 field.setText(ft.getFields());
@@ -251,6 +264,10 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                FormTableUser formTableUser = new FormTableUser(TestActivity.this);
+                formTableUser.updateIns("2",intValue);
+
+
                 formItemAll=formTable.getSpecificItem(intValue);
 
                 String tag_json_obj = "json_obj_req";
@@ -266,50 +283,24 @@ public class TestActivity extends AppCompatActivity {
 
                                 try {
                                     JSONObject jo = new JSONObject(response);
-                                    JSONArray responses = jo.getJSONArray("responses");
-                                    //Log.d(".....>>>>>>>>>>", "..." + responses.length());
-                                    for(i=0;i<=responses.length();i++) {
+                                    Log.d(".....>>>>>>>>>>", "Status " + jo);
 
-                                        JSONObject data= responses.getJSONObject(i);
-                                        Log.d(".....>>>>>>>>>>", "response length" + responses.length());
-                                        JSONObject data1= responses.getJSONObject(i);
-                                        JSONObject data2= data.getJSONObject("data");
-                                        int ids =intValue;
-                                        String datax= data2.toString();
-                                        String global_ida= data2.getString("form_id");
+                                    String status = jo.getString("status");
 
+                                    if(status.equals("2"))
+                                    {
 
+                                        FormTableUser formtableuser= new FormTableUser(TestActivity.this);
+                                        formtableuser.updateglobalI(intValue,3);
 
-                                        String global_id = global_ida;
-
-
-
-
-
-
-                                        //  JSONObject idx= global_idx.getJSONObject("form_id");
-                                        //  JSONObject idxv= global_idx.getJSONObject("form_id");
-                                        //                        JSONObject global_id1= data2.getJSONObject("form_id");
-
-                                        //  global_ida=global_id.toString();
-
-                                        FormTable formTable1= new FormTable(TestActivity.this);
-                                        //   Log.d(".....>>>>>>>>>>", "...");
-                                        formTable1.updateglobalId(global_ida, intValue);
-                                        //   Log.d(".....>>>>>>>>>>", "..." + intValue);
-                                        //  Log.d(".....>>>>>>>>>>", "..."+global_ida);
                                     }
-//
-                                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = pref.edit();
-                                    editor.putString("Timestamp_supervisor", jo.getJSONObject("updated_at").toString());
-                                    editor.commit();
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
                                 }
 
+                                catch(Exception e)
+                                {
 
+                                }
 
 
                                 Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
@@ -335,16 +326,15 @@ public class TestActivity extends AppCompatActivity {
                             //record
                             JSONArray requests = new JSONArray();
 //                            JSONArray jsonArray =new JSONArray();
-                            for(FormItem formItem1: formItemAll)
+                            for(FormItemUser formItem1: formItemAll)
                             {
                                 JSONObject jf= new JSONObject();
                                 JSONObject fs=new JSONObject();
 
-                                fs.put("type", "add");
-
 
 
                                 fs.put("form_type", "dh_antenantals");
+                                fs.put("form_id",intValue);
                                 jf.put("hemoglobintest",formItem1.getHemoglobintest());
                                 jf.put("bloodpressure",formItem1.getBloodpressure());
                                 jf.put("urinetest",formItem1.getUrinetest());
@@ -364,6 +354,8 @@ public class TestActivity extends AppCompatActivity {
 
 
 
+
+
                                 requests.put(fs);
 
 
@@ -379,7 +371,7 @@ public class TestActivity extends AppCompatActivity {
 
                             //request
                             JSONObject request = new JSONObject();
-                            request.put("type", "add");
+                            request.put("type", add_update);
                             request.put("form_type", "dh_antenantals");
                             request.put("data", formItemAll);
 
@@ -396,7 +388,7 @@ public class TestActivity extends AppCompatActivity {
 
                             //request
                             JSONObject request2 = new JSONObject();
-                            request2.put("type", "add");
+                            request2.put("type", add_update);
                             request2.put("form_type", "dh_antenantals");
                             //       request2.put("data", record);
 
@@ -406,8 +398,8 @@ public class TestActivity extends AppCompatActivity {
 
                             //data
                             JSONObject data = new JSONObject();
-                            data.put("username", "taw_khan@yahoo.com");
-                            data.put("password", "taw1994");
+                            data.put("username", "collector");
+                            data.put("password", "collector");
                             data.put("requests", requests);
 
                             params.put("data", data.toString());

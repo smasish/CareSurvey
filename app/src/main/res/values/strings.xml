@@ -38,4 +38,6 @@
     <string name="title_activity_supervisor_verification">Supervisor_verificationActivity</string>
     <string name="title_activity_display_all_">DisplayAll_Activity</string>
     <string name="title_activity_user">UserActivity</string>
+    <string name="title_activity_display_user">DisplayUserActivity</string>
+    <string name="title_activity_address_insert">AddressInsertActivity</string>
 </resources>

@@ -626,7 +626,7 @@
         android:background="@color/Light_purple"
         android:layout_height="0dp"
         android:id="@+id/revertlayout"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_weight="0.3">
 
 

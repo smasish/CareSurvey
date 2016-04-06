@@ -32,6 +32,7 @@ import java.util.Map;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
 import caresurvey.sci.com.caresurvey.database.FormTable;
+import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.utils.AppConstants;
 
@@ -101,11 +102,19 @@ public class LoginActivity extends AppCompatActivity {
                     public void run() {
                 /* start the activity */
                         pd.dismiss();
-                        Intent intent=new Intent(LoginActivity.this,DisplayAll_Activity.class);
+
+                        if(xp.equals("admin"))  {
+                            Intent intent=new Intent(LoginActivity.this,DisplayAll_Activity.class);
+                            startActivity(intent);
+
+                        }
+                        else if(xp.equals("user")) {
+                            Intent intentX = new Intent(LoginActivity.this, UserActivity.class);
+                            startActivity(intentX);
+                        }
 
 
-                        intent.putExtra("user",xp.toString().trim());
-                        startActivity(intent);
+
 
                         //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         overridePendingTransition(0, 0);
@@ -210,10 +219,13 @@ public class LoginActivity extends AppCompatActivity {
                                 try {
 
                                     JSONObject record = forms.getJSONObject(i);
+                                    String s;
 
+                                    s=record.getString("submitted_by");
                                     Log.d(".....>>>>>>>>>>", "response length" + record);
                                     JSONObject fields = record.getJSONObject("data");
-                                    FormItem et = FormItem.parseFormItem(i, record.getString("form_id"), fields);
+
+                                    FormItem et = FormItem.parseFormItem(i+1, record.getString("form_id"),"4", fields,record.getString("submitted_by"));
                                     int q;
                                     q=record.getInt("form_id");
                                     formTable.insertItem(et);
@@ -271,8 +283,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-                    data.put("username", "taw_khan1@yahoo.com");
-                    data.put("password", "taw1994");
+                    data.put("username", "supervisor");
+                    data.put("password", "supervisor");
                     data.put("get_all", true);
 
                     params.put("data", data.toString());
@@ -318,8 +330,9 @@ public class LoginActivity extends AppCompatActivity {
 //                                JSONObject joes = new JSONObject();
 //                                joes= jo.getJSONObject("forms");
                             // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
-                            FormTable formTable = new FormTable(LoginActivity.this);
+                            FormTableUser formTable = new FormTableUser(LoginActivity.this);
                             int formItemCount = forms.length();
+
 
 
 
@@ -329,15 +342,17 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONObject record = forms.getJSONObject(i);
                                     JSONObject fields = record.getJSONObject("meta");
                                     //      FormItem et = FormItem.parseFormItem(i,record.getString("form_id"),fields);
-                                    int status;
-                                    String global_id,comments,fieldss;
+                                    int status,global_id;
+                                    String comments,fieldss;
                                     status=record.getInt("status");
-                                    global_id=record.getString("form_id");
+                                    global_id=record.getInt("form_id");
                                     comments=fields.getString("comments");
                                     fieldss=fields.getString("fields");
+                                    long vfdf,vfdf1,vfdf2;
+                                    vfdf=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
+                                    vfdf2=formTable.updateglobalId(global_id, status, comments, fieldss);
+                                    vfdf1=  formTable.updatefieldforuser(global_id,status,comments,fieldss);
 
-
-                                    formTable.updatefieldforuser(global_id,status,comments,fieldss);
 
                                     //formTable.insertItem(et);
                                 } catch (JSONException e) {
@@ -377,8 +392,8 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     //data
                     JSONObject data = new JSONObject();
-                    data.put("username", "taw_khan@yahoo.com");
-                    data.put("password", "taw1994");
+                    data.put("username", "collector");
+                    data.put("password", "collector");
                     data.put("timestamp", "2016-03-24 11:20:29");
 
                     params.put("data", data.toString());

@@ -1,6 +1,7 @@
 package caresurvey.sci.com.caresurvey.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +21,18 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
     int id[];
     String name[];
     int status[];
+    String inS[];
+    Button button;
 
 
-    public DisplayNamesWithStatusAdapter(Activity context, int[] id, String[] name, int[] status) {
+
+    public DisplayNamesWithStatusAdapter(Activity context, int[] id,String[] name,int[] status, String[] inS) {
         super();
         this.context = context;
         this.id = id;
         this.name = name;
         this.status = status;
+        this.inS =inS;
 
 
     }
@@ -51,6 +56,7 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
         TextView id;
         TextView  name;
         Button status;
+        Button button1;
 
 
     }
@@ -82,21 +88,46 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
 
 
         holder.id.setText("" +id[position]);
-        holder.name.setText(""+name[position]);
+        holder.name.setText("" + name[position]);
+
+        button=(Button) convertView.findViewById(R.id.button2);
+
+
+        if(inS[position].equals(""))
+            button.setText("Not Reviewed");
+        else if(inS[position].equals("1"))
+            button.setText("Inserted");
+        else if(inS[position].equals("2"))
+            button.setText("Submitted");
+        else if(inS[position].equals("3"))
+            button.setText("Not");
+        else
+            button.setText("Not Reviewed");
 
 
 
         if(status[position]==1)
-
-            holder.status.setText("Submit Now");
-        else if(status[position]==2)
-            holder.status.setText("Pending");
-        else if(status[position]==3)
+        {
             holder.status.setText("Accepted");
-        else
+            holder.status.setBackgroundColor(Color.GREEN);
+            //  holder.status.setBackground(R.color.light_green);
+        }
+
+        else if(status[position]==2) {
             holder.status.setText("Reverted");
+            holder.status.setBackgroundColor(Color.RED);
+        }
+        else if(status[position]==3)
+        {
+            holder.status.setText("Pending");
+            holder.status.setBackgroundColor(Color.YELLOW);
+        }
 
+        else if(status[position]==4) {
+            holder.status.setText("Submit Now");
+            holder.status.setBackgroundColor(Color.BLACK);
 
+        }
 
 
         return convertView;

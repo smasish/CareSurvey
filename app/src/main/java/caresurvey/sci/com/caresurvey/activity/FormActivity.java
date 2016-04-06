@@ -19,7 +19,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
+import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class FormActivity extends AppCompatActivity {
 
@@ -92,16 +94,17 @@ public class FormActivity extends AppCompatActivity {
                 String name = "";
                 String comments="";
                 String fields = "";
+                String ins="1";
 
 
 
                 i++;
-                FormItem formItem = new FormItem(i, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
+                FormItemUser formItem = new FormItemUser(i, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields,ins);
 
 
 
-                FormTable formTable = new FormTable(FormActivity.this);
+                FormTableUser formTable = new FormTableUser(FormActivity.this);
 
                 try {
                     long vs;

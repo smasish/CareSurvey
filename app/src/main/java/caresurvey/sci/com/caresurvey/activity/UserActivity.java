@@ -1,18 +1,73 @@
 package caresurvey.sci.com.caresurvey.activity;
 
-import android.os.Bundle;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.FormTable;
+import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class UserActivity extends AppCompatActivity {
-
+    Boolean  firstRun;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        Button btn = (Button)findViewById(R.id.btn);
+        final EditText user = (EditText)findViewById(R.id.user);
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String username = user.getText().toString();
+
+
+                FormTableUser formTable = new FormTableUser(UserActivity.this);
+
+
+                SharedPreferences settings = getSharedPreferences("prefs", 0);
+                firstRun = settings.getBoolean("firstRun", false);
+
+
+                if (firstRun == false)//if running for first time
+                {
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putBoolean("firstRun", true);
+                    editor.commit();
+
+                    for (int i = 1; i <= 30; i++) {
+
+                        FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
+                                , "No", "No", "No", "No", "No", "No", 4, "", "", "", "", "3");
+
+                        formTable.insertItem(formItem);
+
+
+                    }
+
+
+                }
+
+
+                Intent intent = new Intent(UserActivity.this, AddressInsertActivity.class);
+                intent.putExtra("name", username);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
