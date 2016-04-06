@@ -96,7 +96,7 @@ public class FormActivity extends AppCompatActivity {
 
 
                 StorevaluesinVar();
-                int status =3;
+                int status =4;
                 String global_id="";
                 String name = "";
                 String comments="";

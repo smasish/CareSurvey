@@ -99,8 +99,10 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
             button.setText("Inserted");
         else if(inS[position].equals("2"))
             button.setText("Submitted");
-        else if(inS[position].equals("3"))
-            button.setText("Not Inserted");
+        else if(inS[position].equals("3")) {
+            button.setText("Blanked");
+            button.setBackgroundColor(Color.GRAY);
+        }
         else
             button.setText("Not Reviewed");
 
@@ -120,7 +122,7 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
         else if(status[position]==3)
         {
             holder.status.setText("Pending");
-            holder.status.setBackgroundColor(Color.YELLOW);
+            holder.status.setBackgroundColor(Color.MAGENTA);
         }
 
         else if(status[position]==4) {
