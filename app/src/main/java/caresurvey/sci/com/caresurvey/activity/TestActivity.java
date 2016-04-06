@@ -99,6 +99,7 @@ public class TestActivity extends AppCompatActivity {
 
         ArrayList<FormItemUser> formItems;
         ArrayList<FormItemUser> formItems1;
+        ArrayList<FormItemUser> formItems2;
 
 
 
@@ -107,6 +108,8 @@ public class TestActivity extends AppCompatActivity {
         formItems= formTable.getSpecificItem(intValue);
         formItems1= formTable.getSpecificItem(intValue);
         FormItemUser formItem;
+
+
 
 
 
@@ -298,9 +301,11 @@ public class TestActivity extends AppCompatActivity {
                                         FormTableUser formtableuser= new FormTableUser(TestActivity.this);
                                         formtableuser.updateglobalI(intValue,3);
 
+                                         Save.setVisibility(View.GONE);
 
                                         Intent intent = new Intent(TestActivity.this,DisplayUserActivity.class);
                                         startActivity(intent);
+
 
 
                                     }

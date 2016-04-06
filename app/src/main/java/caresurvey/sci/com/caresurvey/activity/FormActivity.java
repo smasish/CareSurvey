@@ -91,10 +91,6 @@ public class FormActivity extends AppCompatActivity {
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
                 StorevaluesinVar();
                 int status =4;
                 String global_id="";
@@ -102,10 +98,6 @@ public class FormActivity extends AppCompatActivity {
                 String comments="";
                 String fields = "";
                 String ins="1";
-
-
-
-
                 FormItemUser formItem = new FormItemUser(value, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
                         , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,namex,comments,fields,ins);
 

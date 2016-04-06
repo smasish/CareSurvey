@@ -123,6 +123,7 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
         {
             holder.status.setText("Pending");
             holder.status.setBackgroundColor(Color.MAGENTA);
+
         }
 
         else if(status[position]==4) {

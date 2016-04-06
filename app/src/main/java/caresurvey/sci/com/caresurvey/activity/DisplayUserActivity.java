@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ public class DisplayUserActivity extends AppCompatActivity {
 
 
 
-        Log.d(".....>>>>>>>>>>", "response length" + names);
+   //     Log.d(".....>>>>>>>>>>", "response length" + names);
 
 
 
@@ -84,14 +85,24 @@ public class DisplayUserActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Status.......ONClick", "response length" );
+                Log.d("Status.......", "response length" + status[position]);
 
-                Intent iiv = new Intent(DisplayUserActivity.this,TestActivity.class);
+                if(status[position+1]==3)
+                {
+
+                    Toast.makeText(DisplayUserActivity.this, "You can not edit until supervisor review it",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent iiv = new Intent(DisplayUserActivity.this,TestActivity.class);
+                    iiv.putExtra("position",position);
+                    iiv.putExtra("name",names);
+
+                    startActivity(iiv);
+                }
 
 
-                iiv.putExtra("position",position);
-                iiv.putExtra("name",names);
-
-                startActivity(iiv);
 
             }
         });
@@ -141,11 +152,21 @@ public class DisplayUserActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Status.......OnResume", "response length" + status[position]);
+                if(status[position]==3)
+                {
+                    Toast.makeText(DisplayUserActivity.this, "You can not edit until supervisor review it",
+                            Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent iiv = new Intent(DisplayUserActivity.this,TestActivity.class);
+                    iiv.putExtra("position",position);
+                    iiv.putExtra("name",names);
 
-                Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
-                iiv.putExtra("position", position);
-                iiv.putExtra("name",names);
-                startActivity(iiv);
+                    startActivity(iiv);
+                }
+
+
 
             }
         });
