@@ -132,7 +132,7 @@ public class TestActivity extends AppCompatActivity {
                         if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
                                 , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status)) == 1) {
 
-                            Toast.makeText(getApplicationContext(), "Data Update successfully for patient  " + name, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Data Updated successfully for patient  " + name, Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
                             startActivity(intent);
@@ -296,6 +296,10 @@ public class TestActivity extends AppCompatActivity {
                                 jf.put("familyplanning",formItem1.getFamilyplanning());
                                 jf.put("folictablet",formItem1.getFolictablet());
                                 jf.put("folictabletimportance",formItem1.getFolictabletimportance());
+                                jf.put("patient_name",formItem1.getName());
+
+
+
 
 
 

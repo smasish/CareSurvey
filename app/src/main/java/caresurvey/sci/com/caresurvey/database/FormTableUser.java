@@ -388,15 +388,16 @@ public class FormTableUser {
 
 
 
-    public long updateglobalId(int globalId, int patientId, String comments,String fields) {
+    public long updateglobalId(int globalId, int patientId, String comments,String fields,String name) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, globalId);
         values.put(KEY_STATUS, patientId);
         values.put(KEY_COMMENT, comments);
         values.put(KEY_FIELDS, fields);
+        values.put(KEY_NAME, name);
         SQLiteDatabase db = openDB();
 
-        Log.d(".....>>>>>>>>>>", "Status " +patientId);
+        Log.d(".....>>>>>>>>>>", "Status-insert " +globalId);
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
                 new String[]{globalId + ""});
         closeDB();

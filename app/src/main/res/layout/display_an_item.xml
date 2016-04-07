@@ -66,14 +66,14 @@
                     android:layout_height="match_parent"
                     android:gravity="left">
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Submitted"
-                        android:textColor="@color/white"
-                        android:background="#000000"
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/button2" />
+                    <!--<Button-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Submitted"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:background="#000000"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:id="@+id/button2" />-->
                 </LinearLayout>
 
                 <LinearLayout

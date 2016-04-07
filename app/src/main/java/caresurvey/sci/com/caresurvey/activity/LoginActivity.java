@@ -317,11 +317,15 @@ public class LoginActivity extends AppCompatActivity {
                                     global_id=record.getInt("form_id");
                                     comments=fields.getString("comments");
                                     fieldss=fields.getString("fields");
+                                    JSONObject data= record.getJSONObject("data");
+                                    String name= data.getString("patient_name");
                                     long vfdf,vfdf1,vfdf2;
-                                    vfdf=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
-                                    vfdf2=formTable.updateglobalId(global_id, status, comments, fieldss);
-                                    vfdf1=  formTable.updatefieldforuser(global_id,status,comments,fieldss);
-
+                                    //vfdf=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
+                                    vfdf2=formTable.updateglobalId(global_id, status, comments, fieldss,name);
+                                  //  vfdf1=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
+                                //    Log.d(".....>>>>>>>>>>", "success" + vfdf);
+                                    Log.d(".....>>>>>>>>>>", "success" + vfdf2);
+                                //    Log.d(".....>>>>>>>>>>", "success" + vfdf1);
 
                                     //formTable.insertItem(et);
                                 } catch (JSONException e) {
@@ -363,7 +367,7 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject data = new JSONObject();
                     data.put("username", "collector");
                     data.put("password", "collector");
-                    data.put("timestamp", "2016-03-24 11:20:29");
+                    data.put("get_all", true);
 
                     params.put("data", data.toString());
                 }

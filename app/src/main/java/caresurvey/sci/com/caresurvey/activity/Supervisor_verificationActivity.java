@@ -178,22 +178,23 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                     if (status==2){
                                         FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
                                         for(FormItem formItem1: formItems)
-                                        {                                            long ts,vs,vs2;
+                                        {
+                                            long ts,vs,vs2;
 
                                             vs=formTable1.updateglobalId("1",intValue);
                                             Log.d(".....>>>>>>>>>>nnn", "ChekboxText "+vs);
                                             // int intValue = Supervisor_verificationActivity.this.intValue;
                                             String global_id= String.valueOf(intValue);
                                             vs=formTable1.updateglobalId("1",intValue);
-                                            vs2=formTable1.updateglobalId("1",intValue);
-                                            ts= formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
-                                            Log.d(".....>>>>>>>>>>nnn", "ChekboxText ");
-                                            Log.d(".....>>>>>>>>>>", "ChekboxText " + ts);
+                                          //  vs2=formTable1.updateglobalId("1",intValue);
+                                          //  ts= formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
+                                           // Log.d(".....>>>>>>>>>>nnn", "ChekboxText ");
+                                       //     Log.d(".....>>>>>>>>>>", "ChekboxText " + ts);
                                         }
-                                        Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
+                                       // Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
                                         Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
                                         startActivity(intent);
-                                        Log.d(".....>>>>>>>>>>", "ChekboxText ");
+                                       // Log.d(".....>>>>>>>>>>", "ChekboxText ");
                                     }
                                 }
 
@@ -371,18 +372,18 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                             String global_id= String.valueOf(intValue);
                                             long vvs;
                                             formTable.updateglobalId("2",intValue);
-                                            vvs=formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
-                                            Log.d(".....>>>>>>>>>>", "TestForUpdatingsupervisor " + vvs);
+                                       //    vvs=formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
+                                           // Log.d(".....>>>>>>>>>>", "TestForUpdatingsupervisor " + vvs);
 
 
 
                                         }
 
 
-                                        Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
+                                      //  Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
                                         Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
                                         startActivity(intent);
-                                        Log.d(".....>>>>>>>>>>", "ChekboxText ");
+                                     //   Log.d(".....>>>>>>>>>>", "ChekboxText ");
 
                                     }
 
@@ -422,8 +423,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                             {
                                 JSONObject jf= new JSONObject();
                                 JSONObject meta=new JSONObject();
-                                meta.put("comments",formItem1.getComments());
-                                meta.put("fields", formItem1.getFields());
+                                meta.put("comments",et2.getText().toString());
+                                meta.put("fields", ChekboxText);
                                 requests.put("meta",meta);
                                 requests.put("submitted_by","collector");
                                 requests.put("form_id",formItem1.getGlobal_id());

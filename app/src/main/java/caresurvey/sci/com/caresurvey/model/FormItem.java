@@ -57,7 +57,7 @@ public class FormItem {
         this.c_name=c_name;
     }
 
-    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,int status,String global_id,String inS,String c_name) {
+    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,int status,String global_id,String name,String inS,String c_name) {
         this.patientid=patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
@@ -73,6 +73,7 @@ public class FormItem {
         this.folictabletimportance = folictabletimportance;
         this.status=status;
         this.global_id = global_id;
+        this.name=name;
         this.inS = inS;
         this.c_name=c_name;}
 
@@ -226,11 +227,12 @@ public class FormItem {
         String _folictabletimportance = jo.getString("folictabletimportance");
         int _status = status;
         String _globalId = global_id;
+        String _name=jo.getString("patient_name");
         String _ins= String.valueOf(status);
         String _c_name= c_name;
 
 
         return new FormItem(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_ins,_c_name);
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_ins,_c_name);
     }
 }
