@@ -49,33 +49,14 @@ public class DisplayAll_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_all_);
         listView=(ListView)findViewById(R.id.user_list);
-
         user= "supervisor";
-
         Intent mIntent = getIntent();
         user = mIntent.getStringExtra("user");
-
-
-        //   user= "collecter";
-
-
-
-
-
-
-
-
-
-
-
-
         ArrayList<FormItem> formItems;
-
         FormItem formItem;
 
         final FormTable formTable = new FormTable(DisplayAll_Activity.this);
         formItems= formTable.getAll();
-
 
         int k=0;
         int f= formItems.size();
@@ -88,16 +69,12 @@ public class DisplayAll_Activity extends AppCompatActivity {
         for(FormItem ft: formItems)
 
         {
-
             id_admin[k]= Integer.parseInt(ft.getGlobal_id());
             name_admin[k]=ft.getName();
             status_admin[k]=ft.getStatus();
             inS[k]= ft.getInS();
 
             k++;
-
-
-
         }
         adapter=new DisplayNamesWithStatusAdapter(this,id_admin,name_admin,status_admin,inS);
 
@@ -110,16 +87,15 @@ public class DisplayAll_Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("Status.......OnResume", "response length" + status_admin[position]);
                 Log.d("Status.......OnResume", "response length");
-                if(status_admin[position]==1||status_admin[position]==3)
+                if(status_admin[position]==2)
                 {
-                    Toast.makeText(DisplayAll_Activity.this, "You can not edit until supervisor review it",
-                            Toast.LENGTH_LONG).show();
+                    AlertMessage.showMessage(DisplayAll_Activity.this, getString(R.string.title),
+                            getString(R.string.msg));
                 }
                 else {
                     Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);
                     iiv.putExtra("position",position);
-                   // iiv.putExtra("name",names);
-
+                    // iiv.putExtra("name",names);
                     startActivity(iiv);
                 }
 
@@ -127,26 +103,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
     private void saveForm(JSONArray formitem) {
 
     }
@@ -193,7 +150,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
         final int[] status_admin= new int[f];
 
 
-         for(FormItem ft: formItems)
+        for(FormItem ft: formItems)
 
         {
 
@@ -219,10 +176,10 @@ public class DisplayAll_Activity extends AppCompatActivity {
 
                 Log.d("Status.......OnResume", "response length" + status_admin[position]);
                 Log.d("Status.......OnResume", "response length");
-                if(status_admin[position]==1||status_admin[position]==3)
+                if(status_admin[position]==2)
                 {
-                    Toast.makeText(DisplayAll_Activity.this, "You can not edit until supervisor review it",
-                            Toast.LENGTH_LONG).show();
+                    AlertMessage.showMessage(DisplayAll_Activity.this, "You can not update until collector resubmit it.",
+                            "Please wait until user submit");
                 }
                 else {
                     Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);

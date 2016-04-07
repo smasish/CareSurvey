@@ -68,11 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //      p= "admin";
 
-
-
-
         login =(Button)findViewById(R.id.Login);
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,8 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                     AlertMessage.showMessage(con, getString(R.string.title),
                             getString(R.string.msg));
                 } else if (user.equals("admin") && pass.equalsIgnoreCase("admin")) {
-
-
                     LoadDataSupervisor();
                     flag = true;
 
@@ -99,49 +93,41 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (flag) {
 
-
-
-                handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+                    handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
                 /* start the activity */
-                        pd.dismiss();
+                            pd.dismiss();
 
-                        if (user.equals("admin")) {
-                            Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
-                            startActivity(intent);
+                            if (user.equals("admin")) {
+                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
+                                startActivity(intent);
 
-                        } else if (user.equals("user")) {
-                            Intent intentX = new Intent(LoginActivity.this, UserActivity.class);
-                            startActivity(intentX);
+                            } else if (user.equals("user")) {
+                                Intent intentX = new Intent(LoginActivity.this, UserActivity.class);
+                                startActivity(intentX);
+                            }
+                            //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            overridePendingTransition(0, 0);
+
+                            finish();
                         }
+                    }, 6000);
 
-
-                        //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                        overridePendingTransition(0, 0);
-
-                        finish();
-                    }
-                }, 6000);
-
-            }
-            //
+                }
+                //
 //              Intent in = new Intent(LoginActivity.this,DisplayAll_Activity.class);
 //             startActivity(in);
 
-        }
-    });
+            }
+        });
 
 
 
         text.setText("MaMoni Health System Strengthening \n           (MaMoni HSS) Project");
         text.setTextSize(25);
-
     }
-
-
-
 //    private void submitFeedback(){
 //        String url = "http://www.kolorob.net/mamoni/survey/api/login";
 //
@@ -211,10 +197,6 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             JSONObject jo = new JSONObject(response);
                             JSONArray forms = jo.getJSONArray("forms");
-
-
-
-
 //                                JSONObject joes = new JSONObject();
 //                                joes= jo.getJSONObject("forms");
                             // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
@@ -223,15 +205,12 @@ public class LoginActivity extends AppCompatActivity {
                             int formItemCount = forms.length();
                             for (int i = 0; i < formItemCount; i++) {
                                 try {
-
                                     JSONObject record = forms.getJSONObject(i);
                                     String s;
-
                                     s=record.getString("submitted_by");
                                     Log.d(".....>>>>>>>>>>", "response length" + record);
                                     JSONObject fields = record.getJSONObject("data");
-
-                                    FormItem et = FormItem.parseFormItem(i+1, record.getString("form_id"),record.getString("status"), fields,record.getString("submitted_by"));
+                                    FormItem et = FormItem.parseFormItem(i+1, record.getString("form_id"),record.getInt("status"), fields,record.getString("submitted_by"));
                                     int q;
                                     q=record.getInt("form_id");
                                     formTable.insertItem(et);
@@ -251,7 +230,6 @@ public class LoginActivity extends AppCompatActivity {
                         try
                         {
                             JSONObject jox = new JSONObject(response);
-
                             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("Timestamp_supervisor", jox.getJSONObject("updated_at").toString());
@@ -261,10 +239,6 @@ public class LoginActivity extends AppCompatActivity {
                         {
 
                         }
-
-
-
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -283,16 +257,9 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     //data
                     JSONObject data = new JSONObject();
-
-
-
-
-
-
                     data.put("username", "supervisor");
                     data.put("password", "supervisor");
                     data.put("get_all", true);
-
                     params.put("data", data.toString());
                 }
                 catch (Exception e){
@@ -301,7 +268,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 return params;
             }
-
         };
 
 // Adding request to request queue
@@ -311,9 +277,6 @@ public class LoginActivity extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setMessage("Fetching The File....");
         pd.show();
-
-
-
     }
 
 

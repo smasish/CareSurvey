@@ -41,7 +41,7 @@ public class UserActivity extends AppCompatActivity {
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor1 = pref.edit();
 
-                int first_value = pref.getInt("id", 1);
+                int first_value = pref.getInt("id", 0);
 
                 first_value++;
                 editor1.putInt("id",first_value);
@@ -69,7 +69,7 @@ public class UserActivity extends AppCompatActivity {
                     for(int i=1;i<=30;i++) {
 
                         FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
-                                , "No", "No", "No", "No", "No", "No", 4, "", "", "", "", "3");
+                                , "No", "No", "No", "No", "No", "No", 5, "", "", "", "", "3");
 
                         formTable.insertItem(formItem);
 

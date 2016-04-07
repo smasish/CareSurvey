@@ -89,22 +89,22 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
 
         holder.id.setText("" +id[position]);
         holder.name.setText("" + name[position]);
-
-        button=(Button) convertView.findViewById(R.id.button2);
-
-
-        if(inS[position].equals(""))
-            button.setText("Not Reviewed");
-        else if(inS[position].equals("1"))
-            button.setText("Inserted");
-        else if(inS[position].equals("2"))
-            button.setText("Submitted");
-        else if(inS[position].equals("3")) {
-            button.setText("Blanked");
-            button.setBackgroundColor(Color.GRAY);
-        }
-        else
-            button.setText("Not Reviewed");
+//
+//        button=(Button) convertView.findViewById(R.id.button2);
+//
+//
+//        if(inS[position].equals(""))
+//            button.setText("Not Reviewed");
+//        else if(inS[position].equals("1"))
+//            button.setText("Inserted");
+//        else if(inS[position].equals("2"))
+//            button.setText("Submitted");
+//        else if(inS[position].equals("3")) {
+//            button.setText("Blanked");
+//            button.setBackgroundColor(Color.GRAY);
+//        }
+//        else
+//            button.setText("Not Reviewed");
 
 
 
@@ -127,8 +127,20 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
         }
 
         else if(status[position]==4) {
-            holder.status.setText("Submit Now");
-            holder.status.setBackgroundColor(Color.BLACK);
+            holder.status.setText("Resubmitted");
+            holder.status.setBackgroundColor(Color.BLUE);
+
+        }
+
+        else if(status[position]==5) {
+            holder.status.setText("Blanked");
+            holder.status.setBackgroundColor(Color.GRAY);
+
+        }
+
+        else if(status[position]==6) {
+            holder.status.setText("Inserted");
+            holder.status.setBackgroundColor(Color.YELLOW);
 
         }
 

@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
@@ -52,17 +54,10 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form);
         addListenerOnButton();
-
-
         Intent intent=getIntent();
         value= intent.getIntExtra("id",0);
-
+        Log.d("this is di","this is id"+value);
         namex= intent.getStringExtra("name");
-
-
-
-
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -83,16 +78,78 @@ public class FormActivity extends AppCompatActivity {
         familyplanning = (RadioGroup) findViewById(R.id.familyplanning);
         folictablet = (RadioGroup) findViewById(R.id.folictablet);
         folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
+        ArrayList<FormItemUser> formItems;
+        final FormTableUser formTable = new FormTableUser(FormActivity.this);
+        formItems= formTable.getSpecificItem(value);
+        for(FormItemUser ft: formItems)
+        {
+            if(ft.getBloodpressure().equals("Yes"))
+                bloodpressure.check(R.id.ques1rad1);
+            else
+                bloodpressure.check(R.id.ques1rad2);
 
+            if(ft.getHemoglobintest().equals("Yes"))
+                hemoglobintest.check(R.id.radioButton3);
+            else
+                hemoglobintest.check(R.id.radioButton4);
 
+            if(ft.getUrinetest().equals("Yes"))
+                urinetest.check(R.id.radioButton);
+            else
+                urinetest.check(R.id.radioButton2);
 
+            if(ft.getPregnancyfood().equals("Yes"))
+                pregnancyfood.check(R.id.radioButton5);
+            else
+                pregnancyfood.check(R.id.radioButton6);
+
+            if(ft.getPregnancydanger().equals("Yes"))
+                pregnancydanger.check(R.id.radioButton7);
+            else
+                pregnancydanger.check(R.id.radioButton8);
+
+            if(ft.getFourparts().equals("Yes"))
+                fourparts.check(R.id.radioButton9);
+            else
+                fourparts.check(R.id.radioButton10);
+
+            if(ft.getDelivery().equals("Yes"))
+                delivery.check(R.id.radioButton11);
+            else
+                delivery.check(R.id.radioButton12);
+
+            if(ft.getFeedbaby().equals("Yes"))
+                feedbaby.check(R.id.radioButton13);
+            else
+                feedbaby.check(R.id.radioButton14);
+
+            if(ft.getSixmonths().equals("Yes"))
+                sixmonths.check(R.id.radioButton15);
+            else
+                sixmonths.check(R.id.radioButton16);
+
+            if(ft.getFamilyplanning().equals("Yes"))
+                familyplanning.check(R.id.radioButton17);
+            else
+                familyplanning.check(R.id.radioButton18);
+
+            if(ft.getFolictablet().equals("Yes"))
+                folictablet.check(R.id.radioButton19);
+            else
+                folictablet.check(R.id.radioButton20);
+            if(ft.getFolictabletimportance().equals("Yes"))
+                folictabletimportance.check(R.id.radioButton21);
+            else
+                folictabletimportance.check(R.id.radioButton22);
+
+        }
 
 
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 StorevaluesinVar();
-                int status =4;
+                int status =6;
                 String global_id="";
                 String name = "";
                 String comments="";
@@ -100,11 +157,7 @@ public class FormActivity extends AppCompatActivity {
                 String ins="1";
                 FormItemUser formItem = new FormItemUser(value, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
                         , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,namex,comments,fields,ins);
-
-
-
                 FormTableUser formTable = new FormTableUser(FormActivity.this);
-
                 try {
                     long vs;
                     vs= formTable.insertItem(formItem);
@@ -113,32 +166,15 @@ public class FormActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), "Data inserted successfully for patient " + namex, Toast.LENGTH_SHORT).show();
                         Log.d(".....>>>>>>>>>>", "form_insert Successful" + formTable.insertItem(formItem));
-
-
-
-
                     }
-
-
-
                     Intent intent = new Intent(FormActivity.this, DisplayUserActivity.class);
                     startActivity(intent);
-
-
-
-
 //                    else
 //                        i;
 
                     Log.d(".....>>>>>>>>>>", "response length" + i);
                     Log.d(".....>>>>>>>>>>", "p" + i);
                     Log.d(".....>>>>>>>>>>", "form_insert Test  " + formTable.insertItem(formItem));
-
-
-
-
-
-
                 } catch (Exception e) {
 
                 }

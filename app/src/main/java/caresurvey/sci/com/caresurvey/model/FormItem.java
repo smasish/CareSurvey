@@ -57,7 +57,7 @@ public class FormItem {
         this.c_name=c_name;
     }
 
-    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,String global_id,String inS,String c_name) {
+    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,int status,String global_id,String inS,String c_name) {
         this.patientid=patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
@@ -71,6 +71,7 @@ public class FormItem {
         this.familyplanning = familyplanning;
         this.folictablet = folictablet;
         this.folictabletimportance = folictabletimportance;
+        this.status=status;
         this.global_id = global_id;
         this.inS = inS;
         this.c_name=c_name;}
@@ -207,7 +208,7 @@ public class FormItem {
         return c_name;
     }
 
-    public static FormItem parseFormItem(int patientid,String global_id,String inS,JSONObject jo,String c_name) throws JSONException {
+    public static FormItem parseFormItem(int patientid,String global_id,int status,JSONObject jo,String c_name) throws JSONException {
         int _patientId=patientid;
         String _bloodpressure = jo.getString("bloodpressure");
         String _hemoglobintest = jo.getString("hemoglobintest");
@@ -223,9 +224,9 @@ public class FormItem {
         String _familyplanning = jo.getString("familyplanning");
         String _folictablet = jo.getString("folictablet");
         String _folictabletimportance = jo.getString("folictabletimportance");
-        String _status = inS;
+        int _status = status;
         String _globalId = global_id;
-        String _ins= inS;
+        String _ins= String.valueOf(status);
         String _c_name= c_name;
 
 

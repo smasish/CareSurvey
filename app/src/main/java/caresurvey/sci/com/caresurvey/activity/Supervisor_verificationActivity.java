@@ -91,8 +91,6 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
         revert1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if(check) {
                     linearLayout.setVisibility(View.GONE);
                     check= false;
@@ -103,9 +101,6 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                     check = true;
                     Log.d("......true",">>>>>>>"+check);
                 }
-
-
-
             }
         });
 
@@ -140,33 +135,14 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
         cb11=(CheckBox)findViewById(R.id.checkBox12);
         cb12=(CheckBox)findViewById(R.id.checkBox4);
 
-
-
-
-
-
-
-
         Intent mIntent = getIntent();
         intValue = mIntent.getIntExtra("position", 0)+1;
-
-
         final ArrayList<FormItem> formItems1;
-
-
-
-
         final FormTable formTable = new FormTable(Supervisor_verificationActivity.this);
         formItems= formTable.getSpecificItem(intValue);
-
-
-
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 // Submit.setClickable(false);
                 //Save.setClickable(false);
 
@@ -197,30 +173,28 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                     JSONObject jsonObject = new JSONObject(response);
                                     int status;
                                     status= jsonObject.getInt("status");
-                                    Log.d(".....>>>>>>>>>>", "response length" + et1.getText().toString().trim());
-
+                                    Log.d(".....>>>>>>>>>>", "response length" +status);
+                                    Log.d(".....>>>>>>>>>>nnn", "ChekboxText "+status);
                                     if (status==2){
                                         FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
                                         for(FormItem formItem1: formItems)
-                                        {
-                                            int intValue = Supervisor_verificationActivity.this.intValue;
+                                        {                                            long ts,vs,vs2;
+
+                                            vs=formTable1.updateglobalId("1",intValue);
+                                            Log.d(".....>>>>>>>>>>nnn", "ChekboxText "+vs);
+                                            // int intValue = Supervisor_verificationActivity.this.intValue;
                                             String global_id= String.valueOf(intValue);
-                                            long ts;
-                                            formTable.updateglobalId("1",intValue);
+                                            vs=formTable1.updateglobalId("1",intValue);
+                                            vs2=formTable1.updateglobalId("1",intValue);
                                             ts= formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
-                                            Log.d(".....>>>>>>>>>>", "ChekboxText ");
-                                            Log.d(".....>>>>>>>>>>"+global_id, "ChekboxText " + ts);
-
+                                            Log.d(".....>>>>>>>>>>nnn", "ChekboxText ");
+                                            Log.d(".....>>>>>>>>>>", "ChekboxText " + ts);
                                         }
-
                                         Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
                                         Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
                                         startActivity(intent);
                                         Log.d(".....>>>>>>>>>>", "ChekboxText ");
                                     }
-
-
-
                                 }
 
                                 catch (Exception e)

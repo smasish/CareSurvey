@@ -281,7 +281,7 @@ public class FormTableUser {
     public long updateItemq(int patientid, String bloodpressure, String hemoglobintest,
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
-                            String sixmonths, String familyplanning, String folictablet, String folimp_status,String status) {
+                            String sixmonths, String familyplanning, String folictablet, String folimp_status,int status,String name) {
 
 
         ContentValues values = new ContentValues();
@@ -299,7 +299,8 @@ public class FormTableUser {
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folimp_status);
 
-        values.put(KEY_INS, status);
+        values.put(KEY_STATUS, status);
+        values.put(KEY_NAME, name);
 
 
 
@@ -311,6 +312,41 @@ public class FormTableUser {
         return ret;
     }
 
+
+
+    public long updatefor(int patientid, String bloodpressure, String hemoglobintest,
+                          String urinetest, String pregnancyfood, String pregnancydanger,
+                          String fourparts, String delivery, String feedbaby,
+                          String sixmonths, String familyplanning, String folictablet, String folimp_status,int status) {
+
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, patientid);
+        values.put(KEY_BLOOD, bloodpressure);
+        values.put(KEY_HEMO, hemoglobintest);
+        values.put(KEY_URINE, urinetest);
+        values.put(KEY_PREGFOOD, pregnancyfood);
+        values.put(KEY_PREGDANGER, pregnancydanger);
+        values.put(KEY_FOURCENTER, fourparts);
+        values.put(KEY_DELIVERY, delivery);
+        values.put(KEY_FEED, feedbaby);
+        values.put(KEY_SIXMONTHS, sixmonths);
+        values.put(KEY_FAMILY, familyplanning);
+        values.put(KEY_FOLICTAB, folictablet);
+        values.put(KEY_FOLICIMP, folimp_status);
+
+        values.put(KEY_STATUS, status);
+
+
+
+
+
+        SQLiteDatabase db = openDB();
+        long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
+                new String[]{patientid + ""});
+        closeDB();
+        return ret;
+    }
 
 
     public long updateSupervisor(String globalId, int patientId) {

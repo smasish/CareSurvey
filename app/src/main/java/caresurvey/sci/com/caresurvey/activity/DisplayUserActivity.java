@@ -33,37 +33,21 @@ public class DisplayUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_user);
 
         listView=(ListView)findViewById(R.id.user_list);
-
-
         Intent in= getIntent();
         names  = in.getStringExtra("name");
-
-
-
-   //     Log.d(".....>>>>>>>>>>", "response length" + names);
-
-
-
+        //     Log.d(".....>>>>>>>>>>", "response length" + names);
 
         ArrayList<FormItemUser> formItemsUser;
-
-
         FormItem formItem;
 
         final FormTableUser formTable = new FormTableUser(DisplayUserActivity.this);
         formItemsUser= formTable.getAll();
-
-
         int k=0;
         int f= formItemsUser.size();
-
         int[] id=new int[f];
         String[] name=new String[f];
-
         final int[] status= new int[f];
-
         final String[] inS= new String[f];
-
         if(!formItemsUser.isEmpty()) {
             for (FormItemUser ft : formItemsUser)
 
@@ -87,29 +71,19 @@ public class DisplayUserActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("Status.......ONClick", "response length" );
                 Log.d("Status.......", "response length" + status[position]);
-
                 if(status[position+1]==3)
                 {
-
                     Toast.makeText(DisplayUserActivity.this, "You can not edit until supervisor review it",
                             Toast.LENGTH_LONG).show();
                 }
                 else {
                     Intent iiv = new Intent(DisplayUserActivity.this,TestActivity.class);
-                    iiv.putExtra("position",position);
+                    iiv.putExtra("position",position+1);
                     iiv.putExtra("name",names);
-
                     startActivity(iiv);
                 }
-
-
-
             }
         });
-
-
-
-
     }
 
 
@@ -158,10 +132,19 @@ public class DisplayUserActivity extends AppCompatActivity {
                     Toast.makeText(DisplayUserActivity.this, "You can not edit until supervisor review it",
                             Toast.LENGTH_LONG).show();
                 }
+
+                else if(status[position]==5)
+                {
+                    AlertMessage.showMessage(DisplayUserActivity.this, "Form is empty",
+                            "At first insert data");
+                }
+
+
                 else {
                     Intent iiv = new Intent(DisplayUserActivity.this,TestActivity.class);
-                    iiv.putExtra("position",position);
+                    iiv.putExtra("id",position+1);
                     iiv.putExtra("name",names);
+                    iiv.putExtra("mark",2);
 
                     startActivity(iiv);
                 }

@@ -42,7 +42,7 @@ public class TestActivity extends AppCompatActivity {
 
 
     String add_update,names;
-    int intValue;
+    int intValue,mark;
     ArrayList<String> form;
     Button Save, Submit;
     LinearLayout test;
@@ -64,8 +64,6 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test1);
-
-
         test= (LinearLayout)findViewById(R.id.commentSection);
         Save = (Button) findViewById(R.id.Savebtn);
         Submit = (Button) findViewById(R.id.Submit);
@@ -83,109 +81,71 @@ public class TestActivity extends AppCompatActivity {
         folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
         comment=(TextView)findViewById(R.id.comment);
         field = (TextView)findViewById(R.id.field);
-
         tv1=(TextView)findViewById(R.id.textView3);
-
-
-
         Intent mIntent = getIntent();
-        intValue = mIntent.getIntExtra("position", 0)+1;
-       // names = mIntent.getStringExtra("name");
-
-
+        intValue = mIntent.getIntExtra("id", 0);
+        names=mIntent.getStringExtra("name");
+        mark=mIntent.getIntExtra("mark", 0);
+        Log.d("Status.......", "response length" + intValue);
+        if(mark==1) {
+            test.setVisibility(View.GONE);
+            Save.setText("Insert");
+        }
+        // names = mIntent.getStringExtra("name");
+        Log.d(".....>>>>>>>>>>", "Id in TestActivity  " + intValue);
         Log.d(".....>>>>>>>>>>", "response length" + names);
-
-
-
         ArrayList<FormItemUser> formItems;
         ArrayList<FormItemUser> formItems1;
         ArrayList<FormItemUser> formItems2;
-
-
-
-
         final FormTableUser formTable = new FormTableUser(TestActivity.this);
         formItems= formTable.getSpecificItem(intValue);
         formItems1= formTable.getSpecificItem(intValue);
         FormItemUser formItem;
-
-
-
-
-
-
-
-
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 StorevaluesinVar();
 
-                String status = "1";
+                int status = 6;
                 String global_id= "1";
                 String name = names;
                 String comments= "";
                 String fields= "";
-
 //                FormItemUser formItem = new FormItemUser(1, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
 //                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
 
 
                 FormTableUser formTable = new FormTableUser(TestActivity.this);
-
-
                 try {
+                    if(mark==1) {
+                        if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names)) == 1) {
 
+                            Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " + name, Toast.LENGTH_SHORT).show();
 
-
-
-                    if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                            , del_status, feed_status, six_status, family_status, foltab_status,folimp_status,status)) == 1) {
-
-                        Toast.makeText(getApplicationContext(), "Data Update successfully for patient  " +name, Toast.LENGTH_SHORT).show();
-
-                   Intent intent = new Intent(TestActivity.this,DisplayUserActivity.class);
-                        startActivity(intent);
-
-
-
+                            Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
+                            startActivity(intent);
+                        }
                     }
+                    else {
+                        if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status)) == 1) {
 
+                            Toast.makeText(getApplicationContext(), "Data Update successfully for patient  " + name, Toast.LENGTH_SHORT).show();
 
-
-
-
-
-
-
+                            Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
+                            startActivity(intent);
+                        }
+                    }
                 } catch (Exception e) {
 
                 }
-
-
-
-
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         for(FormItemUser ft: formItems)
-
         {
-
             if(ft.getBloodpressure().equals("Yes"))
                 bloodpressure.check(R.id.ques1rad1);
             else
@@ -200,10 +160,6 @@ public class TestActivity extends AppCompatActivity {
                 urinetest.check(R.id.radioButton);
             else
                 urinetest.check(R.id.radioButton2);
-
-
-
-
             if(ft.getPregnancyfood().equals("Yes"))
                 pregnancyfood.check(R.id.radioButton5);
             else
@@ -264,60 +220,38 @@ public class TestActivity extends AppCompatActivity {
                 folictabletimportance.check(R.id.radioButton21);
             else
                 folictabletimportance.check(R.id.radioButton22);
-
         }
-
-
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 FormTableUser formTableUser = new FormTableUser(TestActivity.this);
                 formTableUser.updateIns("2",intValue);
-
-
                 formItemAll=formTable.getSpecificItem(intValue);
-
                 String tag_json_obj = "json_obj_req";
-
                 String url = "http://www.kolorob.net/mamoni/survey/api/form";
-
-
-
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-
                                 try {
                                     JSONObject jo = new JSONObject(response);
                                     Log.d(".....>>>>>>>>>>", "Status " + jo);
-
                                     String status = jo.getString("status");
-
                                     if(status.equals("2"))
                                     {
-
                                         FormTableUser formtableuser= new FormTableUser(TestActivity.this);
                                         formtableuser.updateglobalI(intValue,3);
-
-                                         Save.setVisibility(View.GONE);
-
+                                        Save.setVisibility(View.GONE);
                                         Intent intent = new Intent(TestActivity.this,DisplayUserActivity.class);
                                         startActivity(intent);
-
-
-
                                     }
 
                                 }
 
                                 catch(Exception e)
                                 {
-
                                 }
-
-
                                 Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
                             }
                         },
@@ -432,23 +366,10 @@ public class TestActivity extends AppCompatActivity {
 
                 RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
                 requestQueue.add(stringRequest);
-
-
-
-
-
-
             }
         });
-
-
-
-
     }
-
-
     public void StorevaluesinVar() {
-
         int selectedq1 = bloodpressure.getCheckedRadioButtonId();
         int selectedq2 = hemoglobintest.getCheckedRadioButtonId();
         int selectedq3 = urinetest.getCheckedRadioButtonId();
@@ -461,31 +382,16 @@ public class TestActivity extends AppCompatActivity {
         int selectedq10 = familyplanning.getCheckedRadioButtonId();
         int selectedq12 = folictabletimportance.getCheckedRadioButtonId();
         int selectedq11 = folictablet.getCheckedRadioButtonId();
-
-
-
-
-
-
         RadioButton rb1 = (RadioButton) findViewById(selectedq1);
         bl_status = rb1.getText().toString();
         bloodpressure.clearCheck();
-
-
         RadioButton rb2 = (RadioButton) findViewById(selectedq2);
         hem_status = rb2.getText().toString();
-
         hemoglobintest.clearCheck();
-
-
         RadioButton rb3 = (RadioButton) findViewById(selectedq3);
-
         uri_status = rb3.getText().toString();
         urinetest.clearCheck();
-
-
         RadioButton rb4 = (RadioButton) findViewById(selectedq4);
-
         pregfood_status = rb4.getText().toString();
         pregnancyfood.clearCheck();
 
