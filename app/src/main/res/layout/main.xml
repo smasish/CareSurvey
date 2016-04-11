@@ -126,5 +126,27 @@
             android:layout_alignTop="@+id/mouzatview"
             android:layout_alignLeft="@+id/unionspinner"
             android:layout_alignStart="@+id/unionspinner" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Village"
+            android:id="@+id/villagetview"
+            android:textSize="30dp"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/mouzaspinner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/villagespinner"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:layout_alignTop="@+id/villagetview"
+            android:layout_alignLeft="@+id/mouzaspinner"
+            android:layout_alignStart="@+id/mouzaspinner" />
     </RelativeLayout>
 </LinearLayout>

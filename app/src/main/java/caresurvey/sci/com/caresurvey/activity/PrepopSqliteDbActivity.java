@@ -17,6 +17,7 @@ import caresurvey.sci.com.caresurvey.database.DatabaseAccess;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessMouza;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUnion;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUpazila;
+import caresurvey.sci.com.caresurvey.database.DatabaseAccessVillage;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessZilla;
 
 /**
@@ -29,11 +30,11 @@ public class PrepopSqliteDbActivity  extends AppCompatActivity implements View.O
 Context context;
     private ListView listView;
     private ArrayList<String> ciList ;
-    private Spinner divspinner,zillaspinner,upzillaspinner,unionspinner,mouzaspinner;
-    String divname,zillname,upazilname,unionname,mouzaname;
-    String divid,zillaid,upzillaid,unionid=String.valueOf(10);
-    String mouzaid=String.valueOf(10);
-    List<String> divnames,zillanames,upazillanames,unionnames,mouzanames;
+    private Spinner divspinner,zillaspinner,upzillaspinner,unionspinner,mouzaspinner,villagespinner;
+    String divname,zillname,upazilname,unionname,mouzaname,vilname;
+    String divid=String.valueOf(10);
+    String mouzaid,vilid,zillaid,upzillaid,unionid=null;
+    List<String> divnames,zillanames,upazillanames,unionnames,mouzanames,vilnames;
     public DatabaseAccess databaseAccess;
 
     @Override
@@ -183,6 +184,34 @@ callspinner5(unionid);
                 databaseAccessMouza.open();
                 mouzaid = databaseAccessMouza.GetmouzaID(mouzaname);
                 databaseAccessMouza.close();
+callspinner6(mouzaid);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+    }
+    public void callspinner6(String mouzaid)
+    {
+        villagespinner=(Spinner)findViewById(R.id.villagespinner);
+        final DatabaseAccessVillage databaseAccessVillage =DatabaseAccessVillage.getInstance(this);
+        databaseAccessVillage.open();
+        vilnames = databaseAccessVillage.getvilname(mouzaid);
+        databaseAccessVillage.close();
+        ArrayAdapter<String> adaptervil = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, vilnames);
+        villagespinner.setAdapter(adaptervil);
+        villagespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vilname = villagespinner.getSelectedItem().toString();
+                databaseAccessVillage.open();
+                vilid = databaseAccessVillage.GetvillageID(vilname);
+                databaseAccessVillage.close();
 
             }
 
