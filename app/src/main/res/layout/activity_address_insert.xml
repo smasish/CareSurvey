@@ -363,8 +363,19 @@
                                 android:text="পর্যবেক্ষণের তারিখঃ"   />
 
                             <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/datepicker"/>
+
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pick Date"
+                                android:layout_marginBottom="3dp"
+                                android:background="@color/purple"
+                                android:textColor="@color/white"
+                                android:id="@+id/datepickerbutton"/>
 
 
 
@@ -389,8 +400,20 @@
                                 android:text="পর্যবেক্ষণ -শুরুর সময়"   />
 
                             <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:text="Pick Time"
+                                android:id="@+id/timepicker"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pick Time"
+                                android:layout_marginTop="3dp"
+
+                                android:background="@color/purple"
+                                android:textColor="@color/white"
+                                android:id="@+id/timepickerbutton"/>
 
 
 
@@ -417,6 +440,8 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
+
+
 
 
 

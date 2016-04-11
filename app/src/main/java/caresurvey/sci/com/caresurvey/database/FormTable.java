@@ -41,6 +41,9 @@ public class FormTable  {
     private static final String KEY_FIELDS = "_fields"; // 1 - text
     private static final String KEY_INS = "_ins"; // 1 - text
     private static final String KEY_CNAME = "_cname"; // 1 - text
+    private static final String KEY_DATE_PICK = "_datepick"; // 1 - text
+    private static final String KEY_TIME_PICK = "_timepick"; // 1 - text
+
 
 
 
@@ -80,6 +83,8 @@ public class FormTable  {
                 + KEY_FIELDS + " TEXT, "
                 + KEY_INS + " TEXT, "
                 + KEY_CNAME + " TEXT "
+
+
 
 
 

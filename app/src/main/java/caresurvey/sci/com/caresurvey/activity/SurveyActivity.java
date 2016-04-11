@@ -62,7 +62,7 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent= new Intent(SurveyActivity.this, FormActivity.class);
+                Intent intent= new Intent(SurveyActivity.this, TestActivity.class);
                 startActivity(intent);
             }
         });
