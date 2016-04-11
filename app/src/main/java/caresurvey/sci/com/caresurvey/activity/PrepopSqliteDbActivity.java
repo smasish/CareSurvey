@@ -14,6 +14,9 @@ import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccess;
+import caresurvey.sci.com.caresurvey.database.DatabaseAccessMouza;
+import caresurvey.sci.com.caresurvey.database.DatabaseAccessUnion;
+import caresurvey.sci.com.caresurvey.database.DatabaseAccessUpazila;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessZilla;
 
 /**
@@ -26,10 +29,11 @@ public class PrepopSqliteDbActivity  extends AppCompatActivity implements View.O
 Context context;
     private ListView listView;
     private ArrayList<String> ciList ;
-    private Spinner divspinner,zillaspinner,upzillaspinner;
-    String divname,zillname;
-    String divid,zillaid=String.valueOf(10);
-    List<String> divnames,zillanames;
+    private Spinner divspinner,zillaspinner,upzillaspinner,unionspinner,mouzaspinner;
+    String divname,zillname,upazilname,unionname,mouzaname;
+    String divid,zillaid,upzillaid,unionid=String.valueOf(10);
+    String mouzaid=String.valueOf(10);
+    List<String> divnames,zillanames,upazillanames,unionnames,mouzanames;
     public DatabaseAccess databaseAccess;
 
     @Override
@@ -84,7 +88,7 @@ public void callspinner1()
         final DatabaseAccessZilla databaseAccessZilla=DatabaseAccessZilla.getInstance(this);
         databaseAccessZilla.open();
         zillanames = databaseAccessZilla.getZillaname(divid);
-
+        databaseAccessZilla.close();
         ArrayAdapter<String> adapterzilla = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, zillanames);
         zillaspinner.setAdapter(adapterzilla);
         zillaspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -92,9 +96,93 @@ public void callspinner1()
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 zillname = zillaspinner.getSelectedItem().toString();
-
+                databaseAccessZilla.open();
                 zillaid = databaseAccessZilla.GetzilaID(zillname);
-                databaseAccess.close();
+                databaseAccessZilla.close();
+callspinner3(zillaid);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+    }
+    public void callspinner3(String zillaid)
+    {
+        upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
+        final DatabaseAccessUpazila databaseAccessUpazila =DatabaseAccessUpazila.getInstance(this);
+        databaseAccessUpazila.open();
+        upazillanames = databaseAccessUpazila.getUpaZillaname(zillaid);
+        databaseAccessUpazila.close();
+        ArrayAdapter<String> adapterupazila = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, upazillanames);
+        upzillaspinner.setAdapter(adapterupazila);
+        upzillaspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                upazilname = upzillaspinner.getSelectedItem().toString();
+                databaseAccessUpazila.open();
+                upzillaid = databaseAccessUpazila.GetupazilaID(upazilname);
+                databaseAccessUpazila.close();
+                callspinner4(upzillaid);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+    }
+    public void callspinner4(String upzillaid)
+    {
+        unionspinner=(Spinner)findViewById(R.id.unionspinner);
+        final DatabaseAccessUnion databaseAccessUnion =DatabaseAccessUnion.getInstance(this);
+        databaseAccessUnion.open();
+        unionnames = databaseAccessUnion.getunionname(upzillaid);
+        databaseAccessUnion.close();
+        ArrayAdapter<String> adapterupauni = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, unionnames);
+        unionspinner.setAdapter(adapterupauni);
+        unionspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                unionname = unionspinner.getSelectedItem().toString();
+                databaseAccessUnion.open();
+                unionid = databaseAccessUnion.GetUnionID(unionname);
+                databaseAccessUnion.close();
+callspinner5(unionid);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+    }
+    public void callspinner5(String unionid)
+    {
+        mouzaspinner=(Spinner)findViewById(R.id.mouzaspinner);
+        final DatabaseAccessMouza databaseAccessMouza =DatabaseAccessMouza.getInstance(this);
+        databaseAccessMouza.open();
+        mouzanames = databaseAccessMouza.getMouzaname(unionid);
+        databaseAccessMouza.close();
+        ArrayAdapter<String> adapterupamou = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mouzanames);
+        mouzaspinner.setAdapter(adapterupamou);
+        mouzaspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mouzaname = mouzaspinner.getSelectedItem().toString();
+                databaseAccessMouza.open();
+                mouzaid = databaseAccessMouza.GetmouzaID(mouzaname);
+                databaseAccessMouza.close();
 
             }
 

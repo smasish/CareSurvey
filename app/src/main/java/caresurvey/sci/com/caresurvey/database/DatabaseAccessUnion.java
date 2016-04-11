@@ -11,23 +11,23 @@ import java.util.List;
 /**
  * Created by israt.jahan on 4/11/2016.
  */
-public class DatabaseAccessZilla {
+public class DatabaseAccessUnion {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
 
  String title2;
-    static final String zillaTable="zilla";
-    static final String zillaDID="DIVID";
-    static final String zillaID="ZILLAID";
-    static final String zillaNamebn="ZILLANAME";
-    private static DatabaseAccessZilla instance;
+    static final String unionTable="unions";
+    static final String upazilaDID="UPAZILAID";
+    static final String unionid="UNIONID";
+    static final String unioname="UNIONNAME";
+    private static DatabaseAccessUnion instance;
 
     /**
      * Private constructor to aboid object creation from outside classes.
      *
      * @param context
      */
-    private DatabaseAccessZilla(Context context) {
+    private DatabaseAccessUnion(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
     }
 
@@ -37,9 +37,9 @@ public class DatabaseAccessZilla {
      * @param context the Context
      * @return the instance of DabaseAccess
      */
-    public static DatabaseAccessZilla getInstance(Context context) {
+    public static DatabaseAccessUnion getInstance(Context context) {
         if (instance == null) {
-            instance = new DatabaseAccessZilla(context);
+            instance = new DatabaseAccessUnion(context);
         }
         return instance;
     }
@@ -66,16 +66,16 @@ public class DatabaseAccessZilla {
      * @return a List of quotes
      */
 
-    public List<String> getZillaname(String insert) {
+    public List<String> getunionname(String insert) {
         List<String> list = new ArrayList<>();
 
 
-        Cursor cursor = database.rawQuery("SELECT * FROM zilla WHERE DIVID = ?", new String[]{ insert });
+        Cursor cursor = database.rawQuery("SELECT * FROM unions WHERE UPAZILAID = ?", new String[]{ insert });
 
         if (cursor.moveToFirst()) {
             do {
                 //System.out.println("abc="+cursor.getString(4));
-                list.add(cursor.getString(cursor.getColumnIndex(zillaNamebn)));
+                list.add(cursor.getString(cursor.getColumnIndex(unioname)));
             } while (cursor.moveToNext());
         }
 
@@ -93,14 +93,14 @@ public class DatabaseAccessZilla {
         c.moveToFirst();
         return c.getString(c.getColumnIndex(colDeptID));
     }*/
-    public String GetzilaID(String Dept)
+    public String GetUnionID(String Dept)
     {
 
-        Cursor cursor = database.rawQuery("SELECT * FROM zilla WHERE ZILLANAME = ?", new String[]{Dept});
+        Cursor cursor = database.rawQuery("SELECT * FROM unions WHERE UNIONNAME = ?", new String[]{Dept});
 
         if (cursor.moveToFirst()) {
             do {
-                title2 = cursor.getString(cursor.getColumnIndex(zillaID));
+                title2 = cursor.getString(cursor.getColumnIndex(unionid));
 
 
             } while (cursor.moveToNext());

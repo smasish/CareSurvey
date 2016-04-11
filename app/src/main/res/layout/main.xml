@@ -64,9 +64,10 @@
             android:id="@+id/upzillaspinner"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
-            android:layout_below="@+id/zillaspinner"
             android:layout_alignLeft="@+id/zillaspinner"
-            android:layout_alignStart="@+id/zillaspinner" />
+            android:layout_alignStart="@+id/zillaspinner"
+            android:layout_alignTop="@+id/upzillatview"
+            android:layout_above="@+id/unionspinner" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,5 +80,51 @@
             android:layout_below="@+id/zillatview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Union"
+            android:id="@+id/uniontview"
+            android:textSize="30dp"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/upzillatview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/unionspinner"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/upzillatview"
+            android:layout_toEndOf="@+id/upzillatview"
+            android:layout_below="@+id/upzillatview" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Mouza"
+            android:id="@+id/mouzatview"
+            android:textSize="30dp"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/uniontview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mouzaspinner"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:layout_alignTop="@+id/mouzatview"
+            android:layout_alignLeft="@+id/unionspinner"
+            android:layout_alignStart="@+id/unionspinner" />
     </RelativeLayout>
 </LinearLayout>

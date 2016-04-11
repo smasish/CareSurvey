@@ -70,6 +70,7 @@ public class DatabaseAccess {
      * @return a List of quotes
      */
     public List<String> getDivisions() {
+
         List<String> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM " +deptTable, null);
         cursor.moveToFirst();
@@ -78,22 +79,10 @@ public class DatabaseAccess {
             cursor.moveToNext();
         }
         cursor.close();
+
         return list;
     }
-    public List<String> getZillaname(String insert) {
-        List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT "+ zillaID + " as _id FROM " +zillaTable+ " WHERE "+ zillaDID + " = " +insert, null);
 
-        if (cursor.moveToFirst()) {
-            do {
-                //System.out.println("abc="+cursor.getString(4));
-                list.add(cursor.getString(cursor.getColumnIndex("_id")));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        return list;
-    }
     public String GetDeptID(String Dept)
     {
 
@@ -102,30 +91,10 @@ public class DatabaseAccess {
         //Cursor c=db.rawQuery("SELECT "+colDeptID+" as _id FROM "+deptTable+"
         //WHERE "+colDeptName+"=?", new String []{Dept});
         c.moveToFirst();
-        return c.getString(c.getColumnIndex(colDeptID));
+        String dept=c.getString(c.getColumnIndex(colDeptID));
+        c.close();
+
+        return dept;
     }
-   /* public int getDivisionid( String div) {
-        int list = 0;
-        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_DIVISION + " WHERE "+ KEY_DIVISION + " = " +div ,null);
-        if (cursor.moveToFirst()) {
-            do {
-                //System.out.println("abc="+cursor.getString(4));
-               list=cursor.getInt(0);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return list;
-    }*/
-  /*  public List<String> getZillaNames(int divid) {
-        String divid2=String.valueOf(divid);
-        List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM " +TABLE_ZILLA + " WHERE "+KEY_ZILLADIV_ID+"="+ divid2, null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(3));
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return list;
-    }*/
+
 }

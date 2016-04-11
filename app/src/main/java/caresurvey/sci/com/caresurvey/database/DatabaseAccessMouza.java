@@ -11,24 +11,24 @@ import java.util.List;
 /**
  * Created by israt.jahan on 4/11/2016.
  */
-public class DatabaseAccessUpazila {
+public class DatabaseAccessMouza {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
 
-String title3;
-    static final String zillaTable="zilla";
-    static final String id="DIVID";
-    static final String zillaID="ZILLAID";
+String title4;
+    static final String mouzaTable="mouza";
+    static final String unionid="UNIONID";
+    static final String mouzaid="MOUZAID";
     static final String upazilaID="UPAZILAID";
-    static final String upazillaName="UPAZILANAME";
-    private static DatabaseAccessUpazila instance;
+    static final String mouzaName="MOUZANAME";
+    private static DatabaseAccessMouza instance;
 
     /**
      * Private constructor to aboid object creation from outside classes.
      *
      * @param context
      */
-    private DatabaseAccessUpazila(Context context) {
+    private DatabaseAccessMouza(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
     }
 
@@ -38,9 +38,9 @@ String title3;
      * @param context the Context
      * @return the instance of DabaseAccess
      */
-    public static DatabaseAccessUpazila getInstance(Context context) {
+    public static DatabaseAccessMouza getInstance(Context context) {
         if (instance == null) {
-            instance = new DatabaseAccessUpazila(context);
+            instance = new DatabaseAccessMouza(context);
         }
         return instance;
     }
@@ -60,14 +60,14 @@ String title3;
             this.database.close();
         }
     }
-    public String GetupazilaID(String Dept)
+    public String GetmouzaID(String Dept)
     {
 
-        Cursor cursor = database.rawQuery("SELECT * FROM upazila WHERE UPAZILANAME = ?", new String[]{Dept});
+        Cursor cursor = database.rawQuery("SELECT * FROM mouza WHERE MOUZANAME = ?", new String[]{Dept});
 
         if (cursor.moveToFirst()) {
             do {
-                title3 = cursor.getString(cursor.getColumnIndex(upazilaID));
+                title4 = cursor.getString(cursor.getColumnIndex(mouzaid));
 
 
             } while (cursor.moveToNext());
@@ -75,19 +75,19 @@ String title3;
 
         cursor.close();;
 
-        return title3;
+        return title4;
     }
-    public List<String> getUpaZillaname(String insert) {
+    public List<String> getMouzaname(String insert) {
 
         List<String> list = new ArrayList<>();
 
 
-        Cursor cursor = database.rawQuery("SELECT * FROM upazila WHERE ZILLAID = ?", new String[]{ insert });
+        Cursor cursor = database.rawQuery("SELECT * FROM mouza WHERE UNIONID = ?", new String[]{ insert });
 
         if (cursor.moveToFirst()) {
             do {
                 //System.out.println("abc="+cursor.getString(4));
-                list.add(cursor.getString(cursor.getColumnIndex(upazillaName)));
+                list.add(cursor.getString(cursor.getColumnIndex(mouzaName)));
             } while (cursor.moveToNext());
         }
 
