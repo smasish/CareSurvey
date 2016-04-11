@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Division"
+            android:id="@+id/divisiontview"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="30dp"
+            android:paddingTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Zilla"
+            android:id="@+id/zillatview"
+            android:textSize="30dp"
+            android:layout_below="@+id/divisiontview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingTop="10dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/divisionspinner"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/divisiontview"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:layout_alignBottom="@+id/divisiontview" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/zillaspinner"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/divisiontview"
+            android:layout_toRightOf="@+id/divisiontview"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/zillatview" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upzillaspinner"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/zillaspinner"
+            android:layout_alignLeft="@+id/zillaspinner"
+            android:layout_alignStart="@+id/zillaspinner" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Upozilla"
+            android:id="@+id/upzillatview"
+            android:textSize="30dp"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/zillatview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+</LinearLayout>
