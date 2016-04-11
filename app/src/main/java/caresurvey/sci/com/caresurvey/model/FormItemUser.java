@@ -26,13 +26,15 @@ public class FormItemUser {
     private String comments;
     private String fields;
     private String inS;
+    private String timepick;
+    private String datepick;
 
 
 
     public FormItemUser(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
                         String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
                         String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
-                        int status, String global_id, String name, String comments, String fields, String inS
+                        int status, String global_id, String name, String comments, String fields, String inS,String datepick, String timepick
     ) {
         this.patientid = patientid;
         this.bloodpressure = bloodpressure;
@@ -53,6 +55,8 @@ public class FormItemUser {
         this.comments=comments;
         this.fields=fields;
         this.inS=inS;
+        this.datepick=datepick;
+        this.timepick=timepick;
 
     }
 
@@ -198,6 +202,14 @@ public class FormItemUser {
 
     public String getInS() {
         return inS;
+    }
+
+    public String getTimepick() {
+        return timepick;
+    }
+
+    public String getDatepick() {
+        return datepick;
     }
 
     public static FormItemUser parseFormItem(int patientid,String global_id,JSONObject jo) throws JSONException {

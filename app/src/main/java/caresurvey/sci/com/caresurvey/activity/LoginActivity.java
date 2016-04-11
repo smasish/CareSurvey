@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
+//import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.model.FormItem;

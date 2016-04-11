@@ -40,6 +40,9 @@ public class FormTableUser {
     private static final String KEY_COMMENT = "_comments"; // 1 - text
     private static final String KEY_FIELDS = "_fields"; // 1 - text
     private static final String KEY_INS = "_ins"; // 1 - text
+    private static final String KEY_DATE_PICK= "_datepick";
+    private static final String KEY_TIME_PICK= "_timepick";
+
 
 
 
@@ -76,7 +79,9 @@ public class FormTableUser {
                 + KEY_NAME + " TEXT, "
                 + KEY_COMMENT + " TEXT,"
                 + KEY_FIELDS + " TEXT, "
-                + KEY_INS + " TEXT "
+                + KEY_INS + " TEXT, "
+                + KEY_DATE_PICK + " TEXT, "
+                + KEY_TIME_PICK + " TEXT "
 
 
 
@@ -100,19 +105,19 @@ public class FormTableUser {
         return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
                 formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
                 formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
-                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS());
+                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getDatepick(),formItem.getTimepick());
     }
     public long insertItem(int patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS) {
+                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS, String datepick,String timepick) {
         if (isFieldExist(patientid)) {
             return updateItem(patientid,bloodpressure, hemoglobintest,
                     urinetest, pregnancyfood, pregnancydanger,
                     fourparts, delivery,feedbaby,
                     sixmonths, familyplanning,folictablet,
-                    folictabletimportance,status,globalId,name,comments,fields,inS);
+                    folictabletimportance,status,globalId,name,comments,fields,inS,datepick,timepick);
         }
         ContentValues values = new ContentValues();
         values.put(KEY_ID, patientid);
@@ -134,6 +139,8 @@ public class FormTableUser {
         values.put(KEY_COMMENT, comments);
         values.put(KEY_FIELDS, fields);
         values.put(KEY_INS, inS);
+        values.put(KEY_DATE_PICK,datepick);
+        values.put(KEY_TIME_PICK, timepick);
 
 
 
@@ -247,7 +254,7 @@ public class FormTableUser {
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance,int status, String globalId, String name, String comments, String fields, String inS) {
+                           String folictabletimportance,int status, String globalId, String name, String comments, String fields, String inS, String datepick, String timepick) {
 
 
         ContentValues values = new ContentValues();
@@ -270,6 +277,8 @@ public class FormTableUser {
         values.put(KEY_COMMENT, comments);
         values.put(KEY_FIELDS,fields);
         values.put(KEY_INS,inS);
+        values.put(KEY_DATE_PICK,datepick);
+        values.put(KEY_TIME_PICK,timepick);
 
         SQLiteDatabase db = openDB();
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
@@ -281,7 +290,7 @@ public class FormTableUser {
     public long updateItemq(int patientid, String bloodpressure, String hemoglobintest,
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
-                            String sixmonths, String familyplanning, String folictablet, String folimp_status,int status,String name) {
+                            String sixmonths, String familyplanning, String folictablet, String folimp_status,int status,String name, String datepicker, String timepicker) {
 
 
         ContentValues values = new ContentValues();
@@ -301,6 +310,8 @@ public class FormTableUser {
 
         values.put(KEY_STATUS, status);
         values.put(KEY_NAME, name);
+        values.put(KEY_DATE_PICK, datepicker);
+        values.put(KEY_TIME_PICK, timepicker);
 
 
 
@@ -487,11 +498,13 @@ public class FormTableUser {
         String _comments = cursor.getString(16);
         String _fields= cursor.getString(17);
         String _inS= cursor.getString(18);
+        String _timepick= cursor.getString(19);
+        String _datepick= cursor.getString(20);
 
 
 
         return new FormItemUser(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_inS);
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_inS,_timepick,_datepick);
     }
 
     public void dropTable() {
