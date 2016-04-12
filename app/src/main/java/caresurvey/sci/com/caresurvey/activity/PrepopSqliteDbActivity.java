@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,6 @@ import caresurvey.sci.com.caresurvey.database.DatabaseAccessMouza;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUnion;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUpazila;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessVillage;
-import caresurvey.sci.com.caresurvey.database.DatabaseAccessZilla;
 
 /**
  * Created by israt.jahan on 4/10/2016.
@@ -36,6 +36,23 @@ Context context;
     String mouzaid,vilid,zillaid,upzillaid,unionid=null;
     List<String> divnames,zillanames,upazillanames,unionnames,mouzanames,vilnames;
     public DatabaseAccess databaseAccess;
+TextView upazila,union,village;
+
+    public String getDivname() {
+        return divname;
+    }
+
+    public void setDivname(String divname) {
+        this.divname = divname;
+    }
+
+    public String getZillaid() {
+        return zillaid;
+    }
+
+    public void setZillaid(String zillaid) {
+        this.zillaid = zillaid;
+    }
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +60,21 @@ Context context;
 
         super.onCreate(savedInstanceState);
             setContentView(R.layout.main);
-
-
-            upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
+        upazila=(TextView)findViewById(R.id.upzillatview);
+        village=(TextView)findViewById(R.id.villagetview);
+        union=(TextView)findViewById(R.id.uniontview);
+        divspinner=(Spinner)findViewById(R.id.divisionspinner);
+        villagespinner=(Spinner)findViewById(R.id.villagespinner);
+        upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
+        unionspinner=(Spinner)findViewById(R.id.unionspinner);
           //  listView = (ListView) findViewById(R.id.listView);
+setDivname("HABIGANJ");//string from the other activity
 
-
-callspinner1();
+if (divname.equals("HABIGANJ"))
+{
+    setZillaid(String.valueOf(36));
+}
+        callspinner1();
 
 
 
@@ -57,22 +82,57 @@ callspinner1();
 
 public void callspinner1()
 {
+
     divspinner=(Spinner)findViewById(R.id.divisionspinner);
     databaseAccess.open();
-    divnames = databaseAccess.getDivisions();
-    databaseAccess.close();
-    ArrayAdapter<String> adapterr = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, divnames);
+    ArrayList<String> issue = new ArrayList<String>();
+
+    issue.add("District Hospital");
+    issue.add("Upazila Health Complex");
+    issue.add("Union Health & Family Welfare Center");
+    issue.add("Satellite Clinic");
+
+    ArrayAdapter<String> adapterr = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, issue);
     divspinner.setAdapter(adapterr);
     divspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             divname = divspinner.getSelectedItem().toString();
-            databaseAccess.open();
-            divid = databaseAccess.GetDeptID(divname);
-            databaseAccess.close();
-            callspinner2(divid);
+            if (position == 0) {
+                upazila.setVisibility(View.GONE);
+                village.setVisibility(View.GONE);
+                union.setVisibility(View.GONE);
+                villagespinner.setVisibility(View.GONE);
+                unionspinner.setVisibility(View.GONE);
+                upzillaspinner.setVisibility(View.GONE);
+            } else if (position == 1 || position == 3) {
+                upazila.setVisibility(View.VISIBLE);
+                village.setVisibility(View.VISIBLE);
+                union.setVisibility(View.VISIBLE);
+                villagespinner.setVisibility(View.VISIBLE);
+                unionspinner.setVisibility(View.VISIBLE);
+                upzillaspinner.setVisibility(View.VISIBLE);
+                callspinner3(getZillaid());
+            } else if (position == 2) {
+                upazila.setVisibility(View.GONE);
+                village.setVisibility(View.VISIBLE);
+                union.setVisibility(View.VISIBLE);
+                villagespinner.setVisibility(View.VISIBLE);
+                unionspinner.setVisibility(View.VISIBLE);
+                upzillaspinner.setVisibility(View.GONE);
+            }
         }
+
+
+
+            //Toast.makeText(getApplicationContext(), position, Toast.LENGTH_SHORT);
+           // databaseAccess.open();
+          //  divid = databaseAccess.GetDeptID(divname);
+          //  databaseAccess.close();
+            //callspinner2(divid);
+
+
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
@@ -85,35 +145,18 @@ public void callspinner1()
 }
    public void callspinner2(String divid)
     {
-        zillaspinner=(Spinner)findViewById(R.id.zillaspinner);
-        final DatabaseAccessZilla databaseAccessZilla=DatabaseAccessZilla.getInstance(this);
-        databaseAccessZilla.open();
-        zillanames = databaseAccessZilla.getZillaname(divid);
-        databaseAccessZilla.close();
-        ArrayAdapter<String> adapterzilla = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, zillanames);
-        zillaspinner.setAdapter(adapterzilla);
-        zillaspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                zillname = zillaspinner.getSelectedItem().toString();
-                databaseAccessZilla.open();
-                zillaid = databaseAccessZilla.GetzilaID(zillname);
-                databaseAccessZilla.close();
-callspinner3(zillaid);
-            }
+     //   final DatabaseAccessZilla databaseAccessZilla=DatabaseAccessZilla.getInstance(this);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+               // zillaid = databaseAccessZilla.GetzilaID(zillname);
+             //   databaseAccessZilla.close();
+//callspinner3(zillaid);
             }
 
 
-        });
-    }
     public void callspinner3(String zillaid)
     {
-        upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
+
         final DatabaseAccessUpazila databaseAccessUpazila =DatabaseAccessUpazila.getInstance(this);
         databaseAccessUpazila.open();
         upazillanames = databaseAccessUpazila.getUpaZillaname(zillaid);
@@ -141,7 +184,7 @@ callspinner3(zillaid);
     }
     public void callspinner4(String upzillaid)
     {
-        unionspinner=(Spinner)findViewById(R.id.unionspinner);
+
         final DatabaseAccessUnion databaseAccessUnion =DatabaseAccessUnion.getInstance(this);
         databaseAccessUnion.open();
         unionnames = databaseAccessUnion.getunionname(upzillaid);
@@ -156,7 +199,7 @@ callspinner3(zillaid);
                 databaseAccessUnion.open();
                 unionid = databaseAccessUnion.GetUnionID(unionname);
                 databaseAccessUnion.close();
-callspinner5(unionid);
+                callspinner6(unionid);
             }
 
             @Override
@@ -169,7 +212,7 @@ callspinner5(unionid);
     }
     public void callspinner5(String unionid)
     {
-        mouzaspinner=(Spinner)findViewById(R.id.mouzaspinner);
+
         final DatabaseAccessMouza databaseAccessMouza =DatabaseAccessMouza.getInstance(this);
         databaseAccessMouza.open();
         mouzanames = databaseAccessMouza.getMouzaname(unionid);
@@ -195,12 +238,12 @@ callspinner6(mouzaid);
 
         });
     }
-    public void callspinner6(String mouzaid)
+    public void callspinner6(String unionid)
     {
-        villagespinner=(Spinner)findViewById(R.id.villagespinner);
+
         final DatabaseAccessVillage databaseAccessVillage =DatabaseAccessVillage.getInstance(this);
         databaseAccessVillage.open();
-        vilnames = databaseAccessVillage.getvilname(mouzaid);
+        vilnames = databaseAccessVillage.getvilname(unionid);
         databaseAccessVillage.close();
         ArrayAdapter<String> adaptervil = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, vilnames);
         villagespinner.setAdapter(adaptervil);

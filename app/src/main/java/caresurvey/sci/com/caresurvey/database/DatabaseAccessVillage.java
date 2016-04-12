@@ -70,7 +70,7 @@ public class DatabaseAccessVillage {
         List<String> list = new ArrayList<>();
 
 
-        Cursor cursor = database.rawQuery("SELECT * FROM village WHERE MOUZAID = ?", new String[]{ insert });
+        Cursor cursor = database.rawQuery("SELECT * FROM village WHERE UNIONID = ?", new String[]{ insert });
 
         if (cursor.moveToFirst()) {
             do {

@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Division"
+            android:text="Sub District"
             android:id="@+id/divisiontview"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -22,17 +22,7 @@
             android:textSize="30dp"
             android:paddingTop="10dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Zilla"
-            android:id="@+id/zillatview"
-            android:textSize="30dp"
-            android:layout_below="@+id/divisiontview"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:paddingTop="10dp" />
+
 
         <Spinner
             android:layout_width="wrap_content"
@@ -46,17 +36,7 @@
             android:paddingTop="10dp"
             android:layout_alignBottom="@+id/divisiontview" />
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/zillaspinner"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:layout_below="@+id/divisiontview"
-            android:layout_toRightOf="@+id/divisiontview"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/zillatview" />
+
 
         <Spinner
             android:layout_width="wrap_content"
@@ -64,8 +44,8 @@
             android:id="@+id/upzillaspinner"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
-            android:layout_alignLeft="@+id/zillaspinner"
-            android:layout_alignStart="@+id/zillaspinner"
+            android:layout_alignLeft="@+id/divisionspinner"
+            android:layout_alignStart="@+id/divisionspinner"
             android:layout_alignTop="@+id/upzillatview"
             android:layout_above="@+id/unionspinner" />
 
@@ -73,11 +53,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Upozilla"
+            android:text="Upazilla"
             android:id="@+id/upzillatview"
             android:textSize="30dp"
             android:paddingTop="10dp"
-            android:layout_below="@+id/zillatview"
+            android:layout_below="@+id/divisiontview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -105,27 +85,9 @@
             android:layout_toEndOf="@+id/upzillatview"
             android:layout_below="@+id/upzillatview" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Mouza"
-            android:id="@+id/mouzatview"
-            android:textSize="30dp"
-            android:paddingTop="10dp"
-            android:layout_below="@+id/uniontview"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mouzaspinner"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:layout_alignTop="@+id/mouzatview"
-            android:layout_alignLeft="@+id/unionspinner"
-            android:layout_alignStart="@+id/unionspinner" />
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,7 +97,7 @@
             android:id="@+id/villagetview"
             android:textSize="30dp"
             android:paddingTop="10dp"
-            android:layout_below="@+id/mouzaspinner"
+            android:layout_below="@+id/uniontview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -146,7 +108,9 @@
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:layout_alignTop="@+id/villagetview"
-            android:layout_alignLeft="@+id/mouzaspinner"
-            android:layout_alignStart="@+id/mouzaspinner" />
+            android:layout_alignLeft="@+id/unionspinner"
+            android:layout_alignStart="@+id/unionspinner" />
+
+
     </RelativeLayout>
 </LinearLayout>

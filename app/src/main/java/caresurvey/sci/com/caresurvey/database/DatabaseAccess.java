@@ -72,7 +72,7 @@ public class DatabaseAccess {
     public List<String> getDivisions() {
 
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM " +deptTable, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM division" , null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(1));
