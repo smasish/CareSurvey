@@ -49,6 +49,7 @@ public class TestActivity extends AppCompatActivity {
     ArrayList<String> form;
     Button Save, Submit;
     LinearLayout test;
+    String collector_name;
 
     String date;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
@@ -91,6 +92,8 @@ public class TestActivity extends AppCompatActivity {
         intValue = mIntent.getIntExtra("id", 0);
         names=mIntent.getStringExtra("name");
         mark=mIntent.getIntExtra("mark", 0);
+        collector_name= mIntent.getStringExtra("c_name");
+
         datespicker= mIntent.getStringExtra("datepicker");
         timepicker=mIntent.getStringExtra("timepicker");
 
@@ -131,7 +134,7 @@ public class TestActivity extends AppCompatActivity {
                 try {
                     if(mark==1) {
                         if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names,datespicker,timepicker)) == 1) {
+                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names,datespicker,timepicker,collector_name)) == 1) {
 
                             Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " + name, Toast.LENGTH_SHORT).show();
 
