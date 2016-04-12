@@ -28,7 +28,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +49,8 @@ public class TestActivity extends AppCompatActivity {
     ArrayList<String> form;
     Button Save, Submit;
     LinearLayout test;
+
+    String date;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
     int i = 0;
     RadioGroup bloodpressure, hemoglobintest,
@@ -135,8 +140,40 @@ public class TestActivity extends AppCompatActivity {
                         }
                     }
                     else {
+
+
+
+
+                        ArrayList<FormItemUser> formTableUsers;
+                        FormTableUser formTableUser= new FormTableUser(TestActivity.this);
+
+                        formTableUsers=formTableUser.dateconcate(intValue);
+
+                        for(FormItemUser formItemUser:formTableUsers)
+                        {
+                            date = formItemUser.getDatepick();
+                        }
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                        String current_date=df.format(c.getTime());
+                      //  String current_date1= current_date.toString();
+
+                        String addspace=date.concat(" ");
+                        String dateconcate= addspace.concat(String.valueOf(current_date));
+
+
+                        Log.d(">>>>>","calender "+c);
+                        Log.d(">>>>>","Current Date1 "+current_date);
+                        Log.d(">>>>>","add space "+addspace);
+                        Log.d(">>>>>","dateconcate "+dateconcate);
+                        Log.d(">>>>>","calender "+c);
+
+
+
+
+
                         if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status)) == 1) {
+                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, dateconcate)) == 1) {
 
                             Toast.makeText(getApplicationContext(), "Data Updated successfully for patient  " + name, Toast.LENGTH_SHORT).show();
 

@@ -225,6 +225,28 @@ public class FormTableUser {
         return subCatList;
     }
 
+
+
+    public ArrayList<FormItemUser> dateconcate(int patient_id) {
+        ArrayList<FormItemUser> subCatList = new ArrayList<>();
+        //System.out.println(cat_id+"  "+sub_cat_id);
+        SQLiteDatabase db = openDB();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE "+ KEY_ID+"="+patient_id, null);
+
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                subCatList.add(cursorToSubCatList(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return subCatList;
+    }
+
     public ArrayList<FormItemUser> getAllItem(int cat_id) {
         ArrayList<FormItemUser> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
@@ -328,7 +350,7 @@ public class FormTableUser {
     public long updatefor(int patientid, String bloodpressure, String hemoglobintest,
                           String urinetest, String pregnancyfood, String pregnancydanger,
                           String fourparts, String delivery, String feedbaby,
-                          String sixmonths, String familyplanning, String folictablet, String folimp_status,int status) {
+                          String sixmonths, String familyplanning, String folictablet, String folimp_status,int status, String date) {
 
 
         ContentValues values = new ContentValues();
@@ -347,6 +369,7 @@ public class FormTableUser {
         values.put(KEY_FOLICIMP, folimp_status);
 
         values.put(KEY_STATUS, status);
+        values.put(KEY_DATE_PICK,date);
 
 
 
