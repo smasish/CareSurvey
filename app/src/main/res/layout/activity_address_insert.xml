@@ -372,6 +372,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pick Date"
+                                android:visibility="gone"
                                 android:layout_marginBottom="3dp"
                                 android:background="@color/purple"
                                 android:textColor="@color/white"
@@ -409,6 +410,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pick Time"
+                                android:visibility="gone"
+
                                 android:layout_marginTop="3dp"
 
                                 android:background="@color/purple"

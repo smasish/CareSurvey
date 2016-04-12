@@ -23,6 +23,7 @@ public class UserActivity extends AppCompatActivity {
     String b1_status;
     int first_value;
     EditText user;
+    EditText collector_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,8 @@ public class UserActivity extends AppCompatActivity {
 
         Button btn = (Button)findViewById(R.id.btn);
         user = (EditText)findViewById(R.id.user);
+        collector_name=(EditText)findViewById(R.id.collector_name);
+
         RadioButton radioButton;
         radioButton=(RadioButton)findViewById(R.id.yes);
         radioButton.setChecked(true);
@@ -69,7 +72,7 @@ public class UserActivity extends AppCompatActivity {
                     for(int i=1;i<=30;i++) {
 
                         FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
-                                , "No", "No", "No", "No", "No", "No", 5, "", "", "", "", "3","","");
+                                , "No", "No", "No", "No", "No", "No", 5, "", "", "", "", "3","","","");
 
                         formTable.insertItem(formItem);
 
@@ -118,6 +121,7 @@ public class UserActivity extends AppCompatActivity {
                     Intent intent = new Intent(UserActivity.this,AddressInsertActivity.class);
                     intent.putExtra("name",username);
                     intent.putExtra("id",first_value);
+                    intent.putExtra("c_name",collector_name.getText().toString());
                     startActivity(intent);
                 }
 

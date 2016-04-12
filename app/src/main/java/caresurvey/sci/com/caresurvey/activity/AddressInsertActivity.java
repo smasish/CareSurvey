@@ -32,6 +32,7 @@ public class AddressInsertActivity extends AppCompatActivity {
     Button timepickerbutton, datepickerbutton;
     String name,datespicker,timespicker;
     int id;
+    String c_name;
 
     static final int TIME_DIALOG_ID = 1111;
     private TextView output;
@@ -59,6 +60,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         Intent intent= getIntent();
         name= intent.getStringExtra("name");
         id= intent.getIntExtra("id",1);
+        c_name=intent.getStringExtra("c_name");
         EditText user= (EditText)findViewById(R.id.user);
         user.setText(name);
         ArrayList<String> sub_district = new ArrayList<String>();
@@ -177,6 +179,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                 timespicker=timepicker.getText().toString();
                 intent.putExtra("datepicker",datespicker);
                 intent.putExtra("timepicker",timespicker);
+                intent.putExtra("c_name",c_name);
                 Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
                 intent.putExtra("id",id);
                 intent.putExtra("mark",1);
