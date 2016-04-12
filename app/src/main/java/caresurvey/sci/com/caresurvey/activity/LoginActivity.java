@@ -101,9 +101,12 @@ public class LoginActivity extends AppCompatActivity {
                             pd.dismiss();
 
                             if (user.equals("admin")) {
-                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
-                                startActivity(intent);
+//                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
+//                                startActivity(intent);
 
+
+                                Intent intent = new Intent(LoginActivity.this, PrepopSqliteDbActivity.class);
+                                startActivity(intent);
                             } else if (user.equals("user")) {
                                 Intent intentX = new Intent(LoginActivity.this, UserActivity.class);
                                 startActivity(intentX);
