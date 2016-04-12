@@ -37,9 +37,9 @@
 
                 <Spinner
                     android:layout_width="0dp"
-                    android:layout_weight="0.6"
+                    android:layout_weight="0.47"
                     android:layout_height="wrap_content"
-                    android:id="@+id/spinner2" />
+                    android:id="@+id/divisionspinner" />
             </LinearLayout>
 
             <LinearLayout
@@ -51,38 +51,60 @@
                 android:layout_weight="0.4">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_weight="0.3"                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Upazila"
+
+                    android:id="@+id/textView27" />
+
+                <Spinner
+                    android:layout_width="164dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/upzillaspinner" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+
+                android:layout_height="0dp"
+                android:layout_weight="0.4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Union"
+                    android:id="@+id/textView28" />
+
+                <Spinner
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/unionspinner" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.6"                    android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Village"
                     android:id="@+id/textView26" />
 
                 <Spinner
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"                    android:layout_height="wrap_content"
-                    android:id="@+id/spinner3" />
-            </LinearLayout>
+                    android:layout_width="181dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/villagespinner" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="10dp"
-
-                android:layout_height="0dp"
-                android:layout_weight="0.4">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Union"
-
-                    android:id="@+id/textView27" />
-
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"                    android:layout_height="wrap_content"
-                    android:id="@+id/spinner4" />
             </LinearLayout>
 
             <LinearLayout
@@ -91,40 +113,6 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.4">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Units"
-                    android:layout_marginLeft="10dp"
-
-                    android:id="@+id/textView28" />
-
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"                    android:layout_height="wrap_content"
-                    android:id="@+id/spinner5" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Ward  No."
-                    android:layout_marginLeft="10dp"
-
-                    android:id="@+id/textView29" />
-
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"                    android:layout_height="wrap_content"
-                    android:id="@+id/spinner6" />
             </LinearLayout>
         </LinearLayout>
 

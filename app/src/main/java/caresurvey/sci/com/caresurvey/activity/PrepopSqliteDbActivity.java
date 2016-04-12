@@ -59,10 +59,10 @@ TextView upazila,union,village;
         databaseAccess = DatabaseAccess.getInstance(this);
 
         super.onCreate(savedInstanceState);
-            setContentView(R.layout.main);
-        upazila=(TextView)findViewById(R.id.upzillatview);
-        village=(TextView)findViewById(R.id.villagetview);
-        union=(TextView)findViewById(R.id.uniontview);
+            setContentView(R.layout.activity_address_insert);
+       // upazila=(TextView)findViewById(R.id.upzillatview);
+       // village=(TextView)findViewById(R.id.villagetview);
+       // union=(TextView)findViewById(R.id.uniontview);
         divspinner=(Spinner)findViewById(R.id.divisionspinner);
         villagespinner=(Spinner)findViewById(R.id.villagespinner);
         upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
@@ -100,27 +100,28 @@ public void callspinner1()
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             divname = divspinner.getSelectedItem().toString();
             if (position == 0) {
-                upazila.setVisibility(View.GONE);
-                village.setVisibility(View.GONE);
-                union.setVisibility(View.GONE);
-                villagespinner.setVisibility(View.GONE);
-                unionspinner.setVisibility(View.GONE);
-                upzillaspinner.setVisibility(View.GONE);
+               // upazila.setVisibility(View.GONE);
+               // village.setVisibility(View.GONE);
+               // union.setVisibility(View.GONE);
+               // villagespinner.setVisibility(View.GONE);
+               // unionspinner.setVisibility(View.GONE);
+               // upzillaspinner.setVisibility(View.GONE);
             } else if (position == 1 || position == 3) {
-                upazila.setVisibility(View.VISIBLE);
-                village.setVisibility(View.VISIBLE);
-                union.setVisibility(View.VISIBLE);
-                villagespinner.setVisibility(View.VISIBLE);
-                unionspinner.setVisibility(View.VISIBLE);
-                upzillaspinner.setVisibility(View.VISIBLE);
+               // upazila.setVisibility(View.VISIBLE);
+              //  village.setVisibility(View.VISIBLE);
+              //  union.setVisibility(View.VISIBLE);
+              //  villagespinner.setVisibility(View.VISIBLE);
+              //  unionspinner.setVisibility(View.VISIBLE);
+              //  upzillaspinner.setVisibility(View.VISIBLE);
                 callspinner3(getZillaid());
             } else if (position == 2) {
-                upazila.setVisibility(View.GONE);
-                village.setVisibility(View.VISIBLE);
-                union.setVisibility(View.VISIBLE);
-                villagespinner.setVisibility(View.VISIBLE);
-                unionspinner.setVisibility(View.VISIBLE);
+             //   upazila.setVisibility(View.GONE);
+             //   village.setVisibility(View.VISIBLE);
+              //  union.setVisibility(View.VISIBLE);
+              //  villagespinner.setVisibility(View.VISIBLE);
+              //  unionspinner.setVisibility(View.VISIBLE);
                 upzillaspinner.setVisibility(View.GONE);
+                callspinner3(getZillaid());
             }
         }
 

@@ -51,11 +51,6 @@ public class AddressInsertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_insert);
 
-        sp1=(Spinner)findViewById(R.id.spinner2);
-        sp2=(Spinner)findViewById(R.id.spinner3);
-        sp3=(Spinner)findViewById(R.id.spinner4);
-        sp4=(Spinner)findViewById(R.id.spinner5);
-        sp5=(Spinner)findViewById(R.id.spinner6);
 
         Intent intent= getIntent();
         name= intent.getStringExtra("name");
