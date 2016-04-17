@@ -100,6 +100,7 @@ public void callspinner1()
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             divname = divspinner.getSelectedItem().toString();
             if (position == 0) {
+
                // upazila.setVisibility(View.GONE);
                // village.setVisibility(View.GONE);
                // union.setVisibility(View.GONE);
@@ -107,6 +108,7 @@ public void callspinner1()
                // unionspinner.setVisibility(View.GONE);
                // upzillaspinner.setVisibility(View.GONE);
             } else if (position == 1 || position == 3) {
+                upzillaspinner.setVisibility(View.VISIBLE);
                // upazila.setVisibility(View.VISIBLE);
               //  village.setVisibility(View.VISIBLE);
               //  union.setVisibility(View.VISIBLE);
@@ -121,7 +123,7 @@ public void callspinner1()
               //  villagespinner.setVisibility(View.VISIBLE);
               //  unionspinner.setVisibility(View.VISIBLE);
                 upzillaspinner.setVisibility(View.GONE);
-                callspinner3(getZillaid());
+                callspinner4(getZillaid());
             }
         }
 
