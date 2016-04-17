@@ -4,9 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,11 +31,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
-//import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.utils.AppConstants;
+
+//import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
 
 public class LoginActivity extends AppCompatActivity {
     ProgressDialog pd;
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
 //                                startActivity(intent);
 
 
-                                Intent intent = new Intent(LoginActivity.this, PrepopSqliteDbActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, AddressInsertActivity.class);
                                 startActivity(intent);
                             } else if (user.equals("user")) {
                                 Intent intentX = new Intent(LoginActivity.this, UserActivity.class);

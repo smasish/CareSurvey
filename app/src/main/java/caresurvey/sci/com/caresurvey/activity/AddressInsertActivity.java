@@ -4,12 +4,13 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -23,8 +24,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.DatabaseAccess;
+import caresurvey.sci.com.caresurvey.database.DatabaseAccessUnion;
+import caresurvey.sci.com.caresurvey.database.DatabaseAccessUpazila;
+import caresurvey.sci.com.caresurvey.database.DatabaseAccessVillage;
 
 public class AddressInsertActivity extends AppCompatActivity {
     Spinner sp1,sp2,sp3,sp4,sp5;
@@ -46,16 +52,36 @@ public class AddressInsertActivity extends AppCompatActivity {
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+    private Spinner divspinner,zillaspinner,upzillaspinner,unionspinner,mouzaspinner,villagespinner;
+    String divname,zillname,upazilname,unionname,mouzaname,vilname;
+    String divid=String.valueOf(10);
+    String mouzaid,vilid,zillaid,upzillaid,unionid=null;
+    List<String> divnames,zillanames,upazillanames,unionnames,mouzanames,vilnames;
+    public DatabaseAccess databaseAccess;
+    TextView upazila,union,village;
+
+    public String getDivname() {
+        return divname;
+    }
+
+    public void setDivname(String divname) {
+        this.divname = divname;
+    }
+
+    public String getZillaid() {
+        return zillaid;
+    }
+
+    public void setZillaid(String zillaid) {
+        this.zillaid = zillaid;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_insert);
+        databaseAccess = DatabaseAccess.getInstance(this);
 
 
-        sp1=(Spinner)findViewById(R.id.divisionspinner);
-               sp2=(Spinner)findViewById(R.id.upzillaspinner);
-        sp3=(Spinner)findViewById(R.id.unionspinner);
-              sp4=(Spinner)findViewById(R.id.villagespinner);
         //sp5=(Spinner)findViewById(R.id.spinner6);
 
         Intent intent= getIntent();
@@ -64,48 +90,27 @@ public class AddressInsertActivity extends AppCompatActivity {
         c_name=intent.getStringExtra("c_name");
         EditText user= (EditText)findViewById(R.id.user);
         user.setText(name);
-        ArrayList<String> sub_district = new ArrayList<String>();
-        sub_district.add("District Hospital");
-        sub_district.add("Upozila Health Complex");
-        sub_district.add("Union health and family welfare center");
-        sub_district.add("Satellite Clinic");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, sub_district);
-        sp1.setAdapter(adapter);
-        ArrayList<String> sub_district1 = new ArrayList<String>();
-        sub_district1.add("District Hospital");
-        sub_district1.add("Upozila Health Complex");
-        sub_district1.add("Union health and family welfare center");
-        sub_district1.add("Satellite Clinic");
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, sub_district1);
-        sp2.setAdapter(adapter1);
 
+        divspinner=(Spinner)findViewById(R.id.divisionspinner);
+        villagespinner=(Spinner)findViewById(R.id.villagespinner);
+        upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
+        unionspinner=(Spinner)findViewById(R.id.unionspinner);
+        //  listView = (ListView) findViewById(R.id.listView);
+        setDivname("HABIGANJ");//string from the other activity
 
-        ArrayList<String> sub_district2 = new ArrayList<String>();
-        sub_district2.add("District Hospital");
-        sub_district2.add("Upozila Health Complex");
-        sub_district2.add("Union health and family welfare center");
-        sub_district2.add("Satellite Clinic");
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, sub_district2);
-        sp3.setAdapter(adapter2);
-
-
-        ArrayList<String> sub_district3 = new ArrayList<String>();
-        sub_district3.add("District Hospital");
-        sub_district3.add("Upozila Health Complex");
-        sub_district3.add("Union health and family welfare center");
-        sub_district3.add("Satellite Clinic");
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, sub_district3);
-        sp4.setAdapter(adapter3);
+        if (divname.equals("HABIGANJ"))
+        {
+            setZillaid(String.valueOf(36));
+        }
+        callspinner1();
 
 
 
-//        ArrayList<String> sub_district4 = new ArrayList<String>();
-//        sub_district4.add("District Hospital");
-//        sub_district4.add("Upozila Health Complex");
-//        sub_district4.add("Union health and family welfare center");
-//        sub_district4.add("Satellite Clinic");
-//        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, sub_district4);
-//        sp5.setAdapter(adapter4);
+
+
+
+
+//
 
 
         timepicker=(EditText)findViewById(R.id.timepicker);
@@ -194,8 +199,90 @@ public class AddressInsertActivity extends AppCompatActivity {
 
 
     }
+    public void callspinner3(String zillaid)
+    {
+
+        final DatabaseAccessUpazila databaseAccessUpazila =DatabaseAccessUpazila.getInstance(this);
+        databaseAccessUpazila.open();
+        upazillanames = databaseAccessUpazila.getUpaZillaname(zillaid);
+        databaseAccessUpazila.close();
+        ArrayAdapter<String> adapterupazila = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, upazillanames);
+        upzillaspinner.setAdapter(adapterupazila);
+        upzillaspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                upazilname = upzillaspinner.getSelectedItem().toString();
+                databaseAccessUpazila.open();
+                upzillaid = databaseAccessUpazila.GetupazilaID(upazilname);
+                databaseAccessUpazila.close();
+                callspinner4(upzillaid);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
 
 
+        });
+    }
+    public void callspinner4(String upzillaid)
+    {
+
+        final DatabaseAccessUnion databaseAccessUnion =DatabaseAccessUnion.getInstance(this);
+        databaseAccessUnion.open();
+        unionnames = databaseAccessUnion.getunionname(upzillaid);
+        databaseAccessUnion.close();
+        ArrayAdapter<String> adapterupauni = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, unionnames);
+        unionspinner.setAdapter(adapterupauni);
+        unionspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                unionname = unionspinner.getSelectedItem().toString();
+                databaseAccessUnion.open();
+                unionid = databaseAccessUnion.GetUnionID(unionname);
+                databaseAccessUnion.close();
+                callspinner6(unionid);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+    }
+    public void callspinner6(String unionid)
+    {
+
+        final DatabaseAccessVillage databaseAccessVillage =DatabaseAccessVillage.getInstance(this);
+        databaseAccessVillage.open();
+        vilnames = databaseAccessVillage.getvilname(unionid);
+        databaseAccessVillage.close();
+        ArrayAdapter<String> adaptervil = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, vilnames);
+        villagespinner.setAdapter(adaptervil);
+        villagespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vilname = villagespinner.getSelectedItem().toString();
+                databaseAccessVillage.open();
+                vilid = databaseAccessVillage.GetvillageID(vilname);
+                databaseAccessVillage.close();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+    }
 
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
@@ -203,7 +290,70 @@ public class AddressInsertActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT)
                 .show();
     }
+    public void callspinner1()
+    {
 
+        divspinner=(Spinner)findViewById(R.id.divisionspinner);
+        databaseAccess.open();
+        ArrayList<String> issue = new ArrayList<String>();
+
+        issue.add("District Hospital");
+        issue.add("Upazila Health Complex");
+        issue.add("Union Health & Family Welfare Center");
+        issue.add("Satellite Clinic");
+
+        ArrayAdapter<String> adapterr = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, issue);
+        divspinner.setAdapter(adapterr);
+        divspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                divname = divspinner.getSelectedItem().toString();
+                if (position == 0) {
+
+                    // upazila.setVisibility(View.GONE);
+                    // village.setVisibility(View.GONE);
+                    // union.setVisibility(View.GONE);
+                    // villagespinner.setVisibility(View.GONE);
+                    // unionspinner.setVisibility(View.GONE);
+                    // upzillaspinner.setVisibility(View.GONE);
+                } else if (position == 1 || position == 3) {
+                    upzillaspinner.setVisibility(View.VISIBLE);
+                    // upazila.setVisibility(View.VISIBLE);
+                    //  village.setVisibility(View.VISIBLE);
+                    //  union.setVisibility(View.VISIBLE);
+                    //  villagespinner.setVisibility(View.VISIBLE);
+                    //  unionspinner.setVisibility(View.VISIBLE);
+                    //  upzillaspinner.setVisibility(View.VISIBLE);
+                    callspinner3(getZillaid());
+                } else if (position == 2) {
+                    //   upazila.setVisibility(View.GONE);
+                    //   village.setVisibility(View.VISIBLE);
+                    //  union.setVisibility(View.VISIBLE);
+                    //  villagespinner.setVisibility(View.VISIBLE);
+                    //  unionspinner.setVisibility(View.VISIBLE);
+                    upzillaspinner.setVisibility(View.GONE);
+                    callspinner4(getZillaid());
+                }
+            }
+
+
+            //Toast.makeText(getApplicationContext(), position, Toast.LENGTH_SHORT);
+            // databaseAccess.open();
+            //  divid = databaseAccess.GetDeptID(divname);
+            //  databaseAccess.close();
+            //callspinner2(divid);
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+
+    }
     @Override
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
