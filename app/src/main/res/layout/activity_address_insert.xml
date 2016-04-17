@@ -352,6 +352,9 @@
 
                             <EditText
                                 android:layout_width="270dp"
+                                android:clickable="false"
+                                android:focusable="false"
+
                                 android:layout_height="wrap_content"
                                 android:id="@+id/datepicker"/>
 
@@ -392,6 +395,9 @@
                                 android:layout_width="250dp"
                                 android:layout_height="wrap_content"
                                 android:text="Pick Time"
+                                android:focusable="false"
+
+                                android:clickable="false"
                                 android:id="@+id/timepicker"/>
 
                             <Button

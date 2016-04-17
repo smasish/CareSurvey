@@ -52,6 +52,12 @@ public class AddressInsertActivity extends AppCompatActivity {
         setContentView(R.layout.activity_address_insert);
 
 
+        sp1=(Spinner)findViewById(R.id.divisionspinner);
+               sp2=(Spinner)findViewById(R.id.upzillaspinner);
+        sp3=(Spinner)findViewById(R.id.unionspinner);
+              sp4=(Spinner)findViewById(R.id.villagespinner);
+        //sp5=(Spinner)findViewById(R.id.spinner6);
+
         Intent intent= getIntent();
         name= intent.getStringExtra("name");
         id= intent.getIntExtra("id",1);
@@ -93,13 +99,13 @@ public class AddressInsertActivity extends AppCompatActivity {
 
 
 
-        ArrayList<String> sub_district4 = new ArrayList<String>();
-        sub_district4.add("District Hospital");
-        sub_district4.add("Upozila Health Complex");
-        sub_district4.add("Union health and family welfare center");
-        sub_district4.add("Satellite Clinic");
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, sub_district4);
-        sp5.setAdapter(adapter4);
+//        ArrayList<String> sub_district4 = new ArrayList<String>();
+//        sub_district4.add("District Hospital");
+//        sub_district4.add("Upozila Health Complex");
+//        sub_district4.add("Union health and family welfare center");
+//        sub_district4.add("Satellite Clinic");
+//        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, sub_district4);
+//        sp5.setAdapter(adapter4);
 
 
         timepicker=(EditText)findViewById(R.id.timepicker);
