@@ -63,18 +63,18 @@ TextView upazila,union,village;
        // upazila=(TextView)findViewById(R.id.upzillatview);
        // village=(TextView)findViewById(R.id.villagetview);
        // union=(TextView)findViewById(R.id.uniontview);
+
         divspinner=(Spinner)findViewById(R.id.divisionspinner);
         villagespinner=(Spinner)findViewById(R.id.villagespinner);
         upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
         unionspinner=(Spinner)findViewById(R.id.unionspinner);
-          //  listView = (ListView) findViewById(R.id.listView);
-setDivname("HABIGANJ");//string from the other activity
+        //  listView = (ListView) findViewById(R.id.listView);
+        setDivname("HABIGANJ");//string from the other activity
 
-if (divname.equals("HABIGANJ"))
-{
-    setZillaid(String.valueOf(36));
-}
-        callspinner1();
+        if (divname.equals("HABIGANJ"))
+        {
+            setZillaid(String.valueOf(36));
+        }callspinner1();
 
 
 
