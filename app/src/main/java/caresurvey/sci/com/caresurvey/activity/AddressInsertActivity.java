@@ -113,7 +113,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         timepickerbutton=(Button)findViewById(R.id.timepickerbutton);
         datepickerbutton=(Button)findViewById(R.id.datepickerbutton);
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
         SimpleDateFormat df2 = new SimpleDateFormat("hh:mm:ss aa");
 
 
