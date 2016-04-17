@@ -72,7 +72,7 @@ public class UserActivity extends AppCompatActivity {
                     for(int i=1;i<=30;i++) {
 
                         FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
-                                , "No", "No", "No", "No", "No", "No", 5, "", "", "", "", "3","","","");
+                                , "No", "No", "No", "No", "No", "No", 5, "", "", "", "", "3","","","","","","","");
 
                         formTable.insertItem(formItem);
 
