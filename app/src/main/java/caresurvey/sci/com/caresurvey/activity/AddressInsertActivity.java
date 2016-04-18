@@ -311,27 +311,41 @@ public class AddressInsertActivity extends AppCompatActivity {
                     // upazila.setVisibility(View.GONE);
                     // village.setVisibility(View.GONE);
                     // union.setVisibility(View.GONE);
-                    // villagespinner.setVisibility(View.GONE);
-                    // unionspinner.setVisibility(View.GONE);
-                    // upzillaspinner.setVisibility(View.GONE);
-                } else if (position == 1 || position == 3) {
+                   villagespinner.setVisibility(View.GONE);
+                   unionspinner.setVisibility(View.GONE);
+                    upzillaspinner.setVisibility(View.GONE);
+                } else if (position == 1) {
                     upzillaspinner.setVisibility(View.VISIBLE);
-                    // upazila.setVisibility(View.VISIBLE);
+                 //   upazila.setVisibility(View.VISIBLE);
                     //  village.setVisibility(View.VISIBLE);
-                    //  union.setVisibility(View.VISIBLE);
-                    //  villagespinner.setVisibility(View.VISIBLE);
-                    //  unionspinner.setVisibility(View.VISIBLE);
+                   //union.setVisibility(View.VISIBLE);
+                    villagespinner.setVisibility(View.GONE);
+                   unionspinner.setVisibility(View.GONE);
                     //  upzillaspinner.setVisibility(View.VISIBLE);
                     callspinner3(getZillaid());
                 } else if (position == 2) {
                     //   upazila.setVisibility(View.GONE);
                     //   village.setVisibility(View.VISIBLE);
                     //  union.setVisibility(View.VISIBLE);
-                    //  villagespinner.setVisibility(View.VISIBLE);
-                    //  unionspinner.setVisibility(View.VISIBLE);
-                    upzillaspinner.setVisibility(View.GONE);
+                      villagespinner.setVisibility(View.VISIBLE);
+                     unionspinner.setVisibility(View.VISIBLE);
+                    upzillaspinner.setVisibility(View.VISIBLE);
                     callspinner4(getZillaid());
                 }
+
+
+                else if ( position == 3) {
+                    upzillaspinner.setVisibility(View.VISIBLE);
+                    //   upazila.setVisibility(View.VISIBLE);
+                    //  village.setVisibility(View.VISIBLE);
+                    //union.setVisibility(View.VISIBLE);
+                    villagespinner.setVisibility(View.VISIBLE);
+                    unionspinner.setVisibility(View.VISIBLE);
+                    //  upzillaspinner.setVisibility(View.VISIBLE);
+                    callspinner3(getZillaid());
+                }
+
+
             }
 
 
