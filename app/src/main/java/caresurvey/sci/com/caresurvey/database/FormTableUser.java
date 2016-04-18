@@ -363,7 +363,7 @@ public class FormTableUser {
     public long updatefor(int patientid, String bloodpressure, String hemoglobintest,
                           String urinetest, String pregnancyfood, String pregnancydanger,
                           String fourparts, String delivery, String feedbaby,
-                          String sixmonths, String familyplanning, String folictablet, String folimp_status,int status, String date) {
+                          String sixmonths, String familyplanning, String folictablet, String folimp_status,int status, String date,String upozila,String union,String village) {
 
 
         ContentValues values = new ContentValues();
@@ -383,6 +383,9 @@ public class FormTableUser {
 
         values.put(KEY_STATUS, status);
         values.put(KEY_DATE_PICK,date);
+        values.put(KEY_UPOZILA,upozila);
+        values.put(KEY_UNION,union);
+        values.put(KEY_VILLAGE,village);
 
 
 

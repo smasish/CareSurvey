@@ -38,7 +38,7 @@ public class AddressInsertActivity extends AppCompatActivity {
     Button timepickerbutton, datepickerbutton;
     String name,datespicker,timespicker;
     int id;
-    String c_name;
+    String c_name, upozila, union1,village1;
 
     static final int TIME_DIALOG_ID = 1111;
     private TextView output;
@@ -88,6 +88,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         name= intent.getStringExtra("name");
         id= intent.getIntExtra("id",1);
         c_name=intent.getStringExtra("c_name");
+
         EditText user= (EditText)findViewById(R.id.user);
         user.setText(name);
 
@@ -104,15 +105,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         }
         callspinner1();
 
-
-
-
-
-
-
 //
-
-
         timepicker=(EditText)findViewById(R.id.timepicker);
         datepicker= (EditText)findViewById(R.id.datepicker);
         timepickerbutton=(Button)findViewById(R.id.timepickerbutton);
@@ -186,9 +179,13 @@ public class AddressInsertActivity extends AppCompatActivity {
                 intent.putExtra("datepicker",datespicker);
                 intent.putExtra("timepicker",timespicker);
                 intent.putExtra("c_name",c_name);
+
                 Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
-                intent.putExtra("id",id);
+                intent.putExtra("id", id);
                 intent.putExtra("mark",1);
+                intent.putExtra("upozila",upazilname);
+                intent.putExtra("union",unionname);
+                intent.putExtra("village",vilname);
                 startActivity(intent);
             }
         });
@@ -206,7 +203,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         databaseAccessUpazila.open();
         upazillanames = databaseAccessUpazila.getUpaZillaname(zillaid);
         databaseAccessUpazila.close();
-        ArrayAdapter<String> adapterupazila = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, upazillanames);
+        ArrayAdapter<String> adapterupazila = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, upazillanames);
         upzillaspinner.setAdapter(adapterupazila);
         upzillaspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -234,7 +231,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         databaseAccessUnion.open();
         unionnames = databaseAccessUnion.getunionname(upzillaid);
         databaseAccessUnion.close();
-        ArrayAdapter<String> adapterupauni = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, unionnames);
+        ArrayAdapter<String> adapterupauni = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, unionnames);
         unionspinner.setAdapter(adapterupauni);
         unionspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -262,7 +259,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         databaseAccessVillage.open();
         vilnames = databaseAccessVillage.getvilname(unionid);
         databaseAccessVillage.close();
-        ArrayAdapter<String> adaptervil = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, vilnames);
+        ArrayAdapter<String> adaptervil = new ArrayAdapter<String>(this,R.layout.drop_down_list_addrees, vilnames);
         villagespinner.setAdapter(adaptervil);
         villagespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -302,7 +299,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         issue.add("Union Health & Family Welfare Center");
         issue.add("Satellite Clinic");
 
-        ArrayAdapter<String> adapterr = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, issue);
+        ArrayAdapter<String> adapterr = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, issue);
         divspinner.setAdapter(adapterr);
         divspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 

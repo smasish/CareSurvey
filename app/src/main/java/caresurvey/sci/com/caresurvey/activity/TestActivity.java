@@ -44,7 +44,7 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 public class TestActivity extends AppCompatActivity {
 
 
-    String add_update,names,datespicker,timepicker;
+    String add_update,names,datespicker,timepicker,upozila,union,village;
     int intValue,mark;
     ArrayList<String> form;
     Button Save, Submit;
@@ -93,6 +93,9 @@ public class TestActivity extends AppCompatActivity {
         names=mIntent.getStringExtra("name");
         mark=mIntent.getIntExtra("mark", 0);
         collector_name= mIntent.getStringExtra("c_name");
+        upozila=mIntent.getStringExtra("upozila");
+        union=mIntent.getStringExtra("union");
+        village=mIntent.getStringExtra("village");
 
         datespicker= mIntent.getStringExtra("datepicker");
         timepicker=mIntent.getStringExtra("timepicker");
@@ -176,7 +179,7 @@ public class TestActivity extends AppCompatActivity {
 
 
                         if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, dateconcate)) == 1) {
+                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, dateconcate,upozila,union,village)) == 1) {
 
                             Toast.makeText(getApplicationContext(), "Data Updated successfully for patient  " + name, Toast.LENGTH_SHORT).show();
 
