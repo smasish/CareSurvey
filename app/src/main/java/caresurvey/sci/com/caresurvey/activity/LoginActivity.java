@@ -74,6 +74,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 user = username.getText().toString();
                 pass = password.getText().toString();
+
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("username", user);
+                editor.putString("Longitude", pass);
+
+                editor.commit();
+
+
                 Log.d(".....>>>>>>>>>>", "response lengthcc   " + user);
                 if (user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
                     AlertMessage.showMessage(con, getString(R.string.title),
@@ -83,7 +92,27 @@ public class LoginActivity extends AppCompatActivity {
                     flag = true;
 
                     //      k = "supervisor";
-                } else if (user.equals("user") && pass.equalsIgnoreCase("user")) {
+                } else if (user.equals("user_hb1") && pass.equalsIgnoreCase("pass_hb1")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+
+
+                else if (user.equals("user_hb2") && pass.equalsIgnoreCase("pass_hb2")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+
+
+                else if (user.equals("user_hb3") && pass.equalsIgnoreCase("pass_hb3")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+
+                else if (user.equals("user_hb4") && pass.equalsIgnoreCase("pass_hb4")) {
 
                     LoadDataCollector();
                     flag = true;
@@ -107,7 +136,23 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
                                 startActivity(intent);
-                            } else if (user.equals("user")) {
+                            } else if (user.equals("user_hb1")) {
+                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                                startActivity(intentX);
+                            }
+
+
+                            else if (user.equals("user_hb2")) {
+                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                                startActivity(intentX);
+                            }
+
+                            else if (user.equals("user_hb3")) {
+                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                                startActivity(intentX);
+                            }
+
+                            else if (user.equals("user_hb4")) {
                                 Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                                 startActivity(intentX);
                             }
@@ -368,8 +413,8 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     //data
                     JSONObject data = new JSONObject();
-                    data.put("username", "collector");
-                    data.put("password", "collector");
+                    data.put("username", username.getText().toString().trim());
+                    data.put("password", password.getText().toString().trim());
                     data.put("get_all", true);
 
                     params.put("data", data.toString());
