@@ -123,6 +123,7 @@ public class UserActivity extends AppCompatActivity {
                     intent.putExtra("id",first_value);
                     intent.putExtra("c_name",collector_name.getText().toString());
                     startActivity(intent);
+                    finish();
                 }
 
 
@@ -141,6 +142,14 @@ public class UserActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_user, menu);
         return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        onResume();
+
+
     }
 
     @Override

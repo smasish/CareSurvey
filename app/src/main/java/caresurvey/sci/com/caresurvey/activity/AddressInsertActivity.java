@@ -187,6 +187,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                 intent.putExtra("union",unionname);
                 intent.putExtra("village",vilname);
                 startActivity(intent);
+                finish();
             }
         });
 

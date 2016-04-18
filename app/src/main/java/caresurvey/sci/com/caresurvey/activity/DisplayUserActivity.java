@@ -1,5 +1,7 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -165,6 +167,19 @@ public class DisplayUserActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_display_user, menu);
         return true;
+    }
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        onResume();
+
+
     }
 
     @Override
