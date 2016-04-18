@@ -105,10 +105,10 @@ public class LoginActivity extends AppCompatActivity {
 //                                startActivity(intent);
 
 
-                                Intent intent = new Intent(LoginActivity.this, AddressInsertActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
                                 startActivity(intent);
                             } else if (user.equals("user")) {
-                                Intent intentX = new Intent(LoginActivity.this, UserActivity.class);
+                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                                 startActivity(intentX);
                             }
                             //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

@@ -75,6 +75,14 @@
             android:name=".activity.AddressInsertActivity"
             android:label="@string/title_activity_address_insert" >
         </activity>
+        <activity
+            android:name=".activity.SelectionActivityUser"
+            android:label="@string/title_activity_selection_activity_user" >
+        </activity>
+        <activity
+            android:name=".activity.SelectionUserActivity"
+            android:label="@string/title_activity_selection_user" >
+        </activity>
     </application>
 
 </manifest>
