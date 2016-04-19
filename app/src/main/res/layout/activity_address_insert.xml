@@ -330,13 +330,14 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="0.2"
                                 android:orientation="horizontal"
-
+                                android:id="@+id/yesOrNo"
                                 android:layout_height="wrap_content">
 
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/blue"
+                                    android:id="@+id/radio1"
                                     android:text="হ্যাঁ"/>
 
                                 <RadioButton

@@ -98,7 +98,7 @@ public class UserActivity extends AppCompatActivity {
 
                 if(username.equals(""))
                 {
-                    AlertMessage.showMessage(UserActivity.this, "Please insert your name.",
+                    AlertMessage.showMessage(UserActivity.this, "Please insert User name.",
                             "");
 
                 }
@@ -114,6 +114,14 @@ public class UserActivity extends AppCompatActivity {
 
 
              }
+
+
+                else if(collector_name.getText().toString().equals(""))
+
+                {
+                    AlertMessage.showMessage(UserActivity.this, "Please insert Service provider name",
+                            "");
+                }
 
                 else
                 {

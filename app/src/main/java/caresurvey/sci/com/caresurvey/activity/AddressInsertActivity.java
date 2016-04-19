@@ -15,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -36,9 +38,10 @@ public class AddressInsertActivity extends AppCompatActivity {
     Spinner sp1,sp2,sp3,sp4,sp5;
     EditText timepicker,datepicker;
     Button timepickerbutton, datepickerbutton;
-    String name,datespicker,timespicker;
+    String name,datespicker,timespicker,radioselection;
     int id;
     String c_name, upozila, union1,village1;
+    RadioButton radio1;
 
     static final int TIME_DIALOG_ID = 1111;
     private TextView output;
@@ -86,7 +89,7 @@ public class AddressInsertActivity extends AppCompatActivity {
 
         Intent intent= getIntent();
         name= intent.getStringExtra("name");
-        id= intent.getIntExtra("id",1);
+        id= intent.getIntExtra("id", 1);
         c_name=intent.getStringExtra("c_name");
 
         EditText user= (EditText)findViewById(R.id.user);
@@ -98,6 +101,10 @@ public class AddressInsertActivity extends AppCompatActivity {
         unionspinner=(Spinner)findViewById(R.id.unionspinner);
         //  listView = (ListView) findViewById(R.id.listView);
         setDivname("HABIGANJ");//string from the other activity
+
+
+        radio1=(RadioButton)findViewById(R.id.radio1);
+        radio1.setChecked(true);
 
         if (divname.equals("HABIGANJ"))
         {
@@ -172,22 +179,55 @@ public class AddressInsertActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(".....>>>>>>>>>>", "response length" + name);
-                Intent intent = new Intent(AddressInsertActivity.this,TestActivity.class);
-                intent.putExtra("name",name);
-                datespicker=datepicker.getText().toString();
-                timespicker=timepicker.getText().toString();
-                intent.putExtra("datepicker",datespicker);
-                intent.putExtra("timepicker",timespicker);
-                intent.putExtra("c_name",c_name);
 
-                Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
-                intent.putExtra("id", id);
-                intent.putExtra("mark",1);
-                intent.putExtra("upozila",upazilname);
-                intent.putExtra("union",unionname);
-                intent.putExtra("village",vilname);
-                startActivity(intent);
-                finish();
+
+
+
+
+
+                RadioGroup radioGroup;
+
+
+                radioGroup=(RadioGroup)findViewById(R.id.yesOrNo);
+
+
+                int selectedq1 = radioGroup.getCheckedRadioButtonId();
+
+                RadioButton rb1 = (RadioButton) findViewById(selectedq1);
+                radioselection = rb1.getText().toString();
+
+              if(radioselection.equals("না"))
+
+                {
+
+                    AlertMessage.showMessage(AddressInsertActivity.this, "You can not go to next step",
+                            "");
+
+
+
+
+                }
+
+                else {
+
+
+                  Intent intent = new Intent(AddressInsertActivity.this, TestActivity.class);
+                  intent.putExtra("name", name);
+                  datespicker = datepicker.getText().toString();
+                  timespicker = timepicker.getText().toString();
+                  intent.putExtra("datepicker", datespicker);
+                  intent.putExtra("timepicker", timespicker);
+                  intent.putExtra("c_name", c_name);
+
+                  Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+                  intent.putExtra("id", id);
+                  intent.putExtra("mark", 1);
+                  intent.putExtra("upozila", upazilname);
+                  intent.putExtra("union", unionname);
+                  intent.putExtra("village", vilname);
+                  startActivity(intent);
+                  finish();
+              }
             }
         });
 
