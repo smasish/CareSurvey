@@ -1,11 +1,14 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import caresurvey.sci.com.caresurvey.R;
@@ -13,7 +16,7 @@ import caresurvey.sci.com.caresurvey.R;
 public class SelectionUserActivity extends AppCompatActivity {
 
 
-    LinearLayout home,insert;
+    Button home,insert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +24,8 @@ public class SelectionUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_selection_user);
 
 
-        home=(LinearLayout)findViewById(R.id.home);
-        insert=(LinearLayout)findViewById(R.id.insert);
+        home=(Button)findViewById(R.id.home);
+        insert=(Button)findViewById(R.id.addForm);
 
 
         home.setOnClickListener(new View.OnClickListener() {
@@ -67,9 +70,19 @@ public class SelectionUserActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        onResume();
+        new AlertDialog.Builder(this)
+                .setTitle("Close")
+                .setMessage("Are you sure you want to close CareSuvey")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
 
-
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
 

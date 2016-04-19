@@ -49,7 +49,7 @@ public class TestActivity extends AppCompatActivity {
     ArrayList<String> form;
     Button Save, Submit;
     LinearLayout test;
-    String collector_name;
+    String collector_name,username,password;
 
     String date;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
@@ -99,6 +99,14 @@ public class TestActivity extends AppCompatActivity {
 
         datespicker= mIntent.getStringExtra("datepicker");
         timepicker=mIntent.getStringExtra("timepicker");
+
+
+        SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        // Toast.makeText(getApplicationContext(), "Now I am in onResume ", Toast.LENGTH_SHORT).show();
+
+        username = pref.getString("username", null);
+        password = pref.getString("password", null);
 
 
 
@@ -400,8 +408,8 @@ public class TestActivity extends AppCompatActivity {
 
                             //data
                             JSONObject data = new JSONObject();
-                            data.put("username", "collector");
-                            data.put("password", "collector");
+                            data.put("username", username);
+                            data.put("password", password);
                             data.put("requests", requests);
 
                             params.put("data", data.toString());

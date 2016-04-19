@@ -174,10 +174,9 @@ public class DisplayUserActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
     }
-
-    @Override
+   @Override
     public void onBackPressed() {
-        onResume();
+
 
 
     }

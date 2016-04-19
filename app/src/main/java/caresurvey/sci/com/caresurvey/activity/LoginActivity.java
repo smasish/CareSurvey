@@ -72,13 +72,13 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user = username.getText().toString();
-                pass = password.getText().toString();
+                user = username.getText().toString().trim();
+                pass = password.getText().toString().trim();
 
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("username", user);
-                editor.putString("Longitude", pass);
+                editor.putString("password", pass);
 
                 editor.commit();
 
