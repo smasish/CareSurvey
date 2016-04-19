@@ -111,10 +111,9 @@ public class DisplayAll_Activity extends AppCompatActivity {
 
         else {
             new AlertDialog.Builder(this)
-                    .setTitle("Database is Empty.")
-                    .setMessage("Do you Want to close the Caresurvey?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                    {
+                    .setTitle("Alert")
+                    .setMessage("No data found for review!")
+                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
@@ -125,7 +124,6 @@ public class DisplayAll_Activity extends AppCompatActivity {
                     .show();
 
         }
-
 
 
     }
