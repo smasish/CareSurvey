@@ -3,8 +3,10 @@ package caresurvey.sci.com.caresurvey.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import caresurvey.sci.com.caresurvey.activity.SelectionUserActivity;
+
 /**
- * Created by israt.jahan on 3/6/2016.
+ * Created by mazharul.islam on 3/6/2016.
  */
 public class FormItem {
     private int patientid;
@@ -27,13 +29,17 @@ public class FormItem {
     private String fields;
     private String inS;
     private String c_name;
+    private String district;
+    private String subdistrict;
+    private String union;
+    private String village;
 
 
 
     public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
                     String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
                     String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
-                    int status,String global_id, String name, String comments, String fields,String inS, String c_name
+                    int status,String global_id, String name, String comments, String fields,String inS, String c_name, String district, String subdistrict, String union, String village
     ) {
         this.patientid = patientid;
         this.bloodpressure = bloodpressure;
@@ -55,9 +61,13 @@ public class FormItem {
         this.fields=fields;
         this.inS=inS;
         this.c_name=c_name;
+        this.district=district;
+        this.subdistrict=subdistrict;
+        this.union=union;
+        this.village=village;
     }
 
-    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,int status,String global_id,String name,String inS,String c_name) {
+    public FormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,int status,String global_id,String name,String inS,String c_name, String district, String subdistrict, String union, String village) {
         this.patientid=patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
@@ -75,7 +85,11 @@ public class FormItem {
         this.global_id = global_id;
         this.name=name;
         this.inS = inS;
-        this.c_name=c_name;}
+        this.c_name=c_name;
+        this.district=district;
+        this.subdistrict=subdistrict;
+        this.union=union;
+        this.village=village;}
 
     public String getComments() {
         return comments;
@@ -209,6 +223,22 @@ public class FormItem {
         return c_name;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getSubdistrict() {
+        return subdistrict;
+    }
+
+    public String getUnion() {
+        return union;
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
     public static FormItem parseFormItem(int patientid,String global_id,int status,JSONObject jo,String c_name) throws JSONException {
         int _patientId=patientid;
         String _bloodpressure = jo.getString("bloodpressure");
@@ -230,9 +260,13 @@ public class FormItem {
         String _name=jo.getString("patient_name");
         String _ins= String.valueOf(status);
         String _c_name= c_name;
+        String _district = jo.getString("district");
+        String _subdistrict = jo.getString("sub_district");
+        String _union = jo.getString("union");
+        String _village = jo.getString("village");
 
 
         return new FormItem(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_ins,_c_name);
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_ins,_c_name,_district,_subdistrict,_union,_village);
     }
 }

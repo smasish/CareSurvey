@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import caresurvey.sci.com.caresurvey.activity.SelectionUserActivity;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 
 /**
@@ -43,6 +44,11 @@ public class FormTable  {
     private static final String KEY_CNAME = "_cname"; // 1 - text
     private static final String KEY_DATE_PICK = "_datepick"; // 1 - text
     private static final String KEY_TIME_PICK = "_timepick"; // 1 - text
+    private static final String KEY_DISTRICT = "_district"; // 1 - text
+    private static final String KEY_SUB_DISTRICT = "_subdistrict"; // 1 - text
+    private static final String KEY_UNION = "_union"; // 1 - text
+    private static final String KEY_VILLAGE = "_village"; // 1 - text
+
 
 
 
@@ -82,7 +88,12 @@ public class FormTable  {
                 + KEY_COMMENT + " TEXT,"
                 + KEY_FIELDS + " TEXT, "
                 + KEY_INS + " TEXT, "
-                + KEY_CNAME + " TEXT "
+                + KEY_CNAME + " TEXT, "
+                + KEY_DISTRICT + " TEXT, "
+                + KEY_SUB_DISTRICT + " TEXT, "
+                + KEY_UNION + " TEXT, "
+                + KEY_VILLAGE + " TEXT "
+
 
 
 
@@ -109,19 +120,19 @@ public class FormTable  {
         return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
                 formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
                 formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
-                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getC_name());
+                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getC_name(),formItem.getDistrict(),formItem.getSubdistrict(),formItem.getUnion(),formItem.getVillage());
     }
     public long insertItem(int patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS,String c_name) {
+                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS,String c_name,String district, String subdistrict, String union, String village) {
         if (isFieldExist(patientid)) {
             return updateItem(patientid,bloodpressure, hemoglobintest,
                     urinetest, pregnancyfood, pregnancydanger,
                     fourparts, delivery,feedbaby,
                     sixmonths, familyplanning,folictablet,
-                    folictabletimportance,status,globalId,name,comments,fields,inS,c_name);
+                    folictabletimportance,status,globalId,name,comments,fields,inS,c_name,district,subdistrict,union,village);
         }
         ContentValues values = new ContentValues();
         values.put(KEY_ID, patientid);
@@ -144,6 +155,11 @@ public class FormTable  {
         values.put(KEY_FIELDS, fields);
         values.put(KEY_INS, inS);
         values.put(KEY_CNAME, c_name);
+        values.put(KEY_DISTRICT,district);
+        values.put(KEY_SUB_DISTRICT,subdistrict);
+        values.put(KEY_UNION,union);
+        values.put(KEY_VILLAGE,village);
+
 
 
 
@@ -258,7 +274,7 @@ public class FormTable  {
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance,int status, String globalId, String name, String comments, String fields,String inS,String cname) {
+                           String folictabletimportance,int status, String globalId, String name, String comments, String fields,String inS,String cname,String district, String subdistrict, String union, String village) {
 
 
         ContentValues values = new ContentValues();
@@ -282,6 +298,10 @@ public class FormTable  {
         values.put(KEY_FIELDS,fields);
         values.put(KEY_INS,inS);
         values.put(KEY_INS,cname);
+        values.put(KEY_DISTRICT,district);
+        values.put(KEY_SUB_DISTRICT,subdistrict);
+        values.put(KEY_UNION,union);
+        values.put(KEY_VILLAGE,village);
 
         SQLiteDatabase db = openDB();
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
@@ -410,12 +430,16 @@ public class FormTable  {
         String _fields= cursor.getString(17);
         String _ins= cursor.getString(18);
         String _cname= cursor.getString(19);
+        String _district= cursor.getString(20);
+        String _subdistrict= cursor.getString(21);
+        String _union= cursor.getString(22);
+        String _village= cursor.getString(23);
 
 
 
 
         return new FormItem(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_ins,_cname);
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_ins,_cname,_district,_subdistrict,_union,_village);
     }
 
     public void dropTable() {

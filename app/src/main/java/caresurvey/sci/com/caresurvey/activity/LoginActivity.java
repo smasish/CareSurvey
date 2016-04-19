@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 //                                startActivity(intent);
 
 
-                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
+                                Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
                                 startActivity(intent);
                             } else if (user.equals("user_hb1")) {
                                 Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
