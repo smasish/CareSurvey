@@ -83,6 +83,7 @@ public class DisplayUserActivity extends AppCompatActivity {
                     iiv.putExtra("position",position+1);
                     iiv.putExtra("name",names);
                     startActivity(iiv);
+                    finish();
                 }
             }
         });
@@ -142,6 +143,7 @@ public class DisplayUserActivity extends AppCompatActivity {
                     iiv.putExtra("mark", 2);
 
                     startActivity(iiv);
+                    finish();
                 }
 
 
@@ -171,7 +173,7 @@ public class DisplayUserActivity extends AppCompatActivity {
 
      Intent intents= new Intent(DisplayUserActivity.this,SelectionUserActivity.class);
        startActivity(intents);
-
+       finish();
     }
 
     @Override

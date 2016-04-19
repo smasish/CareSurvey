@@ -47,7 +47,7 @@ public class TestActivity extends AppCompatActivity {
     String add_update,names,datespicker,timepicker,upozila,union,village;
     int intValue,mark,intvalue2;
     ArrayList<String> form;
-    Button Save, Submit;
+    Button Save, Submit,back;
     LinearLayout test;
     String collector_name,username,password;
 
@@ -157,6 +157,7 @@ public class TestActivity extends AppCompatActivity {
                             savevalue();
                             Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     }
                     else {
@@ -199,6 +200,7 @@ public class TestActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     }
                 } catch (Exception e) {
@@ -287,6 +289,17 @@ public class TestActivity extends AppCompatActivity {
             else
                 folictabletimportance.check(R.id.radioButton22);
         }
+        back=(Button)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back= new Intent(TestActivity.this,DisplayUserActivity.class);
+                startActivity(back);
+                finish();
+            }
+        });
+
+
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -311,6 +324,7 @@ public class TestActivity extends AppCompatActivity {
                                         Save.setVisibility(View.GONE);
                                         Intent intent = new Intent(TestActivity.this,DisplayUserActivity.class);
                                         startActivity(intent);
+                                        finish();
                                     }
 
                                 }
@@ -537,6 +551,15 @@ public class TestActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_test, menu);
         return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intents= new Intent(TestActivity.this,DisplayUserActivity.class);
+        startActivity(intents);
+        finish();
     }
 
     @Override

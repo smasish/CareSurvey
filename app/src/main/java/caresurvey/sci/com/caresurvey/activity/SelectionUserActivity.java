@@ -35,6 +35,7 @@ public class SelectionUserActivity extends AppCompatActivity {
 
                 Intent intent= new Intent(SelectionUserActivity.this,DisplayUserActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -49,6 +50,7 @@ public class SelectionUserActivity extends AppCompatActivity {
                 if(first_value<31) {
                     Intent intent1 = new Intent(SelectionUserActivity.this, UserActivity.class);
                     startActivity(intent1);
+                    finish();
                 }
                 else
                     AlertMessage.showMessage(SelectionUserActivity.this, "You can not insert new form",
