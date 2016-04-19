@@ -227,7 +227,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                 meta.put("comments","");
                                 meta.put("fields", "");
                                 requests.put("meta",meta);
-                                requests.put("submitted_by","collector");
+                                requests.put("submitted_by",formItem1.getC_name());
                                 requests.put("form_id",formItem1.getGlobal_id());
                                 Log.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
                                 requests.put("form_type","dh_antenantals");
@@ -426,7 +426,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                 meta.put("comments",et2.getText().toString());
                                 meta.put("fields", ChekboxText);
                                 requests.put("meta",meta);
-                                requests.put("submitted_by","collector");
+                                requests.put("submitted_by",formItem1.getC_name());
                                 requests.put("form_id",formItem1.getGlobal_id());
                                 Log.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
                                 requests.put("form_type","dh_antenantals");
