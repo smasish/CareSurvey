@@ -45,7 +45,7 @@ public class TestActivity extends AppCompatActivity {
 
 
     String add_update,names,datespicker,timepicker,upozila,union,village;
-    int intValue,mark;
+    int intValue,mark,intvalue2;
     ArrayList<String> form;
     Button Save, Submit;
     LinearLayout test;
@@ -60,7 +60,7 @@ public class TestActivity extends AppCompatActivity {
             sixmonths, familyplanning, folictablet,
             folictabletimportance;
 
-    int id=intValue;
+   // int id=intValue;
     String global_ida;
 
     ArrayList<FormItemUser> formItemAll;
@@ -99,7 +99,11 @@ public class TestActivity extends AppCompatActivity {
 
         datespicker= mIntent.getStringExtra("datepicker");
         timepicker=mIntent.getStringExtra("timepicker");
+        if(intValue==0)
+            intValue=1;
 
+        intvalue2=intValue;
+        intvalue2++;
 
         SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
@@ -107,6 +111,8 @@ public class TestActivity extends AppCompatActivity {
 
         username = pref.getString("username", null);
         password = pref.getString("password", null);
+
+
 
 
 
@@ -148,7 +154,7 @@ public class TestActivity extends AppCompatActivity {
                                 , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names,datespicker,timepicker,collector_name)) == 1) {
 
                             Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " + name, Toast.LENGTH_SHORT).show();
-
+                            savevalue();
                             Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
                             startActivity(intent);
                         }
@@ -200,6 +206,9 @@ public class TestActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
 
         for(FormItemUser ft: formItems)
         {
@@ -433,6 +442,20 @@ public class TestActivity extends AppCompatActivity {
                 requestQueue.add(stringRequest);
             }
         });
+
+
+
+    }
+
+
+    public void savevalue()
+    {
+        SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        // Toast.makeText(getApplicationContext(), "Now I am in onResume ", Toast.LENGTH_SHORT).show();
+
+        editor.putInt("id",intvalue2);
+        editor.commit();
     }
     public void StorevaluesinVar() {
         int selectedq1 = bloodpressure.getCheckedRadioButtonId();

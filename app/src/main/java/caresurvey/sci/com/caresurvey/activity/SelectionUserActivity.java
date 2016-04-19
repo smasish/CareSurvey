@@ -3,6 +3,7 @@ package caresurvey.sci.com.caresurvey.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -41,8 +42,18 @@ public class SelectionUserActivity extends AppCompatActivity {
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(SelectionUserActivity.this,UserActivity.class);
-                startActivity(intent1);
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor1 = pref.edit();
+                int first_value = pref.getInt("id", 0);
+
+                if(first_value<31) {
+                    Intent intent1 = new Intent(SelectionUserActivity.this, UserActivity.class);
+                    startActivity(intent1);
+                }
+                else
+                    AlertMessage.showMessage(SelectionUserActivity.this, "You can not insert new form",
+                            "You have already inserted 30 form for this session");
+
             }
         });
     }

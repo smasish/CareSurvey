@@ -46,9 +46,7 @@ public class UserActivity extends AppCompatActivity {
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor1 = pref.edit();
                 int first_value = pref.getInt("id", 0);
-                first_value++;
-                editor1.putInt("id",first_value);
-                editor1.commit();
+
 
                 FormTableUser formTable = new FormTableUser(UserActivity.this);
 
