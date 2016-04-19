@@ -371,7 +371,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                       villagespinner.setVisibility(View.VISIBLE);
                      unionspinner.setVisibility(View.VISIBLE);
                     upzillaspinner.setVisibility(View.VISIBLE);
-                    callspinner4(getZillaid());
+                    callspinner3(getZillaid());
                 }
 
 
