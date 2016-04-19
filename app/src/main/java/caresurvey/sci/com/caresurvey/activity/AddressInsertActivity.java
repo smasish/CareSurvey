@@ -42,6 +42,7 @@ public class AddressInsertActivity extends AppCompatActivity {
     int id;
     String c_name, upozila, union1,village1;
     RadioButton radio1;
+    int positions;
 
     static final int TIME_DIALOG_ID = 1111;
     private TextView output;
@@ -56,7 +57,7 @@ public class AddressInsertActivity extends AppCompatActivity {
     private TextView dateView;
     private int year, month, day;
     private Spinner divspinner,zillaspinner,upzillaspinner,unionspinner,mouzaspinner,villagespinner;
-    String divname,zillname,upazilname,unionname,mouzaname,vilname;
+    String divname,zillname,upazilname="",unionname="",mouzaname,vilname="";
     String divid=String.valueOf(10);
     String mouzaid,vilid,zillaid,upzillaid,unionid=null;
     List<String> divnames,zillanames,upazillanames,unionnames,mouzanames,vilnames;
@@ -202,31 +203,41 @@ public class AddressInsertActivity extends AppCompatActivity {
 
                     AlertMessage.showMessage(AddressInsertActivity.this, "You can not go to next step",
                             "");
-
-
-
-
                 }
 
                 else {
 
+                  if(positions==0&&upazilname.equals("")&&unionname.equals("")&&vilname.equals(""))
+                  {
+                      passActivity();
+                      finish();
+                  }
 
-                  Intent intent = new Intent(AddressInsertActivity.this, TestActivity.class);
-                  intent.putExtra("name", name);
-                  datespicker = datepicker.getText().toString();
-                  timespicker = timepicker.getText().toString();
-                  intent.putExtra("datepicker", datespicker);
-                  intent.putExtra("timepicker", timespicker);
-                  intent.putExtra("c_name", c_name);
+                  else if(positions==1&&!upazilname.equals("")&&unionname.equals("")&&vilname.equals(""))
+                  {
+                      passActivity();
+                      finish();
+                  }
 
-                  Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
-                  intent.putExtra("id", id);
-                  intent.putExtra("mark", 1);
-                  intent.putExtra("upozila", upazilname);
-                  intent.putExtra("union", unionname);
-                  intent.putExtra("village", vilname);
-                  startActivity(intent);
-                  finish();
+                  else if(positions==2&&!upazilname.equals("")&&!unionname.equals("")&&!vilname.equals(""))
+
+                  {
+                      passActivity();
+                      finish();
+                  }
+
+                  else if(positions==3&&!upazilname.equals("")&&!unionname.equals("")&&!vilname.equals(""))
+                  {
+                      passActivity();
+                      finish();
+                  }
+
+                  else
+                      AlertMessage.showMessage(AddressInsertActivity.this, "Please enter the locations carefully",
+                              "");
+
+
+
               }
             }
         });
@@ -322,6 +333,27 @@ public class AddressInsertActivity extends AppCompatActivity {
         });
     }
 
+    public void passActivity()
+    {
+
+        Intent intent = new Intent(AddressInsertActivity.this, TestActivity.class);
+        intent.putExtra("name", name);
+        datespicker = datepicker.getText().toString();
+        timespicker = timepicker.getText().toString();
+        intent.putExtra("datepicker", datespicker);
+        intent.putExtra("timepicker", timespicker);
+        intent.putExtra("c_name", c_name);
+
+        Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+        intent.putExtra("id", id);
+        intent.putExtra("mark", 1);
+        intent.putExtra("upozila", upazilname);
+        intent.putExtra("union", unionname);
+        intent.putExtra("village", vilname);
+        startActivity(intent);
+
+    }
+
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
 
@@ -385,6 +417,10 @@ public class AddressInsertActivity extends AppCompatActivity {
                     //  upzillaspinner.setVisibility(View.VISIBLE);
                     callspinner3(getZillaid());
                 }
+
+                positions=position;
+
+
 
 
             }
