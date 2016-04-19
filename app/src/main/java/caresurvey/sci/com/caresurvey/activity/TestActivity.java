@@ -354,6 +354,10 @@ public class TestActivity extends AppCompatActivity {
                                 jf.put("folictablet",formItem1.getFolictablet());
                                 jf.put("folictabletimportance",formItem1.getFolictabletimportance());
                                 jf.put("patient_name",formItem1.getName());
+                                jf.put("district",formItem1.getDivision());
+                                jf.put("sub_district",formItem1.getUpozila());
+                                jf.put("union",formItem1.getUnion());
+                                jf.put("village",formItem1.getVillage());
 
 
 
