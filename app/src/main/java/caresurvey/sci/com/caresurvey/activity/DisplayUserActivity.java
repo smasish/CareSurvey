@@ -129,28 +129,20 @@ public class DisplayUserActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("Status.......OnResume", "response length" + status[position]);
-                if(status[position]==3)
-                {
+                if (status[position] == 3) {
                     Toast.makeText(DisplayUserActivity.this, "You can not edit until supervisor review it",
                             Toast.LENGTH_LONG).show();
-                }
-
-                else if(status[position]==5)
-                {
+                } else if (status[position] == 5) {
                     AlertMessage.showMessage(DisplayUserActivity.this, "Form is empty",
                             "At first insert data");
-                }
-
-
-                else {
-                    Intent iiv = new Intent(DisplayUserActivity.this,TestActivity.class);
-                    iiv.putExtra("id",position+1);
-                    iiv.putExtra("name",names);
-                    iiv.putExtra("mark",2);
+                } else {
+                    Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
+                    iiv.putExtra("id", position + 1);
+                    iiv.putExtra("name", names);
+                    iiv.putExtra("mark", 2);
 
                     startActivity(iiv);
                 }
-
 
 
             }
@@ -177,7 +169,8 @@ public class DisplayUserActivity extends AppCompatActivity {
    @Override
     public void onBackPressed() {
 
-
+     Intent intents= new Intent(DisplayUserActivity.this,SelectionUserActivity.class);
+       startActivity(intents);
 
     }
 
