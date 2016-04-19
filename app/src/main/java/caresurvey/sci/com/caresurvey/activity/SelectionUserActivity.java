@@ -12,7 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class SelectionUserActivity extends AppCompatActivity {
 
@@ -33,9 +37,19 @@ public class SelectionUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent= new Intent(SelectionUserActivity.this,DisplayUserActivity.class);
-                startActivity(intent);
-                finish();
+                ArrayList<FormItemUser> formItemUsers;
+                FormTableUser formTableUser = new FormTableUser(SelectionUserActivity.this);
+
+                formItemUsers=formTableUser.getAll();
+                if(!formItemUsers.isEmpty()) {
+                    Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else
+                    AlertMessage.showMessage(SelectionUserActivity.this, "Alert",
+                            "No data is Inserted yet");
             }
         });
 

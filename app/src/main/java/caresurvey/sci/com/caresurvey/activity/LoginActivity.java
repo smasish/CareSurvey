@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             finish();
                         }
-                    }, 6000);
+                    }, 3000);
 
                 }
                 //
@@ -292,7 +292,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                         pd.dismiss();
                     }
                 }) {
@@ -339,7 +339,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_SHORT).show();
+                //        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_SHORT).show();
 
                         try {
                             JSONObject jo = new JSONObject(response);
@@ -401,7 +401,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                    //    Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }) {
 

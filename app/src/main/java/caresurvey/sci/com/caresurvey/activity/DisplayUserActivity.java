@@ -75,8 +75,10 @@ public class DisplayUserActivity extends AppCompatActivity {
                 Log.d("Status.......", "response length" + status[position]);
                 if(status[position+1]==3)
                 {
-                    Toast.makeText(DisplayUserActivity.this, "You can not edit until supervisor review it",
-                            Toast.LENGTH_LONG).show();
+
+                    AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",
+                            "");
+
                 }
                 else {
                     Intent iiv = new Intent(DisplayUserActivity.this,TestActivity.class);
@@ -131,8 +133,8 @@ public class DisplayUserActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("Status.......OnResume", "response length" + status[position]);
                 if (status[position] == 3) {
-                    Toast.makeText(DisplayUserActivity.this, "You can not edit until supervisor review it",
-                            Toast.LENGTH_LONG).show();
+                    AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",
+                            "");
                 } else if (status[position] == 5) {
                     AlertMessage.showMessage(DisplayUserActivity.this, "Form is empty",
                             "At first insert data");

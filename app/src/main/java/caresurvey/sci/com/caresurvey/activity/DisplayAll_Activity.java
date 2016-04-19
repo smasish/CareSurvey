@@ -1,5 +1,7 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -58,49 +60,72 @@ public class DisplayAll_Activity extends AppCompatActivity {
         final FormTable formTable = new FormTable(DisplayAll_Activity.this);
         formItems= formTable.getAll();
 
-        int k=0;
-        int f= formItems.size();
-
-        int[] id_admin=new int[f];
-        String[] name_admin=new String[f];
-        final int[] status_admin= new int[f];
-        final String[] inS= new String[f];
-
-        for(FormItem ft: formItems)
-
+        if(!formItems.isEmpty())
         {
-            id_admin[k]= Integer.parseInt(ft.getGlobal_id());
-            name_admin[k]=ft.getName();
-            status_admin[k]=ft.getStatus();
-            inS[k]= ft.getInS();
+            int k=0;
+            int f= formItems.size();
 
-            k++;
-        }
-        adapter=new DisplayNamesWithStatusAdapter(this,id_admin,name_admin,status_admin,inS);
+            int[] id_admin=new int[f];
+            String[] name_admin=new String[f];
+            final int[] status_admin= new int[f];
+            final String[] inS= new String[f];
 
-        listView.setAdapter(adapter);
+            for(FormItem ft: formItems)
 
-        //     Helpes.getListViewSize(courseListView);
+            {
+                id_admin[k]= Integer.parseInt(ft.getGlobal_id());
+                name_admin[k]=ft.getName();
+                status_admin[k]=ft.getStatus();
+                inS[k]= ft.getInS();
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Status.......OnResume", "response length" + status_admin[position]);
-                Log.d("Status.......OnResume", "response length");
-                if(status_admin[position]==2)
-                {
-                    AlertMessage.showMessage(DisplayAll_Activity.this, getString(R.string.title),
-                            getString(R.string.msg));
-                }
-                else {
-                    Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);
-                    iiv.putExtra("position",position);
-                    // iiv.putExtra("name",names);
-                    startActivity(iiv);
-                }
-
+                k++;
             }
-        });
+            adapter=new DisplayNamesWithStatusAdapter(this,id_admin,name_admin,status_admin,inS);
+
+            listView.setAdapter(adapter);
+
+            //     Helpes.getListViewSize(courseListView);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Log.d("Status.......OnResume", "response length" + status_admin[position]);
+                    Log.d("Status.......OnResume", "response length");
+                    if(status_admin[position]==2)
+                    {
+                        AlertMessage.showMessage(DisplayAll_Activity.this, getString(R.string.title),
+                                getString(R.string.msg));
+                    }
+                    else {
+                        Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);
+                        iiv.putExtra("position",position);
+                        // iiv.putExtra("name",names);
+                        startActivity(iiv);
+                        finish();
+                    }
+
+                }
+            });
+
+        }
+
+        else {
+            new AlertDialog.Builder(this)
+                    .setTitle("Database is Empty.")
+                    .setMessage("Do you Want to close the Caresurvey?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+
+                    })
+
+                    .show();
+
+        }
+
 
 
     }
@@ -187,6 +212,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
                     // iiv.putExtra("name",names);
 
                     startActivity(iiv);
+                    finish();
                 }
 
             }
@@ -204,5 +230,22 @@ public class DisplayAll_Activity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Close")
+                .setMessage("Are you sure you want to close CareSuvey")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

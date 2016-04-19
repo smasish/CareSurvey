@@ -196,7 +196,7 @@ public class TestActivity extends AppCompatActivity {
                         if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
                                 , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, dateconcate,upozila,union,village)) == 1) {
 
-                            Toast.makeText(getApplicationContext(), "Data Updated successfully for patient  " + name, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Data Updated successfully ", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
                             startActivity(intent);
@@ -332,13 +332,13 @@ public class TestActivity extends AppCompatActivity {
                                 catch(Exception e)
                                 {
                                 }
-                                Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                            //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                             }
                         }) {
 

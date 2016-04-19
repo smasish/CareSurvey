@@ -1,6 +1,8 @@
 package caresurvey.sci.com.caresurvey.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -194,6 +196,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                        // Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
                                         Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
                                         startActivity(intent);
+                                        finish();
                                        // Log.d(".....>>>>>>>>>>", "ChekboxText ");
                                     }
                                 }
@@ -202,13 +205,13 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                 {
 
                                 }
-                                Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                             //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                         //       Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                             }
                         }) {
 
@@ -358,7 +361,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                          //      Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
 
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
@@ -383,6 +386,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                       //  Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
                                         Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
                                         startActivity(intent);
+                                        finish();
                                      //   Log.d(".....>>>>>>>>>>", "ChekboxText ");
 
                                     }
@@ -402,7 +406,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                             }
                         }) {
 
@@ -595,4 +599,16 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intentss= new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
+        startActivity(intentss);
+        finish();
+
+    }
+
 }
