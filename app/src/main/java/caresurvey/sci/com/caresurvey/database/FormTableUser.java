@@ -47,6 +47,7 @@ public class FormTableUser {
     private static final String KEY_UPOZILA= "_upozila";
     private static final String KEY_UNION= "_union";
     private static final String KEY_VILLAGE= "_village";
+    private static final String KEY_OBSTYPE= "_obstype";
 
 
 
@@ -91,7 +92,9 @@ public class FormTableUser {
                 + KEY_DIVISION + " TEXT, "
                 + KEY_UPOZILA + " TEXT, "
                 + KEY_UNION + " TEXT, "
-                + KEY_VILLAGE + " TEXT "
+                + KEY_VILLAGE + " TEXT, "
+                + KEY_OBSTYPE + " TEXT "
+
                 + " )";
         db.execSQL(CREATE_TABLE_SQL);
         closeDB();
@@ -108,18 +111,18 @@ public class FormTableUser {
         return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
                 formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
                 formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
-                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getDatepick(),formItem.getTimepick(),formItem.getCollector_name(),formItem.getDivision(),formItem.getUpozila(),formItem.getUnion(),formItem.getVillage());
+                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getDatepick(),formItem.getTimepick(),formItem.getCollector_name(),formItem.getDivision(),formItem.getUpozila(),formItem.getUnion(),formItem.getVillage(),formItem.getObs_type());
     }
     public long insertItem(int patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS, String datepick,String timepick,String collector_name, String division, String upozila, String union, String village) {
+                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS, String datepick,String timepick,String collector_name, String division, String upozila, String union, String village, String obstype) {
         if (isFieldExist(patientid)) {
             return updateItem(patientid,bloodpressure, hemoglobintest,
                     urinetest, pregnancyfood, pregnancydanger,
                     fourparts, delivery,feedbaby,
-                    sixmonths, familyplanning,folictablet, folictabletimportance,status,globalId,name,comments,fields,inS,datepick,timepick,collector_name,division,upozila,union,village);
+                    sixmonths, familyplanning,folictablet, folictabletimportance,status,globalId,name,comments,fields,inS,datepick,timepick,collector_name,division,upozila,union,village,obstype);
         }
         ContentValues values = new ContentValues();
         values.put(KEY_ID, patientid);
@@ -148,6 +151,7 @@ public class FormTableUser {
         values.put(KEY_UPOZILA, upozila);
         values.put(KEY_UNION, union);
         values.put(KEY_VILLAGE, village);
+        values.put(KEY_OBSTYPE, obstype);
 
 
 
@@ -283,7 +287,7 @@ public class FormTableUser {
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance,int status, String globalId, String name, String comments, String fields, String inS, String datepick, String timepick, String collector_name, String division, String upozila, String union, String village) {
+                           String folictabletimportance,int status, String globalId, String name, String comments, String fields, String inS, String datepick, String timepick, String collector_name, String division, String upozila, String union, String village, String obstype) {
 
 
         ContentValues values = new ContentValues();
@@ -313,6 +317,7 @@ public class FormTableUser {
         values.put(KEY_UPOZILA,upozila);
         values.put(KEY_UNION,union);
         values.put(KEY_VILLAGE,village);
+        values.put(KEY_OBSTYPE,obstype);
 
         SQLiteDatabase db = openDB();
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
@@ -496,7 +501,7 @@ public class FormTableUser {
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
                             String sixmonths, String familyplanning, String folictablet,
-                            String folictabletimportance) {
+                            String folictabletimportance,String obstype) {
 
 
         ContentValues values = new ContentValues();
@@ -513,6 +518,7 @@ public class FormTableUser {
         values.put(KEY_FAMILY, familyplanning);
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folictabletimportance);
+        values.put(KEY_OBSTYPE, obstype);
 
         SQLiteDatabase db = openDB();
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
@@ -549,11 +555,12 @@ public class FormTableUser {
         String _upozila= cursor.getString(23);
         String _union= cursor.getString(24);
         String _village= cursor.getString(25);
+        String _obstype= cursor.getString(26);
 
 
 
         return new FormItemUser(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_inS,_timepick,_datepick,_collectorName,_division,_upozila,_union,_village);
+                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_inS,_timepick,_datepick,_collectorName,_division,_upozila,_union,_village,_obstype);
     }
 
     public void dropTable() {

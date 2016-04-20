@@ -33,13 +33,14 @@ public class FormItemUser {
     private String upozila;
     private String union;
     private String village;
+    private String obs_type;
 
 
 
     public FormItemUser(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
                         String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
                         String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
-                        int status, String global_id, String name, String comments, String fields, String inS,String datepick, String timepick, String collector_name, String division, String upozila, String uniton, String village
+                        int status, String global_id, String name, String comments, String fields, String inS,String datepick, String timepick, String collector_name, String division, String upozila, String uniton, String village,String obs_type
     ) {
         this.patientid = patientid;
         this.bloodpressure = bloodpressure;
@@ -67,6 +68,7 @@ public class FormItemUser {
         this.upozila=upozila;
         this.union=uniton;
         this.village=village;
+        this.obs_type=obs_type;
 
     }
 
@@ -85,6 +87,7 @@ public class FormItemUser {
         this.folictablet = folictablet;
         this.folictabletimportance = folictabletimportance;
         this.global_id = global_id;
+        this.obs_type=obs_type;
        }
 
     public String getComments() {
@@ -242,6 +245,11 @@ public class FormItemUser {
 
     public String getVillage() {
         return village;
+    }
+
+
+    public String getObs_type() {
+        return obs_type;
     }
 
     public static FormItemUser parseFormItem(int patientid,String global_id,JSONObject jo) throws JSONException {
