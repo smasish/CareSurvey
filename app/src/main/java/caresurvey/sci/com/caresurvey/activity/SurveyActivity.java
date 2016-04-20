@@ -96,8 +96,8 @@ public class SurveyActivity extends AppCompatActivity {
 
         ArrayList<String> survey_result = new ArrayList<String>();
         survey_result.add("District Hospital");
-        survey_result.add("Upozila Health Complex");
-        survey_result.add("Union health and family welfare center");
+        survey_result.add("Upazila Health Complex");
+        survey_result.add("Union Health & Family Welfare Center");
         survey_result.add("Satellite Clinic");
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, survey_result);
         facilityspinner = (Spinner)findViewById(R.id.spinner);
@@ -110,8 +110,11 @@ public class SurveyActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 facilityname = facilityspinner.getSelectedItem().toString();
                 FormTable formTable = new FormTable(SurveyActivity.this);
+        //        ArrayList<FormItem> formItemArrayList;
+          //      formItemArrayList=formTable.getAll();
 
                 formItems = formTable.getListfromuser(username, facilityname);
+                valuecount=formItems.size();
                 //   facilityspinner.setAdapter(null);
 
 //                adapter.notifyDataSetChanged();
@@ -228,14 +231,11 @@ public class SurveyActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 username = collector_name.getSelectedItem().toString();
 
-                FormTable formTable = new FormTable(SurveyActivity.this);
-                formItems = formTable.getListfromuser(username, facilityname);
-                valuecount=formItems.size();
+
+//                formItems = formTable.getListfromuser(username, facilityname);
+//                valuecount=formItems.size();
                 //facilityspinner.setAdapter(null);
 
-                Log.d("...>>>>>>", "valuecount " + valuecount);
-                if(valuecount ==0)
-                    listView.setAdapter(null);
 
 
 
