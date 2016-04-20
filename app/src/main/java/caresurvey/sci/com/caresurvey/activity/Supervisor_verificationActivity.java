@@ -172,6 +172,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                             public void onResponse(String response) {
 
                                 try {
+
+                                    Log.d(".....>>>>>>>>>>", "response length" +response);
                                     JSONObject jsonObject = new JSONObject(response);
                                     int status;
                                     status= jsonObject.getInt("status");
@@ -188,16 +190,16 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                             // int intValue = Supervisor_verificationActivity.this.intValue;
                                             String global_id= String.valueOf(intValue);
                                             vs=formTable1.updateglobalId("1",intValue);
-                                          //  vs2=formTable1.updateglobalId("1",intValue);
-                                          //  ts= formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
-                                           // Log.d(".....>>>>>>>>>>nnn", "ChekboxText ");
-                                       //     Log.d(".....>>>>>>>>>>", "ChekboxText " + ts);
+                                            //  vs2=formTable1.updateglobalId("1",intValue);
+                                            //  ts= formTable1.updatefieldforuser(global_id,1,et1.getText().toString(), et2.getText().toString());
+                                            // Log.d(".....>>>>>>>>>>nnn", "ChekboxText ");
+                                            //     Log.d(".....>>>>>>>>>>", "ChekboxText " + ts);
                                         }
-                                       // Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
-                                        Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
+                                        // Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
+                                        Intent intent = new Intent(Supervisor_verificationActivity.this,SurveyActivity.class);
                                         startActivity(intent);
                                         finish();
-                                       // Log.d(".....>>>>>>>>>>", "ChekboxText ");
+                                        // Log.d(".....>>>>>>>>>>", "ChekboxText ");
                                     }
                                 }
 
@@ -205,13 +207,13 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                 {
 
                                 }
-                             //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                         //       Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                             }
                         }) {
 
@@ -361,7 +363,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                          //      Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                                Log.d(".....>>>>>>>>>>", "response length" +response);
+                                //      Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
 
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
@@ -375,19 +378,19 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                             String global_id= String.valueOf(intValue);
                                             long vvs;
                                             formTable.updateglobalId("2",intValue);
-                                       //    vvs=formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
-                                           // Log.d(".....>>>>>>>>>>", "TestForUpdatingsupervisor " + vvs);
+                                            //    vvs=formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
+                                            // Log.d(".....>>>>>>>>>>", "TestForUpdatingsupervisor " + vvs);
 
 
 
                                         }
 
 
-                                      //  Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
-                                        Intent intent = new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
+                                        //  Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
+                                        Intent intent = new Intent(Supervisor_verificationActivity.this,SurveyActivity.class);
                                         startActivity(intent);
                                         finish();
-                                     //   Log.d(".....>>>>>>>>>>", "ChekboxText ");
+                                        //   Log.d(".....>>>>>>>>>>", "ChekboxText ");
 
                                     }
 
@@ -406,7 +409,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                             //   Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                                //   Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                             }
                         }) {
 
@@ -605,8 +608,9 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intentss= new Intent(Supervisor_verificationActivity.this,DisplayAll_Activity.class);
+        Intent intentss= new Intent(Supervisor_verificationActivity.this,SurveyActivity.class);
         startActivity(intentss);
+
         finish();
 
     }

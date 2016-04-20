@@ -44,7 +44,7 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 public class TestActivity extends AppCompatActivity {
 
 
-    String add_update,names,datespicker,timepicker,upozila,union,village;
+    String add_update,names,datespicker,timepicker,upozila,union,village,facility;
     int intValue,mark,intvalue2;
     ArrayList<String> form;
     Button Save, Submit,back;
@@ -60,7 +60,7 @@ public class TestActivity extends AppCompatActivity {
             sixmonths, familyplanning, folictablet,
             folictabletimportance;
 
-   // int id=intValue;
+    // int id=intValue;
     String global_ida;
 
     ArrayList<FormItemUser> formItemAll;
@@ -99,6 +99,7 @@ public class TestActivity extends AppCompatActivity {
 
         datespicker= mIntent.getStringExtra("datepicker");
         timepicker=mIntent.getStringExtra("timepicker");
+        facility=mIntent.getStringExtra("facility");
         if(intValue==0)
             intValue=1;
 
@@ -151,7 +152,7 @@ public class TestActivity extends AppCompatActivity {
                 try {
                     if(mark==1) {
                         if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names,datespicker,timepicker,collector_name)) == 1) {
+                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names,datespicker,timepicker,collector_name, facility,upozila ,union,village)) == 1) {
 
                             Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " + name, Toast.LENGTH_SHORT).show();
                             savevalue();
@@ -177,7 +178,7 @@ public class TestActivity extends AppCompatActivity {
                         Calendar c = Calendar.getInstance();
                         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
                         String current_date=df.format(c.getTime());
-                      //  String current_date1= current_date.toString();
+                        //  String current_date1= current_date.toString();
 
                         String addspace=date.concat(" ");
                         String dateconcate= addspace.concat(String.valueOf(current_date));
@@ -194,7 +195,7 @@ public class TestActivity extends AppCompatActivity {
 
 
                         if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, dateconcate,upozila,union,village)) == 1) {
+                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, dateconcate)) == 1) {
 
                             Toast.makeText(getApplicationContext(), "Data Updated successfully ", Toast.LENGTH_SHORT).show();
 
@@ -322,8 +323,8 @@ public class TestActivity extends AppCompatActivity {
                                         FormTableUser formtableuser= new FormTableUser(TestActivity.this);
                                         formtableuser.updateglobalI(intValue,3);
                                         Save.setVisibility(View.GONE);
-                                        Intent intent = new Intent(TestActivity.this,DisplayUserActivity.class);
-                                        startActivity(intent);
+                                        Intent intentw = new Intent(TestActivity.this,DisplayUserActivity.class);
+                                        startActivity(intentw);
                                         finish();
                                     }
 
@@ -332,13 +333,13 @@ public class TestActivity extends AppCompatActivity {
                                 catch(Exception e)
                                 {
                                 }
-                              //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                            //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                                //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                             }
                         }) {
 

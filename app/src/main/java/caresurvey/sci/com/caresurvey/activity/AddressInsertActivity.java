@@ -197,7 +197,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                 RadioButton rb1 = (RadioButton) findViewById(selectedq1);
                 radioselection = rb1.getText().toString();
 
-              if(radioselection.equals("না"))
+                if(radioselection.equals("না"))
 
                 {
 
@@ -207,38 +207,38 @@ public class AddressInsertActivity extends AppCompatActivity {
 
                 else {
 
-                  if(positions==0&&upazilname.equals("")&&unionname.equals("")&&vilname.equals(""))
-                  {
-                      passActivity();
-                      finish();
-                  }
+                    if(positions==0&&upazilname.equals("")&&unionname.equals("")&&vilname.equals(""))
+                    {
+                        passActivity();
+                        finish();
+                    }
 
-                  else if(positions==1&&!upazilname.equals("")&&unionname.equals("")&&vilname.equals(""))
-                  {
-                      passActivity();
-                      finish();
-                  }
+                    else if(positions==1&&!upazilname.equals("")&&unionname.equals("")&&vilname.equals(""))
+                    {
+                        passActivity();
+                        finish();
+                    }
 
-                  else if(positions==2&&!upazilname.equals("")&&!unionname.equals("")&&!vilname.equals(""))
+                    else if(positions==2&&!upazilname.equals("")&&!unionname.equals("")&&!vilname.equals(""))
 
-                  {
-                      passActivity();
-                      finish();
-                  }
+                    {
+                        passActivity();
+                        finish();
+                    }
 
-                  else if(positions==3&&!upazilname.equals("")&&!unionname.equals("")&&!vilname.equals(""))
-                  {
-                      passActivity();
-                      finish();
-                  }
+                    else if(positions==3&&!upazilname.equals("")&&!unionname.equals("")&&!vilname.equals(""))
+                    {
+                        passActivity();
+                        finish();
+                    }
 
-                  else
-                      AlertMessage.showMessage(AddressInsertActivity.this, "Please enter the locations carefully",
-                              "");
+                    else
+                        AlertMessage.showMessage(AddressInsertActivity.this, "Please enter the locations carefully",
+                                "");
 
 
 
-              }
+                }
             }
         });
 
@@ -348,6 +348,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
         intent.putExtra("id", id);
         intent.putExtra("mark", 1);
+        intent.putExtra("facility",divname);
         intent.putExtra("upozila", upazilname);
         intent.putExtra("union", unionname);
         intent.putExtra("village", vilname);
@@ -385,24 +386,24 @@ public class AddressInsertActivity extends AppCompatActivity {
                     // upazila.setVisibility(View.GONE);
                     // village.setVisibility(View.GONE);
                     // union.setVisibility(View.GONE);
-                   villagespinner.setVisibility(View.GONE);
-                   unionspinner.setVisibility(View.GONE);
+                    villagespinner.setVisibility(View.GONE);
+                    unionspinner.setVisibility(View.GONE);
                     upzillaspinner.setVisibility(View.GONE);
                 } else if (position == 1) {
                     upzillaspinner.setVisibility(View.VISIBLE);
-                 //   upazila.setVisibility(View.VISIBLE);
+                    //   upazila.setVisibility(View.VISIBLE);
                     //  village.setVisibility(View.VISIBLE);
-                   //union.setVisibility(View.VISIBLE);
+                    //union.setVisibility(View.VISIBLE);
                     villagespinner.setVisibility(View.GONE);
-                   unionspinner.setVisibility(View.GONE);
+                    unionspinner.setVisibility(View.GONE);
                     //  upzillaspinner.setVisibility(View.VISIBLE);
                     callspinner3(getZillaid());
                 } else if (position == 2) {
                     //   upazila.setVisibility(View.GONE);
                     //   village.setVisibility(View.VISIBLE);
                     //  union.setVisibility(View.VISIBLE);
-                      villagespinner.setVisibility(View.VISIBLE);
-                     unionspinner.setVisibility(View.VISIBLE);
+                    villagespinner.setVisibility(View.VISIBLE);
+                    unionspinner.setVisibility(View.VISIBLE);
                     upzillaspinner.setVisibility(View.VISIBLE);
                     callspinner3(getZillaid());
                 }

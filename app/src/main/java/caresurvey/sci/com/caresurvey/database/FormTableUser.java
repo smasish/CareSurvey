@@ -324,7 +324,7 @@ public class FormTableUser {
     public long updateItemq(int patientid, String bloodpressure, String hemoglobintest,
                             String urinetest, String pregnancyfood, String pregnancydanger,
                             String fourparts, String delivery, String feedbaby,
-                            String sixmonths, String familyplanning, String folictablet, String folimp_status,int status,String name, String datepicker, String timepicker, String collcetor_name) {
+                            String sixmonths, String familyplanning, String folictablet, String folimp_status,int status,String name, String datepicker, String timepicker, String collcetor_name, String facility, String subDiv, String union, String vaillage) {
 
 
         ContentValues values = new ContentValues();
@@ -347,6 +347,10 @@ public class FormTableUser {
         values.put(KEY_DATE_PICK, datepicker);
         values.put(KEY_TIME_PICK, timepicker);
         values.put(KEY_COLLECTOR_NAME, collcetor_name);
+        values.put(KEY_DIVISION,facility);
+        values.put(KEY_UPOZILA,subDiv);
+        values.put(KEY_UNION,union);
+        values.put(KEY_VILLAGE,vaillage);
 
 
 
@@ -363,7 +367,7 @@ public class FormTableUser {
     public long updatefor(int patientid, String bloodpressure, String hemoglobintest,
                           String urinetest, String pregnancyfood, String pregnancydanger,
                           String fourparts, String delivery, String feedbaby,
-                          String sixmonths, String familyplanning, String folictablet, String folimp_status,int status, String date,String upozila,String union,String village) {
+                          String sixmonths, String familyplanning, String folictablet, String folimp_status,int status, String date) {
 
 
         ContentValues values = new ContentValues();
@@ -383,9 +387,7 @@ public class FormTableUser {
 
         values.put(KEY_STATUS, status);
         values.put(KEY_DATE_PICK,date);
-        values.put(KEY_UPOZILA,upozila);
-        values.put(KEY_UNION,union);
-        values.put(KEY_VILLAGE,village);
+
 
 
 
@@ -453,6 +455,9 @@ public class FormTableUser {
         closeDB();
         return ret;
     }
+
+
+
 
 
     public long updateglobalI(int globalId, int patientId) {
@@ -540,10 +545,10 @@ public class FormTableUser {
         String _timepick= cursor.getString(19);
         String _datepick= cursor.getString(20);
         String _collectorName= cursor.getString(21);
-        String _division= cursor.getString(21);
-        String _upozila= cursor.getString(22);
-        String _union= cursor.getString(23);
-        String _village= cursor.getString(24);
+        String _division= cursor.getString(22);
+        String _upozila= cursor.getString(23);
+        String _union= cursor.getString(24);
+        String _village= cursor.getString(25);
 
 
 

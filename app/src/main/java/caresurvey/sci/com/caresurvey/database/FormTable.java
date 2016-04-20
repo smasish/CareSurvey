@@ -222,7 +222,22 @@ public class FormTable  {
         return FieldList;
     }
 
-
+    public ArrayList<FormItem> getListfromuser(String name,String  facility) {
+        ArrayList<FormItem> subCatList = new ArrayList<>();
+        //System.out.println(cat_id+"  "+sub_cat_id);
+        SQLiteDatabase db = openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE _district = '"+facility+"'" + " AND  _cname = '"+name+"'", null);
+        Log.d("...>>>>>>", "valuecountDatabase " );
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                subCatList.add(cursorToSubCatList(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return subCatList;
+    }
 
 
     public ArrayList<FormItem> getSpecificItem(int cat_id) {
