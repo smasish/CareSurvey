@@ -140,7 +140,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         observations.add("Inventory of Satellite clinic");
         observations.add("Observatios of Sick Child Under Five");
         observations.add("Inventory of facility");
-        ArrayAdapter<String> obs_adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, observations);
+        ArrayAdapter<String> obs_adapter = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, observations);
 
         obsSpinner.setAdapter(obs_adapter);
 

@@ -46,5 +46,7 @@
     <string name="msg">Please Enter User ID</string>
     <string name="title_activity_selection_activity_user">SelectionActivityUser</string>
     <string name="title_activity_selection_user">SelectionUserActivity</string>
+    <string name="title_activity_user_activity_service_provider">UserActivityServiceProvider
+    </string>
 
 </resources>

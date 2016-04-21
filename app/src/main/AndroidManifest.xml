@@ -83,6 +83,10 @@
             android:name=".activity.SelectionUserActivity"
             android:label="@string/title_activity_selection_user" >
         </activity>
+        <activity
+            android:name=".activity.UserActivityServiceProvider"
+            android:label="@string/title_activity_user_activity_service_provider" >
+        </activity>
     </application>
 
 </manifest>
