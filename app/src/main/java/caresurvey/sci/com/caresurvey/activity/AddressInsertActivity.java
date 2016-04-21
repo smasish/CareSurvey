@@ -47,7 +47,7 @@ public class AddressInsertActivity extends AppCompatActivity {
     static final int TIME_DIALOG_ID = 1111;
     private TextView output;
     public Button btnClick;
-
+    EditText user;
     private int hour;
     private int minute;
 
@@ -93,8 +93,9 @@ public class AddressInsertActivity extends AppCompatActivity {
         id= intent.getIntExtra("id", 1);
         c_name=intent.getStringExtra("c_name");
 
-        EditText user= (EditText)findViewById(R.id.user);
-        user.setText(name);
+      user = (EditText)findViewById(R.id.user);
+
+        //user.setText(name);
 
         divspinner=(Spinner)findViewById(R.id.divisionspinner);
         villagespinner=(Spinner)findViewById(R.id.villagespinner);
@@ -375,21 +376,23 @@ public class AddressInsertActivity extends AppCompatActivity {
     public void passActivity()
     {
 
-        Intent intent = new Intent(AddressInsertActivity.this, TestActivity.class);
+        Intent intent = new Intent(AddressInsertActivity.this, UserActivity.class);
+        name= user.getText().toString();
         intent.putExtra("name", name);
         datespicker = datepicker.getText().toString();
         timespicker = timepicker.getText().toString();
         intent.putExtra("datepicker", datespicker);
         intent.putExtra("timepicker", timespicker);
-        intent.putExtra("c_name", c_name);
+       // intent.putExtra("c_name", c_name);
 
         Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
-        intent.putExtra("id", id);
-        intent.putExtra("mark", 1);
+     //   intent.putExtra("id", id);
+
         intent.putExtra("facility",divname);
         intent.putExtra("upozila", upazilname);
         intent.putExtra("union", unionname);
         intent.putExtra("village", vilname);
+        intent.putExtra("obstype",Obsname);
         startActivity(intent);
 
     }

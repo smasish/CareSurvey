@@ -44,7 +44,7 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 public class TestActivity extends AppCompatActivity {
 
 
-    String add_update,names,datespicker,timepicker,upozila,union,village,facility;
+    String add_update,names,datespicker,timepicker,upozila,union,village,facility,obsname;
     int intValue,mark,intvalue2;
     ArrayList<String> form;
     Button Save, Submit,back;
@@ -96,6 +96,7 @@ public class TestActivity extends AppCompatActivity {
         upozila=mIntent.getStringExtra("upozila");
         union=mIntent.getStringExtra("union");
         village=mIntent.getStringExtra("village");
+
 
         datespicker= mIntent.getStringExtra("datepicker");
         timepicker=mIntent.getStringExtra("timepicker");

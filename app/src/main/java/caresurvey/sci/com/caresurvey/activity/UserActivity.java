@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +21,7 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class UserActivity extends AppCompatActivity {
     Boolean  firstRun;
-    String b1_status;
+    String b1_status,datepicker,timepicker,user_name,facility,upozila,union, village, obsname;
     int first_value;
     EditText user;
     EditText collector_name;
@@ -36,6 +37,24 @@ public class UserActivity extends AppCompatActivity {
         RadioButton radioButton;
         radioButton=(RadioButton)findViewById(R.id.yes);
         radioButton.setChecked(true);
+
+
+        Intent intentx =getIntent();
+
+        datepicker= intentx.getStringExtra("datepicker");
+        timepicker = intentx.getStringExtra("timepicker");
+        user_name = intentx.getStringExtra("name");
+        facility = intentx.getStringExtra("facility");
+        upozila = intentx.getStringExtra("upozila");
+        union = intentx.getStringExtra("union");
+        village = intentx.getStringExtra("village");
+        obsname = intentx.getStringExtra("obstype");
+        user.setText(user_name);
+
+        Log.d("..>>>>>>","Username"+user_name);
+
+
+
 
 
 
@@ -55,22 +74,16 @@ public class UserActivity extends AppCompatActivity {
                 firstRun = settings.getBoolean("firstRun", false);
 
 
-
-
-
-
-
-
                 if (firstRun == false)//if running for first time
                 {
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putBoolean("firstRun", true);
                     editor.commit();
 
-                    for(int i=1;i<=30;i++) {
+                    for (int i = 1; i <= 30; i++) {
 
                         FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
-                                , "No", "No", "No", "No", "No", "No", 5, "", "", "", "", "3","","","","","","","","");
+                                , "No", "No", "No", "No", "No", "No", 5, "", "", "", "", "3", "", "", "", "", "", "", "", "");
 
                         formTable.insertItem(formItem);
 
@@ -80,12 +93,12 @@ public class UserActivity extends AppCompatActivity {
 
                 }
 
-                String username= user.getText().toString();
+                String username = user.getText().toString();
 
                 RadioGroup radioGroup;
 
 
-                radioGroup=(RadioGroup)findViewById(R.id.radios);
+                radioGroup = (RadioGroup) findViewById(R.id.radios);
 
 
                 int selectedq1 = radioGroup.getCheckedRadioButtonId();
@@ -94,14 +107,11 @@ public class UserActivity extends AppCompatActivity {
                 b1_status = rb1.getText().toString();
 
 
-                if(username.equals(""))
-                {
+                if (username.equals("")) {
                     AlertMessage.showMessage(UserActivity.this, "Please insert User name.",
                             "");
 
-                }
-
-              else if(b1_status.equals("না"))
+                } else if (b1_status.equals("না"))
 
                 {
 
@@ -109,32 +119,34 @@ public class UserActivity extends AppCompatActivity {
                             "");
 
 
-
-
-             }
-
-
-                else if(collector_name.getText().toString().equals(""))
+                } else if (collector_name.getText().toString().equals(""))
 
                 {
                     AlertMessage.showMessage(UserActivity.this, "Please insert Service provider name",
                             "");
-                }
+                } else {
 
-                else
-                {
+                    Intent intent = new Intent(UserActivity.this, TestActivity.class);
+                    intent.putExtra("name", username);
+                    intent.putExtra("id", first_value);
+                    intent.putExtra("c_name", collector_name.getText().toString());
 
-                    Intent intent = new Intent(UserActivity.this,AddressInsertActivity.class);
-                    intent.putExtra("name",username);
-                    intent.putExtra("id",first_value);
-                    intent.putExtra("c_name",collector_name.getText().toString());
+                    intent.putExtra("mark",1);
+                    intent.putExtra("datepicker", datepicker);
+                    intent.putExtra("timepicker", timepicker);
+
+                   // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+
+                    intent.putExtra("facility",facility);
+                    intent.putExtra("upozila", upozila);
+                    intent.putExtra("union", union);
+                    intent.putExtra("village", village);
+                    intent.putExtra("obstype",obsname);
+
+
                     startActivity(intent);
                     finish();
                 }
-
-
-
-
 
 
             }
