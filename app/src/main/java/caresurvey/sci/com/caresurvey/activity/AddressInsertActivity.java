@@ -35,10 +35,10 @@ import caresurvey.sci.com.caresurvey.database.DatabaseAccessUpazila;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessVillage;
 
 public class AddressInsertActivity extends AppCompatActivity {
-    Spinner sp1,sp2,sp3,sp4,sp5;
+    Spinner sp1,sp2,sp3,sp4,obsSpinner;
     EditText timepicker,datepicker;
     Button timepickerbutton, datepickerbutton;
-    String name,datespicker,timespicker,radioselection;
+    String name,datespicker,timespicker,radioselection,Obsname;
     int id;
     String c_name, upozila, union1,village1;
     RadioButton radio1;
@@ -125,11 +125,49 @@ public class AddressInsertActivity extends AppCompatActivity {
 
         Date p=c.getTime();
 
-        Log.d(">>>","data"+ df.format(c.getTime()));
+        Log.d(">>>", "data" + df.format(c.getTime()));
 
 
         datepicker.setText("   " + df.format(c.getTime()));
         timepicker.setText("   "+df2.format(c.getTime()));
+
+
+        obsSpinner=(Spinner)findViewById(R.id.obsSpinner);
+
+        ArrayList<String> observations = new ArrayList<String>();
+        observations.add("Observations of Antenatal Care Consultation");
+        observations.add("Inventory of Satellite clinic");
+        observations.add("Observatios of Sick Child Under Five");
+        observations.add("Inventory of facility");
+        ArrayAdapter<String> obs_adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, observations);
+
+        obsSpinner.setAdapter(obs_adapter);
+
+
+        obsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Obsname = obsSpinner.getSelectedItem().toString();
+
+
+//                formItems = formTable.getListfromuser(username, facilityname);
+//                valuecount=formItems.size();
+                //facilityspinner.setAdapter(null);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+
+
+
 
 
 
@@ -376,6 +414,10 @@ public class AddressInsertActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapterr = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, issue);
         divspinner.setAdapter(adapterr);
+
+
+
+
         divspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
