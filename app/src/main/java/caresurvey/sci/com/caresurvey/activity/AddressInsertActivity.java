@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -64,6 +65,8 @@ public class AddressInsertActivity extends AppCompatActivity {
     public DatabaseAccess databaseAccess;
     TextView upazila,union,village;
 
+    private LinearLayout anc_lay;
+
     public String getDivname() {
         return divname;
     }
@@ -103,6 +106,9 @@ public class AddressInsertActivity extends AppCompatActivity {
         unionspinner=(Spinner)findViewById(R.id.unionspinner);
         //  listView = (ListView) findViewById(R.id.listView);
         setDivname("HABIGANJ");//string from the other activity
+
+
+        anc_lay = (LinearLayout)findViewById(R.id.anc_layout);
 
 
         radio1=(RadioButton)findViewById(R.id.radio1);
@@ -155,6 +161,22 @@ public class AddressInsertActivity extends AppCompatActivity {
 //                formItems = formTable.getListfromuser(username, facilityname);
 //                valuecount=formItems.size();
                 //facilityspinner.setAdapter(null);
+
+                if(position == 0){
+                    // define layout here...visible or invisible
+                    Log.d(">>>>>>>>>0", "=============sp position=========" );
+                }
+                else if(position == 1){
+                    ///define layout here...visible or invisible
+                    anc_lay.setVisibility(View.GONE);
+                    Log.d(">>>>>>>>>1", "=============sp position=========");
+                }
+                else if(position == 2){
+                    ///define layout here...visible or invisible
+                }
+                else if(position == 3){
+                    ///define layout here...visible or invisible
+                }
 
 
             }
