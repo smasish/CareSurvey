@@ -37,9 +37,9 @@
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_survey" >
         </activity>
-        <activity
-            android:name=".activity.FormActivity"
-            android:label="@string/form" />
+        <!--<activity-->
+            <!--android:name=".activity.FormActivity"-->
+            <!--android:label="@string/form" />-->
         <activity
             android:name=".activity.PrepopSqliteDbActivity"
             android:label="@string/form" />
@@ -75,10 +75,10 @@
             android:name=".activity.AddressInsertActivity"
             android:label="@string/title_activity_address_insert" >
         </activity>
-        <activity
-            android:name=".activity.SelectionActivityUser"
-            android:label="@string/title_activity_selection_activity_user" >
-        </activity>
+        <!--<activity-->
+            <!--android:name=".activity.SelectionActivityUser"-->
+            <!--android:label="@string/title_activity_selection_activity_user" >-->
+        <!--</activity>-->
         <activity
             android:name=".activity.SelectionUserActivity"
             android:label="@string/title_activity_selection_user" >
@@ -87,10 +87,10 @@
             android:name=".activity.UserActivityServiceProvider"
             android:label="@string/title_activity_user_activity_service_provider" >
         </activity>
-        <activity
-            android:name=".activity.TestActivity1"
-            android:label="@string/title_activity_test1" >
-        </activity>
+        <!--<activity-->
+            <!--android:name=".activity.TestActivity1"-->
+            <!--android:label="@string/title_activity_test1" >-->
+        <!--</activity>-->
     </application>
 
 </manifest>
