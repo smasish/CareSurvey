@@ -48,5 +48,6 @@
     <string name="title_activity_selection_user">SelectionUserActivity</string>
     <string name="title_activity_user_activity_service_provider">UserActivityServiceProvider
     </string>
+    <string name="title_activity_test1">TestActivity1</string>
 
 </resources>
