@@ -50,7 +50,7 @@ public class SickChildItem {
                          String diahorea,String fever, String measure_fever, String stethoscope,
                          String breathing_test, String eye_test, String infected_mouth,String neck,
                          String ear, String hand, String dehydration, String weight, String clinic_test,
-                         String belly_button, String height, String end_time, String village, String district,
+                         String belly_button, String height, String end_time,String result, String village, String district,
                          String union,String sub_district)
     {
         this.facility_id =facility_id;
@@ -81,6 +81,7 @@ public class SickChildItem {
         this.belly_button = belly_button;
         this.height = height;
         this.end_time =end_time;
+        this.result= result;
         this.village = village;
         this.district =district;
         this.union = union;
