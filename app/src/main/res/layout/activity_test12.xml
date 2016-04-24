@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+﻿<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -6,7 +6,1072 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="caresurvey.sci.com.caresurvey.activity.TestActivity1">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="১০১। "
+                    android:textSize="13dp"
+
+                    android:id="@+id/textView29" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="13dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="পর্যবেক্ষণ সিরিয়াল নম্বর   "
+                    android:id="@+id/serial"
+                     />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/serial_no" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="১০২। "
+                    android:textSize="13dp"
+
+                    android:id="@+id/serial102" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="পর্যবেক্ষণ তারিখঃ   "
+                    android:textSize="13dp"
+
+                    android:id="@+id/serial1021"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/form_date" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="১০৩। "
+                    android:textSize="13dp"
+
+                    android:id="@+id/textView103" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="পর্যবেক্ষণ শুরুর সময়ঃ   "
+                    android:textSize="13dp"
+
+                    android:id="@+id/serial103"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/start_time" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="১০৪। "
+                    android:textSize="13dp"
+
+                    android:id="@+id/textView104" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="অসুস্থ যে শিশু সেবা নিতে এসেছে তার বিবরন;   "
+                    android:id="@+id/serial104"
+                    android:textSize="13dp"
+
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/child_description" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="400dp"
+
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="১০৪। শিশুর বয়স কত?"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+
+                            android:text="বয়স ১ মাসের কম হলে দিনে লিপিবদ্ধ করুন। ।"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+
+                            android:text="বয়স দুই বছরের কম হলে মাসে লিপিবদ্ধ করুন ।"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+
+                            android:text="বয়স দুই বছরের বেশি হলে বছরে লপিবদ্ধ করুন । "
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/age" 
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="দিন মাস বছর"
+                            android:layout_marginLeft="25dp"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="১০৬। নিচের সাধারন বিপদজ্জনক লক্ষণগুলো আছে/ছিল কিনা তা সেবাদানকারী জিজ্ঞাসা করেছিলেন  বা শিশুর দেখাশোনাকারী (কেয়ারটেকার) তার উল্লেখ করেছিলেনঃ"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="১। শিশু পানি বা বুকের দুধ খেতে পারে নাঃ"
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/feed" 
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/feed1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/feed2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="২। শিশু সব খাবার বমি করে ফেলে দেয়ঃ"
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/vomit"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/vomit1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/vomit2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="৩। শিশুর খিচুনীঃ"
+                         android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/stutter"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/stutter1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/stutter2"
+                            android:layout_height="wrap_content" />
+                           
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="১০৭। নিচের লক্ষনগুলো ছিল কিনা তা সেবাদানকারী শিশুর দেখাশোনাকারী (কেয়ারটেকারকে) জিজ্ঞাসা করেছেনঃ"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="১। কাশি বা শ্বাসকস্ট (দ্রুত শ্বাস নেয়া ও বুক উঠানামা করা)"
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/cough"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/cough1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/cough2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="২। পাতলা পায়খানা "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/diahorea"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                             android:id="@+id/diahorea1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/diahorea2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="৩।জ্বর "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/fever"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/fever1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:id="@+id/fever2"
+                            android:text="No"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="১০৮। সেবাদানকারী অসুস্থ শিশুকে নিচের শারিরীক পরীক্ষাগুলো করেছেনঃ "/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="১। থার্মোমিটার দ্বারা শিশুর জ্বর/ তাপমাত্রা মেপেছেন।"
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/measure_fever"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/measure_fever1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/measure_fever2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="২। স্টেথোস্কোপের সাহায্যে শিশুর বুক পরীক্ষা করেছেন।"
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/stethoscope"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/stethoscope1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                              android:id="@+id/stethoscope2"
+                            android:text="No"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="৩। শিশু এক মিনিটে কতবার শ্বাস নেয় তা গুনেছেন।"
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                          android:id="@+id/breathing_test"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/breathing_test1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/breathing_test2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="৪। চোখের (কনজাংটিভায়) পরীক্ষা করেছেন।"
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/eye_test"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/eye_test1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/eye_test2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="৫। মুখে ঘা আছে কিনা তা পরীক্ষা করেছেন। "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/infected_mouth"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/infected_mouth1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                           android:id="@+id/infected_mouth2"
+                            android:text="No"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                       
+                        android:text="৬। ঘাড় শক্ত কিনা তা পরীক্ষা করেছেন। "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                         android:id="@+id/neck"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                             android:id="@+id/neck1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                             android:id="@+id/neck2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="৭। শিশুর কান পরীক্ষা করেছেন। "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                         android:id="@+id/ear"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                             android:id="@+id/ear1"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                             android:id="@+id/ear2"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="৮। হাতের তালু পরীক্ষা করেছেন। "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                         android:id="@+id/hand"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/hand1" 
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/hand2" 
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="৯। পানিশূন্যতা আছে কিনা তা পরীক্ষা করেছেন। "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/dehydration" 
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                              android:id="@+id/dehydration1" 
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                              android:id="@+id/dehydration2" 
+                            android:text="No"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="১০। শিশুর ওজন নিয়েছেন। "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                          android:id="@+id/weight" 
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                              android:id="@+id/weight1" 
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                               android:id="@+id/weight2" 
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="১১। দুই বা ততোধিক সাইটে যেমন ঘাড়(নেক), বগল (এক্সিমা), কুচকি (গ্রোয়েন) এ (লিম্ফ নোডের বৃদ্ধি) পরীক্ষা করেছেন "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                            android:id="@+id/circle" 
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                               android:id="@+id/circle1" 
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                               android:id="@+id/circle2" 
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="১২। শিশুর নাভী (নবজাতকের ক্ষেত্রে পরীক্ষা করেছেন)"
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                         android:id="@+id/belly" 
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                             android:id="@+id/belly1" 
+                            android:text="Yes"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                             android:id="@+id/belly2" 
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="১৩। শিশুর উচ্চতা মেপেছেন। "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                         android:id="@+id/height" 
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                              android:id="@+id/height1" 
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                              android:id="@+id/height2" 
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="430dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="১৪। গ্রোথ চার্টে ওজন ও উচ্চতা প্লট করেছেন। "
+                        android:layout_height="wrap_content" />
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                          android:id="@+id/bmi" 
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="Yes"
+                            android:id="@+id/bmi1" 
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="No"
+                            android:id="@+id/bmi2" 
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+
+
+
+                <LinearLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:text="১০৯। এই কনসালটেশনের ফলাফল কি ছিল?"/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="চিকিৎসা দিয়ে বাড়ি পাঠানো হয়েছে।"
+                        android:id="@+id/checkBox1" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" শিশুকে একই সেবাকেন্দ্রের জন্য সেবাদানকারীর নিকট পাঠানো হয়েছে।"
+                        android:id="@+id/checkBox2" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="শিশুকে একই সেবাকেন্দ্রে ভর্তি করানো হয়েছে।"
+                        android:id="@+id/checkBox3" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="শিশুকে পরীক্ষার জন্য ল্যাবে পাঠানো হয়েছে।"
+                        android:id="@+id/checkBox4" />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="শিশুকে অন্য সেবাকেন্দ্রে ( উচ্চতর সেবার জন্য) রেফার করা হয়েছে।"
+                        android:id="@+id/checkBox5" />
+
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="১১০। "
+                    android:textSize="13dp"
+
+                    android:id="@+id/serial102111" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="পর্যবেক্ষণ শেষ করার সময় ঃ  "
+                    android:textSize="13dp"
+
+                    android:id="@+id/serial10211"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/end_time" />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
+
+
+
