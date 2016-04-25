@@ -31,11 +31,11 @@ public class UserActivity extends AppCompatActivity {
     EditText timepicker1,datepicker1;
     RadioButton radio1;
     String radioselection;
-    String serial;
+    String serial,caretaker;
 
 
-    EditText user;
-    EditText collector_name;
+    EditText user,user_caretaker;
+    EditText collector_name,sp_designation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,14 +55,16 @@ public class UserActivity extends AppCompatActivity {
      //   user = (EditText)findViewById(R.id.user);
        // datepicker= intentx.getStringExtra("datepicker");
        // timepicker = intentx.getStringExtra("timepicker");
-     //   user_name = intentx.getStringExtra("name");
-        obs_position=intentx.getIntExtra("positon",0);
-        facility = intentx.getStringExtra("facility");
-        upozila = intentx.getStringExtra("upozila");
-        union = intentx.getStringExtra("union");
-        village = intentx.getStringExtra("village");
-        obsname = intentx.getStringExtra("obstype");
-        serial= intentx.getStringExtra("serial");
+     //     user_name = intentx.getStringExtra("name");
+          obs_position=intentx.getIntExtra("positon", 0);
+          facility = intentx.getStringExtra("facility");
+          upozila = intentx.getStringExtra("upozila");
+          union = intentx.getStringExtra("union");
+          village = intentx.getStringExtra("village");
+          obsname = intentx.getStringExtra("obstype");
+          serial= intentx.getStringExtra("serial");
+          user_caretaker = (EditText)findViewById(R.id.userCareTaker);
+          sp_designation=(EditText)findViewById(R.id.sp_designation);
      //   user.setText(user_name);
 
         Log.d("..>>>>>>","Username"+user_name);
@@ -100,6 +102,7 @@ public class UserActivity extends AppCompatActivity {
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor1 = pref.edit();
                 int first_value = pref.getInt("id", 0);
+                int child_sick_value = pref.getInt("cs_id", 0);
 
 
 
@@ -190,32 +193,70 @@ public class UserActivity extends AppCompatActivity {
                             "");
                 } else {
 
-                    Intent intent = new Intent(UserActivity.this, TestActivity.class);
-                    intent.putExtra("name", username);
-                    intent.putExtra("id", first_value);
-                    intent.putExtra("c_name", collector_name.getText().toString());
-
-                    intent.putExtra("mark",1);
-                    intent.putExtra("datepicker", datepicker);
-                    intent.putExtra("timepicker", timepicker);
-
-                   // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
-
-                    intent.putExtra("facility",facility);
-                    intent.putExtra("upozila", upozila);
-                    intent.putExtra("union", union);
-                    intent.putExtra("village", village);
-                    intent.putExtra("obstype",obsname);
+                    Log.d(">>>", "position_value" + obs_position);
 
 
-                    startActivity(intent);
-                    finish();
+                  if(obs_position==0) {
+                      Intent intent = new Intent(UserActivity.this, TestActivity.class);
+                      intent.putExtra("name", username);
+                      intent.putExtra("id", first_value);
+                      intent.putExtra("c_name", collector_name.getText().toString());
+
+                      intent.putExtra("mark", 1);
+                      intent.putExtra("datepicker", datepicker);
+                      intent.putExtra("timepicker", timepicker);
+
+                      // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+
+                      intent.putExtra("facility", facility);
+                      intent.putExtra("upozila", upozila);
+                      intent.putExtra("union", union);
+                      intent.putExtra("village", village);
+                      intent.putExtra("obstype", obsname);
+
+
+                      startActivity(intent);
+                      finish();
+                  }
+
+                    else if(obs_position==2)
+                  {
+                      Intent intent = new Intent(UserActivity.this, TestActivity1.class);
+                      intent.putExtra("caretaker",user_caretaker.getText().toString());
+                      intent.putExtra("name", username);
+                      intent.putExtra("id", child_sick_value);
+                      intent.putExtra("c_name", collector_name.getText().toString());
+                      intent.putExtra("designation",sp_designation.getText().toString());
+
+                      intent.putExtra("mark", 1);
+                      intent.putExtra("datepicker", datepicker);
+                      intent.putExtra("timepicker", timepicker);
+                      intent.putExtra("serial",serial);
+
+                      // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+
+                      intent.putExtra("facility", facility);
+                      intent.putExtra("upozila", upozila);
+                      intent.putExtra("union", union);
+                      intent.putExtra("village", village);
+                      intent.putExtra("obstype", obsname);
+
+
+                      startActivity(intent);
+                      finish();
+                  }
                 }
 
 
             }
         });
 
+
+    }
+
+
+    private void passvalue()
+    {
 
     }
 

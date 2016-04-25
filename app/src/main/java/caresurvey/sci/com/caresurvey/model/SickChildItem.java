@@ -9,6 +9,7 @@ import java.io.IOException;
  */
 public class SickChildItem {
 
+    private int id;
     private int facility_id;
     private String sp_client;
     private String so_designation;
@@ -45,7 +46,7 @@ public class SickChildItem {
     private String ct_client;
 
 
-    public SickChildItem(int facility_id,String sp_client,String sp_designataion,
+    public SickChildItem(int id,int facility_id,String sp_client,String sp_designataion,
                          String serial_no, String form_date, String start_time, String child_description,
                          String age, String feed, String vomit, String stutter, String cough,
                          String diahorea,String fever, String measure_fever, String stethoscope,
@@ -53,7 +54,7 @@ public class SickChildItem {
                          String ear, String hand, String dehydration, String weight, String clinic_test,
                          String belly_button, String height, String end_time,String result, String village, String district,
                          String union,String sub_district, String ct_client)
-    {
+    {   this.id =id;
         this.facility_id =facility_id;
         this.sp_client = sp_client;
         this.so_designation= sp_designataion;
@@ -90,6 +91,14 @@ public class SickChildItem {
         this.ct_client = ct_client;
 
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getFacility_id() {

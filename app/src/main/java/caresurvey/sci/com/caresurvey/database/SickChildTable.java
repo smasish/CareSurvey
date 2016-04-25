@@ -12,8 +12,9 @@ import caresurvey.sci.com.caresurvey.model.SickChildItem;
  */
 public class SickChildTable {
     private static final String TABLE_NAME = DatabaseHelper.FORM_SICK_CHILD;
+    private static final String KEY_ID = "_id"; // 0 -integer
 
-    private static final String KEY_FACILITY_ID = "_id"; // 0 -integer
+    private static final String KEY_FACILITY_ID = "_facilityId"; // 0 -integer
     private static final String KEY_SP_CLIENT = "_spClient"; // 1 - text
     private static final String KEY_SP_DESIGNATGION = "_spDesignation"; // 2 - text
     private static final String KEY_SERIAL_NO = "_serialNo"; // 1 - text
@@ -45,7 +46,7 @@ public class SickChildTable {
     private static final String KEY_VILLAGE = "_village"; // 1 - text
     private static final String KEY_DISTRICT = "_district"; // 1 - text
     private static final String KEY_UNION = "_union"; // 1 - text
-    private static final String KEY_SUB_DISTRICT = "_district"; // 1 - text
+    private static final String KEY_SUB_DISTRICT = "_subdistrict"; // 1 - text
     private static final String KEY_CT_CLIENT = "_client"; // 1 - text
 
 
@@ -65,7 +66,8 @@ public class SickChildTable {
 
         String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
                 + "( "
-                + KEY_FACILITY_ID + " INTEGER PRIMARY KEY, " // 0 - int
+                + KEY_ID + " INTEGER PRIMARY KEY, " // 0 - int
+                + KEY_FACILITY_ID + " INTEGER, "
                 + KEY_SP_CLIENT + " TEXT, "              // 1 - text
                 + KEY_SP_DESIGNATGION + " TEXT, "
                 + KEY_SERIAL_NO + " TEXT, "              // 1 - text
@@ -125,7 +127,7 @@ public class SickChildTable {
     }
 
     public long insertItem(SickChildItem sickChildItem) {
-        return insertItem(sickChildItem.getFacility_id(),sickChildItem.getSp_client(),sickChildItem.getSo_designation(),
+        return insertItem(sickChildItem.getId(),sickChildItem.getFacility_id(),sickChildItem.getSp_client(),sickChildItem.getSo_designation(),
                 sickChildItem.getSerial_no(),sickChildItem.getForm_date(),
                 sickChildItem.getStart_time(),sickChildItem.getChild_description(),
                 sickChildItem.getAge(),sickChildItem.getFeed(),sickChildItem.getVomit(),
@@ -140,12 +142,13 @@ public class SickChildTable {
                 sickChildItem.getDistrict(),sickChildItem.getUnion(),sickChildItem.getSub_district(),sickChildItem.getCt_client());
     }
 
-    private long insertItem(int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client) {
-                if(isFieldExist(facility_id))
+    private long insertItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client) {
+                if(isFieldExist(id))
                 {
-                    return updateItem(facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district, ct_client);
+                    return updateItem(id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district, ct_client);
                 }
         ContentValues values= new ContentValues();
+        values.put(KEY_ID,id);
         values.put(KEY_FACILITY_ID,facility_id);
         values.put(KEY_SP_CLIENT,sp_client);
         values.put(KEY_SP_DESIGNATGION,so_designation);
@@ -190,9 +193,10 @@ public class SickChildTable {
 
     }
 
-    private long updateItem(int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client) {
+    private long updateItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client) {
 
         ContentValues values= new ContentValues();
+        values.put(KEY_ID,id);
         values.put(KEY_FACILITY_ID,facility_id);
         values.put(KEY_SP_CLIENT,sp_client);
         values.put(KEY_SP_DESIGNATGION,so_designation);
@@ -258,46 +262,46 @@ public class SickChildTable {
 
 
     public SickChildItem cursorlist(Cursor cursor)
-    {
-        int facility_id = cursor.getInt(0);
-        String sp_client = cursor.getString(1);
-        String so_designation =cursor.getString(2);
-        String serial_no = cursor.getString(3);
-        String form_date = cursor.getString(4);
-        String start_time = cursor.getString(5);
-        String child_description = cursor.getString(6);
-        String age = cursor.getString(7);
-        String feed= cursor.getString(8);
-        String vomit= cursor.getString(9);
-        String stutter= cursor.getString(10);
-        String cough =cursor.getString(11);
-        String diahorea = cursor.getString(12);
-        String fever = cursor.getString(13);
-        String measure_fever= cursor.getString(14);
+    {   int id = cursor.getInt(0);
+        int facility_id = cursor.getInt(1);
+        String sp_client = cursor.getString(2);
+        String so_designation =cursor.getString(3);
+        String serial_no = cursor.getString(4);
+        String form_date = cursor.getString(5);
+        String start_time = cursor.getString(6);
+        String child_description = cursor.getString(7);
+        String age = cursor.getString(8);
+        String feed= cursor.getString(9);
+        String vomit= cursor.getString(10);
+        String stutter= cursor.getString(11);
+        String cough =cursor.getString(12);
+        String diahorea = cursor.getString(13);
+        String fever = cursor.getString(14);
+        String measure_fever= cursor.getString(15);
 
-        String stethoscope= cursor.getString(15);
-        String breathing_test = cursor.getString(16);
-        String eye_test= cursor.getString(17);
-        String infected_mouth=cursor.getString(18);
-        String neck=cursor.getString(19);
-        String ear= cursor.getString(20);
-        String hand= cursor.getString(21);
-        String dehydration= cursor.getString(22);
-        String weight = cursor.getString(23);
+        String stethoscope= cursor.getString(16);
+        String breathing_test = cursor.getString(17);
+        String eye_test= cursor.getString(18);
+        String infected_mouth=cursor.getString(19);
+        String neck=cursor.getString(20);
+        String ear= cursor.getString(21);
+        String hand= cursor.getString(22);
+        String dehydration= cursor.getString(23);
+        String weight = cursor.getString(24);
 
-        String clinic_test = cursor.getString(24);
-        String belly_button=cursor.getString(25);
-        String height= cursor.getString(26);
-        String result=cursor.getString(27);
-        String end_time=cursor.getString(28);
-        String village= cursor.getString(29);
-        String district=cursor.getString(30);
-        String union= cursor.getString(31);
-        String sub_district = cursor.getString(32);
-        String ct_client = cursor.getString(33);
+        String clinic_test = cursor.getString(25);
+        String belly_button=cursor.getString(26);
+        String height= cursor.getString(27);
+        String result=cursor.getString(28);
+        String end_time=cursor.getString(29);
+        String village= cursor.getString(30);
+        String district=cursor.getString(31);
+        String union= cursor.getString(32);
+        String sub_district = cursor.getString(33);
+        String ct_client = cursor.getString(34);
 
 
-        return new SickChildItem (facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district,sp_client);
+        return new SickChildItem (id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district,ct_client);
     }
 
 
