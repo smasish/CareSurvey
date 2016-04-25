@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
@@ -23,6 +27,11 @@ public class UserActivity extends AppCompatActivity {
     Boolean  firstRun;
     String b1_status,datepicker,timepicker,user_name,facility,upozila,union, village, obsname;
     int first_value;
+    EditText timepicker1,datepicker1;
+    RadioButton radio1;
+    String radioselection;
+
+
     EditText user;
     EditText collector_name;
     @Override
@@ -37,10 +46,11 @@ public class UserActivity extends AppCompatActivity {
         RadioButton radioButton;
         radioButton=(RadioButton)findViewById(R.id.yes);
         radioButton.setChecked(true);
-
+        radio1=(RadioButton)findViewById(R.id.radio1);
+        radio1.setChecked(true);
 
         Intent intentx =getIntent();
-
+        user = (EditText)findViewById(R.id.user);
         datepicker= intentx.getStringExtra("datepicker");
         timepicker = intentx.getStringExtra("timepicker");
         user_name = intentx.getStringExtra("name");
@@ -52,6 +62,27 @@ public class UserActivity extends AppCompatActivity {
         user.setText(user_name);
 
         Log.d("..>>>>>>","Username"+user_name);
+
+
+
+
+
+        timepicker1=(EditText)findViewById(R.id.timepicker);
+        datepicker1= (EditText)findViewById(R.id.datepicker);
+        //  timepickerbutton=(Button)findViewById(R.id.timepickerbutton);
+        //datepickerbutton=(Button)findViewById(R.id.datepickerbutton);
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
+        SimpleDateFormat df2 = new SimpleDateFormat("hh:mm:ss aa");
+
+
+        Date p=c.getTime();
+
+        Log.d(">>>", "data" + df.format(c.getTime()));
+
+
+        datepicker1.setText("   " + df.format(c.getTime()));
+        timepicker1.setText("   "+df2.format(c.getTime()));
 
 
 
@@ -107,8 +138,27 @@ public class UserActivity extends AppCompatActivity {
                 RadioButton rb1 = (RadioButton) findViewById(selectedq1);
                 b1_status = rb1.getText().toString();
 
+                RadioGroup radioGroup1;
 
-                if (username.equals("")) {
+
+                radioGroup1=(RadioGroup)findViewById(R.id.yesOrNo);
+
+
+                int selectedq11 = radioGroup1.getCheckedRadioButtonId();
+
+                RadioButton rb11 = (RadioButton) findViewById(selectedq11);
+                radioselection = rb11.getText().toString();
+
+                if(radioselection.equals("না"))
+
+                {
+
+                    AlertMessage.showMessage(UserActivity.this, "You can not go to next step",
+                            "");
+                }
+
+
+                else if (username.equals("")) {
                     AlertMessage.showMessage(UserActivity.this, "Please insert User name.",
                             "");
 
