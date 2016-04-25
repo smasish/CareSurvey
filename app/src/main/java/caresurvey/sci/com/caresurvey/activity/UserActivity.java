@@ -22,14 +22,16 @@ import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class UserActivity extends AppCompatActivity {
     Boolean  firstRun;
     String b1_status,datepicker,timepicker,user_name,facility,upozila,union, village, obsname;
-    int first_value;
+    int obs_position;
     EditText timepicker1,datepicker1;
     RadioButton radio1;
     String radioselection;
+    String serial;
 
 
     EditText user;
@@ -50,16 +52,18 @@ public class UserActivity extends AppCompatActivity {
         radio1.setChecked(true);
 
         Intent intentx =getIntent();
-        user = (EditText)findViewById(R.id.user);
-        datepicker= intentx.getStringExtra("datepicker");
-        timepicker = intentx.getStringExtra("timepicker");
-        user_name = intentx.getStringExtra("name");
+     //   user = (EditText)findViewById(R.id.user);
+       // datepicker= intentx.getStringExtra("datepicker");
+       // timepicker = intentx.getStringExtra("timepicker");
+     //   user_name = intentx.getStringExtra("name");
+        obs_position=intentx.getIntExtra("positon",0);
         facility = intentx.getStringExtra("facility");
         upozila = intentx.getStringExtra("upozila");
         union = intentx.getStringExtra("union");
         village = intentx.getStringExtra("village");
         obsname = intentx.getStringExtra("obstype");
-        user.setText(user_name);
+        serial= intentx.getStringExtra("serial");
+     //   user.setText(user_name);
 
         Log.d("..>>>>>>","Username"+user_name);
 
@@ -112,6 +116,9 @@ public class UserActivity extends AppCompatActivity {
                     editor.putBoolean("firstRun", true);
                     editor.commit();
 
+
+
+
                     for (int i = 1; i <= 30; i++) {
 
                         FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
@@ -121,6 +128,12 @@ public class UserActivity extends AppCompatActivity {
 
 
                     }
+
+
+
+
+
+
 
 
                 }

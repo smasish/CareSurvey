@@ -46,6 +46,8 @@ public class SickChildTable {
     private static final String KEY_DISTRICT = "_district"; // 1 - text
     private static final String KEY_UNION = "_union"; // 1 - text
     private static final String KEY_SUB_DISTRICT = "_district"; // 1 - text
+    private static final String KEY_CT_CLIENT = "_client"; // 1 - text
+
 
 
 
@@ -94,7 +96,9 @@ public class SickChildTable {
                 + KEY_VILLAGE + " TEXT, "
                 + KEY_DISTRICT + " TEXT, "
                 + KEY_UNION + " TEXT, "
-                + KEY_SUB_DISTRICT + " TEXT "
+                + KEY_SUB_DISTRICT + " TEXT, "
+                + KEY_CT_CLIENT + " TEXT "
+
 
 
 
@@ -133,13 +137,13 @@ public class SickChildTable {
                 sickChildItem.getWeight(),sickChildItem.getClinic_test(),
                 sickChildItem.getBelly_button(),sickChildItem.getHeight(),sickChildItem.getResult(),
                 sickChildItem.getEnd_time(),sickChildItem.getVillage(),
-                sickChildItem.getDistrict(),sickChildItem.getUnion(),sickChildItem.getSub_district());
+                sickChildItem.getDistrict(),sickChildItem.getUnion(),sickChildItem.getSub_district(),sickChildItem.getCt_client());
     }
 
-    private long insertItem(int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district) {
+    private long insertItem(int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client) {
                 if(isFieldExist(facility_id))
                 {
-                    return updateItem(facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district);
+                    return updateItem(facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district, ct_client);
                 }
         ContentValues values= new ContentValues();
         values.put(KEY_FACILITY_ID,facility_id);
@@ -175,6 +179,7 @@ public class SickChildTable {
         values.put(KEY_DISTRICT,district);
         values.put(KEY_UNION,union);
         values.put(KEY_SUB_DISTRICT,sub_district);
+        values.put(KEY_CT_CLIENT,ct_client);
 
         SQLiteDatabase db = openDB();
         long ret= db.insert(TABLE_NAME, null, values);
@@ -185,7 +190,7 @@ public class SickChildTable {
 
     }
 
-    private long updateItem(int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district) {
+    private long updateItem(int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client) {
 
         ContentValues values= new ContentValues();
         values.put(KEY_FACILITY_ID,facility_id);
@@ -221,6 +226,8 @@ public class SickChildTable {
         values.put(KEY_DISTRICT,district);
         values.put(KEY_UNION,union);
         values.put(KEY_SUB_DISTRICT,sub_district);
+        values.put(KEY_CT_CLIENT,ct_client);
+
 
         SQLiteDatabase db = openDB();
         long ret= db.insert(TABLE_NAME, null, values);
@@ -287,9 +294,10 @@ public class SickChildTable {
         String district=cursor.getString(30);
         String union= cursor.getString(31);
         String sub_district = cursor.getString(32);
+        String ct_client = cursor.getString(33);
 
 
-        return new SickChildItem (facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district);
+        return new SickChildItem (facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district,sp_client);
     }
 
 

@@ -42,6 +42,7 @@ public class SickChildItem {
     private String district;
     private String union;
     private String sub_district;
+    private String ct_client;
 
 
     public SickChildItem(int facility_id,String sp_client,String sp_designataion,
@@ -51,7 +52,7 @@ public class SickChildItem {
                          String breathing_test, String eye_test, String infected_mouth,String neck,
                          String ear, String hand, String dehydration, String weight, String clinic_test,
                          String belly_button, String height, String end_time,String result, String village, String district,
-                         String union,String sub_district)
+                         String union,String sub_district, String ct_client)
     {
         this.facility_id =facility_id;
         this.sp_client = sp_client;
@@ -86,6 +87,7 @@ public class SickChildItem {
         this.district =district;
         this.union = union;
         this.sub_district = sub_district;
+        this.ct_client = ct_client;
 
 
     }
@@ -354,8 +356,11 @@ public class SickChildItem {
         this.sub_district = sub_district;
     }
 
+    public String getCt_client() {
+        return ct_client;
+    }
 
-
-
-
+    public void setCt_client(String ct_client) {
+        this.ct_client = ct_client;
+    }
 }
