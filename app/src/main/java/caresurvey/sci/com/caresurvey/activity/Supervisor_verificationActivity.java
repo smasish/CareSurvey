@@ -178,7 +178,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                     int status;
                                     status= jsonObject.getInt("status");
                                     Log.d(".....>>>>>>>>>>", "response length" +status);
-                                    Log.d(".....>>>>>>>>>>nnn", "ChekboxText "+status);
+                                    Log.d(".....>>>>>>>>>>nnn", "ChekboxText " +status);
                                     if (status==2){
                                         FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
                                         for(FormItem formItem1: formItems)

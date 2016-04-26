@@ -49,5 +49,6 @@
     <string name="title_activity_user_activity_service_provider">UserActivityServiceProvider
     </string>
     <string name="title_activity_test1">TestActivity1</string>
+    <string name="title_activity_display_user_form">DisplayUserFormActivity</string>
 
 </resources>

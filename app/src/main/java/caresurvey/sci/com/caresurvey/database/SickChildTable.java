@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 /**
@@ -42,7 +44,7 @@ public class SickChildTable {
     private static final String KEY_BELLEY_BUTTON = "_belleyButton"; // 1 - text
     private static final String KEY_HEIGHT = "_height"; // 1 - text
     private static final String KEY_RESULT = "_result"; // 1 - text
-    private static final String KEY_END_TIME = "_endTIme"; // 1 - text
+    private static final String KEY_END_TIME = "_endTime"; // 1 - text
     private static final String KEY_VILLAGE = "_village"; // 1 - text
     private static final String KEY_DISTRICT = "_district"; // 1 - text
     private static final String KEY_UNION = "_union"; // 1 - text
@@ -91,6 +93,7 @@ public class SickChildTable {
                 + KEY_HAND + " TEXT, "
                 + KEY_DEHYDRATION + " TEXT, "
                 + KEY_WEIGHT + " TEXT, "
+                + KEY_CLINIC_TEST + " TEXT, "
                 + KEY_BELLEY_BUTTON + " TEXT, "
                 + KEY_HEIGHT + " TEXT, "
                 + KEY_RESULT + " TEXT, "
@@ -100,17 +103,6 @@ public class SickChildTable {
                 + KEY_UNION + " TEXT, "
                 + KEY_SUB_DISTRICT + " TEXT, "
                 + KEY_CT_CLIENT + " TEXT "
-
-
-
-
-
-
-
-
-
-
-
 
                 // 2 - text
                 + " )";
@@ -240,6 +232,23 @@ public class SickChildTable {
 
     }
 
+
+    public ArrayList<SickChildItem> getAllInfo() {
+        ArrayList<SickChildItem> subCatList = new ArrayList<>();
+        //System.out.println(cat_id+"  "+sub_cat_id);
+        SQLiteDatabase db = openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME , null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                subCatList.add(cursorlist(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return subCatList;
+    }
 
     public boolean isFieldExist(int id) {
         //Lg.d(TAG, "isFieldExist : inside, id=" + id);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
@@ -26,8 +30,7 @@ public class TestActivity1 extends AppCompatActivity {
     Button save,submit,update;
     RadioGroup feed,vomit,stutter,cough, diahorea, fever, measure_feaver, stethoscope, breathing_test,
                 eye_test,infected_mouth, neck, ear, hand, dehydration, weight, circle, belly, height, bmi;
-    String feedx,vomitx,stutterx,coughx, diahoreax, feverx, measure_feaverx, stethoscopex, breathing_testx,
-            eye_testx,infected_mouthx, neckx, earx, handx, dehydrationx, weightx, circlex, bellyx, heightx, bmix;
+    String feedx,vomitx,stutterx,coughx, diahoreax, feverx, measure_feaverx, stethoscopex, breathing_testx, eye_testx,infected_mouthx, neckx, earx, handx, dehydrationx, weightx, circlex, bellyx, heightx, bmix,ChekboxText=null;
     EditText serial_no,form_date,start_time, child_description,age,endTime;
     CheckBox checkBox1,checkBox2,checkBox3,checkBox4,checkBox5;
 
@@ -63,11 +66,13 @@ public class TestActivity1 extends AppCompatActivity {
         save=(Button)findViewById(R.id.Savebtn);
 
 
-        checkBox1=(CheckBox)findViewById(R.id.checkBox1);
-        checkBox2 =(CheckBox)findViewById(R.id.checkBox2);
+        checkBox1= (CheckBox)findViewById(R.id.checkBox1);
+        checkBox2= (CheckBox)findViewById(R.id.checkBox2);
         checkBox3= (CheckBox)findViewById(R.id.checkBox3);
         checkBox4= (CheckBox)findViewById(R.id.checkBox4);
         checkBox5= (CheckBox)findViewById(R.id.checkBox5);
+
+
 
         serial_no = (EditText)findViewById(R.id.serial_no);
         form_date = (EditText)findViewById(R.id.form_date);
@@ -104,28 +109,71 @@ public class TestActivity1 extends AppCompatActivity {
             public void onClick(View v) {
 
                 StorevaluesinVar();
+
+                if(checkBox1.isChecked()) {
+                    //  String value= checkBox1.getText().toString();
+                    ChekboxText = ChekboxText+" ";
+                    ChekboxText = ChekboxText+"1";
+                }
+                if(checkBox2.isChecked()) {
+                    // String value= cb2.getText().toString();
+                    ChekboxText = ChekboxText+" ";
+                    ChekboxText = ChekboxText+"2";
+                }
+                if(checkBox3.isChecked()) {
+                    //  String value= cb3.getText().toString();
+                    ChekboxText = ChekboxText+" ";
+                    ChekboxText = ChekboxText+"3";
+                }
+                if(checkBox4.isChecked()) {
+                    // String value= cb4.getText().toString();
+                    ChekboxText = ChekboxText+" ";
+                    ChekboxText = ChekboxText+"4";
+                }
+                if(checkBox5.isChecked()) {
+                    //  String value= cb5.getText().toString();
+                    ChekboxText = ChekboxText+" ";
+                    ChekboxText = ChekboxText+"5";
+                }
+
+
                 SickChildTable sickChildTable = new SickChildTable(TestActivity1.this);
-                int faciltiy= Integer.parseInt(facility);
-                SickChildItem sickChildItem = new SickChildItem(id,faciltiy,name,designation,serial,datepicker,
-                        timepicker,child_description.getText().toString(),age.getText().toString(),feedx,
-                vomitx,stutterx,coughx,diahoreax,feverx,measure_feaverx,stethoscopex,breathing_testx,eye_testx,
-                        infected_mouthx,neckx,earx,handx,dehydrationx,weightx,circlex,bellyx,heightx,);
+                int faciltiy= Integer.parseInt(serial);
+                SickChildItem sickChildItem = new SickChildItem(2, faciltiy ,name ,designation ,serial ,datepicker ,
+                        timepicker ,child_description.getText().toString() ,age.getText().toString() ,feedx ,
+                        vomitx ,stutterx ,coughx ,diahoreax ,feverx ,measure_feaverx ,stethoscopex ,breathing_testx ,eye_testx ,
+                        infected_mouthx ,neckx ,earx ,handx ,dehydrationx ,weightx ,circlex ,bellyx ,heightx ,ChekboxText ,
+                        endTime.getText().toString() ,village ,"hobiganj" ,union ,upozila ,c_name);
 
                 if(mark==1)
                 {
 
-                    sickChildTable.insertItem(id)
+                    if(sickChildTable.insertItem(sickChildItem)==1)
+                    {
+                        Log.d(">>>>>>", "Saved Successfully");
+                        Toast.makeText(TestActivity1.this,
+                                "Your Message", Toast.LENGTH_LONG).show();
+                    }
                 }
-
-
-
             }
         });
 
 
-
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<SickChildItem> sickChildItems;
+                ArrayList<SickChildItem> sickChildItems1;
+                SickChildTable sickChildTable = new SickChildTable(TestActivity1.this);
+                sickChildItems= sickChildTable.getAllInfo();
+                sickChildItems1= sickChildTable.getAllInfo();
+            }
+        });
 
     }
+
+
+
 
 
 
