@@ -269,6 +269,26 @@ public class SickChildTable {
     }
 
 
+    public ArrayList<SickChildItem> getSpecificItem(int cat_id) {
+        ArrayList<SickChildItem> subCatList = new ArrayList<>();
+        //System.out.println(cat_id+"  "+sub_cat_id);
+        SQLiteDatabase db = openDB();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE "+ KEY_ID+"="+cat_id, null);
+
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                subCatList.add(cursorlist(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return subCatList;
+    }
+
 
     public SickChildItem cursorlist(Cursor cursor)
     {   int id = cursor.getInt(0);

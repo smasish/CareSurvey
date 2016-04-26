@@ -69,6 +69,7 @@ public class SurveyActivity extends AppCompatActivity {
 //                Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
 
 
+
 //        progressBar1.getProgressDrawable().setColorFilter(
         //              Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
 //

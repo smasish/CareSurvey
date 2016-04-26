@@ -17,17 +17,32 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class TestActivity1 extends AppCompatActivity {
     private String caretaker,name,c_name,designation,datepicker,timepicker,serial,facility,upozila,union,village,obstype;
     int id,mark;
     Button save,submit,update;
+    ArrayList<SickChildItem> sickChildItems;
     RadioGroup feed,vomit,stutter,cough, diahorea, fever, measure_feaver, stethoscope, breathing_test,
                 eye_test,infected_mouth, neck, ear, hand, dehydration, weight, circle, belly, height, bmi;
     String feedx,vomitx,stutterx,coughx, diahoreax, feverx, measure_feaverx, stethoscopex, breathing_testx, eye_testx,infected_mouthx, neckx, earx, handx, dehydrationx, weightx, circlex, bellyx, heightx, bmix,ChekboxText=null;
@@ -104,6 +119,8 @@ public class TestActivity1 extends AppCompatActivity {
         bmi =(RadioGroup)findViewById(R.id.bmi);
 
 
+
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,11 +179,179 @@ public class TestActivity1 extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<SickChildItem> sickChildItems;
+
                 ArrayList<SickChildItem> sickChildItems1;
                 SickChildTable sickChildTable = new SickChildTable(TestActivity1.this);
-                sickChildItems= sickChildTable.getAllInfo();
-                sickChildItems1= sickChildTable.getAllInfo();
+                sickChildItems= sickChildTable.getSpecificItem(2);
+                String url = "http://www.kolorob.net/mamoni/survey/api/form";
+
+
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jo = new JSONObject(response);
+                                    Log.d(".....>>>>>>>>>>", "Status " + jo);
+                                    String status = jo.getString("status");
+                                    if(status.equals("2"))
+                                    {
+                                      //  FormTableUser formtableuser= new FormTableUser(TestActivity.this);
+                                     //   formtableuser.updateglobalI(intValue,3);
+                                   //     Save.setVisibility(View.GONE);
+                                   //     Intent intentw = new Intent(TestActivity1.this,DisplayUserActivity.class);
+                                      //  startActivity(intentw);
+                                      //  finish();
+                                    }
+
+                                }
+
+                                catch(Exception e)
+                                {
+                                }
+                                //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                            }
+                        }) {
+
+                    @Override
+                    protected Map<String, String> getParams() {
+
+
+
+
+                        Map<String, String> params = new HashMap<>();
+
+                        try {
+                            //record ====================================1
+                            //record
+                            JSONArray requests = new JSONArray();
+//                            JSONArray jsonArray =new JSONArray();
+                            for(SickChildItem sickChildItem: sickChildItems)
+                            {
+                                JSONObject jf= new JSONObject();
+                                JSONObject fs=new JSONObject();
+
+
+
+                                fs.put("form_type", "dh_sickchild");
+                                fs.put("form_id",2);
+                                jf.put("facility_id",sickChildItem.getFacility_id());
+                                jf.put("sp_client",sickChildItem.getSp_client());
+                                jf.put("sp_designation",sickChildItem.getSo_designation());
+                                jf.put("seral_no",sickChildItem.getSerial_no());
+                                jf.put("form_date",sickChildItem.getForm_date());
+                                jf.put("start_time",sickChildItem.getStart_time());
+                                jf.put("child_description",sickChildItem.getChild_description());
+                                jf.put("age",sickChildItem.getAge());
+                                jf.put("feed",sickChildItem.getFeed());
+                                jf.put("vomit",sickChildItem.getVomit());
+                                jf.put("stutter",sickChildItem.getStutter());
+                                jf.put("cough",sickChildItem.getCough());
+                                jf.put("diaria",sickChildItem.getDiahorea());
+                                jf.put("fever",sickChildItem.getFever());
+                                jf.put("measure_fever",sickChildItem.getMeasure_fever());
+                                jf.put("stethoscope",sickChildItem.getStethoscope());
+                                jf.put("breathing_test",sickChildItem.getBreathing_test());
+                                jf.put("eye_test",sickChildItem.getEye_test());
+                                jf.put("infected_mouth",sickChildItem.getInfected_mouth());
+                                jf.put("neck",sickChildItem.getNeck());
+                                jf.put("ear",sickChildItem.getEar());
+                                jf.put("hand",sickChildItem.getHand());
+                                jf.put("dehydration",sickChildItem.getDehydration());
+                                jf.put("clinic_test",sickChildItem.getClinic_test());
+                                jf.put("height",sickChildItem.getHeight());
+                                jf.put("result",sickChildItem.getResult());
+                                jf.put("end_time",sickChildItem.getEnd_time());
+                                jf.put("village",sickChildItem.getVillage());
+                                jf.put("diaria",sickChildItem.getDiahorea());
+                                jf.put("fever",sickChildItem.getFever());
+                                jf.put("measure_fever",sickChildItem.getMeasure_fever());
+                                jf.put("union",sickChildItem.getUnion());
+                                jf.put("breathing_test",sickChildItem.getBreathing_test());
+
+
+
+
+
+                                fs.put("data",jf);
+
+
+
+
+
+                                requests.put(fs);
+
+
+
+                            }
+
+
+                            //      jsonArray.put(formItemAll);
+//                            JSONObject record = new JSONObject();
+//                            record.put("hemoglobintest", false);
+//                            record.put("urinetest", false);
+
+
+                            //request
+//                            JSONObject request = new JSONObject();
+//                           // request.put("type", add_update);
+//                            request.put("form_type", "dh_antenantals");
+//                            request.put("data", formItemAll);
+
+
+
+
+
+                            //record ====================================2
+                            //record
+                            JSONObject record2 = new JSONObject();
+                            record2.put("hemoglobintest", true);
+                            record2.put("urinetest", true);
+
+
+                            //request
+//                            JSONObject request2 = new JSONObject();
+//                            request2.put("type", add_update);
+//                            request2.put("form_type", "dh_sickchild");
+                            //       request2.put("data", record);
+
+
+                            //requests
+
+
+                            //data
+                            JSONObject data = new JSONObject();
+                            data.put("username", "collector");
+                            data.put("password", "collector");
+                            data.put("requests", requests);
+
+                            params.put("data", data.toString());
+                        }
+                        catch (Exception e){
+
+                        }
+
+                        return params;
+                    }
+
+                };
+
+// Adding request to request queue
+
+                RequestQueue requestQueue = Volley.newRequestQueue(TestActivity1.this);
+                requestQueue.add(stringRequest);
+
+
+
+
+
             }
         });
 
