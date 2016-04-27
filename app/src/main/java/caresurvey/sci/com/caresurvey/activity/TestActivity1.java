@@ -191,6 +191,8 @@ public class TestActivity1 extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
+
+                                Toast.makeText(TestActivity1.this,response,Toast.LENGTH_SHORT).show();
                                 try {
                                     JSONObject jo = new JSONObject(response);
                                     Log.d(".....>>>>>>>>>>", "Status " + jo);
@@ -265,27 +267,17 @@ public class TestActivity1 extends AppCompatActivity {
                                 jf.put("ear",sickChildItem.getEar());
                                 jf.put("hand",sickChildItem.getHand());
                                 jf.put("dehydration",sickChildItem.getDehydration());
+                                jf.put("weight",sickChildItem.getWeight());
                                 jf.put("clinic_test",sickChildItem.getClinic_test());
+                                jf.put("belly_button",sickChildItem.getBelly_button());
                                 jf.put("height",sickChildItem.getHeight());
                                 jf.put("result",sickChildItem.getResult());
                                 jf.put("end_time",sickChildItem.getEnd_time());
                                 jf.put("village",sickChildItem.getVillage());
-                                jf.put("diaria",sickChildItem.getDiahorea());
-                                jf.put("fever",sickChildItem.getFever());
-                                jf.put("measure_fever",sickChildItem.getMeasure_fever());
+                                jf.put("district",sickChildItem.getDistrict());
                                 jf.put("union",sickChildItem.getUnion());
-                                jf.put("breathing_test",sickChildItem.getBreathing_test());
-
-
-
-
-
+                                jf.put("sub_district",sickChildItem.getSub_district());
                                 fs.put("data",jf);
-
-
-
-
-
                                 requests.put(fs);
 
 
@@ -328,8 +320,8 @@ public class TestActivity1 extends AppCompatActivity {
 
                             //data
                             JSONObject data = new JSONObject();
-                            data.put("username", "collector");
-                            data.put("password", "collector");
+                            data.put("username", "user_hb1");
+                            data.put("password", "pass_hb1");
                             data.put("requests", requests);
 
                             params.put("data", data.toString());

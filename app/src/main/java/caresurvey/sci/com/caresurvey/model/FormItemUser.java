@@ -34,6 +34,9 @@ public class FormItemUser {
     private String union;
     private String village;
     private String obs_type;
+    private String fields;
+    private String comments;
+    private String status;
 
 
 

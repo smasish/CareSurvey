@@ -77,7 +77,6 @@ public class DisplayAll_Activity extends AppCompatActivity {
                 name_admin[k]=ft.getName();
                 status_admin[k]=ft.getStatus();
                 inS[k]= ft.getInS();
-
                 k++;
             }
             adapter=new DisplayNamesWithStatusAdapter(this,id_admin,name_admin,status_admin,inS);
