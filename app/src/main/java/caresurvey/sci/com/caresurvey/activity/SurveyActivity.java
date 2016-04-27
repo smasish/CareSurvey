@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
 import caresurvey.sci.com.caresurvey.database.FormTable;
+import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 
 public class SurveyActivity extends AppCompatActivity {
     Button Survey;
@@ -262,6 +264,15 @@ public class SurveyActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        SickChildSupervisorTable sickChildSupervisorTable = new SickChildSupervisorTable(SurveyActivity.this);
+        ArrayList<SickChildItemSupervisor> sickChildItemSupervisors;
+        ArrayList<SickChildItemSupervisor> sickChildItemSupervisors1;
+        sickChildItemSupervisors = sickChildSupervisorTable.getAllInfo();
+        sickChildItemSupervisors1 = sickChildSupervisorTable.getAllInfo();
+
+
+
         new AlertDialog.Builder(this)
                 .setTitle("Close")
                 .setMessage("Are you sure you want to close CareSuvey")

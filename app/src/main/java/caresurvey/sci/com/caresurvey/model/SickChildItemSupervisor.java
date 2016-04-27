@@ -1,5 +1,6 @@
 package caresurvey.sci.com.caresurvey.model;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -99,6 +100,49 @@ public class SickChildItemSupervisor {
         this.comments=comments;
         this.status=status;
         this.server_id=server_id;
+
+
+    }
+
+    public SickChildItemSupervisor(int increment, String facility_id, String sp_client, String sp_designation, String seral_no, String child_description, String age, String feed, String vomit, String stutter, String cough, String diaria, String fever, int status, String measure_fever, String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String end_time, String village, String union, String district, String sub_district, String result, int status1, String server_id, String ct_client) {
+
+        this.id =increment;
+
+        this.facility_id = Integer.parseInt(facility_id);
+        this.sp_client = sp_client;
+        this.so_designation= sp_designation;
+        this.serial_no = seral_no;
+        this.child_description = child_description;
+        this.age = age;
+        this.feed =feed;
+        this.vomit=  vomit;
+        this.stutter =stutter;
+        this.cough =cough;
+        this.diahorea =diaria;
+        this.fever = fever;
+        this.measure_fever =measure_fever;
+        this.stethoscope = stethoscope;
+        this.breathing_test = breathing_test;
+        this.eye_test = eye_test;
+        this.infected_mouth = infected_mouth;
+        this.neck = neck;
+        this.ear =ear;
+        this.hand= hand;
+        this.dehydration = dehydration;
+        this.weight = weight;
+        this.clinic_test = clinic_test;
+        this.belly_button = belly_button;
+        this.height = height;
+        this.end_time =end_time;
+        this.result= result;
+        this.village = village;
+        this.district =district;
+        this.union = union;
+        this.sub_district = sub_district;
+        this.ct_client = ct_client;
+
+        this.status=String.valueOf(status1);
+        this.server_id=Integer.parseInt(server_id);
 
 
     }
@@ -414,4 +458,51 @@ public class SickChildItemSupervisor {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+
+    public static SickChildItemSupervisor parseSickChildItemSupervisor(int increment,String formId,int _status, JSONObject jo,String submitted_by) throws JSONException {
+        int increments  = increment;
+        String facility_id = jo.getString("facility_id");
+        String sp_client = jo.getString("sp_client");
+        String sp_designation = jo.getString("sp_designation");
+        String seral_no = jo.getString("seral_no");
+        String child_description = jo.getString("child_description");
+        String age = jo.getString("age");
+        String feed = jo.getString("feed");
+        String vomit = jo.getString("vomit");
+        String stutter = jo.getString("stutter");
+        String cough = jo.getString("cough");
+        String diaria = jo.getString("diaria");
+        String fever = jo.getString("fever");
+        String measure_fever = jo.getString("measure_fever");
+        String stethoscope = jo.getString("stethoscope");
+        String breathing_test = jo.getString("breathing_test");
+        String eye_test = jo.getString("eye_test");
+        String infected_mouth = jo.getString("infected_mouth");
+        String neck = jo.getString("neck");
+        String ear = jo.getString("ear");
+        String hand = jo.getString("hand");
+        String dehydration = jo.getString("dehydration");
+        String weight = jo.getString("weight");
+        String clinic_test = jo.getString("clinic_test");
+        String belly_button = jo.getString("belly_button");
+        String height = jo.getString("height");
+        String end_time = jo.getString("end_time");
+        String village = jo.getString("village");
+        String union = jo.getString("union");
+        String district = jo.getString("district");
+        String sub_district = jo.getString("sub_district");
+        String result = jo.getString("result");
+        int status=_status;
+        String server_id = formId;
+        String ct_client =submitted_by;
+        return new SickChildItemSupervisor(increment,facility_id,sp_client,sp_designation,seral_no,child_description,age,
+                feed,vomit,stutter,cough,diaria,fever,_status,measure_fever,stethoscope,breathing_test,
+                eye_test,infected_mouth,neck,ear,hand,dehydration,weight,clinic_test,belly_button,height,
+                end_time,village,union,district,sub_district,result,status,server_id,ct_client
+        );
+    }
+
+
 }

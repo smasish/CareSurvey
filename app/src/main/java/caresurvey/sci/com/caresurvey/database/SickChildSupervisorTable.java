@@ -16,7 +16,6 @@ import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 public class SickChildSupervisorTable {
     private static final String TABLE_NAME = DatabaseHelper.FORM_SICK_CHILD_SUPERVISOR;
     private static final String KEY_ID = "_id"; // 0 -integer
-
     private static final String KEY_FACILITY_ID = "_facilityId"; // 0 -integer
     private static final String KEY_SP_CLIENT = "_spClient"; // 1 - text
     private static final String KEY_SP_DESIGNATGION = "_spDesignation"; // 2 - text
@@ -258,6 +257,65 @@ public class SickChildSupervisorTable {
     }
 
 
+
+
+
+    private long updateItemServerdata(int increment,String facility_id,String sp_client,String sp_designation,String seral_no,String child_description,String age,
+                                      String feed,String vomit,String stutter,String cough,String diaria,String fever,String _status,String measure_fever,String stethoscope,String breathing_test,
+                                      String eye_test,String infected_mouth,String neck,String ear,String hand,String dehydration,String weight,String clinic_test,String belly_button,String height,
+                                      String end_time,String village,String union,String district,String sub_district,
+                                      String result,String status,String server_id,String ct_client) {
+
+        ContentValues values= new ContentValues();
+        values.put(KEY_ID,increment);
+        values.put(KEY_FACILITY_ID,facility_id);
+        values.put(KEY_SP_CLIENT,sp_client);
+        values.put(KEY_SP_DESIGNATGION,sp_designation);
+        values.put(KEY_SERIAL_NO,seral_no);
+
+        values.put(KEY_CHILD_DESCRIPTION,child_description);
+        values.put(KEY_AGE,age);
+        values.put(KEY_FEED,feed);
+        values.put(KEY_VOMIT,vomit);
+        values.put(KEY_STUTTER,stutter);
+        values.put(KEY_COUGH,cough);
+        values.put(KEY_DIAHOREA,diaria);
+        values.put(KEY_FEVER,fever);
+        values.put(KEY_MEASURE_FEVER,measure_fever);
+        values.put(KEY_STETHOSCOPE,stethoscope);
+        values.put(KEY_BREATHING_TEST,breathing_test);
+        values.put(KEY_EYE_TEST,eye_test);
+        values.put(KEY_INFECTED_MOUTH,infected_mouth);
+        values.put(KEY_NECK,neck);
+        values.put(KEY_EAR,ear);
+        values.put(KEY_HAND,hand);
+        values.put(KEY_DEHYDRATION,dehydration);
+        values.put(KEY_WEIGHT,weight);
+        values.put(KEY_CLINIC_TEST,clinic_test);
+        values.put(KEY_BELLEY_BUTTON,belly_button);
+        values.put(KEY_HEIGHT,height);
+        values.put(KEY_RESULT,result);
+        values.put(KEY_END_TIME,end_time);
+        values.put(KEY_VILLAGE,village);
+        values.put(KEY_DISTRICT,district);
+        values.put(KEY_UNION,union);
+        values.put(KEY_SUB_DISTRICT,sub_district);
+        values.put(KEY_CT_CLIENT,ct_client);
+        values.put(KEY_STATUS,status);
+        values.put(KEY_SERVER_ID,server_id);
+
+
+        SQLiteDatabase db = openDB();
+        long ret= db.insert(TABLE_NAME, null, values);
+        closeDB();
+        return ret;
+
+    }
+
+
+
+
+
     public ArrayList<SickChildItemSupervisor> getAllInfo() {
         ArrayList<SickChildItemSupervisor> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
@@ -341,7 +399,6 @@ public class SickChildSupervisorTable {
         String hand= cursor.getString(22);
         String dehydration= cursor.getString(23);
         String weight = cursor.getString(24);
-
         String clinic_test = cursor.getString(25);
         String belly_button=cursor.getString(26);
         String height= cursor.getString(27);

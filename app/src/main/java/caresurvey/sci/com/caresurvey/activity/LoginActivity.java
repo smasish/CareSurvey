@@ -33,7 +33,10 @@ import java.util.Map;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 
 //import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
 
@@ -89,6 +92,8 @@ public class LoginActivity extends AppCompatActivity {
                             getString(R.string.msg));
                 } else if (user.equals("admin") && pass.equalsIgnoreCase("admin")) {
                     LoadDataSupervisor();
+                    LoadDataSupervisorChildSick();
+
                     flag = true;
 
                     //      k = "supervisor";
@@ -227,6 +232,121 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 
 
+
+
+
+
+
+
+
+    public void LoadDataSupervisorChildSick()
+    {
+
+        FormTable formTablec = new FormTable(LoginActivity.this);
+        //  formTablec.dropTable();
+        String tag_json_obj = "json_obj_req";
+
+        String url = "http://www.kolorob.net/mamoni/survey/api/sync";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //     Toast.makeText(DisplayAll_Activity.this,response,Toast.LENGTH_SHORT).show();
+
+                        try {
+                            JSONObject jo = new JSONObject(response);
+                            JSONArray forms = jo.getJSONArray("forms");
+//                                JSONObject joes = new JSONObject();
+//                                joes= jo.getJSONObject("forms");
+                            // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
+
+                            SickChildSupervisorTable sickChildSupervisorTable= new SickChildSupervisorTable(LoginActivity.this);
+                            // formTable.dropTable();
+                            int formItemCount = forms.length();
+                            for (int i = 0; i < formItemCount; i++) {
+                                try {
+                                    JSONObject record = forms.getJSONObject(i);
+                                    String s;
+                                    s=record.getString("submitted_by");
+                                    Log.d(".....>>>>>>>>>>", "response length" + record);
+                                    JSONObject fields = record.getJSONObject("data");
+                                    SickChildItemSupervisor sickChildItemSupervisor = SickChildItemSupervisor.parseSickChildItemSupervisor(i + 1, record.getString("form_id"), record.getInt("status"), fields, record.getString("submitted_by"));
+                                    int q;
+                                    q=record.getInt("form_id");
+                                    sickChildSupervisorTable.insertItem(sickChildItemSupervisor);
+                                }
+                                catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+
+                        try
+                        {
+                            JSONObject jox = new JSONObject(response);
+                            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("Timestamp_supervisor", jox.getJSONObject("updated_at").toString());
+                            editor.commit();
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //  Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        pd.dismiss();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+
+                Map<String, String> params = new HashMap<>();
+
+                try {
+                    //data
+                    JSONObject data = new JSONObject();
+                    data.put("username", "supervisor");
+                    data.put("password", "supervisor");
+                    data.put("get_all", true);
+                    params.put("data", data.toString());
+                }
+                catch (Exception e){
+
+                }
+
+                return params;
+            }
+        };
+
+// Adding request to request queue
+
+        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
+        requestQueue.add(stringRequest);
+        pd = new ProgressDialog(this);
+        pd.setMessage("Fetching The File....");
+        pd.show();
+    }
+
+
+
+
+
+
+
     public void LoadDataSupervisor()
     {
 
@@ -262,7 +382,8 @@ public class LoginActivity extends AppCompatActivity {
                                     int q;
                                     q=record.getInt("form_id");
                                     formTable.insertItem(et);
-                                } catch (JSONException e) {
+                                    }
+                                catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }

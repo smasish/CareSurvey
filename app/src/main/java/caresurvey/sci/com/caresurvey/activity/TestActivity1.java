@@ -160,7 +160,7 @@ public class TestActivity1 extends AppCompatActivity {
                         timepicker ,child_description.getText().toString() ,age.getText().toString() ,feedx ,
                         vomitx ,stutterx ,coughx ,diahoreax ,feverx ,measure_feaverx ,stethoscopex ,breathing_testx ,eye_testx ,
                         infected_mouthx ,neckx ,earx ,handx ,dehydrationx ,weightx ,circlex ,bellyx ,heightx ,ChekboxText ,
-                        endTime.getText().toString() ,village ,"hobiganj" ,union ,upozila ,c_name);
+                        endTime.getText().toString() ,village ,"hobiganj" ,union ,upozila ,c_name,"","","");
 
                 if(mark==1)
                 {
