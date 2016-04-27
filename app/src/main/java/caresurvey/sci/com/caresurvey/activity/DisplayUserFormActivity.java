@@ -54,12 +54,11 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         final String[] inS= new String[f];
         if(!sickChildItems.isEmpty()) {
             for (SickChildItem ft : sickChildItems)
-
             {
                 id[k] = ft.getId();
                 name[k] = ft.getSp_client();
-                status[k] = ft.ge;
-                inS[k]= ft.getInS();
+                status[k] = Integer.parseInt(ft.getStatus());
+                inS[k]= ft.getFields();
                 k++;
 
 
@@ -83,7 +82,7 @@ public class DisplayUserFormActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Intent iiv = new Intent(DisplayUserFormActivity.this,TestActivity.class);
+                    Intent iiv = new Intent(DisplayUserFormActivity.this,TestActivity1.class);
                     iiv.putExtra("position",position+1);
                     iiv.putExtra("name",names);
                     startActivity(iiv);
@@ -97,13 +96,13 @@ public class DisplayUserFormActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
 
-        ArrayList<FormItemUser> formItemsUser;
-        final FormTableUser formTable = new FormTableUser(DisplayUserFormActivity.this);
-        formItemsUser= formTable.getAll();
+        ArrayList<SickChildItem> sickChildItems;
+        FormItem formItem;
 
-
+        SickChildTable sickChildTable = new SickChildTable(DisplayUserFormActivity.this);
+        sickChildItems= sickChildTable.getAllInfo();
         int k=0;
-        int f= formItemsUser.size();
+        int f= sickChildItems.size();
 
         int[] id=new int[f];
         String[] name=new String[f];
@@ -112,14 +111,14 @@ public class DisplayUserFormActivity extends AppCompatActivity {
 
         final String[] inS= new String[f];
 
-        if(!formItemsUser.isEmpty()) {
-            for (FormItemUser ft : formItemsUser)
+        if(!sickChildItems.isEmpty()) {
+            for (SickChildItem ft : sickChildItems)
 
             {
-                id[k] = ft.getPatientid();
-                name[k] = ft.getName();
-                status[k] = ft.getStatus();
-                inS[k]= ft.getInS();
+                id[k] = ft.getId();
+                name[k] = ft.getSp_client();
+                status[k] = Integer.parseInt(ft.getStatus());
+                inS[k]= ft.getFields();
                 k++;
 
 

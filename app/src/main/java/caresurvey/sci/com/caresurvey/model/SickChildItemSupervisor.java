@@ -7,9 +7,10 @@ import java.io.IOException;
 /**
  * Created by Mazharul.Islam1 on 4/24/2016.
  */
-public class SickChildItem {
+public class SickChildItemSupervisor {
 
     private int id;
+
     private int facility_id;
     private String sp_client;
     private String so_designation;
@@ -47,17 +48,19 @@ public class SickChildItem {
     private String fields;
     private String comments;
     private String status;
+    private int server_id;
 
 
-    public SickChildItem(int id,int facility_id,String sp_client,String sp_designataion,
+    public SickChildItemSupervisor(int id,int facility_id,String sp_client,String sp_designataion,
                          String serial_no, String form_date, String start_time, String child_description,
                          String age, String feed, String vomit, String stutter, String cough,
                          String diahorea,String fever, String measure_fever, String stethoscope,
                          String breathing_test, String eye_test, String infected_mouth,String neck,
                          String ear, String hand, String dehydration, String weight, String clinic_test,
                          String belly_button, String height, String end_time,String result, String village, String district,
-                         String union,String sub_district, String ct_client,String fields,String comments,String status)
+                         String union,String sub_district, String ct_client,String fields,String comments,String status,int server_id)
     {   this.id =id;
+
         this.facility_id =facility_id;
         this.sp_client = sp_client;
         this.so_designation= sp_designataion;
@@ -95,6 +98,7 @@ public class SickChildItem {
         this.fields= fields;
         this.comments=comments;
         this.status=status;
+        this.server_id=server_id;
 
 
     }
@@ -105,6 +109,14 @@ public class SickChildItem {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getServer_id() {
+        return server_id;
+    }
+
+    public void setServer_id(int server_id) {
+        this.server_id = server_id;
     }
 
     public int getFacility_id() {
