@@ -34,8 +34,10 @@ import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 
 public class DisplayAll_Activity extends AppCompatActivity {
 
@@ -54,11 +56,11 @@ public class DisplayAll_Activity extends AppCompatActivity {
         user= "supervisor";
         Intent mIntent = getIntent();
         user = mIntent.getStringExtra("user");
-        ArrayList<FormItem> formItems;
+        ArrayList<SickChildItemSupervisor> formItems;
         FormItem formItem;
 
-        final FormTable formTable = new FormTable(DisplayAll_Activity.this);
-        formItems= formTable.getAll();
+        final SickChildSupervisorTable formTable = new SickChildSupervisorTable(DisplayAll_Activity.this);
+        formItems= formTable.getAllInfo();
 
         if(!formItems.isEmpty())
         {
@@ -70,13 +72,13 @@ public class DisplayAll_Activity extends AppCompatActivity {
             final int[] status_admin= new int[f];
             final String[] inS= new String[f];
 
-            for(FormItem ft: formItems)
+            for(SickChildItemSupervisor ft: formItems)
 
             {
-                id_admin[k]= Integer.parseInt(ft.getGlobal_id());
-                name_admin[k]=ft.getName();
-                status_admin[k]=ft.getStatus();
-                inS[k]= ft.getInS();
+                id_admin[k]= ft.getServer_id();
+                name_admin[k]=ft.getSp_client();
+                status_admin[k]=Integer.parseInt(ft.getStatus());        ;
+                inS[k]= String.valueOf(1);
                 k++;
             }
             adapter=new DisplayNamesWithStatusAdapter(this,id_admin,name_admin,status_admin,inS);
@@ -96,7 +98,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
                                 getString(R.string.msg));
                     }
                     else {
-                        Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);
+                        Intent iiv = new Intent(DisplayAll_Activity.this,SupervisiorVerificationSickChild.class);
                         iiv.putExtra("position",position);
                         // iiv.putExtra("name",names);
                         startActivity(iiv);
@@ -156,75 +158,62 @@ public class DisplayAll_Activity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        ArrayList<FormItem> formItems;
-
+        ArrayList<SickChildItemSupervisor> formItems;
         FormItem formItem;
 
-        final FormTable formTable = new FormTable(DisplayAll_Activity.this);
-        formItems= formTable.getAll();
+        final SickChildSupervisorTable formTable = new SickChildSupervisorTable(DisplayAll_Activity.this);
+        formItems= formTable.getAllInfo();
+
+        if(!formItems.isEmpty()) {
+            int k = 0;
+            int f = formItems.size();
+
+            int[] id_admin = new int[f];
+            String[] name_admin = new String[f];
+            final int[] status_admin = new int[f];
+            final String[] inS = new String[f];
+
+            for (SickChildItemSupervisor ft : formItems)
+
+            {
+                id_admin[k] = ft.getServer_id();
+                name_admin[k] = ft.getSp_client();
+                status_admin[k] = Integer.parseInt(ft.getStatus());
+                ;
+                inS[k] = String.valueOf(1);
+                k++;
+            }
+            adapter = new DisplayNamesWithStatusAdapter(this, id_admin, name_admin, status_admin, inS);
+
+            listView.setAdapter(adapter);
+
+            //     Helpes.getListViewSize(courseListView);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Log.d("Status.......OnResume", "response length" + status_admin[position]);
+                    Log.d("Status.......OnResume", "response length");
+                    if (status_admin[position] == 2) {
+                        AlertMessage.showMessage(DisplayAll_Activity.this, "You can not update until collector resubmit it.",
+                                "Please wait until user submit");
+                    } else {
+                        Intent iiv = new Intent(DisplayAll_Activity.this, SupervisiorVerificationSickChild.class);
+                        iiv.putExtra("position", position);
+                        // iiv.putExtra("name",names);
+
+                        startActivity(iiv);
+                        finish();
+                    }
+
+                }
 
 
-        int k=0;
-        int f= formItems.size();
-        final String[] inS= new String[f];
-        int[] id_admin=new int[f];
-        String[] name_admin=new String[f];
-        final int[] status_admin= new int[f];
-
-
-        for(FormItem ft: formItems)
-
-        {
-
-            id_admin[k]= Integer.parseInt(ft.getGlobal_id());
-            name_admin[k]=ft.getName();
-            status_admin[k]=ft.getStatus();
-            inS[k]= ft.getInS();
-
-            k++;
-
+            });
 
 
         }
-        adapter=new DisplayNamesWithStatusAdapter(this,id_admin,name_admin,status_admin,inS);
-
-        listView.setAdapter(adapter);
-
-        //     Helpes.getListViewSize(courseListView);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Log.d("Status.......OnResume", "response length" + status_admin[position]);
-                Log.d("Status.......OnResume", "response length");
-                if(status_admin[position]==2)
-                {
-                    AlertMessage.showMessage(DisplayAll_Activity.this, "You can not update until collector resubmit it.",
-                            "Please wait until user submit");
-                }
-                else {
-                    Intent iiv = new Intent(DisplayAll_Activity.this,Supervisor_verificationActivity.class);
-                    iiv.putExtra("position",position);
-                    // iiv.putExtra("name",names);
-
-                    startActivity(iiv);
-                    finish();
-                }
-
-            }
-
-
-        });
-
-
-
-
-
-
-
-
-
 
 
     }

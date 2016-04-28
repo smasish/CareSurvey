@@ -44,7 +44,7 @@ public class TestActivity1 extends AppCompatActivity {
     Button save,submit,update;
     ArrayList<SickChildItem> sickChildItems;
     RadioGroup feed,vomit,stutter,cough, diahorea, fever, measure_feaver, stethoscope, breathing_test,
-                eye_test,infected_mouth, neck, ear, hand, dehydration, weight, circle, belly, height, bmi;
+            eye_test,infected_mouth, neck, ear, hand, dehydration, weight, circle, belly, height, bmi;
     String feedx,vomitx,stutterx,coughx, diahoreax, feverx, measure_feaverx, stethoscopex, breathing_testx, eye_testx,infected_mouthx, neckx, earx, handx, dehydrationx, weightx, circlex, bellyx, heightx, bmix,ChekboxText=null;
     EditText serial_no,form_date,start_time, child_description,age,endTime;
     CheckBox checkBox1,checkBox2,checkBox3,checkBox4,checkBox5;
@@ -60,20 +60,7 @@ public class TestActivity1 extends AppCompatActivity {
 
 
 
-        caretaker=intent.getStringExtra("caretaker");
-        name= intent.getStringExtra("name");
-        id=intent.getIntExtra("id", 0);
-        c_name= intent.getStringExtra("c_name");
-        designation=intent.getStringExtra("designation");
-        mark=intent.getIntExtra("mark", 0);
-        datepicker=intent.getStringExtra("datepicker");
-        timepicker=intent.getStringExtra("timepicker");
-        serial=intent.getStringExtra("serial");
-        facility=intent.getStringExtra("facility");
-        upozila=intent.getStringExtra("upozila");
-        union=intent.getStringExtra("union");
-        village=intent.getStringExtra("village");
-        obstype=intent.getStringExtra("obstype");
+
 
 
 
@@ -95,6 +82,7 @@ public class TestActivity1 extends AppCompatActivity {
         child_description = (EditText)findViewById(R.id.child_description);
         age = (EditText)findViewById(R.id.age);
         endTime = (EditText)findViewById(R.id.end_time);
+
 
 
         feed =(RadioGroup)findViewById(R.id.feed);
@@ -199,12 +187,12 @@ public class TestActivity1 extends AppCompatActivity {
                                     String status = jo.getString("status");
                                     if(status.equals("2"))
                                     {
-                                      //  FormTableUser formtableuser= new FormTableUser(TestActivity.this);
-                                     //   formtableuser.updateglobalI(intValue,3);
-                                   //     Save.setVisibility(View.GONE);
-                                   //     Intent intentw = new Intent(TestActivity1.this,DisplayUserActivity.class);
-                                      //  startActivity(intentw);
-                                      //  finish();
+                                        //  FormTableUser formtableuser= new FormTableUser(TestActivity.this);
+                                        //   formtableuser.updateglobalI(intValue,3);
+                                        //     Save.setVisibility(View.GONE);
+                                        //     Intent intentw = new Intent(TestActivity1.this,DisplayUserActivity.class);
+                                        //  startActivity(intentw);
+                                        //  finish();
                                     }
 
                                 }
