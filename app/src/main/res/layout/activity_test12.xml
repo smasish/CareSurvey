@@ -199,12 +199,32 @@
                             android:layout_marginTop="20dp"
                             android:id="@+id/age"
                             android:layout_height="wrap_content" />
-
-                        <TextView
+                        
+                     <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/ages"
+                        android:layout_height="wrap_content">
+                        <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="দিন মাস বছর"
-                            android:layout_marginLeft="25dp"
+                            android:text="দিন"
+                            android:id="@+id/day"
                             android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="মাস"
+                            android:id="@+id/month"
+                            android:layout_height="wrap_content" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:text="বছর"
+                            android:id="@+id/year"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+
 
 
                     </LinearLayout>

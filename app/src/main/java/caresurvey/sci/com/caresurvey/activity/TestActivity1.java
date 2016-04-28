@@ -44,8 +44,8 @@ public class TestActivity1 extends AppCompatActivity {
     Button save,submit,update;
     ArrayList<SickChildItem> sickChildItems;
     RadioGroup feed,vomit,stutter,cough, diahorea, fever, measure_feaver, stethoscope, breathing_test,
-            eye_test,infected_mouth, neck, ear, hand, dehydration, weight, circle, belly, height, bmi;
-    String feedx,vomitx,stutterx,coughx, diahoreax, feverx, measure_feaverx, stethoscopex, breathing_testx, eye_testx,infected_mouthx, neckx, earx, handx, dehydrationx, weightx, circlex, bellyx, heightx, bmix,ChekboxText=null;
+            eye_test,infected_mouth, neck, ear, hand, dehydration, weight, circle, belly, height, bmi,ages;
+    String feedx,vomitx,stutterx,coughx, diahoreax, feverx, measure_feaverx, stethoscopex, breathing_testx, eye_testx,infected_mouthx, neckx, earx, handx, dehydrationx, weightx, circlex, bellyx, heightx, bmix,ChekboxText=null,agev;
     EditText serial_no,form_date,start_time, child_description,age,endTime;
     CheckBox checkBox1,checkBox2,checkBox3,checkBox4,checkBox5;
 
@@ -105,6 +105,7 @@ public class TestActivity1 extends AppCompatActivity {
         belly =(RadioGroup)findViewById(R.id.belly);
         height =(RadioGroup)findViewById(R.id.height);
         bmi =(RadioGroup)findViewById(R.id.bmi);
+        ages=(RadioGroup)findViewById(R.id.ages);
 
 
 
@@ -368,8 +369,10 @@ public class TestActivity1 extends AppCompatActivity {
         int selectedq16 = belly.getCheckedRadioButtonId();
         int selectedq17 = height.getCheckedRadioButtonId();
         int selectedq18 = bmi.getCheckedRadioButtonId();
+        int agex= ages.getCheckedRadioButtonId();
 
-
+        RadioButton ages1=(RadioButton)findViewById(agex);
+        agev=  age.getText().toString()+" "+ ages1.getText().toString();
 
 
         RadioButton rb1 = (RadioButton) findViewById(selectedq1);
