@@ -45,6 +45,8 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
     int id, mark, position;
     ArrayList<SickChildItemSupervisor> sickChildItemSupervisors;
     Button save, submit, update;
+    Boolean check=false;
+    LinearLayout linearLayout;
     EditText child_descriptions;
     ArrayList<SickChildItem> sickChildItems;
     RadioGroup feed, vomit, stutter, cough, diahorea, fever, measure_feaver, stethoscope, breathing_test,
@@ -63,6 +65,7 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
         Intent intent = getIntent();
 
         position = intent.getIntExtra("position", 0) + 1;
+        linearLayout= (LinearLayout)findViewById(R.id.revertlayout);
 
 
         caretaker = intent.getStringExtra("caretaker");
@@ -260,7 +263,16 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(check) {
+                    linearLayout.setVisibility(View.GONE);
+                    check= false;
+                    Log.d("......false", ">>>>>>>" + check);
+                }
+                else {
+                    linearLayout.setVisibility(View.VISIBLE);
+                    check = true;
+                    Log.d("......true",">>>>>>>"+check);
+                }
 
 
 
