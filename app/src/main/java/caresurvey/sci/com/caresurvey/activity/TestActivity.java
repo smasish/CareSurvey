@@ -185,13 +185,6 @@ public class TestActivity extends AppCompatActivity {
                         String dateconcate= addspace.concat(String.valueOf(current_date));
 
 
-                        Log.d(">>>>>","calender "+c);
-                        Log.d(">>>>>","Current Date1 "+current_date);
-                        Log.d(">>>>>","add space "+addspace);
-                        Log.d(">>>>>","dateconcate "+dateconcate);
-                        Log.d(">>>>>","calender "+c);
-
-
 
 
 

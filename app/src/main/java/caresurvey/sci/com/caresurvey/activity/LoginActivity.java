@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     String user="",pass="";
     private Context con;
     private boolean flag = false;
+    int increment;
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -264,17 +265,24 @@ public class LoginActivity extends AppCompatActivity {
                             SickChildSupervisorTable sickChildSupervisorTable= new SickChildSupervisorTable(LoginActivity.this);
                             // formTable.dropTable();
                             int formItemCount = forms.length();
+                            Log.d(".....>>>>>>>>>>", "formItemCount    " + formItemCount);
+                            increment=1;
                             for (int i = 0; i < formItemCount; i++) {
                                 try {
+
                                     JSONObject record = forms.getJSONObject(i);
                                     String s;
                                     s=record.getString("submitted_by");
-                                    Log.d(".....>>>>>>>>>>", "response length" + record);
+                                    Log.d(".....>>>>>>>>>>", "i    " + i);
                                     JSONObject fields = record.getJSONObject("data");
-                                    SickChildItemSupervisor sickChildItemSupervisor = SickChildItemSupervisor.parseSickChildItemSupervisor(i + 1, record.getString("form_id"), record.getInt("status"), fields, record.getString("submitted_by"));
-                                    int q;
-                                    q=record.getInt("form_id");
-                                    sickChildSupervisorTable.insertItem(sickChildItemSupervisor);
+
+                                    SickChildItemSupervisor sickChildItemSupervisor = SickChildItemSupervisor.parseSickChildItemSupervisor(increment, record.getString("form_id"), record.getInt("status"), fields, record.getString("submitted_by"));
+
+                                    long success;
+                                    success=sickChildSupervisorTable.insertItem(sickChildItemSupervisor);
+                                    if(success==1)
+                                        increment++;
+
                                 }
                                 catch (JSONException e) {
                                     e.printStackTrace();

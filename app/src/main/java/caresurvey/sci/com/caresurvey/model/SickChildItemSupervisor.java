@@ -1,5 +1,7 @@
 package caresurvey.sci.com.caresurvey.model;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,13 +55,13 @@ public class SickChildItemSupervisor {
 
 
     public SickChildItemSupervisor(int id,int facility_id,String sp_client,String sp_designataion,
-                         String serial_no, String form_date, String start_time, String child_description,
-                         String age, String feed, String vomit, String stutter, String cough,
-                         String diahorea,String fever, String measure_fever, String stethoscope,
-                         String breathing_test, String eye_test, String infected_mouth,String neck,
-                         String ear, String hand, String dehydration, String weight, String clinic_test,
-                         String belly_button, String height, String end_time,String result, String village, String district,
-                         String union,String sub_district, String ct_client,String fields,String comments,String status,int server_id)
+                                   String serial_no, String form_date, String start_time, String child_description,
+                                   String age, String feed, String vomit, String stutter, String cough,
+                                   String diahorea,String fever, String measure_fever, String stethoscope,
+                                   String breathing_test, String eye_test, String infected_mouth,String neck,
+                                   String ear, String hand, String dehydration, String weight, String clinic_test,
+                                   String belly_button, String height, String end_time,String result, String village, String district,
+                                   String union,String sub_district, String ct_client,String fields,String comments,String status,int server_id)
     {   this.id =id;
 
         this.facility_id =facility_id;
@@ -497,7 +499,9 @@ public class SickChildItemSupervisor {
         int status=_status;
         String server_id = formId;
         String ct_client =submitted_by;
-        return new SickChildItemSupervisor(increment,facility_id,sp_client,sp_designation,seral_no,child_description,age,
+
+        Log.d("...>>>","increments "+increments );
+        return new SickChildItemSupervisor(increments,facility_id,sp_client,sp_designation,seral_no,child_description,age,
                 feed,vomit,stutter,cough,diaria,fever,_status,measure_fever,stethoscope,breathing_test,
                 eye_test,infected_mouth,neck,ear,hand,dehydration,weight,clinic_test,belly_button,height,
                 end_time,village,union,district,sub_district,result,status,server_id,ct_client

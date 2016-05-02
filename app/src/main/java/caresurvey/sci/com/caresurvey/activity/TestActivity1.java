@@ -39,8 +39,8 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class TestActivity1 extends AppCompatActivity {
-    private String caretaker,name,c_name,designation,datepicker,timepicker,serial,facility,upozila,union,village,obstype;
-    int id,mark;
+    String caretaker,name,c_name,designation,datepicker,timepicker,serial,facility,upozila,union,village,obstype;
+    int id,mark,value;
     Button save,submit,update;
     ArrayList<SickChildItem> sickChildItems;
     RadioGroup feed,vomit,stutter,cough, diahorea, fever, measure_feaver, stethoscope, breathing_test,
@@ -57,6 +57,24 @@ public class TestActivity1 extends AppCompatActivity {
 
 
         Intent intent= getIntent();
+        id= intent.getIntExtra("id",0);
+        value=id;
+        caretaker=intent.getStringExtra("caretaker");
+        name= intent.getStringExtra("name");
+        c_name=intent.getStringExtra("c_name");
+        designation=intent.getStringExtra("designation");
+        datepicker=intent.getStringExtra("datepicker");
+        timepicker = intent.getStringExtra("timepicker");
+        serial= intent.getStringExtra("serial");
+        mark=intent.getIntExtra("mark",0);
+        facility=intent.getStringExtra("facility");
+        upozila=intent.getStringExtra("upozila");
+        union= intent.getStringExtra("union");
+        village= intent.getStringExtra("village");
+        obstype=intent.getStringExtra("obstype");
+
+
+
 
 
 
@@ -156,6 +174,8 @@ public class TestActivity1 extends AppCompatActivity {
 
                     if(sickChildTable.insertItem(sickChildItem)==1)
                     {
+                        value++;
+                        savevalue();
                         Log.d(">>>>>>", "Saved Successfully");
                         Toast.makeText(TestActivity1.this,
                                 "Your Message", Toast.LENGTH_LONG).show();
@@ -466,6 +486,18 @@ public class TestActivity1 extends AppCompatActivity {
         height.clearCheck();
 
 
+    }
+
+
+
+    public void savevalue()
+    {
+        SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        // Toast.makeText(getApplicationContext(), "Now I am in onResume ", Toast.LENGTH_SHORT).show();
+
+        editor.putInt("id",value);
+        editor.commit();
     }
 
 

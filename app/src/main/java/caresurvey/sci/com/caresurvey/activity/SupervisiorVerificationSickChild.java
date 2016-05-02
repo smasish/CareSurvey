@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
@@ -44,10 +47,12 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
     private String caretaker, name, c_name, designation, datepicker, timepicker, serial, facility, upozila, union, village, obstype, result;
     int id, mark, position;
     ArrayList<SickChildItemSupervisor> sickChildItemSupervisors;
-    Button save, submit, update;
+    Button save, submit, revert;
     Boolean check=false;
+    Spinner com_incom;
+    CheckBox ck1,ck2, ck3, ck4, ck5, ck6,ck7, ck8, ck9, ck10,ck11, ck12, ck13, ck14,ck15, ck16, ck17, ck18, ck19, ck20;
     LinearLayout linearLayout;
-    EditText child_descriptions;
+    EditText child_descriptions,comment;
     ArrayList<SickChildItem> sickChildItems;
     RadioGroup feed, vomit, stutter, cough, diahorea, fever, measure_feaver, stethoscope, breathing_test,
             eye_test, infected_mouth, neck, ear, hand, dehydration, weight, circle, belly, height, bmi;
@@ -86,7 +91,9 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
 
         submit = (Button) findViewById(R.id.saves);
         save = (Button) findViewById(R.id.Submits);
+        revert =(Button)findViewById(R.id.Submit);
 
+        comment= (EditText)findViewById(R.id.comment);
 
         child_descriptions=(EditText)findViewById(R.id.child_description);
 
@@ -99,6 +106,41 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
 
 
         serial_no = (EditText) findViewById(R.id.serial_no);
+        com_incom = (Spinner)findViewById(R.id.spinner_com);
+
+        ck1 = (CheckBox) findViewById(R.id.ch1);
+        ck2 = (CheckBox) findViewById(R.id.ch2);
+        ck3 = (CheckBox) findViewById(R.id.ch3);
+        ck4 = (CheckBox) findViewById(R.id.ch4);
+        ck5 = (CheckBox) findViewById(R.id.ch5);
+        ck6 = (CheckBox) findViewById(R.id.ch6);
+        ck7 = (CheckBox) findViewById(R.id.ch7);
+        ck8 = (CheckBox) findViewById(R.id.ch8);
+        ck9 = (CheckBox) findViewById(R.id.ch9);
+        ck10 = (CheckBox) findViewById(R.id.ch10);
+        ck11 = (CheckBox) findViewById(R.id.ch11);
+        ck12 = (CheckBox) findViewById(R.id.ch12);
+        ck13 = (CheckBox) findViewById(R.id.ch13);
+        ck14 = (CheckBox) findViewById(R.id.ch14);
+        ck15 = (CheckBox) findViewById(R.id.ch15);
+        ck16 = (CheckBox) findViewById(R.id.ch16);
+        ck17 = (CheckBox) findViewById(R.id.ch17);
+        ck18 = (CheckBox) findViewById(R.id.ch18);
+        ck19 = (CheckBox) findViewById(R.id.ch19);
+        ck20 = (CheckBox) findViewById(R.id.ch20);
+
+
+        ArrayList<String> com_incomList = new ArrayList<String>();
+
+        com_incomList.add("Select Cause");
+        com_incomList.add("Incomplete");
+        com_incomList.add("Complete");
+
+
+        ArrayAdapter<String> adapterissue = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,com_incomList);
+        com_incom.setAdapter(adapterissue);
+
+
         form_date = (EditText) findViewById(R.id.form_date);
         start_time = (EditText) findViewById(R.id.start_time);
         child_description = (EditText) findViewById(R.id.child_description);
@@ -214,9 +256,9 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
                                 meta.put("comments","");
                                 meta.put("fields", "");
                                 requests.put("meta",meta);
-                                requests.put("submitted_by", "user_hb1");
+                                requests.put("submitted_by", sickChildItemSupervisor.getCt_client());
                                 requests.put("form_id", sickChildItemSupervisor.getServer_id());
-                               //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                                //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
                                 requests.put("form_type","dh_sickchild");
                                 requests.put("status",1);
                                 jsonArray.put(requests);
@@ -277,6 +319,251 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
 
 
 
+
+
+            }
+        });
+
+
+        revert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChekboxText=com_incom.getSelectedItem().toString();
+                if(ck1.isChecked()) {
+                    String value= ck1.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck2.isChecked()) {
+                    String value= ck2.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck3.isChecked()) {
+                    String value= ck3.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck4.isChecked()) {
+                    String value= ck4.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck5.isChecked()) {
+                    String value= ck5.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck6.isChecked()) {
+                    String value= ck6.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;                }
+                if(ck7.isChecked()) {
+                    String value= ck7.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck8.isChecked()) {
+                    String value= ck8.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck9.isChecked()) {
+                    String value= ck9.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck10.isChecked()) {
+                    String value= ck10.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck11.isChecked()) {
+                    String value= ck11.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+                if(ck12.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+                if(ck13.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+                if(ck14.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+                if(ck15.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+                if(ck16.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+                if(ck17.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+                if(ck18.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+                if(ck19.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+                if(ck20.isChecked()) {
+                    String value= ck12.getText().toString();
+                    ChekboxText = ChekboxText+", ";
+                    ChekboxText = ChekboxText+""+value;
+                }
+
+
+                String url = "http://www.kolorob.net/mamoni/survey/api/form";
+
+
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Log.d(".....>>>>>>>>>>", "response length" +response);
+                                Toast.makeText(SupervisiorVerificationSickChild.this, response, Toast.LENGTH_SHORT).show();
+
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    int status;
+                                    status= jsonObject.getInt("status");
+
+                                    if (status==2){
+                                        FormTable formTable1= new FormTable(SupervisiorVerificationSickChild.this);
+//                                        for(FormItem formItem1: formItems)
+//                                        {
+//                                            String global_id= String.valueOf(intValue);
+//                                            long vvs;
+//                                            formTable.updateglobalId("2",intValue);
+//                                            //    vvs=formTable1.updatefieldforuser(global_id,2,et1.getText().toString(), et2.getText().toString());
+//                                            // Log.d(".....>>>>>>>>>>", "TestForUpdatingsupervisor " + vvs);
+//
+//
+//
+//                                        }
+//
+
+                                        //  Log.d(".....>>>>>>>>>>", "ChekboxTextdddd ");
+                                        Intent intent = new Intent(SupervisiorVerificationSickChild.this,SurveyActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                        //   Log.d(".....>>>>>>>>>>", "ChekboxText ");
+
+                                    }
+
+
+
+                                }
+
+                                catch (Exception e)
+                                {
+
+                                }
+
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //   Toast.makeText(Supervisor_verificationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                            }
+                        }) {
+
+                    @Override
+                    protected Map<String, String> getParams() {
+
+
+
+
+                        Map<String, String> params = new HashMap<>();
+
+                        try {
+                            //record ====================================1
+                            //record
+                            JSONObject requests = new JSONObject();
+                            JSONArray jsonArray =new JSONArray();
+                            for(SickChildItemSupervisor formItem1: sickChildItemSupervisors)
+                            {
+                                JSONObject jf= new JSONObject();
+                                JSONObject meta=new JSONObject();
+                                meta.put("comments",comment.getText().toString());
+                                meta.put("fields", ChekboxText);
+                                requests.put("meta",meta);
+                                requests.put("submitted_by",formItem1.getCt_client());
+                                requests.put("form_id",formItem1.getServer_id());
+                                Log.d(">>>>>>>>>>", "serverId " + formItem1.getServer_id());
+                                requests.put("form_type","dh_sickchild");
+                                requests.put("status",2);
+                                jsonArray.put(requests);
+
+
+
+
+
+
+                            }
+
+
+                            //      jsonArray.put(formItemAll);
+//                            JSONObject record = new JSONObject();
+//                            record.put("hemoglobintest", false);
+//                            record.put("urinetest", false);
+
+
+
+
+
+
+
+
+                            //data
+                            JSONObject data = new JSONObject();
+                            data.put("username", "supervisor");
+                            data.put("password", "supervisor");
+                            data.put("requests", jsonArray);
+
+                            params.put("data", data.toString());
+                        }
+                        catch (Exception e){
+
+                        }
+
+                        return params;
+                    }
+
+                };
+
+// Adding request to request queue
+
+                RequestQueue requestQueue = Volley.newRequestQueue(SupervisiorVerificationSickChild.this);
+                requestQueue.add(stringRequest);
 
 
             }
@@ -423,7 +710,7 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
 
 
 
-}
+    }
 
 
 
@@ -431,7 +718,7 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
         for (int i = 0; i < result.length(); i++) {
 
 
-           // Log.d(">>>>","result"+result);
+            // Log.d(">>>>","result"+result);
             int p = result.charAt(i);
             if (p == 49) {
                 Log.d(">>>>","result    "+p);

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -76,7 +77,6 @@ public class SickChildSupervisorTable {
         String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
                 + "( "
                 + KEY_ID + " INTEGER PRIMARY KEY, " // 0 - int
-
                 + KEY_FACILITY_ID + " INTEGER, "
                 + KEY_SP_CLIENT + " TEXT, "              // 1 - text
                 + KEY_SP_DESIGNATGION + " TEXT, "
@@ -155,6 +155,9 @@ public class SickChildSupervisorTable {
             return updateItem(id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district, ct_client,field,comment,status,server_id);
         }
         ContentValues values= new ContentValues();
+
+
+        Log.d("...>>>","id "+id );
         values.put(KEY_ID,id);
         values.put(KEY_FACILITY_ID,facility_id);
         values.put(KEY_SP_CLIENT,sp_client);
