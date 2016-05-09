@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/tv_inventory_dust_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp" />
+
+    <RelativeLayout
+        android:id="@+id/ll_inventory_ques_202_ans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_inventory_dust_ques_202"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:lines="4"
+            android:maxLines="4"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:id="@+id/yes_no_radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_202_ans_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_202_ans_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_202_ans_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+        </RadioGroup>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_inventory_ques_203"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_inventory_dust_ques_203"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:lines="4"
+            android:maxLines="4"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:id="@+id/rg_inventory_dust_ques_203"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_203_ans_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_203_ans_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_203_ans_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_203_ans_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_203_ans_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_203_ans_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_203_ans_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_others"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_inventory_ques_203_ans_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/et_inventory_question_203_others"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"/>
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/rb_inventory_ques_203_ans_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+        </RadioGroup>
+    </RelativeLayout>
+</LinearLayout>

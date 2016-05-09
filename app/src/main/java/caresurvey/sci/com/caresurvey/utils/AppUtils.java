@@ -12,6 +12,10 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,9 +25,13 @@ import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.List;
 
+import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity;
+
 
 /**
  * Created by touhid on 10/29/15.
+ *
  * @author touhid
  */
 public class AppUtils {
@@ -148,5 +156,48 @@ public class AppUtils {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         return wifiInfo.isConnected();
+    }
+
+    public static void setTextWithFonts(Context context, View view, String text) {
+
+        TextView textView = (TextView) view.findViewById(R.id.tv_fb_observ_question);
+        textView.setText(text);
+        // Loading Font Face
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
+        // Applying font
+        textView.setTypeface(tf);
+    }
+
+    public static void setTextWithFonts(Context context, TextView textView, String text) {
+        textView.setText(text);
+        // Loading Font Face
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
+        // Applying font
+        textView.setTypeface(tf);
+    }
+
+    public static void setTextWithFonts(Context context, RadioButton radioButton, String text) {
+        radioButton.setText(text);
+        // Loading Font Face
+        Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
+        // Applying font
+        radioButton.setTypeface(tf);
+    }
+
+    public static void selectRadioBtn(final FacilityInventoryActivity activity, final RadioGroup radioGroup, final View quesView, final int expandableRadiogroupId) {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup arg0, int id) {
+                int selectedRadioBtnId = radioGroup.getCheckedRadioButtonId();
+                RadioButton selectedRadioBtn = (RadioButton) activity.findViewById(selectedRadioBtnId);
+                if (selectedRadioBtn.getText().equals(activity.getString(R.string.yes))) {
+                    ((RadioGroup) quesView.findViewById(expandableRadiogroupId)).setVisibility(View.VISIBLE);
+                } else if (selectedRadioBtn.getText().equals(activity.getString(R.string.no))) {
+
+                }
+                if (selectedRadioBtn.getText().equals(activity.getString(R.string.donot_know))) {
+
+                }
+            }
+        });
     }
 }

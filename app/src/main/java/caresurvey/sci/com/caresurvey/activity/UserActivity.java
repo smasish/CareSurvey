@@ -25,56 +25,54 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class UserActivity extends AppCompatActivity {
-    Boolean  firstRun;
-    String b1_status,datepicker,timepicker,user_name,facility,upozila,union, village, obsname;
+    Boolean firstRun;
+    String b1_status, datepicker, timepicker, user_name, facility, upozila, union, village, obsname;
     int obs_position;
-    EditText timepicker1,datepicker1;
+    EditText timepicker1, datepicker1;
     RadioButton radio1;
     String radioselection;
-    String serial,caretaker;
+    String serial, caretaker;
 
 
-    EditText user,user_caretaker;
-    EditText collector_name,sp_designation;
+    EditText user, user_caretaker;
+    EditText collector_name, sp_designation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        Button btn = (Button)findViewById(R.id.btn);
-        user = (EditText)findViewById(R.id.user);
-        collector_name=(EditText)findViewById(R.id.collector_name);
+        Button btn = (Button) findViewById(R.id.btn);
+        user = (EditText) findViewById(R.id.user);
+        collector_name = (EditText) findViewById(R.id.collector_name);
 
         RadioButton radioButton;
-        radioButton=(RadioButton)findViewById(R.id.yes);
+        radioButton = (RadioButton) findViewById(R.id.yes);
         radioButton.setChecked(true);
-        radio1=(RadioButton)findViewById(R.id.radio1);
+        radio1 = (RadioButton) findViewById(R.id.radio1);
         radio1.setChecked(true);
 
-        Intent intentx =getIntent();
-     //   user = (EditText)findViewById(R.id.user);
-       // datepicker= intentx.getStringExtra("datepicker");
-       // timepicker = intentx.getStringExtra("timepicker");
-     //     user_name = intentx.getStringExtra("name");
-          obs_position=intentx.getIntExtra("positon", 0);
-          facility = intentx.getStringExtra("facility");
-          upozila = intentx.getStringExtra("upozila");
-          union = intentx.getStringExtra("union");
-          village = intentx.getStringExtra("village");
-          obsname = intentx.getStringExtra("obstype");
-          serial= intentx.getStringExtra("serial");
-          user_caretaker = (EditText)findViewById(R.id.userCareTaker);
-          sp_designation=(EditText)findViewById(R.id.sp_designation);
-     //   user.setText(user_name);
+        Intent intentx = getIntent();
+        //   user = (EditText)findViewById(R.id.user);
+        // datepicker= intentx.getStringExtra("datepicker");
+        // timepicker = intentx.getStringExtra("timepicker");
+        //     user_name = intentx.getStringExtra("name");
+        obs_position = intentx.getIntExtra("positon", 0);
+        facility = intentx.getStringExtra("facility");
+        upozila = intentx.getStringExtra("upozila");
+        union = intentx.getStringExtra("union");
+        village = intentx.getStringExtra("village");
+        obsname = intentx.getStringExtra("obstype");
+        serial = intentx.getStringExtra("serial");
+        user_caretaker = (EditText) findViewById(R.id.userCareTaker);
+        sp_designation = (EditText) findViewById(R.id.sp_designation);
+        //   user.setText(user_name);
 
-        Log.d("..>>>>>>","Username"+user_name);
-
-
+        Log.d("..>>>>>>", "Username" + user_name);
 
 
-
-        timepicker1=(EditText)findViewById(R.id.timepicker);
-        datepicker1= (EditText)findViewById(R.id.datepicker);
+        timepicker1 = (EditText) findViewById(R.id.timepicker);
+        datepicker1 = (EditText) findViewById(R.id.datepicker);
         //  timepickerbutton=(Button)findViewById(R.id.timepickerbutton);
         //datepickerbutton=(Button)findViewById(R.id.datepickerbutton);
         Calendar c = Calendar.getInstance();
@@ -82,18 +80,13 @@ public class UserActivity extends AppCompatActivity {
         SimpleDateFormat df2 = new SimpleDateFormat("hh:mm:ss aa");
 
 
-        Date p=c.getTime();
+        Date p = c.getTime();
 
         Log.d(">>>", "data" + df.format(c.getTime()));
 
 
         datepicker1.setText("   " + df.format(c.getTime()));
-        timepicker1.setText("   "+df2.format(c.getTime()));
-
-
-
-
-
+        timepicker1.setText("   " + df2.format(c.getTime()));
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +96,6 @@ public class UserActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor1 = pref.edit();
                 int first_value = pref.getInt("id", 0);
                 int child_sick_value = pref.getInt("cs_id", 0);
-
 
 
                 FormTableUser formTable = new FormTableUser(UserActivity.this);
@@ -120,8 +112,6 @@ public class UserActivity extends AppCompatActivity {
                     editor.commit();
 
 
-
-
                     for (int i = 1; i <= 30; i++) {
 
                         FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
@@ -131,12 +121,6 @@ public class UserActivity extends AppCompatActivity {
 
 
                     }
-
-
-
-
-
-
 
 
                 }
@@ -157,7 +141,7 @@ public class UserActivity extends AppCompatActivity {
                 RadioGroup radioGroup1;
 
 
-                radioGroup1=(RadioGroup)findViewById(R.id.yesOrNo);
+                radioGroup1 = (RadioGroup) findViewById(R.id.yesOrNo);
 
 
                 int selectedq11 = radioGroup1.getCheckedRadioButtonId();
@@ -165,16 +149,13 @@ public class UserActivity extends AppCompatActivity {
                 RadioButton rb11 = (RadioButton) findViewById(selectedq11);
                 radioselection = rb11.getText().toString();
 
-                if(radioselection.equals("না"))
+                if (radioselection.equals("না"))
 
                 {
 
                     AlertMessage.showMessage(UserActivity.this, "You can not go to next step",
                             "");
-                }
-
-
-                else if (username.equals("")) {
+                } else if (username.equals("")) {
                     AlertMessage.showMessage(UserActivity.this, "Please insert User name.",
                             "");
 
@@ -196,55 +177,64 @@ public class UserActivity extends AppCompatActivity {
                     Log.d(">>>", "position_value" + obs_position);
 
 
-                  if(obs_position==0) {
-                      Intent intent = new Intent(UserActivity.this, TestActivity.class);
-                      intent.putExtra("name", username);
-                      intent.putExtra("id", first_value);
-                      intent.putExtra("c_name", collector_name.getText().toString());
+                    if (obs_position == 0) {
+                        Intent intent = new Intent(UserActivity.this, TestActivity.class);
+                        intent.putExtra("name", username);
+                        intent.putExtra("id", first_value);
+                        intent.putExtra("c_name", collector_name.getText().toString());
 
-                      intent.putExtra("mark", 1);
-                      intent.putExtra("datepicker", datepicker);
-                      intent.putExtra("timepicker", timepicker);
+                        intent.putExtra("mark", 1);
+                        intent.putExtra("datepicker", datepicker);
+                        intent.putExtra("timepicker", timepicker);
 
-                      // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+                        // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
 
-                      intent.putExtra("facility", facility);
-                      intent.putExtra("upozila", upozila);
-                      intent.putExtra("union", union);
-                      intent.putExtra("village", village);
-                      intent.putExtra("obstype", obsname);
-
-
-                      startActivity(intent);
-                      finish();
-                  }
-
-                    else if(obs_position==2)
-                  {
-                      Intent intent = new Intent(UserActivity.this, TestActivity1.class);
-                      intent.putExtra("caretaker",user_caretaker.getText().toString());
-                      intent.putExtra("name", username);
-                      intent.putExtra("id", child_sick_value);
-                      intent.putExtra("c_name", collector_name.getText().toString());
-                      intent.putExtra("designation",sp_designation.getText().toString());
-
-                      intent.putExtra("mark", 1);
-                      intent.putExtra("datepicker", datepicker);
-                      intent.putExtra("timepicker", timepicker);
-                      intent.putExtra("serial",serial);
-
-                      // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
-
-                      intent.putExtra("facility", facility);
-                      intent.putExtra("upozila", upozila);
-                      intent.putExtra("union", union);
-                      intent.putExtra("village", village);
-                      intent.putExtra("obstype", obsname);
+                        intent.putExtra("facility", facility);
+                        intent.putExtra("upozila", upozila);
+                        intent.putExtra("union", union);
+                        intent.putExtra("village", village);
+                        intent.putExtra("obstype", obsname);
 
 
-                      startActivity(intent);
-                      finish();
-                  }
+                        startActivity(intent);
+                        finish();
+                    } else if (obs_position == 1) {
+//                        Intent intent = new Intent(UserActivity.this, SateliteClinicInventoryActivity.class);
+//                        startActivity(intent);
+                        finish();
+                    } else if (obs_position == 2) {
+                        Intent intent = new Intent(UserActivity.this, TestActivity1.class);
+                        intent.putExtra("caretaker", user_caretaker.getText().toString());
+                        intent.putExtra("name", username);
+                        intent.putExtra("id", child_sick_value);
+                        intent.putExtra("c_name", collector_name.getText().toString());
+                        intent.putExtra("designation", sp_designation.getText().toString());
+
+                        intent.putExtra("mark", 1);
+                        intent.putExtra("datepicker", datepicker);
+                        intent.putExtra("timepicker", timepicker);
+                        intent.putExtra("serial", serial);
+
+                        // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+
+                        intent.putExtra("facility", facility);
+                        intent.putExtra("upozila", upozila);
+                        intent.putExtra("union", union);
+                        intent.putExtra("village", village);
+                        intent.putExtra("obstype", obsname);
+
+
+                        startActivity(intent);
+                        finish();
+                    } else if (obs_position == 3) {
+                        Intent intent = new Intent(UserActivity.this, FacilityInventoryActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else if (obs_position == 4) {
+                        Intent intent = new Intent(UserActivity.this, FpObservationActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
 
 
@@ -255,8 +245,7 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
-    private void passvalue()
-    {
+    private void passvalue() {
 
     }
 
@@ -270,7 +259,7 @@ public class UserActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intentv= new Intent(UserActivity.this,SelectionUserActivity.class);
+        Intent intentv = new Intent(UserActivity.this, SelectionUserActivity.class);
         startActivity(intentv);
         finish();
 

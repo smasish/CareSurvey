@@ -83,8 +83,11 @@
         <activity
             android:name=".activity.DisplayUserFormActivity"
             android:label="@string/title_activity_display_user_form" />
-        <activity android:name=".activity.SupervisiorVerificationSickChild"></activity>
-        <activity android:name=".activity.SelectionActivity"></activity>
+        <activity android:name=".activity.SupervisiorVerificationSickChild" />
+        <activity android:name=".activity.SelectionActivity" />
+        <activity android:name=".activity.SateliteClinicInventoryActivity" />
+        <activity android:name=".activity.FpObservationActivity" />
+        <activity android:name=".activity.FacilityInventoryActivity"></activity>
     </application>
 
 </manifest>

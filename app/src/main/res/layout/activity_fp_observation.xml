@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dip"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include_fb_ques_01"
+        layout="@layout/fp_observation_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+    <include
+        android:id="@+id/include_fb_ques_02"
+        layout="@layout/fp_observation_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+    <include
+        android:id="@+id/include_fb_ques_03"
+        layout="@layout/fp_observation_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+    <include
+        android:id="@+id/include_fb_ques_04"
+        layout="@layout/fp_observation_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+    <include
+        android:id="@+id/include_fb_ques_05"
+        layout="@layout/fp_observation_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+    <include
+        android:id="@+id/include_fb_ques_06"
+        layout="@layout/fp_observation_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        />
+
+    <include
+        android:id="@+id/include_fb_ques_07"
+        layout="@layout/fp_observation_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+    <include
+        android:id="@+id/include_fb_ques_08"
+        layout="@layout/fp_observation_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+</LinearLayout>

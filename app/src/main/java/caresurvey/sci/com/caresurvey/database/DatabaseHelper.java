@@ -17,6 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String FORM= "form";
     public static final String FORM_USER= "anc";
     public static final String FORM_SICK_CHILD= "csc";
+    public static final String FORM_FP_OBSERVATION= "fp_observation";
     public static final String FORM_SICK_CHILD_SUPERVISOR= "csc_supervisor";
 
     public Context context;

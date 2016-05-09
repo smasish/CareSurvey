@@ -34,36 +34,36 @@ public class DisplayUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_user);
 
-        listView=(ListView)findViewById(R.id.user_list);
-        Intent in= getIntent();
-        names  = in.getStringExtra("name");
+        listView = (ListView) findViewById(R.id.user_list);
+        Intent in = getIntent();
+        names = in.getStringExtra("name");
         //     Log.d(".....>>>>>>>>>>", "response length" + names);
 
         ArrayList<FormItemUser> formItemsUser;
         FormItem formItem;
 
         final FormTableUser formTable = new FormTableUser(DisplayUserActivity.this);
-        formItemsUser= formTable.getAll();
-        int k=0;
-        int f= formItemsUser.size();
-        int[] id=new int[f];
-        String[] name=new String[f];
-        final int[] status= new int[f];
-        final String[] inS= new String[f];
-        if(!formItemsUser.isEmpty()) {
+        formItemsUser = formTable.getAll();
+        int k = 0;
+        int f = formItemsUser.size();
+        int[] id = new int[f];
+        String[] name = new String[f];
+        final int[] status = new int[f];
+        final String[] inS = new String[f];
+        if (!formItemsUser.isEmpty()) {
             for (FormItemUser ft : formItemsUser)
 
             {
                 id[k] = ft.getPatientid();
                 name[k] = ft.getName();
                 status[k] = ft.getStatus();
-                inS[k]= ft.getInS();
+                inS[k] = ft.getInS();
                 k++;
 
 
             }
         }
-        adapter=new DisplayNamesWithStatusAdapter(this,id,name,status,inS);
+        adapter = new DisplayNamesWithStatusAdapter(this, id, name, status, inS);
 
         listView.setAdapter(adapter);
         //     Helpes.getListViewSize(courseListView);
@@ -71,19 +71,17 @@ public class DisplayUserActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Status.......ONClick", "response length" );
+                Log.d("Status.......ONClick", "response length");
                 Log.d("Status.......", "response length" + status[position]);
-                if(status[position+1]==3)
-                {
+                if (status[position + 1] == 3) {
 
                     AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",
                             "");
 
-                }
-                else {
-                    Intent iiv = new Intent(DisplayUserActivity.this,TestActivity.class);
-                    iiv.putExtra("position",position+1);
-                    iiv.putExtra("name",names);
+                } else {
+                    Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
+                    iiv.putExtra("position", position + 1);
+                    iiv.putExtra("name", names);
                     startActivity(iiv);
                     finish();
                 }
@@ -97,33 +95,33 @@ public class DisplayUserActivity extends AppCompatActivity {
 
         ArrayList<FormItemUser> formItemsUser;
         final FormTableUser formTable = new FormTableUser(DisplayUserActivity.this);
-        formItemsUser= formTable.getAll();
+        formItemsUser = formTable.getAll();
 
 
-        int k=0;
-        int f= formItemsUser.size();
+        int k = 0;
+        int f = formItemsUser.size();
 
-        int[] id=new int[f];
-        String[] name=new String[f];
+        int[] id = new int[f];
+        String[] name = new String[f];
 
-        final int[] status= new int[f];
+        final int[] status = new int[f];
 
-        final String[] inS= new String[f];
+        final String[] inS = new String[f];
 
-        if(!formItemsUser.isEmpty()) {
+        if (!formItemsUser.isEmpty()) {
             for (FormItemUser ft : formItemsUser)
 
             {
                 id[k] = ft.getPatientid();
                 name[k] = ft.getName();
                 status[k] = ft.getStatus();
-                inS[k]= ft.getInS();
+                inS[k] = ft.getInS();
                 k++;
 
 
             }
         }
-        adapter=new DisplayNamesWithStatusAdapter(this,id,name,status,inS);
+        adapter = new DisplayNamesWithStatusAdapter(this, id, name, status, inS);
 
         listView.setAdapter(adapter);
 
@@ -153,8 +151,6 @@ public class DisplayUserActivity extends AppCompatActivity {
         });
 
 
-
-
         super.onResume();
     }
 
@@ -170,12 +166,13 @@ public class DisplayUserActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
     }
-   @Override
+
+    @Override
     public void onBackPressed() {
 
-     Intent intents= new Intent(DisplayUserActivity.this,SelectionUserActivity.class);
-       startActivity(intents);
-       finish();
+        Intent intents = new Intent(DisplayUserActivity.this, SelectionUserActivity.class);
+        startActivity(intents);
+        finish();
     }
 
     @Override

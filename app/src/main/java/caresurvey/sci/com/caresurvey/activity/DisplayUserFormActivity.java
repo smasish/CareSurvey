@@ -36,35 +36,34 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_user);
 
-        listView=(ListView)findViewById(R.id.user_list);
-        Intent in= getIntent();
-        names  = in.getStringExtra("name");
+        listView = (ListView) findViewById(R.id.user_list);
+        Intent in = getIntent();
+        names = in.getStringExtra("name");
         //     Log.d(".....>>>>>>>>>>", "response length" + names);
 
         ArrayList<SickChildItem> sickChildItems;
         FormItem formItem;
 
         SickChildTable sickChildTable = new SickChildTable(DisplayUserFormActivity.this);
-        sickChildItems= sickChildTable.getAllInfo();
-        int k=0;
-        int f= sickChildItems.size();
-        int[] id=new int[f];
-        String[] name=new String[f];
-        final int[] status= new int[f];
-        final String[] inS= new String[f];
-        if(!sickChildItems.isEmpty()) {
-            for (SickChildItem ft : sickChildItems)
-            {
+        sickChildItems = sickChildTable.getAllInfo();
+        int k = 0;
+        int f = sickChildItems.size();
+        int[] id = new int[f];
+        String[] name = new String[f];
+        final int[] status = new int[f];
+        final String[] inS = new String[f];
+        if (!sickChildItems.isEmpty()) {
+            for (SickChildItem ft : sickChildItems) {
                 id[k] = ft.getId();
                 name[k] = ft.getSp_client();
                 status[k] = Integer.parseInt(ft.getStatus());
-                inS[k]= ft.getFields();
+                inS[k] = ft.getFields();
                 k++;
 
 
             }
         }
-        adapter=new DisplayNamesWithStatusAdapter(this,id,name,status,inS);
+        adapter = new DisplayNamesWithStatusAdapter(this, id, name, status, inS);
 
         listView.setAdapter(adapter);
         //     Helpes.getListViewSize(courseListView);
@@ -72,19 +71,17 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Status.......ONClick", "response length" );
+                Log.d("Status.......ONClick", "response length");
                 Log.d("Status.......", "response length" + status[position]);
-                if(status[position+1]==3)
-                {
+                if (status[position + 1] == 3) {
 
                     AlertMessage.showMessage(DisplayUserFormActivity.this, "You can not edit until supervisor review it",
                             "");
 
-                }
-                else {
-                    Intent iiv = new Intent(DisplayUserFormActivity.this,TestActivity1.class);
-                    iiv.putExtra("position",position+1);
-                    iiv.putExtra("name",names);
+                } else {
+                    Intent iiv = new Intent(DisplayUserFormActivity.this, TestActivity1.class);
+                    iiv.putExtra("position", position + 1);
+                    iiv.putExtra("name", names);
                     startActivity(iiv);
                     finish();
                 }
@@ -100,31 +97,31 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         FormItem formItem;
 
         SickChildTable sickChildTable = new SickChildTable(DisplayUserFormActivity.this);
-        sickChildItems= sickChildTable.getAllInfo();
-        int k=0;
-        int f= sickChildItems.size();
+        sickChildItems = sickChildTable.getAllInfo();
+        int k = 0;
+        int f = sickChildItems.size();
 
-        int[] id=new int[f];
-        String[] name=new String[f];
+        int[] id = new int[f];
+        String[] name = new String[f];
 
-        final int[] status= new int[f];
+        final int[] status = new int[f];
 
-        final String[] inS= new String[f];
+        final String[] inS = new String[f];
 
-        if(!sickChildItems.isEmpty()) {
+        if (!sickChildItems.isEmpty()) {
             for (SickChildItem ft : sickChildItems)
 
             {
                 id[k] = ft.getId();
                 name[k] = ft.getSp_client();
                 status[k] = Integer.parseInt(ft.getStatus());
-                inS[k]= ft.getFields();
+                inS[k] = ft.getFields();
                 k++;
 
 
             }
         }
-        adapter=new DisplayNamesWithStatusAdapter(this,id,name,status,inS);
+        adapter = new DisplayNamesWithStatusAdapter(this, id, name, status, inS);
 
         listView.setAdapter(adapter);
 
@@ -154,8 +151,6 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         });
 
 
-
-
         super.onResume();
     }
 
@@ -171,10 +166,11 @@ public class DisplayUserFormActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
     }
+
     @Override
     public void onBackPressed() {
 
-        Intent intents= new Intent(DisplayUserFormActivity.this,SelectionUserActivity.class);
+        Intent intents = new Intent(DisplayUserFormActivity.this, SelectionUserActivity.class);
         startActivity(intents);
         finish();
     }

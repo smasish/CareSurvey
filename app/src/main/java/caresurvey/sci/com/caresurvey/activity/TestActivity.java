@@ -44,12 +44,12 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 public class TestActivity extends AppCompatActivity {
 
 
-    String add_update,names,datespicker,timepicker,upozila,union,village,facility,obsname;
-    int intValue,mark,intvalue2;
+    String add_update, names, datespicker, timepicker, upozila, union, village, facility, obsname;
+    int intValue, mark, intvalue2;
     ArrayList<String> form;
-    Button Save, Submit,back;
+    Button Save, Submit, back;
     LinearLayout test;
-    String collector_name,username,password;
+    String collector_name, username, password;
 
     String date;
     public String bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status, del_status, feed_status, six_status, family_status, foltab_status, folimp_status;
@@ -65,12 +65,13 @@ public class TestActivity extends AppCompatActivity {
 
     ArrayList<FormItemUser> formItemAll;
 
-    TextView tv1,tv2,tv3,comment,field;
+    TextView tv1, tv2, tv3, comment, field;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test1);
-        test= (LinearLayout)findViewById(R.id.commentSection);
+        test = (LinearLayout) findViewById(R.id.commentSection);
         Save = (Button) findViewById(R.id.Savebtn);
         Submit = (Button) findViewById(R.id.Submit);
         bloodpressure = (RadioGroup) findViewById(R.id.bloodpressure);
@@ -85,26 +86,26 @@ public class TestActivity extends AppCompatActivity {
         familyplanning = (RadioGroup) findViewById(R.id.familyplanning);
         folictablet = (RadioGroup) findViewById(R.id.folictablet);
         folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
-        comment=(TextView)findViewById(R.id.comment);
-        field = (TextView)findViewById(R.id.field);
-        tv1=(TextView)findViewById(R.id.textView3);
+        comment = (TextView) findViewById(R.id.comment);
+        field = (TextView) findViewById(R.id.field);
+        tv1 = (TextView) findViewById(R.id.textView3);
         Intent mIntent = getIntent();
         intValue = mIntent.getIntExtra("id", 0);
-        names=mIntent.getStringExtra("name");
-        mark=mIntent.getIntExtra("mark", 0);
-        collector_name= mIntent.getStringExtra("c_name");
-        upozila=mIntent.getStringExtra("upozila");
-        union=mIntent.getStringExtra("union");
-        village=mIntent.getStringExtra("village");
+        names = mIntent.getStringExtra("name");
+        mark = mIntent.getIntExtra("mark", 0);
+        collector_name = mIntent.getStringExtra("c_name");
+        upozila = mIntent.getStringExtra("upozila");
+        union = mIntent.getStringExtra("union");
+        village = mIntent.getStringExtra("village");
 
 
-        datespicker= mIntent.getStringExtra("datepicker");
-        timepicker=mIntent.getStringExtra("timepicker");
-        facility=mIntent.getStringExtra("facility");
-        if(intValue==0)
-            intValue=1;
+        datespicker = mIntent.getStringExtra("datepicker");
+        timepicker = mIntent.getStringExtra("timepicker");
+        facility = mIntent.getStringExtra("facility");
+        if (intValue == 0)
+            intValue = 1;
 
-        intvalue2=intValue;
+        intvalue2 = intValue;
         intvalue2++;
 
         SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
@@ -115,12 +116,8 @@ public class TestActivity extends AppCompatActivity {
         password = pref.getString("password", null);
 
 
-
-
-
-
         Log.d("Status.......", "response length" + intValue);
-        if(mark==1) {
+        if (mark == 1) {
             test.setVisibility(View.GONE);
             Save.setText("Insert");
         }
@@ -131,8 +128,8 @@ public class TestActivity extends AppCompatActivity {
         ArrayList<FormItemUser> formItems1;
         ArrayList<FormItemUser> formItems2;
         final FormTableUser formTable = new FormTableUser(TestActivity.this);
-        formItems= formTable.getSpecificItem(intValue);
-        formItems1= formTable.getSpecificItem(intValue);
+        formItems = formTable.getSpecificItem(intValue);
+        formItems1 = formTable.getSpecificItem(intValue);
         FormItemUser formItem;
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,19 +138,19 @@ public class TestActivity extends AppCompatActivity {
                 StorevaluesinVar();
 
                 int status = 6;
-                String global_id= "1";
+                String global_id = "1";
                 String name = names;
-                String comments= "";
-                String fields= "";
+                String comments = "";
+                String fields = "";
 //                FormItemUser formItem = new FormItemUser(1, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
 //                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
 
 
                 FormTableUser formTable = new FormTableUser(TestActivity.this);
                 try {
-                    if(mark==1) {
+                    if (mark == 1) {
                         if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names,datespicker,timepicker,collector_name, facility,upozila ,union,village)) == 1) {
+                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names, datespicker, timepicker, collector_name, facility, upozila, union, village)) == 1) {
 
                             Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " + name, Toast.LENGTH_SHORT).show();
                             savevalue();
@@ -161,31 +158,24 @@ public class TestActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }
-                    }
-                    else {
-
-
+                    } else {
 
 
                         ArrayList<FormItemUser> formTableUsers;
-                        FormTableUser formTableUser= new FormTableUser(TestActivity.this);
+                        FormTableUser formTableUser = new FormTableUser(TestActivity.this);
 
-                        formTableUsers=formTableUser.dateconcate(intValue);
+                        formTableUsers = formTableUser.dateconcate(intValue);
 
-                        for(FormItemUser formItemUser:formTableUsers)
-                        {
+                        for (FormItemUser formItemUser : formTableUsers) {
                             date = formItemUser.getDatepick();
                         }
                         Calendar c = Calendar.getInstance();
                         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                        String current_date=df.format(c.getTime());
+                        String current_date = df.format(c.getTime());
                         //  String current_date1= current_date.toString();
 
-                        String addspace=date.concat(" ");
-                        String dateconcate= addspace.concat(String.valueOf(current_date));
-
-
-
+                        String addspace = date.concat(" ");
+                        String dateconcate = addspace.concat(String.valueOf(current_date));
 
 
                         if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
@@ -205,90 +195,85 @@ public class TestActivity extends AppCompatActivity {
         });
 
 
-
-
-        for(FormItemUser ft: formItems)
-        {
-            if(ft.getBloodpressure().equals("Yes"))
+        for (FormItemUser ft : formItems) {
+            if (ft.getBloodpressure().equals("Yes"))
                 bloodpressure.check(R.id.ques1rad1);
             else
                 bloodpressure.check(R.id.ques1rad2);
 
-            if(ft.getHemoglobintest().equals("Yes"))
+            if (ft.getHemoglobintest().equals("Yes"))
                 hemoglobintest.check(R.id.radioButton3);
             else
                 hemoglobintest.check(R.id.radioButton4);
 
-            if(ft.getUrinetest().equals("Yes"))
+            if (ft.getUrinetest().equals("Yes"))
                 urinetest.check(R.id.radioButton);
             else
                 urinetest.check(R.id.radioButton2);
-            if(ft.getPregnancyfood().equals("Yes"))
+            if (ft.getPregnancyfood().equals("Yes"))
                 pregnancyfood.check(R.id.radioButton5);
             else
                 pregnancyfood.check(R.id.radioButton6);
 
-            if(ft.getPregnancydanger().equals("Yes"))
+            if (ft.getPregnancydanger().equals("Yes"))
                 pregnancydanger.check(R.id.radioButton7);
             else
                 pregnancydanger.check(R.id.radioButton8);
 
-            if(ft.getFourparts().equals("Yes"))
+            if (ft.getFourparts().equals("Yes"))
                 fourparts.check(R.id.radioButton9);
             else
                 fourparts.check(R.id.radioButton10);
 
-            if(ft.getDelivery().equals("Yes"))
+            if (ft.getDelivery().equals("Yes"))
                 delivery.check(R.id.radioButton11);
             else
                 delivery.check(R.id.radioButton12);
 
-            if(ft.getFeedbaby().equals("Yes"))
+            if (ft.getFeedbaby().equals("Yes"))
                 feedbaby.check(R.id.radioButton13);
             else
                 feedbaby.check(R.id.radioButton14);
 
-            if(ft.getSixmonths().equals("Yes"))
+            if (ft.getSixmonths().equals("Yes"))
                 sixmonths.check(R.id.radioButton15);
             else
                 sixmonths.check(R.id.radioButton16);
 
-            if(ft.getFamilyplanning().equals("Yes"))
+            if (ft.getFamilyplanning().equals("Yes"))
                 familyplanning.check(R.id.radioButton17);
             else
                 familyplanning.check(R.id.radioButton18);
 
-            if(ft.getFolictablet().equals("Yes"))
+            if (ft.getFolictablet().equals("Yes"))
                 folictablet.check(R.id.radioButton19);
             else
                 folictablet.check(R.id.radioButton20);
-            if(!ft.getComments().equals(""))
-            {
+            if (!ft.getComments().equals("")) {
                 comment.setVisibility(View.VISIBLE);
                 comment.setText(ft.getComments());
 
             }
 
-            if(ft.getStatus()==1)
+            if (ft.getStatus() == 1)
                 test.setVisibility(View.INVISIBLE);
 
-            if(!ft.getFields().equals(""))
-            {
+            if (!ft.getFields().equals("")) {
                 field.setVisibility(View.VISIBLE);
                 field.setText(ft.getFields());
 
             }
 
-            if(ft.getFolictabletimportance().equals("Yes"))
+            if (ft.getFolictabletimportance().equals("Yes"))
                 folictabletimportance.check(R.id.radioButton21);
             else
                 folictabletimportance.check(R.id.radioButton22);
         }
-        back=(Button)findViewById(R.id.back);
+        back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back= new Intent(TestActivity.this,DisplayUserActivity.class);
+                Intent back = new Intent(TestActivity.this, DisplayUserActivity.class);
                 startActivity(back);
                 finish();
             }
@@ -300,8 +285,8 @@ public class TestActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 FormTableUser formTableUser = new FormTableUser(TestActivity.this);
-                formTableUser.updateIns("2",intValue);
-                formItemAll=formTable.getSpecificItem(intValue);
+                formTableUser.updateIns("2", intValue);
+                formItemAll = formTable.getSpecificItem(intValue);
                 String tag_json_obj = "json_obj_req";
                 String url = "http://www.kolorob.net/mamoni/survey/api/form";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -312,20 +297,16 @@ public class TestActivity extends AppCompatActivity {
                                     JSONObject jo = new JSONObject(response);
                                     Log.d(".....>>>>>>>>>>", "Status " + jo);
                                     String status = jo.getString("status");
-                                    if(status.equals("2"))
-                                    {
-                                        FormTableUser formtableuser= new FormTableUser(TestActivity.this);
-                                        formtableuser.updateglobalI(intValue,3);
+                                    if (status.equals("2")) {
+                                        FormTableUser formtableuser = new FormTableUser(TestActivity.this);
+                                        formtableuser.updateglobalI(intValue, 3);
                                         Save.setVisibility(View.GONE);
-                                        Intent intentw = new Intent(TestActivity.this,DisplayUserActivity.class);
+                                        Intent intentw = new Intent(TestActivity.this, DisplayUserActivity.class);
                                         startActivity(intentw);
                                         finish();
                                     }
 
-                                }
-
-                                catch(Exception e)
-                                {
+                                } catch (Exception e) {
                                 }
                                 //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
                             }
@@ -341,8 +322,6 @@ public class TestActivity extends AppCompatActivity {
                     protected Map<String, String> getParams() {
 
 
-
-
                         Map<String, String> params = new HashMap<>();
 
                         try {
@@ -350,46 +329,36 @@ public class TestActivity extends AppCompatActivity {
                             //record
                             JSONArray requests = new JSONArray();
 //                            JSONArray jsonArray =new JSONArray();
-                            for(FormItemUser formItem1: formItemAll)
-                            {
-                                JSONObject jf= new JSONObject();
-                                JSONObject fs=new JSONObject();
-
+                            for (FormItemUser formItem1 : formItemAll) {
+                                JSONObject jf = new JSONObject();
+                                JSONObject fs = new JSONObject();
 
 
                                 fs.put("form_type", "dh_antenantals");
-                                fs.put("form_id",intValue);
-                                jf.put("hemoglobintest",formItem1.getHemoglobintest());
-                                jf.put("bloodpressure",formItem1.getBloodpressure());
-                                jf.put("urinetest",formItem1.getUrinetest());
-                                jf.put("pregnancyfood",formItem1.getPregnancyfood());
-                                jf.put("pregnancydanger",formItem1.getPregnancydanger());
-                                jf.put("fourparts",formItem1.getFourparts());
-                                jf.put("delivery",formItem1.getDelivery());
-                                jf.put("feedbaby",formItem1.getFeedbaby());
-                                jf.put("sixmonths",formItem1.getSixmonths());
-                                jf.put("familyplanning",formItem1.getFamilyplanning());
-                                jf.put("folictablet",formItem1.getFolictablet());
-                                jf.put("folictabletimportance",formItem1.getFolictabletimportance());
-                                jf.put("patient_name",formItem1.getName());
-                                jf.put("district",formItem1.getDivision());
-                                jf.put("sub_district",formItem1.getUpozila());
-                                jf.put("union",formItem1.getUnion());
-                                jf.put("village",formItem1.getVillage());
+                                fs.put("form_id", intValue);
+                                jf.put("hemoglobintest", formItem1.getHemoglobintest());
+                                jf.put("bloodpressure", formItem1.getBloodpressure());
+                                jf.put("urinetest", formItem1.getUrinetest());
+                                jf.put("pregnancyfood", formItem1.getPregnancyfood());
+                                jf.put("pregnancydanger", formItem1.getPregnancydanger());
+                                jf.put("fourparts", formItem1.getFourparts());
+                                jf.put("delivery", formItem1.getDelivery());
+                                jf.put("feedbaby", formItem1.getFeedbaby());
+                                jf.put("sixmonths", formItem1.getSixmonths());
+                                jf.put("familyplanning", formItem1.getFamilyplanning());
+                                jf.put("folictablet", formItem1.getFolictablet());
+                                jf.put("folictabletimportance", formItem1.getFolictabletimportance());
+                                jf.put("patient_name", formItem1.getName());
+                                jf.put("district", formItem1.getDivision());
+                                jf.put("sub_district", formItem1.getUpozila());
+                                jf.put("union", formItem1.getUnion());
+                                jf.put("village", formItem1.getVillage());
 
 
-
-
-
-
-                                fs.put("data",jf);
-
-
-
+                                fs.put("data", jf);
 
 
                                 requests.put(fs);
-
 
 
                             }
@@ -406,9 +375,6 @@ public class TestActivity extends AppCompatActivity {
                             request.put("type", add_update);
                             request.put("form_type", "dh_antenantals");
                             request.put("data", formItemAll);
-
-
-
 
 
                             //record ====================================2
@@ -435,8 +401,7 @@ public class TestActivity extends AppCompatActivity {
                             data.put("requests", requests);
 
                             params.put("data", data.toString());
-                        }
-                        catch (Exception e){
+                        } catch (Exception e) {
 
                         }
 
@@ -453,19 +418,18 @@ public class TestActivity extends AppCompatActivity {
         });
 
 
-
     }
 
 
-    public void savevalue()
-    {
+    public void savevalue() {
         SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         // Toast.makeText(getApplicationContext(), "Now I am in onResume ", Toast.LENGTH_SHORT).show();
 
-        editor.putInt("id",intvalue2);
+        editor.putInt("id", intvalue2);
         editor.commit();
     }
+
     public void StorevaluesinVar() {
         int selectedq1 = bloodpressure.getCheckedRadioButtonId();
         int selectedq2 = hemoglobintest.getCheckedRadioButtonId();
@@ -539,8 +503,6 @@ public class TestActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -552,7 +514,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intents= new Intent(TestActivity.this,DisplayUserActivity.class);
+        Intent intents = new Intent(TestActivity.this, DisplayUserActivity.class);
         startActivity(intents);
         finish();
     }
