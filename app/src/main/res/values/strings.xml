@@ -112,51 +112,58 @@ nq wK bv|</string>
     <string name="inventory_dust_ques_210">২১০) </string>
     <string name="inventory_dust_ques_211">২১১) </string>
     <string name="inventory_dust_ques_212">২১২) </string>
-    <!--Inventory dust romoval answers-->
-    <string name="inventory_dust_ques_202_ans_1">GB ¯^v¯’¨‡K‡›`ªi wfZ‡i</string>
-    <string name="inventory_dust_ques_202_ans_2"> ¯^v¯’¨‡K‡›`ªi wfZ‡i I evB‡i DfqB</string>
-    <string name="inventory_dust_ques_202_ans_3">¯^v¯’¨‡K‡›`ªi evB‡i</string>
+    <!--Inventory suply and equipment questions-->
 
-    <string name="inventory_dust_ques_203_ans_1">Bbwmbv‡iU‡i cywo‡q †djv nq</string>
-    <string name="inventory_dust_ques_203_ans_2">msiwÿZ gvV ev M‡Z© cywo‡q †djv nq gv‡V</string>
-    <string name="inventory_dust_ques_203_ans_3">‡h †Kvb (Awba©vwiZ) †Lvjv gvV ev M‡Z© cywo‡q †djv nq</string>
-    <string name="inventory_dust_ques_203_ans_4">XvKbvhy³ Wvw¤ús wcU ev wcU cvqLvbvq †djv nq</string>
-    <string name="inventory_dust_ques_203_ans_5">msiwÿZ (wba©vwiZ) gvV ev M‡Z© †djv nq</string>
-    <string name="inventory_dust_ques_203_ans_6">‡h †Kvb (Awba©vwiZ) AmsiwÿZ †Lvjv gvV ev M‡Z© †djv nq</string>
-    <string name="inventory_dust_ques_203_ans_7">Ave„Z K‡›UBbv‡i Rgv K‡i ¯^v¯’¨‡K‡›`ªi evB‡i cvVv‡bv nq</string>
-    <string name="inventory_dust_ques_203_ans_8">Ab¨vb¨, wbw`©ó K‡i wjLyb</string>
-    <string name="inventory_dust_ques_203_ans_9">aviv‡jv eR©¨ KLbI nq bv</string>
-
-    <string name="inventory_dust_ques_204_ans_1">†j‡ewjs Kiv ʺjvjÓ cv‡Î msiÿY Kiv nq</string>
-    <string name="inventory_dust_ques_204_ans_2">†j‡ewjs Kiv ʺjvjÓ cvÎ †`Lv hvq bvB</string>
-    <string name="inventory_dust_ques_204_ans_3">eR©¨ msiÿY Kivi wba©vwiZ ‡Kvb ¯’vb bvB</string>
-    <string name="inventory_dust_ques_204_ans_4">eR©¨ msiÿY Kivi ¯’vb cwi`k©b Kiv nq wb</string>
-
-    <string name="inventory_dust_ques_205_ans_1">Bbwmbv‡iU‡i cywo‡q †djv nq</string>
-    <string name="inventory_dust_ques_205_ans_2">msiwÿZ gvV ev M‡Z© cywo‡q †djv nq gv‡V</string>
-    <string name="inventory_dust_ques_205_ans_3">‡h †Kvb (Awba©vwiZ) †Lvjv gvV ev M‡Z© cywo‡q †djv nq</string>
-    <string name="inventory_dust_ques_205_ans_4">XvKbvhy³ Wvw¤ús wcU ev wcU cvqLvbvq †djv nq</string>
-    <string name="inventory_dust_ques_205_ans_5">msiwÿZ (wba©vwiZ) gvV ev M‡Z© †djv nq</string>
-    <string name="inventory_dust_ques_205_ans_6">‡h †Kvb (Awba©vwiZ) AmsiwÿZ †Lvjv gvV ev M‡Z© †djv nq</string>
-    <string name="inventory_dust_ques_205_ans_7">Ave„Z K‡›UBbv‡i Rgv K‡i ¯^v¯’¨‡K‡›`ªi evB‡i cvVv‡bv nq</string>
-    <string name="inventory_dust_ques_205_ans_8">Ab¨vb¨</string>
-    <string name="inventory_dust_ques_205_ans_8_specify">wbw`©ó K‡i wjLyb</string>
-    <string name="inventory_dust_ques_205_ans_9">Zij eR©¨ KLbI nq bv</string>
-
-    <string name="inventory_dust_ques_206_ans_1">†j‡ewjs Kiv ʺnjy`Ó cv‡Î msiÿY Kiv nq</string>
-    <string name="inventory_dust_ques_206_ans_2">†j‡ewjs Kiv ʺnjy`Ó cvÎ †`Lv hvq bvB</string>
-    <string name="inventory_dust_ques_206_ans_3">eR©¨ msiÿY Kivi wba©vwiZ ‡Kvb ¯’vb bvB</string>
-    <string name="inventory_dust_ques_206_ans_4">eR©¨ msiÿY Kivi ¯’vb cwi`k©b Kiv nq wb</string>
-
-    <string name="inventory_dust_ques_207_ans_1">†j‡ewjs Kiv ʺmeyRÓ cv‡Î msiÿY Kiv nq</string>
-    <string name="inventory_dust_ques_207_ans_2"> †j‡ewjs Kiv ʺmeyRÓ cvÎ †`Lv hvq bvB</string>
-    <string name="inventory_dust_ques_207_ans_3">eR©¨ msiÿY Kivi wba©vwiZ ‡Kvb ¯’vb bvB</string>
-    <string name="inventory_dust_ques_207_ans_4">eR©¨ msiÿY Kivi ¯’vb cwi`k©b Kiv nq wb</string>
-
-    <string name="inventory_dust_ques_208_ans_1">†j‡ewjs Kiv ʺKvjÓ cv‡Î msiÿY Kiv nq</string>
-    <string name="inventory_dust_ques_208_ans_2">†j‡ewjs Kiv ʺKvjÓ cvÎ †`Lv hvq bvB</string>
-    <string name="inventory_dust_ques_208_ans_3">eR©¨ msiÿY Kivi wba©vwiZ ‡Kvb ¯’vb bvB</string>
-    <string name="inventory_dust_ques_208_ans_4">eR©¨ msiÿY Kivi ¯’vb cwi`k©b Kiv nq wb</string>
-    <!--<string name="inventory_dust_ques_20_ans_"></string>-->
-
+    <string name="inventory_ques_301">৩০১)DËi`vZvi bvgt</string>
+    <string name="inventory_ques_301_1">c`ext</string>c`ext
+    <string name="inventory_ques_302">৩০২) GWvë IBs †¯‹j</string>
+    <string name="inventory_ques_303">৩০৩) D”PZv gvcvi Rb¨ ó¨vwWIwgUvi (ev nvBU iW)</string>
+    <string name="inventory_ques_304">৩০৪) eøvW †cÖmvi G¨vcv‡iUvm</string>
+    <string name="inventory_ques_305">৩০৫) ‡÷‡_v‡¯‹vc</string>
+    <string name="inventory_ques_306">৩০৬) wdUvj ‡÷‡_v‡¯‹vc</string>
+    <string name="inventory_ques_307">৩০৭) ivwbs IqvUvi (cvB‡ci cvwb, U¨vchy³ evjwZ/Kjwk †_‡K Xvjv cvwb)</string>
+    <string name="inventory_ques_308">৩০৮) nvZ †avqvi mvevb (wjKzBW mvevbI n‡Z cv‡i)</string>
+    <string name="inventory_ques_309">৩০৯) Gj‡Kvnj-wfwËK RxevbybvkK (†nw·mj/w¯úwiU)</string>
+    <string name="inventory_ques_310">৩১০) I‡q÷ wi‡mcU¨vKj (XvKbvhy³ †cWvj web, cøvw÷K web jvBbvihy³)</string>
+    <string name="inventory_ques_311">৩১১) mvc© I‡q÷ ivLvi cvÎ (†mdwU e·)</string>
+    <string name="inventory_ques_312">৩১২) j¨v‡U· Møvfm (mvwR©K¨vj Møvfm)</string>
+    <string name="inventory_ques_313">৩১৩) Avqib Ges dwjK GwmW U¨ve‡jU Av‡Q (‰ea †gqv‡`i)</string>
+    <string name="inventory_ques_314">৩১৪) BDwib †cÖvwUb</string>
+    <string name="inventory_ques_315">৩১৫) BDwib †cÖvwUb †U‡ói Rb¨ ‡Uó wUDe Av‡Q</string>
+    <string name="inventory_ques_316">৩১৬) BDwib †cÖvwUb †U‡ói ‡Uó wUDe †nvìvi Av‡Q</string>
+    <string name="inventory_ques_317">৩১৭) BDwib †cÖvwUb †U‡ói ‡Uó wUDe i¨vK Av‡Q</string>
+    <string name="inventory_ques_318">৩১৮) BDwib †cÖvwUb †U‡ói Rb¨ wWc wóKm (‰ea †gqv‡`i) Av‡Q</string>
+    <string name="inventory_ques_319">৩১৯) wn‡gv‡Møvweb</string>
+    <string name="inventory_ques_320">৩২০) wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU eyK Av‡Q</string>
+    <string name="inventory_ques_321">৩২১) wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU j¨vb‡mU Av‡Q</string>
+    <string name="inventory_ques_322">৩২২) wn‡gv‡Møvweb cixÿvi Rb¨ mPj K‡jvwiwgUvi ev wn‡gv‡Møvwe‡bvwgUvi Av‡Q</string>
+    <string name="inventory_ques_323">৩২৩) wn‡gv‡Møvweb cixÿvi Rb¨ (‰ea †gqv‡`i ZvwiL mn) wjUgvm †ccvi Av‡Q</string>
+    <string name="inventory_ques_324">c`ext</string>
+    <string name="inventory_ques_325">৩২৫) DËi`vZvi bvgt </string>
+    <string name="inventory_ques_326">৩২৬) ‡Wwjfvwi †Uwej</string>
+    <string name="inventory_ques_327">৩২৭) øvW †cÖmvi G¨vcv‡iUvm</string>
+    <string name="inventory_ques_328">৩২৮) ‡÷‡_v‡¯‹vc</string>
+    <string name="inventory_ques_329">৩২৯) wdUvj ‡÷‡_v‡¯‹vc</string>
+    <string name="inventory_ques_330">৩৩০) wbDeb© wimvmwm‡Ukb e¨vM</string>
+    <string name="inventory_ques_331">৩৩১) wbDeb© wimvmwm‡Ukb gv¯‹ mvBR 0</string>
+    <string name="inventory_ques_332">৩৩২) wbDeb© wimvmwm‡Ukb gv¯‹ mvBR 1</string>
+    <string name="inventory_ques_333">৩৩৩) †c½yBb mvKvi</string>
+    <string name="inventory_ques_334">৩৩৪) KW© KvUvi wmRvi</string>
+    <string name="inventory_ques_335">৩৩৫) KW© K¬¨v¤ú A_ev AvgwewjK¨vj ˆUBj</string>
+    <string name="inventory_ques_336">৩৩৬) cv‡U©vMÖvd †ccvi I †evW</string>
+    <string name="inventory_ques_337">৩৩৭) ivwbs IqvUvi (cvB‡ci cvwb, U¨vchy³ evjwZ/Kjwk †_‡K Xvjv cvwb)</string>
+    <string name="inventory_ques_338">৩৩৮) nvZ †avqvi mvevb (wjKzBW mvevbI n‡Z cv‡i)</string>
+    <string name="inventory_ques_339">৩৩৯) Gj‡Kvnj-wfwËK RxevbybvkK (†nw·mj/w¯úwiU)</string>
+    <string name="inventory_ques_340">৩৪০) I‡q÷ wi‡mcU¨vKj (XvKbvhy³ †cWvj web, cøvw÷K web jvBbvihy³)</string>
+    <string name="inventory_ques_341">৩৪১) mvc© I‡q÷ ivLvi cvÎ (†mdwU e·)</string>
+    <string name="inventory_ques_342">৩৪২) j¨v‡U· Møvfm (mvwR©K¨vj Møvfm)</string>
+    <string name="inventory_ques_343">৩৪৩) 0.5% ‡K¬vwib mjykb (jvj evjwZ‡Z)</string>
+    <string name="inventory_ques_344">৩৪৪) wWUvi‡R›U cvwb (bxj evjwZ‡Z)</string>
+    <string name="inventory_ques_345">৩৪৫) cwi®‹vi cvwb (meyR evjwZ‡Z)</string>
+    <string name="inventory_ques_346">৩৪৬) Tab. Misoprostol (‰ea †gqv‡`i)</string>
+    <string name="inventory_ques_347">৩৪৭) Inj. Oxytocin (‰ea †gqv‡`i)</string>
+    <string name="inventory_ques_348">৩৪৮) Inj. Magnesium Sulphate (‰ea †gqv‡`i)</string>
+    <string name="inventory_ques_349">৩৪৯) 7.1% Chlorhexidine mjykb (‰ea †gqv‡`i)</string>
+    <string name="inventory_ques_350">৩৫০) Amoxycillin Paediatric Drop (‰ea †gqv‡`i)</string>
+    <string name="inventory_ques_351">৩৫১) Inj. Gentamycin (‰ea †gqv‡`i)</string>
 </resources>

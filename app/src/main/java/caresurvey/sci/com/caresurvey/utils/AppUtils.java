@@ -13,6 +13,7 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -176,12 +177,12 @@ public class AppUtils {
         textView.setTypeface(tf);
     }
 
-    public static void setTextWithFonts(Context context, RadioButton radioButton, String text) {
-        radioButton.setText(text);
+    public static void setTextWithFonts(Context context, CheckBox checkbox, String text) {
+        checkbox.setText(text);
         // Loading Font Face
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
-        radioButton.setTypeface(tf);
+        checkbox.setTypeface(tf);
     }
 
     public static void selectRadioBtn(final FacilityInventoryActivity activity, final RadioGroup radioGroup, final View quesView, final int expandableRadiogroupId) {

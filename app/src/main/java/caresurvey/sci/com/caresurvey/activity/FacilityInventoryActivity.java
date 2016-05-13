@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
+
+import static caresurvey.sci.com.caresurvey.utils.AppUtils.setTextWithFonts;
 
 public class FacilityInventoryActivity extends AppCompatActivity {
 
@@ -30,12 +33,12 @@ public class FacilityInventoryActivity extends AppCompatActivity {
 
         init();
 
-        AppUtils.setTextWithFonts(this, (TextView) mQuesO1View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_01));
-        AppUtils.setTextWithFonts(this, (TextView) mQuesO2View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_02));
-        AppUtils.setTextWithFonts(this, (TextView) mQuesO3View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_03));
-        AppUtils.setTextWithFonts(this, (TextView) mQuesO4View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_04));
-        AppUtils.setTextWithFonts(this, (TextView) mQuesO5View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_05));
-        AppUtils.setTextWithFonts(this, (TextView) mQuesO6View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_06));
+        setTextWithFonts(this, (TextView) mQuesO1View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_01));
+        setTextWithFonts(this, (TextView) mQuesO2View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_02));
+        setTextWithFonts(this, (TextView) mQuesO3View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_03));
+        setTextWithFonts(this, (TextView) mQuesO4View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_04));
+        setTextWithFonts(this, (TextView) mQuesO5View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_05));
+        setTextWithFonts(this, (TextView) mQuesO6View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_06));
     }
 
     private void prepareAnswerView(View view) {
@@ -67,22 +70,22 @@ public class FacilityInventoryActivity extends AppCompatActivity {
 
     private void initializeDustRemovalView() {
         mDustRemovalView = findViewById(R.id.include_inventory_dust_layout);
-        AppUtils.setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_title), getString(R.string.inventory_dust_title));
+//        AppUtils.setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_title), getString(R.string.inventory_dust_title));
         //Question 202
-        AppUtils.setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_202), getString(R.string.inventory_dust_ques_202));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_202_ans_1), getString(R.string.inventory_dust_ques_202_ans_1));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_202_ans_2), getString(R.string.inventory_dust_ques_202_ans_2));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_202_ans_3), getString(R.string.inventory_dust_ques_202_ans_3));
+        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_202), getString(R.string.inventory_dust_ques_202));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_202_ans_1), getString(R.string.inventory_dust_ques_202_ans_1));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_202_ans_2), getString(R.string.inventory_dust_ques_202_ans_2));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_202_ans_3), getString(R.string.inventory_dust_ques_202_ans_3));
         //Question 203
-        AppUtils.setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_203), getString(R.string.inventory_dust_ques_203));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_1), getString(R.string.inventory_dust_ques_203_ans_1));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_2), getString(R.string.inventory_dust_ques_203_ans_2));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_3), getString(R.string.inventory_dust_ques_203_ans_3));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_4), getString(R.string.inventory_dust_ques_203_ans_4));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_5), getString(R.string.inventory_dust_ques_203_ans_5));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_6), getString(R.string.inventory_dust_ques_203_ans_6));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_7), getString(R.string.inventory_dust_ques_203_ans_7));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_8), getString(R.string.inventory_dust_ques_203_ans_8));
-        AppUtils.setTextWithFonts(this, (RadioButton) mDustRemovalView.findViewById(R.id.rb_inventory_ques_203_ans_9), getString(R.string.inventory_dust_ques_203_ans_9));
+        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_203), getString(R.string.inventory_dust_ques_203));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_1), getString(R.string.inventory_dust_ques_203_ans_1));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_2), getString(R.string.inventory_dust_ques_203_ans_2));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_3), getString(R.string.inventory_dust_ques_203_ans_3));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_4), getString(R.string.inventory_dust_ques_203_ans_4));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_5), getString(R.string.inventory_dust_ques_203_ans_5));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_6), getString(R.string.inventory_dust_ques_203_ans_6));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_7), getString(R.string.inventory_dust_ques_203_ans_7));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_8), getString(R.string.inventory_dust_ques_203_ans_8));
+        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_9), getString(R.string.inventory_dust_ques_203_ans_9));
     }
 }

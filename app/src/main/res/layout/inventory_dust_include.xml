@@ -9,6 +9,7 @@
         android:id="@+id/tv_inventory_dust_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/inventory_dust_title"
         android:textSize="25sp" />
 
     <RelativeLayout
@@ -27,7 +28,7 @@
             android:maxLines="4"
             android:textSize="25sp" />
 
-        <RadioGroup
+        <LinearLayout
             android:id="@+id/yes_no_radiogroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,27 +36,27 @@
             android:layout_margin="5dp"
             android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_202_ans_1"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_202_ans_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="25sp" />
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_202_ans_2"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_202_ans_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp" />
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_202_ans_3"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_202_ans_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="25sp" />
 
-        </RadioGroup>
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -74,7 +75,7 @@
             android:maxLines="4"
             android:textSize="25sp" />
 
-        <RadioGroup
+        <LinearLayout
             android:id="@+id/rg_inventory_dust_ques_203"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,48 +83,48 @@
             android:layout_margin="5dp"
             android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_203_ans_1"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_203_ans_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="25sp" />
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_203_ans_2"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_203_ans_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp" />
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_203_ans_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:textSize="25sp" />
-
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_203_ans_4"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_203_ans_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="25sp" />
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_203_ans_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp" />
-
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_203_ans_6"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_203_ans_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="25sp" />
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_203_ans_7"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_203_ans_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp" />
+
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_203_ans_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="25sp" />
+
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_203_ans_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -135,8 +136,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/rb_inventory_ques_203_ans_8"
+                <CheckBox
+                    android:id="@+id/cb_inventory_ques_203_ans_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="25sp" />
@@ -148,13 +149,13 @@
                     android:ems="5"/>
             </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/rb_inventory_ques_203_ans_9"
+            <CheckBox
+                android:id="@+id/cb_inventory_ques_203_ans_9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="25sp" />
 
-        </RadioGroup>
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
