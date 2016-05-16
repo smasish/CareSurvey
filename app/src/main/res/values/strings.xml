@@ -51,6 +51,24 @@
     <string name="title_activity_test1">TestActivity1</string>
     <string name="title_activity_display_user_form">DisplayUserFormActivity</string>
 
+    <string name="title_invetory_section_1">hš¿cvwZ cybivq e¨env‡ii Rb¨ †hLv‡b Rxevbygy³ Kiv nq †mB ¯’vbwU †`wL‡q w`‡Z ejyb| ¯^v¯’¨‡K‡›`ªi hš¿cvwZ Rxevbygy³ Kiv m¤ú‡K© whwb me‡P‡q fvj Rv‡bb Zv‡K
+    Luy‡R †ei Kiæb| wb‡Ri cwiPq w`b, mv‡f©i D‡Ïk¨ e¨vL¨v Kiæb Ges B›UviwfD Pvwj‡q hvb|</string>
+    <string name="info_provider_name_lbl_101">১০১)  DËi`vZvi bvgt</string>
+    <string name="info_provider_name_lbl_201">২০১)  DËi`vZvi bvgt</string>
+    <string name="info_provider_name_lbl_301">৩০১)  DËi`vZvi bvgt</string>
+    <string name="info_provider_post_lbl">c`ext </string>
+    <string name="inventory_title_102">১০২) wRÁvmv Kiæb †h, bx‡Pi D‡jøwLZ cÖwZwU DcKiY GB ¯^v¯’¨‡K‡›`ªAv‡Q wK bv Ges e¨eüZ nq wK bv?
+    hw` _v‡K Zvn‡j Zv ‡`L‡Z Pvb; mPj Av‡Q wKbv Ges e¨envi Kiv nq wK bv Zv wRÁvmv Kiæb|</string>
+    <string name="equipment_102_title1">(A) Av‡Q? Avcwb bv †`L‡j ʺbvÓ
+e„ËvwqZ Kiæb|</string>
+    <string name="equipment_102_title2">(B) mPj?</string>
+    <string name="equipment_102_title3">(C) e¨eüZ nq?</string>
+    <string name="tv_inventory_102_title_sub">DcKiY</string>
+
+    <string name="title_invetory_section_2">¯^v¯’¨‡K‡›`ªi eR©¨ e¨e¯’vcbvi Rb¨ `vwqZ¡cÖvß e¨w³‡K Luy‡R †ei Kiæb| wb‡Ri cwiPq w`b, mv‡f©i D‡Ïk¨ e¨vL¨v Kiæb Ges B›UviwfD Pvwj‡q hvb|</string>
+    <string name="title_invetory_section_3">wb‡`©kbvt District Hospital I Upazila Health Complex Gi †ÿ‡Î †h K‡ÿ Mf©Kvjxb †mev †`qv nq Ges UHFWC Gi †ÿ‡Î FWV Gi Kÿ cwi`k©b Kiæb| wb‡R ch©‡eÿY
+Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|</string>
+
     <!--Strings of satelite clinic-->
     <string name="ache">আছে</string>
     <string name="nai">নাই</string>
@@ -77,10 +95,10 @@
     <string name="inventory_ques_06">০৬) †óvf ev KzKvi (bb-B‡jKwUªK hš¿cvwZi Rb¨)</string>
     <!--Dust removal portion-->
     <string name="inventory_dust_title">¯^v¯’¨‡K‡›`ªi eR©¨ e¨e¯’vcbvi Rb¨ `vwqZ¡cÖvß e¨w³‡K Luy‡R †ei Kiæb| wb‡Ri cwiPq w`b, mv‡f©i D‡Ïk¨ e¨vL¨v Kiæb Ges B›UviwfD Pvwj‡q hvb|</string>
-    <string name="inventory_dust_replier_name">DËi`vZvi bvgt</string>
+    <string name="inventory_dust_replier_name">DË i`vZvi bvgt</string>
     <string name="inventory_dust_replier_post">c`ext</string>
     <string name="inventory_dust_ques_202">২০২) GB ¯^v¯’¨‡K‡›`ªi eR©¨ (PzovšÍ) AcmvY ¯^v¯’¨‡K‡›`ªi wfZ‡i Kiv nq, bv-wK ¯^v¯’¨‡K‡›`ªi evB‡i †Kv_vI Kiv nq?</string>
-    <string name="inventory_dust_ques_203">২০৩) ¯^v¯’¨‡K‡›`ªi aviv‡jv eR©¨ (kvc© I‡qó), †hgbt (myP, †eøW, fv½v ¯øvBW/KvP/‡U÷wUDe,\n
+    <string name="inventory_dust_ques_203">২০৩) ¯^v¯’¨‡K‡›`ªi aviv‡jv eR©¨ (kvc© I‡qó), †hgbt (myP, †eøW, fv½v ¯øvBW/KvP/‡U÷wUDe,
 e¨eüZ G¤úyj, wcb/‡evW© wcb, w÷‡ji Zvi BZ¨vw`) wKfv‡e wWR‡cvR Kiv nq?\n
 wb‡`©kbvt mwVK DË‡ii Rb¨ ʺ‡cÖveÓ Kiæb|</string>
     <string name="inventory_dust_ques_204">২০৪) avivj eR©¨ eR©¨ (PzovšÍ) Acmvi‡Yi Av‡M †Kv_vq msiÿY Kiv nq †mB RvqMv †`L‡Z
@@ -89,7 +107,7 @@ eR©¨ Rgv Kiv nq Zv †`L‡Z Pvb|
 ch©‡eÿY Kiæbt avivj eR©¨ †j‡ewjs Kiv ʺjvjÓ is Gi cv‡Î c„_Kfv‡e msiÿY Kiv nq
 wK bv|</string>
     <string name="inventory_dust_ques_205">২০৫) Zij eR©¨, †hgbt i³, gj, g~Î, ‡Wwjfvixi ci †h mg¯Í Zij c`v_© †ei nq,
-Mf©dzj/Mf©msµvšÍ eR©¨, I Ab¨vb¨ ˆRe im BZ¨vw` wKfv‡e wWR‡cvR Kiv nq?
+Mf©dzj/Mf©msµvšÍ eR©¨, I Ab¨vb¨ ˆRe im BZ¨vw` wKfv‡e wWR‡cvR Kiv nq?\n
 wb‡`©kbvt mwVK DË‡ii Rb¨ ʺ‡cÖveÓ Kiæb|</string>
     <string name="inventory_dust_ques_206">২০৬) Zij eR©¨ (PzovšÍ) Acmvi‡Yi Av‡M †Kv_vq msiÿY Kiv nq †mB RvqMv †`L‡Z Pvb| hw`
 eR©¨ ¯^v¯’¨‡K‡›`ªi evB‡i mwi‡q †djv nq Z‡e evB‡i †bqvi Av‡M †Kv_vq GB eR©¨ Rgv
@@ -112,6 +130,50 @@ nq wK bv|</string>
     <string name="inventory_dust_ques_210">২১০) </string>
     <string name="inventory_dust_ques_211">২১১) </string>
     <string name="inventory_dust_ques_212">২১২) </string>
+
+    <!--Inventory dust romoval answers-->
+    <string name="inventory_dust_ques_202_ans_1">GB ¯^v¯’¨‡K‡›`ªi wfZ‡i</string>
+    <string name="inventory_dust_ques_202_ans_2"> ¯^v¯’¨‡K‡›`ªi wfZ‡i I evB‡i DfqB</string>
+    <string name="inventory_dust_ques_202_ans_3">¯^v¯’¨‡K‡›`ªi evB‡i</string>
+    <string name="inventory_dust_ques_203_ans_1">Bbwmbv‡iU‡i cywo‡q †djv nq</string>
+    <string name="inventory_dust_ques_203_ans_2">msiwÿZ gvV ev M‡Z© cywo‡q †djv nq gv‡V</string>
+    <string name="inventory_dust_ques_203_ans_3">‡h †Kvb (Awba©vwiZ) †Lvjv gvV ev M‡Z© cywo‡q †djv nq</string>
+    <string name="inventory_dust_ques_203_ans_4">XvKbvhy³ Wvw¤ús wcU ev wcU cvqLvbvq †djv nq</string>
+    <string name="inventory_dust_ques_203_ans_5">msiwÿZ (wba©vwiZ) gvV ev M‡Z© †djv nq</string>
+    <string name="inventory_dust_ques_203_ans_6">‡h †Kvb (Awba©vwiZ) AmsiwÿZ †Lvjv gvV ev M‡Z© †djv nq</string>
+    <string name="inventory_dust_ques_203_ans_7">Ave„Z K‡›UBbv‡i Rgv K‡i ¯^v¯’¨‡K‡›`ªi evB‡i cvVv‡bv nq</string>
+    <string name="inventory_dust_ques_203_ans_8">Ab¨vb¨, wbw`©ó K‡i wjLyb</string>
+    <string name="inventory_dust_ques_203_ans_9">aviv‡jv eR©¨ KLbI nq bv</string>
+
+    <string name="inventory_dust_ques_204_ans_1">†j‡ewjs Kiv ʺjvjÓ cv‡Î msiÿY Kiv nq</string>
+    <string name="inventory_dust_ques_204_ans_2">†j‡ewjs Kiv ʺjvjÓ cvÎ †`Lv hvq bvB</string>
+    <string name="inventory_dust_ques_204_ans_3">eR©¨ msiÿY Kivi wba©vwiZ ‡Kvb ¯’vb bvB</string>
+    <string name="inventory_dust_ques_204_ans_4">eR©¨ msiÿY Kivi ¯’vb cwi`k©b Kiv nq wb</string>
+
+    <string name="inventory_dust_ques_205_ans_1">Bbwmbv‡iU‡i cywo‡q †djv nq</string>
+    <string name="inventory_dust_ques_205_ans_2">msiwÿZ gvV ev M‡Z© cywo‡q †djv nq gv‡V</string>
+    <string name="inventory_dust_ques_205_ans_3">‡h †Kvb (Awba©vwiZ) †Lvjv gvV ev M‡Z© cywo‡q †djv nq</string>
+    <string name="inventory_dust_ques_205_ans_4">XvKbvhy³ Wvw¤ús wcU ev wcU cvqLvbvq †djv nq</string>
+    <string name="inventory_dust_ques_205_ans_5">msiwÿZ (wba©vwiZ) gvV ev M‡Z© †djv nq</string>
+    <string name="inventory_dust_ques_205_ans_6">‡h †Kvb (Awba©vwiZ) AmsiwÿZ †Lvjv gvV ev M‡Z© †djv nq</string>
+    <string name="inventory_dust_ques_205_ans_7">Ave„Z K‡›UBbv‡i Rgv K‡i ¯^v¯’¨‡K‡›`ªi evB‡i cvVv‡bv nq</string>
+    <string name="inventory_dust_ques_205_ans_8">Ab¨vb¨</string>
+    <string name="inventory_dust_ques_205_ans_8_specify">wbw`©ó K‡i wjLyb</string>
+    <string name="inventory_dust_ques_205_ans_9">Zij eR©¨ KLbI nq bv</string>
+
+    <string name="inventory_dust_ques_206_ans_1">†j‡ewjs Kiv ʺnjy`Ó cv‡Î msiÿY Kiv nq</string>
+    <string name="inventory_dust_ques_206_ans_2">†j‡ewjs Kiv ʺnjy`Ó cvÎ †`Lv hvq bvB</string>
+    <string name="inventory_dust_ques_206_ans_3">eR©¨ msiÿY Kivi wba©vwiZ ‡Kvb ¯’vb bvB</string>
+    <string name="inventory_dust_ques_206_ans_4">eR©¨ msiÿY Kivi ¯’vb cwi`k©b Kiv nq wb</string>
+    <string name="inventory_dust_ques_207_ans_1">†j‡ewjs Kiv ʺmeyRÓ cv‡Î msiÿY Kiv nq</string>
+    <string name="inventory_dust_ques_207_ans_2"> †j‡ewjs Kiv ʺmeyRÓ cvÎ †`Lv hvq bvB</string>
+    <string name="inventory_dust_ques_207_ans_3">eR©¨ msiÿY Kivi wba©vwiZ ‡Kvb ¯’vb bvB</string>
+    <string name="inventory_dust_ques_207_ans_4">eR©¨ msiÿY Kivi ¯’vb cwi`k©b Kiv nq wb</string>
+
+    <string name="inventory_dust_ques_208_ans_1">†j‡ewjs Kiv ʺKvjÓ cv‡Î msiÿY Kiv nq</string>
+    <string name="inventory_dust_ques_208_ans_2">†j‡ewjs Kiv ʺKvjÓ cvÎ †`Lv hvq bvB</string>
+    <string name="inventory_dust_ques_208_ans_3">eR©¨ msiÿY Kivi wba©vwiZ ‡Kvb ¯’vb bvB</string>
+    <string name="inventory_dust_ques_208_ans_4">eR©¨ msiÿY Kivi ¯’vb cwi`k©b Kiv nq wb</string>
     <!--Inventory suply and equipment questions-->
 
     <string name="inventory_ques_301">৩০১)DËi`vZvi bvgt</string>

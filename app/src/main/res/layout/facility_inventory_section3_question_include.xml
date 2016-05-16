@@ -38,21 +38,14 @@
                     android:id="@+id/yes_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes" />
+                    android:text="@string/ache" />
 
                 <RadioButton
                     android:id="@+id/no_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="@string/no" />
-
-                <RadioButton
-                    android:id="@+id/rb_donot_know_a"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/donot_know" />
+                    android:text="@string/nai" />
 
             </RadioGroup>
 
@@ -85,37 +78,6 @@
                     android:text="@string/donot_know" />
 
             </RadioGroup>
-
-            <RadioGroup
-                android:id="@+id/yes_no_radiogroup_c"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <RadioButton
-                    android:id="@+id/yes_c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/no_c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/no" />
-
-                <RadioButton
-                    android:id="@+id/rb_donot_know_c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/donot_know" />
-
-            </RadioGroup>
-
         </LinearLayout>
     </HorizontalScrollView>
 </LinearLayout>

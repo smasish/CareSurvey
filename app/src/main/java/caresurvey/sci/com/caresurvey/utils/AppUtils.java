@@ -12,6 +12,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
@@ -185,13 +186,14 @@ public class AppUtils {
         checkbox.setTypeface(tf);
     }
 
-    public static void selectRadioBtn(final FacilityInventoryActivity activity, final RadioGroup radioGroup, final View quesView, final int expandableRadiogroupId) {
+    public static void selectRadioBtn(final FacilityInventoryActivity activity, final RadioGroup radioGroup, final View quesView, final int expandableRadiogroupId, final boolean isexpand) {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup arg0, int id) {
                 int selectedRadioBtnId = radioGroup.getCheckedRadioButtonId();
                 RadioButton selectedRadioBtn = (RadioButton) activity.findViewById(selectedRadioBtnId);
-                if (selectedRadioBtn.getText().equals(activity.getString(R.string.yes))) {
-                    ((RadioGroup) quesView.findViewById(expandableRadiogroupId)).setVisibility(View.VISIBLE);
+                if (selectedRadioBtn.getText().equals(activity.getString(R.string.yes)) && isexpand) {
+                    RadioGroup currentRg = ((RadioGroup) quesView.findViewById(expandableRadiogroupId));
+                    currentRg.setVisibility(View.VISIBLE);
                 } else if (selectedRadioBtn.getText().equals(activity.getString(R.string.no))) {
 
                 }
@@ -201,4 +203,6 @@ public class AppUtils {
             }
         });
     }
+
+
 }

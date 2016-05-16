@@ -11,6 +11,33 @@
         android:orientation="vertical"
         tools:context="caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity">
 
+        <TextView
+            android:id="@+id/tv_section_1_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+        <include
+            android:id="@+id/include_info_provider_inventory_1"
+            layout="@layout/include_info_provider_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/tv_102_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:layout_centerVertical="true" />
+
+        <include
+            android:id="@+id/facility_inventory_question_102_subtitle_include"
+            layout="@layout/facility_inventory_question_102_subtitle_include"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_ques_01"
             layout="@layout/facility_inventory_question_include"
@@ -54,9 +81,346 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
 
+        <TextView
+            android:id="@+id/tv_section_2_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+        <include
+            android:id="@+id/include_info_provider_inventory_2"
+            layout="@layout/include_info_provider_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_dust_layout"
             layout="@layout/inventory_dust_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/tv_section_3_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+        <include
+            android:id="@+id/include_info_provider_inventory_3"
+            layout="@layout/include_info_provider_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/inventory_section3_subtitle"
+            layout="@layout/inventory_section3_subtitle_include"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+
+
+
+
+        <include
+            android:id="@+id/include_inventory_sec3_302"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_303"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_304"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_305"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_306"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_307"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_308"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+        android:id="@+id/include_inventory_sec3_309"
+        layout="@layout/facility_inventory_section3_question_include"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_310"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_311"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_312"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_313"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_314"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_315"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_316"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_317"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_318"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_319"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_320"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_321"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_322"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_323"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_324"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_325"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_326"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_327"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_328"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_329"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_330"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_331"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_332"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_333"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_334"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_335"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_336"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_337"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_338"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_339"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_340"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_341"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_342"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_343"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_344"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/include_inventory_sec3_345"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_346"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_347"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+        <include
+            android:id="@+id/include_inventory_sec3_348"
+            layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
