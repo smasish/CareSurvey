@@ -168,6 +168,7 @@ public class AppUtils {
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
         textView.setTypeface(tf);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
     }
 
     public static void setTextWithFonts(Context context, TextView textView, String text) {
@@ -176,6 +177,7 @@ public class AppUtils {
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
         textView.setTypeface(tf);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
     }
 
     public static void setTextWithFonts(Context context, CheckBox checkbox, String text) {
@@ -184,6 +186,7 @@ public class AppUtils {
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
         checkbox.setTypeface(tf);
+        checkbox.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
     }
 
     public static void selectRadioBtn(final FacilityInventoryActivity activity, final RadioGroup radioGroup, final View quesView, final int expandableRadiogroupId, final boolean isexpand) {

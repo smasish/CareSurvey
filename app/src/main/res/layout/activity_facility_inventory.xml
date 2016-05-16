@@ -28,58 +28,69 @@
             android:id="@+id/tv_102_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:paddingTop="5dp" />
 
-        <include
-            android:id="@+id/facility_inventory_question_102_subtitle_include"
-            layout="@layout/facility_inventory_question_102_subtitle_include"
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/include_inventory_ques_01"
-            layout="@layout/facility_inventory_question_include"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <include
-            android:id="@+id/include_inventory_ques_02"
-            layout="@layout/facility_inventory_question_include"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+                <include
+                    android:id="@+id/facility_inventory_question_102_subtitle_include"
+                    layout="@layout/facility_inventory_question_102_subtitle_include"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
 
-        <include
-            android:id="@+id/include_inventory_ques_03"
-            layout="@layout/facility_inventory_question_include"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+                <include
+                    android:id="@+id/include_inventory_ques_01"
+                    layout="@layout/facility_inventory_question_include"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
 
-        <include
-            android:id="@+id/include_inventory_ques_04"
-            layout="@layout/facility_inventory_question_include"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+                <include
+                    android:id="@+id/include_inventory_ques_02"
+                    layout="@layout/facility_inventory_question_include"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
 
-        <include
-            android:id="@+id/include_inventory_ques_05"
-            layout="@layout/facility_inventory_question_include"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+                <include
+                    android:id="@+id/include_inventory_ques_03"
+                    layout="@layout/facility_inventory_question_include"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+                <include
+                    android:id="@+id/include_inventory_ques_04"
+                    layout="@layout/facility_inventory_question_include"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+                <include
+                    android:id="@+id/include_inventory_ques_05"
+                    layout="@layout/facility_inventory_question_include"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
 
 
-        <include
-            android:id="@+id/include_inventory_ques_06"
-            layout="@layout/facility_inventory_question_include"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+                <include
+                    android:id="@+id/include_inventory_ques_06"
+                    layout="@layout/facility_inventory_question_include"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <TextView
             android:id="@+id/tv_section_2_title"
@@ -113,16 +124,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/inventory_section3_subtitle"
             layout="@layout/inventory_section3_subtitle_include"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
-
-
-
-
 
         <include
             android:id="@+id/include_inventory_sec3_302"
@@ -151,30 +159,35 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_306"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_307"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_308"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
-        android:id="@+id/include_inventory_sec3_309"
-        layout="@layout/facility_inventory_section3_question_include"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+            android:id="@+id/include_inventory_sec3_309"
+            layout="@layout/facility_inventory_section3_question_include"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_310"
             layout="@layout/facility_inventory_section3_question_include"
@@ -202,30 +215,35 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_314"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_315"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_316"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_317"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_318"
             layout="@layout/facility_inventory_section3_question_include"
@@ -253,30 +271,35 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_322"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_323"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_324"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_325"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_326"
             layout="@layout/facility_inventory_section3_question_include"
@@ -304,30 +327,35 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_330"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_331"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_332"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_333"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_334"
             layout="@layout/facility_inventory_section3_question_include"
@@ -355,30 +383,35 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_338"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_339"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_340"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_341"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_342"
             layout="@layout/facility_inventory_section3_question_include"
@@ -406,18 +439,21 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_346"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_347"
             layout="@layout/facility_inventory_section3_question_include"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
         <include
             android:id="@+id/include_inventory_sec3_348"
             layout="@layout/facility_inventory_section3_question_include"

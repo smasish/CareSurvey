@@ -96,7 +96,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
         View view316 = findViewById(R.id.include_inventory_sec3_316);
         View view317 = findViewById(R.id.include_inventory_sec3_317);
         View view318 = findViewById(R.id.include_inventory_sec3_318);
-        View view319 = findViewById(R.id.include_inventory_sec3_329);
+        View view319 = findViewById(R.id.include_inventory_sec3_319);
         View view320 = findViewById(R.id.include_inventory_sec3_320);
         View view321 = findViewById(R.id.include_inventory_sec3_321);
         View view322= findViewById(R.id.include_inventory_sec3_322);
@@ -135,7 +135,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
         setTextWithFonts(this, (TextView) view306.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_306));
         setTextWithFonts(this, (TextView) view307.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_307));
         setTextWithFonts(this, (TextView) view308.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_308));
-        setTextWithFonts(this, (TextView) view319.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_309));
+        setTextWithFonts(this, (TextView) view309.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_309));
         setTextWithFonts(this, (TextView) view310.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_310));
         setTextWithFonts(this, (TextView) view311.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_311));
         setTextWithFonts(this, (TextView) view312.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_312));

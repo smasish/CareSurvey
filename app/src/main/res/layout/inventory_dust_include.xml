@@ -90,47 +90,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:maxEms="30" />
+                android:maxEms="20" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_203_ans_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxEms="30" />
+                android:maxEms="20" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_203_ans_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:maxEms="30" />
+                android:maxEms="20" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_203_ans_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:maxEms="30" />
+                android:maxEms="20" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_203_ans_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxEms="30" />
+                android:maxEms="20" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_203_ans_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:maxEms="30" />
+                android:maxEms="20" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_203_ans_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:maxEms="30" />
+                android:maxEms="20" />
 
             <LinearLayout
                 android:id="@+id/ll_others"
@@ -142,7 +142,7 @@
                     android:id="@+id/cb_inventory_ques_203_ans_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxEms="30" />
+                    android:maxEms="15" />
 
                 <EditText
                     android:id="@+id/et_inventory_question_203_others"
@@ -246,20 +246,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:maxEms="30" />
+                android:maxEms="40" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_205_ans_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxEms="30" />
+                android:maxEms="40" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_205_ans_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:maxEms="30" />
+                android:maxEms="40" />
 
             <CheckBox
                 android:id="@+id/cb_inventory_ques_205_ans_4"
