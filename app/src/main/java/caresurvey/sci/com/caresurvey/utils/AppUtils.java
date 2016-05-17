@@ -168,7 +168,7 @@ public class AppUtils {
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
         textView.setTypeface(tf);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
     }
 
     public static void setTextWithFonts(Context context, TextView textView, String text) {
@@ -177,7 +177,7 @@ public class AppUtils {
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
         textView.setTypeface(tf);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
     }
 
     public static void setTextWithFonts(Context context, CheckBox checkbox, String text) {
@@ -186,7 +186,7 @@ public class AppUtils {
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
         checkbox.setTypeface(tf);
-        checkbox.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+        checkbox.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
     }
 
     public static void selectRadioBtn(final FacilityInventoryActivity activity, final RadioGroup radioGroup, final View quesView, final int expandableRadiogroupId, final boolean isexpand) {
@@ -197,8 +197,11 @@ public class AppUtils {
                 if (selectedRadioBtn.getText().equals(activity.getString(R.string.yes)) && isexpand) {
                     RadioGroup currentRg = ((RadioGroup) quesView.findViewById(expandableRadiogroupId));
                     currentRg.setVisibility(View.VISIBLE);
-                } else if (selectedRadioBtn.getText().equals(activity.getString(R.string.no))) {
-
+                } else if ((selectedRadioBtn.getText().equals(activity.getString(R.string.no)) || selectedRadioBtn.getText().equals(activity.getString(R.string.donot_know))) && radioGroup == ((RadioGroup) quesView.findViewById(R.id.yes_no_radiogroup_a))) {
+                    ((RadioGroup) quesView.findViewById(R.id.yes_no_radiogroup_b)).setVisibility(View.INVISIBLE);
+                    ((RadioGroup) quesView.findViewById(R.id.yes_no_radiogroup_c)).setVisibility(View.INVISIBLE);
+                } else if ((selectedRadioBtn.getText().equals(activity.getString(R.string.no)) || selectedRadioBtn.getText().equals(activity.getString(R.string.donot_know))) && radioGroup == ((RadioGroup) quesView.findViewById(R.id.yes_no_radiogroup_b))) {
+                    ((RadioGroup) quesView.findViewById(R.id.yes_no_radiogroup_c)).setVisibility(View.INVISIBLE);
                 }
                 if (selectedRadioBtn.getText().equals(activity.getString(R.string.donot_know))) {
 

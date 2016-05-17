@@ -31,7 +31,7 @@
                 android:id="@+id/yes_no_radiogroup_a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -44,14 +44,12 @@
                     android:id="@+id/no_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:text="@string/no" />
 
                 <RadioButton
                     android:id="@+id/rb_donot_know_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:text="@string/donot_know" />
 
             </RadioGroup>
@@ -60,7 +58,8 @@
                 android:id="@+id/yes_no_radiogroup_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginRight="10dp"
+                android:visibility="invisible"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -73,14 +72,12 @@
                     android:id="@+id/no_b"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:text="@string/no" />
 
                 <RadioButton
                     android:id="@+id/rb_donot_know_b"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:text="@string/donot_know" />
 
             </RadioGroup>
@@ -89,7 +86,7 @@
                 android:id="@+id/yes_no_radiogroup_c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:visibility="invisible"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -102,14 +99,12 @@
                     android:id="@+id/no_c"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:text="@string/no" />
 
                 <RadioButton
                     android:id="@+id/rb_donot_know_c"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:text="@string/donot_know" />
 
             </RadioGroup>
