@@ -1,13 +1,31 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.InventoryItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 import static caresurvey.sci.com.caresurvey.utils.AppUtils.setTextWithFonts;
@@ -21,12 +39,15 @@ public class FacilityInventoryActivity extends AppCompatActivity {
     private View mQuesO5View;
     private View mQuesO6View;
     private View mDustRemovalView;
+    private InventoryItem mInventoryItem;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facility_inventory);
+
+        mInventoryItem = new InventoryItem();
 
         init();
 
@@ -99,7 +120,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
         View view319 = findViewById(R.id.include_inventory_sec3_319);
         View view320 = findViewById(R.id.include_inventory_sec3_320);
         View view321 = findViewById(R.id.include_inventory_sec3_321);
-        View view322= findViewById(R.id.include_inventory_sec3_322);
+        View view322 = findViewById(R.id.include_inventory_sec3_322);
         View view323 = findViewById(R.id.include_inventory_sec3_323);
         View view324 = findViewById(R.id.include_inventory_sec3_324);
         View view325 = findViewById(R.id.include_inventory_sec3_325);
@@ -347,5 +368,26 @@ public class FacilityInventoryActivity extends AppCompatActivity {
         setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_208_ans_2), getString(R.string.inventory_dust_ques_208_ans_2));
         setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_208_ans_3), getString(R.string.inventory_dust_ques_208_ans_3));
         setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_208_ans_4), getString(R.string.inventory_dust_ques_208_ans_4));
+    }
+
+    public void onClickBtn(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                startActivity(new Intent(FacilityInventoryActivity.this, DisplayUserActivity.class));
+                finish();
+                break;
+            case R.id.Savebtn:
+                saveDataToDb();
+                startActivity(new Intent(FacilityInventoryActivity.this, DisplayUserActivity.class));
+                finish();
+                break;
+            case R.id.Submit:
+                startActivity(new Intent(FacilityInventoryActivity.this, DisplayUserActivity.class));
+                finish();
+                break;
+        }
+    }
+
+    private void saveDataToDb() {
     }
 }

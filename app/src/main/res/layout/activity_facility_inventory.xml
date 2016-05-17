@@ -473,6 +473,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/purple"
                 android:text="Back"
+                android:onClick="onClickBtn"
                 android:layout_marginBottom="20dp"
                 android:textColor="@color/white" />
 
@@ -484,7 +485,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/purple"
                 android:text="Update"
-                android:onClick="onClickUpdateBtn"
+                android:onClick="onClickBtn"
                 android:textColor="@color/white" />
 
             <Button
@@ -495,6 +496,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/purple"
                 android:text="Submit"
+                android:onClick="onClickBtn"
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
