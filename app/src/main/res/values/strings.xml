@@ -77,14 +77,22 @@ Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|
     <string name="no">না</string>
     <string name="yes">হ্যাঁ</string>
     <string name="donot_know">জানি না</string>
-    <string name="fp_ques_01">০১) ‡mev cÖ`vb hv‡Z †`Lv bv hvq Zv wbwðZ K‡i‡Qb</string>
-    <string name="fp_ques_02">০২) ‡mev cÖ`v‡bi ‡Kvb wKQy hv‡Z evB‡i †kvbv bv hvq Zv wbwðZ K‡i‡Qb</string>
-    <string name="fp_ques_03">০৩) ‡mev MÖnxZvi †Kvb Amyweav Av‡Q wK bv Zv Av‡jvPbv K‡i‡Qb</string>
-    <string name="fp_ques_04">০৪) c×wZi cvk¦©cÖwZwµqv m¤ú‡K© Av‡jvPbv K‡i‡Qb (c×wZ MÖnYKvix/e¨enviKvix MÖnxZvi †ÿ‡Î)</string>
-    <string name="fp_ques_05">০৫) c×wZi cvk¦©cÖwZwµqv †`Lv w`‡j wK Ki‡eb Zv Av‡jvPbv K‡i‡Qb (c×wZ MÖnYKvix/e¨enviKvix MÖnxZvi †ÿ‡Î)</string>
-    <string name="fp_ques_06">০৬) ‡mev MÖnxZvi †Kvb cÖkœ Av‡Q wK bv, Zv wRÁvmv K‡i‡Qb Ges cÖkœ wRÁvmv Ki‡Z DrmvwnZ K‡i‡Qb</string>
-    <string name="fp_ques_07">০৭) ‡mevcÖ`v‡bi mgq h_vh_ Kg© mnvwqKv (Re GBW) e¨envi K‡i‡Qb</string>
-    <string name="fp_ques_08">০৮) cieZ©x wfwRU (d‡jvAvc wfwRU) Gi ZvwiL MÖnxZv‡K Rvwb‡q w`‡q‡Qb</string>
+
+    <string name="fp_ques_101">101) ch©‡eÿY wmwiqvj b¤^i:</string>
+    <string name="fp_ques_102">102) ch©‡eÿ‡Yi ZvwiL:</string>
+    <string name="fp_ques_103">103) ch©‡eÿY ïiæi mgq:</string>
+    <string name="fp_ques_104">104) K¬v‡q›U †h †mev wb‡Z G‡m‡Qb Zvi weeiY:</string>
+    <string name="fp_ques_105">105) †mevcÖ`vbKvix wb‡Pi c`‡¶c MÖnY K‡iwQ‡jb wKbv Zv †iKW© Kiæb|</string>
+
+    <string name="fp_ques_01">01) ‡mev cÖ`vb hv‡Z †`Lv bv hvq Zv wbwðZ K‡i‡Qb</string>
+    <string name="fp_ques_02">02) ‡mev cÖ`v‡bi ‡Kvb wKQy hv‡Z evB‡i †kvbv bv hvq Zv wbwðZ K‡i‡Qb</string>
+    <string name="fp_ques_03">03) ‡mev MÖnxZvi †Kvb Amyweav Av‡Q wK bv Zv Av‡jvPbv K‡i‡Qb</string>
+    <string name="fp_ques_04">04) c×wZi cvk¦©cÖwZwµqv m¤ú‡K© Av‡jvPbv K‡i‡Qb (c×wZ MÖnYKvix/e¨enviKvix MÖnxZvi †ÿ‡Î)</string>
+    <string name="fp_ques_05">05) c×wZi cvk¦©cÖwZwµqv †`Lv w`‡j wK Ki‡eb Zv Av‡jvPbv K‡i‡Qb (c×wZ MÖnYKvix/e¨enviKvix MÖnxZvi †ÿ‡Î)</string>
+    <string name="fp_ques_06">06) ‡mev MÖnxZvi †Kvb cÖkœ Av‡Q wK bv, Zv wRÁvmv K‡i‡Qb Ges cÖkœ wRÁvmv Ki‡Z DrmvwnZ K‡i‡Qb</string>
+    <string name="fp_ques_07">07) ‡mevcÖ`v‡bi mgq h_vh_ Kg© mnvwqKv (Re GBW) e¨envi K‡i‡Qb</string>
+    <string name="fp_ques_08">08) cieZ©x wfwRU (d‡jvAvc wfwRU) Gi ZvwiL MÖnxZv‡K Rvwb‡q w`‡q‡Qb</string>
+    <string name="fp_ques_09">09) ch©‡eÿY ‡kl Kivi mgq:</string>
 
     <!--Facility inventory strings-->
     <string name="inventory_ques_01">০১) B‡jKwUªK A‡Uv‡K¬f</string>

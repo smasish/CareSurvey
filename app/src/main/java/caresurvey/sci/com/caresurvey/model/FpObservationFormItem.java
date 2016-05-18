@@ -11,4 +11,32 @@ public class FpObservationFormItem {
     private static final String KEY_QUES = "question";
     private static final String KEY_ANS = "answer";
 
+    private String status;
+    private String sp_client;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSp_client() {
+        return sp_client;
+    }
+
+    public void setSp_client(String sp_client) {
+        this.sp_client = sp_client;
+    }
+
 }

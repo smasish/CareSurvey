@@ -19,9 +19,11 @@ import java.util.ArrayList;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class DisplayUserFormActivity extends AppCompatActivity {
@@ -44,13 +46,23 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         ArrayList<SickChildItem> sickChildItems;
         FormItem formItem;
 
+        ArrayList<FpObservationFormItem> fbObservationItems;
+
+        FpObservationTable fpObsTable = new FpObservationTable(DisplayUserFormActivity.this);
+        fbObservationItems = fpObsTable.getAllInfo();
+
         SickChildTable sickChildTable = new SickChildTable(DisplayUserFormActivity.this);
         sickChildItems = sickChildTable.getAllInfo();
         int k = 0;
-        int f = sickChildItems.size();
+        int f;
+        if(getIntent().getStringExtra("fp").equals("fp")) {
+            f = fbObservationItems.size();
+        } else {
+            f = sickChildItems.size();
+        }
         int[] id = new int[f];
         String[] name = new String[f];
-        final int[] status = new int[f];
+        final int[] status = new int[]{3};
         final String[] inS = new String[f];
         if (!sickChildItems.isEmpty()) {
             for (SickChildItem ft : sickChildItems) {
@@ -61,6 +73,16 @@ public class DisplayUserFormActivity extends AppCompatActivity {
                 k++;
 
 
+            }
+        } else if (!fbObservationItems.isEmpty()) {
+            if (getIntent().getStringExtra("fp").equals("fp")) {
+                for (FpObservationFormItem ft : fbObservationItems) {
+                    id[k] = ft.getId();
+                    name[k] = ft.getSp_client();
+                    status[k] = Integer.parseInt(ft.getStatus());
+//                inS[k] = ft.getFields();
+                    k++;
+                }
             }
         }
         adapter = new DisplayNamesWithStatusAdapter(this, id, name, status, inS);

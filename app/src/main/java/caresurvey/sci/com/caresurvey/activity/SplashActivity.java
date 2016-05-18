@@ -41,8 +41,9 @@ public class SplashActivity extends ActionBarActivity {
             @Override
             public void run() {
                 /* start the activity */
-                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+//                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
 //                startActivity(new Intent(SplashActivity.this,FacilityInventoryActivity.class));
+                startActivity(new Intent(SplashActivity.this,FpObservationActivity.class));
                 //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 overridePendingTransition(0,0);
                 finish();
