@@ -78,6 +78,12 @@ public class DisplayUserActivity extends AppCompatActivity {
                     AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",
                             "");
 
+                } else if((getIntent().getStringExtra("fp")).equals("fp")) {
+                    Intent iiv = new Intent(DisplayUserActivity.this, FpObservationActivity.class);
+                    iiv.putExtra("position", position + 1);
+                    iiv.putExtra("name", names);
+                    startActivity(iiv);
+                    finish();
                 } else {
                     Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
                     iiv.putExtra("position", position + 1);

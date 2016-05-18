@@ -45,19 +45,21 @@ public class FpObservationActivity extends Activity {
     public void onClickBtn(View view) {
         switch (view.getId()) {
             case R.id.back:
-                startActivity(new Intent(FpObservationActivity.this, DisplayUserFormActivity.class));
-                finish();
-                break;
-            case R.id.Savebtn:
-                Intent start = new Intent(FpObservationActivity.this, DisplayUserFormActivity.class);
+                Intent start = new Intent(FpObservationActivity.this, DisplayUserActivity.class);
                 start.putExtra("fp", "fp");
                 startActivity(start);
                 finish();
                 break;
-            case R.id.Submit:
-                Intent start1 = new Intent(FpObservationActivity.this, DisplayUserFormActivity.class);
+            case R.id.Savebtn:
+                Intent start1 = new Intent(FpObservationActivity.this, DisplayUserActivity.class);
                 start1.putExtra("fp", "fp");
                 startActivity(start1);
+                finish();
+                break;
+            case R.id.Submit:
+                Intent start2 = new Intent(FpObservationActivity.this, DisplayUserActivity.class);
+                start2.putExtra("fp", "fp");
+                startActivity(start2);
                 finish();
                 break;
         }
