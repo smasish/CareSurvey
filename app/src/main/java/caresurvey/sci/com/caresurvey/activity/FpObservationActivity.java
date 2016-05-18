@@ -6,9 +6,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
@@ -16,13 +19,48 @@ import caresurvey.sci.com.caresurvey.utils.AppUtils;
  */
 public class FpObservationActivity extends Activity {
     private TextView mFp101TextView, mFp102TextView, mFp103TextView, mFp104TextView;
-    private EditText mFp101EditText,mFp102EditText,mFp103EditText,mFp104EditText;
+    private EditText mFp101EditText, mFp102EditText, mFp103EditText, mFp104EditText;
+    private View mFpQuesView1, mFpQuesView2, mFpQuesView3, mFpQuesView4, mFpQuesView5, mFpQuesView6, mFpQuesView7, mFpQuesView8;
+    private FpObservationFormItem mFpObservationFormItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fp_observation);
 
+        mFpObservationFormItem = new FpObservationFormItem();
+
+        initIncludedViews();
         initQuestion();
+    }
+
+    private void initIncludedViews() {
+        mFpQuesView1 = findViewById(R.id.include_fb_ques_01);
+        mFpQuesView2 = findViewById(R.id.include_fb_ques_02);
+        mFpQuesView3 = findViewById(R.id.include_fb_ques_03);
+        mFpQuesView4 = findViewById(R.id.include_fb_ques_04);
+        mFpQuesView5 = findViewById(R.id.include_fb_ques_05);
+        mFpQuesView6 = findViewById(R.id.include_fb_ques_06);
+        mFpQuesView7 = findViewById(R.id.include_fb_ques_07);
+        mFpQuesView8 = findViewById(R.id.include_fb_ques_08);
+    }
+
+    private void collectAnswers() {
+        mFpObservationFormItem.setCover(getRadioSelectionAns(mFpQuesView1));
+        mFpObservationFormItem.setSound_prove(getRadioSelectionAns(mFpQuesView2));
+        mFpObservationFormItem.setDiscuss_fp(getRadioSelectionAns(mFpQuesView3));
+        mFpObservationFormItem.setDiscuss_fp_protocol(getRadioSelectionAns(mFpQuesView4));
+        mFpObservationFormItem.setQuestions(getRadioSelectionAns(mFpQuesView5));
+        mFpObservationFormItem.setJob_aid(getRadioSelectionAns(mFpQuesView6));
+        mFpObservationFormItem.setFollowup(getRadioSelectionAns(mFpQuesView7));
+        mFpObservationFormItem.setFollowup(getRadioSelectionAns(mFpQuesView7));
+    }
+
+    private boolean getRadioSelectionAns(View radioGroupHolder) {
+        RadioGroup radioGroup = (RadioGroup) radioGroupHolder.findViewById(R.id.fp_yes_no_radiogroup);
+        int selectedRadioBtnId = radioGroup.getCheckedRadioButtonId();
+        RadioButton selectedRadioBtn = (RadioButton) findViewById(selectedRadioBtnId);
+        return selectedRadioBtn.isChecked();
     }
 
     private void initQuestion() {
