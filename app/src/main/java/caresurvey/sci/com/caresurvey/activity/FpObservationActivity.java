@@ -50,17 +50,17 @@ public class FpObservationActivity extends Activity {
         mFpObservationFormItem.setSound_prove(getRadioSelectionAns(mFpQuesView2));
         mFpObservationFormItem.setDiscuss_fp(getRadioSelectionAns(mFpQuesView3));
         mFpObservationFormItem.setDiscuss_fp_protocol(getRadioSelectionAns(mFpQuesView4));
-        mFpObservationFormItem.setQuestions(getRadioSelectionAns(mFpQuesView5));
-        mFpObservationFormItem.setJob_aid(getRadioSelectionAns(mFpQuesView6));
-        mFpObservationFormItem.setFollowup(getRadioSelectionAns(mFpQuesView7));
-        mFpObservationFormItem.setFollowup(getRadioSelectionAns(mFpQuesView7));
+        mFpObservationFormItem.setWhat_to_do(getRadioSelectionAns(mFpQuesView5));
+        mFpObservationFormItem.setQuestions(getRadioSelectionAns(mFpQuesView6));
+        mFpObservationFormItem.setJob_aid(getRadioSelectionAns(mFpQuesView7));
+        mFpObservationFormItem.setFollowup(getRadioSelectionAns(mFpQuesView8));
     }
 
-    private boolean getRadioSelectionAns(View radioGroupHolder) {
+    private String getRadioSelectionAns(View radioGroupHolder) {
         RadioGroup radioGroup = (RadioGroup) radioGroupHolder.findViewById(R.id.fp_yes_no_radiogroup);
         int selectedRadioBtnId = radioGroup.getCheckedRadioButtonId();
         RadioButton selectedRadioBtn = (RadioButton) findViewById(selectedRadioBtnId);
-        return selectedRadioBtn.isChecked();
+        return selectedRadioBtn.getText().toString();
     }
 
     private void initQuestion() {

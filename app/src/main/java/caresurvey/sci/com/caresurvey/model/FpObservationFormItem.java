@@ -78,59 +78,67 @@ public class FpObservationFormItem {
         this.concent = concent;
     }
 
-    public boolean getCover() {
+    public String getCover() {
         return cover;
     }
 
-    public void setCover(boolean cover) {
+    public void setCover(String cover) {
         this.cover = cover;
     }
 
-    public boolean getSound_prove() {
+    public String getSound_prove() {
         return sound_prove;
     }
 
-    public void setSound_prove(boolean sound_prove) {
+    public void setSound_prove(String sound_prove) {
         this.sound_prove = sound_prove;
     }
 
-    public boolean getDiscuss_fp() {
+    public String getDiscuss_fp() {
         return discuss_fp;
     }
 
-    public void setDiscuss_fp(boolean discuss_fp) {
+    public void setDiscuss_fp(String discuss_fp) {
         this.discuss_fp = discuss_fp;
     }
 
-    public boolean getDiscuss_fp_protocol() {
+    public String getDiscuss_fp_protocol() {
         return discuss_fp_protocol;
     }
 
-    public void setDiscuss_fp_protocol(boolean discuss_fp_protocol) {
+    public void setDiscuss_fp_protocol(String discuss_fp_protocol) {
         this.discuss_fp_protocol = discuss_fp_protocol;
     }
 
-    public boolean getQuestions() {
+    public String getWhat_to_do() {
+        return what_to_do;
+    }
+
+    public void setWhat_to_do(String what_to_do) {
+        this.what_to_do = what_to_do;
+    }
+
+    public String getQuestions() {
         return questions;
     }
 
-    public void setQuestions(boolean questions) {
+    public void setQuestions(String questions) {
         this.questions = questions;
     }
 
-    public boolean getJob_aid() {
+    public String getJob_aid() {
         return job_aid;
     }
 
-    public void setJob_aid(boolean job_aid) {
+    public void setJob_aid(String job_aid) {
         this.job_aid = job_aid;
     }
 
-    public boolean getFollowup() {
+    public String getFollowup() {
         return followup;
     }
 
-    public void setFollowup(boolean followup) {
+    public void setFollowup(String followup) {
         this.followup = followup;
     }
 
@@ -183,13 +191,14 @@ public class FpObservationFormItem {
     private String date;
     private String start_time;
     private String concent;
-    private boolean cover;
-    private boolean sound_prove;
-    private boolean discuss_fp;
-    private boolean discuss_fp_protocol;
-    private boolean questions;
-    private boolean job_aid;
-    private boolean followup;
+    private String cover;
+    private String sound_prove;
+    private String discuss_fp;
+    private String discuss_fp_protocol;
+    private String what_to_do;
+    private String questions;
+    private String job_aid;
+    private String followup;
     private String end_time;
     private String village;
     private String district;
