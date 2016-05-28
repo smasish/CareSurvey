@@ -92,7 +92,7 @@ Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|
     <string name="fp_ques_06">06) ‡mev MÖnxZvi †Kvb cÖkœ Av‡Q wK bv, Zv wRÁvmv K‡i‡Qb Ges cÖkœ wRÁvmv Ki‡Z DrmvwnZ K‡i‡Qb</string>
     <string name="fp_ques_07">07) ‡mevcÖ`v‡bi mgq h_vh_ Kg© mnvwqKv (Re GBW) e¨envi K‡i‡Qb</string>
     <string name="fp_ques_08">08) cieZ©x wfwRU (d‡jvAvc wfwRU) Gi ZvwiL MÖnxZv‡K Rvwb‡q w`‡q‡Qb</string>
-    <string name="fp_ques_09">09) ch©‡eÿY ‡kl Kivi mgq:</string>
+    <string name="fp_ques_09">109) ch©‡eÿY ‡kl Kivi mgq:</string>
 
     <!--Facility inventory strings-->
     <string name="inventory_ques_01">০১) B‡jKwUªK A‡Uv‡K¬f</string>
@@ -237,6 +237,11 @@ nq wK bv|</string>
     <string name="inventory_ques_350">৩৫০) Amoxycillin Paediatric Drop (‰ea †gqv‡`i)</string>
     <string name="inventory_ques_351">৩৫১) Inj. Gentamycin (‰ea †gqv‡`i)</string>
 
+    <string name="sci_date">mv¶vrKvi MÖn‡bi ZvwiL</string>
+    <string name="sci_start_time">mv¶vrKvi ïiæ mgq</string>
+    <string name="sci_client_name">‡mevcÖ`vbKvixii bvg</string>
+    <string name="sci_designation">c`ex</string>
+    <string name="sci_end_time">mv¶vrKvi ‡kl Kivi mgq</string>
     <string name="sci_q101">101 Mf©eZx gv‡qi A‡cÿvi Rb¨ Avjv`v Kÿ/wbw`©ó RvqMv hv †iv`-e„wó †_‡K gy³</string>
     <string name="sci_q102">102 Mf©eZx gv‡qi emvi e¨e¯’v (†Pqvi/‡eÂ/Uzj)</string>
     <string name="sci_q103">103 kvixwiK cixÿvi Rb¨ Kÿ/wbw`©ó RvqMv</string>

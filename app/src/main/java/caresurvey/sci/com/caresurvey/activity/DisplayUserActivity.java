@@ -21,11 +21,15 @@ import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter2;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
+import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.DBRow;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
+import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class DisplayUserActivity extends AppCompatActivity {
 
@@ -58,6 +62,20 @@ public class DisplayUserActivity extends AppCompatActivity {
             final SatelliteClinicTable table = new SatelliteClinicTable(this);
             ArrayList<SatelliteClinicItem> list = table.getAll();
             for(SatelliteClinicItem item : list){
+                dbrows.add(item);
+            }
+        }
+        else if(getIntent().getIntExtra(FORM,-1) == 2){
+            final SickChildTable table = new SickChildTable(this);
+            ArrayList<SickChildItem> list = table.getAllInfo();
+            for(SickChildItem item : list){
+                dbrows.add(item);
+            }
+        }
+        else if(getIntent().getIntExtra(FORM,-1) == 4){
+            final FpObservationTable table = new FpObservationTable(this);
+            ArrayList<FpObservationFormItem> list = table.getAll();
+            for(FpObservationFormItem item : list){
                 dbrows.add(item);
             }
         }

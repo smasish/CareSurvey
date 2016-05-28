@@ -45,7 +45,12 @@ public class SatelliteClinicTable {
             String str = "csi" + Integer.toString(i);
             table.put(str, "text");
         }
-        table.put("status","integer");
+        table.put("date","text");
+        table.put("stime","text");
+        table.put("etime","text");
+        table.put("cname","text");
+        table.put("dsignation","text");
+        table.put(DBRow.KEY_STATUS,"integer");
         table.put(DBRow.KEY_UNION,"text");
         table.put(DBRow.KEY_VILLAGE,"text");
         table.put(DBRow.KEY_NAME,"text");
@@ -55,6 +60,8 @@ public class SatelliteClinicTable {
         table.put(DBRow.KEY_TIME_PICK,"text");
         table.put(DBRow.KEY_DATE_PICK,"text");
         table.put(DBRow.KEY_OBSTYPE,"text");
+        table.put(DBRow.KEY_FACILITY,"text");
+        table.put(DBRow.KEY_FACI_ID,"integer");
         setNewTable(DB_TABLE_SATELLITE_CLINIC, table);
 
         //another table
@@ -126,7 +133,13 @@ public class SatelliteClinicTable {
         values.put("csi232",item.csi232);
         values.put("csi233",item.csi233);
         values.put("csi234",item.csi234);
-        values.put("status",item.status);
+        values.put("date",item.date);
+        values.put("stime",item.startTime);
+        values.put("etime",item.endTime);
+        values.put("cname",item.clientName);
+        values.put("dsignation",item.designation);
+
+        values.put(DBRow.KEY_STATUS,item.status);
         values.put(DBRow.KEY_UNION,item.union);
         values.put(DBRow.KEY_VILLAGE,item.village);
         values.put(DBRow.KEY_UPOZILA,item.upozila);
@@ -136,6 +149,8 @@ public class SatelliteClinicTable {
         values.put(DBRow.KEY_TIME_PICK,item.timepick);
         values.put(DBRow.KEY_DATE_PICK,item.datepick);
         values.put(DBRow.KEY_OBSTYPE,item.obs_type);
+        values.put(DBRow.KEY_FACILITY,item.facility);
+        values.put(DBRow.KEY_FACI_ID,item.facilityID);
 
         SQLiteDatabase db = openDB();
         return db.insert(DB_TABLE_SATELLITE_CLINIC,null,values);
@@ -242,7 +257,12 @@ public class SatelliteClinicTable {
         item.csi232 = cursor.getString(cursor.getColumnIndex("csi232"));
         item.csi233 = cursor.getString(cursor.getColumnIndex("csi233"));
         item.csi234 = cursor.getString(cursor.getColumnIndex("csi234"));
-        item.status = cursor.getInt(cursor.getColumnIndex("status"));
+        item.date = cursor.getString(cursor.getColumnIndex("date"));
+        item.startTime = cursor.getString(cursor.getColumnIndex("stime"));
+        item.endTime = cursor.getString(cursor.getColumnIndex("etime"));
+        item.clientName = cursor.getString(cursor.getColumnIndex("cname"));
+        item.designation = cursor.getString(cursor.getColumnIndex("dsignation"));
+        item.status = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_STATUS));
         item.union = cursor.getString(cursor.getColumnIndex(DBRow.KEY_UNION));
         item.village = cursor.getString(cursor.getColumnIndex(DBRow.KEY_VILLAGE));
         item.upozila = cursor.getString(cursor.getColumnIndex(DBRow.KEY_UPOZILA));
@@ -251,6 +271,7 @@ public class SatelliteClinicTable {
         item.division = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DIVISION));
         item.timepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_TIME_PICK));
         item.datepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DATE_PICK));
+        item.facilityID = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_FACI_ID));
 
         return item;
     }

@@ -56,7 +56,7 @@ public class DisplayUserFormActivity extends AppCompatActivity {
             for (SickChildItem ft : sickChildItems) {
                 id[k] = ft.getId();
                 name[k] = ft.getSp_client();
-                status[k] = Integer.parseInt(ft.getStatus());
+                status[k] = ft.getStatus();
                 inS[k] = ft.getFields();
                 k++;
 
@@ -114,7 +114,7 @@ public class DisplayUserFormActivity extends AppCompatActivity {
             {
                 id[k] = ft.getId();
                 name[k] = ft.getSp_client();
-                status[k] = Integer.parseInt(ft.getStatus());
+                status[k] = ft.getStatus();
                 inS[k] = ft.getFields();
                 k++;
 

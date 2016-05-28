@@ -17,6 +17,7 @@ public class DBRow {
     public String datepick;
     public String facility;
     public String obs_type;
+    public String district;
 
     public static final String KEY_NAME = "_names"; // 1 - text
     public static final String KEY_DATE_PICK= "_datepick";
@@ -27,5 +28,9 @@ public class DBRow {
     public static final String KEY_UNION= "_union";
     public static final String KEY_VILLAGE= "_village";
     public static final String KEY_OBSTYPE= "_obstype";
+    public static final String KEY_FACILITY = "_facility";
+    public static final String KEY_STATUS = "_status";
+    public static final String KEY_FACI_ID = "_facilityid";
 
+    public int facilityID;
 }

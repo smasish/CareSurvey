@@ -5,9 +5,8 @@ import caresurvey.sci.com.caresurvey.database.DatabaseHelper;
 /**
  * Created by Shahin on 5/6/2016.
  */
-public class FpObservationFormItem {
-    private String sp_client;
-    private String status;
+public class FpObservationFormItem extends DBRow{
+    public String sp_client;
 
     public int getId() {
         return id;
@@ -17,11 +16,11 @@ public class FpObservationFormItem {
         this.id = id;
     }
 
-    public int getFacility_id() {
+    public String getFacility_id() {
         return facility_id;
     }
 
-    public void setFacility_id(int facility_id) {
+    public void setFacility_id(String facility_id) {
         this.facility_id = facility_id;
     }
 
@@ -49,11 +48,11 @@ public class FpObservationFormItem {
         this.client_name = client_name;
     }
 
-    public int getSerial_no() {
+    public String getSerial_no() {
         return serial_no;
     }
 
-    public void setSerial_no(int serial_no) {
+    public void setSerial_no(String serial_no) {
         this.serial_no = serial_no;
     }
 
@@ -178,41 +177,34 @@ public class FpObservationFormItem {
     }
 
     public String getSub_district() {
-        return sub_district;
+        return subdistrict;
     }
 
     public void setSub_district(String sub_district) {
-        this.sub_district = sub_district;
+        this.subdistrict = sub_district;
     }
 
-    private int id;
-    private int facility_id;
-    private String sp_name;
-    private String sp_designation;
-    private String client_name;
-    private int serial_no;
-    private String date;
-    private String start_time;
-    private String concent;
-    private String cover;
-    private String sound_prove;
-    private String discuss_fp;
-    private String discuss_fp_protocol;
-    private String what_to_do;
-    private String questions;
-    private String job_aid;
-    private String followup;
-    private String end_time;
-    private String village;
-    private String district;
-    private String union;
-    private String sub_district;
+    public int id;
+    public String facility_id;
+    public String sp_name;
+    public String sp_designation;
+    public String client_name;
+    public String serial_no;
+    public String date;
+    public String start_time;
+    public String concent;
+    public String cover;
+    public String sound_prove;
+    public String discuss_fp;
+    public String discuss_fp_protocol;
+    public String what_to_do;
+    public String questions;
+    public String job_aid;
+    public String followup;
+    public String end_time;
 
     public void setSp_client(String sp_client) {
         this.sp_client = sp_client;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

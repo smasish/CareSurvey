@@ -3,6 +3,7 @@ package caresurvey.sci.com.caresurvey.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -65,6 +66,12 @@ public class SickChildTable {
         tContext = context;
         createTable();
     }
+    public long getRowSize(){
+        SQLiteDatabase db = openDB();
+        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        closeDB();
+        return numRows;
+    }
 
 
     private void createTable() {
@@ -106,12 +113,12 @@ public class SickChildTable {
                 + KEY_DISTRICT + " TEXT, "
                 + KEY_UNION + " TEXT, "
                 + KEY_SUB_DISTRICT + " TEXT, "
-                + KEY_CT_CLIENT + " TEXT "
-                + KEY_COMMENT + " TEXT "
+                + KEY_CT_CLIENT + " TEXT, "
+                + KEY_COMMENT + " TEXT, "
 
-                + KEY_FIELD + " TEXT "
+                + KEY_FIELD + " TEXT, "
 
-                + KEY_STATUS + " TEXT "
+                + KEY_STATUS + " integer "
 
 
                 // 2 - text
@@ -145,13 +152,13 @@ public class SickChildTable {
                 sickChildItem.getFields(),sickChildItem.getComments(),sickChildItem.getStatus());
     }
 
-    private long insertItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field,String comment,String status) {
-                if(isFieldExist(id))
-                {
-                    return updateItem(id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district, ct_client,field,comment,status);
-                }
+    private long insertItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field,String comment,int status) {
+//                if(isFieldExist(id))
+//                {
+//                    return updateItem(id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district, ct_client,field,comment,status);
+//                }
         ContentValues values= new ContentValues();
-        values.put(KEY_ID,id);
+//        values.put(KEY_ID,id);
         values.put(KEY_FACILITY_ID,facility_id);
         values.put(KEY_SP_CLIENT,sp_client);
         values.put(KEY_SP_DESIGNATGION,so_designation);
@@ -199,10 +206,10 @@ public class SickChildTable {
 
     }
 
-    private long updateItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field, String comment, String status) {
+    private long updateItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field, String comment, int status) {
 
         ContentValues values= new ContentValues();
-        values.put(KEY_ID,id);
+//        values.put(KEY_ID,id);
         values.put(KEY_FACILITY_ID,facility_id);
         values.put(KEY_SP_CLIENT,sp_client);
         values.put(KEY_SP_DESIGNATGION,so_designation);
@@ -243,7 +250,7 @@ public class SickChildTable {
 
 
         SQLiteDatabase db = openDB();
-        long ret= db.insert(TABLE_NAME, null, values);
+        long ret= db.update(TABLE_NAME, values, "_id="+id,null);
         closeDB();
         return ret;
 
@@ -346,7 +353,7 @@ public class SickChildTable {
         String ct_client = cursor.getString(34);
         String field = cursor.getString(35);
         String comment = cursor.getString(36);
-        String status = cursor.getString(37);
+        int status = cursor.getInt(37);
 
 
         return new SickChildItem (id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district,ct_client,field, comment,status);

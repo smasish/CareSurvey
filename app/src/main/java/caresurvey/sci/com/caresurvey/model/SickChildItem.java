@@ -7,9 +7,8 @@ import java.io.IOException;
 /**
  * Created by Mazharul.Islam1 on 4/24/2016.
  */
-public class SickChildItem {
+public class SickChildItem extends DBRow{
 
-    private int id;
     private int facility_id;
     private String sp_client;
     private String so_designation;
@@ -39,14 +38,9 @@ public class SickChildItem {
     private String height;
     private String result;
     private String end_time;
-    private String village;
-    private String district;
-    private String union;
-    private String sub_district;
     private String ct_client;
     private String fields;
     private String comments;
-    private String status;
 
 
     public SickChildItem(int id,int facility_id,String sp_client,String sp_designataion,
@@ -56,10 +50,11 @@ public class SickChildItem {
                          String breathing_test, String eye_test, String infected_mouth,String neck,
                          String ear, String hand, String dehydration, String weight, String clinic_test,
                          String belly_button, String height, String end_time,String result, String village, String district,
-                         String union,String sub_district, String ct_client,String fields,String comments,String status)
-    {   this.id =id;
+                         String union,String sub_district, String ct_client,String fields,String comments,int status)
+    {   this.patientid =id;
         this.facility_id =facility_id;
         this.sp_client = sp_client;
+        this.name = sp_client;
         this.so_designation= sp_designataion;
         this.serial_no = serial_no;
         this.form_date =form_date;
@@ -90,7 +85,7 @@ public class SickChildItem {
         this.village = village;
         this.district =district;
         this.union = union;
-        this.sub_district = sub_district;
+        this.subdistrict = sub_district;
         this.ct_client = ct_client;
         this.fields= fields;
         this.comments=comments;
@@ -100,11 +95,11 @@ public class SickChildItem {
     }
 
     public int getId() {
-        return id;
+        return patientid;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.patientid = id;
     }
 
     public int getFacility_id() {
@@ -364,11 +359,11 @@ public class SickChildItem {
     }
 
     public String getSub_district() {
-        return sub_district;
+        return subdistrict;
     }
 
     public void setSub_district(String sub_district) {
-        this.sub_district = sub_district;
+        this.subdistrict = sub_district;
     }
 
     public String getCt_client() {
@@ -395,11 +390,11 @@ public class SickChildItem {
         this.comments = comments;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }

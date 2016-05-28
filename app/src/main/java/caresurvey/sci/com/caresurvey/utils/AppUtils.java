@@ -176,7 +176,7 @@ public class AppUtils {
         // Loading Font Face
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
-        textView.setTypeface(tf);
+        textView.setTypeface(tf,Typeface.BOLD);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
     }
 

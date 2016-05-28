@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -176,7 +177,10 @@ public class UserActivity extends AppCompatActivity {
 
                     Log.d(">>>", "position_value" + obs_position);
 
-
+                    String designation = "";
+                    if(!TextUtils.isEmpty(sp_designation.getText())){
+                        designation = sp_designation.getText().toString();
+                    }
                     if (obs_position == 0) {
                         Intent intent = new Intent(UserActivity.this, TestActivity.class);
                         intent.putExtra("name", username);
@@ -186,6 +190,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("mark", 1);
                         intent.putExtra("datepicker", datepicker);
                         intent.putExtra("timepicker", timepicker);
+                        intent.putExtra("serial",serial);
 
                         // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
 
@@ -194,6 +199,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("union", union);
                         intent.putExtra("village", village);
                         intent.putExtra("obstype", obsname);
+                        intent.putExtra("designation",designation);
 
 
                         startActivity(intent);
@@ -207,7 +213,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("mark", 1);
                         intent.putExtra("datepicker", datepicker);
                         intent.putExtra("timepicker", timepicker);
-
+                        intent.putExtra("serial",serial);
                         // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
 
                         intent.putExtra("facility", facility);
@@ -215,6 +221,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("union", union);
                         intent.putExtra("village", village);
                         intent.putExtra("obstype", obsname);
+                        intent.putExtra("designation",designation);
                         startActivity(intent);
                         finish();
                     } else if (obs_position == 2) {
@@ -237,6 +244,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("union", union);
                         intent.putExtra("village", village);
                         intent.putExtra("obstype", obsname);
+                        intent.putExtra("designation",designation);
 
 
                         startActivity(intent);
@@ -247,6 +255,22 @@ public class UserActivity extends AppCompatActivity {
                         finish();
                     } else if (obs_position == 4) {
                         Intent intent = new Intent(UserActivity.this, FpObservationActivity.class);
+                        intent.putExtra("name", username);
+                        intent.putExtra("id", first_value);
+                        intent.putExtra("c_name", collector_name.getText().toString());
+                        intent.putExtra("serial",serial);
+                        intent.putExtra("mark", 1);
+                        intent.putExtra("datepicker", datepicker);
+                        intent.putExtra("timepicker", timepicker);
+
+                        // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+
+                        intent.putExtra("facility", facility);
+                        intent.putExtra("upozila", upozila);
+                        intent.putExtra("union", union);
+                        intent.putExtra("village", village);
+                        intent.putExtra("obstype", obsname);
+                        intent.putExtra("designation",designation);
                         startActivity(intent);
                         finish();
                     }

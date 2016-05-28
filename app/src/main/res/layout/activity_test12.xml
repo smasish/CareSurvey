@@ -41,9 +41,9 @@
                     />
 
                 <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/serial_no" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/serial_no" />
             </LinearLayout>
 
             <LinearLayout
@@ -126,11 +126,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="অসুস্থ যে শিশু সেবা নিতে এসেছে তার বিবরন;   "
                     android:id="@+id/serial104"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="13dp"
-
                     />
 
                 <EditText
@@ -160,14 +159,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="১০৪। শিশুর বয়স কত?"
+                            android:text="১০৫। শিশুর বয়স কত?"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textSize="13dp"
                             />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textSize="13dp"
                             android:text="বয়স ১ মাসের কম হলে দিনে লিপিবদ্ধ করুন। ।"
                             />
 
@@ -175,14 +177,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textSize="13dp"
                             android:text="বয়স দুই বছরের কম হলে মাসে লিপিবদ্ধ করুন ।"
                             />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textSize="13dp"
                             android:text="বয়স দুই বছরের বেশি হলে বছরে লপিবদ্ধ করুন । "
                             />
 
@@ -248,6 +252,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="13dp"
                     android:text="১০৬। নিচের সাধারন বিপদজ্জনক লক্ষণগুলো আছে/ছিল কিনা তা সেবাদানকারী জিজ্ঞাসা করেছিলেন  বা শিশুর দেখাশোনাকারী (কেয়ারটেকার) তার উল্লেখ করেছিলেনঃ"/>
 
 
@@ -275,6 +281,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১। শিশু পানি বা বুকের দুধ খেতে পারে নাঃ"
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -284,13 +292,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/feed1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/feed2"
                             android:layout_height="wrap_content" />
 
@@ -310,6 +318,8 @@
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:text="২। শিশু সব খাবার বমি করে ফেলে দেয়ঃ"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -318,13 +328,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/vomit1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/vomit2"
                             android:layout_height="wrap_content" />
 
@@ -344,6 +354,8 @@
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:text="৩। শিশুর খিচুনীঃ"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -352,13 +364,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/stutter1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/stutter2"
                             android:layout_height="wrap_content" />
 
@@ -376,6 +388,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১০৭। নিচের লক্ষনগুলো ছিল কিনা তা সেবাদানকারী শিশুর দেখাশোনাকারী (কেয়ারটেকারকে) জিজ্ঞাসা করেছেনঃ"/>
 
 
@@ -389,6 +403,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১। কাশি বা শ্বাসকস্ট (দ্রুত শ্বাস নেয়া ও বুক উঠানামা করা)"
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -398,13 +414,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/cough1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/cough2"
                             android:layout_height="wrap_content" />
 
@@ -424,6 +440,8 @@
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:text="২। পাতলা পায়খানা "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -432,13 +450,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/diahorea1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/diahorea2"
                             android:layout_height="wrap_content" />
 
@@ -457,6 +475,8 @@
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:text="৩।জ্বর "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -465,14 +485,14 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/fever1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:id="@+id/fever2"
-                            android:text="No"
+                            android:text="@string/no"
                             android:layout_height="wrap_content" />
 
                     </RadioGroup>
@@ -490,6 +510,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১০৮। সেবাদানকারী অসুস্থ শিশুকে নিচের শারিরীক পরীক্ষাগুলো করেছেনঃ "/>
 
 
@@ -505,6 +527,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১। থার্মোমিটার দ্বারা শিশুর জ্বর/ তাপমাত্রা মেপেছেন।"
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -514,13 +538,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/measure_fever1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/measure_fever2"
                             android:layout_height="wrap_content" />
 
@@ -542,6 +566,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="২। স্টেথোস্কোপের সাহায্যে শিশুর বুক পরীক্ষা করেছেন।"
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -551,14 +577,14 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/stethoscope1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:id="@+id/stethoscope2"
-                            android:text="No"
+                            android:text="@string/no"
                             android:layout_height="wrap_content" />
 
                     </RadioGroup>
@@ -577,6 +603,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="৩। শিশু এক মিনিটে কতবার শ্বাস নেয় তা গুনেছেন।"
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -586,13 +614,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/breathing_test1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/breathing_test2"
                             android:layout_height="wrap_content" />
 
@@ -613,6 +641,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="৪। চোখের (কনজাংটিভায়) পরীক্ষা করেছেন।"
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -622,13 +652,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/eye_test1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/eye_test2"
                             android:layout_height="wrap_content" />
 
@@ -647,6 +677,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="৫। মুখে ঘা আছে কিনা তা পরীক্ষা করেছেন। "
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -656,14 +688,14 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/infected_mouth1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:id="@+id/infected_mouth2"
-                            android:text="No"
+                            android:text="@string/no"
                             android:layout_height="wrap_content" />
 
                     </RadioGroup>
@@ -682,7 +714,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="৬। ঘাড় শক্ত কিনা তা পরীক্ষা করেছেন। "
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -692,13 +725,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/neck1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/neck2"
                             android:layout_height="wrap_content" />
 
@@ -720,6 +753,8 @@
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:text="৭। শিশুর কান পরীক্ষা করেছেন। "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -728,13 +763,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/ear1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/ear2"
                             android:layout_height="wrap_content" />
 
@@ -755,6 +790,8 @@
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:text="৮। হাতের তালু পরীক্ষা করেছেন। "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -763,13 +800,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/hand1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/hand2"
                             android:layout_height="wrap_content" />
 
@@ -788,6 +825,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="৯। পানিশূন্যতা আছে কিনা তা পরীক্ষা করেছেন। "
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -797,14 +836,14 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/dehydration1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:id="@+id/dehydration2"
-                            android:text="No"
+                            android:text="@string/no"
                             android:layout_height="wrap_content" />
 
                     </RadioGroup>
@@ -822,6 +861,8 @@
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:text="১০। শিশুর ওজন নিয়েছেন। "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -830,13 +871,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/weight1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/weight2"
                             android:layout_height="wrap_content" />
 
@@ -855,6 +896,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১১। দুই বা ততোধিক সাইটে যেমন ঘাড়(নেক), বগল (এক্সিমা), কুচকি (গ্রোয়েন) এ (লিম্ফ নোডের বৃদ্ধি) পরীক্ষা করেছেন "
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -864,13 +907,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/circle1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/circle2"
                             android:layout_height="wrap_content" />
 
@@ -888,6 +931,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১২। শিশুর নাভী (নবজাতকের ক্ষেত্রে পরীক্ষা করেছেন)"
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -898,12 +943,12 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:id="@+id/belly1"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/belly2"
                             android:layout_height="wrap_content" />
 
@@ -922,6 +967,8 @@
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:text="১৩। শিশুর উচ্চতা মেপেছেন। "
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -930,13 +977,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/height1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/height2"
                             android:layout_height="wrap_content" />
 
@@ -953,6 +1000,8 @@
                     <TextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১৪। গ্রোথ চার্টে ওজন ও উচ্চতা প্লট করেছেন। "
                         android:layout_height="wrap_content" />
                     <RadioGroup
@@ -962,13 +1011,13 @@
                         android:layout_height="wrap_content">
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="Yes"
+                            android:text="@string/yes"
                             android:id="@+id/bmi1"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
-                            android:text="No"
+                            android:text="@string/no"
                             android:id="@+id/bmi2"
                             android:layout_height="wrap_content" />
 
@@ -1004,6 +1053,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="60dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="13dp"
                         android:text="১০৯। এই কনসালটেশনের ফলাফল কি ছিল?"/>
 
 
@@ -1108,7 +1159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="270dp"
-                    android:text="Update"
+                    android:text="Insert"
                     android:background="@color/purple"
                     android:textColor="@color/white"
                     android:id="@+id/Savebtn"

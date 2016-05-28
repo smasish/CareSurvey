@@ -18,7 +18,9 @@ import java.util.ArrayList;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
+import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class SelectionUserActivity extends AppCompatActivity {
@@ -87,6 +89,9 @@ public class SelectionUserActivity extends AppCompatActivity {
                 android.R.layout.select_dialog_singlechoice);
         arrayAdapter.add("ANC Observation");
         arrayAdapter.add("Satellite Clinic Inventory");
+        arrayAdapter.add("Observation Of Sick Child Under Five");
+        arrayAdapter.add("Inventory Of Facility");
+        arrayAdapter.add("FP Observation");
 
 
         builderSingle.setNegativeButton(
@@ -110,7 +115,7 @@ public class SelectionUserActivity extends AppCompatActivity {
                             long rowSize =formTableUser.getRowSize();
                             if( rowSize > 0) {
                                 Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
-                                intent.putExtra(DisplayUserActivity.FORM, 0);
+                                intent.putExtra(DisplayUserActivity.FORM, which);
                                 startActivity(intent);
                             }
                             else {
@@ -124,7 +129,34 @@ public class SelectionUserActivity extends AppCompatActivity {
                             long rowSize = table.getRowSize();
                             if(rowSize > 0) {
                                 Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
-                                intent.putExtra(DisplayUserActivity.FORM, 1);
+                                intent.putExtra(DisplayUserActivity.FORM, which);
+                                startActivity(intent);
+                            }
+                            else{
+                                AlertMessage.showMessage(SelectionUserActivity.this, "Alert",
+                                        "No data is Inserted yet");
+                            }
+                        }
+                        else if(which == 2){
+
+                            SickChildTable table = new SickChildTable(SelectionUserActivity.this);
+                            long rowSize = table.getRowSize();
+                            if(rowSize > 0) {
+                                Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
+                                intent.putExtra(DisplayUserActivity.FORM, which);
+                                startActivity(intent);
+                            }
+                            else{
+                                AlertMessage.showMessage(SelectionUserActivity.this, "Alert",
+                                        "No data is Inserted yet");
+                            }
+                        }
+                        else if(which == 4){
+                            FpObservationTable table = new FpObservationTable(SelectionUserActivity.this);
+                            long rowSize = table.getRowSize();
+                            if(rowSize > 0) {
+                                Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
+                                intent.putExtra(DisplayUserActivity.FORM, which);
                                 startActivity(intent);
                             }
                             else{

@@ -1,18 +1,38 @@
 package caresurvey.sci.com.caresurvey.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 import utils.Utils;
@@ -22,7 +42,7 @@ import static android.widget.Toast.*;
 /**
  * Created by Shahin on 5/3/2016.
  */
-public class SateliteClinicInventoryActivity extends Activity implements View.OnClickListener {
+public class SateliteClinicInventoryActivity extends AppCompatActivity implements View.OnClickListener {
     private SatelliteClinicTable table;
     private String names;
     private int mark;
@@ -34,6 +54,9 @@ public class SateliteClinicInventoryActivity extends Activity implements View.On
     private String timepicker;
     private String facility;
     private String obsType;
+    private long formID = 0;
+    private int facilityID;
+    private String designation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +65,7 @@ public class SateliteClinicInventoryActivity extends Activity implements View.On
 //        AppUtils.setTextWithFonts(this, (TextView) (findViewById(R.id.include_query_101)).findViewById(R.id.tv_fb_observ_question),
 //                getString(R.string.query_101));
         findViewById(R.id.insert).setOnClickListener(this);
+        findViewById(R.id.submit).setOnClickListener(this);
         table = new SatelliteClinicTable(this);
 
         Intent mIntent = getIntent();
@@ -51,7 +75,13 @@ public class SateliteClinicInventoryActivity extends Activity implements View.On
         upozila = mIntent.getStringExtra("upozila");
         union = mIntent.getStringExtra("union");
         village = mIntent.getStringExtra("village");
-
+        designation = mIntent.getStringExtra("designation");
+        try{
+            facilityID = Integer.parseInt(mIntent.getStringExtra("serial"));
+        }
+        catch(Exception e){
+            facilityID = 0;
+        }
 
         datespicker = mIntent.getStringExtra("datepicker");
         timepicker = mIntent.getStringExtra("timepicker");
@@ -201,6 +231,23 @@ public class SateliteClinicInventoryActivity extends Activity implements View.On
         if( TextUtils.isEmpty(item.csi234 = getRGValue(R.id.csi_234_y, R.id.csi_234_n)) ){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
+
+        if(TextUtils.isEmpty(( item.date = getEString(R.id.date) ))){
+            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+        }
+        if(TextUtils.isEmpty(( item.startTime = getEString(R.id.start_time) ))){
+            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+        }
+        if(TextUtils.isEmpty(( item.clientName = getEString(R.id.client_name) ))){
+            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+        }
+        if(TextUtils.isEmpty(( item.designation = getEString(R.id.designation) ))){
+            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+        }
+        if(TextUtils.isEmpty(( item.endTime = getEString(R.id.end_time) ))){
+            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+        }
+
         item.status = 3; //pending
         item.name = names;
         item.collector_name = collector_name;
@@ -211,7 +258,18 @@ public class SateliteClinicInventoryActivity extends Activity implements View.On
         item.timepick = timepicker;
         item.facility = facility;
         item.obs_type = obsType;
+        item.facilityID = facilityID;
         return item;
+    }
+
+    private String getEString(int id){
+        Editable text = ((EditText) findViewById(id)).getText();
+        if(TextUtils.isEmpty(text)){
+            return null;
+        }
+        else{
+            return text.toString();
+        }
     }
 
     boolean isVRG(int... id){ //valid radio group
@@ -230,10 +288,176 @@ public class SateliteClinicInventoryActivity extends Activity implements View.On
             if(item != null){
                 long id = table.insert(item);
                 if(id != -1){
-                    makeText(this,"Form submitted successfully.",LENGTH_SHORT).show();
+                    makeText(this,"Form saved successfully.",LENGTH_SHORT).show();
+                    formID = id;
                 }
                 Log.e("table row id: ","" + id);
             }
         }
+        else if(v.getId() == R.id.submit){
+            final SatelliteClinicItem fpItem = genSatelliteClinicItem();
+            final ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setMessage("Please wait...");
+            final AlertDialog.Builder alert = new AlertDialog.Builder(SateliteClinicInventoryActivity.this);
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            String url = "http://www.kolorob.net/mamoni/survey/api/form";
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+
+                        @Override
+                        public void onResponse(String response) {
+                            dialog.dismiss();
+
+                            try {
+                                JSONObject jo = new JSONObject(response);
+                                Log.e("response:",response);
+                                if(jo.has("errorCount")){
+                                    alert.setMessage(jo.getString("message"));
+                                }
+                                else{
+                                    alert.setMessage("Invalid response");
+                                }
+                                alert.show();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                alert.setMessage("An error occurred")   ;
+                                alert.show();
+                            }
+//                              Toast.makeText(SateliteClinicInventoryActivity.this,response,Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            dialog.dismiss();
+//                            Toast.makeText(SateliteClinicInventoryActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                            alert.setMessage("An error occurred");
+                            alert.show();
+                            error.printStackTrace();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+
+                    Map<String, String> params = new HashMap<>();
+
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject finalRequest = new JSONObject();
+                        finalRequest.put("username","collector");
+                        finalRequest.put("password","collector");
+                        JSONArray requests = new JSONArray();
+                        JSONObject object = new JSONObject();
+                        object.put("form_id",formID);
+                        object.put("form_type","dh_satelliteclinic");
+                        JSONObject data = new JSONObject();
+                        data.put("facility_id",fpItem.facilityID);
+                        data.put("sp_name",toQStr(collector_name));
+                        data.put("sp_designation",toQStr(designation));
+                        data.put("client_name",toQStr(fpItem.clientName));
+                        data.put("form_date",toQStr(fpItem.date));
+                        data.put("date",toQStr(fpItem.date));
+                        data.put("start_time",toQStr(fpItem.startTime));
+
+                        data.put("waiting_place",toBool(fpItem.csi101));
+                        data.put("furniture",toBool(fpItem.csi102));
+                        data.put("test_place",toBool(fpItem.csi103));
+                        data.put("privacy",toBool(fpItem.csi104));
+                        data.put("testing_bed",toBool(fpItem.csi105));
+                        data.put("testing_chair",toBool(fpItem.csi106));
+                        data.put("toilet",toBool(fpItem.csi107));
+                        data.put("adult_wing",toBool(fpItem.csi201));
+                        data.put("child_wing",toBool(fpItem.csi202));
+                        data.put("infant_wing",toBool(fpItem.csi203));
+                        data.put("height_rod",toBool(fpItem.csi204));
+                        data.put("measuring_tip",toBool(fpItem.csi205));
+                        data.put("blood_pressure_mechine",toBool(fpItem.csi206));
+                        data.put("stethoscope",toBool(fpItem.csi207));
+                        data.put("filter_stethoscope",toBool(fpItem.csi208));
+                        data.put("thermometer",toBool(fpItem.csi209));
+                        data.put("chart_line",toBool(fpItem.csi210));
+                        data.put("vaginal_speculum",toBool(fpItem.csi211));
+                        data.put("cotton_ball",toBool(fpItem.csi212));
+                        data.put("disposable_syringe",toBool(fpItem.csi213));
+                        data.put("water",toBool(fpItem.csi214));
+                        data.put("hand_spoap",toBool(fpItem.csi215));
+                        data.put("spirit",toBool(fpItem.csi216));
+                        data.put("waste_receptacle",toBool(fpItem.csi217));
+                        data.put("sharp_waste",toBool(fpItem.csi218));
+                        data.put("gloves",toBool(fpItem.csi219));
+                        data.put("test_tube",toBool(fpItem.csi220));
+                        data.put("test_tube_holder",toBool(fpItem.csi221));
+                        data.put("test_tube_rack",toBool(fpItem.csi222));
+                        data.put("dipstick",toBool(fpItem.csi223));
+                        data.put("telecoet_book",toBool(fpItem.csi224));
+                        data.put("telecoet_lanstet",toBool(fpItem.csi225));
+                        data.put("iron_folate",toBool(fpItem.csi226));
+                        data.put("calcium",toBool(fpItem.csi227));
+                        data.put("misoprostol",toBool(fpItem.csi228));
+                        data.put("amoxycillin",toBool(fpItem.csi229));
+                        data.put("sukhi",toBool(fpItem.csi230_1));
+                        data.put("apon",toBool(fpItem.csi230_2));
+                        data.put("condom",toBool(fpItem.csi231));
+                        data.put("injectable",toBool(fpItem.csi232));
+                        data.put("card",toBool(fpItem.csi233));
+                        data.put("pictured_items",toBool(fpItem.csi234));
+
+                        data.put("end_time",toQStr(fpItem.endTime));
+                        data.put("village",toQStr(fpItem.village));
+                        data.put("district",toQStr(fpItem.district));
+                        data.put("union",toQStr(fpItem.union));
+                        data.put("sub_district",toQStr(fpItem.subdistrict));
+
+                        object.put("data",data);
+                        requests.put(object);
+                        finalRequest.put("requests",requests);
+
+
+                        params.put("data", finalRequest.toString());
+                        Log.e("request: ",finalRequest.toString());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    return params;
+                }
+
+            };
+            dialog.show();
+            RequestQueue requestQueue = Volley.newRequestQueue(SateliteClinicInventoryActivity.this);
+            requestQueue.add(stringRequest);
+        }
+    }
+
+    private String toQStr(String str){
+        if(TextUtils.isEmpty(str)){
+            return "";
+        }
+        return str;
+    }
+
+
+    private int toInt(String str){
+        try{
+            return Integer.parseInt(str);
+        }catch(Exception e){
+            return 0;
+        }
+    }
+
+    private boolean toBool(String str){
+        if(TextUtils.isEmpty(str)) return false;
+        if(str.equals("true")){
+            return true;
+        }
+        return false;
     }
 }

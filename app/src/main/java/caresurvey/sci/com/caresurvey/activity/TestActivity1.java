@@ -1,5 +1,8 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.ExecutorDelivery;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -131,8 +135,12 @@ public class TestActivity1 extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                StorevaluesinVar();
+                try {
+                    StorevaluesinVar();
+                }catch(Exception e){
+                    Toast.makeText(TestActivity1.this,"Form is not complete",Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(checkBox1.isChecked()) {
                     //  String value= checkBox1.getText().toString();
@@ -162,23 +170,28 @@ public class TestActivity1 extends AppCompatActivity {
 
 
                 SickChildTable sickChildTable = new SickChildTable(TestActivity1.this);
-                int faciltiy= Integer.parseInt(serial);
-                SickChildItem sickChildItem = new SickChildItem(2, faciltiy ,name ,designation ,serial ,datepicker ,
+                int faciltiy= 0;
+                try{
+                    faciltiy = Integer.parseInt(serial);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                SickChildItem sickChildItem = new SickChildItem(0, faciltiy ,name ,designation ,serial ,datepicker ,
                         timepicker ,child_description.getText().toString() ,age.getText().toString() ,feedx ,
                         vomitx ,stutterx ,coughx ,diahoreax ,feverx ,measure_feaverx ,stethoscopex ,breathing_testx ,eye_testx ,
                         infected_mouthx ,neckx ,earx ,handx ,dehydrationx ,weightx ,circlex ,bellyx ,heightx ,ChekboxText ,
-                        endTime.getText().toString() ,village ,"hobiganj" ,union ,upozila ,c_name,"","","");
+                        endTime.getText().toString() ,village ,"hobiganj" ,union ,upozila ,c_name,"","",3);
 
                 if(mark==1)
                 {
 
-                    if(sickChildTable.insertItem(sickChildItem)==1)
+                    if(sickChildTable.insertItem(sickChildItem) >= 0)
                     {
                         value++;
                         savevalue();
                         Log.d(">>>>>>", "Saved Successfully");
                         Toast.makeText(TestActivity1.this,
-                                "Your Message", Toast.LENGTH_LONG).show();
+                                "Saved Successfully", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -193,7 +206,15 @@ public class TestActivity1 extends AppCompatActivity {
                 SickChildTable sickChildTable = new SickChildTable(TestActivity1.this);
                 sickChildItems= sickChildTable.getSpecificItem(2);
                 String url = "http://www.kolorob.net/mamoni/survey/api/form";
-
+                final ProgressDialog dialog = new ProgressDialog(TestActivity1.this);
+                dialog.setMessage("Please wait...");
+                final AlertDialog.Builder alert = new AlertDialog.Builder(TestActivity1.this);
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -201,25 +222,23 @@ public class TestActivity1 extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
 
-                                Toast.makeText(TestActivity1.this,response,Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+
                                 try {
                                     JSONObject jo = new JSONObject(response);
-                                    Log.d(".....>>>>>>>>>>", "Status " + jo);
-                                    String status = jo.getString("status");
-                                    if(status.equals("2"))
-                                    {
-                                        //  FormTableUser formtableuser= new FormTableUser(TestActivity.this);
-                                        //   formtableuser.updateglobalI(intValue,3);
-                                        //     Save.setVisibility(View.GONE);
-                                        //     Intent intentw = new Intent(TestActivity1.this,DisplayUserActivity.class);
-                                        //  startActivity(intentw);
-                                        //  finish();
+                                    Log.e("response:",response);
+                                    if(jo.has("errorCount")){
+                                        alert.setMessage(jo.getString("message"));
                                     }
+                                    else{
+                                        alert.setMessage("Invalid response");
+                                    }
+                                    alert.show();
 
-                                }
-
-                                catch(Exception e)
-                                {
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    alert.setMessage("An error occurred")   ;
+                                    alert.show();
                                 }
                                 //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
                             }
@@ -227,7 +246,11 @@ public class TestActivity1 extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                                dialog.dismiss();
+//                            Toast.makeText(SateliteClinicInventoryActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                                alert.setMessage("An error occurred");
+                                alert.show();
+                                error.printStackTrace();
                             }
                         }) {
 
@@ -364,126 +387,129 @@ public class TestActivity1 extends AppCompatActivity {
 
 
 
-    public void StorevaluesinVar() {
+    public void StorevaluesinVar() throws Exception {
 
 
+        try {
+            int selectedq1 = feed.getCheckedRadioButtonId();
+            int selectedq2 = vomit.getCheckedRadioButtonId();
+            int selectedq3 = stutter.getCheckedRadioButtonId();
+            int selectedq4 = cough.getCheckedRadioButtonId();
+            int selectedq5 = diahorea.getCheckedRadioButtonId();
+            int selectedq6 = fever.getCheckedRadioButtonId();
+            int selectedq7 = measure_feaver.getCheckedRadioButtonId();
+            int selectedq8 = stethoscope.getCheckedRadioButtonId();
+            int selectedq9 = breathing_test.getCheckedRadioButtonId();
+            int selectedq10 = eye_test.getCheckedRadioButtonId();
+            int selectedq11 = infected_mouth.getCheckedRadioButtonId();
+            int selectedq19 = neck.getCheckedRadioButtonId();
+            int selectedq20 = ear.getCheckedRadioButtonId();
 
-        int selectedq1 = feed.getCheckedRadioButtonId();
-        int selectedq2 = vomit.getCheckedRadioButtonId();
-        int selectedq3 = stutter.getCheckedRadioButtonId();
-        int selectedq4 = cough.getCheckedRadioButtonId();
-        int selectedq5 = diahorea.getCheckedRadioButtonId();
-        int selectedq6 = fever.getCheckedRadioButtonId();
-        int selectedq7 = measure_feaver.getCheckedRadioButtonId();
-        int selectedq8 = stethoscope.getCheckedRadioButtonId();
-        int selectedq9 = breathing_test.getCheckedRadioButtonId();
-        int selectedq10 = eye_test.getCheckedRadioButtonId();
-        int selectedq11 = infected_mouth.getCheckedRadioButtonId();
-        int selectedq19 = neck.getCheckedRadioButtonId();
-        int selectedq20 = ear.getCheckedRadioButtonId();
+            int selectedq12 = hand.getCheckedRadioButtonId();
+            int selectedq13 = dehydration.getCheckedRadioButtonId();
+            int selectedq14 = weight.getCheckedRadioButtonId();
+            int selectedq15 = circle.getCheckedRadioButtonId();
+            int selectedq16 = belly.getCheckedRadioButtonId();
+            int selectedq17 = height.getCheckedRadioButtonId();
+            int selectedq18 = bmi.getCheckedRadioButtonId();
+            int agex = ages.getCheckedRadioButtonId();
 
-        int selectedq12 = hand.getCheckedRadioButtonId();
-        int selectedq13 = dehydration.getCheckedRadioButtonId();
-        int selectedq14 = weight.getCheckedRadioButtonId();
-        int selectedq15 = circle.getCheckedRadioButtonId();
-        int selectedq16 = belly.getCheckedRadioButtonId();
-        int selectedq17 = height.getCheckedRadioButtonId();
-        int selectedq18 = bmi.getCheckedRadioButtonId();
-        int agex= ages.getCheckedRadioButtonId();
-
-        RadioButton ages1=(RadioButton)findViewById(agex);
-        agev=  age.getText().toString()+" "+ ages1.getText().toString();
-
-
-        RadioButton rb1 = (RadioButton) findViewById(selectedq1);
-        feedx = rb1.getText().toString();
-        feed.clearCheck();
-        RadioButton rb2 = (RadioButton) findViewById(selectedq2);
-        vomitx = rb2.getText().toString();
-        vomit.clearCheck();
-        RadioButton rb3 = (RadioButton) findViewById(selectedq3);
-        stutterx = rb3.getText().toString();
-        stutter.clearCheck();
-        RadioButton rb4 = (RadioButton) findViewById(selectedq4);
-        coughx = rb4.getText().toString();
-        cough.clearCheck();
+            RadioButton ages1 = (RadioButton) findViewById(agex);
+            agev = age.getText().toString() + " " + ages1.getText().toString();
 
 
-        RadioButton rb5 = (RadioButton) findViewById(selectedq5);
-
-        diahoreax = rb5.getText().toString();
-        diahorea.clearCheck();
-
-
-        RadioButton rb6 = (RadioButton) findViewById(selectedq6);
-
-        feverx = rb6.getText().toString();
-        fever.clearCheck();
-
-
-        RadioButton rb7 = (RadioButton) findViewById(selectedq7);
-
-        measure_feaverx = rb7.getText().toString();
-        measure_feaver.clearCheck();
+            RadioButton rb1 = (RadioButton) findViewById(selectedq1);
+            feedx = rb1.getText().toString();
+            feed.clearCheck();
+            RadioButton rb2 = (RadioButton) findViewById(selectedq2);
+            vomitx = rb2.getText().toString();
+            vomit.clearCheck();
+            RadioButton rb3 = (RadioButton) findViewById(selectedq3);
+            stutterx = rb3.getText().toString();
+            stutter.clearCheck();
+            RadioButton rb4 = (RadioButton) findViewById(selectedq4);
+            coughx = rb4.getText().toString();
+            cough.clearCheck();
 
 
-        RadioButton rb8 = (RadioButton) findViewById(selectedq8);
-        stethoscopex = rb8.getText().toString();
-        stethoscope.clearCheck();
+            RadioButton rb5 = (RadioButton) findViewById(selectedq5);
+
+            diahoreax = rb5.getText().toString();
+            diahorea.clearCheck();
 
 
-        RadioButton rb9 = (RadioButton) findViewById(selectedq9);
-        breathing_testx = rb9.getText().toString();
-        breathing_test.clearCheck();
+            RadioButton rb6 = (RadioButton) findViewById(selectedq6);
+
+            feverx = rb6.getText().toString();
+            fever.clearCheck();
 
 
-        RadioButton rb10 = (RadioButton) findViewById(selectedq10);
-        eye_testx = rb10.getText().toString();
-        eye_test.clearCheck();
+            RadioButton rb7 = (RadioButton) findViewById(selectedq7);
 
-        RadioButton rb11 = (RadioButton) findViewById(selectedq11);
-
-        infected_mouthx = rb11.getText().toString();
-        infected_mouth.clearCheck();
+            measure_feaverx = rb7.getText().toString();
+            measure_feaver.clearCheck();
 
 
-        RadioButton rb19 = (RadioButton) findViewById(selectedq12);
-        neckx = rb19.getText().toString();
-        neck.clearCheck();
-
-        RadioButton rb20 = (RadioButton) findViewById(selectedq12);
-        earx = rb20.getText().toString();
-        ear.clearCheck();
-
-        RadioButton rb12 = (RadioButton) findViewById(selectedq12);
-        handx = rb12.getText().toString();
-        hand.clearCheck();
-
-        RadioButton rb13 = (RadioButton) findViewById(selectedq12);
-        dehydrationx = rb13.getText().toString();
-        dehydration.clearCheck();
-
-        RadioButton rb14 = (RadioButton) findViewById(selectedq12);
-        weightx = rb14.getText().toString();
-        weight.clearCheck();
-
-        RadioButton rb15 = (RadioButton) findViewById(selectedq12);
-        circlex = rb15.getText().toString();
-        circle.clearCheck();
-
-        RadioButton rb16 = (RadioButton) findViewById(selectedq12);
-        bellyx = rb16.getText().toString();
-        belly.clearCheck();
-
-        RadioButton rb18 = (RadioButton) findViewById(selectedq12);
-        bmix = rb18.getText().toString();
-        bmi.clearCheck();
+            RadioButton rb8 = (RadioButton) findViewById(selectedq8);
+            stethoscopex = rb8.getText().toString();
+            stethoscope.clearCheck();
 
 
+            RadioButton rb9 = (RadioButton) findViewById(selectedq9);
+            breathing_testx = rb9.getText().toString();
+            breathing_test.clearCheck();
 
-        RadioButton rb17 = (RadioButton) findViewById(selectedq12);
-        heightx = rb17.getText().toString();
-        height.clearCheck();
+
+            RadioButton rb10 = (RadioButton) findViewById(selectedq10);
+            eye_testx = rb10.getText().toString();
+            eye_test.clearCheck();
+
+            RadioButton rb11 = (RadioButton) findViewById(selectedq11);
+
+            infected_mouthx = rb11.getText().toString();
+            infected_mouth.clearCheck();
+
+
+            RadioButton rb19 = (RadioButton) findViewById(selectedq12);
+            neckx = rb19.getText().toString();
+            neck.clearCheck();
+
+            RadioButton rb20 = (RadioButton) findViewById(selectedq12);
+            earx = rb20.getText().toString();
+            ear.clearCheck();
+
+            RadioButton rb12 = (RadioButton) findViewById(selectedq12);
+            handx = rb12.getText().toString();
+            hand.clearCheck();
+
+            RadioButton rb13 = (RadioButton) findViewById(selectedq12);
+            dehydrationx = rb13.getText().toString();
+            dehydration.clearCheck();
+
+            RadioButton rb14 = (RadioButton) findViewById(selectedq12);
+            weightx = rb14.getText().toString();
+            weight.clearCheck();
+
+            RadioButton rb15 = (RadioButton) findViewById(selectedq12);
+            circlex = rb15.getText().toString();
+            circle.clearCheck();
+
+            RadioButton rb16 = (RadioButton) findViewById(selectedq12);
+            bellyx = rb16.getText().toString();
+            belly.clearCheck();
+
+            RadioButton rb18 = (RadioButton) findViewById(selectedq12);
+            bmix = rb18.getText().toString();
+            bmi.clearCheck();
+
+
+            RadioButton rb17 = (RadioButton) findViewById(selectedq12);
+            heightx = rb17.getText().toString();
+            height.clearCheck();
+        }catch (Exception e){
+            e.printStackTrace();
+            throw  new Exception();
+        }
 
 
     }
