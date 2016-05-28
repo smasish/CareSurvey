@@ -199,8 +199,23 @@ public class UserActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else if (obs_position == 1) {
-//                        Intent intent = new Intent(UserActivity.this, SateliteClinicInventoryActivity.class);
-//                        startActivity(intent);
+                        Intent intent = new Intent(UserActivity.this, SateliteClinicInventoryActivity.class);
+                        intent.putExtra("name", username);
+                        intent.putExtra("id", first_value);
+                        intent.putExtra("c_name", collector_name.getText().toString());
+
+                        intent.putExtra("mark", 1);
+                        intent.putExtra("datepicker", datepicker);
+                        intent.putExtra("timepicker", timepicker);
+
+                        // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+
+                        intent.putExtra("facility", facility);
+                        intent.putExtra("upozila", upozila);
+                        intent.putExtra("union", union);
+                        intent.putExtra("village", village);
+                        intent.putExtra("obstype", obsname);
+                        startActivity(intent);
                         finish();
                     } else if (obs_position == 2) {
                         Intent intent = new Intent(UserActivity.this, TestActivity1.class);

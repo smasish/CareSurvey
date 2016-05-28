@@ -515,7 +515,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="350dp"
                     android:background="@color/purple"
-
                     android:text="Continue"
 
                     android:textColor="@color/white" />

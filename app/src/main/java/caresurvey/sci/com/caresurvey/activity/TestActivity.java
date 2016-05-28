@@ -511,13 +511,6 @@ public class TestActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-
-        Intent intents = new Intent(TestActivity.this, DisplayUserActivity.class);
-        startActivity(intents);
-        finish();
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

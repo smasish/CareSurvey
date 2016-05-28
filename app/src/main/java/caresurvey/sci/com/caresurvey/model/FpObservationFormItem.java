@@ -6,6 +6,9 @@ import caresurvey.sci.com.caresurvey.database.DatabaseHelper;
  * Created by Shahin on 5/6/2016.
  */
 public class FpObservationFormItem {
+    private String sp_client;
+    private String status;
+
     public int getId() {
         return id;
     }
@@ -205,4 +208,11 @@ public class FpObservationFormItem {
     private String union;
     private String sub_district;
 
+    public void setSp_client(String sp_client) {
+        this.sp_client = sp_client;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

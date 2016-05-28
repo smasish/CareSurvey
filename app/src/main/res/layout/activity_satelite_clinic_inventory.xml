@@ -1,13 +1,1694 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="10dp"
+    >
 
-    <include
-        android:id="@+id/include_query_101"
+    <!--<include-->
+        <!--android:id="@+id/include_query_101"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--layout="@layout/fp_observation_question_include" />-->
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/fp_observation_question_include" />
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q101"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_101_y"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_101_n"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q102"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_102_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_102_n"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q103"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_103_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_103_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q104"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_104_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_104_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q105"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_105_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_105_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q106"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_106_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_106_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q107"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_107_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_107_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q201"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_201_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_201_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q202"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_202_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_202_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q203"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_203_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_203_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q204"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_204_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_204_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q205"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_205_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_205_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q206"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_206_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_206_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q207"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_207_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_207_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q208"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_208_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_208_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q209"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_209_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_209_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q210"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_210_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_210_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q211"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_211_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_211_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q212"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_212_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_212_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q213"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_213_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_213_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q214"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_214_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_214_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q215"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_215_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_215_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q216"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_216_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_216_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q217"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_217_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_217_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q218"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_218_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_218_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q219"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_219_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_219_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q220"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_220_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_220_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q221"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_221_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_221_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q222"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_222_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_222_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q223"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_223_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_223_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q224"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_224_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_224_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q225"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_225_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_225_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q226"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_226_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_226_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q227"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_227_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_227_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q228"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_228_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_228_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q229"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_229_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_229_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q230_1"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_230_1_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_230_1_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q230_2"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_230_2_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_230_2_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q231"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_231_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_231_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q232"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_232_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_232_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q233"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_233_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_233_n"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sci_q234"/>
+
+            <RadioGroup
+                android:layout_gravity="center_vertical"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/csi_234_y"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ache"/>
+
+                <RadioButton
+                    android:id="@+id/csi_234_n"
+                    
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nai"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+            <Button
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:textColor="@android:color/white"
+                android:background="@color/purple"
+                android:padding="8dp"/>
+            <Button
+                android:id="@+id/insert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insert"
+                android:textColor="@android:color/white"
+                android:background="@color/purple"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/submit"
+                android:layout_toStartOf="@+id/submit"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:padding="8dp"/>
+            <Button
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignBaseline="@id/submit"
+                android:textColor="@android:color/white"
+                android:background="@color/purple"
+                android:padding="8dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

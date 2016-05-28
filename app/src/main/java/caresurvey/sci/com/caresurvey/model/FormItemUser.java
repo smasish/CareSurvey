@@ -6,8 +6,7 @@ import org.json.JSONObject;
 /**
  * Created by mazharul.islam on 3/6/2016.
  */
-public class FormItemUser {
-    private int patientid;
+public class FormItemUser extends DBRow{
     private String bloodpressure;
     private String hemoglobintest;
     private String urinetest;
@@ -20,21 +19,10 @@ public class FormItemUser {
     private String familyplanning;
     private String folictablet;
     private String folictabletimportance;
-    private int status;
     private String global_id;
-    private String name;
     private String comments;
     private String fields;
     private String inS;
-    private String timepick;
-    private String datepick;
-    private String collector_name;
-    private String division;
-    private String upozila;
-    private String union;
-    private String village;
-    private String obs_type;
-
 
 
 

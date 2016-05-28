@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.DatabaseUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class SelectionUserActivity extends AppCompatActivity {
@@ -37,21 +40,22 @@ public class SelectionUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ArrayList<FormItemUser> formItemUsers;
-                FormTableUser formTableUser = new FormTableUser(SelectionUserActivity.this);
-
-                formItemUsers=formTableUser.getAll();
-                if(!formItemUsers.isEmpty()) {
-                    Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-                else
-                    AlertMessage.showMessage(SelectionUserActivity.this, "Alert",
-                            "No data is Inserted yet");
+//                FormTableUser formTableUser = new FormTableUser(SelectionUserActivity.this);
+//
+//                long rowSize =formTableUser.getRowSize();
+//                if( rowSize > 0) {
+//                    Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//
+//                else
+//                    AlertMessage.showMessage(SelectionUserActivity.this, "Alert",
+//                            "No data is Inserted yet");
+                choose();
             }
         });
+
 
 
         insert.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +76,65 @@ public class SelectionUserActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void choose(){
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+        builderSingle.setTitle("Select One");
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.select_dialog_singlechoice);
+        arrayAdapter.add("ANC Observation");
+        arrayAdapter.add("Satellite Clinic Inventory");
+
+
+        builderSingle.setNegativeButton(
+                "cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+        builderSingle.setAdapter(
+                arrayAdapter,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        if(which == 0){
+                            FormTableUser formTableUser = new FormTableUser(SelectionUserActivity.this);
+
+                            long rowSize =formTableUser.getRowSize();
+                            if( rowSize > 0) {
+                                Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
+                                intent.putExtra(DisplayUserActivity.FORM, 0);
+                                startActivity(intent);
+                            }
+                            else {
+                                AlertMessage.showMessage(SelectionUserActivity.this, "Alert",
+                                        "No data is Inserted yet");
+                            }
+
+                        }
+                        else if(which == 1){
+                            SatelliteClinicTable table = new SatelliteClinicTable(SelectionUserActivity.this);
+                            long rowSize = table.getRowSize();
+                            if(rowSize > 0) {
+                                Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
+                                intent.putExtra(DisplayUserActivity.FORM, 1);
+                                startActivity(intent);
+                            }
+                            else{
+                                AlertMessage.showMessage(SelectionUserActivity.this, "Alert",
+                                        "No data is Inserted yet");
+                            }
+                        }
+                    }
+                });
+        builderSingle.show();
     }
 
     @Override

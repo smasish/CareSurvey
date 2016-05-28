@@ -3,6 +3,7 @@ package caresurvey.sci.com.caresurvey.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -195,6 +196,12 @@ public class FormTableUser {
     }
 
 
+    public long getRowSize(){
+        SQLiteDatabase db = openDB();
+        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        closeDB();
+        return numRows;
+    }
 
     public ArrayList<FormItemUser> getAll() {
         ArrayList<FormItemUser> FieldList = new ArrayList<>();
@@ -212,7 +219,6 @@ public class FormTableUser {
         closeDB();
         return FieldList;
     }
-
 
 
 

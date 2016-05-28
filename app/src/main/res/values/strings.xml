@@ -70,7 +70,7 @@ e„ËvwqZ Kiæb|</string>
 Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|</string>
 
     <!--Strings of satelite clinic-->
-    <string name="ache">আছে</string>
+    <string name="ache">অাছে</string>
     <string name="nai">নাই</string>
     <string name="query_101">Mf©eZx gv‡qi A‡cÿvi Rb¨ Avjv`v Kÿ/wbw`©ó RvqMv hv †iv`-e„wó †_‡K gy³</string>
     <!--FP Observation strings-->
@@ -236,4 +236,49 @@ nq wK bv|</string>
     <string name="inventory_ques_349">৩৪৯) 7.1% Chlorhexidine mjykb (‰ea †gqv‡`i)</string>
     <string name="inventory_ques_350">৩৫০) Amoxycillin Paediatric Drop (‰ea †gqv‡`i)</string>
     <string name="inventory_ques_351">৩৫১) Inj. Gentamycin (‰ea †gqv‡`i)</string>
+
+    <string name="sci_q101">101 Mf©eZx gv‡qi A‡cÿvi Rb¨ Avjv`v Kÿ/wbw`©ó RvqMv hv †iv`-e„wó †_‡K gy³</string>
+    <string name="sci_q102">102 Mf©eZx gv‡qi emvi e¨e¯’v (†Pqvi/‡eÂ/Uzj)</string>
+    <string name="sci_q103">103 kvixwiK cixÿvi Rb¨ Kÿ/wbw`©ó RvqMv</string>
+    <string name="sci_q104">104 cixÿv Kivi RvqMvq †MvcbxqZv</string>
+    <string name="sci_q105">105 cixÿvi Rb¨ †Uwej/weQvbv</string>
+    <string name="sci_q106">106 cixÿvi mgq ‡ivMx emvi Rb¨ †Pqvi/Uzj</string>
+    <string name="sci_q107">107 Mf©eZx gv‡qi e¨env‡ii Rb¨ Uq‡jU</string>
+    <string name="sci_q201">201 GWvë IBs †¯‹j</string>
+    <string name="sci_q202">202 PvBì IBs †¯‹j</string>
+    <string name="sci_q203">203 Bbd¨v›U IBs †¯‹j</string>
+    <string name="sci_q204">204 D”PZv gvcvi Rb¨ ó¨vwWIwgUvi (ev nvBU iW)</string>
+    <string name="sci_q205">205 ‡gRvwis †Uc</string>
+    <string name="sci_q206">206 eøvW †cÖmvi G¨vcv‡iUvm</string>
+    <string name="sci_q207">207 ‡÷‡_v‡¯‹vc</string>
+    <string name="sci_q208">208 wdUvj ‡÷‡_v‡¯‹vc</string>
+    <string name="sci_q209">209 _v‡g©vwgUvi</string>
+    <string name="sci_q210">210 UP© jvBU</string>
+    <string name="sci_q211">211 f¨vRvBbvj †¯úKzjvg</string>
+    <string name="sci_q212">212 Zzjvi ej</string>
+    <string name="sci_q213">213 GKevi e¨envi‡hvM¨ wWm‡cvwRej wmwiÄ</string>
+    <string name="sci_q214">214 e¨envi‡hM¨ cvwbi e¨e¯’v</string>
+    <string name="sci_q215">215 nvZ †avqvi mvevb (wjKzBW mvevbI n‡Z cv‡i)</string>
+    <string name="sci_q216">216 Gj‡Kvnj-wfwËK RxevbybvkK (†nw·mj/w¯úwiU)</string>
+    <string name="sci_q217">217 I‡q÷ wi‡mcU¨vKj (XvKbvhy³ †cWvj web, cøvw÷K web jvBbvihy³)</string>
+    <string name="sci_q218">218 mvc© I‡q÷ ivLvi cvÎ (†mdwU e·)</string>
+    <string name="sci_q219">219 j¨v‡U· Møvfm (mvwR©K¨vj Møvfm)</string>
+    <string name="sci_q220">220 BDwib †cÖvwUb †U‡ói Rb¨ ‡Uó wUDe</string>
+    <string name="sci_q221">221 BDwib †cÖvwUb †U‡ói ‡Uó wUDe †nvìvi</string>
+    <string name="sci_q222">222 BDwib †cÖvwUb †U‡ói Rb¨  wWc wóKm (‰ea †gqv‡`i)</string>
+    <string name="sci_q223">223 BDwib †cÖvwUb †U‡ói Rb¨  wWc wóKm (‰ea †gqv‡`i)</string>
+    <string name="sci_q224">224 wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU eyK</string>
+    <string name="sci_q225">225 wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU j¨vb‡mU</string>
+    <string name="sci_q226">226 Tab. Iron-Folate (‰ea †gqv‡`i)</string>
+    <string name="sci_q227">227 Tab. Calcium (‰ea †gqv‡`i)</string>
+    <string name="sci_q228">228 Tab. Misoprostol (‰ea †gqv‡`i)</string>
+    <string name="sci_q229">229 Amoxycillin (‰ea †gqv‡`i)</string>
+    <string name="sci_q230_1">230a cwievi cwiKíbv c×wZ: wcj (myLx)</string>
+    <string name="sci_q230_2">230b cwievi cwiKíbv c×wZ: wcj (Avcb)</string>
+    <string name="sci_q231">231 cwievi cwiKíbv c×wZ: KbWg</string>
+    <string name="sci_q232">232 cwievi cwiKíbv c×wZ: Bb‡RK‡Uej</string>
+    <string name="sci_q233">233 Mf©Kvjxb †mev KvW</string>
+    <string name="sci_q234">234 ¯^v¯’¨wkÿvi Rb¨ Qwehy³ DcKiY</string>
+
+
 </resources>

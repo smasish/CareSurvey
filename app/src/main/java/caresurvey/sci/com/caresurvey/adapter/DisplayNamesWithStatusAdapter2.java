@@ -1,55 +1,29 @@
 package caresurvey.sci.com.caresurvey.adapter;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import caresurvey.sci.com.caresurvey.R;
+import java.util.List;
 
+import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.model.DBRow;
 
 /**
- * Created by Mazharul.Islam1 on 2/18/2016.
+ * Created by shantanu on 5/27/16.
  */
-public class DisplayNamesWithStatusAdapter extends BaseAdapter
-{
-    Activity context;
-    int id[];
-    String name[];
-    int status[];
-    String inS[];
-    Button button;
-
-
-
-    public DisplayNamesWithStatusAdapter(Activity context, int[] id,String[] name,int[] status, String[] inS) {
-        super();
-        this.context = context;
-        this.id = id;
-        this.name = name;
-        this.status = status;
-        this.inS =inS;
-
-
-    }
-
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return id.length;
-    }
-
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return 0;
+public class DisplayNamesWithStatusAdapter2 extends ArrayAdapter<DBRow>{
+    int resource;
+    LayoutInflater inflater;
+    public DisplayNamesWithStatusAdapter2(Context context, int resource,List<DBRow> items) {
+        super(context, resource,items);
+        this.resource = resource;
+        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     private class ViewHolder {
@@ -57,25 +31,18 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
         TextView  name;
         Button status;
         Button button1;
-
-
     }
 
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        // TODO Auto-generated method stub
         ViewHolder holder;
-        LayoutInflater inflater =  context.getLayoutInflater();
-
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.display_an_item, null);
+            convertView = inflater.inflate(resource, null);
             holder = new ViewHolder();
             holder.id = (TextView) convertView.findViewById(R.id.id);
             holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.status = (Button) convertView.findViewById(R.id.status);
-
-
             convertView.setTag(holder);
         }
         else
@@ -83,12 +50,8 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
             holder = (ViewHolder) convertView.getTag();
         }
 
-
-
-
-
-        holder.id.setText("" +id[position]);
-        holder.name.setText("" + name[position]);
+        holder.id.setText("" +getItem(position).patientid);
+        holder.name.setText("" + getItem(position).name);
 //
 //        button=(Button) convertView.findViewById(R.id.button2);
 //
@@ -108,37 +71,37 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
 
 
 
-        if(status[position]==1)
+        if(getItem(position).status==1)
         {
             holder.status.setText("Accepted");
             holder.status.setBackgroundColor(Color.GREEN);
             //  holder.status.setBackground(R.color.light_green);
         }
 
-        else if(status[position]==2) {
+        else if(getItem(position).status==2) {
             holder.status.setText("Reverted");
             holder.status.setBackgroundColor(Color.RED);
         }
-        else if(status[position]==3)
+        else if(getItem(position).status==3)
         {
             holder.status.setText("Pending");
             holder.status.setBackgroundColor(Color.MAGENTA);
 
         }
 
-        else if(status[position]==4) {
+        else if(getItem(position).status==4) {
             holder.status.setText("Resubmitted");
             holder.status.setBackgroundColor(Color.BLUE);
 
         }
 
-        else if(status[position]==5) {
+        else if(getItem(position).status==5) {
             holder.status.setText("Blanked");
             holder.status.setBackgroundColor(Color.GRAY);
 
         }
 
-        else if(status[position]==6) {
+        else if(getItem(position).status==6) {
             holder.status.setText("Completed");
             holder.status.setBackgroundColor(Color.GRAY);
 
@@ -147,5 +110,4 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
 
         return convertView;
     }
-
 }
