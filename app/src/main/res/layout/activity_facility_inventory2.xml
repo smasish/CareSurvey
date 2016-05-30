@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <caresurvey.sci.com.caresurvey.widgets.QTextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/inventory_dust_title"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <caresurvey.sci.com.caresurvey.widgets.QTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:text="@string/inventory_client_name"/>
+
+        <EditText
+            android:id="@+id/fi_201_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="12"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <caresurvey.sci.com.caresurvey.widgets.QTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:text="@string/inventory_designation"/>
+
+        <EditText
+            android:id="@+id/fi_201_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="12"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_202"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_202_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_202_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_202_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_202_ans_2"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_202_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_202_ans_3"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_203"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_2"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_3"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_4"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_5"/>
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_6"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_7"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_8"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_203_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_203_ans_9"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_204"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_204_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_204_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_204_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_204_ans_2"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_204_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_204_ans_3"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_204_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_204_ans_4"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_205"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_2"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_3"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_4"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_5"/>
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_6"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_7"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_8"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_205_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_205_ans_9"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_206"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_206_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_206_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_206_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_206_ans_2"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_206_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_206_ans_3"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_206_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_206_ans_4"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_207"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_207_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_207_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_207_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_207_ans_2"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_207_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_207_ans_3"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_207_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_207_ans_4"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_206"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_208_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_208_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_208_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_208_ans_2"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_208_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_208_ans_3"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_208_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_208_ans_4"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_209"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_210"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_210_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_210_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_210_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_210_ans_2"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_211"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/row_bg"
+                android:padding="3dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".50"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/inventory_dust_ques_212"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_212_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_212_ans_1"/>
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:id="@+id/fi_212_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/inventory_dust_ques_212_ans_2"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_margin="16dp"
+                    android:id="@+id/next"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/next"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/btn_bg"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

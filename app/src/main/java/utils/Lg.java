@@ -1,4 +1,4 @@
-package layout.utils;
+package utils;
 
 import android.util.Log;
 
