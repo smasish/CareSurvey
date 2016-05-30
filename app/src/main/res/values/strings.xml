@@ -96,7 +96,8 @@ Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|
     <string name="fp_ques_09">109) ch©‡eÿY ‡kl Kivi mgq:</string>
 
     <!--Facility inventory strings-->
-    <string name="next">পরবর্তী</string>
+    <string name="next">Next</string>
+    <string name="prev">previous</string>
     <string name="inventory_ques_header">hš¿cvwZ cybivq e¨env‡ii Rb¨ †hLv‡b Rxevbygy³ Kiv nq †mB ¯’vbwU †`wL‡q w`‡Z ejyb| ¯^v¯’¨‡K‡›`ªi hš¿cvwZ Rxevbygy³ Kiv m¤ú‡K© whwb me‡P‡q fvj Rv‡bb Zv‡K Luy‡R †ei Kiæb| wb‡Ri cwiPq w`b, mv‡f©i D‡Ïk¨ e¨vL¨v Kiæb Ges B›UviwfD Pvwj‡q hvb|</string>
     <string name="inventory_client_name">DËi`vZvi bvgt</string>
     <string name="inventory_designation">c`ex</string>
@@ -232,7 +233,7 @@ nq wK bv|</string>
     <string name="inventory_ques_324">c`ext</string>
     <string name="inventory_ques_325">325 DËi`vZvi bvgt </string>
     <string name="inventory_ques_326">326 ‡Wwjfvwi †Uwej</string>
-    <string name="inventory_ques_327">327 øvW †cÖmvi G¨vcv‡iUvm</string>
+    <string name="inventory_ques_327">327 eøvW †cÖmvi G¨vcv‡iUvm</string>
     <string name="inventory_ques_328">328 ‡÷‡_v‡¯‹vc</string>
     <string name="inventory_ques_329">329 wdUvj ‡÷‡_v‡¯‹vc</string>
     <string name="inventory_ques_330">330 wbDeb© wimvmwm‡Ukb e¨vM</string>

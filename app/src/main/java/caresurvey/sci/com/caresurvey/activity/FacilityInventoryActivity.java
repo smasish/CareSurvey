@@ -1,32 +1,12 @@
 package caresurvey.sci.com.caresurvey.activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.fragments.FacilityInventoryFragment;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
-import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 import static caresurvey.sci.com.caresurvey.utils.AppUtils.setTextWithFonts;
 
@@ -40,12 +20,19 @@ public class FacilityInventoryActivity extends AppCompatActivity {
     private View mQuesO6View;
     private View mDustRemovalView;
     private InventoryItem mInventoryItem;
-
+    private FacilityInventoryFragment[] fragments = new FacilityInventoryFragment[6];
+    public static final int resources[] = new int[]{R.layout.activity_facility_inventory1,
+    R.layout.activity_facility_inventory2,R.layout.activity_facility_inventory3,R.layout.activity_facility_inventory4,
+            R.layout.activity_facility_inventory5,R.layout.activity_facility_inventory6};
+    private InventoryItem inventoryItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_facility_inventory2);
+        setContentView(R.layout.activity_fp_inventory);
+        inventoryItem = new InventoryItem();
+        loadFragment(0);
+
 
 //        mInventoryItem = new InventoryItem();
 
@@ -57,6 +44,19 @@ public class FacilityInventoryActivity extends AppCompatActivity {
 //        setTextWithFonts(this, (TextView) mQuesO4View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_04));
 //        setTextWithFonts(this, (TextView) mQuesO5View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_05));
 //        setTextWithFonts(this, (TextView) mQuesO6View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_06));
+    }
+
+    public InventoryItem getInventoryItem(){
+        return this.inventoryItem;
+    }
+
+    public void loadFragment(int index){
+        if(index < 0 && index >= resources.length) return;
+//        if(fragments[index] == null){
+//            fragments[index] = FacilityInventoryFragment.newInstance(index);
+//        }
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment,fragments[index]).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment,FacilityInventoryFragment.newInstance(index)).commit();
     }
 
 //    private void prepareAnswerView(View view) {

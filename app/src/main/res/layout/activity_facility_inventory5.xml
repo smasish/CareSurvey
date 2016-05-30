@@ -1250,65 +1250,65 @@
                 </RadioGroup>
 
             </LinearLayout>
-            <LinearLayout
-                android:background="@drawable/row_bg"
-                android:padding="3dp"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:background="@drawable/row_bg"-->
+                <!--android:padding="3dp"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
 
-                <caresurvey.sci.com.caresurvey.widgets.QTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".60"
-                    android:layout_gravity="center_vertical"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/inventory_ques_421"/>
+                <!--<caresurvey.sci.com.caresurvey.widgets.QTextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight=".60"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                    <!--android:text="@string/inventory_ques_421"/>-->
 
-                <RadioGroup
-                    android:id="@+id/fi_421_0"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight=".20">
+                <!--<RadioGroup-->
+                    <!--android:id="@+id/fi_421_0"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_weight=".20">-->
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/ache"/>
+                    <!--<RadioButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/ache"/>-->
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/nai"/>
+                    <!--<RadioButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/nai"/>-->
 
-                </RadioGroup>
+                <!--</RadioGroup>-->
 
-                <RadioGroup
-                    android:visibility="invisible"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight=".20">
+                <!--<RadioGroup-->
+                    <!--android:visibility="invisible"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_weight=".20">-->
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes"/>
+                    <!--<RadioButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/yes"/>-->
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no"/>
+                    <!--<RadioButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/no"/>-->
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/donot_know"/>
+                    <!--<RadioButton-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/donot_know"/>-->
 
-                </RadioGroup>
+                <!--</RadioGroup>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:background="@drawable/row_bg"
@@ -1620,6 +1620,20 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/next"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/btn_bg"
+                    />
+                <Button
+                    android:layout_margin="16dp"
+                    android:id="@+id/prev"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/prev"
                     android:textColor="@android:color/white"
                     android:background="@drawable/btn_bg"
                     />

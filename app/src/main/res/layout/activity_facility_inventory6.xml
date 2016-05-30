@@ -40,7 +40,7 @@
                 android:layout_weight=".30"
                 android:layout_gravity="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/inventory_ques_601_header2"/>
+                android:text="@string/inventory_ques_601_header3"/>
 
 
         </LinearLayout>
@@ -751,6 +751,39 @@
                 android:ems="12"/>
 
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_margin="16dp"
+                android:id="@+id/insert"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Insert"
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_bg"
+                />
+            <Button
+                android:layout_margin="16dp"
+                android:id="@+id/prev"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/prev"
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_bg"
+                />
+        </RelativeLayout>
 
     </LinearLayout>
 

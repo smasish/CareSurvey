@@ -12,6 +12,48 @@
         android:text="@string/inventory_title3"/>
 
     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <caresurvey.sci.com.caresurvey.widgets.QTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:text="@string/inventory_client_name"/>
+
+        <EditText
+            android:id="@+id/fi_301_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="12"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <caresurvey.sci.com.caresurvey.widgets.QTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:text="@string/inventory_designation"/>
+
+        <EditText
+            android:id="@+id/fi_301_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="12"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_marginTop="15dp"
         android:background="@drawable/row_bg"
         android:padding="8dp"
@@ -1146,7 +1188,7 @@
                 </RadioGroup>
 
                 <RadioGroup
-                    android:id="@+id/fi_319_20"
+                    android:id="@+id/fi_319_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -1425,6 +1467,20 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/next"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/btn_bg"
+                    />
+                <Button
+                    android:layout_margin="16dp"
+                    android:id="@+id/prev"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/prev"
                     android:textColor="@android:color/white"
                     android:background="@drawable/btn_bg"
                     />
