@@ -45,7 +45,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_facility_inventory3);
+        setContentView(R.layout.activity_facility_inventory2);
 
 //        mInventoryItem = new InventoryItem();
 

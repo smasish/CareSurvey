@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="10dp"
+                android:text="@string/inventory_ques_601_header1"/>
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                android:layout_gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/inventory_ques_601_header2"/>
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                android:layout_gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/inventory_ques_601_header2"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_601"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_601_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_601_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_601_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_601_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_602"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_602_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_602_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_602_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_602_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_603"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_603_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_603_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_603_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_603_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="10dp"
+                android:text="@string/inventory_ques_601_header4"/>
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                android:layout_gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/inventory_ques_601_header5"/>
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                android:layout_gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/inventory_ques_601_header6"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_604"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_604_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_604_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_604_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_604_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_603"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_605_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_605_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_605_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_605_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="10dp"
+                android:text="@string/inventory_ques_601_header7"/>
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                android:layout_gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/inventory_ques_601_header8"/>
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                android:layout_gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/inventory_ques_601_header9"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_606"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_606_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_606_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_606_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_606_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_607"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_607_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_607_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_607_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_607_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_608"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_608_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_608_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_608_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_608_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_609"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_609_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_609_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_609_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_609_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_610"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_610_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_610_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_610_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_610_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text="@string/inventory_ques_611"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <EditText
+                    android:id="@+id/fi_611_1"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_611_2"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/fi_611_3"
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fi_611_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/inventory_ques_612"/>
+
+            <EditText
+                android:id="@+id/fi_612"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="12"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
