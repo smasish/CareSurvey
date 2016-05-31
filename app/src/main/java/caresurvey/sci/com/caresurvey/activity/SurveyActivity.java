@@ -134,7 +134,7 @@ public class SurveyActivity extends AppCompatActivity {
                     int k=0;
                     int f= formItems.size();
 
-                    int[] id_admin=new int[f];
+                    long[] id_admin=new long[f];
                     String[] name_admin=new String[f];
                     final int[] status_admin= new int[f];
                     final String[] inS= new String[f];

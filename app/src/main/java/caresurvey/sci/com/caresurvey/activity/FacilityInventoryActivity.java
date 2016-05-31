@@ -1,49 +1,74 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.fragments.FacilityInventoryFragment;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
 
 import static caresurvey.sci.com.caresurvey.utils.AppUtils.setTextWithFonts;
 
 public class FacilityInventoryActivity extends AppCompatActivity {
 
-    private View mQuesO1View;
-    private View mQuesO2View;
-    private View mQuesO3View;
-    private View mQuesO4View;
-    private View mQuesO5View;
-    private View mQuesO6View;
-    private View mDustRemovalView;
-    private InventoryItem mInventoryItem;
-    private FacilityInventoryFragment[] fragments = new FacilityInventoryFragment[6];
     public static final int resources[] = new int[]{R.layout.activity_facility_inventory1,
     R.layout.activity_facility_inventory2,R.layout.activity_facility_inventory3,R.layout.activity_facility_inventory4,
             R.layout.activity_facility_inventory5,R.layout.activity_facility_inventory6};
     private InventoryItem inventoryItem;
+    private InventoryTable table;
+    private int mark;
+    private String datespicker;
+    private String timepicker;
+    private String obsType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fp_inventory);
         inventoryItem = new InventoryItem();
+        table = new InventoryTable(this);
+        Intent mIntent = getIntent();
+        inventoryItem.client_name = inventoryItem.name = mIntent.getStringExtra("name");
+        inventoryItem.designation = mIntent.getStringExtra("designation");
+        mark = mIntent.getIntExtra("mark", 0);
+        inventoryItem.collector_name = mIntent.getStringExtra("c_name");
+        inventoryItem.upozila = mIntent.getStringExtra("upozila");
+        inventoryItem.union = mIntent.getStringExtra("union");
+        inventoryItem.village = mIntent.getStringExtra("village");
+        inventoryItem.facility = mIntent.getStringExtra("facility");
+
+        datespicker = mIntent.getStringExtra("datepicker");
+        timepicker = mIntent.getStringExtra("timepicker");
+        obsType = mIntent.getStringExtra("obstype");
+        inventoryItem.facility_id = mIntent.getIntExtra("serial",0);
         loadFragment(0);
 
+    }
 
-//        mInventoryItem = new InventoryItem();
-
-//        init();
-//
-//        setTextWithFonts(this, (TextView) mQuesO1View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_01));
-//        setTextWithFonts(this, (TextView) mQuesO2View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_02));
-//        setTextWithFonts(this, (TextView) mQuesO3View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_03));
-//        setTextWithFonts(this, (TextView) mQuesO4View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_04));
-//        setTextWithFonts(this, (TextView) mQuesO5View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_05));
-//        setTextWithFonts(this, (TextView) mQuesO6View.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_06));
+    public InventoryTable getTable(){
+        return table;
     }
 
     public InventoryItem getInventoryItem(){
@@ -52,342 +77,274 @@ public class FacilityInventoryActivity extends AppCompatActivity {
 
     public void loadFragment(int index){
         if(index < 0 && index >= resources.length) return;
-//        if(fragments[index] == null){
-//            fragments[index] = FacilityInventoryFragment.newInstance(index);
-//        }
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment,fragments[index]).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment,FacilityInventoryFragment.newInstance(index)).commit();
     }
 
-//    private void prepareAnswerView(View view) {
-//        AppUtils.selectRadioBtn(this, getRadioGroup(view, R.id.yes_no_radiogroup_a), view, R.id.yes_no_radiogroup_b, true);
-//        AppUtils.selectRadioBtn(this, getRadioGroup(view, R.id.yes_no_radiogroup_b), view, R.id.yes_no_radiogroup_c, true);
-//    }
-//
-//    private RadioGroup getRadioGroup(View view, int yes_no_radiogroup) {
-//        return (RadioGroup) view.findViewById(yes_no_radiogroup);
-//    }
-//
-//    private void init() {
-//        //Section 1 title
-//        setTextWithFonts(this, ((TextView) findViewById(R.id.tv_section_1_title)), getString(R.string.title_invetory_section_1));
-//        showInfoProviderView(findViewById(R.id.include_info_provider_inventory_1), R.string.info_provider_name_lbl_101);
-//        setTextWithFonts(this, ((TextView) findViewById(R.id.tv_102_title)), getString(R.string.inventory_title_102));
-//        showRadioTitle(findViewById(R.id.facility_inventory_question_102_subtitle_include));
-//        //Section 2 title
-//        setTextWithFonts(this, ((TextView) findViewById(R.id.tv_section_2_title)), getString(R.string.title_invetory_section_2));
-//        showInfoProviderView(findViewById(R.id.include_info_provider_inventory_2), R.string.info_provider_name_lbl_201);
-//        //Section 3 title
-//        setTextWithFonts(this, ((TextView) findViewById(R.id.tv_section_3_title)), getString(R.string.title_invetory_section_3));
-//        showInfoProviderView(findViewById(R.id.include_info_provider_inventory_3), R.string.info_provider_name_lbl_301);
-//
-//        mQuesO1View = findViewById(R.id.include_inventory_ques_01);
-//        mQuesO2View = findViewById(R.id.include_inventory_ques_02);
-//        mQuesO3View = findViewById(R.id.include_inventory_ques_03);
-//        mQuesO4View = findViewById(R.id.include_inventory_ques_04);
-//        mQuesO5View = findViewById(R.id.include_inventory_ques_05);
-//        mQuesO6View = findViewById(R.id.include_inventory_ques_06);
-//
-//        prepareAnswerView(mQuesO1View);
-//        prepareAnswerView(mQuesO2View);
-//        prepareAnswerView(mQuesO3View);
-//        prepareAnswerView(mQuesO4View);
-//        prepareAnswerView(mQuesO5View);
-//        prepareAnswerView(mQuesO6View);
-//
-//        initializeDustRemovalView();
-//        prepareSec3QuesAns();
-//    }
-//
-//    private void prepareSec3QuesAns() {
-//        View view302 = findViewById(R.id.include_inventory_sec3_302);
-//        View view303 = findViewById(R.id.include_inventory_sec3_303);
-//        View view304 = findViewById(R.id.include_inventory_sec3_304);
-//        View view305 = findViewById(R.id.include_inventory_sec3_305);
-//        View view306 = findViewById(R.id.include_inventory_sec3_306);
-//        View view307 = findViewById(R.id.include_inventory_sec3_307);
-//        View view308 = findViewById(R.id.include_inventory_sec3_308);
-//        View view309 = findViewById(R.id.include_inventory_sec3_309);
-//        View view310 = findViewById(R.id.include_inventory_sec3_310);
-//        View view311 = findViewById(R.id.include_inventory_sec3_311);
-//        View view312 = findViewById(R.id.include_inventory_sec3_312);
-//        View view313 = findViewById(R.id.include_inventory_sec3_313);
-//        View view314 = findViewById(R.id.include_inventory_sec3_314);
-//        View view315 = findViewById(R.id.include_inventory_sec3_315);
-//        View view316 = findViewById(R.id.include_inventory_sec3_316);
-//        View view317 = findViewById(R.id.include_inventory_sec3_317);
-//        View view318 = findViewById(R.id.include_inventory_sec3_318);
-//        View view319 = findViewById(R.id.include_inventory_sec3_319);
-//        View view320 = findViewById(R.id.include_inventory_sec3_320);
-//        View view321 = findViewById(R.id.include_inventory_sec3_321);
-//        View view322 = findViewById(R.id.include_inventory_sec3_322);
-//        View view323 = findViewById(R.id.include_inventory_sec3_323);
-//        View view324 = findViewById(R.id.include_inventory_sec3_324);
-//        View view325 = findViewById(R.id.include_inventory_sec3_325);
-//        View view326 = findViewById(R.id.include_inventory_sec3_326);
-//        View view327 = findViewById(R.id.include_inventory_sec3_327);
-//        View view328 = findViewById(R.id.include_inventory_sec3_328);
-//        View view329 = findViewById(R.id.include_inventory_sec3_329);
-//        View view330 = findViewById(R.id.include_inventory_sec3_330);
-//        View view331 = findViewById(R.id.include_inventory_sec3_331);
-//        View view332 = findViewById(R.id.include_inventory_sec3_332);
-//        View view333 = findViewById(R.id.include_inventory_sec3_333);
-//        View view334 = findViewById(R.id.include_inventory_sec3_334);
-//        View view335 = findViewById(R.id.include_inventory_sec3_335);
-//        View view336 = findViewById(R.id.include_inventory_sec3_336);
-//        View view337 = findViewById(R.id.include_inventory_sec3_337);
-//        View view338 = findViewById(R.id.include_inventory_sec3_338);
-//        View view339 = findViewById(R.id.include_inventory_sec3_339);
-//        View view340 = findViewById(R.id.include_inventory_sec3_340);
-//        View view341 = findViewById(R.id.include_inventory_sec3_341);
-//        View view342 = findViewById(R.id.include_inventory_sec3_342);
-//        View view343 = findViewById(R.id.include_inventory_sec3_343);
-//        View view344 = findViewById(R.id.include_inventory_sec3_344);
-//        View view345 = findViewById(R.id.include_inventory_sec3_345);
-//        View view346 = findViewById(R.id.include_inventory_sec3_346);
-//        View view347 = findViewById(R.id.include_inventory_sec3_347);
-//        View view348 = findViewById(R.id.include_inventory_sec3_348);
-//
-//
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_302));
-//        setTextWithFonts(this, (TextView) view303.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_303));
-//        setTextWithFonts(this, (TextView) view304.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_304));
-//        setTextWithFonts(this, (TextView) view305.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_305));
-//        setTextWithFonts(this, (TextView) view306.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_306));
-//        setTextWithFonts(this, (TextView) view307.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_307));
-//        setTextWithFonts(this, (TextView) view308.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_308));
-//        setTextWithFonts(this, (TextView) view309.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_309));
-//        setTextWithFonts(this, (TextView) view310.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_310));
-//        setTextWithFonts(this, (TextView) view311.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_311));
-//        setTextWithFonts(this, (TextView) view312.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_312));
-//        setTextWithFonts(this, (TextView) view313.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_313));
-//        setTextWithFonts(this, (TextView) view314.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_314));
-//        setTextWithFonts(this, (TextView) view315.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_315));
-//        setTextWithFonts(this, (TextView) view316.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_316));
-//        setTextWithFonts(this, (TextView) view317.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_317));
-//        setTextWithFonts(this, (TextView) view318.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_318));
-//        setTextWithFonts(this, (TextView) view319.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_319));
-//        setTextWithFonts(this, (TextView) view320.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_320));
-//        setTextWithFonts(this, (TextView) view321.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_321));
-//        setTextWithFonts(this, (TextView) view322.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_322));
-//        setTextWithFonts(this, (TextView) view323.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_323));
-//        setTextWithFonts(this, (TextView) view324.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_324));
-//        setTextWithFonts(this, (TextView) view325.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_325));
-//        setTextWithFonts(this, (TextView) view326.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_326));
-//        setTextWithFonts(this, (TextView) view327.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_327));
-//        setTextWithFonts(this, (TextView) view328.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_328));
-//        setTextWithFonts(this, (TextView) view329.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_329));
-//        setTextWithFonts(this, (TextView) view330.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_330));
-//        setTextWithFonts(this, (TextView) view331.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_331));
-//        setTextWithFonts(this, (TextView) view332.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_332));
-//        setTextWithFonts(this, (TextView) view333.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_333));
-//        setTextWithFonts(this, (TextView) view334.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_334));
-//        setTextWithFonts(this, (TextView) view335.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_335));
-//        setTextWithFonts(this, (TextView) view336.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_336));
-//        setTextWithFonts(this, (TextView) view337.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_337));
-//        setTextWithFonts(this, (TextView) view338.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_338));
-//        setTextWithFonts(this, (TextView) view339.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_339));
-//        setTextWithFonts(this, (TextView) view340.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_340));
-//        setTextWithFonts(this, (TextView) view341.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_341));
-//        setTextWithFonts(this, (TextView) view342.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_342));
-//        setTextWithFonts(this, (TextView) view343.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_343));
-//        setTextWithFonts(this, (TextView) view344.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_344));
-//        setTextWithFonts(this, (TextView) view345.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_345));
-//        setTextWithFonts(this, (TextView) view346.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_346));
-//        setTextWithFonts(this, (TextView) view347.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_347));
-//        setTextWithFonts(this, (TextView) view348.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_348));
-//
-//
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_302));
-//        prepareSec3AnswerView(view302);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_303));
-//        prepareSec3AnswerView(view303);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_304));
-//        prepareSec3AnswerView(view304);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_305));
-//        prepareSec3AnswerView(view305);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_306));
-//        prepareSec3AnswerView(view306);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_307));
-//        prepareSec3AnswerView(view307);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_308));
-//        prepareSec3AnswerView(view308);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_309));
-//        prepareSec3AnswerView(view309);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_310));
-//        prepareSec3AnswerView(view310);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_311));
-//        prepareSec3AnswerView(view311);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_312));
-//        prepareSec3AnswerView(view312);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_313));
-//        prepareSec3AnswerView(view313);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_314));
-//        prepareSec3AnswerView(view314);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_315));
-//        prepareSec3AnswerView(view315);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_316));
-//        prepareSec3AnswerView(view316);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_317));
-//        prepareSec3AnswerView(view317);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_318));
-//        prepareSec3AnswerView(view318);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_319));
-//        prepareSec3AnswerView(view319);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_320));
-//        prepareSec3AnswerView(view320);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_321));
-//        prepareSec3AnswerView(view321);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_322));
-//        prepareSec3AnswerView(view322);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_323));
-//        prepareSec3AnswerView(view323);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_324));
-//        prepareSec3AnswerView(view324);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_325));
-//        prepareSec3AnswerView(view325);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_326));
-//        prepareSec3AnswerView(view326);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_327));
-//        prepareSec3AnswerView(view327);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_328));
-//        prepareSec3AnswerView(view328);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_329));
-//        prepareSec3AnswerView(view329);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_330));
-//        prepareSec3AnswerView(view330);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_331));
-//        prepareSec3AnswerView(view331);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_332));
-//        prepareSec3AnswerView(view332);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_333));
-//        prepareSec3AnswerView(view333);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_334));
-//        prepareSec3AnswerView(view334);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_335));
-//        prepareSec3AnswerView(view335);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_336));
-//        prepareSec3AnswerView(view336);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_337));
-//        prepareSec3AnswerView(view337);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_338));
-//        prepareSec3AnswerView(view338);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_339));
-//        prepareSec3AnswerView(view339);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_340));
-//        prepareSec3AnswerView(view340);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_341));
-//        prepareSec3AnswerView(view341);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_342));
-//        prepareSec3AnswerView(view342);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_343));
-//        prepareSec3AnswerView(view343);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_344));
-//        prepareSec3AnswerView(view344);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_345));
-//        prepareSec3AnswerView(view345);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_346));
-//        prepareSec3AnswerView(view346);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_347));
-//        prepareSec3AnswerView(view347);
-//        setTextWithFonts(this, (TextView) view302.findViewById(R.id.tv_inventory_question), getString(R.string.inventory_ques_348));
-//        prepareSec3AnswerView(view348);
-//
-//    }
-//
-//    private void prepareSec3AnswerView(View view) {
-//        AppUtils.selectRadioBtn(this, getRadioGroup(view, R.id.yes_no_radiogroup_a), view, R.id.yes_no_radiogroup_b, true);
-////        AppUtils.selectRadioBtn(this, getRadioGroup(view, R.id.yes_no_radiogroup_b), view, R.id.yes_no_radiogroup_c, true);
-//    }
-//
-//    private void showRadioTitle(View view) {
-//        setTextWithFonts(this, (TextView) view.findViewById(R.id.tv_inventory_102_title_sub), getString(R.string.tv_inventory_102_title_sub));
-//
-//        setTextWithFonts(this, (TextView) view.findViewById(R.id.tv_inventory_102_sub_1), getString(R.string.equipment_102_title1));
-//        setTextWithFonts(this, (TextView) view.findViewById(R.id.tv_inventory_102_sub_2), getString(R.string.equipment_102_title2));
-//        setTextWithFonts(this, (TextView) view.findViewById(R.id.tv_inventory_102_sub_3), getString(R.string.equipment_102_title3));
-//
-//    }
-//
-//    private void showInfoProviderView(View view, int name) {
-//        setTextWithFonts(this, (TextView) view.findViewById(R.id.tv_info_provider_name), getString(name));
-//        setTextWithFonts(this, (TextView) view.findViewById(R.id.tv_info_provider_post), getString(R.string.info_provider_post_lbl));
-//    }
-//
-//    private void initializeDustRemovalView() {
-//        mDustRemovalView = findViewById(R.id.include_inventory_dust_layout);
-////        AppUtils.setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_title), getString(R.string.inventory_dust_title));
-//        //Question 202
-//        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_202), getString(R.string.inventory_dust_ques_202));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_202_ans_1), getString(R.string.inventory_dust_ques_202_ans_1));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_202_ans_2), getString(R.string.inventory_dust_ques_202_ans_2));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_202_ans_3), getString(R.string.inventory_dust_ques_202_ans_3));
-//        //Question 203
-//        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_203), getString(R.string.inventory_dust_ques_203));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_1), getString(R.string.inventory_dust_ques_203_ans_1));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_2), getString(R.string.inventory_dust_ques_203_ans_2));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_3), getString(R.string.inventory_dust_ques_203_ans_3));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_4), getString(R.string.inventory_dust_ques_203_ans_4));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_5), getString(R.string.inventory_dust_ques_203_ans_5));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_6), getString(R.string.inventory_dust_ques_203_ans_6));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_7), getString(R.string.inventory_dust_ques_203_ans_7));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_8), getString(R.string.inventory_dust_ques_203_ans_8));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_203_ans_9), getString(R.string.inventory_dust_ques_203_ans_9));
-//        //Question 204
-//        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_204), getString(R.string.inventory_dust_ques_204));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_204_ans_1), getString(R.string.inventory_dust_ques_204_ans_1));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_204_ans_2), getString(R.string.inventory_dust_ques_204_ans_2));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_204_ans_3), getString(R.string.inventory_dust_ques_204_ans_3));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_204_ans_4), getString(R.string.inventory_dust_ques_204_ans_4));
-//        //Question 205
-//        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_205), getString(R.string.inventory_dust_ques_205));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_1), getString(R.string.inventory_dust_ques_205_ans_1));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_2), getString(R.string.inventory_dust_ques_205_ans_2));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_3), getString(R.string.inventory_dust_ques_205_ans_3));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_4), getString(R.string.inventory_dust_ques_205_ans_4));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_5), getString(R.string.inventory_dust_ques_205_ans_5));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_6), getString(R.string.inventory_dust_ques_205_ans_6));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_7), getString(R.string.inventory_dust_ques_205_ans_7));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_8), getString(R.string.inventory_dust_ques_205_ans_8));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_205_ans_9), getString(R.string.inventory_dust_ques_205_ans_9));
-//        //Question 206
-//        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_206), getString(R.string.inventory_dust_ques_206));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_206_ans_1), getString(R.string.inventory_dust_ques_206_ans_1));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_206_ans_2), getString(R.string.inventory_dust_ques_206_ans_2));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_206_ans_3), getString(R.string.inventory_dust_ques_206_ans_3));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_206_ans_4), getString(R.string.inventory_dust_ques_206_ans_4));
-//        //Question 207
-//        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_207), getString(R.string.inventory_dust_ques_207));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_207_ans_1), getString(R.string.inventory_dust_ques_207_ans_1));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_207_ans_2), getString(R.string.inventory_dust_ques_207_ans_2));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_207_ans_3), getString(R.string.inventory_dust_ques_207_ans_3));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_207_ans_4), getString(R.string.inventory_dust_ques_207_ans_4));
-//        //Question 208
-//        setTextWithFonts(this, (TextView) mDustRemovalView.findViewById(R.id.tv_inventory_dust_ques_208), getString(R.string.inventory_dust_ques_208));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_208_ans_1), getString(R.string.inventory_dust_ques_208_ans_1));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_208_ans_2), getString(R.string.inventory_dust_ques_208_ans_2));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_208_ans_3), getString(R.string.inventory_dust_ques_208_ans_3));
-//        setTextWithFonts(this, (CheckBox) mDustRemovalView.findViewById(R.id.cb_inventory_ques_208_ans_4), getString(R.string.inventory_dust_ques_208_ans_4));
-//    }
-//
-//    public void onClickBtn(View view) {
-//        switch (view.getId()) {
-//            case R.id.back:
-//                startActivity(new Intent(FacilityInventoryActivity.this, DisplayUserActivity.class));
-//                finish();
-//                break;
-//            case R.id.Savebtn:
-//                saveDataToDb();
-//                startActivity(new Intent(FacilityInventoryActivity.this, DisplayUserActivity.class));
-//                finish();
-//                break;
-//            case R.id.Submit:
-//                startActivity(new Intent(FacilityInventoryActivity.this, DisplayUserActivity.class));
-//                finish();
-//                break;
-//        }
-//    }
-//
-//    private void saveDataToDb() {
-//    }
+    public void submit(){
+        final InventoryItem item = getInventoryItem();
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Please wait...");
+        final AlertDialog.Builder alert = new AlertDialog.Builder(FacilityInventoryActivity.this);
+        if(item != null) {
+            String url = "http://www.kolorob.net/mamoni/survey/api/form";
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+
+                        @Override
+                        public void onResponse(String response) {
+                            dialog.dismiss();
+
+                            try {
+                                final JSONObject jo = new JSONObject(response);
+                                if(jo.has("errorCount")){
+                                    alert.setMessage(jo.getString("message"));
+                                }
+                                else{
+                                    alert.setMessage("Invalid response");
+                                }
+                                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        try {
+                                            if (jo.getInt("errorCount") == 0) {
+                                                finish();
+                                            }
+                                        }catch(Exception e){
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                                alert.show();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                alert.setMessage("An error occurred")   ;
+                                alert.show();
+                            }
+                            //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            dialog.dismiss();
+                            //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                            alert.setMessage("An error occurred");
+                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            alert.show();
+                            error.printStackTrace();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+
+                    Map<String, String> params = new HashMap<>();
+
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject finalRequest = new JSONObject();
+                        finalRequest.put("username","collector");
+                        finalRequest.put("password","collector");
+                        JSONArray requests = new JSONArray();
+                        JSONObject object = new JSONObject();
+                        object.put("form_id",item.id);
+                        object.put("form_type","dh_inventory");
+                        JSONObject data = new JSONObject();
+
+                        data.put("facility_id",item.facility_id);
+                        data.put(InventoryTable.client_name,item.client_name);
+                        data.put(InventoryTable.start_time,item.start_time);
+                        data.put(InventoryTable.instrument_sp_name,item.instrument_sp_name);
+                        data.put(InventoryTable.instrument_sp_designation,item.instrument_sp_designation);
+                        data.put(InventoryTable.i_electronic_autoclev,gJAv(item.i_electronic_autoclev));
+                        data.put(InventoryTable.i_non_electronic_autoclev,gJAv(item.i_non_electronic_autoclev));
+                        data.put(InventoryTable.i_electric_sterilizer,gJAv(item.i_electric_sterilizer));
+                        data.put(InventoryTable.i_electric_steamer,gJAv(item.i_electric_steamer));
+                        data.put(InventoryTable.i_non_electric_pot,gJAv(item.i_non_electric_pot));
+                        data.put(InventoryTable.i_stove,gJAv(item.i_stove));
+                        data.put(InventoryTable.i_waste_sp_name,item.i_waste_sp_name);
+                        data.put(InventoryTable.i_waste_sp_designation,item.i_waste_sp_designation);
+                        data.put(InventoryTable.w_waste_option,gJAv(item.w_waste_option));
+                        data.put(InventoryTable.w_waste_dispose_how,gJAv(item.w_waste_dispose_how));
+                        data.put(InventoryTable.w_pointy_waste,gJAv(item.w_pointy_waste));
+                        data.put(InventoryTable.w_liquid_waste,gJAv(item.w_liquid_waste));
+                        data.put(InventoryTable.w_liquid_waste_store,gJAv(item.w_liquid_waste_store));
+                        data.put(InventoryTable.w_plastic_waste,gJAv(item.w_plastic_waste));
+                        data.put(InventoryTable.w_waste_normal,gJAv(item.w_waste_normal));
+                        data.put(InventoryTable.w_incinerator_seen,gJAv(item.w_incinerator_seen));
+                        data.put(InventoryTable.w_dumping_pit_seen,gJAv(item.w_dumping_pit_seen));
+                        data.put(InventoryTable.equipment_sp_name,item.equipment_sp_name);
+                        data.put(InventoryTable.equipment_sp_designation,item.equipment_sp_designation);
+                        data.put(InventoryTable.w_incinerator,toInt(item.w_incinerator));
+                        data.put(InventoryTable.w_dumping_pit,toInt(item.w_dumping_pit));
+                        data.put(InventoryTable.n_adult_wing_scale,gJAv(item.n_adult_wing_scale));
+                        data.put(InventoryTable.n_height_rod,gJAv(item.n_height_rod));
+                        data.put(InventoryTable.n_pressure_mechine,gJAv(item.n_pressure_mechine));
+                        data.put(InventoryTable.n_stethoscope,gJAv(item.n_stethoscope));
+                        data.put(InventoryTable.n_filter_stethoscope,gJAv(item.n_filter_stethoscope));
+                        data.put(InventoryTable.n_water,toInt(item.n_water));
+                        data.put(InventoryTable.n_hand_soap,toInt(item.n_hand_soap));
+                        data.put(InventoryTable.n_spirit,toInt(item.n_spirit));
+                        data.put(InventoryTable.n_waste,toInt(item.n_waste));
+                        data.put(InventoryTable.n_sharp_waste,toInt(item.n_sharp_waste));
+                        data.put(InventoryTable.n_gloves,toInt(item.n_gloves));
+                        data.put(InventoryTable.n_iron_folate,toInt(item.n_iron_folate));
+                        data.put(InventoryTable.n_urine_protien,toInt(item.n_urine_protien));
+                        data.put(InventoryTable.n_urine_tester,toInt(item.n_urine_tester));
+                        data.put(InventoryTable.n_urine_testtube,toInt(item.n_urine_testtube));
+                        data.put(InventoryTable.n_test_tube_rack,toInt(item.n_test_tube_rack));
+                        data.put(InventoryTable.n_dip_stick,toInt(item.n_dip_stick));
+                        data.put(InventoryTable.n_hemoglobin,gJAv(item.n_hemoglobin));
+                        data.put(InventoryTable.n_telecoil_book,toInt(item.n_telecoil_book));
+                        data.put(InventoryTable.n_telecoil_landset,toInt(item.n_telecoil_landset));
+                        data.put(InventoryTable.n_kolori_meter,toInt(item.n_kolori_meter));
+                        data.put(InventoryTable.n_litmus_paper,toInt(item.n_litmus_paper));
+                        data.put(InventoryTable.delivery_sp_name,item.delivery_sp_name);
+                        data.put(InventoryTable.delivery_sp_designation,item.delivery_sp_designation);
+//                        data.put(InventoryTable.d_delivery_service,item.d_delivery_service);
+                        data.put(InventoryTable.d_delivery_table,gJAv(item.d_delivery_table));
+                        data.put(InventoryTable.d_pressure_mechine,gJAv(item.d_pressure_mechine));
+                        data.put(InventoryTable.d_stethoscope,gJAv(item.d_stethoscope));
+                        data.put(InventoryTable.d_filter_stethoscope,gJAv(item.d_filter_stethoscope));
+                        data.put(InventoryTable.d_newborn_recuscitation,gJAv(item.d_newborn_recuscitation));
+                        data.put(InventoryTable.d_recuscitation_mask_0,gJAv(item.d_recuscitation_mask_0));
+                        data.put(InventoryTable.d_recuscitation_mask_1,gJAv(item.d_recuscitation_mask_1));
+                        data.put(InventoryTable.d_peguin_sucker,gJAv(item.d_peguin_sucker));
+                        data.put(InventoryTable.d_cord_cutter,toInt(item.d_cord_cutter));
+                        data.put(InventoryTable.d_cord_clamp,toInt(item.d_cord_clamp));
+                        data.put(InventoryTable.d_partograf_paper,toInt(item.d_partograf_paper));
+                        data.put(InventoryTable.d_water,toInt(item.d_water));
+                        data.put(InventoryTable.d_hand_soap,toInt(item.d_hand_soap));
+                        data.put(InventoryTable.d_spirit,toInt(item.d_spirit));
+                        data.put(InventoryTable.d_waste_recycle,toInt(item.d_waste_recycle));
+                        data.put(InventoryTable.d_waste_storage,toInt(item.d_waste_storage));
+                        data.put(InventoryTable.d_latex_gloves,toInt(item.d_latex_gloves));
+                        data.put(InventoryTable.d_chlorine_sol,toInt(item.d_chlorine_sol));
+                        data.put(InventoryTable.d_detergent_water,toInt(item.d_detergent_water));
+                        data.put(InventoryTable.d_clean_water,toInt(item.d_clean_water));
+                        data.put(InventoryTable.d_misoprostol,toInt(item.d_misoprostol));
+                        data.put(InventoryTable.d_oxytocin,toInt(item.d_oxytocin));
+                        data.put(InventoryTable.d_mang_sulfate,toInt(item.d_mang_sulfate));
+                        data.put(InventoryTable.d_chlorhexidine,toInt(item.d_chlorhexidine));
+                        data.put(InventoryTable.d_paediatric_drop,toInt(item.d_paediatric_drop));
+                        data.put(InventoryTable.d_gentamycin,toInt(item.d_gentamycin));
+                        data.put(InventoryTable.ch_wing_scale,gJAv(item.ch_wing_scale));
+                        data.put(InventoryTable.ch_infant_wing_scale,gJAv(item.ch_infant_wing_scale));
+                        data.put(InventoryTable.ch_height_rod,gJAv(item.ch_height_rod));
+                        data.put(InventoryTable.ch_measuring_tip,toInt(item.ch_measuring_tip));
+                        data.put(InventoryTable.ch_water,toInt(item.ch_water));
+                        data.put(InventoryTable.ch_growth_monitor_boy,toInt(item.ch_growth_monitor_boy));
+                        data.put(InventoryTable.ch_growth_monitor_girl,toInt(item.ch_growth_monitor_girl));
+                        data.put(InventoryTable.ch_hand_soap,toInt(item.ch_hand_soap));
+                        data.put(InventoryTable.ch_spirit,toInt(item.ch_spirit));
+                        data.put(InventoryTable.ch_wastage_recycle,toInt(item.ch_wastage_recycle));
+                        data.put(InventoryTable.ch_sharp_waste,toInt(item.ch_sharp_waste));
+                        data.put(InventoryTable.ch_latex_gloves,toInt(item.ch_latex_gloves));
+                        data.put(InventoryTable.ch_ors,toInt(item.ch_ors));
+                        data.put(InventoryTable.ch_paediatric_drop,toInt(item.ch_paediatric_drop));
+                        data.put(InventoryTable.ch_cotrimoxazole,toInt(item.ch_cotrimoxazole));
+                        data.put(InventoryTable.ch_paracetamol,toInt(item.ch_paracetamol));
+                        data.put(InventoryTable.ch_zinc,toInt(item.ch_zinc));
+                        data.put(InventoryTable.ch_mebandazole,toInt(item.ch_mebandazole));
+                        data.put(InventoryTable.ch_ceftriaxone,toInt(item.ch_ceftriaxone));
+                        data.put(InventoryTable.ch_vitamin,toInt(item.ch_vitamin));
+                        data.put(InventoryTable.fp_soap,toInt(item.fp_soap));
+                        data.put(InventoryTable.fp_spirit,toInt(item.fp_spirit));
+                        data.put(InventoryTable.fp_waste_recycle,toInt(item.fp_waste_recycle));
+                        data.put(InventoryTable.fp_sharp_waste,toInt(item.fp_sharp_waste));
+                        data.put(InventoryTable.fp_latex_gloves,toInt(item.fp_latex_gloves));
+                        data.put(InventoryTable.r_healthy_newborn,gJAsv(item.r_healthy_newborn));
+                        data.put(InventoryTable.r_newborn_death,gJAsv(item.r_newborn_death));
+                        data.put(InventoryTable.r_mother_rate,gJAsv(item.r_mother_rate));
+                        data.put(InventoryTable.r_elampsia,gJAsv(item.r_elampsia));
+                        data.put(InventoryTable.r_mang_sulfate,gJAsv(item.r_mang_sulfate));
+                        data.put(InventoryTable.r_pneumonis,gJAsv(item.r_pneumonis));
+                        data.put(InventoryTable.r_paracetamol,gJAsv(item.r_paracetamol));
+                        data.put(InventoryTable.r_psbi,gJAsv(item.r_psbi));
+                        data.put(InventoryTable.r_psbi_care,gJAsv(item.r_psbi_care));
+                        data.put(InventoryTable.r_starving_child,gJAsv(item.r_starving_child));
+                        data.put(InventoryTable.r_starving_protocol,gJAsv(item.r_starving_protocol));
+                        data.put(InventoryTable.end_time,item.end_time);
+                        data.put("village",item.village);
+                        data.put("district",item.district);
+                        data.put("union",item.union);
+                        data.put("sub_district",item.subdistrict);
+
+
+                        object.put("data",data);
+                        requests.put(object);
+                        finalRequest.put("requests",requests);
+
+
+                        params.put("data", finalRequest.toString());
+                        Log.e("request: ", finalRequest.toString());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    return params;
+                }
+
+            };
+            dialog.show();
+            RequestQueue requestQueue = Volley.newRequestQueue(FacilityInventoryActivity.this);
+            requestQueue.add(stringRequest);
+
+        }
+
+    }
+
+    private JSONArray gJAv(String str) {
+        JSONArray array = new JSONArray();
+        if(!TextUtils.isEmpty(str)){
+            String tokens[] = str.split(",");
+            for(int i=0;i<tokens.length;i++){
+                array.put(Integer.parseInt(tokens[i]));
+            }
+        }
+        return array;
+    }
+
+    private JSONArray gJAsv(String str) {
+        JSONArray array = new JSONArray();
+        if(!TextUtils.isEmpty(str)){
+            String tokens[] = str.split(",");
+            for(int i=0;i<tokens.length;i++){
+                array.put(tokens[i]);
+            }
+        }
+        return array;
+    }
+
+    private String toQStr(String str){
+        if(TextUtils.isEmpty(str)){
+            return "";
+        }
+        return str;
+    }
+
+
+    private int toInt(String str){
+        try{
+            return Integer.parseInt(str);
+        }catch(Exception e){
+            return 0;
+        }
+    }
+
+    private boolean toBool(String str){
+        if(TextUtils.isEmpty(str)) return false;
+        if(str.equals("true")){
+            return true;
+        }
+        return false;
+    }
 }

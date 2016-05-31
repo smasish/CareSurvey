@@ -13,10 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import caresurvey.sci.com.caresurvey.activity.DisplayUserFormActivity;
 import caresurvey.sci.com.caresurvey.model.DBRow;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
-import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 
 /**
  * Created by Shantanu on 5/28/2016.
@@ -183,7 +181,14 @@ public class FpObservationTable {
         values.put(DBRow.KEY_FACILITY,item.facility);
 
         SQLiteDatabase db = openDB();
-        return db.insert(TABLE_FP,null,values);
+        if(item.id > 0){
+            db.update(TABLE_FP,values,KEY_ID + "=" + item.id,null);
+        }
+        else {
+            item.id = db.insert(TABLE_FP, null, values);
+        }
+        closeDB();
+        return item.id;
     }
 
     public ArrayList<FpObservationFormItem> getAll() {
@@ -205,7 +210,7 @@ public class FpObservationTable {
 
     private FpObservationFormItem cursorToSubCatList(Cursor cursor) {
         FpObservationFormItem item = new FpObservationFormItem();
-        item.patientid = cursor.getInt(cursor.getColumnIndex(KEY_ID));
+        item.id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
         item.facility_id = cursor.getString(cursor.getColumnIndex(KEY_FACILITY_ID));
         item.client_name = cursor.getString(cursor.getColumnIndex(KEY_CLIENT_NAME));
         item.serial_no = cursor.getString(cursor.getColumnIndex(KEY_SERIAL));
@@ -231,6 +236,23 @@ public class FpObservationTable {
         item.division = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DIVISION));
         item.timepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_TIME_PICK));
         item.datepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DATE_PICK));
+        return item;
+    }
+
+    public FpObservationFormItem get(int id) {
+        FpObservationFormItem item = new FpObservationFormItem();
+        SQLiteDatabase db = openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_FP + " where _id=" + id, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                item = cursorToSubCatList(cursor);
+                break;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
         return item;
     }
 }

@@ -114,7 +114,7 @@ public class FormTableUser {
                 formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
                 formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getDatepick(),formItem.getTimepick(),formItem.getCollector_name(),formItem.getDivision(),formItem.getUpozila(),formItem.getUnion(),formItem.getVillage(),formItem.getObs_type());
     }
-    public long insertItem(int patientid, String bloodpressure, String hemoglobintest,
+    public long insertItem(long patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,
@@ -177,7 +177,7 @@ public class FormTableUser {
         closeDB();
         return subCatList;
     }
-    public boolean isFieldExist(int id) {
+    public boolean isFieldExist(long id) {
         //Lg.d(TAG, "isFieldExist : inside, id=" + id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
@@ -289,7 +289,7 @@ public class FormTableUser {
 
 
 
-    public long updateItem(int patientid, String bloodpressure, String hemoglobintest,
+    public long updateItem(long patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
                            String sixmonths, String familyplanning, String folictablet,

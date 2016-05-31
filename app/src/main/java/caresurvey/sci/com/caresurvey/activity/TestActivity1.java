@@ -52,30 +52,47 @@ public class TestActivity1 extends AppCompatActivity {
     String feedx,vomitx,stutterx,coughx, diahoreax, feverx, measure_feaverx, stethoscopex, breathing_testx, eye_testx,infected_mouthx, neckx, earx, handx, dehydrationx, weightx, circlex, bellyx, heightx, bmix,ChekboxText=null,agev;
     EditText serial_no,form_date,start_time, child_description,age,endTime;
     CheckBox checkBox1,checkBox2,checkBox3,checkBox4,checkBox5;
-
+    private SickChildItem item;
+    SickChildTable sickChildTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test12);
 
-
+        sickChildTable = new SickChildTable(TestActivity1.this);
         Intent intent= getIntent();
-        id= intent.getIntExtra("id",0);
-        value=id;
-        caretaker=intent.getStringExtra("caretaker");
-        name= intent.getStringExtra("name");
-        c_name=intent.getStringExtra("c_name");
-        designation=intent.getStringExtra("designation");
-        datepicker=intent.getStringExtra("datepicker");
-        timepicker = intent.getStringExtra("timepicker");
-        serial= intent.getStringExtra("serial");
-        mark=intent.getIntExtra("mark",0);
-        facility=intent.getStringExtra("facility");
-        upozila=intent.getStringExtra("upozila");
-        union= intent.getStringExtra("union");
-        village= intent.getStringExtra("village");
-        obstype=intent.getStringExtra("obstype");
+        if(intent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
+            item = sickChildTable.get(intent.getIntExtra(DisplayUserActivity.FORM_ID, 0));
+            name = item.name;
+            designation = item.designation;
+            c_name = item.collector_name;
+            upozila = item.upozila;
+            village = item.village;
+            datepicker = item.datepick;
+            timepicker = item.timepick;
+            facility = item.facility;
+            obstype = item.obs_type;
+            serial = item.facilityId;
+        }
+        else {
+//            id = intent.getIntExtra("id", 0);
+//            value = id;
+            item = new SickChildItem();
+            caretaker = intent.getStringExtra("caretaker");
+            name = intent.getStringExtra("name");
+            c_name = intent.getStringExtra("c_name");
+            designation = intent.getStringExtra("designation");
+            datepicker = intent.getStringExtra("datepicker");
+            timepicker = intent.getStringExtra("timepicker");
+            serial = intent.getStringExtra("serial");
+            mark = intent.getIntExtra("mark", 0);
+            facility = intent.getStringExtra("facility");
+            upozila = intent.getStringExtra("upozila");
+            union = intent.getStringExtra("union");
+            village = intent.getStringExtra("village");
+            obstype = intent.getStringExtra("obstype");
+        }
 
 
 
@@ -169,7 +186,6 @@ public class TestActivity1 extends AppCompatActivity {
                 }
 
 
-                SickChildTable sickChildTable = new SickChildTable(TestActivity1.this);
                 int faciltiy= 0;
                 try{
                     faciltiy = Integer.parseInt(serial);
@@ -379,12 +395,27 @@ public class TestActivity1 extends AppCompatActivity {
             }
         });
 
+        loadForm();
+
     }
 
+    private void loadForm() {
+        sETv(serial_no, item.serial_no);
+        sETv(form_date, item.form_date);
+        sETv(start_time, item.start_time);
+        sETv(child_description, item.child_description);
+        sETv(age, item.age);
+        sETv(endTime, item.end_time);
+    }
 
-
-
-
+    private void sETv(EditText et,String value){
+        if(value == null){
+            et.setText("");
+        }
+        else{
+            et.setText(value);
+        }
+    }
 
 
     public void StorevaluesinVar() throws Exception {

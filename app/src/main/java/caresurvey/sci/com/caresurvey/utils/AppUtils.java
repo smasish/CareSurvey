@@ -24,7 +24,9 @@ import org.json.JSONObject;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
@@ -210,5 +212,14 @@ public class AppUtils {
         });
     }
 
+    public static String getTime(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+        return dateFormat.format(new Date()).toString();
+    }
+
+    public static String getDate(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(new Date()).toString();
+    }
 
 }

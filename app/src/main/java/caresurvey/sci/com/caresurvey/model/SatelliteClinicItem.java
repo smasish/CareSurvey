@@ -1,9 +1,17 @@
 package caresurvey.sci.com.caresurvey.model;
 
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
+
 /**
  * Created by shantanu on 5/26/16.
  */
 public class SatelliteClinicItem extends DBRow{
+    public SatelliteClinicItem(){
+        date = AppUtils.getDate();
+        startTime = AppUtils.getTime();
+        endTime = AppUtils.getTime();
+        status = 3;
+    }
     public String csi101;
     public String csi102;
     public String csi103;

@@ -4,12 +4,12 @@ package caresurvey.sci.com.caresurvey.model;
  * Created by Shahin on 5/16/2016.
  */
 public class InventoryItem extends DBRow{
-    public int getId() {
-        return patientid;
+    public long getId() {
+        return id;
     }
 
     public void setId(int id) {
-        this.patientid = id;
+        this.id = id;
     }
 
     public int getFacility_id() {

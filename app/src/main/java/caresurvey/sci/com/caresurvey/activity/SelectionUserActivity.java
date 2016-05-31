@@ -70,7 +70,7 @@ public class SelectionUserActivity extends AppCompatActivity {
                 if(first_value<31) {
                     Intent intent1 = new Intent(SelectionUserActivity.this, AddressInsertActivity.class);
                     startActivity(intent1);
-                    finish();
+//                    finish();
                 }
                 else
                     AlertMessage.showMessage(SelectionUserActivity.this, "You can not insert new form",

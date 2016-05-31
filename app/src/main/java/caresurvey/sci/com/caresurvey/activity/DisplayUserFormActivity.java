@@ -1,7 +1,5 @@
 package caresurvey.sci.com.caresurvey.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,18 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class DisplayUserFormActivity extends AppCompatActivity {
@@ -48,7 +42,7 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         sickChildItems = sickChildTable.getAllInfo();
         int k = 0;
         int f = sickChildItems.size();
-        int[] id = new int[f];
+        long[] id = new long[f];
         String[] name = new String[f];
         final int[] status = new int[f];
         final String[] inS = new String[f];
@@ -101,7 +95,7 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         int k = 0;
         int f = sickChildItems.size();
 
-        int[] id = new int[f];
+        long[] id = new long[f];
         String[] name = new String[f];
 
         final int[] status = new int[f];

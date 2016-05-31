@@ -5,7 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity;
+import caresurvey.sci.com.caresurvey.model.InventoryItem;
 
 /**
  * Created by Shahin on 5/16/2016.
@@ -13,7 +14,7 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 public class InventoryTable {
     public static final String TABLE_NAME = DatabaseHelper.FORM_INVENTORY;
     private Context tContext;
-    public static final String inventory_id = "id";
+    public static final String inventory_id = "_id";
     public static final String facility_id = "facility_id";
     public static final String client_name = "client_name";
     public static final String start_time = "start_time";
@@ -39,6 +40,7 @@ public class InventoryTable {
     public static final String equipment_sp_name = "equipment_sp_name";
     public static final String equipment_sp_designation = "equipment_sp_designation";
     public static final String w_incinerator = "w_incinerator";
+    public static final String w_dumping_pit = "w_dumping_pit";
     public static final String n_adult_wing_scale = "n_adult_wing_scale";
     public static final String n_height_rod = "n_height_rod";
     public static final String n_pressure_mechine = "n_pressure_mechine";
@@ -63,6 +65,7 @@ public class InventoryTable {
     public static final String n_litmus_paper = "n_litmus_paper";
     public static final String delivery_sp_name = "delivery_sp_name";
     public static final String delivery_sp_designation = "delivery_sp_designation";
+    public static final String d_delivery_service = "d_delivery_service";
     public static final String d_delivery_table = "d_delivery_table";
     public static final String d_pressure_mechine = "d_pressure_mechine";
     public static final String d_stethoscope = "d_stethoscope";
@@ -128,18 +131,19 @@ public class InventoryTable {
     public static final String end_time = "end_time";
     public static final String village = "village";
     public static final String district = "district";
-    public static final String union = "union";
+    public static final String union = "_union";
     public static final String sub_district = "sub_district";
 
-    public void InventoryTable (Context context) {
+    public InventoryTable(Context context) {
         tContext = context;
         createTable();
     }
 
+
     private void createTable() {
         SQLiteDatabase db = openDB();
 
-        String CREATE_TABLE_SQL = "CREATE TABLE"
+        String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS"
                 + " "
                 + TABLE_NAME
                 + " ("
@@ -195,6 +199,8 @@ public class InventoryTable {
                 + " TEXT, "
                 + InventoryTable.w_incinerator
                 + " TEXT, "
+                + InventoryTable.w_dumping_pit
+                + " TEXT, "
                 + InventoryTable.n_adult_wing_scale
                 + " TEXT, "
                 + InventoryTable.n_height_rod
@@ -242,6 +248,8 @@ public class InventoryTable {
                 + InventoryTable.delivery_sp_name
                 + " TEXT, "
                 + InventoryTable.delivery_sp_designation
+                + " TEXT, "
+                + InventoryTable.d_delivery_service
                 + " TEXT, "
                 + InventoryTable.d_delivery_table
                 + " TEXT, "
@@ -389,75 +397,143 @@ public class InventoryTable {
         DatabaseManager.getInstance(tContext).closeDatabase();
     }
 
-    public long insertItem(FormItemUser formItem) {
-        return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
-                formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
-                formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
-                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getDatepick(),formItem.getTimepick(),formItem.getCollector_name(),formItem.getDivision(),formItem.getUpozila(),formItem.getUnion(),formItem.getVillage(),formItem.getObs_type());
-    }
-    public long insertItem(int patientid, String bloodpressure, String hemoglobintest,
-                           String urinetest, String pregnancyfood, String pregnancydanger,
-                           String fourparts, String delivery, String feedbaby,
-                           String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance, int status, String globalId, String name,String comments, String fields, String inS, String datepick,String timepick,String collector_name, String division, String upozila, String union, String village, String obstype) {
-        if (isFieldExist(patientid)) {
-            return updateItem(patientid,bloodpressure, hemoglobintest,
-                    urinetest, pregnancyfood, pregnancydanger,
-                    fourparts, delivery,feedbaby,
-                    sixmonths, familyplanning,folictablet, folictabletimportance,status,globalId,name,comments,fields,inS,datepick,timepick,collector_name,division,upozila,union,village,obstype);
-        }
+    public long insertItem(InventoryItem item) {
+        ContentValues values = getValues(item);
+        long id = item.id;
         SQLiteDatabase db = openDB();
-        long ret= db.insert(TABLE_NAME, null, getValues());
+        if(item.id > 0) // update
+        {
+            id = db.insert(TABLE_NAME,null,values);
+            item.id = id;
+        }
+        else{
+            db.update(TABLE_NAME, values, inventory_id + " = ?", new String[]{""+item.id});
+        }
         closeDB();
-        return ret;
+        return id;
     }
 
-    private ContentValues getValues() {
+    private ContentValues getValues(InventoryItem item) {
 
         ContentValues values = new ContentValues();
-//        values.put(KEY_ID, patientid);
-//        values.put(KEY_BLOOD, bloodpressure);
-//        values.put(KEY_HEMO, hemoglobintest);
-//        values.put(KEY_URINE, urinetest);
-//        values.put(KEY_PREGFOOD, pregnancyfood);
-//        values.put(KEY_PREGDANGER, pregnancydanger);
-//        values.put(KEY_FOURCENTER, fourparts);
-//        values.put(KEY_DELIVERY, delivery);
-//        values.put(KEY_FEED, feedbaby);
-//        values.put(KEY_SIXMONTHS, sixmonths);
-//        values.put(KEY_FAMILY, familyplanning);
-//        values.put(KEY_FOLICTAB, folictablet);
-//        values.put(KEY_FOLICIMP, folictabletimportance);
-//        values.put(KEY_STATUS, status);
-//        values.put(KEY_GLOBAL_ID, globalId);
-//        values.put(KEY_NAME, name);
-//        values.put(KEY_COMMENT, comments);
-//        values.put(KEY_FIELDS, fields);
-//        values.put(KEY_INS, inS);
-//        values.put(KEY_DATE_PICK,datepick);
-//        values.put(KEY_TIME_PICK, timepick);
-//        values.put(KEY_COLLECTOR_NAME, collector_name);
-//        values.put(KEY_DIVISION, division);
-//        values.put(KEY_UPOZILA, upozila);
-//        values.put(KEY_UNION, union);
-//        values.put(KEY_VILLAGE, village);
-//        values.put(KEY_OBSTYPE, obstype);
+        values.put(facility_id,Integer.toString(item.facility_id));
+        values.put(client_name,item.client_name);
+        values.put(start_time,item.start_time);
+        values.put(instrument_sp_name,item.instrument_sp_name);
+        values.put(instrument_sp_designation,item.instrument_sp_designation);
+        values.put(i_electronic_autoclev,item.i_electronic_autoclev);
+        values.put(i_non_electronic_autoclev,item.i_non_electronic_autoclev);
+        values.put(i_electric_sterilizer,item.i_electric_sterilizer);
+        values.put(i_electric_steamer,item.i_electric_steamer);
+        values.put(i_non_electric_pot,item.i_non_electric_pot);
+        values.put(i_stove,item.i_stove);
+        values.put(i_waste_sp_name,item.i_waste_sp_name);
+        values.put(i_waste_sp_designation,item.i_waste_sp_designation);
+        values.put(w_waste_option,item.w_waste_option);
+        values.put(w_waste_dispose_how,item.w_waste_dispose_how);
+        values.put(w_pointy_waste,item.w_pointy_waste);
+        values.put(w_liquid_waste,item.w_liquid_waste);
+        values.put(w_liquid_waste_store,item.w_liquid_waste_store);
+        values.put(w_plastic_waste,item.w_plastic_waste);
+        values.put(w_waste_normal,item.w_waste_normal);
+        values.put(w_incinerator_seen,item.w_incinerator_seen);
+        values.put(w_dumping_pit_seen,item.w_dumping_pit_seen);
+        values.put(equipment_sp_name,item.equipment_sp_name);
+        values.put(equipment_sp_designation,item.equipment_sp_designation);
+        values.put(w_incinerator,item.w_incinerator);
+        values.put(w_dumping_pit,item.w_dumping_pit);
+        values.put(n_adult_wing_scale,item.n_adult_wing_scale);
+        values.put(n_height_rod,item.n_height_rod);
+        values.put(n_pressure_mechine,item.n_pressure_mechine);
+        values.put(n_stethoscope,item.n_stethoscope);
+        values.put(n_filter_stethoscope,item.n_filter_stethoscope);
+        values.put(n_water,item.n_water);
+        values.put(n_hand_soap,item.n_hand_soap);
+        values.put(n_spirit,item.n_spirit);
+        values.put(n_waste,item.n_waste);
+        values.put(n_sharp_waste,item.n_sharp_waste);
+        values.put(n_gloves,item.n_gloves);
+        values.put(n_iron_folate,item.n_iron_folate);
+        values.put(n_urine_protien,item.n_urine_protien);
+        values.put(n_urine_tester,item.n_urine_tester);
+        values.put(n_urine_testtube,item.n_urine_testtube);
+        values.put(n_test_tube_rack,item.n_test_tube_rack);
+        values.put(n_dip_stick,item.n_dip_stick);
+        values.put(n_hemoglobin,item.n_hemoglobin);
+        values.put(n_telecoil_book,item.n_telecoil_book);
+        values.put(n_telecoil_landset,item.n_telecoil_landset);
+        values.put(n_kolori_meter,item.n_kolori_meter);
+        values.put(n_litmus_paper,item.n_litmus_paper);
+        values.put(delivery_sp_name,item.delivery_sp_name);
+        values.put(delivery_sp_designation,item.delivery_sp_designation);
+        values.put(d_delivery_service,item.d_delivery_service);
+        values.put(d_delivery_table,item.d_delivery_table);
+        values.put(d_pressure_mechine,item.d_pressure_mechine);
+        values.put(d_stethoscope,item.d_stethoscope);
+        values.put(d_filter_stethoscope,item.d_filter_stethoscope);
+        values.put(d_newborn_recuscitation,item.d_newborn_recuscitation);
+        values.put(d_recuscitation_mask_0,item.d_recuscitation_mask_0);
+        values.put(d_recuscitation_mask_1,item.d_recuscitation_mask_1);
+        values.put(d_peguin_sucker,item.d_peguin_sucker);
+        values.put(d_cord_cutter,item.d_cord_cutter);
+        values.put(d_cord_clamp,item.d_cord_clamp);
+        values.put(d_partograf_paper,item.d_partograf_paper);
+        values.put(d_water,item.d_water);
+        values.put(d_hand_soap,item.d_hand_soap);
+        values.put(d_spirit,item.d_spirit);
+        values.put(d_waste_recycle,item.d_waste_recycle);
+        values.put(d_waste_storage,item.d_waste_storage);
+        values.put(d_latex_gloves,item.d_latex_gloves);
+        values.put(d_chlorine_sol,item.d_chlorine_sol);
+        values.put(d_detergent_water,item.d_detergent_water);
+        values.put(d_clean_water,item.d_clean_water);
+        values.put(d_misoprostol,item.d_misoprostol);
+        values.put(d_oxytocin,item.d_oxytocin);
+        values.put(d_mang_sulfate,item.d_mang_sulfate);
+        values.put(d_chlorhexidine,item.d_chlorhexidine);
+        values.put(d_paediatric_drop,item.d_paediatric_drop);
+        values.put(d_gentamycin,item.d_gentamycin);
+        values.put(ch_wing_scale,item.ch_wing_scale);
+        values.put(ch_infant_wing_scale,item.ch_infant_wing_scale);
+        values.put(ch_height_rod,item.ch_height_rod);
+        values.put(ch_measuring_tip,item.ch_measuring_tip);
+        values.put(ch_water,item.ch_water);
+        values.put(ch_growth_monitor_boy,item.ch_growth_monitor_boy);
+        values.put(ch_growth_monitor_girl,item.ch_growth_monitor_girl);
+        values.put(ch_hand_soap,item.ch_hand_soap);
+        values.put(ch_spirit,item.ch_spirit);
+        values.put(ch_wastage_recycle,item.ch_wastage_recycle);
+        values.put(ch_sharp_waste,item.ch_sharp_waste);
+        values.put(ch_latex_gloves,item.ch_latex_gloves);
+        values.put(ch_ors,item.ch_ors);
+        values.put(ch_paediatric_drop,item.ch_paediatric_drop);
+        values.put(ch_cotrimoxazole,item.ch_cotrimoxazole);
+        values.put(ch_paracetamol,item.ch_paracetamol);
+        values.put(ch_zinc,item.ch_zinc);
+        values.put(ch_mebandazole,item.ch_mebandazole);
+        values.put(ch_ceftriaxone,item.ch_ceftriaxone);
+        values.put(ch_vitamin,item.ch_vitamin);
+        values.put(fp_soap,item.fp_soap);
+        values.put(fp_spirit,item.fp_spirit);
+        values.put(fp_waste_recycle,item.fp_waste_recycle);
+        values.put(fp_sharp_waste,item.fp_sharp_waste);
+        values.put(fp_latex_gloves,item.fp_latex_gloves);
+        values.put(r_healthy_newborn,item.r_healthy_newborn);
+        values.put(r_newborn_death,item.r_newborn_death);
+        values.put(r_mother_rate,item.r_mother_rate);
+        values.put(r_elampsia,item.r_elampsia);
+        values.put(r_mang_sulfate,item.r_mang_sulfate);
+        values.put(r_pneumonis,item.r_pneumonis);
+        values.put(r_paracetamol,item.r_paracetamol);
+        values.put(r_psbi,item.r_psbi);
+        values.put(r_psbi_care,item.r_psbi_care);
+        values.put(r_starving_child,item.r_starving_child);
+        values.put(r_starving_protocol,item.r_starving_protocol);
+        values.put(end_time,item.end_time);
 
         return values;
     }
 
-    public long updateItem(int patientid, String bloodpressure, String hemoglobintest,
-                           String urinetest, String pregnancyfood, String pregnancydanger,
-                           String fourparts, String delivery, String feedbaby,
-                           String sixmonths, String familyplanning, String folictablet,
-                           String folictabletimportance,int status, String globalId, String name, String comments, String fields, String inS, String datepick, String timepick, String collector_name, String division, String upozila, String union, String village, String obstype) {
-
-        SQLiteDatabase db = openDB();
-        long ret = db.update(TABLE_NAME, getValues(), inventory_id + " = ?",
-                new String[]{patientid + ""});
-        closeDB();
-        return ret;
-    }
 
     public boolean isFieldExist(int id) {
         //Lg.d(TAG, "isFieldExist : inside, id=" + id);

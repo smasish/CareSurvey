@@ -50,7 +50,7 @@ public class DisplayNamesWithStatusAdapter2 extends ArrayAdapter<DBRow>{
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.id.setText("" +getItem(position).patientid);
+        holder.id.setText("" +getItem(position).id);
         holder.name.setText("" + getItem(position).name);
 //
 //        button=(Button) convertView.findViewById(R.id.button2);

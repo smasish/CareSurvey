@@ -1,14 +1,21 @@
 package caresurvey.sci.com.caresurvey.model;
 
-import caresurvey.sci.com.caresurvey.database.DatabaseHelper;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
  * Created by Shahin on 5/6/2016.
  */
 public class FpObservationFormItem extends DBRow{
+
+    public FpObservationFormItem(){
+        date = AppUtils.getDate();
+        start_time = AppUtils.getTime();
+        end_time = AppUtils.getTime();
+    }
+
     public String sp_client;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -184,7 +191,6 @@ public class FpObservationFormItem extends DBRow{
         this.subdistrict = sub_district;
     }
 
-    public int id;
     public String facility_id;
     public String sp_name;
     public String sp_designation;

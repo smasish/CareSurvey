@@ -31,7 +31,7 @@ public class FormItemUser extends DBRow{
                         String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
                         int status, String global_id, String name, String comments, String fields, String inS,String datepick, String timepick, String collector_name, String division, String upozila, String uniton, String village,String obs_type
     ) {
-        this.patientid = patientid;
+        this.id = patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
         this.urinetest = urinetest;
@@ -62,7 +62,7 @@ public class FormItemUser extends DBRow{
     }
 
     public FormItemUser(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance, String global_id) {
-        this.patientid=patientid;
+        this.id =patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
         this.urinetest = urinetest;
@@ -99,12 +99,12 @@ public class FormItemUser extends DBRow{
         return name;
     }
 
-    public int getPatientid() {
-        return patientid;
+    public long getPatientid() {
+        return id;
     }
 
     public void setPatientid(int patientid) {
-        this.patientid = patientid;
+        this.id = patientid;
     }
 
     public String getBloodpressure() {

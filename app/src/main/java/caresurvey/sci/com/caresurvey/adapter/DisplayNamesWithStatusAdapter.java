@@ -18,7 +18,7 @@ import caresurvey.sci.com.caresurvey.R;
 public class DisplayNamesWithStatusAdapter extends BaseAdapter
 {
     Activity context;
-    int id[];
+    long id[];
     String name[];
     int status[];
     String inS[];
@@ -26,7 +26,7 @@ public class DisplayNamesWithStatusAdapter extends BaseAdapter
 
 
 
-    public DisplayNamesWithStatusAdapter(Activity context, int[] id,String[] name,int[] status, String[] inS) {
+    public DisplayNamesWithStatusAdapter(Activity context, long[] id,String[] name,int[] status, String[] inS) {
         super();
         this.context = context;
         this.id = id;

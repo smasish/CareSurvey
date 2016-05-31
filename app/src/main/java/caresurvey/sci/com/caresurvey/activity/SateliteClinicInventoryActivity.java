@@ -25,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -55,8 +56,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
     private String facility;
     private String obsType;
     private long formID = 0;
-    private int facilityID;
     private String designation;
+    private SatelliteClinicItem item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,27 +68,109 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         findViewById(R.id.insert).setOnClickListener(this);
         findViewById(R.id.submit).setOnClickListener(this);
         table = new SatelliteClinicTable(this);
-
         Intent mIntent = getIntent();
-        names = mIntent.getStringExtra("name");
-        mark = mIntent.getIntExtra("mark", 0);
-        collector_name = mIntent.getStringExtra("c_name");
-        upozila = mIntent.getStringExtra("upozila");
-        union = mIntent.getStringExtra("union");
-        village = mIntent.getStringExtra("village");
-        designation = mIntent.getStringExtra("designation");
-        try{
-            facilityID = Integer.parseInt(mIntent.getStringExtra("serial"));
+        if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
+            item = table.get(mIntent.getIntExtra(DisplayUserActivity.FORM_ID,0));
+            names = item.name;
+            designation = item.designation;
+            collector_name = item.collector_name;
+            upozila = item.upozila;
+            village = item.village;
+            datespicker = item.datepick;
+            timepicker = item.timepick;
+            facility = item.facility;
+            obsType = item.obs_type;
         }
-        catch(Exception e){
-            facilityID = 0;
+        else{
+            item = new SatelliteClinicItem();
+            names = mIntent.getStringExtra("name");
+            designation = mIntent.getStringExtra("designation");
+            mark = mIntent.getIntExtra("mark", 0);
+            collector_name = mIntent.getStringExtra("c_name");
+            upozila = mIntent.getStringExtra("upozila");
+            union = mIntent.getStringExtra("union");
+            village = mIntent.getStringExtra("village");
+            try {
+                item.facilityID = Integer.parseInt(mIntent.getStringExtra("serial"));
+            }catch(Exception e){
+                item.facilityID = 0;
+            }
+            datespicker = mIntent.getStringExtra("datepicker");
+            timepicker = mIntent.getStringExtra("timepicker");
+            facility = mIntent.getStringExtra("facility");
+            obsType = mIntent.getStringExtra("obstype");
         }
 
-        datespicker = mIntent.getStringExtra("datepicker");
-        timepicker = mIntent.getStringExtra("timepicker");
-        facility = mIntent.getStringExtra("facility");
-        obsType = mIntent.getStringExtra("obstype");
+        loadForm();
 
+
+    }
+
+    private void loadForm() {
+        sETv(R.id.date, item.date);
+        sETv(R.id.start_time, item.startTime);
+        sETv(R.id.end_time,item.endTime);
+        sETv(R.id.client_name,item.clientName);
+        sETv(R.id.designation, item.designation);
+        sRGv(R.id.csi_101_y, R.id.csi_101_n, item.csi101);
+        sRGv(R.id.csi_102_y, R.id.csi_102_n, item.csi102);
+        sRGv(R.id.csi_103_y, R.id.csi_103_n, item.csi103);
+        sRGv(R.id.csi_104_y, R.id.csi_104_n, item.csi104);
+        sRGv(R.id.csi_105_y, R.id.csi_105_n, item.csi105);
+        sRGv(R.id.csi_106_y, R.id.csi_106_n, item.csi106);
+        sRGv(R.id.csi_107_y, R.id.csi_107_n, item.csi107);
+        sRGv(R.id.csi_201_y, R.id.csi_201_n, item.csi201);
+        sRGv(R.id.csi_202_y, R.id.csi_202_n, item.csi202);
+        sRGv(R.id.csi_203_y, R.id.csi_203_n, item.csi203);
+        sRGv(R.id.csi_204_y, R.id.csi_204_n, item.csi204);
+        sRGv(R.id.csi_205_y, R.id.csi_205_n, item.csi205);
+        sRGv(R.id.csi_206_y, R.id.csi_206_n, item.csi206);
+        sRGv(R.id.csi_207_y, R.id.csi_207_n, item.csi207);
+        sRGv(R.id.csi_208_y, R.id.csi_208_n, item.csi208);
+        sRGv(R.id.csi_209_y, R.id.csi_209_n, item.csi209);
+        sRGv(R.id.csi_210_y, R.id.csi_210_n, item.csi210);
+        sRGv(R.id.csi_211_y, R.id.csi_211_n, item.csi211);
+        sRGv(R.id.csi_212_y, R.id.csi_212_n, item.csi212);
+        sRGv(R.id.csi_213_y, R.id.csi_213_n, item.csi213);
+        sRGv(R.id.csi_214_y, R.id.csi_214_n, item.csi214);
+        sRGv(R.id.csi_215_y, R.id.csi_215_n, item.csi215);
+        sRGv(R.id.csi_216_y, R.id.csi_216_n, item.csi216);
+        sRGv(R.id.csi_217_y, R.id.csi_217_n, item.csi217);
+        sRGv(R.id.csi_218_y, R.id.csi_218_n, item.csi218);
+        sRGv(R.id.csi_219_y, R.id.csi_219_n, item.csi219);
+        sRGv(R.id.csi_220_y, R.id.csi_220_n, item.csi220);
+        sRGv(R.id.csi_221_y, R.id.csi_221_n, item.csi221);
+        sRGv(R.id.csi_222_y, R.id.csi_222_n, item.csi222);
+        sRGv(R.id.csi_223_y, R.id.csi_223_n, item.csi223);
+        sRGv(R.id.csi_224_y, R.id.csi_224_n, item.csi224);
+        sRGv(R.id.csi_225_y, R.id.csi_225_n, item.csi225);
+        sRGv(R.id.csi_226_y, R.id.csi_226_n, item.csi226);
+        sRGv(R.id.csi_227_y, R.id.csi_227_n, item.csi227);
+        sRGv(R.id.csi_228_y, R.id.csi_228_n, item.csi228);
+        sRGv(R.id.csi_229_y, R.id.csi_229_n, item.csi229);
+        sRGv(R.id.csi_230_1_y, R.id.csi_230_1_n, item.csi230_1);
+        sRGv(R.id.csi_230_2_y, R.id.csi_230_2_n, item.csi230_2);
+        sRGv(R.id.csi_231_y, R.id.csi_231_n, item.csi231);
+        sRGv(R.id.csi_232_y, R.id.csi_232_n, item.csi232);
+        sRGv(R.id.csi_233_y, R.id.csi_233_n, item.csi233);
+        sRGv(R.id.csi_234_y, R.id.csi_234_n, item.csi234);
+    }
+
+    private void sETv(int id,String val){
+        EditText et = (EditText) findViewById(id);
+        if(et != null){
+            et.setText(val);
+        }
+    }
+
+    private void sRGv(int id_y,int id_n,String value){
+        if(TextUtils.isEmpty(value)) return;
+        if(value.equals("true")){
+            ((RadioButton)findViewById(id_y)).setChecked(true);
+        }
+        else if(value.equals("false")){
+            ((RadioButton)findViewById(id_n)).setChecked(true);
+        }
     }
 
     boolean isTrue(int id){
@@ -248,7 +331,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
 
-        item.status = 3; //pending
+//        item.status = 3; //pending
         item.name = names;
         item.collector_name = collector_name;
         item.upozila = upozila;
@@ -258,7 +341,6 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         item.timepick = timepicker;
         item.facility = facility;
         item.obs_type = obsType;
-        item.facilityID = facilityID;
         return item;
     }
 
@@ -296,6 +378,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         }
         else if(v.getId() == R.id.submit){
             final SatelliteClinicItem fpItem = genSatelliteClinicItem();
+            table.insert(fpItem);
             final ProgressDialog dialog = new ProgressDialog(this);
             dialog.setMessage("Please wait...");
             final AlertDialog.Builder alert = new AlertDialog.Builder(SateliteClinicInventoryActivity.this);
@@ -314,7 +397,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                             dialog.dismiss();
 
                             try {
-                                JSONObject jo = new JSONObject(response);
+                                final JSONObject jo = new JSONObject(response);
                                 Log.e("response:",response);
                                 if(jo.has("errorCount")){
                                     alert.setMessage(jo.getString("message"));
@@ -322,6 +405,19 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                                 else{
                                     alert.setMessage("Invalid response");
                                 }
+                                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        try {
+                                            if(jo.getInt("errorCount") == 0){
+                                                finish();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
                                 alert.show();
 
                             } catch (Exception e) {
@@ -364,7 +460,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                         data.put("sp_designation",toQStr(designation));
                         data.put("client_name",toQStr(fpItem.clientName));
                         data.put("form_date",toQStr(fpItem.date));
-                        data.put("date",toQStr(fpItem.date));
+//                        data.put("date",toQStr(fpItem.date));
                         data.put("start_time",toQStr(fpItem.startTime));
 
                         data.put("waiting_place",toBool(fpItem.csi101));

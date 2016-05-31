@@ -387,7 +387,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         intent.putExtra("serial",facility_id_number.getText().toString());
         intent.putExtra("positon",oservationPosition);
         startActivity(intent);
-
+        finish();
     }
 
     @SuppressWarnings("deprecation")

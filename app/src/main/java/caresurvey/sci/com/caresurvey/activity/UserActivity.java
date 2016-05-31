@@ -251,6 +251,22 @@ public class UserActivity extends AppCompatActivity {
                         finish();
                     } else if (obs_position == 3) {
                         Intent intent = new Intent(UserActivity.this, FacilityInventoryActivity.class);
+                        intent.putExtra("name", username);
+                        intent.putExtra("id", first_value);
+                        intent.putExtra("c_name", collector_name.getText().toString());
+
+                        intent.putExtra("mark", 1);
+                        intent.putExtra("datepicker", datepicker);
+                        intent.putExtra("timepicker", timepicker);
+                        intent.putExtra("serial",serial);
+                        // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
+
+                        intent.putExtra("facility", facility);
+                        intent.putExtra("upozila", upozila);
+                        intent.putExtra("union", union);
+                        intent.putExtra("village", village);
+                        intent.putExtra("obstype", obsname);
+                        intent.putExtra("designation",designation);
                         startActivity(intent);
                         finish();
                     } else if (obs_position == 4) {

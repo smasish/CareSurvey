@@ -8,59 +8,60 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 /**
  * Created by Mazharul.Islam1 on 4/24/2016.
  */
 public class SickChildTable {
-    private static final String TABLE_NAME = DatabaseHelper.FORM_SICK_CHILD;
-    private static final String KEY_ID = "_id"; // 0 -integer
+    public static final String TABLE_NAME = DatabaseHelper.FORM_SICK_CHILD;
+    public static final String KEY_ID = "_id"; // 0 -integer
 
-    private static final String KEY_FACILITY_ID = "_facilityId"; // 0 -integer
-    private static final String KEY_SP_CLIENT = "_spClient"; // 1 - text
-    private static final String KEY_SP_DESIGNATGION = "_spDesignation"; // 2 - text
-    private static final String KEY_SERIAL_NO = "_serialNo"; // 1 - text
-    private static final String KEY_FORM_DATE = "_formDate"; // 1 - text
-    private static final String KEY_START_TIME = "_startTime"; // 1 - text
-    private static final String KEY_CHILD_DESCRIPTION = "_childDescription"; // 1 - text
-    private static final String KEY_AGE = "_age"; // 1 - text
-    private static final String KEY_FEED = "_feed"; // 1 - text
-    private static final String KEY_VOMIT = "_vomit"; // 1 - text
-    private static final String KEY_STUTTER = "_stutter"; // 1 - text
-    private static final String KEY_COUGH = "_cough"; // 1 - text
-    private static final String KEY_DIAHOREA = "_diahorea"; // 1 - text
-    private static final String KEY_FEVER = "_fever"; // 1 - text
-    private static final String KEY_MEASURE_FEVER = "_measureFever"; // 1 - text
-    private static final String KEY_STETHOSCOPE = "_stethoscope"; // 1 - text
-    private static final String KEY_BREATHING_TEST = "_breathingTest"; // 1 - text
-    private static final String KEY_EYE_TEST = "_eyeTest"; // 1 - text
-    private static final String KEY_INFECTED_MOUTH = "_infectedMouth"; // 1 - text
-    private static final String KEY_NECK = "_neck"; // 1 - text
-    private static final String KEY_EAR = "_ear"; // 1 - text
-    private static final String KEY_HAND = "_hand"; // 1 - text
-    private static final String KEY_DEHYDRATION = "_dehydration"; // 1 - text
-    private static final String KEY_WEIGHT = "_weight"; // 1 - text
-    private static final String KEY_CLINIC_TEST = "_cTest"; // 1 - text
-    private static final String KEY_BELLEY_BUTTON = "_belleyButton"; // 1 - text
-    private static final String KEY_HEIGHT = "_height"; // 1 - text
-    private static final String KEY_RESULT = "_result"; // 1 - text
-    private static final String KEY_END_TIME = "_endTime"; // 1 - text
-    private static final String KEY_VILLAGE = "_village"; // 1 - text
-    private static final String KEY_DISTRICT = "_district"; // 1 - text
-    private static final String KEY_UNION = "_union"; // 1 - text
-    private static final String KEY_SUB_DISTRICT = "_subdistrict"; // 1 - text
-    private static final String KEY_CT_CLIENT = "_client"; // 1 - text
-    private static final String KEY_COMMENT = "_comment"; // 1 - text
-    private static final String KEY_FIELD = "_field"; // 1 - text
-    private static final String KEY_STATUS = "_status"; // 1 - text
-
-
+    public static final String KEY_FACILITY_ID = "_facilityId"; // 0 -integer
+    public static final String KEY_SP_CLIENT = "_spClient"; // 1 - text
+    public static final String KEY_SP_DESIGNATGION = "_spDesignation"; // 2 - text
+    public static final String KEY_SERIAL_NO = "_serialNo"; // 1 - text
+    public static final String KEY_FORM_DATE = "_formDate"; // 1 - text
+    public static final String KEY_START_TIME = "_startTime"; // 1 - text
+    public static final String KEY_CHILD_DESCRIPTION = "_childDescription"; // 1 - text
+    public static final String KEY_AGE = "_age"; // 1 - text
+    public static final String KEY_FEED = "_feed"; // 1 - text
+    public static final String KEY_VOMIT = "_vomit"; // 1 - text
+    public static final String KEY_STUTTER = "_stutter"; // 1 - text
+    public static final String KEY_COUGH = "_cough"; // 1 - text
+    public static final String KEY_DIAHOREA = "_diahorea"; // 1 - text
+    public static final String KEY_FEVER = "_fever"; // 1 - text
+    public static final String KEY_MEASURE_FEVER = "_measureFever"; // 1 - text
+    public static final String KEY_STETHOSCOPE = "_stethoscope"; // 1 - text
+    public static final String KEY_BREATHING_TEST = "_breathingTest"; // 1 - text
+    public static final String KEY_EYE_TEST = "_eyeTest"; // 1 - text
+    public static final String KEY_INFECTED_MOUTH = "_infectedMouth"; // 1 - text
+    public static final String KEY_NECK = "_neck"; // 1 - text
+    public static final String KEY_EAR = "_ear"; // 1 - text
+    public static final String KEY_HAND = "_hand"; // 1 - text
+    public static final String KEY_DEHYDRATION = "_dehydration"; // 1 - text
+    public static final String KEY_WEIGHT = "_weight"; // 1 - text
+    public static final String KEY_CLINIC_TEST = "_cTest"; // 1 - text
+    public static final String KEY_BELLEY_BUTTON = "_belleyButton"; // 1 - text
+    public static final String KEY_HEIGHT = "_height"; // 1 - text
+    public static final String KEY_RESULT = "_result"; // 1 - text
+    public static final String KEY_END_TIME = "_endTime"; // 1 - text
+    public static final String KEY_VILLAGE = "_village"; // 1 - text
+    public static final String KEY_DISTRICT = "_district"; // 1 - text
+    public static final String KEY_UNION = "_union"; // 1 - text
+    public static final String KEY_SUB_DISTRICT = "_subdistrict"; // 1 - text
+    public static final String KEY_CT_CLIENT = "_client"; // 1 - text
+    public static final String KEY_COMMENT = "_comment"; // 1 - text
+    public static final String KEY_FIELD = "_field"; // 1 - text
+    public static final String KEY_STATUS = "_status"; // 1 - text
 
 
 
 
-    private Context tContext;
+
+
+    public Context tContext;
 
     public SickChildTable (Context context) {
         tContext = context;
@@ -74,7 +75,7 @@ public class SickChildTable {
     }
 
 
-    private void createTable() {
+    public void createTable() {
         SQLiteDatabase db = openDB();
 
         String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
@@ -127,11 +128,11 @@ public class SickChildTable {
         closeDB();
     }
 
-    private SQLiteDatabase openDB() {
+    public SQLiteDatabase openDB() {
         return DatabaseManager.getInstance(tContext).openDatabase();
     }
 
-    private void closeDB() {
+    public void closeDB() {
         DatabaseManager.getInstance(tContext).closeDatabase();
     }
 
@@ -152,7 +153,7 @@ public class SickChildTable {
                 sickChildItem.getFields(),sickChildItem.getComments(),sickChildItem.getStatus());
     }
 
-    private long insertItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field,String comment,int status) {
+    public long insertItem(long id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field,String comment,int status) {
 //                if(isFieldExist(id))
 //                {
 //                    return updateItem(id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district, ct_client,field,comment,status);
@@ -206,7 +207,7 @@ public class SickChildTable {
 
     }
 
-    private long updateItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field, String comment, int status) {
+    public long updateItem(int id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field, String comment, int status) {
 
         ContentValues values= new ContentValues();
 //        values.put(KEY_ID,id);
@@ -250,7 +251,7 @@ public class SickChildTable {
 
 
         SQLiteDatabase db = openDB();
-        long ret= db.update(TABLE_NAME, values, "_id="+id,null);
+        long ret= db.update(TABLE_NAME, values, "_id=" + id, null);
         closeDB();
         return ret;
 
@@ -311,6 +312,24 @@ public class SickChildTable {
         cursor.close();
         closeDB();
         return subCatList;
+    }
+
+    public SickChildItem get(int id) {
+        SickChildItem item = new SickChildItem();
+        SQLiteDatabase db = openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                item = cursorlist(cursor);
+                break;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return item;
+
     }
 
 

@@ -26,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -61,6 +62,7 @@ public class FpObservationActivity extends AppCompatActivity {
     private FpObservationTable table;
     private long formID = 0;
     private String designation;
+    private FpObservationFormItem item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,21 +71,36 @@ public class FpObservationActivity extends AppCompatActivity {
         table = new FpObservationTable(this);
         initIncludedViews();
         initQuestion();
-
         Intent mIntent = getIntent();
-        names = mIntent.getStringExtra("name");
-        designation = mIntent.getStringExtra("designation");
-        mark = mIntent.getIntExtra("mark", 0);
-        collector_name = mIntent.getStringExtra("c_name");
-        upozila = mIntent.getStringExtra("upozila");
-        union = mIntent.getStringExtra("union");
-        village = mIntent.getStringExtra("village");
+        if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
+            item = table.get(mIntent.getIntExtra(DisplayUserActivity.FORM_ID,0));
+            names = item.name;
+            designation = item.designation;
+            collector_name = item.collector_name;
+            upozila = item.upozila;
+            village = item.village;
+            datespicker = item.datepick;
+            timepicker = item.timepick;
+            facility = item.facility;
+            obsType = item.obs_type;
+        }
+        else{
+            item = new FpObservationFormItem();
+            names = mIntent.getStringExtra("name");
+            designation = mIntent.getStringExtra("designation");
+            mark = mIntent.getIntExtra("mark", 0);
+            collector_name = mIntent.getStringExtra("c_name");
+            upozila = mIntent.getStringExtra("upozila");
+            union = mIntent.getStringExtra("union");
+            village = mIntent.getStringExtra("village");
+            item.facility_id = mIntent.getStringExtra("serial");
+            datespicker = mIntent.getStringExtra("datepicker");
+            timepicker = mIntent.getStringExtra("timepicker");
+            facility = mIntent.getStringExtra("facility");
+            obsType = mIntent.getStringExtra("obstype");
+        }
 
-
-        datespicker = mIntent.getStringExtra("datepicker");
-        timepicker = mIntent.getStringExtra("timepicker");
-        facility = mIntent.getStringExtra("facility");
-        obsType = mIntent.getStringExtra("obstype");
+        loadForm();
     }
 
     private void initIncludedViews() {
@@ -97,8 +114,24 @@ public class FpObservationActivity extends AppCompatActivity {
         mFpQuesView8 = findViewById(R.id.include_fb_ques_08);
     }
 
+    private void loadForm(){
+        sETv(R.id.et_fp_101,item.serial_no);
+        sETv(R.id.et_fp_102,item.date);
+        sETv(R.id.et_fp_103,item.start_time);
+        sETv(R.id.et_fp_104, item.client_name);
+        sRGv(mFpQuesView1, item.cover);
+        sRGv(mFpQuesView2,item.sound_prove);
+        sRGv(mFpQuesView3,item.discuss_fp);
+        sRGv(mFpQuesView4,item.discuss_fp_protocol);
+        sRGv(mFpQuesView5,item.what_to_do);
+        sRGv(mFpQuesView6,item.questions);
+        sRGv(mFpQuesView7,item.job_aid);
+        sRGv(mFpQuesView8,item.followup);
+        sETv(R.id.et_fp_109,item.start_time);
+    }
+
     private FpObservationFormItem collectAnswers() {
-        FpObservationFormItem mFpObservationFormItem = new FpObservationFormItem();
+        FpObservationFormItem mFpObservationFormItem = item;
         if(TextUtils.isEmpty( (mFpObservationFormItem.cover = getRadioSelectionAns(mFpQuesView1)))){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
@@ -161,6 +194,25 @@ public class FpObservationActivity extends AppCompatActivity {
         }
     }
 
+    private void sETv(int id,String val){
+        EditText et = (EditText) findViewById(id);
+        if(et != null){
+            et.setText(val);
+        }
+    }
+
+    private void sRGv(View radioGroupHolder,String val){
+        RadioGroup radioGroup = (RadioGroup) radioGroupHolder.findViewById(R.id.fp_yes_no_radiogroup);
+        if(val != null){
+            if(val.equals("true")){
+                ((RadioButton)radioGroup.findViewById(R.id.yes)).setChecked(true);
+            }
+            else if(val.equals("false")){
+                ((RadioButton)radioGroup.findViewById(R.id.no)).setChecked(true);
+            }
+        }
+    }
+
     private int getEInt(int id){
         Editable text = ((EditText) findViewById(id)).getText();
         if(TextUtils.isEmpty(text)){
@@ -210,9 +262,9 @@ public class FpObservationActivity extends AppCompatActivity {
     public void onClickBtn(View view) {
         switch (view.getId()) {
             case R.id.back:
-                Intent start = new Intent(FpObservationActivity.this, DisplayUserActivity.class);
-                start.putExtra("fp", "fp");
-                startActivity(start);
+//                Intent start = new Intent(FpObservationActivity.this, DisplayUserActivity.class);
+//                start.putExtra("fp", "fp");
+//                startActivity(start);
                 finish();
                 break;
             case R.id.Savebtn:
@@ -234,15 +286,10 @@ public class FpObservationActivity extends AppCompatActivity {
                 break;
             case R.id.Submit:
                 final FpObservationFormItem fpItem = collectAnswers();
+                long status = table.insert(fpItem);
                 final ProgressDialog dialog = new ProgressDialog(this);
                 dialog.setMessage("Please wait...");
                 final AlertDialog.Builder alert = new AlertDialog.Builder(FpObservationActivity.this);
-                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
                 if(fpItem != null) {
                     String url = "http://www.kolorob.net/mamoni/survey/api/form";
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -253,18 +300,37 @@ public class FpObservationActivity extends AppCompatActivity {
                                     dialog.dismiss();
 
                                     try {
-                                        JSONObject jo = new JSONObject(response);
+                                        final JSONObject jo = new JSONObject(response);
                                         if(jo.has("errorCount")){
                                             alert.setMessage(jo.getString("message"));
                                         }
                                         else{
                                             alert.setMessage("Invalid response");
                                         }
+                                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                                try {
+                                                    if(jo.getInt("errorCount") == 0){
+                                                        finish();
+                                                    }
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
                                         alert.show();
 
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                         alert.setMessage("An error occurred")   ;
+                                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
                                         alert.show();
                                     }
                                     //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
@@ -275,6 +341,12 @@ public class FpObservationActivity extends AppCompatActivity {
                                 public void onErrorResponse(VolleyError error) {
                                     dialog.dismiss();
                                     //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
                                     alert.setMessage("An error occurred");
                                     alert.show();
                                     error.printStackTrace();

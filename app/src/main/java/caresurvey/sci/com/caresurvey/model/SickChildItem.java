@@ -1,46 +1,45 @@
 package caresurvey.sci.com.caresurvey.model;
 
-import org.json.JSONObject;
-
-import java.io.IOException;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
  * Created by Mazharul.Islam1 on 4/24/2016.
  */
 public class SickChildItem extends DBRow{
 
-    private int facility_id;
-    private String sp_client;
-    private String so_designation;
-    private String serial_no;
-    private String form_date;
-    private String start_time;
-    private String child_description;
-    private String age;
-    private String feed;
-    private String vomit;
-    private String stutter;
-    private String cough;
-    private String diahorea;
-    private String fever;
-    private String measure_fever;
-    private String stethoscope;
-    private String breathing_test;
-    private String eye_test;
-    private String infected_mouth;
-    private String neck;
-    private String ear;
-    private String hand;
-    private String dehydration;
-    private String weight;
-    private String clinic_test;
-    private String belly_button;
-    private String height;
-    private String result;
-    private String end_time;
-    private String ct_client;
-    private String fields;
-    private String comments;
+    public int facility_id;
+    public String sp_client;
+    public String so_designation;
+    public String serial_no;
+    public String form_date;
+    public String start_time;
+    public String child_description;
+    public String age;
+    public String feed;
+    public String vomit;
+    public String stutter;
+    public String cough;
+    public String diahorea;
+    public String fever;
+    public String measure_fever;
+    public String stethoscope;
+    public String breathing_test;
+    public String eye_test;
+    public String infected_mouth;
+    public String neck;
+    public String ear;
+    public String hand;
+    public String dehydration;
+    public String weight;
+    public String clinic_test;
+    public String belly_button;
+    public String height;
+    public String result;
+    public String end_time;
+    public String ct_client;
+    public String fields;
+    public String comments;
+    public String facilityId;
 
 
     public SickChildItem(int id,int facility_id,String sp_client,String sp_designataion,
@@ -51,7 +50,7 @@ public class SickChildItem extends DBRow{
                          String ear, String hand, String dehydration, String weight, String clinic_test,
                          String belly_button, String height, String end_time,String result, String village, String district,
                          String union,String sub_district, String ct_client,String fields,String comments,int status)
-    {   this.patientid =id;
+    {   this.id =id;
         this.facility_id =facility_id;
         this.sp_client = sp_client;
         this.name = sp_client;
@@ -94,12 +93,19 @@ public class SickChildItem extends DBRow{
 
     }
 
-    public int getId() {
-        return patientid;
+    public SickChildItem() {
+        form_date = AppUtils.getDate();
+        start_time = AppUtils.getTime();
+        end_time = AppUtils.getTime();
+        status = 3;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public void setId(int id) {
-        this.patientid = id;
+        this.id = id;
     }
 
     public int getFacility_id() {

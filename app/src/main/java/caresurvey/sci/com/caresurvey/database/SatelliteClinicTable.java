@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Set;
 
 import caresurvey.sci.com.caresurvey.model.DBRow;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 
 /**
@@ -214,7 +213,7 @@ public class SatelliteClinicTable {
     private SatelliteClinicItem cursorToSubCatList(Cursor cursor) {
         SatelliteClinicItem item = new SatelliteClinicItem();
         if(cursor == null) return null;
-        item.patientid = cursor.getInt(cursor.getColumnIndex("_id"));
+        item.id = cursor.getInt(cursor.getColumnIndex("_id"));
         item.csi101 = cursor.getString(cursor.getColumnIndex("csi101"));
         item.csi102 = cursor.getString(cursor.getColumnIndex("csi102"));
         item.csi103 = cursor.getString(cursor.getColumnIndex("csi103"));
@@ -293,4 +292,21 @@ public class SatelliteClinicTable {
         return scList;
     }
 
+    public SatelliteClinicItem get(int id) {
+        SatelliteClinicItem item = new SatelliteClinicItem();
+        SQLiteDatabase db = openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DB_TABLE_SATELLITE_CLINIC + " where _id=" + id, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                item = cursorToSubCatList(cursor);
+                break;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return item;
+
+    }
 }

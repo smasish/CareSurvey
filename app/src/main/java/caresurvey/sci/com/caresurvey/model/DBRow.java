@@ -4,13 +4,18 @@ package caresurvey.sci.com.caresurvey.model;
  * Created by shantanu on 5/27/16.
  */
 public class DBRow {
+
+    public DBRow(){
+        id = 0;
+    }
     public int status;
-    public int patientid;
+    public long id;
     public String subdistrict;
     public String union;
     public String village;
     public String upozila;
     public String name;
+    public String designation;
     public String collector_name;
     public String division;
     public String timepick;

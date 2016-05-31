@@ -755,10 +755,24 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
+
             <Button
                 android:layout_margin="16dp"
-                android:id="@+id/insert"
+                android:id="@+id/submit"
                 android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Submit"
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_bg"
+                />
+
+            <Button
+                android:id="@+id/insert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
@@ -768,7 +782,9 @@
                 android:text="Insert"
                 android:textColor="@android:color/white"
                 android:background="@drawable/btn_bg"
-                />
+                android:layout_alignTop="@+id/submit"
+                android:layout_toLeftOf="@+id/submit"
+                android:layout_toStartOf="@+id/submit" />
             <Button
                 android:layout_margin="16dp"
                 android:id="@+id/prev"

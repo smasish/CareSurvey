@@ -14,6 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
@@ -21,7 +24,7 @@ import caresurvey.sci.com.caresurvey.model.InventoryItem;
 /**
  * Created by shantanu on 5/30/16.
  */
-public class FacilityInventoryFragment extends Fragment implements View.OnClickListener {
+public class FacilityInventoryFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private int resourceID;
     private int index;
     private View view;
@@ -58,12 +61,163 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         if(prevBtn != null){
             prevBtn.setOnClickListener(this);
         }
+        View insertBtn = view.findViewById(R.id.insert);
+        if(insertBtn != null){
+            insertBtn.setOnClickListener(this);
+        }
+        View submitBtn = view.findViewById(R.id.submit);
+        if(submitBtn != null){
+            submitBtn.setOnClickListener(this);
+        }
         try {
             loadData(getContext().getInventoryItem());
         }catch(Exception e){
             e.printStackTrace();
 //            Toast.makeText(getActivity(),"Form load failed",Toast.LENGTH_SHORT).show();
         }
+        if(resourceID == R.layout.activity_facility_inventory1) {
+            gRGi(R.id.fi_1_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_1_1).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_2_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_2_1).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_3_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_3_1).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_4_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_4_1).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_5_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_5_1).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_6_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_6_1).setOnCheckedChangeListener(this);
+            updateRadioGroupState1();
+        }
+        else if(resourceID == R.layout.activity_facility_inventory3) {
+            gRGi(R.id.fi_302_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_303_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_304_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_305_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_306_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_314_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_319_0).setOnCheckedChangeListener(this);
+            updateRadioGroupState3();
+        }
+        else if(resourceID == R.layout.activity_facility_inventory4) {
+            gRGi(R.id.fi_326_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_327_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_328_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_329_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_330_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_331_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_332_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_333_0).setOnCheckedChangeListener(this);
+            updateRadioGroupState4();
+        }
+        else if(resourceID == R.layout.activity_facility_inventory5) {
+            gRGi(R.id.fi_401_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_402_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_403_0).setOnCheckedChangeListener(this);
+            updateRadioGroupState5();
+        }
+    }
+    int idx = -1;
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        idx = gIRGc(group,checkedId);
+        if(resourceID == R.layout.activity_facility_inventory1) {
+            updateRadioGroupState1();
+        }
+        else if(resourceID == R.layout.activity_facility_inventory3) {
+            updateRadioGroupState3();
+        }
+        else if(resourceID == R.layout.activity_facility_inventory4){
+            updateRadioGroupState4();
+        }
+        else if(resourceID == R.layout.activity_facility_inventory5){
+            updateRadioGroupState5();
+        }
+    }
+
+    void updateRadioGroupState1(){
+        sRGu(R.id.fi_1_0, R.id.fi_1_1, R.id.fi_1_2);
+        sRGu(R.id.fi_2_0, R.id.fi_2_1, R.id.fi_2_2);
+        sRGu(R.id.fi_3_0, R.id.fi_3_1, R.id.fi_3_2);
+        sRGu(R.id.fi_4_0, R.id.fi_4_1, R.id.fi_4_2);
+        sRGu(R.id.fi_5_0, R.id.fi_5_1, R.id.fi_5_2);
+        sRGu(R.id.fi_6_0, R.id.fi_6_1, R.id.fi_6_2);
+    }
+
+    void updateRadioGroupState3(){
+        sRGu(R.id.fi_302_0, R.id.fi_302_1);
+        sRGu(R.id.fi_303_0, R.id.fi_303_1);
+        sRGu(R.id.fi_304_0, R.id.fi_304_1);
+        sRGu(R.id.fi_305_0, R.id.fi_305_1);
+        sRGu(R.id.fi_306_0, R.id.fi_306_1);
+        sRGu(R.id.fi_314_0, R.id.fi_314_1);
+        sRGu(R.id.fi_319_0, R.id.fi_319_1);
+    }
+
+    void updateRadioGroupState4(){
+        sRGu(R.id.fi_326_0, R.id.fi_326_1);
+        sRGu(R.id.fi_327_0, R.id.fi_327_1);
+        sRGu(R.id.fi_328_0, R.id.fi_328_1);
+        sRGu(R.id.fi_329_0, R.id.fi_329_1);
+        sRGu(R.id.fi_330_0, R.id.fi_330_1);
+        sRGu(R.id.fi_331_0, R.id.fi_331_1);
+        sRGu(R.id.fi_332_0, R.id.fi_332_1);
+        sRGu(R.id.fi_333_0, R.id.fi_333_1);
+
+    }
+    void updateRadioGroupState5(){
+        sRGu(R.id.fi_401_0, R.id.fi_401_1);
+        sRGu(R.id.fi_402_0, R.id.fi_402_1);
+        sRGu(R.id.fi_403_0, R.id.fi_403_1);
+    }
+
+    private void sRGu(int id0,int id1,int id2){
+        updateRGview(gRGi(id0),idx,gVBi(id1));
+        updateRGview(gRGi(id1),idx,gVBi(id2));
+    }
+    private void sRGu(int id0,int id1){
+        updateRGview(gRGi(id0),idx,gVBi(id1));
+    }
+
+
+    private View gVBi(int id){
+        return view.findViewById(id);
+    }
+    private RadioGroup gRGi(int id){
+        return (RadioGroup) view.findViewById(id);
+    }
+    //update next radio group visibility depends on current radio group state
+    private void updateRGview(RadioGroup group,int index,View nextView){
+        if(group.getVisibility() == View.VISIBLE) {
+            View v = nextView;
+            if (index == 0 && gRBv(group, index)) {
+                v.setVisibility(View.VISIBLE);
+            } else if ((index == 1 && gRBv(group, index)) || (index == 2 && gRBv(group, index))) {
+                v.setVisibility(View.INVISIBLE);
+            }
+            else if(index == -1){
+                v.setVisibility(View.INVISIBLE);
+            }
+        }
+        else{
+            nextView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private boolean gRBv(RadioGroup group,int index){
+        RadioButton btn = (RadioButton) group.getChildAt(index);
+        return btn.isChecked();
+    }
+
+    private int gIRGc(RadioGroup group,int id){
+        int count = group.getChildCount();
+        for(int i=0;i<count;i++){
+            if(group.getChildAt(i).getId() == id){
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Nullable
@@ -74,10 +228,19 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.next){
+        if(v.getId() == R.id.next || v.getId() == R.id.insert || v.getId() == R.id.submit){
             try {
                 collectData(getContext().getInventoryItem());
-                getContext().loadFragment(index + 1);
+                getContext().getTable().insertItem(getContext().getInventoryItem());
+                if(v.getId() == R.id.next) {
+                    getContext().loadFragment(index + 1);
+                }
+                else if(v.getId() == R.id.insert){
+                    Toast.makeText(getActivity(),"Form saved successfully",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    getContext().submit();
+                }
             } catch (Exception e) {
                 Toast.makeText(getActivity(),"Form is not complete",Toast.LENGTH_SHORT).show();
             }
@@ -323,7 +486,13 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
                 sETv(R.id.fi_611_3,tokens[i]);
             }
         }
-        sETv(R.id.fi_612,item.end_time);
+
+        if(TextUtils.isEmpty(item.end_time)){
+            sETv(R.id.fi_612,getTime());
+        }
+        else{
+            sETv(R.id.fi_612,item.end_time);
+        }
     }
     private void loadData4(InventoryItem item){
         sETv(R.id.fi_325_0,item.delivery_sp_name);
@@ -1121,7 +1290,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     private String gETv(int id){
         EditText eText = (EditText) view.findViewById(id);
         if(TextUtils.isEmpty(eText.getText())){
-            return null;
+            throw  new NullPointerException();
         }
         else{
             return eText.getText().toString();
@@ -1161,4 +1330,10 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         RadioButton btn = (RadioButton) group.getChildAt(index);
         btn.setChecked(true);
     }
+
+    public String getTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+        return dateFormat.format(new Date()).toString();
+    }
+
 }
