@@ -78,7 +78,7 @@
             android:name=".activity.UserActivityServiceProvider"
             android:label="@string/title_activity_user_activity_service_provider" />
         <activity
-            android:name=".activity.TestActivity1"
+            android:name=".activity.SickChildUnderFiveActivity"
             android:label="@string/title_activity_test1" />
         <activity
             android:name=".activity.DisplayUserFormActivity"

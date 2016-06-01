@@ -301,8 +301,8 @@ public class TestActivity extends AppCompatActivity {
                                         FormTableUser formtableuser = new FormTableUser(TestActivity.this);
                                         formtableuser.updateglobalI(intValue, 3);
                                         Save.setVisibility(View.GONE);
-                                        Intent intentw = new Intent(TestActivity.this, DisplayUserActivity.class);
-                                        startActivity(intentw);
+//                                        Intent intentw = new Intent(TestActivity.this, DisplayUserActivity.class);
+//                                        startActivity(intentw);
                                         finish();
                                     }
 
@@ -431,73 +431,77 @@ public class TestActivity extends AppCompatActivity {
     }
 
     public void StorevaluesinVar() {
-        int selectedq1 = bloodpressure.getCheckedRadioButtonId();
-        int selectedq2 = hemoglobintest.getCheckedRadioButtonId();
-        int selectedq3 = urinetest.getCheckedRadioButtonId();
-        int selectedq4 = pregnancyfood.getCheckedRadioButtonId();
-        int selectedq5 = pregnancydanger.getCheckedRadioButtonId();
-        int selectedq6 = fourparts.getCheckedRadioButtonId();
-        int selectedq7 = delivery.getCheckedRadioButtonId();
-        int selectedq8 = feedbaby.getCheckedRadioButtonId();
-        int selectedq9 = sixmonths.getCheckedRadioButtonId();
-        int selectedq10 = familyplanning.getCheckedRadioButtonId();
-        int selectedq12 = folictabletimportance.getCheckedRadioButtonId();
-        int selectedq11 = folictablet.getCheckedRadioButtonId();
-        RadioButton rb1 = (RadioButton) findViewById(selectedq1);
-        bl_status = rb1.getText().toString();
-        bloodpressure.clearCheck();
-        RadioButton rb2 = (RadioButton) findViewById(selectedq2);
-        hem_status = rb2.getText().toString();
-        hemoglobintest.clearCheck();
-        RadioButton rb3 = (RadioButton) findViewById(selectedq3);
-        uri_status = rb3.getText().toString();
-        urinetest.clearCheck();
-        RadioButton rb4 = (RadioButton) findViewById(selectedq4);
-        pregfood_status = rb4.getText().toString();
-        pregnancyfood.clearCheck();
+        try {
+            int selectedq1 = bloodpressure.getCheckedRadioButtonId();
+            int selectedq2 = hemoglobintest.getCheckedRadioButtonId();
+            int selectedq3 = urinetest.getCheckedRadioButtonId();
+            int selectedq4 = pregnancyfood.getCheckedRadioButtonId();
+            int selectedq5 = pregnancydanger.getCheckedRadioButtonId();
+            int selectedq6 = fourparts.getCheckedRadioButtonId();
+            int selectedq7 = delivery.getCheckedRadioButtonId();
+            int selectedq8 = feedbaby.getCheckedRadioButtonId();
+            int selectedq9 = sixmonths.getCheckedRadioButtonId();
+            int selectedq10 = familyplanning.getCheckedRadioButtonId();
+            int selectedq12 = folictabletimportance.getCheckedRadioButtonId();
+            int selectedq11 = folictablet.getCheckedRadioButtonId();
+            RadioButton rb1 = (RadioButton) findViewById(selectedq1);
+            bl_status = rb1.getText().toString();
+            bloodpressure.clearCheck();
+            RadioButton rb2 = (RadioButton) findViewById(selectedq2);
+            hem_status = rb2.getText().toString();
+            hemoglobintest.clearCheck();
+            RadioButton rb3 = (RadioButton) findViewById(selectedq3);
+            uri_status = rb3.getText().toString();
+            urinetest.clearCheck();
+            RadioButton rb4 = (RadioButton) findViewById(selectedq4);
+            pregfood_status = rb4.getText().toString();
+            pregnancyfood.clearCheck();
 
 
-        RadioButton rb5 = (RadioButton) findViewById(selectedq5);
+            RadioButton rb5 = (RadioButton) findViewById(selectedq5);
 
-        pregdan_status = rb5.getText().toString();
-        pregnancydanger.clearCheck();
-
-
-        RadioButton rb6 = (RadioButton) findViewById(selectedq6);
-
-        four_status = rb6.getText().toString();
-        fourparts.clearCheck();
+            pregdan_status = rb5.getText().toString();
+            pregnancydanger.clearCheck();
 
 
-        RadioButton rb7 = (RadioButton) findViewById(selectedq7);
+            RadioButton rb6 = (RadioButton) findViewById(selectedq6);
 
-        del_status = rb7.getText().toString();
-        delivery.clearCheck();
-
-
-        RadioButton rb8 = (RadioButton) findViewById(selectedq8);
-        feed_status = rb8.getText().toString();
-        feedbaby.clearCheck();
+            four_status = rb6.getText().toString();
+            fourparts.clearCheck();
 
 
-        RadioButton rb9 = (RadioButton) findViewById(selectedq9);
-        six_status = rb9.getText().toString();
-        sixmonths.clearCheck();
+            RadioButton rb7 = (RadioButton) findViewById(selectedq7);
+
+            del_status = rb7.getText().toString();
+            delivery.clearCheck();
 
 
-        RadioButton rb10 = (RadioButton) findViewById(selectedq10);
-        family_status = rb10.getText().toString();
-        familyplanning.clearCheck();
-
-        RadioButton rb11 = (RadioButton) findViewById(selectedq11);
-
-        foltab_status = rb11.getText().toString();
-        folictablet.clearCheck();
+            RadioButton rb8 = (RadioButton) findViewById(selectedq8);
+            feed_status = rb8.getText().toString();
+            feedbaby.clearCheck();
 
 
-        RadioButton rb12 = (RadioButton) findViewById(selectedq12);
-        folimp_status = rb12.getText().toString();
-        folictabletimportance.clearCheck();
+            RadioButton rb9 = (RadioButton) findViewById(selectedq9);
+            six_status = rb9.getText().toString();
+            sixmonths.clearCheck();
+
+
+            RadioButton rb10 = (RadioButton) findViewById(selectedq10);
+            family_status = rb10.getText().toString();
+            familyplanning.clearCheck();
+
+            RadioButton rb11 = (RadioButton) findViewById(selectedq11);
+
+            foltab_status = rb11.getText().toString();
+            folictablet.clearCheck();
+
+
+            RadioButton rb12 = (RadioButton) findViewById(selectedq12);
+            folimp_status = rb12.getText().toString();
+            folictabletimportance.clearCheck();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
     }

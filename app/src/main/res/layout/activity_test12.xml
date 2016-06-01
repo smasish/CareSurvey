@@ -201,6 +201,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_marginTop="20dp"
+                            android:inputType="number"
                             android:id="@+id/age"
                             android:layout_height="wrap_content" />
                         
@@ -1162,7 +1163,7 @@
                     android:text="Insert"
                     android:background="@color/purple"
                     android:textColor="@color/white"
-                    android:id="@+id/Savebtn"
+                    android:id="@+id/insert"
                     />
 
                 <Button
@@ -1171,7 +1172,7 @@
                     android:text="Submit"
                     android:layout_marginLeft="20dp"
 
-                    android:id="@+id/Submit"
+                    android:id="@+id/submit"
                     android:background="@color/purple"
                     android:textColor="@color/white"
                     />

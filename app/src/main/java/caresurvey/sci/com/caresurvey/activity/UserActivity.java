@@ -225,7 +225,7 @@ public class UserActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else if (obs_position == 2) {
-                        Intent intent = new Intent(UserActivity.this, TestActivity1.class);
+                        Intent intent = new Intent(UserActivity.this, SickChildUnderFiveActivity.class);
                         intent.putExtra("caretaker", user_caretaker.getText().toString());
                         intent.putExtra("name", username);
                         intent.putExtra("id", child_sick_value);

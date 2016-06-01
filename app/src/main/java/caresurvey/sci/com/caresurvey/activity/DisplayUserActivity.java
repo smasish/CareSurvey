@@ -17,11 +17,13 @@ import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter2;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.FpObservationTable;
+import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.DBRow;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
+import caresurvey.sci.com.caresurvey.model.InventoryItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
@@ -64,6 +66,13 @@ public class DisplayUserActivity extends AppCompatActivity {
             final SickChildTable table = new SickChildTable(this);
             ArrayList<SickChildItem> list = table.getAllInfo();
             for(SickChildItem item : list){
+                dbrows.add(item);
+            }
+        }
+        else if(getIntent().getIntExtra(FORM,-1) == 3){
+            final InventoryTable table = new InventoryTable(this);
+            ArrayList<InventoryItem> list = table.getAllInfo();
+            for(InventoryItem item : list){
                 dbrows.add(item);
             }
         }

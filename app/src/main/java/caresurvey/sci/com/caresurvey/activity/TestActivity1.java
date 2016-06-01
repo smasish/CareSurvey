@@ -291,7 +291,7 @@ public class TestActivity1 extends AppCompatActivity {
 
 
                                 fs.put("form_type", "dh_sickchild");
-                                fs.put("form_id",2);
+                                fs.put("form_id",sickChildItem.id);
                                 jf.put("facility_id",sickChildItem.getFacility_id());
                                 jf.put("sp_client",sickChildItem.getSp_client());
                                 jf.put("sp_designation",sickChildItem.getSo_designation());

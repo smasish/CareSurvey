@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.FpObservationTable;
+import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
@@ -140,6 +141,19 @@ public class SelectionUserActivity extends AppCompatActivity {
                         else if(which == 2){
 
                             SickChildTable table = new SickChildTable(SelectionUserActivity.this);
+                            long rowSize = table.getRowSize();
+                            if(rowSize > 0) {
+                                Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);
+                                intent.putExtra(DisplayUserActivity.FORM, which);
+                                startActivity(intent);
+                            }
+                            else{
+                                AlertMessage.showMessage(SelectionUserActivity.this, "Alert",
+                                        "No data is Inserted yet");
+                            }
+                        }
+                        else if(which == 3){
+                            InventoryTable table = new InventoryTable(SelectionUserActivity.this);
                             long rowSize = table.getRowSize();
                             if(rowSize > 0) {
                                 Intent intent = new Intent(SelectionUserActivity.this, DisplayUserActivity.class);

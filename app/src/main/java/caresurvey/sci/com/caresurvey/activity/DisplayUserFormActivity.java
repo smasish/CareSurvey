@@ -73,7 +73,7 @@ public class DisplayUserFormActivity extends AppCompatActivity {
                             "");
 
                 } else {
-                    Intent iiv = new Intent(DisplayUserFormActivity.this, TestActivity1.class);
+                    Intent iiv = new Intent(DisplayUserFormActivity.this, SickChildUnderFiveActivity.class);
                     iiv.putExtra("position", position + 1);
                     iiv.putExtra("name", names);
                     startActivity(iiv);

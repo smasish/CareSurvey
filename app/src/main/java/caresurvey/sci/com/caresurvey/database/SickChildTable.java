@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import caresurvey.sci.com.caresurvey.model.DBRow;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
@@ -55,10 +56,9 @@ public class SickChildTable {
     public static final String KEY_COMMENT = "_comment"; // 1 - text
     public static final String KEY_FIELD = "_field"; // 1 - text
     public static final String KEY_STATUS = "_status"; // 1 - text
-
-
-
-
+    private static final String KEY_BMI = "_bmi";
+    private static final String KEY_CIRCLE = "_circle";
+    private static final String KEY_UPOZILLA = "_upozilla";
 
 
     public Context tContext;
@@ -108,20 +108,26 @@ public class SickChildTable {
                 + KEY_CLINIC_TEST + " TEXT, "
                 + KEY_BELLEY_BUTTON + " TEXT, "
                 + KEY_HEIGHT + " TEXT, "
+                + KEY_CIRCLE + " TEXT, "
+                + KEY_BMI + " TEXT, "
                 + KEY_RESULT + " TEXT, "
                 + KEY_END_TIME + " TEXT, "
                 + KEY_VILLAGE + " TEXT, "
+                + KEY_UPOZILLA + " TEXT, "
                 + KEY_DISTRICT + " TEXT, "
                 + KEY_UNION + " TEXT, "
                 + KEY_SUB_DISTRICT + " TEXT, "
                 + KEY_CT_CLIENT + " TEXT, "
                 + KEY_COMMENT + " TEXT, "
-
+                + DBRow.KEY_NAME + " TEXT, "
+                + DBRow.KEY_DIVISION + " TEXT, "
+                + DBRow.KEY_TIME_PICK + " TEXT, "
+                + DBRow.KEY_DATE_PICK + " TEXT, "
+                + DBRow.KEY_OBSTYPE + " TEXT, "
+                + DBRow.KEY_FACILITY + " TEXT, "
                 + KEY_FIELD + " TEXT, "
 
                 + KEY_STATUS + " integer "
-
-
                 // 2 - text
                 + " )";
         db.execSQL(CREATE_TABLE_SQL);
@@ -136,21 +142,78 @@ public class SickChildTable {
         DatabaseManager.getInstance(tContext).closeDatabase();
     }
 
-    public long insertItem(SickChildItem sickChildItem) {
-        return insertItem(sickChildItem.getId(),sickChildItem.getFacility_id(),sickChildItem.getSp_client(),sickChildItem.getSo_designation(),
-                sickChildItem.getSerial_no(),sickChildItem.getForm_date(),
-                sickChildItem.getStart_time(),sickChildItem.getChild_description(),
-                sickChildItem.getAge(),sickChildItem.getFeed(),sickChildItem.getVomit(),
-                sickChildItem.getStutter(),sickChildItem.getCough(),sickChildItem.getDiahorea(),
-                sickChildItem.getFever(),sickChildItem.getMeasure_fever(),
-                sickChildItem.getStethoscope(),sickChildItem.getBreathing_test(),
-                sickChildItem.getEye_test(),sickChildItem.getInfected_mouth(),sickChildItem.getNeck(),
-                sickChildItem.getEar(),sickChildItem.getHand(),sickChildItem.getDehydration(),
-                sickChildItem.getWeight(),sickChildItem.getClinic_test(),
-                sickChildItem.getBelly_button(),sickChildItem.getHeight(),sickChildItem.getResult(),
-                sickChildItem.getEnd_time(),sickChildItem.getVillage(),
-                sickChildItem.getDistrict(),sickChildItem.getUnion(),sickChildItem.getSub_district(),sickChildItem.getCt_client(),
-                sickChildItem.getFields(),sickChildItem.getComments(),sickChildItem.getStatus());
+    public long insertItem(SickChildItem item) {
+//        return insertItem(sickChildItem.getId(),sickChildItem.getFacility_id(),sickChildItem.getSp_client(),sickChildItem.getSo_designation(),
+//                sickChildItem.getSerial_no(),sickChildItem.getForm_date(),
+//                sickChildItem.getStart_time(),sickChildItem.getChild_description(),
+//                sickChildItem.getAge(),sickChildItem.getFeed(),sickChildItem.getVomit(),
+//                sickChildItem.getStutter(),sickChildItem.getCough(),sickChildItem.getDiahorea(),
+//                sickChildItem.getFever(),sickChildItem.getMeasure_fever(),
+//                sickChildItem.getStethoscope(),sickChildItem.getBreathing_test(),
+//                sickChildItem.getEye_test(),sickChildItem.getInfected_mouth(),sickChildItem.getNeck(),
+//                sickChildItem.getEar(),sickChildItem.getHand(),sickChildItem.getDehydration(),
+//                sickChildItem.getWeight(),sickChildItem.getClinic_test(),
+//                sickChildItem.getBelly_button(),sickChildItem.getHeight(),sickChildItem.getResult(),
+//                sickChildItem.getEnd_time(),sickChildItem.getVillage(),
+//                sickChildItem.getDistrict(),sickChildItem.getUnion(),sickChildItem.getSub_district(),sickChildItem.getCt_client(),
+//                sickChildItem.getFields(),sickChildItem.getComments(),sickChildItem.getStatus());
+        ContentValues values= new ContentValues();
+//        values.put(KEY_ID,id);
+        values.put(KEY_FACILITY_ID,item.facility_id);
+        values.put(KEY_SP_CLIENT,item.sp_client);
+        values.put(KEY_SP_DESIGNATGION,item.so_designation);
+        values.put(KEY_SERIAL_NO,item.serial_no);
+        values.put(KEY_FORM_DATE,item.form_date);
+        values.put(KEY_START_TIME,item.start_time);
+        values.put(KEY_CHILD_DESCRIPTION,item.child_description);
+        values.put(KEY_AGE,item.age);
+        values.put(KEY_FEED,item.feed);
+        values.put(KEY_VOMIT,item.vomit);
+        values.put(KEY_STUTTER,item.stutter);
+        values.put(KEY_COUGH,item.cough);
+        values.put(KEY_DIAHOREA,item.diahorea);
+        values.put(KEY_FEVER,item.fever);
+        values.put(KEY_MEASURE_FEVER,item.measure_fever);
+        values.put(KEY_STETHOSCOPE,item.stethoscope);
+        values.put(KEY_BREATHING_TEST,item.breathing_test);
+        values.put(KEY_EYE_TEST,item.eye_test);
+        values.put(KEY_INFECTED_MOUTH,item.infected_mouth);
+        values.put(KEY_NECK,item.neck);
+        values.put(KEY_EAR,item.ear);
+        values.put(KEY_HAND,item.hand);
+        values.put(KEY_DEHYDRATION,item.dehydration);
+        values.put(KEY_WEIGHT,item.weight);
+        values.put(KEY_CLINIC_TEST,item.clinic_test);
+        values.put(KEY_BELLEY_BUTTON,item.belly_button);
+        values.put(KEY_HEIGHT,item.height);
+        values.put(KEY_BMI,item.bmi);
+        values.put(KEY_CIRCLE,item.circle);
+        values.put(KEY_RESULT,item.result);
+        values.put(KEY_END_TIME,item.end_time);
+        values.put(KEY_VILLAGE,item.village);
+        values.put(KEY_DISTRICT,item.district);
+        values.put(KEY_UNION,item.union);
+        values.put(KEY_SUB_DISTRICT,item.subdistrict);
+        values.put(KEY_CT_CLIENT,item.ct_client);
+        values.put(KEY_STATUS,item.status);
+        values.put(KEY_UNION,item.union);
+        values.put(KEY_VILLAGE,item.village);
+        values.put(KEY_UPOZILLA,item.upozila);
+        values.put(DBRow.KEY_NAME,item.name);
+        values.put(DBRow.KEY_DIVISION,item.division);
+        values.put(DBRow.KEY_TIME_PICK,item.timepick);
+        values.put(DBRow.KEY_DATE_PICK,item.datepick);
+        values.put(DBRow.KEY_OBSTYPE,item.obs_type);
+        values.put(DBRow.KEY_FACILITY,item.facility);
+        SQLiteDatabase db = openDB();
+        if(item.id > 0){ //update
+            db.update(TABLE_NAME,values,KEY_ID + "=" + item.id,null);
+        }
+        else{
+            item.id = db.insert(TABLE_NAME, null, values);
+        }
+        closeDB();
+        return item.id;
     }
 
     public long insertItem(long id,int facility_id, String sp_client, String so_designation, String serial_no, String form_date, String start_time, String child_description, String age, String feed, String vomit, String stutter, String cough, String diahorea, String fever, String measure_fever,  String stethoscope, String breathing_test, String eye_test, String infected_mouth, String neck, String ear, String hand, String dehydration, String weight, String clinic_test, String belly_button, String height, String result, String end_time, String village, String district, String union, String sub_district,String ct_client,String field,String comment,int status) {

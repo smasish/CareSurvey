@@ -7,7 +7,7 @@ import caresurvey.sci.com.caresurvey.utils.AppUtils;
  */
 public class SickChildItem extends DBRow{
 
-    public int facility_id;
+    public String facility_id;
     public String sp_client;
     public String so_designation;
     public String serial_no;
@@ -40,7 +40,8 @@ public class SickChildItem extends DBRow{
     public String fields;
     public String comments;
     public String facilityId;
-
+    public String bmi;
+    public String circle;
 
     public SickChildItem(int id,int facility_id,String sp_client,String sp_designataion,
                          String serial_no, String form_date, String start_time, String child_description,
@@ -51,7 +52,7 @@ public class SickChildItem extends DBRow{
                          String belly_button, String height, String end_time,String result, String village, String district,
                          String union,String sub_district, String ct_client,String fields,String comments,int status)
     {   this.id =id;
-        this.facility_id =facility_id;
+//        this.facility_id =facility_id;
         this.sp_client = sp_client;
         this.name = sp_client;
         this.so_designation= sp_designataion;
@@ -108,13 +109,13 @@ public class SickChildItem extends DBRow{
         this.id = id;
     }
 
-    public int getFacility_id() {
+    public String getFacility_id() {
         return facility_id;
     }
 
-    public void setFacility_id(int facility_id) {
-        this.facility_id = facility_id;
-    }
+//    public void setFacility_id(int facility_id) {
+//        this.facility_id = facility_id;
+//    }
 
     public String getSp_client() {
         return sp_client;

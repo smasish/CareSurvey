@@ -3,10 +3,15 @@ package caresurvey.sci.com.caresurvey.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 import caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
+import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 /**
  * Created by Shahin on 5/16/2016.
@@ -551,5 +556,148 @@ public class InventoryTable {
         cursor.close();
         closeDB();
         return false;
+    }
+
+    public long getRowSize(){
+        SQLiteDatabase db = openDB();
+        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        closeDB();
+        return numRows;
+    }
+
+    public InventoryItem cursorlist(Cursor cursor){
+        InventoryItem item = new InventoryItem();
+        item.id = cursor.getInt(cursor.getColumnIndex(inventory_id));
+        item.facility_id = cursor.getInt(cursor.getColumnIndex(facility_id));
+        item.client_name = cursor.getString(cursor.getColumnIndex(client_name));
+        item.start_time = cursor.getString(cursor.getColumnIndex(start_time));
+        item.instrument_sp_name = cursor.getString(cursor.getColumnIndex(instrument_sp_name));
+        item.instrument_sp_designation = cursor.getString(cursor.getColumnIndex(instrument_sp_designation));
+        item.i_electronic_autoclev = cursor.getString(cursor.getColumnIndex(i_electronic_autoclev));
+        item.i_non_electronic_autoclev = cursor.getString(cursor.getColumnIndex(i_non_electronic_autoclev));
+        item.i_electric_sterilizer = cursor.getString(cursor.getColumnIndex(i_electric_sterilizer));
+        item.i_electric_steamer = cursor.getString(cursor.getColumnIndex(i_electric_steamer));
+        item.i_non_electric_pot = cursor.getString(cursor.getColumnIndex(i_non_electric_pot));
+        item.i_stove = cursor.getString(cursor.getColumnIndex(i_stove));
+        item.i_waste_sp_name = cursor.getString(cursor.getColumnIndex(i_waste_sp_name));
+        item.i_waste_sp_designation = cursor.getString(cursor.getColumnIndex(i_waste_sp_designation));
+        item.w_waste_option = cursor.getString(cursor.getColumnIndex(w_waste_option));
+        item.w_waste_dispose_how = cursor.getString(cursor.getColumnIndex(w_waste_dispose_how));
+        item.w_pointy_waste = cursor.getString(cursor.getColumnIndex(w_pointy_waste));
+        item.w_liquid_waste = cursor.getString(cursor.getColumnIndex(w_liquid_waste));
+        item.w_liquid_waste_store = cursor.getString(cursor.getColumnIndex(w_liquid_waste_store));
+        item.w_plastic_waste = cursor.getString(cursor.getColumnIndex(w_plastic_waste));
+        item.w_waste_normal = cursor.getString(cursor.getColumnIndex(w_waste_normal));
+        item.w_incinerator_seen = cursor.getString(cursor.getColumnIndex(w_incinerator_seen));
+        item.w_dumping_pit_seen = cursor.getString(cursor.getColumnIndex(w_dumping_pit_seen));
+        item.equipment_sp_name = cursor.getString(cursor.getColumnIndex(equipment_sp_name));
+        item.equipment_sp_designation = cursor.getString(cursor.getColumnIndex(equipment_sp_designation));
+        item.w_incinerator = cursor.getString(cursor.getColumnIndex(w_incinerator));
+        item.w_dumping_pit = cursor.getString(cursor.getColumnIndex(w_dumping_pit));
+        item.n_adult_wing_scale = cursor.getString(cursor.getColumnIndex(n_adult_wing_scale));
+        item.n_height_rod = cursor.getString(cursor.getColumnIndex(n_height_rod));
+        item.n_pressure_mechine = cursor.getString(cursor.getColumnIndex(n_pressure_mechine));
+        item.n_stethoscope = cursor.getString(cursor.getColumnIndex(n_stethoscope));
+        item.n_filter_stethoscope = cursor.getString(cursor.getColumnIndex(n_filter_stethoscope));
+        item.n_water = cursor.getString(cursor.getColumnIndex(n_water));
+        item.n_hand_soap = cursor.getString(cursor.getColumnIndex(n_hand_soap));
+        item.n_spirit = cursor.getString(cursor.getColumnIndex(n_spirit));
+        item.n_waste = cursor.getString(cursor.getColumnIndex(n_waste));
+        item.n_sharp_waste = cursor.getString(cursor.getColumnIndex(n_sharp_waste));
+        item.n_gloves = cursor.getString(cursor.getColumnIndex(n_gloves));
+        item.n_iron_folate = cursor.getString(cursor.getColumnIndex(n_iron_folate));
+        item.n_urine_protien = cursor.getString(cursor.getColumnIndex(n_urine_protien));
+        item.n_urine_tester = cursor.getString(cursor.getColumnIndex(n_urine_tester));
+        item.n_urine_testtube = cursor.getString(cursor.getColumnIndex(n_urine_testtube));
+        item.n_test_tube_rack = cursor.getString(cursor.getColumnIndex(n_test_tube_rack));
+        item.n_dip_stick = cursor.getString(cursor.getColumnIndex(n_dip_stick));
+        item.n_hemoglobin = cursor.getString(cursor.getColumnIndex(n_hemoglobin));
+        item.n_telecoil_book = cursor.getString(cursor.getColumnIndex(n_telecoil_book));
+        item.n_telecoil_landset = cursor.getString(cursor.getColumnIndex(n_telecoil_landset));
+        item.n_kolori_meter = cursor.getString(cursor.getColumnIndex(n_kolori_meter));
+        item.n_litmus_paper = cursor.getString(cursor.getColumnIndex(n_litmus_paper));
+        item.delivery_sp_name = cursor.getString(cursor.getColumnIndex(delivery_sp_name));
+        item.delivery_sp_designation = cursor.getString(cursor.getColumnIndex(delivery_sp_designation));
+        item.d_delivery_service = cursor.getString(cursor.getColumnIndex(d_delivery_service));
+        item.d_delivery_table = cursor.getString(cursor.getColumnIndex(d_delivery_table));
+        item.d_pressure_mechine = cursor.getString(cursor.getColumnIndex(d_pressure_mechine));
+        item.d_stethoscope = cursor.getString(cursor.getColumnIndex(d_stethoscope));
+        item.d_filter_stethoscope = cursor.getString(cursor.getColumnIndex(d_filter_stethoscope));
+        item.d_newborn_recuscitation = cursor.getString(cursor.getColumnIndex(d_newborn_recuscitation));
+        item.d_recuscitation_mask_0 = cursor.getString(cursor.getColumnIndex(d_recuscitation_mask_0));
+        item.d_recuscitation_mask_1 = cursor.getString(cursor.getColumnIndex(d_recuscitation_mask_1));
+        item.d_peguin_sucker = cursor.getString(cursor.getColumnIndex(d_peguin_sucker));
+        item.d_cord_cutter = cursor.getString(cursor.getColumnIndex(d_cord_cutter));
+        item.d_cord_clamp = cursor.getString(cursor.getColumnIndex(d_cord_clamp));
+        item.d_partograf_paper = cursor.getString(cursor.getColumnIndex(d_partograf_paper));
+        item.d_water = cursor.getString(cursor.getColumnIndex(d_water));
+        item.d_hand_soap = cursor.getString(cursor.getColumnIndex(d_hand_soap));
+        item.d_spirit = cursor.getString(cursor.getColumnIndex(d_spirit));
+        item.d_waste_recycle = cursor.getString(cursor.getColumnIndex(d_waste_recycle));
+        item.d_waste_storage = cursor.getString(cursor.getColumnIndex(d_waste_storage));
+        item.d_latex_gloves = cursor.getString(cursor.getColumnIndex(d_latex_gloves));
+        item.d_chlorine_sol = cursor.getString(cursor.getColumnIndex(d_chlorine_sol));
+        item.d_detergent_water = cursor.getString(cursor.getColumnIndex(d_detergent_water));
+        item.d_clean_water = cursor.getString(cursor.getColumnIndex(d_clean_water));
+        item.d_misoprostol = cursor.getString(cursor.getColumnIndex(d_misoprostol));
+        item.d_oxytocin = cursor.getString(cursor.getColumnIndex(d_oxytocin));
+        item.d_mang_sulfate = cursor.getString(cursor.getColumnIndex(d_mang_sulfate));
+        item.d_chlorhexidine = cursor.getString(cursor.getColumnIndex(d_chlorhexidine));
+        item.d_paediatric_drop = cursor.getString(cursor.getColumnIndex(d_paediatric_drop));
+        item.d_gentamycin = cursor.getString(cursor.getColumnIndex(d_gentamycin));
+        item.ch_wing_scale = cursor.getString(cursor.getColumnIndex(ch_wing_scale));
+        item.ch_infant_wing_scale = cursor.getString(cursor.getColumnIndex(ch_infant_wing_scale));
+        item.ch_height_rod = cursor.getString(cursor.getColumnIndex(ch_height_rod));
+        item.ch_measuring_tip = cursor.getString(cursor.getColumnIndex(ch_measuring_tip));
+        item.ch_water = cursor.getString(cursor.getColumnIndex(ch_water));
+        item.ch_growth_monitor_boy = cursor.getString(cursor.getColumnIndex(ch_growth_monitor_boy));
+        item.ch_growth_monitor_girl = cursor.getString(cursor.getColumnIndex(ch_growth_monitor_girl));
+        item.ch_hand_soap = cursor.getString(cursor.getColumnIndex(ch_hand_soap));
+        item.ch_spirit = cursor.getString(cursor.getColumnIndex(ch_spirit));
+        item.ch_wastage_recycle = cursor.getString(cursor.getColumnIndex(ch_wastage_recycle));
+        item.ch_sharp_waste = cursor.getString(cursor.getColumnIndex(ch_sharp_waste));
+        item.ch_latex_gloves = cursor.getString(cursor.getColumnIndex(ch_latex_gloves));
+        item.ch_ors = cursor.getString(cursor.getColumnIndex(ch_ors));
+        item.ch_paediatric_drop = cursor.getString(cursor.getColumnIndex(ch_paediatric_drop));
+        item.ch_cotrimoxazole = cursor.getString(cursor.getColumnIndex(ch_cotrimoxazole));
+        item.ch_paracetamol = cursor.getString(cursor.getColumnIndex(ch_paracetamol));
+        item.ch_zinc = cursor.getString(cursor.getColumnIndex(ch_zinc));
+        item.ch_mebandazole = cursor.getString(cursor.getColumnIndex(ch_mebandazole));
+        item.ch_ceftriaxone = cursor.getString(cursor.getColumnIndex(ch_ceftriaxone));
+        item.ch_vitamin = cursor.getString(cursor.getColumnIndex(ch_vitamin));
+        item.fp_soap = cursor.getString(cursor.getColumnIndex(fp_soap));
+        item.fp_spirit = cursor.getString(cursor.getColumnIndex(fp_spirit));
+        item.fp_waste_recycle = cursor.getString(cursor.getColumnIndex(fp_waste_recycle));
+        item.fp_sharp_waste = cursor.getString(cursor.getColumnIndex(fp_sharp_waste));
+        item.fp_latex_gloves = cursor.getString(cursor.getColumnIndex(fp_latex_gloves));
+        item.r_healthy_newborn = cursor.getString(cursor.getColumnIndex(r_healthy_newborn));
+        item.r_newborn_death = cursor.getString(cursor.getColumnIndex(r_newborn_death));
+        item.r_mother_rate = cursor.getString(cursor.getColumnIndex(r_mother_rate));
+        item.r_elampsia = cursor.getString(cursor.getColumnIndex(r_elampsia));
+        item.r_mang_sulfate = cursor.getString(cursor.getColumnIndex(r_mang_sulfate));
+        item.r_pneumonis = cursor.getString(cursor.getColumnIndex(r_pneumonis));
+        item.r_paracetamol = cursor.getString(cursor.getColumnIndex(r_paracetamol));
+        item.r_psbi = cursor.getString(cursor.getColumnIndex(r_psbi));
+        item.r_psbi_care = cursor.getString(cursor.getColumnIndex(r_psbi_care));
+        item.r_starving_child = cursor.getString(cursor.getColumnIndex(r_starving_child));
+        item.r_starving_protocol = cursor.getString(cursor.getColumnIndex(r_starving_protocol));
+        item.end_time = cursor.getString(cursor.getColumnIndex(end_time));
+        return item;
+    }
+
+    public ArrayList<InventoryItem> getAllInfo() {
+        ArrayList<InventoryItem> subCatList = new ArrayList<>();
+        SQLiteDatabase db = openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME , null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                subCatList.add(cursorlist(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return subCatList;
     }
 }
