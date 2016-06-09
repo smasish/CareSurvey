@@ -6,6 +6,8 @@ import caresurvey.sci.com.caresurvey.utils.AppUtils;
  * Created by shantanu on 5/26/16.
  */
 public class SatelliteClinicItem extends DBRow{
+    public int mark;
+
     public SatelliteClinicItem(){
         date = AppUtils.getDate();
         startTime = AppUtils.getTime();

@@ -221,7 +221,7 @@ public class TestActivity1 extends AppCompatActivity {
                 ArrayList<SickChildItem> sickChildItems1;
                 SickChildTable sickChildTable = new SickChildTable(TestActivity1.this);
                 sickChildItems= sickChildTable.getSpecificItem(2);
-                String url = "http://www.kolorob.net/mamoni/survey/api/form";
+                String url = "http://119.148.43.34/mamoni/survey/api/form";
                 final ProgressDialog dialog = new ProgressDialog(TestActivity1.this);
                 dialog.setMessage("Please wait...");
                 final AlertDialog.Builder alert = new AlertDialog.Builder(TestActivity1.this);

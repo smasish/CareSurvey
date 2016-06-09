@@ -2,6 +2,12 @@
     <string name="app_name">CareSurvey</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="home">Home/View Observation</string>
+    <string name="add_form">Add New Observation</string>
+
+    <string-array name="district_names">
+        <item>Hobiganj</item>
+    </string-array>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -34,7 +40,7 @@
 
 
     <string name="form">Form</string>
-    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_test">ANC Observation</string>
     <string name="title_activity_supervisor_verification">Supervisor_verificationActivity</string>
     <string name="title_activity_display_all_">DisplayAll_Activity</string>
     <string name="title_activity_user">UserActivity</string>
@@ -48,7 +54,7 @@
     <string name="title_activity_selection_user">SelectionUserActivity</string>
     <string name="title_activity_user_activity_service_provider">UserActivityServiceProvider
     </string>
-    <string name="title_activity_test1">TestActivity1</string>
+    <string name="title_activity_test1">Sick Child Under Five</string>
     <string name="title_activity_display_user_form">DisplayUserFormActivity</string>
 
     <string name="title_invetory_section_1">hš¿cvwZ cybivq e¨env‡ii Rb¨ †hLv‡b Rxevbygy³ Kiv nq †mB ¯’vbwU †`wL‡q w`‡Z ejyb| ¯^v¯’¨‡K‡›`ªi hš¿cvwZ Rxevbygy³ Kiv m¤ú‡K© whwb me‡P‡q fvj Rv‡bb Zv‡K
@@ -355,6 +361,15 @@ nq wK bv|</string>
     <string name="sci_q232">232 cwievi cwiKíbv c×wZ: Bb‡RK‡Uej</string>
     <string name="sci_q233">233 Mf©Kvjxb †mev KvW</string>
     <string name="sci_q234">234 ¯^v¯’¨wkÿvi Rb¨ Qwehy³ DcKiY</string>
+    <string name="title_fp_observation" >FP Observation</string>
+    <string name="title_facility_inventory">Facility Inventory</string>
+    <string name="title_satelliteClinicInventory">Satellite Clicnic Inventory</string>
+
+    <string-array name="child_sick_description">
+        <item>পছন্দ করুন</item>
+        <item>অসুস্থতার চিকিৎসা</item>
+        <item>অন্যান্য</item>
+    </string-array>
 
 
 </resources>

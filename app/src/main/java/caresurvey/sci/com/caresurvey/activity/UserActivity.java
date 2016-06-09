@@ -37,6 +37,7 @@ public class UserActivity extends AppCompatActivity {
 
     EditText user, user_caretaker;
     EditText collector_name, sp_designation;
+    private String district;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class UserActivity extends AppCompatActivity {
         serial = intentx.getStringExtra("serial");
         user_caretaker = (EditText) findViewById(R.id.userCareTaker);
         sp_designation = (EditText) findViewById(R.id.sp_designation);
+        district = intentx.getStringExtra("district");
         //   user.setText(user_name);
 
         Log.d("..>>>>>>", "Username" + user_name);
@@ -193,16 +195,16 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("serial",serial);
 
                         // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
-
                         intent.putExtra("facility", facility);
                         intent.putExtra("upozila", upozila);
                         intent.putExtra("union", union);
                         intent.putExtra("village", village);
                         intent.putExtra("obstype", obsname);
                         intent.putExtra("designation",designation);
+                        intent.putExtra("district",district);
 
 
-                        startActivity(intent);
+                                startActivity(intent);
                         finish();
                     } else if (obs_position == 1) {
                         Intent intent = new Intent(UserActivity.this, SateliteClinicInventoryActivity.class);
@@ -214,6 +216,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("datepicker", datepicker);
                         intent.putExtra("timepicker", timepicker);
                         intent.putExtra("serial",serial);
+                        intent.putExtra("district",district);
                         // Log.d(".....>>>>>>>>>>", "Id in address Insert Activity  " + id);
 
                         intent.putExtra("facility", facility);
@@ -222,6 +225,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("village", village);
                         intent.putExtra("obstype", obsname);
                         intent.putExtra("designation",designation);
+                        intent.putExtra("district",district);
                         startActivity(intent);
                         finish();
                     } else if (obs_position == 2) {
@@ -245,6 +249,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("village", village);
                         intent.putExtra("obstype", obsname);
                         intent.putExtra("designation",designation);
+                        intent.putExtra("district",district);
 
 
                         startActivity(intent);
@@ -267,6 +272,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("village", village);
                         intent.putExtra("obstype", obsname);
                         intent.putExtra("designation",designation);
+                        intent.putExtra("district",district);
                         startActivity(intent);
                         finish();
                     } else if (obs_position == 4) {
@@ -287,6 +293,7 @@ public class UserActivity extends AppCompatActivity {
                         intent.putExtra("village", village);
                         intent.putExtra("obstype", obsname);
                         intent.putExtra("designation",designation);
+                        intent.putExtra("district",district);
                         startActivity(intent);
                         finish();
                     }

@@ -34,6 +34,11 @@ import caresurvey.sci.com.caresurvey.database.DatabaseAccess;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUnion;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUpazila;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessVillage;
+import caresurvey.sci.com.caresurvey.database.FormTable;
+import caresurvey.sci.com.caresurvey.database.FpObservationTable;
+import caresurvey.sci.com.caresurvey.database.InventoryTable;
+import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
+import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 
 public class AddressInsertActivity extends AppCompatActivity {
     Spinner sp1,sp2,sp3,sp4,obsSpinner;
@@ -59,6 +64,7 @@ public class AddressInsertActivity extends AppCompatActivity {
     private TextView dateView;
     private int year, month, day;
     private Spinner divspinner,zillaspinner,upzillaspinner,unionspinner,mouzaspinner,villagespinner;
+    private Spinner districtSpinner;
     String divname,zillname,upazilname="",unionname="",mouzaname,vilname="";
     String divid=String.valueOf(10);
     String mouzaid,vilid,zillaid,upzillaid,unionid=null;
@@ -100,7 +106,11 @@ public class AddressInsertActivity extends AppCompatActivity {
 
 
         //user.setText(name);
-
+        districtSpinner = (Spinner) findViewById(R.id.districtspinner);
+        ArrayList<String> dList = new ArrayList<>();
+        dList.add("Hobiganj");
+        ArrayAdapter<String> districtAdapter = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, dList);
+        districtSpinner.setAdapter(districtAdapter);
         divspinner=(Spinner)findViewById(R.id.divisionspinner);
         villagespinner=(Spinner)findViewById(R.id.villagespinner);
         upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
@@ -147,23 +157,30 @@ public class AddressInsertActivity extends AppCompatActivity {
 //                formItems = formTable.getListfromuser(username, facilityname);
 //                valuecount=formItems.size();
                 //facilityspinner.setAdapter(null);
-
+                long lastId = 0;
                 if(position == 0){
                     // define layout here...visible or invisible
                     Log.d(">>>>>>>>>0", "=============sp position=========" );
+                    lastId = new FormTable(AddressInsertActivity.this).getLastId();
                 }
                 else if(position == 1){
                     ///define layout here...visible or invisible
                  //   anc_lay.setVisibility(View.GONE);
+                    lastId = new SatelliteClinicTable(AddressInsertActivity.this).getLastId();
                     Log.d(">>>>>>>>>1", "=============sp position=========");
                 }
                 else if(position == 2){
                     ///define layout here...visible or invisible
+                    lastId = new SickChildSupervisorTable(AddressInsertActivity.this).getLastId();
                 }
                 else if(position == 3){
                     ///define layout here...visible or invisible
+                    lastId = new InventoryTable(AddressInsertActivity.this).getLastId();
                 }
-
+                else if(position == 4){
+                    lastId = new FpObservationTable(AddressInsertActivity.this).getLastId();
+                }
+                facility_id_number.setText(""+(++lastId));
 
             }
 
@@ -272,8 +289,9 @@ public class AddressInsertActivity extends AppCompatActivity {
             }
         });
 
-
-
+        //init
+//        long lastId = new FormTable(AddressInsertActivity.this).getLastId();
+//        facility_id_number.setText("" + (++lastId));
 
 
 
@@ -366,7 +384,11 @@ public class AddressInsertActivity extends AppCompatActivity {
 
     public void passActivity()
     {
-
+        int formId = Integer.parseInt(facility_id_number.getText().toString());
+        if(formId > 30){
+            Toast.makeText(AddressInsertActivity.this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(AddressInsertActivity.this, UserActivity.class);
     //    name= user.getText().toString();
       //  intent.putExtra("name", name);
@@ -383,6 +405,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         intent.putExtra("upozila", upazilname);
         intent.putExtra("union", unionname);
         intent.putExtra("village", vilname);
+        intent.putExtra("district",districtSpinner.getSelectedItem().toString());
        // intent.putExtra("obstype",Obsname);
         intent.putExtra("serial",facility_id_number.getText().toString());
         intent.putExtra("positon",oservationPosition);
@@ -427,6 +450,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                     villagespinner.setVisibility(View.GONE);
                     unionspinner.setVisibility(View.GONE);
                     upzillaspinner.setVisibility(View.GONE);
+                    obsSpinner.setEnabled(true);
                 } else if (position == 1) {
                     upzillaspinner.setVisibility(View.VISIBLE);
                     //   upazila.setVisibility(View.VISIBLE);
@@ -436,6 +460,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                     unionspinner.setVisibility(View.GONE);
                     //  upzillaspinner.setVisibility(View.VISIBLE);
                     callspinner3(getZillaid());
+                    obsSpinner.setEnabled(true);
                 } else if (position == 2) {
                     //   upazila.setVisibility(View.GONE);
                     //   village.setVisibility(View.VISIBLE);
@@ -444,6 +469,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                     unionspinner.setVisibility(View.VISIBLE);
                     upzillaspinner.setVisibility(View.VISIBLE);
                     callspinner3(getZillaid());
+                    obsSpinner.setEnabled(true);
                 }
 
 
@@ -456,6 +482,8 @@ public class AddressInsertActivity extends AppCompatActivity {
                     unionspinner.setVisibility(View.VISIBLE);
                     //  upzillaspinner.setVisibility(View.VISIBLE);
                     callspinner3(getZillaid());
+                    obsSpinner.setSelection(1);
+                    obsSpinner.setEnabled(false);
                 }
 
                 positions=position;
@@ -579,14 +607,14 @@ public class AddressInsertActivity extends AppCompatActivity {
 //
 //        timepicker.setText(aTime);
 //    }
-    @Override
-    public void onBackPressed() {
-        Intent intentv= new Intent(AddressInsertActivity.this,UserActivity.class);
-        startActivity(intentv);
-        finish();
-
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Intent intentv= new Intent(AddressInsertActivity.this,UserActivity.class);
+//        startActivity(intentv);
+//        finish();
+//
+//
+//    }
 
 
 

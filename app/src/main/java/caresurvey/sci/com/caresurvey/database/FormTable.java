@@ -387,8 +387,8 @@ public class FormTable  {
         values.put(KEY_STATUS, globalId);
         values.put(KEY_ID, patientId);
         SQLiteDatabase db = openDB();
-        Log.d(".....>>>>>>>>>>","...");
-        Log.d(".....>>>>>>>>>>","..."+patientId);
+        Log.d(".....>>>>>>>>>>", "...");
+        Log.d(".....>>>>>>>>>>", "..." + patientId);
         long ret = db.update(TABLE_NAME, values, KEY_ID + " = ?",
                 new String[]{patientId + ""});
         closeDB();
@@ -465,5 +465,16 @@ public class FormTable  {
         closeDB();
     }
 
+    public long getLastId(){
+        SQLiteDatabase db = openDB();
+        long lastId = 0;
+        String query = "SELECT _id from " +  TABLE_NAME +" order by _id DESC limit 1";
+        Cursor c = db.rawQuery(query,null);
+        if (c != null && c.moveToFirst()) {
+            lastId = c.getLong(0); //The 0 is the column index, we only have 1 column, so the index is 0
+        }
+        closeDB();
+        return lastId;
+    }
 
 }

@@ -58,6 +58,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
         inventoryItem.union = mIntent.getStringExtra("union");
         inventoryItem.village = mIntent.getStringExtra("village");
         inventoryItem.facility = mIntent.getStringExtra("facility");
+        inventoryItem.district = mIntent.getStringExtra("district");
 
         datespicker = mIntent.getStringExtra("datepicker");
         timepicker = mIntent.getStringExtra("timepicker");
@@ -86,7 +87,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
         dialog.setMessage("Please wait...");
         final AlertDialog.Builder alert = new AlertDialog.Builder(FacilityInventoryActivity.this);
         if(item != null) {
-            String url = "http://www.kolorob.net/mamoni/survey/api/form";
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
 

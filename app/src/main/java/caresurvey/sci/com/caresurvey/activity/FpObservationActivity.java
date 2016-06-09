@@ -49,19 +49,8 @@ public class FpObservationActivity extends AppCompatActivity {
     private TextView mFp101TextView, mFp102TextView, mFp103TextView, mFp104TextView;
     private EditText mFp101EditText, mFp102EditText, mFp103EditText, mFp104EditText;
     private View mFpQuesView1, mFpQuesView2, mFpQuesView3, mFpQuesView4, mFpQuesView5, mFpQuesView6, mFpQuesView7, mFpQuesView8;
-    private String names;
-    private int mark;
-    private String collector_name;
-    private String upozila;
-    private String union;
-    private String village;
-    private String datespicker;
-    private String timepicker;
-    private String facility;
-    private String obsType;
     private FpObservationTable table;
     private long formID = 0;
-    private String designation;
     private FpObservationFormItem item;
 
     @Override
@@ -74,30 +63,22 @@ public class FpObservationActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
             item = table.get(mIntent.getIntExtra(DisplayUserActivity.FORM_ID,0));
-            names = item.name;
-            designation = item.designation;
-            collector_name = item.collector_name;
-            upozila = item.upozila;
-            village = item.village;
-            datespicker = item.datepick;
-            timepicker = item.timepick;
-            facility = item.facility;
-            obsType = item.obs_type;
         }
         else{
             item = new FpObservationFormItem();
-            names = mIntent.getStringExtra("name");
-            designation = mIntent.getStringExtra("designation");
-            mark = mIntent.getIntExtra("mark", 0);
-            collector_name = mIntent.getStringExtra("c_name");
-            upozila = mIntent.getStringExtra("upozila");
-            union = mIntent.getStringExtra("union");
-            village = mIntent.getStringExtra("village");
-            item.facility_id = mIntent.getStringExtra("serial");
-            datespicker = mIntent.getStringExtra("datepicker");
-            timepicker = mIntent.getStringExtra("timepicker");
-            facility = mIntent.getStringExtra("facility");
-            obsType = mIntent.getStringExtra("obstype");
+            item.name = mIntent.getStringExtra("name");
+            item.designation = mIntent.getStringExtra("designation");
+            item.mark = mIntent.getIntExtra("mark", 0);
+            item.collector_name = mIntent.getStringExtra("c_name");
+            item.upozila = mIntent.getStringExtra("upozila");
+            item.union = mIntent.getStringExtra("union");
+            item.village = mIntent.getStringExtra("village");
+            item.serial_no = item.facility_id = mIntent.getStringExtra("serial");
+            item.datepick = mIntent.getStringExtra("datepicker");
+            item.timepick = mIntent.getStringExtra("timepicker");
+            item.facility = mIntent.getStringExtra("facility");
+            item.obs_type = mIntent.getStringExtra("obstype");
+            item.district = mIntent.getStringExtra("district");
         }
 
         loadForm();
@@ -171,16 +152,9 @@ public class FpObservationActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(( mFpObservationFormItem.end_time = getEString(R.id.et_fp_109) ))){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
+        mFpObservationFormItem.end_time = AppUtils.getTime();
+        sETv(R.id.et_fp_109,mFpObservationFormItem.end_time);
         mFpObservationFormItem.status = 3; //pending
-        mFpObservationFormItem.name = names;
-        mFpObservationFormItem.collector_name = collector_name;
-        mFpObservationFormItem.upozila = upozila;
-        mFpObservationFormItem.union = union;
-        mFpObservationFormItem.village = village;
-        mFpObservationFormItem.datepick = datespicker;
-        mFpObservationFormItem.timepick = timepicker;
-        mFpObservationFormItem.facility = facility;
-        mFpObservationFormItem.obs_type = obsType;
         return mFpObservationFormItem;
     }
 
@@ -286,12 +260,24 @@ public class FpObservationActivity extends AppCompatActivity {
                 break;
             case R.id.Submit:
                 final FpObservationFormItem fpItem = collectAnswers();
+                if(fpItem == null){
+                    Toast.makeText(FpObservationActivity.this, "Form is not complete", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 long status = table.insert(fpItem);
+                if(status >= 0){
+                    formID = status;
+//                    Toast.makeText(this,"Save successfully",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(this,"Failed to save data",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 final ProgressDialog dialog = new ProgressDialog(this);
                 dialog.setMessage("Please wait...");
                 final AlertDialog.Builder alert = new AlertDialog.Builder(FpObservationActivity.this);
                 if(fpItem != null) {
-                    String url = "http://www.kolorob.net/mamoni/survey/api/form";
+                    String url = "http://119.148.43.34/mamoni/survey/api/form";
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                             new Response.Listener<String>() {
 
@@ -366,12 +352,12 @@ public class FpObservationActivity extends AppCompatActivity {
                                 finalRequest.put("password","collector");
                                 JSONArray requests = new JSONArray();
                                 JSONObject object = new JSONObject();
-                                object.put("form_id",formID);
+                                object.put("form_id",fpItem.id);
                                 object.put("form_type","dh_familyplan");
                                 JSONObject data = new JSONObject();
                                 data.put("facility_id",toInt(fpItem.getFacility_id()));
-                                data.put("sp_name",toQStr(collector_name));
-                                data.put("sp_designation",toQStr(designation));
+                                data.put("sp_name",toQStr(fpItem.collector_name));
+                                data.put("sp_designation",toQStr(fpItem.designation));
                                 data.put("client_name",toQStr(fpItem.client_name));
                                 data.put("serial_no",toInt(fpItem.serial_no));
                                 data.put("date",toQStr(fpItem.date));

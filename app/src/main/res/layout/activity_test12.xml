@@ -17,130 +17,105 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="১০১। "
-                    android:textSize="13dp"
-
-                    android:id="@+id/textView29" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textSize="13dp"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="পর্যবেক্ষণ সিরিয়াল নম্বর   "
+                    android:text="101 ch©‡eÿY wmwiqvj b¤^i"
                     android:id="@+id/serial"
                     />
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:ems="12"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/serial_no" />
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="১০২। "
-                    android:textSize="13dp"
-
-                    android:id="@+id/serial102" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="পর্যবেক্ষণ তারিখঃ   "
-                    android:textSize="13dp"
-
+                    android:text="102 ch©‡eÿ‡Yi ZvwiL"
                     android:id="@+id/serial1021"
                     />
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:ems="12"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/form_date" />
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="১০৩। "
-                    android:textSize="13dp"
-
-                    android:id="@+id/textView103" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="পর্যবেক্ষণ শুরুর সময়ঃ   "
-                    android:textSize="13dp"
-
+                    android:text="103 ch©‡eÿY ïiæi mgq"
                     android:id="@+id/serial103"
                     />
 
                 <EditText
-                    android:layout_width="match_parent"
+                    android:ems="12"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/start_time" />
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="১০৪। "
-                    android:textSize="13dp"
-
-                    android:id="@+id/textView104" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="অসুস্থ যে শিশু সেবা নিতে এসেছে তার বিবরন;   "
+                    android:layout_gravity="center_vertical"
+                    android:text="104 Amy¯’ wkï †h †mev wb‡Z G‡m‡Q Zvi weeiY"
                     android:id="@+id/serial104"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="13dp"
+                    
                     />
-
-                <EditText
-                    android:layout_width="match_parent"
+                <Spinner
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/child_description"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/child_description" />
+                    android:entries="@array/child_sick_description"
+                    />
+                <!--<EditText-->
+                    <!--android:ems="12"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/child_description" />-->
             </LinearLayout>
 
 
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -156,38 +131,38 @@
                         android:orientation="vertical"
                         android:layout_height="wrap_content">
 
-                        <TextView
+                        <caresurvey.sci.com.caresurvey.widgets.QTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="১০৫। শিশুর বয়স কত?"
+                            android:text="105 wkïi eqm KZ?"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textSize="13dp"
+                            
                             />
 
-                        <TextView
+                        <caresurvey.sci.com.caresurvey.widgets.QTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textSize="13dp"
-                            android:text="বয়স ১ মাসের কম হলে দিনে লিপিবদ্ধ করুন। ।"
+                            
+                            android:text="eqm 1 gv‡mi Kg n‡j w`‡b wjwce× Kiæb"
                             />
 
-                        <TextView
+                        <caresurvey.sci.com.caresurvey.widgets.QTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textSize="13dp"
-                            android:text="বয়স দুই বছরের কম হলে মাসে লিপিবদ্ধ করুন ।"
+                            
+                            android:text="eqm 2 eQ‡ii Kg n‡j gv‡m wjwce× Kiæb"
                             />
-                        <TextView
+                        <caresurvey.sci.com.caresurvey.widgets.QTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textSize="13dp"
-                            android:text="বয়স দুই বছরের বেশি হলে বছরে লপিবদ্ধ করুন । "
+                            
+                            android:text="eqm 2 eQ‡ii ‡ekx n‡j eQ‡i wjwce× Kiæb| (c~b© msL¨vq/eQ‡i wjLyb, Ge eQi e„ËvwqZ Kiæb))"
                             />
 
 
@@ -250,12 +225,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="13dp"
-                    android:text="১০৬। নিচের সাধারন বিপদজ্জনক লক্ষণগুলো আছে/ছিল কিনা তা সেবাদানকারী জিজ্ঞাসা করেছিলেন  বা শিশুর দেখাশোনাকারী (কেয়ারটেকার) তার উল্লেখ করেছিলেনঃ"/>
+                    
+                    android:text="106 wb‡Pi mvaviY wec`¾bK j¶Y¸wj Av‡Q/wQj wK bv Zv †mev`vbKvix wR‡Ám K‡iwQ‡jb ev wkïi ‡`Lv‡kvbvKvix (†Kqvi‡UKvi) Zv D‡jøL K‡iwQ‡jb"/>
 
 
             </LinearLayout>
@@ -275,16 +250,17 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১। শিশু পানি বা বুকের দুধ খেতে পারে নাঃ"
+                        
+                        android:text="1 wkï cvwb ev ey‡Ki `ya †L‡Z cv‡i bv"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -311,16 +287,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-                        android:text="২। শিশু সব খাবার বমি করে ফেলে দেয়ঃ"
+                        android:text="2 wkï me Lvevi ewg K‡i †d‡j †`q"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
+                        
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -347,16 +324,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-                        android:text="৩। শিশুর খিচুনীঃ"
+                        android:text="3 wkïi wLuPzbx"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
+                        
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -382,31 +360,33 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১০৭। নিচের লক্ষনগুলো ছিল কিনা তা সেবাদানকারী শিশুর দেখাশোনাকারী (কেয়ারটেকারকে) জিজ্ঞাসা করেছেনঃ"/>
+                        
+                        android:text="107 wb‡Pi j¶Y¸wj wQj wK bv Zv †mev`vbKvix wkïi ‡`Lv‡kvbvKvix (†Kqvi‡UKvi) †K wR‡Ám K‡i‡Qbt"/>
 
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১। কাশি বা শ্বাসকস্ট (দ্রুত শ্বাস নেয়া ও বুক উঠানামা করা)"
+                        
+                        android:text="1 Kvwk ev k¦vmKó (†hgb, `ªæZ k¦vm †bqv I eyK DVvbvgv Kiv)"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -433,16 +413,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-                        android:text="২। পাতলা পায়খানা "
+                        android:text="2 cvZjv cvqLvbv (Wvqwiqv)"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
+                        
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -468,16 +449,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-                        android:text="৩।জ্বর "
+                        android:text="3 R¡i"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
+                        
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -504,16 +486,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১০৮। সেবাদানকারী অসুস্থ শিশুকে নিচের শারিরীক পরীক্ষাগুলো করেছেনঃ "/>
+                        
+                        android:text="108 †mev`vbKvix Amy¯’ wkï‡K wb‡Pi kvwiixK cix¶v¸‡jv K‡i‡Qb"/>
 
 
                 </LinearLayout>
@@ -521,16 +504,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১। থার্মোমিটার দ্বারা শিশুর জ্বর/ তাপমাত্রা মেপেছেন।"
+                        
+                        android:text="1 _v‡g©vwgUvi Øviv wkïi R¡i/ZvcgvÎv †g‡c‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -560,16 +544,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="২। স্টেথোস্কোপের সাহায্যে শিশুর বুক পরীক্ষা করেছেন।"
+                        
+                        android:text="2 ‡÷‡_v‡¯‹v‡ci mvnv‡h¨ wkïi eyK cix¶v K‡i‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -597,16 +582,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="৩। শিশু এক মিনিটে কতবার শ্বাস নেয় তা গুনেছেন।"
+                        
+                        android:text="3 wkï GK wgwb‡U KZevi k¦vm-cÖk¦vm †bq Zv My‡b‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -635,16 +621,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="৪। চোখের (কনজাংটিভায়) পরীক্ষা করেছেন।"
+                        
+                        android:text="4 †Pv‡Li (KbRvswUfvq) cix¶v K‡i‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -671,16 +658,16 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="৫। মুখে ঘা আছে কিনা তা পরীক্ষা করেছেন। "
+                        android:text="5 gy‡L Nv Av‡Q wKbv Zv cix¶v K‡i‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -708,16 +695,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="৬। ঘাড় শক্ত কিনা তা পরীক্ষা করেছেন। "
+                        
+                        android:text="6 Nvo k³ wK bv Zv cix¶v K‡i‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -746,16 +734,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-                        android:text="৭। শিশুর কান পরীক্ষা করেছেন। "
+                        android:text="7 wkïi Kvb cix¶v K‡i‡Qb"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
+                        
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -783,16 +772,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-                        android:text="৮। হাতের তালু পরীক্ষা করেছেন। "
+                        android:text="8 nv‡Zi Zvjy cix¶v K‡i‡Qb"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
+                        
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -819,16 +809,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="৯। পানিশূন্যতা আছে কিনা তা পরীক্ষা করেছেন। "
+                        
+                        android:text="9 cvwbk~Y¨Zv Av‡Q wK bv Zv cixÿv K‡i‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -854,16 +845,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-                        android:text="১০। শিশুর ওজন নিয়েছেন। "
+                        android:text="10 wkïi IRb wb‡q‡Qb"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
+                        
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -890,16 +882,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="wrap_content">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১১। দুই বা ততোধিক সাইটে যেমন ঘাড়(নেক), বগল (এক্সিমা), কুচকি (গ্রোয়েন) এ (লিম্ফ নোডের বৃদ্ধি) পরীক্ষা করেছেন "
+                        
+                        android:text="11 `yB ev Z‡ZvwaK mvB‡U †hgb Nvo (†bK), eMj (Gw·jv), KzPwK (†MÖv‡qb)-G (wjç ‡bv‡Wi e„w×) cix¶v K‡i‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -925,16 +918,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১২। শিশুর নাভী (নবজাতকের ক্ষেত্রে পরীক্ষা করেছেন)"
+                        
+                        android:text="12 wkïi bvfx (beRvZ‡Ki ‡ÿ‡Î) cix¶v K‡i‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -960,16 +954,17 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
-                        android:text="১৩। শিশুর উচ্চতা মেপেছেন। "
+                        android:text="13 wkïi D”PZv †g‡c‡Qb"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
+                        
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -994,16 +989,17 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_height="20dp">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="430dp"
                         android:layout_marginLeft="20dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১৪। গ্রোথ চার্টে ওজন ও উচ্চতা প্লট করেছেন। "
+                        
+                        android:text="14 †MÖv_ Pv‡U© IRb I D”PZv cøU K‡i‡Qb"
                         android:layout_height="wrap_content" />
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -1040,6 +1036,7 @@
 
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:orientation="horizontal"
                 android:layout_height="match_parent">
@@ -1050,13 +1047,13 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="60dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="13dp"
-                        android:text="১০৯। এই কনসালটেশনের ফলাফল কি ছিল?"/>
+                        
+                        android:text="109 GB Kbmvj‡Uk‡bi djvdj wK wQj?"/>
 
 
                 </LinearLayout>
@@ -1069,30 +1066,35 @@
                     android:layout_height="wrap_content">
 
 
-                    <CheckBox
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="চিকিৎসা দিয়ে বাড়ি পাঠানো হয়েছে।"
+                        android:text="wPwKrmv w`‡q evox cvVv‡bv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
                         android:id="@+id/checkBox1" />
-                    <CheckBox
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" শিশুকে একই সেবাকেন্দ্রের জন্য সেবাদানকারীর নিকট পাঠানো হয়েছে।"
+                        android:text="wkï‡K GKB †mev‡K‡›`ªi Ab¨ †mevcÖ`vbKvixi wbKU cvVv‡bv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
                         android:id="@+id/checkBox2" />
-                    <CheckBox
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="শিশুকে একই সেবাকেন্দ্রে ভর্তি করানো হয়েছে।"
+                        android:text="wkï‡K GKB †mev‡K‡›`ª fwZ© Kiv‡bv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
                         android:id="@+id/checkBox3" />
-                    <CheckBox
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="শিশুকে পরীক্ষার জন্য ল্যাবে পাঠানো হয়েছে।"
+                        android:text="wkï‡K cix¶vi Rb¨ j¨ve-G cvVv‡bv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
                         android:id="@+id/checkBox4" />
-                    <CheckBox
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="শিশুকে অন্য সেবাকেন্দ্রে ( উচ্চতর সেবার জন্য) রেফার করা হয়েছে।"
+                        android:text="wkï‡K Ab¨ †mev‡K‡›`ª (D”PZi †mevi Rb¨) ‡idvi Kiv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
                         android:id="@+id/checkBox5" />
 
 
@@ -1107,26 +1109,27 @@
 
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
-                <TextView
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="১১০। "
-                    android:textSize="13dp"
+                    android:text="110 "
+                    
 
                     android:id="@+id/serial102111" />
 
-                <TextView
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="পর্যবেক্ষণ শেষ করার সময় ঃ  "
-                    android:textSize="13dp"
+                    android:text="ch©‡eÿY ‡kl Kivi mgq"
+                    
 
                     android:id="@+id/serial10211"
                     />
@@ -1157,6 +1160,7 @@
 
 
                 <Button
+                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="270dp"

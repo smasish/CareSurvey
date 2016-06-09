@@ -15,7 +15,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
@@ -50,6 +50,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
+            android:theme="@style/AppTheme"
             android:name=".activity.TestActivity"
             android:label="@string/title_activity_test" />
         <activity
@@ -60,6 +61,9 @@
             android:label="@string/title_activity_display_all_" />
         <activity
             android:name=".activity.UserActivity"
+            android:label="@string/title_activity_user" />
+        <activity
+            android:name=".activity.UserActivity2"
             android:label="@string/title_activity_user" />
         <activity
             android:name=".activity.DisplayUserActivity"
@@ -74,10 +78,12 @@
         <activity
             android:name=".activity.SelectionUserActivity"
             android:label="@string/title_activity_selection_user" />
+
         <activity
             android:name=".activity.UserActivityServiceProvider"
             android:label="@string/title_activity_user_activity_service_provider" />
         <activity
+            android:theme="@style/AppTheme"
             android:name=".activity.SickChildUnderFiveActivity"
             android:label="@string/title_activity_test1" />
         <activity
@@ -85,15 +91,24 @@
             android:label="@string/title_activity_display_user_form" />
         <activity android:name=".activity.SupervisiorVerificationSickChild" />
         <activity android:name=".activity.SelectionActivity" />
-        <activity android:name=".activity.SateliteClinicInventoryActivity"
+
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".activity.SateliteClinicInventoryActivity"
+            android:label="@string/title_satelliteClinicInventory"
             android:screenOrientation="portrait">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name=".activity.FpObservationActivity" />
-        <activity android:name=".activity.FacilityInventoryActivity">
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".activity.FpObservationActivity"
+            android:label="@string/title_fp_observation"/>
+        <activity android:name=".activity.FacilityInventoryActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/title_facility_inventory">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->

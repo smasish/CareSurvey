@@ -421,6 +421,17 @@ public class SickChildSupervisorTable {
         return new SickChildItemSupervisor (id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district,ct_client,field, comment,status,serverId);
     }
 
+    public long getLastId(){
+        SQLiteDatabase db = openDB();
+        long lastId = 0;
+        String query = "SELECT _id from " +  TABLE_NAME +" order by _id DESC limit 1";
+        Cursor c = db.rawQuery(query,null);
+        if (c != null && c.moveToFirst()) {
+            lastId = c.getLong(0); //The 0 is the column index, we only have 1 column, so the index is 0
+        }
+        closeDB();
+        return lastId;
+    }
 
 
 }

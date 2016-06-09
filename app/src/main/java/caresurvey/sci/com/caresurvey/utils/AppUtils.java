@@ -170,7 +170,7 @@ public class AppUtils {
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
         textView.setTypeface(tf);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+//        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
     }
 
     public static void setTextWithFonts(Context context, TextView textView, String text) {
@@ -179,7 +179,7 @@ public class AppUtils {
         Typeface tf = Typeface.createFromAsset(context.getAssets(), "BorakMJ.ttf");
         // Applying font
         textView.setTypeface(tf,Typeface.BOLD);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+//        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
     }
 
     public static void setTextWithFonts(Context context, CheckBox checkbox, String text) {

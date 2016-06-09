@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,6 +31,7 @@ import java.util.Map;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
  * Created by shantanu on 6/1/16.
@@ -54,11 +56,12 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
             item.upozila = mIntent.getStringExtra("upozila");
             item.union = mIntent.getStringExtra("union");
             item.village = mIntent.getStringExtra("village");
-            item.facility_id = mIntent.getStringExtra("serial");
+            item.serial_no = item.facility_id = mIntent.getStringExtra("serial");
             item.datepick = mIntent.getStringExtra("datepicker");
             item.timepick = mIntent.getStringExtra("timepicker");
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
+            item.district = mIntent.getStringExtra("district");
         }
         findViewById(R.id.insert).setOnClickListener(this);
         findViewById(R.id.submit).setOnClickListener(this);
@@ -76,11 +79,22 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         }
     }
 
+    private void sSPi(int id,String val){
+        Spinner sp = (Spinner) findViewById(id);
+        try{
+            sp.setSelection(Integer.parseInt(val));
+        }catch(Exception e){
+            e.printStackTrace();
+            sp.setSelection(0);
+        }
+
+    }
+
     void collectForm() throws Exception {
         item.serial_no = gETv(R.id.serial_no);
         item.form_date = gETv(R.id.form_date);
         item.start_time = gETv(R.id.start_time);
-        item.child_description = gETv(R.id.child_description);
+        item.child_description = gSPi(R.id.child_description);
         item.age = gETv(R.id.age);
         if(gRBv(R.id.day)){
             item.age += " day";
@@ -117,6 +131,8 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         item.result += ","+gCBsv(R.id.checkBox4);
         item.result += ","+gCBsv(R.id.checkBox5);
         item.end_time = gETv(R.id.end_time);
+        item.end_time = AppUtils.getTime(); //update end time when load
+        sETv(R.id.end_time,item.end_time);
     }
 
     private boolean gRBv(int id) {
@@ -128,7 +144,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         sETv(R.id.serial_no,item.serial_no);
         sETv(R.id.form_date,item.form_date);
         sETv(R.id.start_time,item.start_time);
-        sETv(R.id.child_description,item.child_description);
+        sSPi(R.id.child_description, item.child_description);
         sETv(R.id.age,getAge(item.age));
         sETv(R.id.end_time,item.end_time);
         String ageType = getAgeType(item.age);
@@ -241,6 +257,13 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         return text.getText().toString();
     }
 
+    private String gSPi(int id) throws Exception {
+        Spinner sp = (Spinner) findViewById(id);
+        int selection = sp.getSelectedItemPosition();
+        if(selection == 0) throw new Exception();
+        return Integer.toString(selection);
+    }
+
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.insert){
@@ -264,17 +287,22 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         else if(v.getId() == R.id.submit){
             try{
                 collectForm();
-                table.insertItem(item);
+                long id = table.insertItem(item);
+                if(id == -1){
+                    Toast.makeText(this, "An error occurred", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 submit();
             }catch (Exception e){
                 e.printStackTrace();
+                Toast.makeText(this,"Form is not complete",Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void submit(){
         final SickChildItem sickChildItem = item;
-        String url = "http://www.kolorob.net/mamoni/survey/api/form";
+        String url = "http://119.148.43.34/mamoni/survey/api/form";
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage("Please wait...");
         final AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -298,6 +326,16 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
                             Log.e("response:", response);
                             if(jo.has("errorCount")){
                                 alert.setMessage(jo.getString("message"));
+                                if(jo.getInt("errorCount") == 0){
+                                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                            finish();
+                                        }
+                                    });
+                                }
+
                             }
                             else{
                                 alert.setMessage("Invalid response");

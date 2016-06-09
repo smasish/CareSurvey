@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
         text.setTextSize(25);
     }
 //    private void submitFeedback(){
-//        String url = "http://www.kolorob.net/mamoni/survey/api/login";
+//        String url = "http://119.148.43.34/mamoni/survey/api/login";
 //
 //
 //        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -247,7 +247,7 @@ public class LoginActivity extends AppCompatActivity {
         //  formTablec.dropTable();
         String tag_json_obj = "json_obj_req";
 
-        String url = "http://www.kolorob.net/mamoni/survey/api/sync";
+        String url = "http://119.148.43.34/mamoni/survey/api/sync";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -362,7 +362,7 @@ public class LoginActivity extends AppCompatActivity {
         //  formTablec.dropTable();
         String tag_json_obj = "json_obj_req";
 
-        String url = "http://www.kolorob.net/mamoni/survey/api/sync";
+        String url = "http://119.148.43.34/mamoni/survey/api/sync";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -462,7 +462,7 @@ public class LoginActivity extends AppCompatActivity {
     {
         String tag_json_obj = "json_obj_req";
 
-        String url = "http://www.kolorob.net/mamoni/survey/api/sync";
+        String url = "http://119.148.43.34/mamoni/survey/api/sync";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

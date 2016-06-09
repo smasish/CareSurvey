@@ -36,7 +36,7 @@ public class FpObservationTable {
     private static final String KEY_JOB_AID= "_jobaid";
     private static final String KEY_FOLLOWUP= "_followup";
     private static final String KEY_END_TIME= "_endtime";
-    private static final String TABLE_FP = "fp_table";
+    private static final String TABLE_NAME = "fp_table";
     private final Context context;
 
     public FpObservationTable(Context context){
@@ -82,7 +82,7 @@ public class FpObservationTable {
         table.put(DBRow.KEY_DATE_PICK,"text");
         table.put(DBRow.KEY_OBSTYPE,"text");
         table.put(DBRow.KEY_FACILITY,"text");
-        setNewTable(TABLE_FP, table);
+        setNewTable(TABLE_NAME, table);
 
         //another table
 
@@ -144,7 +144,7 @@ public class FpObservationTable {
 
     public long getRowSize(){
         SQLiteDatabase db = openDB();
-        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_FP);
+        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
         closeDB();
         return numRows;
     }
@@ -182,10 +182,10 @@ public class FpObservationTable {
 
         SQLiteDatabase db = openDB();
         if(item.id > 0){
-            db.update(TABLE_FP,values,KEY_ID + "=" + item.id,null);
+            db.update(TABLE_NAME,values,KEY_ID + "=" + item.id,null);
         }
         else {
-            item.id = db.insert(TABLE_FP, null, values);
+            item.id = db.insert(TABLE_NAME, null, values);
         }
         closeDB();
         return item.id;
@@ -195,7 +195,7 @@ public class FpObservationTable {
         ArrayList<FpObservationFormItem> fpList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_FP, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -242,7 +242,7 @@ public class FpObservationTable {
     public FpObservationFormItem get(int id) {
         FpObservationFormItem item = new FpObservationFormItem();
         SQLiteDatabase db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_FP + " where _id=" + id, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -254,5 +254,17 @@ public class FpObservationTable {
         cursor.close();
         closeDB();
         return item;
+    }
+
+    public long getLastId(){
+        SQLiteDatabase db = openDB();
+        long lastId = 0;
+        String query = "SELECT _id from " +  TABLE_NAME +" order by _id DESC limit 1";
+        Cursor c = db.rawQuery(query,null);
+        if (c != null && c.moveToFirst()) {
+            lastId = c.getLong(0); //The 0 is the column index, we only have 1 column, so the index is 0
+        }
+        closeDB();
+        return lastId;
     }
 }

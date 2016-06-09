@@ -177,7 +177,7 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String url = "http://www.kolorob.net/mamoni/survey/api/form";
+                String url = "http://119.148.43.34/mamoni/survey/api/form";
 
                 //Log.d(".....>>>>>>>>>>", "ChekboxText " + ChekboxText);
                 // Log.d(".....>>>>>>>>>>", "ChekboxText " + ChekboxText);
@@ -438,7 +438,7 @@ public class SupervisiorVerificationSickChild extends AppCompatActivity {
                 }
 
 
-                String url = "http://www.kolorob.net/mamoni/survey/api/form";
+                String url = "http://119.148.43.34/mamoni/survey/api/form";
 
 
 

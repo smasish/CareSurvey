@@ -7,6 +7,8 @@ import caresurvey.sci.com.caresurvey.utils.AppUtils;
  */
 public class FpObservationFormItem extends DBRow{
 
+    public int mark;
+
     public FpObservationFormItem(){
         date = AppUtils.getDate();
         start_time = AppUtils.getTime();

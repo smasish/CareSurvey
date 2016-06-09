@@ -45,18 +45,7 @@ import static android.widget.Toast.*;
  */
 public class SateliteClinicInventoryActivity extends AppCompatActivity implements View.OnClickListener {
     private SatelliteClinicTable table;
-    private String names;
-    private int mark;
-    private String collector_name;
-    private String upozila;
-    private String union;
-    private String village;
-    private String datespicker;
-    private String timepicker;
-    private String facility;
-    private String obsType;
     private long formID = 0;
-    private String designation;
     private SatelliteClinicItem item;
 
     @Override
@@ -71,34 +60,36 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         Intent mIntent = getIntent();
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
             item = table.get(mIntent.getIntExtra(DisplayUserActivity.FORM_ID,0));
-            names = item.name;
-            designation = item.designation;
-            collector_name = item.collector_name;
-            upozila = item.upozila;
-            village = item.village;
-            datespicker = item.datepick;
-            timepicker = item.timepick;
-            facility = item.facility;
-            obsType = item.obs_type;
+//            names = item.name;
+//            designation = item.designation;
+//            collector_name = item.collector_name;
+//            upozila = item.upozila;
+//            village = item.village;
+//            datespicker = item.datepick;
+//            timepicker = item.timepick;
+//            facility = item.facility;
+//            obsType = item.obs_type;
+//            district = item.district;
         }
         else{
             item = new SatelliteClinicItem();
-            names = mIntent.getStringExtra("name");
-            designation = mIntent.getStringExtra("designation");
-            mark = mIntent.getIntExtra("mark", 0);
-            collector_name = mIntent.getStringExtra("c_name");
-            upozila = mIntent.getStringExtra("upozila");
-            union = mIntent.getStringExtra("union");
-            village = mIntent.getStringExtra("village");
+            item.name = mIntent.getStringExtra("name");
+            item.designation = mIntent.getStringExtra("designation");
+            item.mark = mIntent.getIntExtra("mark", 0);
+            item.collector_name = mIntent.getStringExtra("c_name");
+            item.upozila = mIntent.getStringExtra("upozila");
+            item.union = mIntent.getStringExtra("union");
+            item.village = mIntent.getStringExtra("village");
+            item.district = mIntent.getStringExtra("district");
             try {
                 item.facilityID = Integer.parseInt(mIntent.getStringExtra("serial"));
             }catch(Exception e){
                 item.facilityID = 0;
             }
-            datespicker = mIntent.getStringExtra("datepicker");
-            timepicker = mIntent.getStringExtra("timepicker");
-            facility = mIntent.getStringExtra("facility");
-            obsType = mIntent.getStringExtra("obstype");
+            item.datepick = mIntent.getStringExtra("datepicker");
+            item.timepick = mIntent.getStringExtra("timepicker");
+            item.facility = mIntent.getStringExtra("facility");
+            item.obs_type = mIntent.getStringExtra("obstype");
         }
 
         loadForm();
@@ -332,15 +323,6 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         }
 
 //        item.status = 3; //pending
-        item.name = names;
-        item.collector_name = collector_name;
-        item.upozila = upozila;
-        item.union = union;
-        item.village = village;
-        item.datepick = datespicker;
-        item.timepick = timepicker;
-        item.facility = facility;
-        item.obs_type = obsType;
         return item;
     }
 
@@ -388,7 +370,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                     dialog.dismiss();
                 }
             });
-            String url = "http://www.kolorob.net/mamoni/survey/api/form";
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
 
@@ -456,8 +438,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                         object.put("form_type","dh_satelliteclinic");
                         JSONObject data = new JSONObject();
                         data.put("facility_id",fpItem.facilityID);
-                        data.put("sp_name",toQStr(collector_name));
-                        data.put("sp_designation",toQStr(designation));
+                        data.put("sp_name",toQStr(item.collector_name));
+                        data.put("sp_designation",toQStr(item.designation));
                         data.put("client_name",toQStr(fpItem.clientName));
                         data.put("form_date",toQStr(fpItem.date));
 //                        data.put("date",toQStr(fpItem.date));

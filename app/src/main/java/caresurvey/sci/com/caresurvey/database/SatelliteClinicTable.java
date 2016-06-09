@@ -20,7 +20,7 @@ import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
  */
 public class SatelliteClinicTable {
     public static final String ID = "_id";
-    public static final String DB_TABLE_SATELLITE_CLINIC = "satellite_clinic";
+    public static final String TABLE_NAME = "satellite_clinic";
     private final Context context;
     private long rowSize;
     private ArrayList<SatelliteClinicItem> all;
@@ -61,7 +61,7 @@ public class SatelliteClinicTable {
         table.put(DBRow.KEY_OBSTYPE,"text");
         table.put(DBRow.KEY_FACILITY,"text");
         table.put(DBRow.KEY_FACI_ID,"integer");
-        setNewTable(DB_TABLE_SATELLITE_CLINIC, table);
+        setNewTable(TABLE_NAME, table);
 
         //another table
 
@@ -152,7 +152,7 @@ public class SatelliteClinicTable {
         values.put(DBRow.KEY_FACI_ID,item.facilityID);
 
         SQLiteDatabase db = openDB();
-        return db.insert(DB_TABLE_SATELLITE_CLINIC,null,values);
+        return db.insert(TABLE_NAME,null,values);
     }
 
     /*
@@ -205,7 +205,7 @@ public class SatelliteClinicTable {
 
     public long getRowSize(){
         SQLiteDatabase db = openDB();
-        long numRows = DatabaseUtils.queryNumEntries(db, DB_TABLE_SATELLITE_CLINIC);
+        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
         closeDB();
         return numRows;
     }
@@ -279,7 +279,7 @@ public class SatelliteClinicTable {
         ArrayList<SatelliteClinicItem> scList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DB_TABLE_SATELLITE_CLINIC, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -295,7 +295,7 @@ public class SatelliteClinicTable {
     public SatelliteClinicItem get(int id) {
         SatelliteClinicItem item = new SatelliteClinicItem();
         SQLiteDatabase db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DB_TABLE_SATELLITE_CLINIC + " where _id=" + id, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -308,5 +308,17 @@ public class SatelliteClinicTable {
         closeDB();
         return item;
 
+    }
+
+    public long getLastId(){
+        SQLiteDatabase db = openDB();
+        long lastId = 0;
+        String query = "SELECT _id from " +  TABLE_NAME +" order by _id DESC limit 1";
+        Cursor c = db.rawQuery(query,null);
+        if (c != null && c.moveToFirst()) {
+            lastId = c.getLong(0); //The 0 is the column index, we only have 1 column, so the index is 0
+        }
+        closeDB();
+        return lastId;
     }
 }
