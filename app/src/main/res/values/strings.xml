@@ -100,6 +100,7 @@ Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|
     <string name="fp_ques_07">07) ‡mevcÖ`v‡bi mgq h_vh_ Kg© mnvwqKv (Re GBW) e¨envi K‡i‡Qb</string>
     <string name="fp_ques_08">08) cieZ©x wfwRU (d‡jvAvc wfwRU) Gi ZvwiL MÖnxZv‡K Rvwb‡q w`‡q‡Qb</string>
     <string name="fp_ques_09">109) ch©‡eÿY ‡kl Kivi mgq:</string>
+    <string name="fp_description">ক্লায়েন্ট যে সেবা নিতে এসেছে তার বিবরণ</string>
     <string-array name="fp_service_description">
         <item>পছন্দ করুন</item>
         <item>পরিবার পরিকল্পনা পদ্বতি সেবা</item>
@@ -368,9 +369,11 @@ nq wK bv|</string>
     <string name="sci_q233">233 Mf©Kvjxb †mev KvW</string>
     <string name="sci_q234">234 ¯^v¯’¨wkÿvi Rb¨ Qwehy³ DcKiY</string>
     <string name="title_fp_observation" >FP Observation</string>
+    <string name="title_consent_page1">Consent Page1</string>
+    <string name="title_consent_page2">Consent Page2</string>
     <string name="title_facility_inventory">Facility Inventory</string>
     <string name="title_satelliteClinicInventory">Satellite Clicnic Inventory</string>
-
+    <string name="sc_description">অসুস্থ শিশু যে সেবা নিতে এসেছে তার বিবরণ</string>
     <string-array name="child_sick_description">
         <item>পছন্দ করুন</item>
         <item>অসুস্থতার চিকিৎসা</item>
@@ -402,6 +405,74 @@ nq wK bv|</string>
         <item>গর্ভকালীন রুটিন চেক-অাপ</item>
         <item>গর্ভজনিত সমস্যা</item>
         <item>অন্যান্য</item>
+    </string-array>
+    <string name="anc_description_text">গর্ভবতী মহিলা যে সেবা নিতে এসেছেন তার বিবরণ</string>
+    <string-array name="anc_designation">
+        <item>Choose</item>
+        <item>Civil Surgeon</item>
+        <item>Deputy Civil Surgeon</item>
+        <item>Senior Consultant(Gynae)</item>
+        <item>Senior Consultant (Medicine)</item>
+        <item>Upozila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
+        <item>Junior Consultant (Pediatrics)</item>
+        <item>Resident Medical Officer (RMO)</item>
+        <item>Emergency Medical Officer (EMO)</item>
+        <item>Medical Officer (MO)</item>
+        <item>Asstt. Surgeon</item>
+        <item>Senior Staff Nurse</item>
+        <item>Sub-assistant Community Medical Officer (SACMO)</item>
+        <item>Medical Officer (Clinic)</item>
+        <item>Medical Officer (MCH-FP)</item>
+        <item>Assistant Family Welfare Officer (AFWO)</item>
+        <item>Paramedic</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="sci_designation">
+        <item>Choose</item>
+        <item>Assistant Family Welfare Officer (AFWO)</item>
+        <item>Family Welfare Visitor (FWV)</item>
+        <item>Paramedic</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="scuf_designation">
+        <item>Choose</item>
+        <item>Civil Surgeon</item>
+        <item>Deputy Civil Surgeon</item>
+        <item>Senior Consultant(Gynae)</item>
+        <item>Senior Consultant (Medicine)</item>
+        <item>Upozila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
+        <item>Junior Consultant (Pediatrics)</item>
+        <item>Resident Medical Officer (RMO)</item>
+        <item>Emergency Medical Officer (EMO)</item>
+        <item>Medical Officer (MO)</item>
+        <item>Asstt. Surgeon</item>
+        <item>Senior Staff Nurse</item>
+        <item>Sub-assistant Community Medical Officer (SACMO)</item>
+        <item>Medical Officer (Clinic)</item>
+        <item>Medical Officer (MCH-FP)</item>
+        <item>Assistant Family Welfare Officer (AFWO)</item>
+        <item>Paramedic</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="fp_designation">
+        <item>Choose</item>
+        <item>Civil Surgeon</item>
+        <item>Deputy Civil Surgeon</item>
+        <item>Senior Consultant(Gynae)</item>
+        <item>Senior Consultant (Medicine)</item>
+        <item>Upozila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
+        <item>Junior Consultant (Pediatrics)</item>
+        <item>Resident Medical Officer (RMO)</item>
+        <item>Emergency Medical Officer (EMO)</item>
+        <item>Medical Officer (MO)</item>
+        <item>Asstt. Surgeon</item>
+        <item>Senior Staff Nurse</item>
+        <item>Sub-assistant Community Medical Officer (SACMO)</item>
+        <item>Medical Officer (Clinic)</item>
+        <item>Medical Officer (MCH-FP)</item>
+        <item>Assistant Family Welfare Officer (AFWO)</item>
+        <item>Paramedic</item>
+        <item>Others</item>
     </string-array>
 
 </resources>

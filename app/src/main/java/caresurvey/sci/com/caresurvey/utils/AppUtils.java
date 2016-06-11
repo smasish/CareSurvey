@@ -214,7 +214,7 @@ public class AppUtils {
     }
 
     public static String getTime(){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
         return dateFormat.format(new Date()).toString();
     }
 

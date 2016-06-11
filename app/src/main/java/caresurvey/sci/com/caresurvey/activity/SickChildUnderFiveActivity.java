@@ -56,9 +56,10 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
             item.upozila = mIntent.getStringExtra("upozila");
             item.union = mIntent.getStringExtra("union");
             item.village = mIntent.getStringExtra("village");
+            item.child_description = mIntent.getStringExtra("description");
             item.serial_no = item.facility_id = mIntent.getStringExtra("serial");
-            item.datepick = mIntent.getStringExtra("datepicker");
-            item.timepick = mIntent.getStringExtra("timepicker");
+            item.form_date = item.datepick = mIntent.getStringExtra("datepicker");
+            item.start_time = item.timepick = mIntent.getStringExtra("timepicker");
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
             item.district = mIntent.getStringExtra("district");
@@ -90,10 +91,10 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
     }
 
     void collectForm() throws Exception {
-        item.serial_no = gETv(R.id.serial_no);
-        item.form_date = gETv(R.id.form_date);
-        item.start_time = gETv(R.id.start_time);
-        item.child_description = gSPi(R.id.child_description);
+//        item.serial_no = gETv(R.id.serial_no);
+//        item.form_date = gETv(R.id.form_date);
+//        item.start_time = gETv(R.id.start_time);
+//        item.child_description = gSPi(R.id.child_description);
         item.age = gETv(R.id.age);
         if(gRBv(R.id.day)){
             item.age += " day";

@@ -87,8 +87,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             }catch(Exception e){
                 item.facilityID = 0;
             }
-            item.datepick = mIntent.getStringExtra("datepicker");
-            item.timepick = mIntent.getStringExtra("timepicker");
+            item.date = item.datepick = mIntent.getStringExtra("datepicker");
+            item.startTime = item.timepick = mIntent.getStringExtra("timepicker");
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
         }
@@ -307,12 +307,12 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
 
-        if(TextUtils.isEmpty(( item.date = getEString(R.id.date) ))){
-            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
-        }
-        if(TextUtils.isEmpty(( item.startTime = getEString(R.id.start_time) ))){
-            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
-        }
+//        if(TextUtils.isEmpty(( item.date = getEString(R.id.date) ))){
+//            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+//        }
+//        if(TextUtils.isEmpty(( item.startTime = getEString(R.id.start_time) ))){
+//            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+//        }
 //        if(TextUtils.isEmpty(( item.clientName = getEString(R.id.client_name) ))){
 //            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
 //        }

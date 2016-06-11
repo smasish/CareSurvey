@@ -442,13 +442,14 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             item = new FormItemUser();
             item.name = mIntent.getStringExtra("name");
             item.designation = mIntent.getStringExtra("designation");
+            item.serviceDescription = mIntent.getStringExtra("description");
             item.collector_name = mIntent.getStringExtra("c_name");
             item.upozila = mIntent.getStringExtra("upozila");
             item.union = mIntent.getStringExtra("union");
             item.village = mIntent.getStringExtra("village");
             item.serial_no = mIntent.getStringExtra("serial");
-            item.datepick = mIntent.getStringExtra("datepicker");
-            item.timepick = mIntent.getStringExtra("timepicker");
+            item.date = item.datepick = mIntent.getStringExtra("datepicker");
+            item.start_time = item.timepick = mIntent.getStringExtra("timepicker");
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
             item.district = mIntent.getStringExtra("district");

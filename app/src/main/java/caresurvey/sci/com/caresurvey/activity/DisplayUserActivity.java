@@ -207,13 +207,13 @@ public class DisplayUserActivity extends AppCompatActivity {
         super.onPostResume();
     }
 
-    @Override
-    public void onBackPressed() {
-
-        Intent intents = new Intent(DisplayUserActivity.this, SelectionUserActivity.class);
-        startActivity(intents);
-        finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//
+//        Intent intents = new Intent(DisplayUserActivity.this, SelectionUserActivity.class);
+//        startActivity(intents);
+//        finish();
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -69,14 +69,15 @@ public class FpObservationActivity extends AppCompatActivity {
             item = new FpObservationFormItem();
             item.name = mIntent.getStringExtra("name");
             item.designation = mIntent.getStringExtra("designation");
+            item.description = mIntent.getStringExtra("description");
             item.mark = mIntent.getIntExtra("mark", 0);
-            item.collector_name = mIntent.getStringExtra("c_name");
+            item.client_name = item.collector_name = mIntent.getStringExtra("c_name");
             item.upozila = mIntent.getStringExtra("upozila");
             item.union = mIntent.getStringExtra("union");
             item.village = mIntent.getStringExtra("village");
             item.serial_no = item.facility_id = mIntent.getStringExtra("serial");
-            item.datepick = mIntent.getStringExtra("datepicker");
-            item.timepick = mIntent.getStringExtra("timepicker");
+            item.date = item.datepick = mIntent.getStringExtra("datepicker");
+            item.start_time = item.timepick = mIntent.getStringExtra("timepicker");
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
             item.district = mIntent.getStringExtra("district");
@@ -159,15 +160,15 @@ public class FpObservationActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(( mFpObservationFormItem.serial_no = getEString(R.id.et_fp_101) ))){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
-        if(TextUtils.isEmpty(( mFpObservationFormItem.date = getEString(R.id.et_fp_102) ))){
-            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
-        }
-        if(TextUtils.isEmpty(( mFpObservationFormItem.start_time = getEString(R.id.et_fp_103) ))){
-            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
-        }
-        if(TextUtils.isEmpty(( mFpObservationFormItem.client_name = gSPi(R.id.et_fp_104) ))){
-            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
-        }
+//        if(TextUtils.isEmpty(( mFpObservationFormItem.date = getEString(R.id.et_fp_102) ))){
+//            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+//        }
+//        if(TextUtils.isEmpty(( mFpObservationFormItem.start_time = getEString(R.id.et_fp_103) ))){
+//            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+//        }
+//        if(TextUtils.isEmpty(( mFpObservationFormItem.client_name = gSPi(R.id.et_fp_104) ))){
+//            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+//        }
         if(TextUtils.isEmpty(( mFpObservationFormItem.end_time = getEString(R.id.et_fp_109) ))){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }

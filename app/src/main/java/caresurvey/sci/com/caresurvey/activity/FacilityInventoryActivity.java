@@ -51,7 +51,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
         inventoryItem = new InventoryItem();
         table = new InventoryTable(this);
         Intent mIntent = getIntent();
-        inventoryItem.client_name = inventoryItem.name = mIntent.getStringExtra("name");
+        inventoryItem.name = mIntent.getStringExtra("name");
         inventoryItem.designation = mIntent.getStringExtra("designation");
         mark = mIntent.getIntExtra("mark", 0);
         inventoryItem.collector_name = mIntent.getStringExtra("c_name");
@@ -62,7 +62,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
         inventoryItem.district = mIntent.getStringExtra("district");
 
         datespicker = mIntent.getStringExtra("datepicker");
-        timepicker = mIntent.getStringExtra("timepicker");
+        inventoryItem.start_time = timepicker = mIntent.getStringExtra("timepicker");
         obsType = mIntent.getStringExtra("obstype");
         inventoryItem.facility_id = mIntent.getIntExtra("serial",0);
         loadFragment(0);

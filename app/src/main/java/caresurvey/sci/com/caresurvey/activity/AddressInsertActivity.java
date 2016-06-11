@@ -1,8 +1,5 @@
 package caresurvey.sci.com.caresurvey.activity;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,17 +13,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
@@ -389,7 +381,7 @@ public class AddressInsertActivity extends AppCompatActivity {
             Toast.makeText(AddressInsertActivity.this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
             return;
         }
-        Intent intent = new Intent(AddressInsertActivity.this, UserActivity.class);
+        Intent intent = new Intent(AddressInsertActivity.this, ConsentActivity1.class);
     //    name= user.getText().toString();
       //  intent.putExtra("name", name);
         //datespicker = datepicker.getText().toString();
@@ -408,7 +400,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         intent.putExtra("district",districtSpinner.getSelectedItem().toString());
        // intent.putExtra("obstype",Obsname);
         intent.putExtra("serial",facility_id_number.getText().toString());
-        intent.putExtra("positon",oservationPosition);
+        intent.putExtra(ConsentActivity1.FORM,oservationPosition);
         startActivity(intent);
         finish();
     }

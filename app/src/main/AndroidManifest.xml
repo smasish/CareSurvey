@@ -106,6 +106,15 @@
             android:theme="@style/AppTheme"
             android:name=".activity.FpObservationActivity"
             android:label="@string/title_fp_observation"/>
+
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".activity.ConsentActivity1"
+            android:label="@string/title_consent_page1"/>
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".activity.ConsentActivity2"
+            android:label="@string/title_consent_page2"/>
         <activity android:name=".activity.FacilityInventoryActivity"
             android:theme="@style/AppTheme"
             android:label="@string/title_facility_inventory">
