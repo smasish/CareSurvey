@@ -36,20 +36,23 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <caresurvey.sci.com.caresurvey.widgets.QTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:text="@string/inventory_designation"/>
 
-        <EditText
+        <Spinner
+            android:entries="@array/fi_designation1"
+            android:layout_weight=".5"
             android:id="@+id/fi_301_1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="12"/>
+            />
 
     </LinearLayout>
 

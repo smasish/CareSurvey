@@ -128,7 +128,6 @@ public class FpObservationActivity extends AppCompatActivity {
             e.printStackTrace();
             sp.setSelection(0);
         }
-
     }
 
     private FpObservationFormItem collectAnswers() {

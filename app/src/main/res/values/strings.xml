@@ -475,4 +475,19 @@ nq wK bv|</string>
         <item>Others</item>
     </string-array>
 
+    <string-array name="fi_designation1">
+        <item>Choose</item>
+        <item>Radiologist</item>
+        <item>Pathologist</item>
+        <item>Nursing Supervisor</item>
+        <item>Senior Staff Nurse</item>
+        <item>Staff Nurse</item>
+        <item>Sub-assistant Community Medical Officer (SACMO)</item>
+        <item>Assistant Family Welfare Officer (AFWO)</item>
+        <item>Family Welfare Officer (AFWO)</item>
+        <item>Pharmacist</item>
+        <item>Paramedic</item>
+        <item>Others</item>
+    </string-array>
+
 </resources>

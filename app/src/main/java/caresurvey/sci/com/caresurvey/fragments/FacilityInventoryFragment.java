@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -173,8 +174,8 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
 
     private void sRGu(int id0,int id1,int id2){
-        updateRGview(gRGi(id0),idx,gVBi(id1));
-        updateRGview(gRGi(id1),idx,gVBi(id2));
+        updateRGview(gRGi(id0), idx, gVBi(id1));
+        updateRGview(gRGi(id1), idx, gVBi(id2));
     }
     private void sRGu(int id0,int id1){
         updateRGview(gRGi(id0),idx,gVBi(id1));
@@ -496,7 +497,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
     private void loadData4(InventoryItem item){
         sETv(R.id.fi_325_0,item.delivery_sp_name);
-        sETv(R.id.fi_325_1,item.delivery_sp_designation);
+        sSPi(R.id.fi_325_1,item.delivery_sp_designation);
         lRGv(R.id.fi_325_2, gRGI(item.d_delivery_service));
         String tmp = "";
         String tokens[];
@@ -612,7 +613,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
 
     private void loadData3(InventoryItem item){
         sETv(R.id.fi_301_0,item.equipment_sp_name);
-        sETv(R.id.fi_301_1,item.equipment_sp_designation);
+        sSPi(R.id.fi_301_1,item.equipment_sp_designation);
         String tmp = "";
         String tokens[];
         tmp = item.n_adult_wing_scale;
@@ -710,10 +711,25 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
 
 
     }
+    private String gSPi(int id) throws Exception {
+        Spinner sp = (Spinner) view.findViewById(id);
+        int selection = sp.getSelectedItemPosition();
+        if(selection == 0) throw new Exception();
+        return Integer.toString(selection);
+    }
+    private void sSPi(int id,String val){
+        Spinner sp = (Spinner) view.findViewById(id);
+        try{
+            sp.setSelection(Integer.parseInt(val));
+        }catch(Exception e){
+            e.printStackTrace();
+            sp.setSelection(0);
+        }
+    }
 
     private void loadData1(InventoryItem item){
         sETv(R.id.fi_101_0,item.instrument_sp_name);
-        sETv(R.id.fi_101_1,item.instrument_sp_designation);
+        sSPi(R.id.fi_101_1,item.instrument_sp_designation);
         String tmp = "";
         String tokens[];
         tmp = item.i_electronic_autoclev;
@@ -829,7 +845,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         if( (item.instrument_sp_name = gETv(R.id.fi_101_0)) == null){
             throw new Exception();
         }
-        if( (item.instrument_sp_designation = gETv(R.id.fi_101_1)) == null){
+        if( (item.instrument_sp_designation = gSPi(R.id.fi_101_1)) == null){
             throw new Exception();
         }
         String tmp = "";
@@ -898,7 +914,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         if( (item.equipment_sp_name = gETv(R.id.fi_301_0)) == null){
             throw new Exception();
         }
-        if( (item.equipment_sp_designation = gETv(R.id.fi_301_1)) == null){
+        if( (item.equipment_sp_designation = gSPi(R.id.fi_301_1)) == null){
             throw new Exception();
         }
         String tmp = "";
@@ -964,7 +980,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         if( (item.delivery_sp_name = gETv(R.id.fi_325_0)) == null){
             throw new Exception();
         }
-        if( (item.delivery_sp_designation = gETv(R.id.fi_325_1)) == null){
+        if( (item.delivery_sp_designation = gSPi(R.id.fi_325_1)) == null){
             throw new Exception();
         }
         item.d_delivery_service = gRGv(R.id.fi_325_2);
@@ -1085,7 +1101,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         if( (item.i_waste_sp_name = gETv(R.id.fi_201_0)) == null){
             throw new Exception();
         }
-        if( (item.i_waste_sp_designation = gETv(R.id.fi_201_1)) == null){
+        if( (item.i_waste_sp_designation = gSPi(R.id.fi_201_1)) == null){
             throw new Exception();
         }
         item.w_waste_option = gCBv(R.id.fi_202_1) + "," + gCBv(R.id.fi_202_2) + "," +gCBv(R.id.fi_202_3);
@@ -1103,7 +1119,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     private void loadData2(InventoryItem item){
         String tokens[];
         sETv(R.id.fi_201_0,item.i_waste_sp_name);
-        sETv(R.id.fi_201_1,item.i_waste_sp_designation);
+        sSPi(R.id.fi_201_1,item.i_waste_sp_designation);
         tokens = item.w_waste_option.split(",");
         for(int i=0;i<tokens.length;i++){
             switch(i){

@@ -469,7 +469,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_SHORT).show();
-
+                        Log.e("response: ", response);
                         try {
                             JSONObject jo = new JSONObject(response);
                             JSONArray forms = jo.getJSONArray("forms");
