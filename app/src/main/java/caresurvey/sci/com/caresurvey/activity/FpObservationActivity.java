@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -99,7 +100,7 @@ public class FpObservationActivity extends AppCompatActivity {
         sETv(R.id.et_fp_101,item.serial_no);
         sETv(R.id.et_fp_102,item.date);
         sETv(R.id.et_fp_103,item.start_time);
-        sETv(R.id.et_fp_104, item.client_name);
+        sSPi(R.id.et_fp_104, item.client_name);
         sRGv(mFpQuesView1, item.cover);
         sRGv(mFpQuesView2,item.sound_prove);
         sRGv(mFpQuesView3,item.discuss_fp);
@@ -109,6 +110,24 @@ public class FpObservationActivity extends AppCompatActivity {
         sRGv(mFpQuesView7,item.job_aid);
         sRGv(mFpQuesView8,item.followup);
         sETv(R.id.et_fp_109,item.start_time);
+    }
+
+    private String gSPi(int id) {
+        Spinner sp = (Spinner) findViewById(id);
+        int selection = sp.getSelectedItemPosition();
+        if(selection == 0) return null;
+        return Integer.toString(selection);
+    }
+
+    private void sSPi(int id,String val){
+        Spinner sp = (Spinner) findViewById(id);
+        try{
+            sp.setSelection(Integer.parseInt(val));
+        }catch(Exception e){
+            e.printStackTrace();
+            sp.setSelection(0);
+        }
+
     }
 
     private FpObservationFormItem collectAnswers() {
@@ -146,7 +165,7 @@ public class FpObservationActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(( mFpObservationFormItem.start_time = getEString(R.id.et_fp_103) ))){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
-        if(TextUtils.isEmpty(( mFpObservationFormItem.client_name = getEString(R.id.et_fp_104) ))){
+        if(TextUtils.isEmpty(( mFpObservationFormItem.client_name = gSPi(R.id.et_fp_104) ))){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
         if(TextUtils.isEmpty(( mFpObservationFormItem.end_time = getEString(R.id.et_fp_109) ))){
@@ -348,8 +367,8 @@ public class FpObservationActivity extends AppCompatActivity {
                                 //record ====================================1
                                 //record
                                 JSONObject finalRequest = new JSONObject();
-                                finalRequest.put("username","collector");
-                                finalRequest.put("password","collector");
+                                finalRequest.put("username",AppUtils.getUserName(FpObservationActivity.this));
+                                finalRequest.put("password",AppUtils.getPassword(FpObservationActivity.this));
                                 JSONArray requests = new JSONArray();
                                 JSONObject object = new JSONObject();
                                 object.put("form_id",fpItem.id);

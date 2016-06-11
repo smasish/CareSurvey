@@ -28,6 +28,7 @@ import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.fragments.FacilityInventoryFragment;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 import static caresurvey.sci.com.caresurvey.utils.AppUtils.setTextWithFonts;
 
@@ -152,8 +153,8 @@ public class FacilityInventoryActivity extends AppCompatActivity {
                         //record ====================================1
                         //record
                         JSONObject finalRequest = new JSONObject();
-                        finalRequest.put("username","collector");
-                        finalRequest.put("password","collector");
+                        finalRequest.put("username", AppUtils.getUserName(FacilityInventoryActivity.this));
+                        finalRequest.put("password",AppUtils.getPassword(FacilityInventoryActivity.this));
                         JSONArray requests = new JSONArray();
                         JSONObject object = new JSONObject();
                         object.put("form_id",item.id);

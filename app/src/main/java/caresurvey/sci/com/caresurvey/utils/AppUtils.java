@@ -2,6 +2,7 @@ package caresurvey.sci.com.caresurvey.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -222,4 +223,14 @@ public class AppUtils {
         return dateFormat.format(new Date()).toString();
     }
 
+    public static String getUserName(Context context){
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        return pref.getString("username", "");
+//        password = pref.getString("password", null);
+    }
+
+    public static String getPassword(Context context){
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        return pref.getString("password", "");
+    }
 }

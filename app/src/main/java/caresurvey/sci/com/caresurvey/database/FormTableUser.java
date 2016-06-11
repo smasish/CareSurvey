@@ -9,7 +9,10 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import caresurvey.sci.com.caresurvey.model.DBRow;
+import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 
 /**
@@ -49,11 +52,12 @@ public class FormTableUser {
     private static final String KEY_UNION= "_union";
     private static final String KEY_VILLAGE= "_village";
     private static final String KEY_OBSTYPE= "_obstype";
-
-
-
-
-
+    private static final String KEY_DATE = "_date";
+    private static final String KEY_START_TIME = "_start_time";
+    private static final String KEY_END_TIME = "_end_time";
+    private static final String KEY_WEIGHT = "_weight";
+    private static final String KEY_DISTRIC = "_district";
+    private static final String KEY_SERVICE = "_service";
 
 
     private Context tContext;
@@ -69,7 +73,12 @@ public class FormTableUser {
         String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
                 + "( "
                 + KEY_ID + " INTEGER PRIMARY KEY, " // 0 - int
-                + KEY_BLOOD + " TEXT, "              // 1 - text
+                + KEY_DATE + " TEXT, "
+                + KEY_START_TIME + " TEXT, "
+                + KEY_END_TIME + " TEXT, "
+                + KEY_SERVICE + " TEXT, "
+                + KEY_BLOOD + " TEXT, "
+                + KEY_WEIGHT + " TEXT, "// 1 - text
                 + KEY_HEMO + " TEXT, "
                 + KEY_URINE + " TEXT, "              // 1 - text
                 + KEY_PREGFOOD + " TEXT, "
@@ -94,7 +103,8 @@ public class FormTableUser {
                 + KEY_UPOZILA + " TEXT, "
                 + KEY_UNION + " TEXT, "
                 + KEY_VILLAGE + " TEXT, "
-                + KEY_OBSTYPE + " TEXT "
+                + KEY_OBSTYPE + " TEXT, "
+                + KEY_DISTRIC + " TEXT "
 
                 + " )";
         db.execSQL(CREATE_TABLE_SQL);
@@ -578,4 +588,97 @@ public class FormTableUser {
     }
 
 
+    public long insert(FormItemUser item) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_DATE,item.date);
+        values.put(KEY_START_TIME,item.start_time);
+        values.put(KEY_SERVICE,item.serviceDescription);
+        values.put(KEY_BLOOD, item.bloodpressure);
+        values.put(KEY_WEIGHT, item.weight);
+        values.put(KEY_HEMO, item.hemoglobintest);
+        values.put(KEY_URINE, item.urinetest);
+        values.put(KEY_PREGFOOD, item.pregnancyfood);
+        values.put(KEY_PREGDANGER, item.pregnancydanger);
+        values.put(KEY_FOURCENTER, item.fourparts);
+        values.put(KEY_DELIVERY, item.delivery);
+        values.put(KEY_FEED, item.feedbaby);
+        values.put(KEY_SIXMONTHS, item.sixmonths);
+        values.put(KEY_FAMILY, item.familyplanning);
+        values.put(KEY_FOLICTAB, item.folictablet);
+        values.put(KEY_FOLICIMP, item.folictabletimportance);
+        values.put(KEY_STATUS, item.status);
+//        values.put(KEY_GLOBAL_ID, globalId);
+        values.put(KEY_NAME, item.name);
+//        values.put(KEY_COMMENT, comments);
+//        values.put(KEY_FIELDS, fields);
+//        values.put(KEY_INS, inS);
+        values.put(KEY_DATE_PICK,item.datepick);
+        values.put(KEY_TIME_PICK, item.timepick);
+        values.put(KEY_COLLECTOR_NAME, item.collector_name);
+        values.put(KEY_DIVISION, item.division);
+        values.put(KEY_UPOZILA, item.upozila);
+        values.put(KEY_UNION, item.union);
+        values.put(KEY_VILLAGE, item.village);
+        values.put(KEY_OBSTYPE, item.obs_type);
+        values.put(KEY_DISTRIC, item.district);
+        SQLiteDatabase db = openDB();
+        if(item.id > 0) //insert
+        {
+            db.update(TABLE_NAME,values,KEY_ID + "=" + item.id,null);
+        }
+        else{
+            item.id = db.insert(TABLE_NAME,null,values);
+        }
+        return item.id;
+    }
+
+    public FormItemUser get(int id) {
+        FormItemUser item = new FormItemUser();
+        SQLiteDatabase db = openDB();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                //System.out.println("abc="+cursor.getString(4));
+                item = cursorlist(cursor);
+                break;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        closeDB();
+        return item;
+
+    }
+
+    private FormItemUser cursorlist(Cursor cursor) {
+        FormItemUser item = new FormItemUser();
+        item.id = cursor.getInt(0);
+        item.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
+        item.start_time = cursor.getString(cursor.getColumnIndex(KEY_START_TIME));
+        item.serviceDescription = cursor.getString(cursor.getColumnIndex(KEY_SERVICE));
+        item.bloodpressure = cursor.getString(cursor.getColumnIndex(KEY_BLOOD));
+        item.weight = cursor.getString(cursor.getColumnIndex(KEY_WEIGHT));
+        item.hemoglobintest = cursor.getString(cursor.getColumnIndex(KEY_HEMO));
+        item.urinetest = cursor.getString(cursor.getColumnIndex(KEY_URINE));
+        item.pregnancyfood = cursor.getString(cursor.getColumnIndex(KEY_PREGFOOD));
+        item.pregnancydanger = cursor.getString(cursor.getColumnIndex(KEY_PREGDANGER));
+        item.fourparts = cursor.getString(cursor.getColumnIndex(KEY_FOURCENTER));
+        item.delivery = cursor.getString(cursor.getColumnIndex(KEY_DELIVERY));
+        item.sixmonths = cursor.getString(cursor.getColumnIndex(KEY_SIXMONTHS));
+        item.familyplanning = cursor.getString(cursor.getColumnIndex(KEY_FAMILY));
+        item.folictablet = cursor.getString(cursor.getColumnIndex(KEY_FOLICTAB));
+        item.folictabletimportance = cursor.getString(cursor.getColumnIndex(KEY_FOLICIMP));
+        item.name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
+        item.datepick = cursor.getString(cursor.getColumnIndex(KEY_DATE_PICK));
+        item.timepick = cursor.getString(cursor.getColumnIndex(KEY_TIME_PICK));
+        item.collector_name = cursor.getString(cursor.getColumnIndex(KEY_COLLECTOR_NAME));
+        item.division = cursor.getString(cursor.getColumnIndex(KEY_DIVISION));
+        item.upozila = cursor.getString(cursor.getColumnIndex(KEY_UPOZILA));
+        item.union = cursor.getString(cursor.getColumnIndex(KEY_UNION));
+        item.village = cursor.getString(cursor.getColumnIndex(KEY_VILLAGE));
+        item.district = cursor.getString(cursor.getColumnIndex(KEY_DISTRIC));
+
+
+        return item;
+    }
 }

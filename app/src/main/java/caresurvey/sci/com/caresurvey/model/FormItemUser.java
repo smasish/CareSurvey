@@ -3,27 +3,42 @@ package caresurvey.sci.com.caresurvey.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
+
 /**
  * Created by mazharul.islam on 3/6/2016.
  */
 public class FormItemUser extends DBRow{
-    private String bloodpressure;
-    private String hemoglobintest;
-    private String urinetest;
-    private String pregnancyfood;
-    private String pregnancydanger;
-    private String fourparts;
-    private String delivery;
-    private String feedbaby;
-    private String sixmonths;
-    private String familyplanning;
-    private String folictablet;
-    private String folictabletimportance;
-    private String global_id;
-    private String comments;
-    private String fields;
-    private String inS;
+    public String bloodpressure;
+    public String hemoglobintest;
+    public String urinetest;
+    public String pregnancyfood;
+    public String pregnancydanger;
+    public String fourparts;
+    public String delivery;
+    public String feedbaby;
+    public String sixmonths;
+    public String familyplanning;
+    public String folictablet;
+    public String folictabletimportance;
+    public String global_id;
+    public String comments;
+    public String fields;
+    public String inS;
+    public String serial_no;
+    public String date;
+    public String start_time;
+    public String serviceDescription;
+    public String weight;
+    public String folicsideeffect;
+    public String end_time;
 
+    public FormItemUser(){
+        date = AppUtils.getDate();
+        start_time = AppUtils.getTime();
+        end_time = AppUtils.getTime();
+        status = 3;
+    }
 
 
     public FormItemUser(int patientid, String bloodpressure, String hemoglobintest, String urinetest,

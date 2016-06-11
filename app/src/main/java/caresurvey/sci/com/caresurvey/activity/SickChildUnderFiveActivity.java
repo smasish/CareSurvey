@@ -87,7 +87,6 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
             e.printStackTrace();
             sp.setSelection(0);
         }
-
     }
 
     void collectForm() throws Exception {
@@ -440,8 +439,8 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
 
                     //data
                     JSONObject data = new JSONObject();
-                    data.put("username", "user_hb1");
-                    data.put("password", "pass_hb1");
+                    data.put("username", AppUtils.getUserName(SickChildUnderFiveActivity.this));
+                    data.put("password", AppUtils.getPassword(SickChildUnderFiveActivity.this));
                     data.put("requests", requests);
                     Log.e("request: ", data.toString());
                     params.put("data", data.toString());

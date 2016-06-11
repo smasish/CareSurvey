@@ -5,14 +5,18 @@ import android.content.SharedPreferences;
 import android.renderscript.Sampler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,10 +42,12 @@ import java.util.Map;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     String add_update, names, datespicker, timepicker, upozila, union, village, facility, obsname;
@@ -64,362 +70,490 @@ public class TestActivity extends AppCompatActivity {
     String global_ida;
 
     ArrayList<FormItemUser> formItemAll;
+    private FormItemUser item;
+    private FormTableUser table;
 
     TextView tv1, tv2, tv3, comment, field;
+    private String district;
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_test1);
+//        test = (LinearLayout) findViewById(R.id.commentSection);
+//        Save = (Button) findViewById(R.id.Savebtn);
+//        Submit = (Button) findViewById(R.id.Submit);
+//        bloodpressure = (RadioGroup) findViewById(R.id.bloodpressure);
+//        hemoglobintest = (RadioGroup) findViewById(R.id.hemoglobintest);
+//        urinetest = (RadioGroup) findViewById(R.id.urinetest);
+//        pregnancyfood = (RadioGroup) findViewById(R.id.pregnancyfood);
+//        pregnancydanger = (RadioGroup) findViewById(R.id.pregnancydanger);
+//        fourparts = (RadioGroup) findViewById(R.id.fourparts);
+//        delivery = (RadioGroup) findViewById(R.id.delivery);
+//        feedbaby = (RadioGroup) findViewById(R.id.feedbaby);
+//        sixmonths = (RadioGroup) findViewById(R.id.sixmonths);
+//        familyplanning = (RadioGroup) findViewById(R.id.familyplanning);
+//        folictablet = (RadioGroup) findViewById(R.id.folictablet);
+//        folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
+//        comment = (TextView) findViewById(R.id.comment);
+//        field = (TextView) findViewById(R.id.field);
+//        tv1 = (TextView) findViewById(R.id.textView3);
+//        Intent mIntent = getIntent();
+//        intValue = mIntent.getIntExtra("id", 0);
+//        names = mIntent.getStringExtra("name");
+//        mark = mIntent.getIntExtra("mark", 0);
+//        collector_name = mIntent.getStringExtra("c_name");
+//        upozila = mIntent.getStringExtra("upozila");
+//        union = mIntent.getStringExtra("union");
+//        village = mIntent.getStringExtra("village");
+//        district = mIntent.getStringExtra("district");
+//        datespicker = mIntent.getStringExtra("datepicker");
+//        timepicker = mIntent.getStringExtra("timepicker");
+//        facility = mIntent.getStringExtra("facility");
+//        if (intValue == 0)
+//            intValue = 1;
+//
+//        intvalue2 = intValue;
+//        intvalue2++;
+//
+//        SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = pref.edit();
+//        // Toast.makeText(getApplicationContext(), "Now I am in onResume ", Toast.LENGTH_SHORT).show();
+//
+//        username = pref.getString("username", null);
+//        password = pref.getString("password", null);
+//
+//
+//        Log.d("Status.......", "response length" + intValue);
+//        if (mark == 1) {
+//            test.setVisibility(View.GONE);
+//            Save.setText("Insert");
+//        }
+//        // names = mIntent.getStringExtra("name");
+//        Log.d(".....>>>>>>>>>>", "Id in TestActivity  " + intValue);
+//        Log.d(".....>>>>>>>>>>", "response length" + names);
+//        ArrayList<FormItemUser> formItems;
+//        ArrayList<FormItemUser> formItems1;
+//        ArrayList<FormItemUser> formItems2;
+//        final FormTableUser formTable = new FormTableUser(TestActivity.this);
+//        formItems = formTable.getSpecificItem(intValue);
+//        formItems1 = formTable.getSpecificItem(intValue);
+//        FormItemUser formItem;
+//        Save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                StorevaluesinVar();
+//
+//                int status = 6;
+//                String global_id = "1";
+//                String name = names;
+//                String comments = "";
+//                String fields = "";
+////                FormItemUser formItem = new FormItemUser(1, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+////                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
+//
+//
+//                FormTableUser formTable = new FormTableUser(TestActivity.this);
+//                try {
+//                    if (mark == 1) {
+//                        if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+//                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names, datespicker, timepicker, collector_name, facility, upozila, union, village)) == 1) {
+//
+//                            Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " + name, Toast.LENGTH_SHORT).show();
+//                            savevalue();
+//                            Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                    } else {
+//
+//
+//                        ArrayList<FormItemUser> formTableUsers;
+//                        FormTableUser formTableUser = new FormTableUser(TestActivity.this);
+//
+//                        formTableUsers = formTableUser.dateconcate(intValue);
+//
+//                        for (FormItemUser formItemUser : formTableUsers) {
+//                            date = formItemUser.getDatepick();
+//                        }
+//                        Calendar c = Calendar.getInstance();
+//                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+//                        String current_date = df.format(c.getTime());
+//                        //  String current_date1= current_date.toString();
+//
+//                        String addspace = date.concat(" ");
+//                        String dateconcate = addspace.concat(String.valueOf(current_date));
+//
+//
+//                        if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
+//                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, dateconcate)) == 1) {
+//
+//                            Toast.makeText(getApplicationContext(), "Data Updated successfully ", Toast.LENGTH_SHORT).show();
+//
+//                            Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                    }
+//                } catch (Exception e) {
+//
+//                }
+//            }
+//        });
+//
+//
+//        for (FormItemUser ft : formItems) {
+//            if (ft.getBloodpressure().equals("Yes"))
+//                bloodpressure.check(R.id.ques1rad1);
+//            else
+//                bloodpressure.check(R.id.ques1rad2);
+//
+//            if (ft.getHemoglobintest().equals("Yes"))
+//                hemoglobintest.check(R.id.radioButton3);
+//            else
+//                hemoglobintest.check(R.id.radioButton4);
+//
+//            if (ft.getUrinetest().equals("Yes"))
+//                urinetest.check(R.id.radioButton);
+//            else
+//                urinetest.check(R.id.radioButton2);
+//            if (ft.getPregnancyfood().equals("Yes"))
+//                pregnancyfood.check(R.id.radioButton5);
+//            else
+//                pregnancyfood.check(R.id.radioButton6);
+//
+//            if (ft.getPregnancydanger().equals("Yes"))
+//                pregnancydanger.check(R.id.radioButton7);
+//            else
+//                pregnancydanger.check(R.id.radioButton8);
+//
+//            if (ft.getFourparts().equals("Yes"))
+//                fourparts.check(R.id.radioButton9);
+//            else
+//                fourparts.check(R.id.radioButton10);
+//
+//            if (ft.getDelivery().equals("Yes"))
+//                delivery.check(R.id.radioButton11);
+//            else
+//                delivery.check(R.id.radioButton12);
+//
+//            if (ft.getFeedbaby().equals("Yes"))
+//                feedbaby.check(R.id.radioButton13);
+//            else
+//                feedbaby.check(R.id.radioButton14);
+//
+//            if (ft.getSixmonths().equals("Yes"))
+//                sixmonths.check(R.id.radioButton15);
+//            else
+//                sixmonths.check(R.id.radioButton16);
+//
+//            if (ft.getFamilyplanning().equals("Yes"))
+//                familyplanning.check(R.id.radioButton17);
+//            else
+//                familyplanning.check(R.id.radioButton18);
+//
+//            if (ft.getFolictablet().equals("Yes"))
+//                folictablet.check(R.id.radioButton19);
+//            else
+//                folictablet.check(R.id.radioButton20);
+//            if (!ft.getComments().equals("")) {
+//                comment.setVisibility(View.VISIBLE);
+//                comment.setText(ft.getComments());
+//
+//            }
+//
+//            if (ft.getStatus() == 1)
+//                test.setVisibility(View.INVISIBLE);
+//
+//            if (!ft.getFields().equals("")) {
+//                field.setVisibility(View.VISIBLE);
+//                field.setText(ft.getFields());
+//
+//            }
+//
+//            if (ft.getFolictabletimportance().equals("Yes"))
+//                folictabletimportance.check(R.id.radioButton21);
+//            else
+//                folictabletimportance.check(R.id.radioButton22);
+//        }
+//        back = (Button) findViewById(R.id.back);
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent back = new Intent(TestActivity.this, DisplayUserActivity.class);
+//                startActivity(back);
+//                finish();
+//            }
+//        });
+//
+//
+//        Submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                FormTableUser formTableUser = new FormTableUser(TestActivity.this);
+//                formTableUser.updateIns("2", intValue);
+//                formItemAll = formTable.getSpecificItem(intValue);
+//                String tag_json_obj = "json_obj_req";
+//                String url = "http://119.148.43.34/mamoni/survey/api/form";
+//                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//                                try {
+//                                    JSONObject jo = new JSONObject(response);
+//                                    Log.d(".....>>>>>>>>>>", "Status " + jo);
+//                                    String status = jo.getString("status");
+//                                    if (status.equals("2")) {
+//                                        FormTableUser formtableuser = new FormTableUser(TestActivity.this);
+//                                        formtableuser.updateglobalI(intValue, 3);
+//                                        Save.setVisibility(View.GONE);
+////                                        Intent intentw = new Intent(TestActivity.this, DisplayUserActivity.class);
+////                                        startActivity(intentw);
+//                                        finish();
+//                                    }
+//
+//                                } catch (Exception e) {
+//                                }
+//                                //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
+//                            }
+//                        },
+//                        new Response.ErrorListener() {
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+//                            }
+//                        }) {
+//
+//                    @Override
+//                    protected Map<String, String> getParams() {
+//
+//
+//                        Map<String, String> params = new HashMap<>();
+//
+//                        try {
+//                            //record ====================================1
+//                            //record
+//                            JSONArray requests = new JSONArray();
+////                            JSONArray jsonArray =new JSONArray();
+//                            for (FormItemUser formItem1 : formItemAll) {
+//                                JSONObject jf = new JSONObject();
+//                                JSONObject fs = new JSONObject();
+//
+//
+//                                fs.put("form_type", "dh_antenantals");
+//                                fs.put("form_id", intValue);
+//                                jf.put("hemoglobintest", formItem1.getHemoglobintest());
+//                                jf.put("bloodpressure", formItem1.getBloodpressure());
+//                                jf.put("urinetest", formItem1.getUrinetest());
+//                                jf.put("pregnancyfood", formItem1.getPregnancyfood());
+//                                jf.put("pregnancydanger", formItem1.getPregnancydanger());
+//                                jf.put("fourparts", formItem1.getFourparts());
+//                                jf.put("delivery", formItem1.getDelivery());
+//                                jf.put("feedbaby", formItem1.getFeedbaby());
+//                                jf.put("sixmonths", formItem1.getSixmonths());
+//                                jf.put("familyplanning", formItem1.getFamilyplanning());
+//                                jf.put("folictablet", formItem1.getFolictablet());
+//                                jf.put("folictabletimportance", formItem1.getFolictabletimportance());
+//                                jf.put("patient_name", formItem1.getName());
+//                                jf.put("district", formItem1.getDivision());
+//                                jf.put("sub_district", formItem1.getUpozila());
+//                                jf.put("union", formItem1.getUnion());
+//                                jf.put("village", formItem1.getVillage());
+//
+//
+//                                fs.put("data", jf);
+//
+//
+//                                requests.put(fs);
+//
+//
+//                            }
+//
+//
+//                            //      jsonArray.put(formItemAll);
+////                            JSONObject record = new JSONObject();
+////                            record.put("hemoglobintest", false);
+////                            record.put("urinetest", false);
+//
+//
+//                            //request
+//                            JSONObject request = new JSONObject();
+//                            request.put("type", add_update);
+//                            request.put("form_type", "dh_antenantals");
+//                            request.put("data", formItemAll);
+//
+//
+//                            //record ====================================2
+//                            //record
+//                            JSONObject record2 = new JSONObject();
+//                            record2.put("hemoglobintest", true);
+//                            record2.put("urinetest", true);
+//
+//
+//                            //request
+//                            JSONObject request2 = new JSONObject();
+//                            request2.put("type", add_update);
+//                            request2.put("form_type", "dh_antenantals");
+//                            //       request2.put("data", record);
+//
+//
+//                            //requests
+//
+//
+//                            //data
+//                            JSONObject data = new JSONObject();
+//                            data.put("username", username);
+//                            data.put("password", password);
+//                            data.put("requests", requests);
+//
+//                            params.put("data", data.toString());
+//                        } catch (Exception e) {
+//
+//                        }
+//
+//                        return params;
+//                    }
+//
+//                };
+//
+//// Adding request to request queue
+//
+//                RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
+//                requestQueue.add(stringRequest);
+//            }
+//        });
+//
+//
+//    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test1);
-        test = (LinearLayout) findViewById(R.id.commentSection);
-        Save = (Button) findViewById(R.id.Savebtn);
-        Submit = (Button) findViewById(R.id.Submit);
-        bloodpressure = (RadioGroup) findViewById(R.id.bloodpressure);
-        hemoglobintest = (RadioGroup) findViewById(R.id.hemoglobintest);
-        urinetest = (RadioGroup) findViewById(R.id.urinetest);
-        pregnancyfood = (RadioGroup) findViewById(R.id.pregnancyfood);
-        pregnancydanger = (RadioGroup) findViewById(R.id.pregnancydanger);
-        fourparts = (RadioGroup) findViewById(R.id.fourparts);
-        delivery = (RadioGroup) findViewById(R.id.delivery);
-        feedbaby = (RadioGroup) findViewById(R.id.feedbaby);
-        sixmonths = (RadioGroup) findViewById(R.id.sixmonths);
-        familyplanning = (RadioGroup) findViewById(R.id.familyplanning);
-        folictablet = (RadioGroup) findViewById(R.id.folictablet);
-        folictabletimportance = (RadioGroup) findViewById(R.id.folictabletimportance);
-        comment = (TextView) findViewById(R.id.comment);
-        field = (TextView) findViewById(R.id.field);
-        tv1 = (TextView) findViewById(R.id.textView3);
         Intent mIntent = getIntent();
-        intValue = mIntent.getIntExtra("id", 0);
-        names = mIntent.getStringExtra("name");
-        mark = mIntent.getIntExtra("mark", 0);
-        collector_name = mIntent.getStringExtra("c_name");
-        upozila = mIntent.getStringExtra("upozila");
-        union = mIntent.getStringExtra("union");
-        village = mIntent.getStringExtra("village");
-
-
-        datespicker = mIntent.getStringExtra("datepicker");
-        timepicker = mIntent.getStringExtra("timepicker");
-        facility = mIntent.getStringExtra("facility");
-        if (intValue == 0)
-            intValue = 1;
-
-        intvalue2 = intValue;
-        intvalue2++;
-
-        SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        // Toast.makeText(getApplicationContext(), "Now I am in onResume ", Toast.LENGTH_SHORT).show();
-
-        username = pref.getString("username", null);
-        password = pref.getString("password", null);
-
-
-        Log.d("Status.......", "response length" + intValue);
-        if (mark == 1) {
-            test.setVisibility(View.GONE);
-            Save.setText("Insert");
+        table = new FormTableUser(this);
+        if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)) { //alreay have one
+            item = table.get(mIntent.getIntExtra(DisplayUserActivity.FORM_ID,0));
         }
-        // names = mIntent.getStringExtra("name");
-        Log.d(".....>>>>>>>>>>", "Id in TestActivity  " + intValue);
-        Log.d(".....>>>>>>>>>>", "response length" + names);
-        ArrayList<FormItemUser> formItems;
-        ArrayList<FormItemUser> formItems1;
-        ArrayList<FormItemUser> formItems2;
-        final FormTableUser formTable = new FormTableUser(TestActivity.this);
-        formItems = formTable.getSpecificItem(intValue);
-        formItems1 = formTable.getSpecificItem(intValue);
-        FormItemUser formItem;
-        Save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                StorevaluesinVar();
-
-                int status = 6;
-                String global_id = "1";
-                String name = names;
-                String comments = "";
-                String fields = "";
-//                FormItemUser formItem = new FormItemUser(1, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-//                        , del_status, feed_status, six_status, family_status, foltab_status, folimp_status,status,global_id,name,comments,fields);
-
-
-                FormTableUser formTable = new FormTableUser(TestActivity.this);
-                try {
-                    if (mark == 1) {
-                        if ((formTable.updateItemq(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, names, datespicker, timepicker, collector_name, facility, upozila, union, village)) == 1) {
-
-                            Toast.makeText(getApplicationContext(), "Data Inserted successfully for patient  " + name, Toast.LENGTH_SHORT).show();
-                            savevalue();
-                            Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    } else {
-
-
-                        ArrayList<FormItemUser> formTableUsers;
-                        FormTableUser formTableUser = new FormTableUser(TestActivity.this);
-
-                        formTableUsers = formTableUser.dateconcate(intValue);
-
-                        for (FormItemUser formItemUser : formTableUsers) {
-                            date = formItemUser.getDatepick();
-                        }
-                        Calendar c = Calendar.getInstance();
-                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                        String current_date = df.format(c.getTime());
-                        //  String current_date1= current_date.toString();
-
-                        String addspace = date.concat(" ");
-                        String dateconcate = addspace.concat(String.valueOf(current_date));
-
-
-                        if ((formTable.updatefor(intValue, bl_status, hem_status, uri_status, pregfood_status, pregdan_status, four_status
-                                , del_status, feed_status, six_status, family_status, foltab_status, folimp_status, status, dateconcate)) == 1) {
-
-                            Toast.makeText(getApplicationContext(), "Data Updated successfully ", Toast.LENGTH_SHORT).show();
-
-                            Intent intent = new Intent(TestActivity.this, DisplayUserActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                } catch (Exception e) {
-
-                }
-            }
-        });
-
-
-        for (FormItemUser ft : formItems) {
-            if (ft.getBloodpressure().equals("Yes"))
-                bloodpressure.check(R.id.ques1rad1);
-            else
-                bloodpressure.check(R.id.ques1rad2);
-
-            if (ft.getHemoglobintest().equals("Yes"))
-                hemoglobintest.check(R.id.radioButton3);
-            else
-                hemoglobintest.check(R.id.radioButton4);
-
-            if (ft.getUrinetest().equals("Yes"))
-                urinetest.check(R.id.radioButton);
-            else
-                urinetest.check(R.id.radioButton2);
-            if (ft.getPregnancyfood().equals("Yes"))
-                pregnancyfood.check(R.id.radioButton5);
-            else
-                pregnancyfood.check(R.id.radioButton6);
-
-            if (ft.getPregnancydanger().equals("Yes"))
-                pregnancydanger.check(R.id.radioButton7);
-            else
-                pregnancydanger.check(R.id.radioButton8);
-
-            if (ft.getFourparts().equals("Yes"))
-                fourparts.check(R.id.radioButton9);
-            else
-                fourparts.check(R.id.radioButton10);
-
-            if (ft.getDelivery().equals("Yes"))
-                delivery.check(R.id.radioButton11);
-            else
-                delivery.check(R.id.radioButton12);
-
-            if (ft.getFeedbaby().equals("Yes"))
-                feedbaby.check(R.id.radioButton13);
-            else
-                feedbaby.check(R.id.radioButton14);
-
-            if (ft.getSixmonths().equals("Yes"))
-                sixmonths.check(R.id.radioButton15);
-            else
-                sixmonths.check(R.id.radioButton16);
-
-            if (ft.getFamilyplanning().equals("Yes"))
-                familyplanning.check(R.id.radioButton17);
-            else
-                familyplanning.check(R.id.radioButton18);
-
-            if (ft.getFolictablet().equals("Yes"))
-                folictablet.check(R.id.radioButton19);
-            else
-                folictablet.check(R.id.radioButton20);
-            if (!ft.getComments().equals("")) {
-                comment.setVisibility(View.VISIBLE);
-                comment.setText(ft.getComments());
-
-            }
-
-            if (ft.getStatus() == 1)
-                test.setVisibility(View.INVISIBLE);
-
-            if (!ft.getFields().equals("")) {
-                field.setVisibility(View.VISIBLE);
-                field.setText(ft.getFields());
-
-            }
-
-            if (ft.getFolictabletimportance().equals("Yes"))
-                folictabletimportance.check(R.id.radioButton21);
-            else
-                folictabletimportance.check(R.id.radioButton22);
+        else{
+            item = new FormItemUser();
+            item.name = mIntent.getStringExtra("name");
+            item.designation = mIntent.getStringExtra("designation");
+            item.collector_name = mIntent.getStringExtra("c_name");
+            item.upozila = mIntent.getStringExtra("upozila");
+            item.union = mIntent.getStringExtra("union");
+            item.village = mIntent.getStringExtra("village");
+            item.serial_no = mIntent.getStringExtra("serial");
+            item.datepick = mIntent.getStringExtra("datepicker");
+            item.timepick = mIntent.getStringExtra("timepicker");
+            item.facility = mIntent.getStringExtra("facility");
+            item.obs_type = mIntent.getStringExtra("obstype");
+            item.district = mIntent.getStringExtra("district");
         }
-        back = (Button) findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back = new Intent(TestActivity.this, DisplayUserActivity.class);
-                startActivity(back);
-                finish();
-            }
-        });
+        loadForm();
+        findViewById(R.id.back).setOnClickListener(this);
+        findViewById(R.id.submit).setOnClickListener(this);
+    }
 
+    private void loadForm(){
+        sETv(R.id.anc_101,item.serial_no);
+        sETv(R.id.anc_102,item.date);
+        sETv(R.id.anc_103,item.start_time);
+        sSPi(R.id.anc_104, item.serviceDescription);
+        sETv(R.id.anc_106, item.end_time);
+        sRGv(R.id.bloodpressure, item.bloodpressure);
+        sRGv(R.id.weight,item.weight);
+        sRGv(R.id.hemoglobintest,item.hemoglobintest);
+        sRGv(R.id.urinetest,item.urinetest);
+        sRGv(R.id.pregnancyfood,item.pregnancyfood);
+        sRGv(R.id.pregnancydanger,item.pregnancydanger);
+        sRGv(R.id.fourparts,item.fourparts);
+        sRGv(R.id.delivery,item.delivery);
+        sRGv(R.id.feedbaby,item.feedbaby);
+        sRGv(R.id.sixmonths,item.sixmonths);
+        sRGv(R.id.familyplanning,item.familyplanning);
+        sRGv(R.id.folictablet,item.folictablet);
+        sRGv(R.id.folictabletimportance,item.folictabletimportance);
+        sRGv(R.id.folicsideeffect,item.folicsideeffect);
+    }
 
-        Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private void sETv(int id,String val){
+        EditText et = (EditText) findViewById(id);
+        if(et != null){
+            et.setText(val);
+        }
+    }
+    private void sRGv(int id, String value) {
+        if(value == null) return;
+        RadioGroup btn = (RadioGroup) findViewById(id);
+        if(value.equals("true")){
+            ((RadioButton)btn.getChildAt(0)).setChecked(true);
+        }
+        else if(value.equals("false")){
+            ((RadioButton)btn.getChildAt(1)).setChecked(true);
+        }
+    }
 
-                FormTableUser formTableUser = new FormTableUser(TestActivity.this);
-                formTableUser.updateIns("2", intValue);
-                formItemAll = formTable.getSpecificItem(intValue);
-                String tag_json_obj = "json_obj_req";
-                String url = "http://119.148.43.34/mamoni/survey/api/form";
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject jo = new JSONObject(response);
-                                    Log.d(".....>>>>>>>>>>", "Status " + jo);
-                                    String status = jo.getString("status");
-                                    if (status.equals("2")) {
-                                        FormTableUser formtableuser = new FormTableUser(TestActivity.this);
-                                        formtableuser.updateglobalI(intValue, 3);
-                                        Save.setVisibility(View.GONE);
-//                                        Intent intentw = new Intent(TestActivity.this, DisplayUserActivity.class);
-//                                        startActivity(intentw);
-                                        finish();
-                                    }
+    private void collectData() throws Exception {
+        item.serial_no = gETv(R.id.anc_101);
+        item.date = gETv(R.id.anc_102);
+        item.start_time = gETv(R.id.anc_103);
+        item.serviceDescription = gSPi(R.id.anc_104);
+        item.bloodpressure = gRGv(R.id.bloodpressure);
+        item.weight = gRGv(R.id.weight);
+        item.hemoglobintest = gRGv(R.id.hemoglobintest);
+        item.urinetest = gRGv(R.id.urinetest);
+        item.pregnancyfood = gRGv(R.id.pregnancyfood);
+        item.pregnancydanger = gRGv(R.id.pregnancydanger);
+        item.fourparts = gRGv(R.id.fourparts);
+        item.delivery = gRGv(R.id.delivery);
+        item.feedbaby = gRGv(R.id.feedbaby);
+        item.sixmonths = gRGv(R.id.sixmonths);
+        item.familyplanning = gRGv(R.id.familyplanning);
+        item.folictablet = gRGv(R.id.folictablet);
+        item.folictabletimportance = gRGv(R.id.folictabletimportance);
+        item.folicsideeffect = gRGv(R.id.folicsideeffect);
+        item.end_time = AppUtils.getDate();//gETv(R.id.end_time);
+        sETv(R.id.end_time,item.end_time);
+    }
 
-                                } catch (Exception e) {
-                                }
-                                //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
-                            }
-                        }) {
-
-                    @Override
-                    protected Map<String, String> getParams() {
-
-
-                        Map<String, String> params = new HashMap<>();
-
-                        try {
-                            //record ====================================1
-                            //record
-                            JSONArray requests = new JSONArray();
-//                            JSONArray jsonArray =new JSONArray();
-                            for (FormItemUser formItem1 : formItemAll) {
-                                JSONObject jf = new JSONObject();
-                                JSONObject fs = new JSONObject();
-
-
-                                fs.put("form_type", "dh_antenantals");
-                                fs.put("form_id", intValue);
-                                jf.put("hemoglobintest", formItem1.getHemoglobintest());
-                                jf.put("bloodpressure", formItem1.getBloodpressure());
-                                jf.put("urinetest", formItem1.getUrinetest());
-                                jf.put("pregnancyfood", formItem1.getPregnancyfood());
-                                jf.put("pregnancydanger", formItem1.getPregnancydanger());
-                                jf.put("fourparts", formItem1.getFourparts());
-                                jf.put("delivery", formItem1.getDelivery());
-                                jf.put("feedbaby", formItem1.getFeedbaby());
-                                jf.put("sixmonths", formItem1.getSixmonths());
-                                jf.put("familyplanning", formItem1.getFamilyplanning());
-                                jf.put("folictablet", formItem1.getFolictablet());
-                                jf.put("folictabletimportance", formItem1.getFolictabletimportance());
-                                jf.put("patient_name", formItem1.getName());
-                                jf.put("district", formItem1.getDivision());
-                                jf.put("sub_district", formItem1.getUpozila());
-                                jf.put("union", formItem1.getUnion());
-                                jf.put("village", formItem1.getVillage());
-
-
-                                fs.put("data", jf);
-
-
-                                requests.put(fs);
-
-
-                            }
-
-
-                            //      jsonArray.put(formItemAll);
-//                            JSONObject record = new JSONObject();
-//                            record.put("hemoglobintest", false);
-//                            record.put("urinetest", false);
-
-
-                            //request
-                            JSONObject request = new JSONObject();
-                            request.put("type", add_update);
-                            request.put("form_type", "dh_antenantals");
-                            request.put("data", formItemAll);
-
-
-                            //record ====================================2
-                            //record
-                            JSONObject record2 = new JSONObject();
-                            record2.put("hemoglobintest", true);
-                            record2.put("urinetest", true);
-
-
-                            //request
-                            JSONObject request2 = new JSONObject();
-                            request2.put("type", add_update);
-                            request2.put("form_type", "dh_antenantals");
-                            //       request2.put("data", record);
-
-
-                            //requests
-
-
-                            //data
-                            JSONObject data = new JSONObject();
-                            data.put("username", username);
-                            data.put("password", password);
-                            data.put("requests", requests);
-
-                            params.put("data", data.toString());
-                        } catch (Exception e) {
-
-                        }
-
-                        return params;
-                    }
-
-                };
-
-// Adding request to request queue
-
-                RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
-                requestQueue.add(stringRequest);
-            }
-        });
-
+    private void sSPi(int id,String val){
+        Spinner sp = (Spinner) findViewById(id);
+        try{
+            sp.setSelection(Integer.parseInt(val));
+        }catch(Exception e){
+            e.printStackTrace();
+            sp.setSelection(0);
+        }
 
     }
 
+    private String gRGv(int id) throws Exception {
+        RadioGroup radioGroup = (RadioGroup) findViewById(id);
+        int rbId = radioGroup.getCheckedRadioButtonId();
+        if(rbId == -1) throw new Exception();
+        if(radioGroup.getChildAt(0).getId() == rbId){
+            return "true";
+        }
+        else{
+            return "false";
+        }
+    }
+
+    private String gSPi(int id) throws Exception {
+        Spinner sp = (Spinner) findViewById(id);
+        int selection = sp.getSelectedItemPosition();
+        if(selection == 0) throw new Exception();
+        return Integer.toString(selection);
+    }
+
+    private String gETv(int id){
+        Editable text = ((EditText) findViewById(id)).getText();
+        return text.toString();
+    }
 
     public void savevalue() {
         SharedPreferences pref = this.getSharedPreferences("MyPref", MODE_PRIVATE);
@@ -504,6 +638,32 @@ public class TestActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.back){
+            finish();
+        }
+        else if(v.getId() == R.id.submit){
+            try{
+                collectData();
+                table.insert(item);
+                if(item.id > 0) {
+                    submit();
+                    Toast.makeText(this,"Not implemented yet",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(this,"An error occurred",Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                Toast.makeText(this,"Form is not complete",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void submit(){
     }
 
 

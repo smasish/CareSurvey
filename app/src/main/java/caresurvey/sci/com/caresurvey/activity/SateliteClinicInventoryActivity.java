@@ -56,6 +56,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
 //                getString(R.string.query_101));
         findViewById(R.id.insert).setOnClickListener(this);
         findViewById(R.id.submit).setOnClickListener(this);
+        findViewById(R.id.back).setOnClickListener(this);
         table = new SatelliteClinicTable(this);
         Intent mIntent = getIntent();
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
@@ -101,8 +102,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         sETv(R.id.date, item.date);
         sETv(R.id.start_time, item.startTime);
         sETv(R.id.end_time,item.endTime);
-        sETv(R.id.client_name,item.clientName);
-        sETv(R.id.designation, item.designation);
+//        sETv(R.id.client_name,item.clientName);
+//        sETv(R.id.designation, item.designation);
         sRGv(R.id.csi_101_y, R.id.csi_101_n, item.csi101);
         sRGv(R.id.csi_102_y, R.id.csi_102_n, item.csi102);
         sRGv(R.id.csi_103_y, R.id.csi_103_n, item.csi103);
@@ -312,15 +313,18 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         if(TextUtils.isEmpty(( item.startTime = getEString(R.id.start_time) ))){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
-        if(TextUtils.isEmpty(( item.clientName = getEString(R.id.client_name) ))){
-            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
-        }
-        if(TextUtils.isEmpty(( item.designation = getEString(R.id.designation) ))){
-            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
-        }
+//        if(TextUtils.isEmpty(( item.clientName = getEString(R.id.client_name) ))){
+//            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+//        }
+//        if(TextUtils.isEmpty(( item.designation = getEString(R.id.designation) ))){
+//            makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
+//        }
         if(TextUtils.isEmpty(( item.endTime = getEString(R.id.end_time) ))){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
+
+        item.endTime = AppUtils.getDate();
+        sETv(R.id.end_time,item.endTime);
 
 //        item.status = 3; //pending
         return item;
@@ -358,8 +362,14 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                 Log.e("table row id: ","" + id);
             }
         }
+        else if(v.getId() == R.id.back){
+            finish();
+        }
         else if(v.getId() == R.id.submit){
             final SatelliteClinicItem fpItem = genSatelliteClinicItem();
+            if(fpItem == null){
+                return;
+            }
             table.insert(fpItem);
             final ProgressDialog dialog = new ProgressDialog(this);
             dialog.setMessage("Please wait...");
@@ -430,8 +440,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                         //record ====================================1
                         //record
                         JSONObject finalRequest = new JSONObject();
-                        finalRequest.put("username","collector");
-                        finalRequest.put("password","collector");
+                        finalRequest.put("username",AppUtils.getUserName(SateliteClinicInventoryActivity.this));
+                        finalRequest.put("password",AppUtils.getPassword(SateliteClinicInventoryActivity.this));
                         JSONArray requests = new JSONArray();
                         JSONObject object = new JSONObject();
                         object.put("form_id",formID);

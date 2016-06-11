@@ -1,567 +1,828 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="8dp"
+    >
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxEms="20"
+                    android:text="@string/anc_q_101"/>
+
+                <EditText
+                    android:focusable="false"
+                    android:id="@+id/anc_101"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:ems="10" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxEms="20"
+                    android:text="@string/anc_q_102"/>
+
+                <EditText
+                    android:id="@+id/anc_102"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxEms="20"
+                    android:text="@string/anc_q_103"/>
+
+                <EditText
+                    android:id="@+id/anc_103"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxEms="20"
+                    android:text="@string/anc_q_104"/>
+
+                <Spinner
+                    android:id="@+id/anc_104"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/anc_service_description"
+                    android:ems="10" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:padding="5dp"
+                android:background="@drawable/row_bg"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".74"
+                    android:maxEms="20"
+                    android:text="@string/anc_q_105"/>
+                
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".13"
+                    android:textStyle="bold"
+                    android:text="@string/yes"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".13"
+                    android:textStyle="bold"
+                    android:text="@string/no"/>
+
+            </LinearLayout>
+                <LinearLayout
+                    android:padding="5dp"
+                    android:background="@drawable/row_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_1"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/bloodpressure"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/ques1rad1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/ques1rad2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+            <LinearLayout
+                android:padding="5dp"
+                android:background="@drawable/row_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:text="@string/anc_q_105_2"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                     />
+
+
+                <RadioGroup
+                    android:gravity="center"
+                    android:id="@+id/weight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.28"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes" />
+
+                    <RadioButton
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/no" />
+
+                </RadioGroup>
+            </LinearLayout>
+
+                <LinearLayout
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_3"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/hemoglobintest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/bloodpressure"
+                        android:layout_alignStart="@+id/bloodpressure"
+                        android:layout_below="@+id/bloodpressure"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_4"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/urinetest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/no" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView17"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_5"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+
+                    <RadioGroup
+                        android:id="@+id/pregnancyfood"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView18"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_6"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/pregnancydanger"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView19"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_7"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+
+                    <RadioGroup
+                        android:id="@+id/fourparts"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView20"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_8"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/delivery"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView21"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_9"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/feedbaby"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/no" />
+                    </RadioGroup>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView221"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_10"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/sixmonths"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView223"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_11"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+                    <RadioGroup
+                        android:id="@+id/familyplanning"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton18"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView22"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_12"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/folictablet"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+
+                            android:id="@+id/radioButton19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/row_bg"
+                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
+                        android:id="@+id/textView23"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:text="@string/anc_q_105_13"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                         />
+
+
+                    <RadioGroup
+                        android:gravity="center"
+                        android:id="@+id/folictabletimportance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.28"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <RadioButton
+                            android:id="@+id/radioButton21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes"
+                             />
+
+                        <RadioButton
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/radioButton22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            
+                            android:text="@string/no" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/row_bg"
+                android:padding="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:text="@string/anc_q_105_14"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                     />
+
+
+                <RadioGroup
+                    android:gravity="center"
+                    android:id="@+id/folicsideeffect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.28"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                         />
+
+                    <RadioButton
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxEms="20"
+                    android:text="@string/anc_q_106"/>
+
+                <EditText
+                    android:id="@+id/anc_106"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/purple"
+                        android:text="Back"
+                        android:textColor="@color/white" />
+
+
+                    <Button
+                        android:visibility="invisible"
+                        android:id="@+id/Savebtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="270dp"
+                        android:background="@color/purple"
+                        android:text="Update"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+
+                        android:background="@color/purple"
+                        android:text="Submit"
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="0.7"
-        android:orientation="vertical">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques1"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-
-            <RadioGroup
-                android:id="@+id/bloodpressure"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/ques1rad1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/ques1rad2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    
-                    android:text="No" />
-
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="0.75"
-                android:text="@string/ques2"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-
-            <RadioGroup
-                android:id="@+id/hemoglobintest"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/bloodpressure"
-                android:layout_alignStart="@+id/bloodpressure"
-                android:layout_below="@+id/bloodpressure"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="0dp"
-
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques3"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-
-            <RadioGroup
-                android:id="@+id/urinetest"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    
-                    android:text="No" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques4"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-
-            <RadioGroup
-                android:id="@+id/pregnancyfood"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques5"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-
-            <RadioGroup
-                android:id="@+id/pregnancydanger"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques6"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-
-            <RadioGroup
-                android:id="@+id/fourparts"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="0.75"
-                android:text="@string/ques7"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-            <RadioGroup
-                android:id="@+id/delivery"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="0dp"
-
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques8"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-
-            <RadioGroup
-                android:id="@+id/feedbaby"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView221"
-                android:layout_width="0dp"
-
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques9"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-            <RadioGroup
-                android:id="@+id/sixmonths"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView223"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="0.75"
-                android:text="@string/ques10"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-            <RadioGroup
-                android:id="@+id/familyplanning"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="0dp"
-
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques11"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-            <RadioGroup
-                android:id="@+id/folictablet"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/radioButton20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="@string/ques12"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="16dp" />
-
-
-            <RadioGroup
-                android:id="@+id/folictabletimportance"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <RadioButton
-                    android:id="@+id/radioButton21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes"
-
-                    android:textSize="16dp" />
-
-                <RadioButton
-                    android:id="@+id/radioButton22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="No" />
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-
-            <Button
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/purple"
-                android:text="Back"
-                android:textColor="@color/white" />
-
-
-            <Button
-                android:id="@+id/Savebtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="270dp"
-                android:background="@color/purple"
-                android:text="Update"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/Submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-
-                android:background="@color/purple"
-                android:text="Submit"
-                android:textColor="@color/white" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:visibility="gone"
+        android:layout_gravity="bottom"
         android:id="@+id/commentSection"
-
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_height="wrap_content"
         android:background="@color/Light_purple"
-
         android:orientation="vertical">
 
         <LinearLayout
@@ -628,4 +889,5 @@
                 android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</FrameLayout>

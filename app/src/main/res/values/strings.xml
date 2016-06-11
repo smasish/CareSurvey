@@ -100,6 +100,12 @@ Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|
     <string name="fp_ques_07">07) ‡mevcÖ`v‡bi mgq h_vh_ Kg© mnvwqKv (Re GBW) e¨envi K‡i‡Qb</string>
     <string name="fp_ques_08">08) cieZ©x wfwRU (d‡jvAvc wfwRU) Gi ZvwiL MÖnxZv‡K Rvwb‡q w`‡q‡Qb</string>
     <string name="fp_ques_09">109) ch©‡eÿY ‡kl Kivi mgq:</string>
+    <string-array name="fp_service_description">
+        <item>পছন্দ করুন</item>
+        <item>পরিবার পরিকল্পনা পদ্বতি সেবা</item>
+        <item>পরিবার পরিকল্পনা পদ্বতি জনিত পার্শ্বপ্রতিক্রিয়া ব্যবস্থাপনা</item>
+        <item>অন্যান্য</item>
+    </string-array>
 
     <!--Facility inventory strings-->
     <string name="next">Next</string>
@@ -371,5 +377,31 @@ nq wK bv|</string>
         <item>অন্যান্য</item>
     </string-array>
 
+    <string name="anc_q_101">101 ch©‡eÿY wmwiqvj b¤^i</string>
+    <string name="anc_q_102">102 ch©‡eÿ‡Yi ZvwiL</string>
+    <string name="anc_q_103">103 ch©‡eÿY ïiæi mgq</string>
+    <string name="anc_q_104">104 Mf©eZx gwnjv †h †mev wb‡Z G‡m‡Qb Zvi weeiY</string>
+    <string name="anc_q_105">105 †mevcÖ`vbKvix wb‡Pi c`‡¶c MÖnY K‡iwQ‡jb wKbv Zv †iKW© Kiæb</string>
+    <string name="anc_q_106">106 ch©‡eÿY ‡kl Kivi mgq</string>
+    <string name="anc_q_105_1">01 Mf©eZx gwnjvi eøvW †cÖmvi/i³Pvc cwigvc K‡i‡Qb</string>
+    <string name="anc_q_105_2">02 Mf©eZx gwnjvi IRb wb‡q‡Qb</string>
+    <string name="anc_q_105_3">03 wn‡gv‡Møvweb †Uó K‡i‡Qb A_ev cixÿv Kivi Rb¨ ‡idvi K‡i‡Qb</string>
+    <string name="anc_q_105_4">04 BDwib †cÖvwUb †Uó A_ev cixÿv Kivi Rb¨ ‡idvi K‡i‡Qb</string>
+    <string name="anc_q_105_5">05 Mf©ve¯’vq cywó m¤ú‡K© Av‡jvPbv K‡i‡Qb (cwigv‡b †ekx, gvb m¤úbœ Lvevi †L‡Z e‡j‡Qb)</string>
+    <string name="anc_q_105_6">06 Mf©Kvjxb wec`wPý/RwUjZv m¤ú‡K© K¬v‡q›U‡K e‡j‡Qb</string>
+    <string name="anc_q_105_7">07 Kgc‡¶ 4wU ANC cwi`k©‡bi ¸iæZ¡ Av‡jvPbv K‡i‡Qb</string>
+    <string name="anc_q_105_8">08 GKRb `¶ ¯^v¯’¨Kgx© w`‡q †Wwjfvix Kiv‡bvi Rb¨ K¬v‡q›U‡K civgk© w`‡q‡Qb</string>
+    <string name="anc_q_105_9">09 R‡b¥i ci ciB (1 N›Uvi g‡a¨) ey‡Ki `ya LvIqv‡bvi wel‡q Av‡jvPbv K‡i‡Qb</string>
+    <string name="anc_q_105_10">10 6 gvm ch©šÍ ïay gvÎ ey‡Ki `ya LvIqv‡bvi wel‡q Av‡jvPbv K‡i‡Qb</string>
+    <string name="anc_q_105_11">11 cÖme cieZ©x cwievi cwiKíbv c×wZ m¤ú‡K© Av‡jvPbv K‡i‡Qb</string>
+    <string name="anc_q_105_12">12 AvqiY dwjK GwmW U¨ve‡jU w`‡q‡Qb ev †cÖmwµckb K‡i‡Qb</string>
+    <string name="anc_q_105_13">13 AvqiY dwjK Gwm‡Wi cÖ‡qvRbxqZv e¨vL¨v K‡i‡Qb</string>
+    <string name="anc_q_105_14">14 AvqiY dwjK Gwm‡Wi cvk¦©-cÖwZwµqvi e¨vL¨v K‡i‡Qb</string>
+    <string-array name="anc_service_description">
+        <item>পছন্দ করুন</item>
+        <item>গর্ভকালীন রুটিন চেক-অাপ</item>
+        <item>গর্ভজনিত সমস্যা</item>
+        <item>অন্যান্য</item>
+    </string-array>
 
 </resources>
