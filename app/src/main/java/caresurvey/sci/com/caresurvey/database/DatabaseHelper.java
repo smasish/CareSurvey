@@ -16,10 +16,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public static final String FORM= "form";
     public static final String FORM_USER= "anc";
+    public static final String FORM_ANC_SUPERVISOR= "anc_supervisor";
     public static final String FORM_SICK_CHILD= "csc";
     public static final String FORM_FP_OBSERVATION= "fp_observation";
     public static final String FORM_SICK_CHILD_SUPERVISOR= "csc_supervisor";
     public static final String FORM_INVENTORY= "inventory";
+    public static final String FORM_INVENTORY_SUPERVISOR= "inventory_supervisor";
 
     public Context context;
     public boolean mDataBaseExist;

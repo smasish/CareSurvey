@@ -25,8 +25,10 @@ import java.util.List;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter2;
+import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FormTable;
+import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
@@ -52,6 +54,8 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
     private FPObservationSupervisorTable fpTable;
     private SatelliteClinicSupervisorTable scTable;
     private SickChildSupervisorTable2 sckTable;
+    private InventorySupervisorTable invTable;
+    private ANCSupervisorTable ancTable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,8 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         fpTable = new FPObservationSupervisorTable(this);
         scTable = new SatelliteClinicSupervisorTable(this);
         sckTable = new SickChildSupervisorTable2(this);
+        invTable = new InventorySupervisorTable(this);
+        ancTable = new ANCSupervisorTable(this);
 //        progressBar=(ProgressBar)findViewById(R.id.progressBar);
 //        progressBar.setMax(5);
 //        progressBar.setProgress(2);
@@ -336,6 +342,8 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         mAdapter.addAll(FPObservationSupervisorTable.toDbrow(fpTable.getList(cName, facility)));
         mAdapter.addAll(SatelliteClinicSupervisorTable.toDbrow(scTable.getList(cName,facility)));
         mAdapter.addAll(SickChildSupervisorTable2.toDbrow(sckTable.getList(cName,facility)));
+        mAdapter.addAll(InventorySupervisorTable.toDbrow(invTable.getList(cName,facility)));
+        mAdapter.addAll(ANCSupervisorTable.toDbrow(ancTable.getList(cName,facility)));
     }
 
     @Override
@@ -372,6 +380,14 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
             }
             else if(item.form_type.equals("dh_sickchild")){
                 intent.setClass(this,SickChildUnderFiveActivity.class);
+                startActivity(intent);
+            }
+            else if(item.form_type.equals("dh_inventory")){
+                intent.setClass(this,FacilityInventoryActivity.class);
+                startActivity(intent);
+            }
+            else if(item.form_type.equals("dh_antenantals")){
+                intent.setClass(this,TestActivity.class);
                 startActivity(intent);
             }
         }

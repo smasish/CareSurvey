@@ -3,23 +3,23 @@ package caresurvey.sci.com.caresurvey.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
 
-import caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity;
+import caresurvey.sci.com.caresurvey.model.DBRow;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
-import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 /**
- * Created by Shahin on 5/16/2016.
+ * Created by shantanu on 6/13/16.
  */
-public class InventoryTable {
-    public static final String TABLE_NAME = DatabaseHelper.FORM_INVENTORY;
-    private Context tContext;
-    public static final String inventory_id = "_id";
+
+public class InventorySupervisorTable extends SuperTable{
+    private static final String KEY_ID= "_id";
     public static final String facility_id = "facility_id";
     public static final String client_name = "client_name";
     public static final String start_time = "start_time";
@@ -139,288 +139,293 @@ public class InventoryTable {
     public static final String union = "_union";
     public static final String sub_district = "sub_district";
 
-    public InventoryTable(Context context) {
-        tContext = context;
-        createTable();
+    private static final String KEY_USER_ID = "_user_id";
+    private static final String KEY_COMMENTS="_comments";
+    private static final String KEY_FIELDS="_fields";
+    private static final String KEY_META="_meta";
+    private static final String KEY_SUBMITTED_BY="_submitted_by";
+    private static final String KEY_FORM_TYPE = "_form_type";
+    public static final String TABLE_NAME = DatabaseHelper.FORM_INVENTORY_SUPERVISOR;
+    public InventorySupervisorTable(Context context) {
+        super(context, TABLE_NAME);
     }
 
-
-    private void createTable() {
-        SQLiteDatabase db = openDB();
-
-        String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS"
-                + " "
-                + TABLE_NAME
-                + " ("
-                + InventoryTable.inventory_id
-                + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + InventoryTable.facility_id
-                + " TEXT, "
-                + InventoryTable.client_name
-                + " TEXT, "
-                + InventoryTable.start_time
-                + " TEXT, "
-                + InventoryTable.instrument_sp_name
-                + " TEXT, "
-                + InventoryTable.instrument_sp_designation
-                + " TEXT, "
-                + InventoryTable.i_electronic_autoclev
-                + " TEXT, "
-                + InventoryTable.i_non_electronic_autoclev
-                + " TEXT, "
-                + InventoryTable.i_electric_sterilizer
-                + " TEXT, "
-                + InventoryTable.i_electric_steamer
-                + " TEXT, "
-                + InventoryTable.i_non_electric_pot
-                + " TEXT, "
-                + InventoryTable.i_stove
-                + " TEXT, "
-                + InventoryTable.i_waste_sp_name
-                + " TEXT, "
-                + InventoryTable.i_waste_sp_designation
-                + " TEXT, "
-                + InventoryTable.w_waste_option
-                + " TEXT, "
-                + InventoryTable.w_waste_dispose_how
-                + " TEXT, "
-                + InventoryTable.w_pointy_waste
-                + " TEXT, "
-                + InventoryTable.w_liquid_waste
-                + " TEXT, "
-                + InventoryTable.w_liquid_waste_store
-                + " TEXT, "
-                + InventoryTable.w_plastic_waste
-                + " TEXT, "
-                + InventoryTable.w_waste_normal
-                + " TEXT, "
-                + InventoryTable.w_incinerator_seen
-                + " TEXT, "
-                + InventoryTable.w_dumping_pit_seen
-                + " TEXT, "
-                + InventoryTable.equipment_sp_name
-                + " TEXT, "
-                + InventoryTable.equipment_sp_designation
-                + " TEXT, "
-                + InventoryTable.w_incinerator
-                + " TEXT, "
-                + InventoryTable.w_dumping_pit
-                + " TEXT, "
-                + InventoryTable.n_adult_wing_scale
-                + " TEXT, "
-                + InventoryTable.n_height_rod
-                + " TEXT, "
-                + InventoryTable.n_pressure_mechine
-                + " TEXT, "
-                + InventoryTable.n_stethoscope
-                + " TEXT, "
-                + InventoryTable.n_filter_stethoscope
-                + " TEXT, "
-                + InventoryTable.n_water
-                + " TEXT, "
-                + InventoryTable.n_hand_soap
-                + " TEXT, "
-                + InventoryTable.n_spirit
-                + " TEXT, "
-                + InventoryTable.n_waste
-                + " TEXT, "
-                + InventoryTable.n_sharp_waste
-                + " TEXT, "
-                + InventoryTable.n_gloves
-                + " TEXT, "
-                + InventoryTable.n_iron_folate
-                + " TEXT, "
-                + InventoryTable.n_urine_protien
-                + " TEXT, "
-                + InventoryTable.n_urine_tester
-                + " TEXT, "
-                + InventoryTable.n_urine_testtube
-                + " TEXT, "
-                + InventoryTable.n_test_tube_rack
-                + " TEXT, "
-                + InventoryTable.n_dip_stick
-                + " TEXT, "
-                + InventoryTable.n_hemoglobin
-                + " TEXT, "
-                + InventoryTable.n_telecoil_book
-                + " TEXT, "
-                + InventoryTable.n_telecoil_landset
-                + " TEXT, "
-                + InventoryTable.n_kolori_meter
-                + " TEXT, "
-                + InventoryTable.n_litmus_paper
-                + " TEXT, "
-                + InventoryTable.delivery_sp_name
-                + " TEXT, "
-                + InventoryTable.delivery_sp_designation
-                + " TEXT, "
-                + InventoryTable.d_delivery_service
-                + " TEXT, "
-                + InventoryTable.d_delivery_table
-                + " TEXT, "
-                + InventoryTable.d_pressure_mechine
-                + " TEXT, "
-                + InventoryTable.d_stethoscope
-                + " TEXT, "
-                + InventoryTable.d_filter_stethoscope
-                + " TEXT, "
-                + InventoryTable.d_newborn_recuscitation
-                + " TEXT, "
-                + InventoryTable.d_recuscitation_mask_0
-                + " TEXT, "
-                + InventoryTable.d_recuscitation_mask_1
-                + " TEXT, "
-                + InventoryTable.d_peguin_sucker
-                + " TEXT, "
-                + InventoryTable.d_cord_cutter
-                + " TEXT, "
-                + InventoryTable.d_cord_clamp
-                + " TEXT, "
-                + InventoryTable.d_partograf_paper
-                + " TEXT, "
-                + InventoryTable.d_water
-                + " TEXT, "
-                + InventoryTable.d_hand_soap
-                + " TEXT, "
-                + InventoryTable.d_spirit
-                + " TEXT, "
-                + InventoryTable.d_waste_recycle
-                + " TEXT, "
-                + InventoryTable.d_waste_storage
-                + " TEXT, "
-                + InventoryTable.d_latex_gloves
-                + " TEXT, "
-                + InventoryTable.d_chlorine_sol
-                + " TEXT, "
-                + InventoryTable.d_detergent_water
-                + " TEXT, "
-                + InventoryTable.d_clean_water
-                + " TEXT, "
-                + InventoryTable.d_misoprostol
-                + " TEXT, "
-                + InventoryTable.d_oxytocin
-                + " TEXT, "
-                + InventoryTable.d_mang_sulfate
-                + " TEXT, "
-                + InventoryTable.d_chlorhexidine
-                + " TEXT, "
-                + InventoryTable.d_paediatric_drop
-                + " TEXT, "
-                + InventoryTable.d_gentamycin
-                + " TEXT, "
-                + InventoryTable.ch_wing_scale
-                + " TEXT, "
-                + InventoryTable.ch_infant_wing_scale
-                + " TEXT, "
-                + InventoryTable.ch_height_rod
-                + " TEXT, "
-                + InventoryTable.ch_measuring_tip
-                + " TEXT, "
-                + InventoryTable.ch_water
-                + " TEXT, "
-                + InventoryTable.ch_growth_monitor_boy
-                + " TEXT, "
-                + InventoryTable.ch_growth_monitor_girl
-                + " TEXT, "
-                + InventoryTable.ch_hand_soap
-                + " TEXT, "
-                + InventoryTable.ch_spirit
-                + " TEXT, "
-                + InventoryTable.ch_wastage_recycle
-                + " TEXT, "
-                + InventoryTable.ch_sharp_waste
-                + " TEXT, "
-                + InventoryTable.ch_latex_gloves
-                + " TEXT, "
-                + InventoryTable.ch_ors
-                + " TEXT, "
-                + InventoryTable.ch_paediatric_drop
-                + " TEXT, "
-                + InventoryTable.ch_cotrimoxazole
-                + " TEXT, "
-                + InventoryTable.ch_paracetamol
-                + " TEXT, "
-                + InventoryTable.ch_zinc
-                + " TEXT, "
-                + InventoryTable.ch_mebandazole
-                + " TEXT, "
-                + InventoryTable.ch_ceftriaxone
-                + " TEXT, "
-                + InventoryTable.ch_vitamin
-                + " TEXT, "
-                + InventoryTable.fp_soap
-                + " TEXT, "
-                + InventoryTable.fp_spirit
-                + " TEXT, "
-                + InventoryTable.fp_waste_recycle
-                + " TEXT, "
-                + InventoryTable.fp_sharp_waste
-                + " TEXT, "
-                + InventoryTable.fp_latex_gloves
-                + " TEXT, "
-                + InventoryTable.r_healthy_newborn
-                + " TEXT, "
-                + InventoryTable.r_newborn_death
-                + " TEXT, "
-                + InventoryTable.r_mother_rate
-                + " TEXT, "
-                + InventoryTable.r_elampsia
-                + " TEXT, "
-                + InventoryTable.r_mang_sulfate
-                + " TEXT, "
-                + InventoryTable.r_pneumonis
-                + " TEXT, "
-                + InventoryTable.r_paracetamol
-                + " TEXT, "
-                + InventoryTable.r_psbi
-                + " TEXT, "
-                + InventoryTable.r_psbi_care
-                + " TEXT, "
-                + InventoryTable.r_starving_child
-                + " TEXT, "
-                + InventoryTable.r_starving_protocol
-                + " TEXT, "
-                + InventoryTable.end_time
-                + " TEXT, "
-                + InventoryTable.village
-                + " TEXT, "
-                + InventoryTable.district
-                + " TEXT, "
-                + InventoryTable.union
-                + " TEXT, "
-                + InventoryTable.sub_district
-                + " TEXT);";
-        db.execSQL(CREATE_TABLE_SQL);
-        closeDB();
-    }
-
-    private SQLiteDatabase openDB() {
-        return DatabaseManager.getInstance(tContext).openDatabase();
-    }
-
-    private void closeDB() {
-        DatabaseManager.getInstance(tContext).closeDatabase();
-    }
-
-    public long insertItem(InventoryItem item) {
-        ContentValues values = getValues(item);
-        long id = item.id;
-        SQLiteDatabase db = openDB();
-        if(item.id > 0) // update
-        {
-            id = db.insert(TABLE_NAME,null,values);
-            item.id = id;
+    @Override
+    protected void createTable() {
+        try {
+            List<String> tableQuery = getCreateTableQuery();
+            SQLiteDatabase db = openDB();
+            for(int i=0;i<tableQuery.size();i++)
+            {
+                db.execSQL(tableQuery.get(i));
+            }
+            Log.e("inv_supervisor table:","created");
+            closeDB();
         }
-        else{
-            db.update(TABLE_NAME, values, inventory_id + " = ?", new String[]{""+item.id});
+        catch (Exception e){
+            e.printStackTrace();
         }
-        closeDB();
-        return id;
     }
 
-    private ContentValues getValues(InventoryItem item) {
+    @Override
+    protected void generateTable() {
+        Hashtable<String,String> table = new Hashtable<String,String>();
+        table.put(KEY_ID, "integer primary key"); //must need to  add this key//supervisor field
+        table.put(InventoryTable.facility_id
+                ," TEXT");
+                table.put(InventoryTable.client_name
+                ," TEXT");
+                table.put(InventoryTable.start_time
+                ," TEXT");
+                table.put(InventoryTable.instrument_sp_name
+                ," TEXT");
+                table.put(InventoryTable.instrument_sp_designation
+                ," TEXT");
+                table.put(InventoryTable.i_electronic_autoclev
+                ," TEXT");
+                table.put(InventoryTable.i_non_electronic_autoclev
+                ," TEXT");
+                table.put(InventoryTable.i_electric_sterilizer
+                ," TEXT");
+                table.put(InventoryTable.i_electric_steamer
+                ," TEXT");
+                table.put(InventoryTable.i_non_electric_pot
+                ," TEXT");
+                table.put(InventoryTable.i_stove
+                ," TEXT");
+                table.put(InventoryTable.i_waste_sp_name
+                ," TEXT");
+                table.put(InventoryTable.i_waste_sp_designation
+                ," TEXT");
+                table.put(InventoryTable.w_waste_option
+                ," TEXT");
+                table.put(InventoryTable.w_waste_dispose_how
+                ," TEXT");
+                table.put(InventoryTable.w_pointy_waste
+                ," TEXT");
+                table.put(InventoryTable.w_liquid_waste
+                ," TEXT");
+                table.put(InventoryTable.w_liquid_waste_store
+                ," TEXT");
+                table.put(InventoryTable.w_plastic_waste
+                ," TEXT");
+                table.put(InventoryTable.w_waste_normal
+                ," TEXT");
+                table.put(InventoryTable.w_incinerator_seen
+                ," TEXT");
+                table.put(InventoryTable.w_dumping_pit_seen
+                ," TEXT");
+                table.put(InventoryTable.equipment_sp_name
+                ," TEXT");
+                table.put(InventoryTable.equipment_sp_designation
+                ," TEXT");
+                table.put(InventoryTable.w_incinerator
+                ," TEXT");
+                table.put(InventoryTable.w_dumping_pit
+                ," TEXT");
+                table.put(InventoryTable.n_adult_wing_scale
+                ," TEXT");
+                table.put(InventoryTable.n_height_rod
+                ," TEXT");
+                table.put(InventoryTable.n_pressure_mechine
+                ," TEXT");
+                table.put(InventoryTable.n_stethoscope
+                ," TEXT");
+                table.put(InventoryTable.n_filter_stethoscope
+                ," TEXT");
+                table.put(InventoryTable.n_water
+                ," TEXT");
+                table.put(InventoryTable.n_hand_soap
+                ," TEXT");
+                table.put(InventoryTable.n_spirit
+                ," TEXT");
+                table.put(InventoryTable.n_waste
+                ," TEXT");
+                table.put(InventoryTable.n_sharp_waste
+                ," TEXT");
+                table.put(InventoryTable.n_gloves
+                ," TEXT");
+                table.put(InventoryTable.n_iron_folate
+                ," TEXT");
+                table.put(InventoryTable.n_urine_protien
+                ," TEXT");
+                table.put(InventoryTable.n_urine_tester
+                ," TEXT");
+                table.put(InventoryTable.n_urine_testtube
+                ," TEXT");
+                table.put(InventoryTable.n_test_tube_rack
+                ," TEXT");
+                table.put(InventoryTable.n_dip_stick
+                ," TEXT");
+                table.put(InventoryTable.n_hemoglobin
+                ," TEXT");
+                table.put(InventoryTable.n_telecoil_book
+                ," TEXT");
+                table.put(InventoryTable.n_telecoil_landset
+                ," TEXT");
+                table.put(InventoryTable.n_kolori_meter
+                ," TEXT");
+                table.put(InventoryTable.n_litmus_paper
+                ," TEXT");
+                table.put(InventoryTable.delivery_sp_name
+                ," TEXT");
+                table.put(InventoryTable.delivery_sp_designation
+                ," TEXT");
+                table.put(InventoryTable.d_delivery_service
+                ," TEXT");
+                table.put(InventoryTable.d_delivery_table
+                ," TEXT");
+                table.put(InventoryTable.d_pressure_mechine
+                ," TEXT");
+                table.put(InventoryTable.d_stethoscope
+                ," TEXT");
+                table.put(InventoryTable.d_filter_stethoscope
+                ," TEXT");
+                table.put(InventoryTable.d_newborn_recuscitation
+                ," TEXT");
+                table.put(InventoryTable.d_recuscitation_mask_0
+                ," TEXT");
+                table.put(InventoryTable.d_recuscitation_mask_1
+                ," TEXT");
+                table.put(InventoryTable.d_peguin_sucker
+                ," TEXT");
+                table.put(InventoryTable.d_cord_cutter
+                ," TEXT");
+                table.put(InventoryTable.d_cord_clamp
+                ," TEXT");
+                table.put(InventoryTable.d_partograf_paper
+                ," TEXT");
+                table.put(InventoryTable.d_water
+                ," TEXT");
+                table.put(InventoryTable.d_hand_soap
+                ," TEXT");
+                table.put(InventoryTable.d_spirit
+                ," TEXT");
+                table.put(InventoryTable.d_waste_recycle
+                ," TEXT");
+                table.put(InventoryTable.d_waste_storage
+                ," TEXT");
+                table.put(InventoryTable.d_latex_gloves
+                ," TEXT");
+                table.put(InventoryTable.d_chlorine_sol
+                ," TEXT");
+                table.put(InventoryTable.d_detergent_water
+                ," TEXT");
+                table.put(InventoryTable.d_clean_water
+                ," TEXT");
+                table.put(InventoryTable.d_misoprostol
+                ," TEXT");
+                table.put(InventoryTable.d_oxytocin
+                ," TEXT");
+                table.put(InventoryTable.d_mang_sulfate
+                ," TEXT");
+                table.put(InventoryTable.d_chlorhexidine
+                ," TEXT");
+                table.put(InventoryTable.d_paediatric_drop
+                ," TEXT");
+                table.put(InventoryTable.d_gentamycin
+                ," TEXT");
+                table.put(InventoryTable.ch_wing_scale
+                ," TEXT");
+                table.put(InventoryTable.ch_infant_wing_scale
+                ," TEXT");
+                table.put(InventoryTable.ch_height_rod
+                ," TEXT");
+                table.put(InventoryTable.ch_measuring_tip
+                ," TEXT");
+                table.put(InventoryTable.ch_water
+                ," TEXT");
+                table.put(InventoryTable.ch_growth_monitor_boy
+                ," TEXT");
+                table.put(InventoryTable.ch_growth_monitor_girl
+                ," TEXT");
+                table.put(InventoryTable.ch_hand_soap
+                ," TEXT");
+                table.put(InventoryTable.ch_spirit
+                ," TEXT");
+                table.put(InventoryTable.ch_wastage_recycle
+                ," TEXT");
+                table.put(InventoryTable.ch_sharp_waste
+                ," TEXT");
+                table.put(InventoryTable.ch_latex_gloves
+                ," TEXT");
+                table.put(InventoryTable.ch_ors
+                ," TEXT");
+                table.put(InventoryTable.ch_paediatric_drop
+                ," TEXT");
+                table.put(InventoryTable.ch_cotrimoxazole
+                ," TEXT");
+                table.put(InventoryTable.ch_paracetamol
+                ," TEXT");
+                table.put(InventoryTable.ch_zinc
+                ," TEXT");
+                table.put(InventoryTable.ch_mebandazole
+                ," TEXT");
+                table.put(InventoryTable.ch_ceftriaxone
+                ," TEXT");
+                table.put(InventoryTable.ch_vitamin
+                ," TEXT");
+                table.put(InventoryTable.fp_soap
+                ," TEXT");
+                table.put(InventoryTable.fp_spirit
+                ," TEXT");
+                table.put(InventoryTable.fp_waste_recycle
+                ," TEXT");
+                table.put(InventoryTable.fp_sharp_waste
+                ," TEXT");
+                table.put(InventoryTable.fp_latex_gloves
+                ," TEXT");
+                table.put(InventoryTable.r_healthy_newborn
+                ," TEXT");
+                table.put(InventoryTable.r_newborn_death
+                ," TEXT");
+                table.put(InventoryTable.r_mother_rate
+                ," TEXT");
+                table.put(InventoryTable.r_elampsia
+                ," TEXT");
+                table.put(InventoryTable.r_mang_sulfate
+                ," TEXT");
+                table.put(InventoryTable.r_pneumonis
+                ," TEXT");
+                table.put(InventoryTable.r_paracetamol
+                ," TEXT");
+                table.put(InventoryTable.r_psbi
+                ," TEXT");
+                table.put(InventoryTable.r_psbi_care
+                ," TEXT");
+                table.put(InventoryTable.r_starving_child
+                ," TEXT");
+                table.put(InventoryTable.r_starving_protocol
+                ," TEXT");
+                table.put(InventoryTable.end_time
+                ," TEXT");
+                table.put(InventoryTable.village
+                ," TEXT");
+                table.put(InventoryTable.district
+                ," TEXT");
+                table.put(InventoryTable.union
+                ," TEXT");
+                table.put(InventoryTable.sub_district
+                ," TEXT");
 
+        table.put(DBRow.KEY_STATUS,"integer");
+
+        table.put(KEY_USER_ID,"text");
+        table.put(KEY_COMMENTS,"text");
+        table.put(KEY_FIELDS,"text");
+        table.put(KEY_META,"text");
+        table.put(KEY_SUBMITTED_BY,"text");
+        table.put(KEY_FORM_TYPE,"text");
+        setNewTable(TABLE_NAME, table);
+
+
+
+
+    }
+
+    public long insert(InventoryItem item){
         ContentValues values = new ContentValues();
+        values.put(KEY_ID,item.id);
         values.put(facility_id,Integer.toString(item.facility_id));
         values.put(client_name,item.client_name);
         values.put(start_time,item.start_time);
@@ -536,40 +541,57 @@ public class InventoryTable {
         values.put(r_starving_protocol,item.r_starving_protocol);
         values.put(end_time,item.end_time);
 
-        return values;
+        values.put(DBRow.KEY_STATUS,item.status);
+        values.put(KEY_USER_ID,item.user_id);
+        values.put(KEY_COMMENTS,item.comments);
+        values.put(KEY_FIELDS,item.fields);
+        values.put(KEY_META,item.meta);
+        values.put(KEY_SUBMITTED_BY,item.submittedBy);
+        values.put(KEY_FORM_TYPE,item.form_type);
+
+        SQLiteDatabase db = openDB();
+        boolean hasItem = hasItem(item.id);
+        if(hasItem){
+            db.update(TABLE_NAME,values,KEY_ID + "=" + item.id,null);
+        }
+        else {
+            long id = db.insert(TABLE_NAME, null, values);
+            Log.e("inventory id:","" + id);
+        }
+        closeDB();
+        return item.id;
     }
 
+    public static List<DBRow> toDbrow(List<InventoryItem> list){
+        List<DBRow> result = new ArrayList<>();
+        for(InventoryItem item : list){
+            result.add(item);
+        }
+        return result;
+    }
 
-    public boolean isFieldExist(int id) {
-        //Lg.d(TAG, "isFieldExist : inside, id=" + id);
+    public InventoryItem get(long id) {
+
+        //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);
+
         if (cursor.moveToFirst()) {
             do {
-                if (Integer.parseInt(cursor.getString(0)) ==id) {
-                    cursor.close();
-                    closeDB();
-                    return true;
-                }
+                //System.out.println("abc="+cursor.getString(4));
+                return cursorToSubCatList(cursor);
             } while (cursor.moveToNext());
         }
         cursor.close();
         closeDB();
-        return false;
+        return new InventoryItem();
     }
 
-    public long getRowSize(){
-        SQLiteDatabase db = openDB();
-        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
-        closeDB();
-        return numRows;
-    }
-
-    public InventoryItem cursorlist(Cursor cursor){
+    public InventoryItem cursorToSubCatList(Cursor cursor){
         InventoryItem item = new InventoryItem();
-        item.id = cursor.getInt(cursor.getColumnIndex(inventory_id));
+        item.id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
         item.facility_id = cursor.getInt(cursor.getColumnIndex(facility_id));
-        item.client_name = cursor.getString(cursor.getColumnIndex(client_name));
+        item.name = item.client_name = cursor.getString(cursor.getColumnIndex(client_name));
         item.start_time = cursor.getString(cursor.getColumnIndex(start_time));
         item.instrument_sp_name = cursor.getString(cursor.getColumnIndex(instrument_sp_name));
         item.instrument_sp_designation = cursor.getString(cursor.getColumnIndex(instrument_sp_designation));
@@ -682,50 +704,31 @@ public class InventoryTable {
         item.r_starving_child = cursor.getString(cursor.getColumnIndex(r_starving_child));
         item.r_starving_protocol = cursor.getString(cursor.getColumnIndex(r_starving_protocol));
         item.end_time = cursor.getString(cursor.getColumnIndex(end_time));
+
+        item.status = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_STATUS));
+        item.comments = cursor.getString(cursor.getColumnIndex(KEY_COMMENTS));
+        item.fields = cursor.getString(cursor.getColumnIndex(KEY_FIELDS));
+        item.user_id = cursor.getString(cursor.getColumnIndex(KEY_USER_ID));
+        item.meta = cursor.getString(cursor.getColumnIndex(KEY_META));
+        item.submittedBy = cursor.getString(cursor.getColumnIndex(KEY_SUBMITTED_BY));
+        item.form_type = cursor.getString(cursor.getColumnIndex(KEY_FORM_TYPE));
         return item;
     }
 
-    public ArrayList<InventoryItem> getAllInfo() {
-        ArrayList<InventoryItem> subCatList = new ArrayList<>();
+    public List<InventoryItem> getList(String cName, String facility) {
+        ArrayList<InventoryItem> fpList = new ArrayList<>();
+        //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME , null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where " + KEY_SUBMITTED_BY + "='" + cName + "'", null);
 
         if (cursor.moveToFirst()) {
             do {
                 //System.out.println("abc="+cursor.getString(4));
-                subCatList.add(cursorlist(cursor));
+                fpList.add(cursorToSubCatList(cursor));
             } while (cursor.moveToNext());
         }
         cursor.close();
         closeDB();
-        return subCatList;
-    }
-
-    public InventoryItem get(long id) {
-        InventoryItem item = new InventoryItem();
-        SQLiteDatabase db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                item = cursorlist(cursor);
-                break;
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        closeDB();
-        return item;
-    }
-
-    public long getLastId(){
-        SQLiteDatabase db = openDB();
-        long lastId = 0;
-        String query = "SELECT _id from " +  TABLE_NAME +" order by _id DESC limit 1";
-        Cursor c = db.rawQuery(query,null);
-        if (c != null && c.moveToFirst()) {
-            lastId = c.getLong(0); //The 0 is the column index, we only have 1 column, so the index is 0
-        }
-        closeDB();
-        return lastId;
+        return fpList;
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,10 +67,16 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         }
         View submitBtn = view.findViewById(R.id.submit);
         if(submitBtn != null){
+            if(getContext().isAdmin()){
+                submitBtn.setVisibility(View.GONE);
+            }
+            else{
+                submitBtn.setVisibility(View.VISIBLE);
+            }
             submitBtn.setOnClickListener(this);
         }
         try {
-            loadData(getContext().getInventoryItem());
+            loadData(getContext().getItem());
         }catch(Exception e){
             e.printStackTrace();
 //            Toast.makeText(getActivity(),"Form load failed",Toast.LENGTH_SHORT).show();
@@ -231,8 +236,10 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     public void onClick(View v) {
         if(v.getId() == R.id.next || v.getId() == R.id.insert || v.getId() == R.id.submit){
             try {
-                collectData(getContext().getInventoryItem());
-                getContext().getTable().insertItem(getContext().getInventoryItem());
+                if(!getContext().isAdmin()) {
+                    collectData(getContext().getItem());
+                    getContext().getTable().insertItem(getContext().getItem());
+                }
                 if(v.getId() == R.id.next) {
                     getContext().loadFragment(index + 1);
                 }
@@ -1301,7 +1308,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         else if(value.equals("8")){
             return 2;//don't know
         }
-        return -1;
+        else{//uknown value
+            return 1;
+        }
     }
     private String gETv(int id){
         EditText eText = (EditText) view.findViewById(id);

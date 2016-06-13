@@ -1,5 +1,8 @@
 package caresurvey.sci.com.caresurvey.activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.renderscript.Sampler;
@@ -28,6 +31,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import junit.framework.Test;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,11 +45,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
@@ -75,6 +83,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView tv1, tv2, tv3, comment, field;
     private String district;
+    private long formID;
 
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -436,7 +445,17 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         Intent mIntent = getIntent();
         table = new FormTableUser(this);
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)) { //alreay have one
-            item = table.get(mIntent.getIntExtra(DisplayUserActivity.FORM_ID,0));
+            if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+                findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
+                findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
+                ANCSupervisorTable supervisorTable = new ANCSupervisorTable(this);
+                item = supervisorTable.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID,0L));
+            }
+            else {
+                findViewById(R.id.user_btn_layout).setVisibility(View.VISIBLE);
+                findViewById(R.id.admin_btn_layout).setVisibility(View.GONE);
+                item = table.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID, 0));
+            }
         }
         else{
             item = new FormItemUser();
@@ -457,6 +476,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         loadForm();
         findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.submit).setOnClickListener(this);
+        findViewById(R.id.accept).setOnClickListener(this);
+        findViewById(R.id.revert).setOnClickListener(this);
     }
 
     private void loadForm(){
@@ -652,7 +673,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 table.insert(item);
                 if(item.id > 0) {
                     submit();
-                    Toast.makeText(this,"Not implemented yet",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(this,"An error occurred",Toast.LENGTH_SHORT).show();
@@ -662,33 +682,233 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this,"Form is not complete",Toast.LENGTH_SHORT).show();
             }
         }
+        else if(v.getId() == R.id.accept){
+            final ProgressDialog progressDialog = new ProgressDialog(TestActivity.this);
+            progressDialog.setMessage("Please wait...");
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
+            final FormItemUser fItem = TestActivity.this.item;
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                progressDialog.dismiss();
+                                Log.d(".....>>>>>>>>>>", "response length" +response);
+                                JSONObject jsonObject = new JSONObject(response);
+                                int status;
+                                status= jsonObject.getInt("status");
+                                Log.d(".....>>>>>>>>>>", "response length" +status);
+                                ANCSupervisorTable t = new ANCSupervisorTable(TestActivity.this);
+                                fItem.status =1;
+                                t.insert(fItem); //update db
+                                Toast.makeText(TestActivity.this,"Successfully submitted",Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
+                            catch (Exception e)
+                            {
+
+                            }
+                            //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject requests = new JSONObject();
+                        JSONArray jsonArray =new JSONArray();
+                        JSONObject jf= new JSONObject();
+                        JSONObject meta=new JSONObject();
+                        meta.put("comments","");
+                        meta.put("fields", "");
+                        requests.put("meta",meta);
+                        requests.put("submitted_by", fItem.submittedBy);
+                        requests.put("form_id", fItem.id);
+                        //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                        requests.put("form_type","dh_antenantals");
+                        requests.put("status",1);
+                        jsonArray.put(requests);
+
+                        //data
+                        JSONObject data = new JSONObject();
+                        data.put("username", "supervisor");
+                        data.put("password", "supervisor");
+                        data.put("requests", jsonArray);
+                        params.put("data", data.toString());
+                    }
+                    catch (Exception e){
+
+                    }
+
+                    return params;
+                }
+
+            };
+
+            RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
+            requestQueue.add(stringRequest);
+            progressDialog.show();
+        }
     }
 
-    private void submit(){
+    private void submit() {
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Please wait...");
+        final AlertDialog.Builder alert = new AlertDialog.Builder(TestActivity.this);
+        if (item != null) {
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+
+                        @Override
+                        public void onResponse(String response) {
+                            dialog.dismiss();
+
+                            try {
+                                final JSONObject jo = new JSONObject(response);
+                                if (jo.has("errorCount")) {
+                                    alert.setMessage(jo.getString("message"));
+                                } else {
+                                    alert.setMessage("Invalid response");
+                                }
+                                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        try {
+                                            if (jo.getInt("errorCount") == 0) {
+                                                finish();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                                alert.show();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                alert.setMessage("An error occurred");
+                                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                alert.show();
+                            }
+                            //  Toast.makeText(TestActivity.this,response,Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            dialog.dismiss();
+                            //    Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            alert.setMessage("An error occurred");
+                            alert.show();
+                            error.printStackTrace();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+
+                    Map<String, String> params = new HashMap<>();
+
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject finalRequest = new JSONObject();
+                        finalRequest.put("username", AppUtils.getUserName(TestActivity.this));
+                        finalRequest.put("password", AppUtils.getPassword(TestActivity.this));
+                        JSONArray requests = new JSONArray();
+                        JSONObject object = new JSONObject();
+                        object.put("form_id", item.id);
+                        object.put("form_type", "dh_antenantals");
+                        JSONObject data = new JSONObject();
+                        data.put("hemoglobintest", toBool(item.hemoglobintest));
+                        data.put("bloodpressure", toBool(item.bloodpressure));
+                        data.put("urinetest", toBool(item.urinetest));
+                        data.put("pregnancyfood", toBool(item.pregnancyfood));
+                        data.put("pregnancydanger", toBool(item.pregnancydanger));
+                        data.put("fourparts", toBool(item.fourparts));
+                        data.put("delivery", toBool(item.delivery));
+                        data.put("feedbaby", toBool(item.feedbaby));
+                        data.put("sixmonths", toBool(item.sixmonths));
+                        data.put("familyplanning", toBool(item.familyplanning));
+                        data.put("folictablet", toBool(item.folictablet));
+                        data.put("folictabletimportance", toBool(item.folictabletimportance));
+                        data.put("patient_name", item.collector_name);
+                        data.put("district", item.district);
+                        data.put("sub_district", item.subdistrict);
+                        data.put("union", item.union);
+                        data.put("village", item.village);
+                        data.put("date",item.date);
+                        data.put("start_time",item.start_time);
+                        data.put("end_time",item.end_time);
+                        data.put("doc_designation",item.designation);
+
+                        object.put("data", data);
+                        requests.put(object);
+                        finalRequest.put("requests", requests);
+
+
+                        params.put("data", finalRequest.toString());
+                        Log.e("request: ", finalRequest.toString());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    return params;
+                }
+
+            };
+            dialog.show();
+            RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
+            requestQueue.add(stringRequest);
+
+        }
+    }
+
+    private String toQStr(String str){
+        if(TextUtils.isEmpty(str)){
+            return "";
+        }
+        return str;
     }
 
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_test, menu);
-//        return true;
-//    }
-//
-//
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    private int toInt(String str){
+        try{
+            return Integer.parseInt(str);
+        }catch(Exception e){
+            return 0;
+        }
+    }
+
+    private boolean toBool(String str){
+        if(TextUtils.isEmpty(str)) return false;
+        if(str.equals("true")){
+            return true;
+        }
+        return false;
+    }
 }

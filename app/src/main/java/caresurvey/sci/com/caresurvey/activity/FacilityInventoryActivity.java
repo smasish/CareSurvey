@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,20 +25,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.fragments.FacilityInventoryFragment;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
+import static caresurvey.sci.com.caresurvey.utils.AppUtils.getInt;
 import static caresurvey.sci.com.caresurvey.utils.AppUtils.setTextWithFonts;
 
-public class FacilityInventoryActivity extends AppCompatActivity {
+public class FacilityInventoryActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final int resources[] = new int[]{R.layout.activity_facility_inventory1,
     R.layout.activity_facility_inventory2,R.layout.activity_facility_inventory3,R.layout.activity_facility_inventory4,
             R.layout.activity_facility_inventory5,R.layout.activity_facility_inventory6};
-    private InventoryItem inventoryItem;
+    private InventoryItem item;
     private InventoryTable table;
     private int mark;
     private String datespicker;
@@ -48,33 +52,54 @@ public class FacilityInventoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fp_inventory);
-        inventoryItem = new InventoryItem();
         table = new InventoryTable(this);
         Intent mIntent = getIntent();
-        inventoryItem.name = mIntent.getStringExtra("name");
-        inventoryItem.designation = mIntent.getStringExtra("designation");
+        if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
+            if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+                findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
+                findViewById(R.id.accept).setOnClickListener(this);
+                findViewById(R.id.revert).setOnClickListener(this);
+//                findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
+                InventorySupervisorTable supervisorTable = new InventorySupervisorTable(this);
+                item = supervisorTable.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID,0L));
+            }
+            else {
+//                findViewById(R.id.user_btn_layout).setVisibility(View.VISIBLE);
+                findViewById(R.id.admin_btn_layout).setVisibility(View.GONE);
+                item = table.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID, 0));
+            }
+        }
+        item.name = mIntent.getStringExtra("name");
+        item.designation = mIntent.getStringExtra("designation");
         mark = mIntent.getIntExtra("mark", 0);
-        inventoryItem.collector_name = mIntent.getStringExtra("c_name");
-        inventoryItem.upozila = mIntent.getStringExtra("upozila");
-        inventoryItem.union = mIntent.getStringExtra("union");
-        inventoryItem.village = mIntent.getStringExtra("village");
-        inventoryItem.facility = mIntent.getStringExtra("facility");
-        inventoryItem.district = mIntent.getStringExtra("district");
+        item.collector_name = mIntent.getStringExtra("c_name");
+        item.upozila = mIntent.getStringExtra("upozila");
+        item.union = mIntent.getStringExtra("union");
+        item.village = mIntent.getStringExtra("village");
+        item.facility = mIntent.getStringExtra("facility");
+        item.district = mIntent.getStringExtra("district");
 
         datespicker = mIntent.getStringExtra("datepicker");
-        inventoryItem.start_time = timepicker = mIntent.getStringExtra("timepicker");
+        item.start_time = timepicker = mIntent.getStringExtra("timepicker");
         obsType = mIntent.getStringExtra("obstype");
-        inventoryItem.facility_id = mIntent.getIntExtra("serial",0);
+        item.facility_id = mIntent.getIntExtra("serial",0);
         loadFragment(0);
 
+    }
+
+    public boolean isAdmin(){
+        if(getIntent().hasExtra(SurveyActivity.FROM_ADMIN)){
+            return true;
+        }
+        return false;
     }
 
     public InventoryTable getTable(){
         return table;
     }
 
-    public InventoryItem getInventoryItem(){
-        return this.inventoryItem;
+    public InventoryItem getItem(){
+        return this.item;
     }
 
     public void loadFragment(int index){
@@ -83,7 +108,7 @@ public class FacilityInventoryActivity extends AppCompatActivity {
     }
 
     public void submit(){
-        final InventoryItem item = getInventoryItem();
+        final InventoryItem item = getItem();
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage("Please wait...");
         final AlertDialog.Builder alert = new AlertDialog.Builder(FacilityInventoryActivity.this);
@@ -348,5 +373,90 @@ public class FacilityInventoryActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.accept){
+            final ProgressDialog progressDialog = new ProgressDialog(FacilityInventoryActivity.this);
+            progressDialog.setMessage("Please wait...");
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
+            final InventoryItem fItem = FacilityInventoryActivity.this.item;
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                progressDialog.dismiss();
+                                Log.d(".....>>>>>>>>>>", "response length" +response);
+                                JSONObject jsonObject = new JSONObject(response);
+                                int status;
+                                status= jsonObject.getInt("status");
+                                Log.d(".....>>>>>>>>>>", "response length" +status);
+                                InventorySupervisorTable t = new InventorySupervisorTable(FacilityInventoryActivity.this);
+                                fItem.status =1;
+                                t.insert(fItem); //update db
+                                Toast.makeText(FacilityInventoryActivity.this,"Successfully submitted",Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
+                            catch (Exception e)
+                            {
+
+                            }
+                            //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(FacilityInventoryActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject requests = new JSONObject();
+                        JSONArray jsonArray =new JSONArray();
+                        JSONObject jf= new JSONObject();
+                        JSONObject meta=new JSONObject();
+                        meta.put("comments","");
+                        meta.put("fields", "");
+                        requests.put("meta",meta);
+                        requests.put("submitted_by", fItem.submittedBy);
+                        requests.put("form_id", fItem.id);
+                        //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                        requests.put("form_type","dh_inventory");
+                        requests.put("status",1);
+                        jsonArray.put(requests);
+
+                        //data
+                        JSONObject data = new JSONObject();
+                        data.put("username", "supervisor");
+                        data.put("password", "supervisor");
+                        data.put("requests", jsonArray);
+                        params.put("data", data.toString());
+                    }
+                    catch (Exception e){
+
+                    }
+
+                    return params;
+                }
+
+            };
+
+            RequestQueue requestQueue = Volley.newRequestQueue(FacilityInventoryActivity.this);
+            requestQueue.add(stringRequest);
+            progressDialog.show();
+        }
+        else if(v.getId() == R.id.revert){
+
+        }
     }
 }

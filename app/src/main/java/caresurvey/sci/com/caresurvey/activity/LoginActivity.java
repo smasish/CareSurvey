@@ -31,15 +31,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
+import caresurvey.sci.com.caresurvey.model.InventoryItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
@@ -398,6 +402,14 @@ public class LoginActivity extends AppCompatActivity {
                                 else if(form.getString("form_type").equals("dh_sickchild")){
                                     SickChildSupervisorTable2 table = new SickChildSupervisorTable2(LoginActivity.this);
                                     table.insert(SickChildItem.getObject(form.toString()));
+                                }
+                                else if(form.getString("form_type").equals("dh_inventory")){
+                                    InventorySupervisorTable table = new InventorySupervisorTable(LoginActivity.this);
+                                    table.insert(InventoryItem.getObject(form.toString()));
+                                }
+                                else if(form.getString("form_type").equals("dh_antenantals")){
+                                    ANCSupervisorTable table = new ANCSupervisorTable(LoginActivity.this);
+                                    table.insert(FormItemUser.getObject(form.toString()));
                                 }
                             }
 //                            for (int i = 0; i < formItemCount; i++) {

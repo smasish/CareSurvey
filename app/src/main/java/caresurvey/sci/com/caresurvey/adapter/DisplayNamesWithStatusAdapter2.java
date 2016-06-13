@@ -2,7 +2,9 @@ package caresurvey.sci.com.caresurvey.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -57,7 +59,12 @@ public class DisplayNamesWithStatusAdapter2 extends ArrayAdapter<DBRow>{
         }
 
         holder.id.setText("" +getItem(position).id);
-        holder.name.setText("" + getItem(position).collector_name);
+        if(TextUtils.isEmpty(getItem(position).name)){
+            holder.name.setText(""+getItem(position).collector_name);
+        }
+        else {
+            holder.name.setText("" + getItem(position).name);
+        }
 //
 //        button=(Button) convertView.findViewById(R.id.button2);
 //

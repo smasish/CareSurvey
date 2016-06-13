@@ -632,7 +632,7 @@ public class FormTableUser {
         return item.id;
     }
 
-    public FormItemUser get(int id) {
+    public FormItemUser get(long id) {
         FormItemUser item = new FormItemUser();
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);

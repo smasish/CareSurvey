@@ -3,6 +3,7 @@ package caresurvey.sci.com.caresurvey.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
@@ -275,5 +276,56 @@ public class FormItemUser extends DBRow{
 
         return new FormItemUser(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
                 _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_globalId);
+    }
+
+    public static FormItemUser getObject(String json){
+        FormItemUser item = new FormItemUser();
+        try {
+            JSONObject object = new JSONObject(json);
+            JSONObject data = object.getJSONObject("data");
+
+            item.id = object.getInt("form_id");
+            item.status = object.getInt("status");
+            item.user_id = Integer.toString(object.getInt("user_id"));
+            if (object.has("meta")) {
+                try {
+                    boolean b = object.getBoolean("meta");
+                    if (b) {
+                        item.meta = "true";
+                    } else {
+                        item.meta = "false";
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            item.submittedBy = object.getString("submitted_by");
+            item.form_type = object.getString("form_type");
+
+            item.date = AppUtils.getString(data,"date");
+            item.start_time = AppUtils.getString(data,"start_time");
+            item.serviceDescription = AppUtils.getString(data,"description");
+            item.bloodpressure = AppUtils.btos(AppUtils.getBoolean(data,"bloodpressure"));
+            item.weight = AppUtils.btos(AppUtils.getBoolean(data,"weight"));
+            item.hemoglobintest = AppUtils.btos(AppUtils.getBoolean(data,"hemoglobintest"));
+            item.urinetest = AppUtils.btos(AppUtils.getBoolean(data,"urinetest"));
+            item.pregnancyfood = AppUtils.btos(AppUtils.getBoolean(data,"pregnancyfood"));
+            item.pregnancydanger = AppUtils.btos(AppUtils.getBoolean(data,"pregnancydanger"));
+            item.fourparts = AppUtils.btos(AppUtils.getBoolean(data,"fourparts"));
+            item.delivery = AppUtils.btos(AppUtils.getBoolean(data,"delivery"));
+            item.feedbaby = AppUtils.btos(AppUtils.getBoolean(data,"feedbaby"));
+            item.sixmonths = AppUtils.btos(AppUtils.getBoolean(data,"sixmonths"));
+            item.familyplanning = AppUtils.btos(AppUtils.getBoolean(data,"familyplanning"));
+            item.folictablet = AppUtils.btos(AppUtils.getBoolean(data,"folictablet"));
+            item.folictabletimportance = AppUtils.btos(AppUtils.getBoolean(data,"folictabletimportance"));
+            item.folicsideeffect = AppUtils.btos(AppUtils.getBoolean(data,"folicsideeffect"));
+            item.designation = AppUtils.getString(data,"doc_designation");
+            item.end_time = AppUtils.getString(data,"end_time");//gETv(R.id.end_time);
+            item.district = AppUtils.getString(data,"district");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return item;
     }
 }
