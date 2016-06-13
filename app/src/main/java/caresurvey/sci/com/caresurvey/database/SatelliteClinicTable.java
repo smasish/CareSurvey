@@ -152,7 +152,14 @@ public class SatelliteClinicTable {
         values.put(DBRow.KEY_FACI_ID,item.facilityID);
 
         SQLiteDatabase db = openDB();
-        return db.insert(TABLE_NAME,null,values);
+        if(item.id > 0){
+            db.update(TABLE_NAME,values,ID + "=" + item.id,null);
+        }
+        else {
+            item.id = db.insert(TABLE_NAME, null, values);
+        }
+        closeDB();
+        return item.id;
     }
 
     /*
@@ -292,7 +299,7 @@ public class SatelliteClinicTable {
         return scList;
     }
 
-    public SatelliteClinicItem get(int id) {
+    public SatelliteClinicItem get(long id) {
         SatelliteClinicItem item = new SatelliteClinicItem();
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);

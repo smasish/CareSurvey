@@ -1,5 +1,10 @@
 package caresurvey.sci.com.caresurvey.model;
 
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
@@ -214,6 +219,59 @@ public class FpObservationFormItem extends DBRow{
 
     public void setSp_client(String sp_client) {
         this.sp_client = sp_client;
+    }
+
+    public static FpObservationFormItem getObject(String json){//supervisor json
+        FpObservationFormItem item = new FpObservationFormItem();
+        try {
+            JSONObject object = new JSONObject(json);
+            JSONObject data = object.getJSONObject("data");
+
+            item.id = object.getInt("form_id");
+            item.status = object.getInt("status");
+            item.user_id = Integer.toString(object.getInt("user_id"));
+            if(object.has("meta")){
+                try {
+                    boolean b = object.getBoolean("meta");
+                    if(b){
+                        item.meta = "true";
+                    }
+                    else{
+                        item.meta = "false";
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            item.submittedBy = object.getString("submitted_by");
+            item.form_type = object.getString("form_type");
+
+            item.subdistrict = AppUtils.getString(data,"sub_district");
+            item.concent = AppUtils.getString(data,"concent");
+            item.cover = AppUtils.btos(AppUtils.getBoolean(data,"cover"));
+            item.sound_prove = AppUtils.btos(AppUtils.getBoolean(data,"sound_prove"));
+            item.collector_name = item.sp_name = AppUtils.getString(data,"sp_name");
+            item.questions = AppUtils.btos(AppUtils.getBoolean(data,"questions"));
+            item.discuss_fp = AppUtils.btos(AppUtils.getBoolean(data,"discuss_fp"));
+            item.discuss_fp_protocol = AppUtils.btos(AppUtils.getBoolean(data,"discuss_fp_protocol"));
+            item.date = AppUtils.getString(data,"date");
+            item.facility_id = AppUtils.itos(AppUtils.getInt(data,"facility_id"));
+            item.sp_designation = AppUtils.getString(data,"sp_designation");
+            item.serial_no = AppUtils.itos(AppUtils.getInt(data,"serial_no"));
+            item.village = AppUtils.getString(data,"village");
+            item.union = AppUtils.getString(data,"union");
+            item.start_time = AppUtils.getString(data,"start_time");
+            item.end_time = AppUtils.getString(data,"end_time");
+            item.followup = AppUtils.btos(AppUtils.getBoolean(data,"followup"));
+            item.job_aid = AppUtils.btos(AppUtils.getBoolean(data,"job_aid"));
+            item.what_to_do = AppUtils.btos(AppUtils.getBoolean(data,"w_to_do"));
+            item.district = AppUtils.getString(data,"district");
+            item.client_name = AppUtils.getString(data,"client_name");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return item;
     }
 
 }

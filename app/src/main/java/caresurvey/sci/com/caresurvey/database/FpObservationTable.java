@@ -239,7 +239,7 @@ public class FpObservationTable {
         return item;
     }
 
-    public FpObservationFormItem get(int id) {
+    public FpObservationFormItem get(long id) {
         FpObservationFormItem item = new FpObservationFormItem();
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);

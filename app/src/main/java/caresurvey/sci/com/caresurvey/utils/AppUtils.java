@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +33,7 @@ import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity;
+import caresurvey.sci.com.caresurvey.model.DBRow;
 
 
 /**
@@ -39,7 +41,7 @@ import caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity;
  *
  * @author touhid
  */
-public class AppUtils {
+public class AppUtils{
 
     private static Typeface bengaliFontNormalSolmn, bengaliFontBoldSolmn;
 
@@ -232,5 +234,54 @@ public class AppUtils {
     public static String getPassword(Context context){
         SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         return pref.getString("password", "");
+    }
+    public static String btos(boolean b){
+        if(b) return "true";
+        else return "false";
+    }
+    public static String itos(int i){
+        try{
+            return Integer.toString(i);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "0";
+    }
+
+    public static boolean getBoolean(JSONObject data,String key) throws JSONException {
+        if(data.has(key)){
+            return data.getBoolean(key);
+        }
+        return false;
+    }
+
+    public static String getArray(JSONObject data,String key) throws JSONException {
+        if(data.has(key)){
+            JSONArray array = data.getJSONArray(key);
+            int len = array.length();
+            String result = "";
+            for(int i =0;i<len;i++){
+                if(i > 0){
+                    result += ",";
+                }
+                result += array.getString(i);
+            }
+            return result;
+        }
+        return "";
+    }
+
+    public static String getString(JSONObject data,String key) throws JSONException {
+        if(data.has(key)){
+            return data.getString(key);
+        }
+        return "";
+    }
+
+    public static int getInt(JSONObject data,String key) throws JSONException {
+        if(data.has(key)){
+            return data.getInt(key);
+        }
+        return 0;
     }
 }

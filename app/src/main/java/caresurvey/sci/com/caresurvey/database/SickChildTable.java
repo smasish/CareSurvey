@@ -377,7 +377,7 @@ public class SickChildTable {
         return subCatList;
     }
 
-    public SickChildItem get(int id) {
+    public SickChildItem get(long id) {
         SickChildItem item = new SickChildItem();
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);

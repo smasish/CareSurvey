@@ -31,11 +31,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
+import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
+import caresurvey.sci.com.caresurvey.model.SickChildItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 
 //import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
@@ -93,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                             getString(R.string.msg));
                 } else if (user.equals("admin") && pass.equalsIgnoreCase("admin")) {
                     LoadDataSupervisor();
-                    LoadDataSupervisorChildSick();
+//                    LoadDataSupervisorChildSick();
 
                     flag = true;
 
@@ -254,7 +260,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //     Toast.makeText(DisplayAll_Activity.this,response,Toast.LENGTH_SHORT).show();
-
+                        Log.e("supervisor child:",response);
                         try {
                             JSONObject jo = new JSONObject(response);
                             JSONArray forms = jo.getJSONArray("forms");
@@ -369,32 +375,47 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //     Toast.makeText(DisplayAll_Activity.this,response,Toast.LENGTH_SHORT).show();
-
+                        Log.e("supervisor:", response);
                         try {
                             JSONObject jo = new JSONObject(response);
                             JSONArray forms = jo.getJSONArray("forms");
-//                                JSONObject joes = new JSONObject();
-//                                joes= jo.getJSONObject("forms");
-                            // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
-                            FormTable formTable = new FormTable(LoginActivity.this);
-                            // formTable.dropTable();
+////                                JSONObject joes = new JSONObject();
+////                                joes= jo.getJSONObject("forms");
+//                            // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
+//                            FormTable formTable = new FormTable(LoginActivity.this);
+//                            // formTable.dropTable();
                             int formItemCount = forms.length();
-                            for (int i = 0; i < formItemCount; i++) {
-                                try {
-                                    JSONObject record = forms.getJSONObject(i);
-                                    String s;
-                                    s=record.getString("submitted_by");
-                                    Log.d(".....>>>>>>>>>>", "response length" + record);
-                                    JSONObject fields = record.getJSONObject("data");
-                                    FormItem et = FormItem.parseFormItem(i+1, record.getString("form_id"),record.getInt("status"), fields,record.getString("submitted_by"));
-                                    int q;
-                                    q=record.getInt("form_id");
-                                    formTable.insertItem(et);
+                            for(int i=0;i<formItemCount;i++){
+                                JSONObject form = forms.getJSONObject(i);
+                                if(form.getString("form_type").equals("dh_familyplan")){
+                                    FPObservationSupervisorTable table = new FPObservationSupervisorTable(LoginActivity.this);
+                                    table.insert(FpObservationFormItem.getObject(form.toString()));
                                 }
-                                catch (JSONException e) {
-                                    e.printStackTrace();
+                                else if(form.getString("form_type").equals("dh_satelliteclinic")){
+                                    SatelliteClinicSupervisorTable table = new SatelliteClinicSupervisorTable(LoginActivity.this);
+                                    table.insert(SatelliteClinicItem.getObject(form.toString()));
+                                }
+                                else if(form.getString("form_type").equals("dh_sickchild")){
+                                    SickChildSupervisorTable2 table = new SickChildSupervisorTable2(LoginActivity.this);
+                                    table.insert(SickChildItem.getObject(form.toString()));
                                 }
                             }
+//                            for (int i = 0; i < formItemCount; i++) {
+//                                try {
+//                                    JSONObject record = forms.getJSONObject(i);
+//                                    String s;
+//                                    s=record.getString("submitted_by");
+//                                    Log.d(".....>>>>>>>>>>", "response length" + record);
+//                                    JSONObject fields = record.getJSONObject("data");
+//                                    FormItem et = FormItem.parseFormItem(i+1, record.getString("form_id"),record.getInt("status"), fields,record.getString("submitted_by"));
+//                                    int q;
+//                                    q=record.getInt("form_id");
+//                                    formTable.insertItem(et);
+//                                }
+//                                catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
 
 
                         } catch (JSONException e) {

@@ -17,17 +17,27 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
+import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter2;
+import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FormTable;
+import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
+import caresurvey.sci.com.caresurvey.model.DBRow;
 import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
-public class SurveyActivity extends AppCompatActivity {
+public class SurveyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
+    public static final String FROM_ADMIN = "from_admin_page";
     Button Survey;
     ListView listView;
     private String user;
@@ -38,13 +48,19 @@ public class SurveyActivity extends AppCompatActivity {
     ArrayList<FormItem> formItems;
     ProgressBar progressBar,progressBar1,progressBar2,progressBar3,progressBar4;
     private Context con;
+    private DisplayNamesWithStatusAdapter2 mAdapter;
+    private FPObservationSupervisorTable fpTable;
+    private SatelliteClinicSupervisorTable scTable;
+    private SickChildSupervisorTable2 sckTable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
 
         con = this;
-
+        fpTable = new FPObservationSupervisorTable(this);
+        scTable = new SatelliteClinicSupervisorTable(this);
+        sckTable = new SickChildSupervisorTable2(this);
 //        progressBar=(ProgressBar)findViewById(R.id.progressBar);
 //        progressBar.setMax(5);
 //        progressBar.setProgress(2);
@@ -79,16 +95,18 @@ public class SurveyActivity extends AppCompatActivity {
 //                Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
 
         listView=(ListView)findViewById(R.id.antenatalList);
-
+        mAdapter = new DisplayNamesWithStatusAdapter2(this,R.layout.display_an_item);
+        listView.setAdapter(mAdapter);
+        listView.setOnItemClickListener(this);
         Survey = (Button)findViewById(R.id.survey_button);
-        Survey.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent= new Intent(SurveyActivity.this, TestActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Survey.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent= new Intent(SurveyActivity.this, TestActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //progressBar3.getLayoutParams().height = 20;
         //  progressBar3.invalidate();
@@ -107,114 +125,114 @@ public class SurveyActivity extends AppCompatActivity {
         facilityspinner.setAdapter(adapter);
 
 
-        facilityspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                facilityname = facilityspinner.getSelectedItem().toString();
-                FormTable formTable = new FormTable(SurveyActivity.this);
-        //        ArrayList<FormItem> formItemArrayList;
-          //      formItemArrayList=formTable.getAll();
-
-                formItems = formTable.getListfromuser(username, facilityname);
-                valuecount=formItems.size();
-                //   facilityspinner.setAdapter(null);
-
-//                adapter.notifyDataSetChanged();
-//                adapter.notifyDataSetChanged();
+//        facilityspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //
-//                adapter.notifyDataSetChanged();
-
-                Log.d("...>>>>>>", "valuecount " + valuecount);
-                if(valuecount ==0)
-                    listView.setAdapter(null);
-
-                if(!formItems.isEmpty())
-                {
-                    int k=0;
-                    int f= formItems.size();
-
-                    long[] id_admin=new long[f];
-                    String[] name_admin=new String[f];
-                    final int[] status_admin= new int[f];
-                    final String[] inS= new String[f];
-
-                    for(FormItem ft: formItems)
-                    {
-                        id_admin[k]= Integer.parseInt(ft.getGlobal_id());
-                        name_admin[k]=ft.getName();
-                        status_admin[k]=ft.getStatus();
-                        inS[k]= ft.getInS();
-
-                        Log.d(".....>>>>>>>>>>", "status" +ft.getStatus());
-
-                        k++;
-                    }
-                    listadapter=new DisplayNamesWithStatusAdapter(SurveyActivity.this,id_admin,name_admin,status_admin,inS);
-
-                    listView.setAdapter(listadapter);
-
-                    //     Helpes.getListViewSize(courseListView);
-
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Log.d("Status.......OnResume", "response length" + status_admin[position]);
-                            Log.d("Status.......OnResume", "response length");
-                            if(status_admin[position]==2)
-                            {
-                                AlertMessage.showMessage(SurveyActivity.this, getString(R.string.title),
-                                        getString(R.string.msg));
-
-                            }
-                            else {
-                                Intent iiv = new Intent(SurveyActivity.this,Supervisor_verificationActivity.class);
-                                iiv.putExtra("position",position);
-                                // iiv.putExtra("name",names);
-                                startActivity(iiv);
-                                finish();
-                            }
-
-                        }
-                    });
-
-                }
-
-//                else {
-//                    new AlertDialog.Builder(SurveyActivity.this)
-//                            .setTitle("Alert")
-//                            .setMessage("No data found for review!")
-//                            .setPositiveButton("Close", new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    finish();
-//                                }
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                facilityname = facilityspinner.getSelectedItem().toString();
+//                FormTable formTable = new FormTable(SurveyActivity.this);
+//        //        ArrayList<FormItem> formItemArrayList;
+//          //      formItemArrayList=formTable.getAll();
 //
-//                            })
+//                formItems = formTable.getListfromuser(username, facilityname);
+//                valuecount=formItems.size();
+//                //   facilityspinner.setAdapter(null);
 //
-//                            .show();
+////                adapter.notifyDataSetChanged();
+////                adapter.notifyDataSetChanged();
+////
+////                adapter.notifyDataSetChanged();
+//
+//                Log.d("...>>>>>>", "valuecount " + valuecount);
+//                if(valuecount ==0)
+//                    listView.setAdapter(null);
+//
+//                if(!formItems.isEmpty())
+//                {
+//                    int k=0;
+//                    int f= formItems.size();
+//
+//                    long[] id_admin=new long[f];
+//                    String[] name_admin=new String[f];
+//                    final int[] status_admin= new int[f];
+//                    final String[] inS= new String[f];
+//
+//                    for(FormItem ft: formItems)
+//                    {
+//                        id_admin[k]= Integer.parseInt(ft.getGlobal_id());
+//                        name_admin[k]=ft.getName();
+//                        status_admin[k]=ft.getStatus();
+//                        inS[k]= ft.getInS();
+//
+//                        Log.d(".....>>>>>>>>>>", "status" +ft.getStatus());
+//
+//                        k++;
+//                    }
+//                    listadapter=new DisplayNamesWithStatusAdapter(SurveyActivity.this,id_admin,name_admin,status_admin,inS);
+//
+//                    listView.setAdapter(listadapter);
+//
+//                    //     Helpes.getListViewSize(courseListView);
+//
+//                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                            Log.d("Status.......OnResume", "response length" + status_admin[position]);
+//                            Log.d("Status.......OnResume", "response length");
+//                            if(status_admin[position]==2)
+//                            {
+//                                AlertMessage.showMessage(SurveyActivity.this, getString(R.string.title),
+//                                        getString(R.string.msg));
+//
+//                            }
+//                            else {
+//                                Intent iiv = new Intent(SurveyActivity.this,Supervisor_verificationActivity.class);
+//                                iiv.putExtra("position",position);
+//                                // iiv.putExtra("name",names);
+//                                startActivity(iiv);
+//                                finish();
+//                            }
+//
+//                        }
+//                    });
 //
 //                }
+//
+////                else {
+////                    new AlertDialog.Builder(SurveyActivity.this)
+////                            .setTitle("Alert")
+////                            .setMessage("No data found for review!")
+////                            .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+////                                @Override
+////                                public void onClick(DialogInterface dialog, int which) {
+////                                    finish();
+////                                }
+////
+////                            })
+////
+////                            .show();
+////
+////                }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//
+//
+//        });
 
-
-
-
-
-
-
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
-
-        });
-
-
+        facilityspinner.setOnItemSelectedListener(this);
 
 
 
@@ -223,35 +241,36 @@ public class SurveyActivity extends AppCompatActivity {
         Collector_name.add("user_hb2");
         Collector_name.add("user_hb3");
         Collector_name.add("user_hb4");
+        Collector_name.add("collector");
         ArrayAdapter<String> name_adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, Collector_name);
         collector_name = (Spinner)findViewById(R.id.spinner1);
         collector_name.setAdapter(name_adapter);
+        collector_name.setOnItemSelectedListener(this);
 
-
-        collector_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                username = collector_name.getSelectedItem().toString();
-
-
-//                formItems = formTable.getListfromuser(username, facilityname);
-//                valuecount=formItems.size();
-                //facilityspinner.setAdapter(null);
-
-
-
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
-
-        });
+//        collector_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                username = collector_name.getSelectedItem().toString();
+//
+//
+////                formItems = formTable.getListfromuser(username, facilityname);
+////                valuecount=formItems.size();
+//                //facilityspinner.setAdapter(null);
+//
+//
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//
+//
+//        });
 
 
 
@@ -308,5 +327,56 @@ public class SurveyActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void genList(){
+        String cName = collector_name.getSelectedItem().toString();
+        String facility = facilityspinner.getSelectedItem().toString();
+        mAdapter.clear();
+        mAdapter.addAll(FPObservationSupervisorTable.toDbrow(fpTable.getList(cName, facility)));
+        mAdapter.addAll(SatelliteClinicSupervisorTable.toDbrow(scTable.getList(cName,facility)));
+        mAdapter.addAll(SickChildSupervisorTable2.toDbrow(sckTable.getList(cName,facility)));
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        genList();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        genList();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        DBRow item = mAdapter.getItem(position);
+        if(item.status != 1) {
+            Intent intent = new Intent();
+            intent.putExtra(FROM_ADMIN, true);
+            intent.putExtra(DisplayUserActivity.FORM_ID, item.id);
+            if (item.form_type.equals("dh_familyplan")) {
+                intent.setClass(this, FpObservationActivity.class);
+                startActivity(intent);
+            }
+            else if(item.form_type.equals("dh_satelliteclinic")){
+                intent.setClass(this,SateliteClinicInventoryActivity.class);
+                startActivity(intent);
+            }
+            else if(item.form_type.equals("dh_sickchild")){
+                intent.setClass(this,SickChildUnderFiveActivity.class);
+                startActivity(intent);
+            }
+        }
+        else{
+            Toast.makeText(this,"Form is alreay accepted",Toast.LENGTH_SHORT).show();
+        }
     }
 }

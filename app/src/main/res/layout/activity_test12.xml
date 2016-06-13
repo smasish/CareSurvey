@@ -1144,8 +1144,38 @@
                     android:id="@+id/end_time" />
             </LinearLayout>
 
-
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/admin_btn_layout"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Accept"
+                    android:background="@color/purple"
+                    android:textColor="@color/white"
+                    android:id="@+id/accept"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Revert"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/revert"
+                    android:background="@color/purple"
+                    android:textColor="@color/white"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_btn_layout"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
 

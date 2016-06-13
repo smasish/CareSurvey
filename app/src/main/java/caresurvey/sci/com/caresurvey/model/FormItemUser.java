@@ -22,8 +22,6 @@ public class FormItemUser extends DBRow{
     public String folictablet;
     public String folictabletimportance;
     public String global_id;
-    public String comments;
-    public String fields;
     public String inS;
     public String serial_no;
     public String date;

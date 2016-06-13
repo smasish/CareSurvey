@@ -149,4 +149,5 @@ public class AppUtils {
         NetworkInfo wifiInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         return wifiInfo.isConnected();
     }
+
 }

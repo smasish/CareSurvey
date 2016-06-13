@@ -26,6 +26,12 @@ public class DisplayNamesWithStatusAdapter2 extends ArrayAdapter<DBRow>{
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public DisplayNamesWithStatusAdapter2(Context context, int resource) {
+        super(context, resource);
+        this.resource = resource;
+        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
     private class ViewHolder {
         TextView id;
         TextView  name;
@@ -51,7 +57,7 @@ public class DisplayNamesWithStatusAdapter2 extends ArrayAdapter<DBRow>{
         }
 
         holder.id.setText("" +getItem(position).id);
-        holder.name.setText("" + getItem(position).name);
+        holder.name.setText("" + getItem(position).collector_name);
 //
 //        button=(Button) convertView.findViewById(R.id.button2);
 //

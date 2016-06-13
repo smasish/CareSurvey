@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
@@ -60,17 +62,17 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         table = new SatelliteClinicTable(this);
         Intent mIntent = getIntent();
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
-            item = table.get(mIntent.getIntExtra(DisplayUserActivity.FORM_ID,0));
-//            names = item.name;
-//            designation = item.designation;
-//            collector_name = item.collector_name;
-//            upozila = item.upozila;
-//            village = item.village;
-//            datespicker = item.datepick;
-//            timepicker = item.timepick;
-//            facility = item.facility;
-//            obsType = item.obs_type;
-//            district = item.district;
+            if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+                findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
+                findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
+                SatelliteClinicSupervisorTable supervisorTable = new SatelliteClinicSupervisorTable(this);
+                item = supervisorTable.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID,0L));
+            }
+            else {
+                findViewById(R.id.user_btn_layout).setVisibility(View.VISIBLE);
+                findViewById(R.id.admin_btn_layout).setVisibility(View.GONE);
+                item = table.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID, 0));
+            }
         }
         else{
             item = new SatelliteClinicItem();
@@ -92,7 +94,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
         }
-
+        findViewById(R.id.accept).setOnClickListener(this);
+        findViewById(R.id.revert).setOnClickListener(this);
         loadForm();
 
 
@@ -522,6 +525,84 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             dialog.show();
             RequestQueue requestQueue = Volley.newRequestQueue(SateliteClinicInventoryActivity.this);
             requestQueue.add(stringRequest);
+        }
+        else if(v.getId() == R.id.accept){
+            final ProgressDialog progressDialog = new ProgressDialog(SateliteClinicInventoryActivity.this);
+            progressDialog.setMessage("Please wait...");
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
+            final  SatelliteClinicItem fItem = SateliteClinicInventoryActivity.this.item;
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                progressDialog.dismiss();
+                                Log.d(".....>>>>>>>>>>", "response length" +response);
+                                JSONObject jsonObject = new JSONObject(response);
+                                int status;
+                                status= jsonObject.getInt("status");
+                                Log.d(".....>>>>>>>>>>", "response length" +status);
+                                SatelliteClinicSupervisorTable t = new SatelliteClinicSupervisorTable(SateliteClinicInventoryActivity.this);
+                                fItem.status =1;
+                                t.insert(fItem); //update db
+                                Toast.makeText(SateliteClinicInventoryActivity.this,"Successfully submitted",Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
+                            catch (Exception e)
+                            {
+
+                            }
+                            //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(SateliteClinicInventoryActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject requests = new JSONObject();
+                        JSONArray jsonArray =new JSONArray();
+                        JSONObject jf= new JSONObject();
+                        JSONObject meta=new JSONObject();
+                        meta.put("comments","");
+                        meta.put("fields", "");
+                        requests.put("meta",meta);
+                        requests.put("submitted_by", fItem.submittedBy);
+                        requests.put("form_id", fItem.id);
+                        //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                        requests.put("form_type","dh_satelliteclinic");
+                        requests.put("status",1);
+                        jsonArray.put(requests);
+
+                        //data
+                        JSONObject data = new JSONObject();
+                        data.put("username", "supervisor");
+                        data.put("password", "supervisor");
+                        data.put("requests", jsonArray);
+                        params.put("data", data.toString());
+                    }
+                    catch (Exception e){
+
+                    }
+
+                    return params;
+                }
+
+            };
+
+            RequestQueue requestQueue = Volley.newRequestQueue(SateliteClinicInventoryActivity.this);
+            requestQueue.add(stringRequest);
+            progressDialog.show();
         }
     }
 

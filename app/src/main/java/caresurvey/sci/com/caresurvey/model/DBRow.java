@@ -5,6 +5,8 @@ package caresurvey.sci.com.caresurvey.model;
  */
 public class DBRow {
 
+    public String form_type;
+
     public DBRow(){
         id = 0;
     }
@@ -23,6 +25,13 @@ public class DBRow {
     public String facility;
     public String obs_type;
     public String district;
+
+    //for supervisor
+    public String user_id;
+    public String meta;
+    public String submittedBy;
+    public String comments;
+    public String fields;
 
     public static final String KEY_NAME = "_names"; // 1 - text
     public static final String KEY_DATE_PICK= "_datepick";

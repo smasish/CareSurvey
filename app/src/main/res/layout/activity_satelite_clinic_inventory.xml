@@ -1772,6 +1772,38 @@
 
         </LinearLayout>
         <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/admin_btn_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+            <Button
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accept"
+                android:textColor="@android:color/white"
+                android:background="@color/purple"
+                android:padding="8dp"/>
+            <Button
+                android:id="@+id/revert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Revert"
+                android:layout_alignParentBottom="true"
+                android:layout_alignBaseline="@id/accept"
+                android:layout_toRightOf="@id/accept"
+                android:layout_marginLeft="15dp"
+                android:textColor="@android:color/white"
+                android:background="@color/purple"
+                android:padding="8dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/user_btn_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

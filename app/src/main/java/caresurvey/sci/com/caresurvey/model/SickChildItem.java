@@ -1,5 +1,7 @@
 package caresurvey.sci.com.caresurvey.model;
 
+import org.json.JSONObject;
+
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
@@ -37,8 +39,6 @@ public class SickChildItem extends DBRow{
     public String result;
     public String end_time;
     public String ct_client;
-    public String fields;
-    public String comments;
     public String facilityId;
     public String bmi;
     public String circle;
@@ -403,5 +403,69 @@ public class SickChildItem extends DBRow{
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public static SickChildItem getObject(String json){
+        SickChildItem item = new SickChildItem();
+        try {
+            JSONObject object = new JSONObject(json);
+            JSONObject data = object.getJSONObject("data");
+
+            item.id = object.getInt("form_id");
+            item.status = object.getInt("status");
+            item.user_id = Integer.toString(object.getInt("user_id"));
+            if (object.has("meta")) {
+                try {
+                    boolean b = object.getBoolean("meta");
+                    if (b) {
+                        item.meta = "true";
+                    } else {
+                        item.meta = "false";
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            item.submittedBy = object.getString("submitted_by");
+            item.form_type = object.getString("form_type");
+            item.facility_id = AppUtils.itos(AppUtils.getInt(data,"facility_id"));
+            item.sp_client = AppUtils.getString(data,"sp_client");
+            item.so_designation =  AppUtils.getString(data,"sp_designation");
+            item.serial_no = AppUtils.itos(AppUtils.getInt(data,"seral_no"));
+            item.form_date = AppUtils.getString(data,"form_date");
+            item.start_time = AppUtils.getString(data,"start_time");
+            item.child_description = AppUtils.getString(data,"child_description");
+            item.age = AppUtils.itos(AppUtils.getInt(data,"age"));
+            item.feed = AppUtils.btos(AppUtils.getBoolean(data,"feed"));
+            item.vomit = AppUtils.btos(AppUtils.getBoolean(data,"vomit"));
+            item.stutter = AppUtils.btos(AppUtils.getBoolean(data,"stutter"));
+            item.cough = AppUtils.btos(AppUtils.getBoolean(data,"cough"));
+            item.diahorea = AppUtils.btos(AppUtils.getBoolean(data,"diaria"));
+            item.fever = AppUtils.btos(AppUtils.getBoolean(data,"fever"));
+            item.measure_fever = AppUtils.btos(AppUtils.getBoolean(data,"measure_fever"));
+            item.stethoscope = AppUtils.btos(AppUtils.getBoolean(data,"stethoscope"));
+            item.breathing_test = AppUtils.btos(AppUtils.getBoolean(data,"breathing_test"));
+            item.eye_test = AppUtils.btos(AppUtils.getBoolean(data,"eye_test"));
+            item.infected_mouth = AppUtils.btos(AppUtils.getBoolean(data,"infected_mouth"));
+            item.neck = AppUtils.btos(AppUtils.getBoolean(data,"neck"));
+            item.ear = AppUtils.btos(AppUtils.getBoolean(data,"ear"));
+            item.hand = AppUtils.btos(AppUtils.getBoolean(data,"hand"));
+            item.dehydration = AppUtils.btos(AppUtils.getBoolean(data,"dehydration"));
+            item.weight = AppUtils.btos(AppUtils.getBoolean(data,"weight"));
+            item.clinic_test = AppUtils.btos(AppUtils.getBoolean(data,"clinic_test"));
+            item.belly_button = AppUtils.btos(AppUtils.getBoolean(data,"belly_button"));
+            item.height = AppUtils.btos(AppUtils.getBoolean(data,"height"));
+            item.result = AppUtils.getArray(data,"result");
+            item.end_time = AppUtils.getString(data,"end_time");
+            item.village = AppUtils.getString(data,"village");
+            item.district = AppUtils.getString(data,"district");
+            item.union = AppUtils.getString(data,"union");
+            item.subdistrict = AppUtils.getString(data,"sub_district");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return item;
     }
 }
