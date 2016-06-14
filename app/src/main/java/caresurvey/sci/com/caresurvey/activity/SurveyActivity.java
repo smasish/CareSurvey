@@ -366,7 +366,7 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         DBRow item = mAdapter.getItem(position);
-        if(item.status != 1) {
+        if(item.status != 1 && item.status != 2) {
             Intent intent = new Intent();
             intent.putExtra(FROM_ADMIN, true);
             intent.putExtra(DisplayUserActivity.FORM_ID, item.id);
@@ -391,8 +391,11 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
                 startActivity(intent);
             }
         }
-        else{
-            Toast.makeText(this,"Form is alreay accepted",Toast.LENGTH_SHORT).show();
+        else if(item.status ==1 ) {
+            Toast.makeText(this, "Form is already accepted", Toast.LENGTH_SHORT).show();
+        }
+        else if(item.status ==2 ) {
+            Toast.makeText(this, "Form is already reverted", Toast.LENGTH_SHORT).show();
         }
     }
 }

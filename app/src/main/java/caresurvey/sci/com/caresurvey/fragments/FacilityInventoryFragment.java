@@ -81,6 +81,13 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             e.printStackTrace();
 //            Toast.makeText(getActivity(),"Form load failed",Toast.LENGTH_SHORT).show();
         }
+        try{
+            if(getContext().isAdmin()) {
+                editable(false);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         if(resourceID == R.layout.activity_facility_inventory1) {
             gRGi(R.id.fi_1_0).setOnCheckedChangeListener(this);
             gRGi(R.id.fi_1_1).setOnCheckedChangeListener(this);
@@ -281,6 +288,27 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         }
     }
 
+    private void editable(boolean state){
+        if(resourceID == R.layout.activity_facility_inventory1){
+            editable1(state);
+        }
+        else if(resourceID == R.layout.activity_facility_inventory2){
+            editable2(state);
+        }
+        else if(resourceID == R.layout.activity_facility_inventory3){
+            editable3(state);
+        }
+        else if(resourceID == R.layout.activity_facility_inventory4){
+            editable4(state);
+        }
+        else if(resourceID == R.layout.activity_facility_inventory5){
+            editable5(state);
+        }
+        else if(resourceID == R.layout.activity_facility_inventory6){
+            editable6(state);
+        }
+    }
+
     private void loadData(InventoryItem item){
         if(resourceID == R.layout.activity_facility_inventory1){
             loadData1(item);
@@ -360,6 +388,38 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         lRGv(R.id.fi_504_0, gRGI(item.fp_sharp_waste));
         lRGv(R.id.fi_505_0, gRGI(item.fp_latex_gloves));
     }
+
+    private void editable5(boolean state){
+        sRGs(R.id.fi_401_0, state);
+        sRGs(R.id.fi_401_1, state);
+        sRGs(R.id.fi_402_0, state);
+        sRGs(R.id.fi_402_1, state);
+        sRGs(R.id.fi_403_0, state);
+        sRGs(R.id.fi_403_1, state);
+        sRGs(R.id.fi_404_0, state);
+        sRGs(R.id.fi_405_0, state);
+        sRGs(R.id.fi_406_0, state);
+        sRGs(R.id.fi_407_0, state);
+        sRGs(R.id.fi_408_0, state);
+        sRGs(R.id.fi_409_0, state);
+        sRGs(R.id.fi_410_0, state);
+        sRGs(R.id.fi_411_0, state);
+        sRGs(R.id.fi_412_0, state);
+        sRGs(R.id.fi_413_0, state);
+        sRGs(R.id.fi_414_0, state);
+        sRGs(R.id.fi_415_0, state);
+        sRGs(R.id.fi_416_0, state);
+        sRGs(R.id.fi_417_0, state);
+        sRGs(R.id.fi_418_0, state);
+        sRGs(R.id.fi_419_0, state);
+        sRGs(R.id.fi_420_0, state);
+        sRGs(R.id.fi_501_0, state);
+        sRGs(R.id.fi_502_0, state);
+        sRGs(R.id.fi_503_0, state);
+        sRGs(R.id.fi_504_0, state);
+        sRGs(R.id.fi_505_0, state);
+    }
+
     private void loadData6(InventoryItem item){
         String tokens[];
         tokens = item.r_healthy_newborn.split(",");
@@ -502,6 +562,43 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             sETv(R.id.fi_612,item.end_time);
         }
     }
+    private void editable6(boolean state){
+        sVEs(R.id.fi_601_1,state);
+        sVEs(R.id.fi_601_2,state);
+        sVEs(R.id.fi_601_3,state);
+        sVEs(R.id.fi_602_1,state);
+        sVEs(R.id.fi_602_2,state);
+        sVEs(R.id.fi_602_3,state);
+        sVEs(R.id.fi_603_1,state);
+        sVEs(R.id.fi_603_2,state);
+        sVEs(R.id.fi_603_3,state);
+        sVEs(R.id.fi_604_1,state);
+        sVEs(R.id.fi_604_2,state);
+        sVEs(R.id.fi_604_3,state);
+        sVEs(R.id.fi_605_1,state);
+        sVEs(R.id.fi_605_2,state);
+        sVEs(R.id.fi_605_3,state);
+        sVEs(R.id.fi_606_1,state);
+        sVEs(R.id.fi_606_2,state);
+        sVEs(R.id.fi_606_3,state);
+        sVEs(R.id.fi_607_1,state);
+        sVEs(R.id.fi_607_2,state);
+        sVEs(R.id.fi_607_3,state);
+        sVEs(R.id.fi_608_1,state);
+        sVEs(R.id.fi_608_2,state);
+        sVEs(R.id.fi_608_3,state);
+        sVEs(R.id.fi_609_1,state);
+        sVEs(R.id.fi_609_2,state);
+        sVEs(R.id.fi_609_3,state);
+        sVEs(R.id.fi_610_1,state);
+        sVEs(R.id.fi_610_2,state);
+        sVEs(R.id.fi_610_3,state);
+        sVEs(R.id.fi_611_1,state);
+        sVEs(R.id.fi_611_2,state);
+        sVEs(R.id.fi_611_3,state);
+        sVEs(R.id.fi_612,state);
+        sVEs(R.id.fi_612,state);
+    }
     private void loadData4(InventoryItem item){
         sETv(R.id.fi_325_0,item.delivery_sp_name);
         sSPi(R.id.fi_325_1,item.delivery_sp_designation);
@@ -618,6 +715,48 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
 
     }
 
+    private void editable4(boolean state){
+        sVEs(R.id.fi_325_0,state);
+        sVEs(R.id.fi_325_1,state);
+        sRGs(R.id.fi_325_2, state);
+        sRGs(R.id.fi_326_0, state);
+        sRGs(R.id.fi_326_1, state);
+        sRGs(R.id.fi_327_0, state);
+        sRGs(R.id.fi_327_1, state);
+        sRGs(R.id.fi_328_0, state);
+        sRGs(R.id.fi_328_1, state);
+        sRGs(R.id.fi_329_0, state);
+        sRGs(R.id.fi_329_1, state);
+        sRGs(R.id.fi_330_0, state);
+        sRGs(R.id.fi_330_1, state);
+        sRGs(R.id.fi_331_0, state);
+        sRGs(R.id.fi_331_1, state);
+        sRGs(R.id.fi_332_0, state);
+        sRGs(R.id.fi_332_1, state);
+        sRGs(R.id.fi_333_0, state);
+        sRGs(R.id.fi_333_1, state);
+        sRGs(R.id.fi_334_0, state);
+        sRGs(R.id.fi_335_0, state);
+        sRGs(R.id.fi_336_0, state);
+        sRGs(R.id.fi_337_0, state);
+        sRGs(R.id.fi_338_0, state);
+        sRGs(R.id.fi_339_0, state);
+        sRGs(R.id.fi_340_0, state);
+        sRGs(R.id.fi_341_0, state);
+        sRGs(R.id.fi_342_0, state);
+        sRGs(R.id.fi_343_0, state);
+        sRGs(R.id.fi_344_0, state);
+        sRGs(R.id.fi_345_0, state);
+        sRGs(R.id.fi_346_0, state);
+        sRGs(R.id.fi_347_0, state);
+        sRGs(R.id.fi_348_0, state);
+        sRGs(R.id.fi_349_0, state);
+        sRGs(R.id.fi_350_0, state);
+        sRGs(R.id.fi_351_0, state);
+
+
+    }
+
     private void loadData3(InventoryItem item){
         sETv(R.id.fi_301_0,item.equipment_sp_name);
         sSPi(R.id.fi_301_1,item.equipment_sp_designation);
@@ -715,6 +854,41 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         lRGv(R.id.fi_321_0, gRGI(item.n_telecoil_landset));
         lRGv(R.id.fi_322_0, gRGI(item.n_kolori_meter));
         lRGv(R.id.fi_323_0, gRGI(item.n_litmus_paper));
+
+
+    }
+    private void editable3(boolean state){
+        sVEs(R.id.fi_301_0,state);
+        sVEs(R.id.fi_301_1,state);
+        sRGs(R.id.fi_302_0, state);
+        sRGs(R.id.fi_302_1, state);
+        sRGs(R.id.fi_303_0, state);
+        sRGs(R.id.fi_303_1, state);
+        sRGs(R.id.fi_304_0, state);
+        sRGs(R.id.fi_304_1, state);
+        sRGs(R.id.fi_305_0, state);
+        sRGs(R.id.fi_305_1, state);
+        sRGs(R.id.fi_306_0, state);
+        sRGs(R.id.fi_306_1, state);
+        sRGs(R.id.fi_307_0, state);
+        sRGs(R.id.fi_308_0, state);
+        sRGs(R.id.fi_309_0, state);
+        sRGs(R.id.fi_310_0, state);
+        sRGs(R.id.fi_311_0, state);
+        sRGs(R.id.fi_312_0, state);
+        sRGs(R.id.fi_313_0, state);
+        sRGs(R.id.fi_314_0, state);
+        sRGs(R.id.fi_314_1, state);
+        sRGs(R.id.fi_315_0, state);
+        sRGs(R.id.fi_316_0, state);
+        sRGs(R.id.fi_317_0, state);
+        sRGs(R.id.fi_318_0, state);
+        sRGs(R.id.fi_319_0, state);
+        sRGs(R.id.fi_319_1, state);
+        sRGs(R.id.fi_320_0, state);
+        sRGs(R.id.fi_321_0, state);
+        sRGs(R.id.fi_322_0, state);
+        sRGs(R.id.fi_323_0, state);
 
 
     }
@@ -829,6 +1003,41 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             }
         }
 
+    }
+
+    private void sVEs(int id, boolean state){
+        view.findViewById(id).setEnabled(state);
+    }
+
+    private void sRGs(int id,boolean state){
+        RadioGroup radioGroup = (RadioGroup) view.findViewById(id);
+        for(int i=0;i<radioGroup.getChildCount();i++){
+            RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
+            btn.setEnabled(state);
+        }
+    }
+
+    private void editable1(boolean state){
+        sVEs(R.id.fi_101_0,state);
+        sVEs(R.id.fi_101_1,state);
+        sRGs(R.id.fi_1_0, state);
+        sRGs(R.id.fi_1_1, state);
+        sRGs(R.id.fi_1_2, state);
+        sRGs(R.id.fi_2_0, state);
+        sRGs(R.id.fi_2_1, state);
+        sRGs(R.id.fi_2_2, state);
+        sRGs(R.id.fi_3_0, state);
+        sRGs(R.id.fi_3_1, state);
+        sRGs(R.id.fi_3_2, state);
+        sRGs(R.id.fi_4_0, state);
+        sRGs(R.id.fi_4_1, state);
+        sRGs(R.id.fi_4_2, state);
+        sRGs(R.id.fi_5_0, state);
+        sRGs(R.id.fi_5_1, state);
+        sRGs(R.id.fi_6_2, state);
+        sRGs(R.id.fi_6_0, state);
+        sRGs(R.id.fi_6_1, state);
+        sRGs(R.id.fi_6_2, state);
     }
 
     private void collectData6(InventoryItem item){
@@ -1295,6 +1504,52 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
                     break;
             }
         }
+    }
+
+    private void editable2(boolean state){
+        sVEs(R.id.fi_201_0,state);
+        sVEs(R.id.fi_201_1,state);
+        sVEs(R.id.fi_202_1,state);
+        sVEs(R.id.fi_202_2,state);
+        sVEs(R.id.fi_202_3,state);
+        sVEs(R.id.fi_203_1,state);
+        sVEs(R.id.fi_203_2,state);
+        sVEs(R.id.fi_203_3,state);
+        sVEs(R.id.fi_203_4,state);
+        sVEs(R.id.fi_203_5,state);
+        sVEs(R.id.fi_203_6,state);
+        sVEs(R.id.fi_203_7,state);
+        sVEs(R.id.fi_203_8,state);
+        sVEs(R.id.fi_203_9,state);
+        sVEs(R.id.fi_204_1,state);
+        sVEs(R.id.fi_204_2,state);
+        sVEs(R.id.fi_204_3,state);
+        sVEs(R.id.fi_204_4,state);
+        sVEs(R.id.fi_205_1,state);
+        sVEs(R.id.fi_205_2,state);
+        sVEs(R.id.fi_205_3,state);
+        sVEs(R.id.fi_205_4,state);
+        sVEs(R.id.fi_205_5,state);
+        sVEs(R.id.fi_205_6,state);
+        sVEs(R.id.fi_205_7,state);
+        sVEs(R.id.fi_205_8,state);
+        sVEs(R.id.fi_205_9,state);
+        sVEs(R.id.fi_206_1,state);
+        sVEs(R.id.fi_206_2,state);
+        sVEs(R.id.fi_206_3,state);
+        sVEs(R.id.fi_206_4,state);
+        sVEs(R.id.fi_207_1,state);
+        sVEs(R.id.fi_207_2,state);
+        sVEs(R.id.fi_207_3,state);
+        sVEs(R.id.fi_207_4,state);
+        sVEs(R.id.fi_208_1,state);
+        sVEs(R.id.fi_208_2,state);
+        sVEs(R.id.fi_208_3,state);
+        sVEs(R.id.fi_208_4,state);
+        sVEs(R.id.fi_210_1,state);
+        sVEs(R.id.fi_210_2,state);
+        sVEs(R.id.fi_212_1,state);
+        sVEs(R.id.fi_212_2,state);
     }
 
     private int gRGI(String value){//radio group index

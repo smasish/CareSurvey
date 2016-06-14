@@ -54,6 +54,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         table = new SickChildTable(this);
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)) { //alreay have one
             if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+                editable(false);
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
                 SickChildSupervisorTable2 supervisorTable = new SickChildSupervisorTable2(this);
@@ -201,6 +202,54 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
             for (int i = 0; i < tokens.length; i++) {
                 sCBv(ids[i], tokens[i].trim());
             }
+        }
+    }
+
+    private void editable(boolean state){
+        sVEs(R.id.serial_no,state);
+        sVEs(R.id.form_date,state);
+        sVEs(R.id.start_time,state);
+        sVEs(R.id.child_description, state);
+        sVEs(R.id.age,state);
+        sVEs(R.id.end_time,state);
+        sVEs(R.id.day, state);
+        sVEs(R.id.month,state);
+        sVEs(R.id.year,state);
+        sRGs(R.id.feed,state);
+        sRGs(R.id.vomit,state);
+        sRGs(R.id.stutter,state);
+        sRGs(R.id.cough,state);
+        sRGs(R.id.diahorea,state);
+        sRGs(R.id.fever,state);
+        sRGs(R.id.measure_fever,state);
+        sRGs(R.id.stethoscope,state);
+        sRGs(R.id.breathing_test,state);
+        sRGs(R.id.eye_test,state);
+        sRGs(R.id.infected_mouth,state);
+        sRGs(R.id.neck,state);
+        sRGs(R.id.ear,state);
+        sRGs(R.id.dehydration,state);
+        sRGs(R.id.weight,state);
+        sRGs(R.id.circle,state);
+        sRGs(R.id.belly,state);
+        sRGs(R.id.height,state);
+        sRGs(R.id.bmi,state);
+        sVEs(R.id.checkBox1,state);
+        sVEs(R.id.checkBox2,state);
+        sVEs(R.id.checkBox3,state);
+        sVEs(R.id.checkBox4,state);
+        sVEs(R.id.checkBox5,state);
+    }
+
+    private void sVEs(int id, boolean state){
+        findViewById(id).setEnabled(state);
+    }
+
+    private void sRGs(int id,boolean state){
+        RadioGroup radioGroup = (RadioGroup) findViewById(id);
+        for(int i=0;i<radioGroup.getChildCount();i++){
+            RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
+            btn.setEnabled(state);
         }
     }
 

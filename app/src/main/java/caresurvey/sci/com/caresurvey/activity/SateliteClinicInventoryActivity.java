@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         Intent mIntent = getIntent();
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
             if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+                editable(false);
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
                 SatelliteClinicSupervisorTable supervisorTable = new SatelliteClinicSupervisorTable(this);
@@ -153,6 +155,68 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         sRGv(R.id.csi_232_y, R.id.csi_232_n, item.csi232);
         sRGv(R.id.csi_233_y, R.id.csi_233_n, item.csi233);
         sRGv(R.id.csi_234_y, R.id.csi_234_n, item.csi234);
+    }
+
+    private void editable(boolean state){
+        sVEs(R.id.date, state);
+        sVEs(R.id.start_time, state);
+        sVEs(R.id.end_time,state);
+//        sVEs(R.id.client_name,state);
+//        sVEs(R.id.designation, state);
+        sRGs(R.id.csi_101_y,state); sRGs(R.id.csi_101_n,state);
+        sRGs(R.id.csi_102_y,state); sRGs(R.id.csi_102_n,state);
+        sRGs(R.id.csi_103_y,state); sRGs(R.id.csi_103_n,state);
+        sRGs(R.id.csi_104_y,state); sRGs(R.id.csi_104_n,state);
+        sRGs(R.id.csi_105_y,state); sRGs(R.id.csi_105_n,state);
+        sRGs(R.id.csi_106_y,state); sRGs(R.id.csi_106_n,state);
+        sRGs(R.id.csi_107_y,state); sRGs(R.id.csi_107_n,state);
+        sRGs(R.id.csi_201_y,state); sRGs(R.id.csi_201_n,state);
+        sRGs(R.id.csi_202_y,state); sRGs(R.id.csi_202_n,state);
+        sRGs(R.id.csi_203_y,state); sRGs(R.id.csi_203_n,state);
+        sRGs(R.id.csi_204_y,state); sRGs(R.id.csi_204_n,state);
+        sRGs(R.id.csi_205_y,state); sRGs(R.id.csi_205_n,state);
+        sRGs(R.id.csi_206_y,state); sRGs(R.id.csi_206_n,state);
+        sRGs(R.id.csi_207_y,state); sRGs(R.id.csi_207_n,state);
+        sRGs(R.id.csi_208_y,state); sRGs(R.id.csi_208_n,state);
+        sRGs(R.id.csi_209_y,state); sRGs(R.id.csi_209_n,state);
+        sRGs(R.id.csi_210_y,state); sRGs(R.id.csi_210_n,state);
+        sRGs(R.id.csi_211_y,state); sRGs(R.id.csi_211_n,state);
+        sRGs(R.id.csi_212_y,state); sRGs(R.id.csi_212_n,state);
+        sRGs(R.id.csi_213_y,state); sRGs(R.id.csi_213_n,state);
+        sRGs(R.id.csi_214_y,state); sRGs(R.id.csi_214_n,state);
+        sRGs(R.id.csi_215_y,state); sRGs(R.id.csi_215_n,state);
+        sRGs(R.id.csi_216_y,state); sRGs(R.id.csi_216_n,state);
+        sRGs(R.id.csi_217_y,state); sRGs(R.id.csi_217_n,state);
+        sRGs(R.id.csi_218_y,state); sRGs(R.id.csi_218_n,state);
+        sRGs(R.id.csi_219_y,state); sRGs(R.id.csi_219_n,state);
+        sRGs(R.id.csi_220_y,state); sRGs(R.id.csi_220_n,state);
+        sRGs(R.id.csi_221_y,state); sRGs(R.id.csi_221_n,state);
+        sRGs(R.id.csi_222_y,state); sRGs(R.id.csi_222_n,state);
+        sRGs(R.id.csi_223_y,state); sRGs(R.id.csi_223_n,state);
+        sRGs(R.id.csi_224_y,state); sRGs(R.id.csi_224_n,state);
+        sRGs(R.id.csi_225_y,state); sRGs(R.id.csi_225_n,state);
+        sRGs(R.id.csi_226_y,state); sRGs(R.id.csi_226_n,state);
+        sRGs(R.id.csi_227_y,state); sRGs(R.id.csi_227_n,state);
+        sRGs(R.id.csi_228_y,state); sRGs(R.id.csi_228_n,state);
+        sRGs(R.id.csi_229_y,state); sRGs(R.id.csi_229_n,state);
+        sRGs(R.id.csi_230_1_y,state); sRGs(R.id.csi_230_1_n,state);
+        sRGs(R.id.csi_230_2_y,state); sRGs(R.id.csi_230_2_n,state);
+        sRGs(R.id.csi_231_y,state); sRGs(R.id.csi_231_n,state);
+        sRGs(R.id.csi_232_y,state); sRGs(R.id.csi_232_n,state);
+        sRGs(R.id.csi_233_y,state); sRGs(R.id.csi_233_n,state);
+        sRGs(R.id.csi_234_y,state); sRGs(R.id.csi_234_n,state);
+    }
+
+    private void sVEs(int id, boolean state){
+        findViewById(id).setEnabled(state);
+    }
+
+    private void sRGs(int id,boolean state){
+        RadioGroup radioGroup = (RadioGroup) findViewById(id);
+        for(int i=0;i<radioGroup.getChildCount();i++){
+            RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
+            btn.setEnabled(state);
+        }
     }
 
     private void sETv(int id,String val){

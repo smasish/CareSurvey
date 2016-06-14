@@ -72,6 +72,7 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
             if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
+                editable(false);
                 FPObservationSupervisorTable supervisorTable = new FPObservationSupervisorTable(this);
                 item = supervisorTable.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID,0L));
             }
@@ -127,6 +128,26 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
         sRGv(mFpQuesView7,item.job_aid);
         sRGv(mFpQuesView8,item.followup);
         sETv(R.id.et_fp_109,item.start_time);
+    }
+
+    private void editable(boolean state){
+        sVEs(R.id.et_fp_101,state);
+        sVEs(R.id.et_fp_102,state);
+        sVEs(R.id.et_fp_103,state);
+        sVEs(R.id.et_fp_104,state);
+        sVEs(R.id.et_fp_109,state);
+        sRGs(mFpQuesView1, state);
+        sRGs(mFpQuesView2,state);
+        sRGs(mFpQuesView3,state);
+        sRGs(mFpQuesView4,state);
+        sRGs(mFpQuesView5,state);
+        sRGs(mFpQuesView6,state);
+        sRGs(mFpQuesView7,state);
+        sRGs(mFpQuesView8,state);
+    }
+
+    private void sVEs(int id, boolean state){
+        findViewById(id).setEnabled(state);
     }
 
     private String gSPi(int id) {
@@ -219,6 +240,14 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
             else if(val.equals("false")){
                 ((RadioButton)radioGroup.findViewById(R.id.no)).setChecked(true);
             }
+        }
+    }
+
+    private void sRGs(View radioGroupView,boolean state){
+        RadioGroup radioGroup = (RadioGroup) radioGroupView.findViewById(R.id.fp_yes_no_radiogroup);
+        for(int i=0;i<radioGroup.getChildCount();i++){
+            RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
+            btn.setEnabled(state);
         }
     }
 

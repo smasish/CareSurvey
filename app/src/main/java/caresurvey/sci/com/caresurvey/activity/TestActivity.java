@@ -449,6 +449,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         table = new FormTableUser(this);
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)) { //alreay have one
             if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+                editable(false);
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
                 ANCSupervisorTable supervisorTable = new ANCSupervisorTable(this);
@@ -503,6 +504,40 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         sRGv(R.id.folictablet,item.folictablet);
         sRGv(R.id.folictabletimportance,item.folictabletimportance);
         sRGv(R.id.folicsideeffect,item.folicsideeffect);
+    }
+
+    private void editable(boolean state){
+        sVEs(R.id.anc_101,state);
+        sVEs(R.id.anc_102,state);
+        sVEs(R.id.anc_103,state);
+        sVEs(R.id.anc_104, state);
+        sVEs(R.id.anc_106, state);
+        sRGs(R.id.bloodpressure, state);
+        sRGs(R.id.weight,state);
+        sRGs(R.id.hemoglobintest,state);
+        sRGs(R.id.urinetest,state);
+        sRGs(R.id.pregnancyfood,state);
+        sRGs(R.id.pregnancydanger,state);
+        sRGs(R.id.fourparts,state);
+        sRGs(R.id.delivery,state);
+        sRGs(R.id.feedbaby,state);
+        sRGs(R.id.sixmonths,state);
+        sRGs(R.id.familyplanning,state);
+        sRGs(R.id.folictablet,state);
+        sRGs(R.id.folictabletimportance,state);
+        sRGs(R.id.folicsideeffect,state);
+    }
+
+    private void sVEs(int id, boolean state){
+        findViewById(id).setEnabled(state);
+    }
+
+    private void sRGs(int id,boolean state){
+        RadioGroup radioGroup = (RadioGroup) findViewById(id);
+        for(int i=0;i<radioGroup.getChildCount();i++){
+            RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
+            btn.setEnabled(state);
+        }
     }
 
     private void sETv(int id,String val){

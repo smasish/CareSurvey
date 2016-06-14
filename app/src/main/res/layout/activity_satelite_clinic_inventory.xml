@@ -1933,6 +1933,7 @@
 
             <Button
                 android:id="@+id/revert_cancel"
+                android:text="cancel"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
