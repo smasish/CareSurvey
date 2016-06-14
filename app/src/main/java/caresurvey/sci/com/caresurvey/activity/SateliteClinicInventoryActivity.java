@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,12 +33,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
+import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
 import utils.Utils;
 
 import static android.widget.Toast.*;
@@ -603,6 +607,125 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             RequestQueue requestQueue = Volley.newRequestQueue(SateliteClinicInventoryActivity.this);
             requestQueue.add(stringRequest);
             progressDialog.show();
+        }
+        else if(v.getId() == R.id.revert){
+            generateFieldsBox();
+            findViewById(R.id.commentSection).setVisibility(View.VISIBLE);
+        }
+        else if(v.getId() == R.id.revert_cancel){
+            findViewById(R.id.commentSection).setVisibility(View.GONE);
+        }
+        else if(v.getId() == R.id.revert_submit){
+            final ProgressDialog progressDialog = new ProgressDialog(SateliteClinicInventoryActivity.this);
+            progressDialog.setMessage("Please wait...");
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
+            final SatelliteClinicItem fItem = SateliteClinicInventoryActivity.this.item;
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                progressDialog.dismiss();
+                                Log.d(".....>>>>>>>>>>", "response length" +response);
+                                JSONObject jsonObject = new JSONObject(response);
+                                int status;
+                                status= jsonObject.getInt("status");
+                                Log.d(".....>>>>>>>>>>", "response length" +status);
+                                SatelliteClinicSupervisorTable t = new SatelliteClinicSupervisorTable(SateliteClinicInventoryActivity.this);
+                                fItem.status =2;
+                                t.insert(fItem); //update db
+                                Toast.makeText(SateliteClinicInventoryActivity.this,"Successfully submitted",Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+                            //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(SateliteClinicInventoryActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject requests = new JSONObject();
+                        JSONArray jsonArray =new JSONArray();
+                        JSONObject jf= new JSONObject();
+                        JSONObject meta=new JSONObject();
+                        meta.put("comments",getComments());
+                        meta.put("fields", getFields());
+                        requests.put("meta",meta);
+                        requests.put("submitted_by", fItem.submittedBy);
+                        requests.put("form_id", fItem.id);
+                        //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                        requests.put("form_type","dh_satelliteclinic");
+                        requests.put("status",2);
+                        jsonArray.put(requests);
+
+                        //data
+                        JSONObject data = new JSONObject();
+                        data.put("username", "supervisor");
+                        data.put("password", "supervisor");
+                        data.put("requests", jsonArray);
+                        params.put("data", data.toString());
+                    }
+                    catch (Exception e){
+
+                    }
+
+                    return params;
+                }
+
+            };
+
+            RequestQueue requestQueue = Volley.newRequestQueue(SateliteClinicInventoryActivity.this);
+            requestQueue.add(stringRequest);
+            progressDialog.show();
+        }
+    }
+
+    private String getFields(){
+        LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+        int len = fieldLayout.getChildCount();
+        String str = "";
+        for(int i=0;i<len;i++){
+            QCheckBox checkBox = (QCheckBox) fieldLayout.getChildAt(i);
+            if(checkBox.isChecked()){
+                if(str.length() > 0){
+                    str += ",";
+                }
+                str += checkBox.getText();
+            }
+        }
+        return str;
+    }
+    private String getComments(){
+        return ((EditText)findViewById(R.id.comment)).getText().toString();
+    }
+    private static String FIELDS[] = {"101","102","103","104","105","106","107","201","202","203","204"
+            ,"205","206","207","208","209","210","211","212","213","214","215","216","217","218"
+            ,"219","220","221","222","223","224","225","226","227","228","229","230_1","230_2","231","232","233","234"};
+    private void generateFieldsBox(){
+        LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+        fieldLayout.removeAllViews();
+        findViewById(R.id.revert_submit).setOnClickListener(this);
+        findViewById(R.id.revert_cancel).setOnClickListener(this);
+        for(int i=0;i<FIELDS.length;i++){
+            QCheckBox checkBox = new QCheckBox(this);
+            checkBox.setTextSize(25f);
+            checkBox.setPadding(10,10,10,10);
+            checkBox.setText(FIELDS[i]);
+            fieldLayout.addView(checkBox);
         }
     }
 

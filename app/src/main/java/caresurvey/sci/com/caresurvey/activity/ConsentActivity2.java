@@ -27,6 +27,7 @@ public class ConsentActivity2 extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consent2);
         findViewById(R.id.cnt).setOnClickListener(this);
+        name = getIntent().getStringExtra("name");
         loadData();
     }
 

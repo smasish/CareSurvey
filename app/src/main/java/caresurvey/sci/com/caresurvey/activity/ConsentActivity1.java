@@ -36,7 +36,28 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
         loadData();
     }
 
+    private String getUser(){
+        String district = getIntent().getStringExtra("district");
+        if(TextUtils.isEmpty(district)) return "";
+        if(district.equals("Lakshmipur")){
+            return "Shrabani Ghatak";
+        }
+        else if(district.equals("Noakhali")){
+            return "Shrabani Ghatak";
+        }
+        else if(district.equals("Jhalakati")){
+            return "Salma Ummul Baraka";
+        }
+        else if(district.equals("Lakshmipur")){
+            return "Mitu Samaddar";
+        }
+        else if(district.equals("Habiganj")){
+            return "Shubhra Rani Roy";
+        }
+        return "";
+    }
     private void loadData(){
+        sETv(R.id.userCareTaker,getUser());
         date = AppUtils.getDate();
         sETv(R.id.datepicker,date);
         startTime = AppUtils.getTime();
@@ -93,7 +114,12 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
         if(findViewById(R.id.description_value).getVisibility() == View.VISIBLE) {
             description = gSPi(R.id.description_value);
         }
-        phoneNumber = gETv(R.id.phone_number);
+        try {
+            phoneNumber = gETv(R.id.phone_number);
+        }catch (Exception e){
+            phoneNumber = "";
+        }
+
     }
 
     private String gSPi(int id) throws Exception {

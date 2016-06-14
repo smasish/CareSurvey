@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,13 +27,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.fragments.FacilityInventoryFragment;
+import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
+import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
 
 import static caresurvey.sci.com.caresurvey.utils.AppUtils.getInt;
 import static caresurvey.sci.com.caresurvey.utils.AppUtils.setTextWithFonts;
@@ -68,6 +73,9 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
                 findViewById(R.id.admin_btn_layout).setVisibility(View.GONE);
                 item = table.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID, 0));
             }
+        }
+        else{
+            item = new InventoryItem();
         }
         item.name = mIntent.getStringExtra("name");
         item.designation = mIntent.getStringExtra("designation");
@@ -456,7 +464,128 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
             progressDialog.show();
         }
         else if(v.getId() == R.id.revert){
+            generateFieldsBox();
+            findViewById(R.id.commentSection).setVisibility(View.VISIBLE);
+        }
+        else if(v.getId() == R.id.revert_cancel){
+            findViewById(R.id.commentSection).setVisibility(View.GONE);
+        }
+        else if(v.getId() == R.id.revert_submit){
+            final ProgressDialog progressDialog = new ProgressDialog(FacilityInventoryActivity.this);
+            progressDialog.setMessage("Please wait...");
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
+            final InventoryItem fItem = FacilityInventoryActivity.this.item;
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                progressDialog.dismiss();
+                                Log.d(".....>>>>>>>>>>", "response length" +response);
+                                JSONObject jsonObject = new JSONObject(response);
+                                int status;
+                                status= jsonObject.getInt("status");
+                                Log.d(".....>>>>>>>>>>", "response length" +status);
+                                InventorySupervisorTable t = new InventorySupervisorTable(FacilityInventoryActivity.this);
+                                fItem.status =2;
+                                t.insert(fItem); //update db
+                                Toast.makeText(FacilityInventoryActivity.this,"Successfully submitted",Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
 
+                            catch (Exception e)
+                            {
+
+                            }
+                            //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(FacilityInventoryActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject requests = new JSONObject();
+                        JSONArray jsonArray =new JSONArray();
+                        JSONObject jf= new JSONObject();
+                        JSONObject meta=new JSONObject();
+                        meta.put("comments",getComments());
+                        meta.put("fields", getFields());
+                        requests.put("meta",meta);
+                        requests.put("submitted_by", fItem.submittedBy);
+                        requests.put("form_id", fItem.id);
+                        //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                        requests.put("form_type","dh_inventory");
+                        requests.put("status",2);
+                        jsonArray.put(requests);
+
+                        //data
+                        JSONObject data = new JSONObject();
+                        data.put("username", "supervisor");
+                        data.put("password", "supervisor");
+                        data.put("requests", jsonArray);
+                        params.put("data", data.toString());
+                    }
+                    catch (Exception e){
+
+                    }
+
+                    return params;
+                }
+
+            };
+
+            RequestQueue requestQueue = Volley.newRequestQueue(FacilityInventoryActivity.this);
+            requestQueue.add(stringRequest);
+            progressDialog.show();
+        }
+    }
+
+    private String getFields(){
+        LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+        int len = fieldLayout.getChildCount();
+        String str = "";
+        for(int i=0;i<len;i++){
+            QCheckBox checkBox = (QCheckBox) fieldLayout.getChildAt(i);
+            if(checkBox.isChecked()){
+                if(str.length() > 0){
+                    str += ",";
+                }
+                str += checkBox.getText();
+            }
+        }
+        return str;
+    }
+    private String getComments(){
+        return ((EditText)findViewById(R.id.comment)).getText().toString();
+    }
+    private static String FIELDS[] = {"01","02","03","04","05","06",
+            "202","203","204","205","206","207","208","209","210","211","212",
+            "202","203","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323",
+            "326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347",
+            "348","349","350","351","401","402","403","404","405","406","407","408","409","410","411",
+            "412","413","414","415","416","417","418","419","420","501","502","503","504","505",
+            "601","602","603","604","605","606","607","608","609","610","611","612","613","614"};
+    private void generateFieldsBox(){
+        LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+        fieldLayout.removeAllViews();
+        findViewById(R.id.revert_submit).setOnClickListener(this);
+        findViewById(R.id.revert_cancel).setOnClickListener(this);
+        for(int i=0;i<FIELDS.length;i++){
+            QCheckBox checkBox = new QCheckBox(this);
+            checkBox.setTextSize(25f);
+            checkBox.setPadding(10,10,10,10);
+            checkBox.setText(FIELDS[i]);
+            fieldLayout.addView(checkBox);
         }
     }
 }

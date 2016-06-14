@@ -522,7 +522,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".50"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/inventory_dust_ques_206"/>
+                    android:text="@string/inventory_dust_ques_208"/>
 
                 <LinearLayout
                     android:layout_marginLeft="10dp"

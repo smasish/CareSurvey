@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -34,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.FpObservationTable;
@@ -42,6 +44,7 @@ import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
+import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static android.widget.Toast.makeText;
@@ -49,7 +52,7 @@ import static android.widget.Toast.makeText;
 /**
  * Created by Shahin on 5/4/2016.
  */
-public class FpObservationActivity extends AppCompatActivity {
+public class FpObservationActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mFp101TextView, mFp102TextView, mFp103TextView, mFp104TextView;
     private EditText mFp101EditText, mFp102EditText, mFp103EditText, mFp104EditText;
     private View mFpQuesView1, mFpQuesView2, mFpQuesView3, mFpQuesView4, mFpQuesView5, mFpQuesView6, mFpQuesView7, mFpQuesView8;
@@ -266,6 +269,8 @@ public class FpObservationActivity extends AppCompatActivity {
     }
 
     public void onClickBtn(View view) {
+        final ProgressDialog progressDialog = new ProgressDialog(FpObservationActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(FpObservationActivity.this);
         switch (view.getId()) {
             case R.id.back:
 //                Intent start = new Intent(FpObservationActivity.this, DisplayUserActivity.class);
@@ -421,14 +426,12 @@ public class FpObservationActivity extends AppCompatActivity {
 
                     };
                     dialog.show();
-                    RequestQueue requestQueue = Volley.newRequestQueue(FpObservationActivity.this);
                     requestQueue.add(stringRequest);
 
                 }
 
                 break;
             case R.id.accept:
-                final ProgressDialog progressDialog = new ProgressDialog(FpObservationActivity.this);
                 progressDialog.setMessage("Please wait...");
                 String url = "http://119.148.43.34/mamoni/survey/api/form";
                 final  FpObservationFormItem fItem = FpObservationActivity.this.item;
@@ -501,12 +504,125 @@ public class FpObservationActivity extends AppCompatActivity {
 
                 };
 
-                RequestQueue requestQueue = Volley.newRequestQueue(FpObservationActivity.this);
                 requestQueue.add(stringRequest);
                 progressDialog.show();
                 break;
             case R.id.revert:
+                generateFieldsBox();
+                findViewById(R.id.commentSection).setVisibility(View.VISIBLE);
                 break;
+            case R.id.revert_cancel:
+                findViewById(R.id.commentSection).setVisibility(View.GONE);
+                break;
+            case R.id.revert_submit:
+                progressDialog.setMessage("Please wait...");
+                url = "http://119.148.43.34/mamoni/survey/api/form";
+                final FpObservationFormItem item2 = FpObservationActivity.this.item;
+                StringRequest stringRequest2 = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    progressDialog.dismiss();
+                                    Log.d(".....>>>>>>>>>>", "response length" +response);
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    int status;
+                                    status= jsonObject.getInt("status");
+                                    Log.d(".....>>>>>>>>>>", "response length" +status);
+                                    FPObservationSupervisorTable t = new FPObservationSupervisorTable(FpObservationActivity.this);
+                                    item2.status =2;
+                                    t.insert(item2); //update db
+                                    Toast.makeText(FpObservationActivity.this,"Successfully submitted",Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+
+                                catch (Exception e)
+                                {
+
+                                }
+                                //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                progressDialog.dismiss();
+                                Toast.makeText(FpObservationActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                            }
+                        }) {
+
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<>();
+                        try {
+                            //record ====================================1
+                            //record
+                            JSONObject requests = new JSONObject();
+                            JSONArray jsonArray =new JSONArray();
+                            JSONObject jf= new JSONObject();
+                            JSONObject meta=new JSONObject();
+                            meta.put("comments",getComments());
+                            meta.put("fields", getFields());
+                            requests.put("meta",meta);
+                            requests.put("submitted_by", item2.submittedBy);
+                            requests.put("form_id", item2.id);
+                            //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                            requests.put("form_type","dh_familyplan");
+                            requests.put("status",2);
+                            jsonArray.put(requests);
+
+                            //data
+                            JSONObject data = new JSONObject();
+                            data.put("username", "supervisor");
+                            data.put("password", "supervisor");
+                            data.put("requests", jsonArray);
+                            params.put("data", data.toString());
+                        }
+                        catch (Exception e){
+
+                        }
+
+                        return params;
+                    }
+
+                };
+
+                requestQueue.add(stringRequest2);
+                progressDialog.show();
+                break;
+        }
+    }
+
+    private String getFields(){
+        LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+        int len = fieldLayout.getChildCount();
+        String str = "";
+        for(int i=0;i<len;i++){
+            QCheckBox checkBox = (QCheckBox) fieldLayout.getChildAt(i);
+            if(checkBox.isChecked()){
+                if(str.length() > 0){
+                    str += ",";
+                }
+                str += checkBox.getText();
+            }
+        }
+        return str;
+    }
+    private String getComments(){
+        return ((EditText)findViewById(R.id.comment)).getText().toString();
+    }
+    private static String FIELDS[] = {"01","02","03","04","05","06","07","08","109"};
+    private void generateFieldsBox(){
+        LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+        fieldLayout.removeAllViews();
+        findViewById(R.id.revert_submit).setOnClickListener(this);
+        findViewById(R.id.revert_cancel).setOnClickListener(this);
+        for(int i=0;i<FIELDS.length;i++){
+            QCheckBox checkBox = new QCheckBox(this);
+            checkBox.setTextSize(25f);
+            checkBox.setPadding(10,10,10,10);
+            checkBox.setText(FIELDS[i]);
+            fieldLayout.addView(checkBox);
         }
     }
 
@@ -532,5 +648,10 @@ public class FpObservationActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        onClickBtn(v);
     }
 }

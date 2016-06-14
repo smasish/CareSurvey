@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
@@ -54,6 +56,7 @@ import caresurvey.sci.com.caresurvey.model.FormItem;
 import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
+import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -759,6 +762,123 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
             requestQueue.add(stringRequest);
             progressDialog.show();
+        }
+        else if(v.getId() == R.id.revert){
+            generateFieldsBox();
+            findViewById(R.id.commentSection).setVisibility(View.VISIBLE);
+        }
+        else if(v.getId() == R.id.revert_cancel){
+            findViewById(R.id.commentSection).setVisibility(View.GONE);
+        }
+        else if(v.getId() == R.id.revert_submit){
+            final ProgressDialog progressDialog = new ProgressDialog(TestActivity.this);
+            progressDialog.setMessage("Please wait...");
+            String url = "http://119.148.43.34/mamoni/survey/api/form";
+            final FormItemUser fItem = TestActivity.this.item;
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                progressDialog.dismiss();
+                                Log.d(".....>>>>>>>>>>", "response length" +response);
+                                JSONObject jsonObject = new JSONObject(response);
+                                int status;
+                                status= jsonObject.getInt("status");
+                                Log.d(".....>>>>>>>>>>", "response length" +status);
+                                ANCSupervisorTable t = new ANCSupervisorTable(TestActivity.this);
+                                fItem.status =2;
+                                t.insert(fItem); //update db
+                                Toast.makeText(TestActivity.this,"Successfully submitted",Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
+                            catch (Exception e)
+                            {
+
+                            }
+                            //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(TestActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    try {
+                        //record ====================================1
+                        //record
+                        JSONObject requests = new JSONObject();
+                        JSONArray jsonArray =new JSONArray();
+                        JSONObject jf= new JSONObject();
+                        JSONObject meta=new JSONObject();
+                        meta.put("comments",getComments());
+                        meta.put("fields", getFields());
+                        requests.put("meta",meta);
+                        requests.put("submitted_by", fItem.submittedBy);
+                        requests.put("form_id", fItem.id);
+                        //og.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
+                        requests.put("form_type","dh_antenantals");
+                        requests.put("status",2);
+                        jsonArray.put(requests);
+
+                        //data
+                        JSONObject data = new JSONObject();
+                        data.put("username", "supervisor");
+                        data.put("password", "supervisor");
+                        data.put("requests", jsonArray);
+                        params.put("data", data.toString());
+                    }
+                    catch (Exception e){
+
+                    }
+
+                    return params;
+                }
+
+            };
+
+            RequestQueue requestQueue = Volley.newRequestQueue(TestActivity.this);
+            requestQueue.add(stringRequest);
+            progressDialog.show();
+        }
+    }
+    private String getFields(){
+        LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+        int len = fieldLayout.getChildCount();
+        String str = "";
+        for(int i=0;i<len;i++){
+            QCheckBox checkBox = (QCheckBox) fieldLayout.getChildAt(i);
+            if(checkBox.isChecked()){
+                if(str.length() > 0){
+                    str += ",";
+                }
+                str += checkBox.getText();
+            }
+        }
+        return str;
+    }
+    private String getComments(){
+        return ((EditText)findViewById(R.id.comment)).getText().toString();
+    }
+    private static String FIELDS[] = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","106"};
+    private void generateFieldsBox(){
+        LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+        fieldLayout.removeAllViews();
+        findViewById(R.id.revert_submit).setOnClickListener(this);
+        findViewById(R.id.revert_cancel).setOnClickListener(this);
+        for(int i=0;i<FIELDS.length;i++){
+            QCheckBox checkBox = new QCheckBox(this);
+            checkBox.setTextSize(25f);
+            checkBox.setPadding(10,10,10,10);
+            checkBox.setText(FIELDS[i]);
+            fieldLayout.addView(checkBox);
         }
     }
 

@@ -100,27 +100,39 @@ public class AddressInsertActivity extends AppCompatActivity {
         //user.setText(name);
         districtSpinner = (Spinner) findViewById(R.id.districtspinner);
         ArrayList<String> dList = new ArrayList<>();
-        dList.add("Hobiganj");
+        dList.add("Habiganj");
+        dList.add("Lakshmipur");
+        dList.add("Noakhali");
+        dList.add("Jhalakati");
+
         ArrayAdapter<String> districtAdapter = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, dList);
         districtSpinner.setAdapter(districtAdapter);
+        districtSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setDivname(districtSpinner.getSelectedItem().toString());//string from the other activity
+                if (divname.equals("Habiganj"))
+                {
+                    setZillaid(String.valueOf(36));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         divspinner=(Spinner)findViewById(R.id.divisionspinner);
         villagespinner=(Spinner)findViewById(R.id.villagespinner);
         upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
         unionspinner=(Spinner)findViewById(R.id.unionspinner);
         facility_id_number=(EditText)findViewById(R.id.facility_id_number);
         //  listView = (ListView) findViewById(R.id.listView);
-        setDivname("HABIGANJ");//string from the other activity
+
 
 
         anc_lay = (LinearLayout)findViewById(R.id.anc_layout);
 
-
-
-
-        if (divname.equals("HABIGANJ"))
-        {
-            setZillaid(String.valueOf(36));
-        }
         callspinner1();
 
 //
