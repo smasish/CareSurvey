@@ -11,8 +11,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import caresurvey.sci.com.caresurvey.model.DBRow;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
-import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 
 /**
  * Created by shantanu on 6/14/16.
@@ -127,8 +126,8 @@ public class ANCSupervisorTable extends SuperTable{
         setNewTable(TABLE_NAME, table);
     }
 
-    public List<FormItemUser> getList(String cName, String facility) {
-        ArrayList<FormItemUser> fpList = new ArrayList<>();
+    public List<ANCFormItem> getList(String cName, String facility) {
+        ArrayList<ANCFormItem> fpList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where " + KEY_SUBMITTED_BY + "='" + cName + "'", null);
@@ -144,8 +143,8 @@ public class ANCSupervisorTable extends SuperTable{
         return fpList;
     }
 
-    private FormItemUser cursorToSubCatList(Cursor cursor) {
-        FormItemUser item = new FormItemUser();
+    private ANCFormItem cursorToSubCatList(Cursor cursor) {
+        ANCFormItem item = new ANCFormItem();
         item.id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
         item.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
         item.start_time = cursor.getString(cursor.getColumnIndex(KEY_START_TIME));
@@ -183,7 +182,7 @@ public class ANCSupervisorTable extends SuperTable{
         return item;
     }
 
-    public long insert(FormItemUser item) {
+    public long insert(ANCFormItem item) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID,item.id);
         values.put(KEY_DATE,item.date);
@@ -235,15 +234,15 @@ public class ANCSupervisorTable extends SuperTable{
         return item.id;
     }
 
-    public static List<DBRow> toDbrow(List<FormItemUser> list){
+    public static List<DBRow> toDbrow(List<ANCFormItem> list){
         List<DBRow> result = new ArrayList<>();
-        for(FormItemUser item : list){
+        for(ANCFormItem item : list){
             result.add(item);
         }
         return result;
     }
 
-    public FormItemUser get(long id) {
+    public ANCFormItem get(long id) {
 
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
@@ -257,6 +256,6 @@ public class ANCSupervisorTable extends SuperTable{
         }
         cursor.close();
         closeDB();
-        return new FormItemUser();
+        return new ANCFormItem();
     }
 }

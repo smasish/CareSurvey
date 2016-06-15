@@ -2,7 +2,9 @@ package caresurvey.sci.com.caresurvey.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -32,7 +34,21 @@ public abstract class SuperTable {
         generateTable();
         return Tables;
     }
-    abstract protected void createTable();
+    protected void createTable(){
+        try {
+            List<String> tableQuery = getCreateTableQuery();
+            SQLiteDatabase db = openDB();
+            for(int i=0;i<tableQuery.size();i++)
+            {
+                db.execSQL(tableQuery.get(i));
+            }
+            Log.e("table:", TABLE_NAME + " created");
+            closeDB();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     abstract protected  void generateTable();
 
     @SuppressWarnings("unchecked")
@@ -89,5 +105,23 @@ public abstract class SuperTable {
         return false;
     }
 
+    public long getRowSize(){
+        SQLiteDatabase db = openDB();
+        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        closeDB();
+        return numRows;
+    }
+
+    public long getLastId(){
+        SQLiteDatabase db = openDB();
+        long lastId = 0;
+        String query = "SELECT _id from " +  TABLE_NAME +" order by _id DESC limit 1";
+        Cursor c = db.rawQuery(query,null);
+        if (c != null && c.moveToFirst()) {
+            lastId = c.getLong(0); //The 0 is the column index, we only have 1 column, so the index is 0
+        }
+        closeDB();
+        return lastId;
+    }
 
 }

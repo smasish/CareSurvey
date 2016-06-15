@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
-import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class DisplayUserFormActivity extends AppCompatActivity {
@@ -36,7 +36,7 @@ public class DisplayUserFormActivity extends AppCompatActivity {
         //     Log.d(".....>>>>>>>>>>", "response length" + names);
 
         ArrayList<SickChildItem> sickChildItems;
-        FormItem formItem;
+        ANCFormItem formItem;
 
         SickChildTable sickChildTable = new SickChildTable(DisplayUserFormActivity.this);
         sickChildItems = sickChildTable.getAllInfo();
@@ -88,7 +88,7 @@ public class DisplayUserFormActivity extends AppCompatActivity {
     protected void onResume() {
 
         ArrayList<SickChildItem> sickChildItems;
-        FormItem formItem;
+        ANCFormItem formItem;
 
         SickChildTable sickChildTable = new SickChildTable(DisplayUserFormActivity.this);
         sickChildItems = sickChildTable.getAllInfo();

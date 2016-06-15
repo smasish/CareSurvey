@@ -5,17 +5,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import caresurvey.sci.com.caresurvey.model.DBRow;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
  * Created by Mazharul.Islam1 on 4/24/2016.
  */
-public class SickChildTable {
+public class SickChildTable extends SuperTable{
     public static final String TABLE_NAME = DatabaseHelper.FORM_SICK_CHILD;
     public static final String KEY_ID = "_id"; // 0 -integer
 
@@ -61,104 +64,73 @@ public class SickChildTable {
     private static final String KEY_UPOZILLA = "_upozilla";
 
 
-    public Context tContext;
 
     public SickChildTable (Context context) {
-        tContext = context;
-        createTable();
-    }
-    public long getRowSize(){
-        SQLiteDatabase db = openDB();
-        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
-        closeDB();
-        return numRows;
+        super(context,TABLE_NAME);
     }
 
+    @Override
+    protected void generateTable() {
+        //creating table for save cart
+        Hashtable<String,String> table = new Hashtable<String,String>();
+        table.put(KEY_ID, "integer primary key"); //must need to  add this key
+        table.put(KEY_FACILITY_ID , " INTEGER ");
+        table.put(KEY_SP_CLIENT , " TEXT");              // 1 - text
+        table.put(KEY_SP_DESIGNATGION , " TEXT");
+        table.put(KEY_SERIAL_NO , " TEXT");              // 1 - text
+        table.put(KEY_FORM_DATE , " TEXT");
+        table.put(KEY_START_TIME , " TEXT");              // 1 - text
+        table.put(KEY_CHILD_DESCRIPTION , " TEXT");
+        table.put(KEY_AGE , " TEXT");              // 1 - text
+        table.put(KEY_FEED , " TEXT");
+        table.put(KEY_VOMIT , " TEXT");              // 1 - text
+        table.put(KEY_STUTTER , " TEXT");
+        table.put(KEY_COUGH , " TEXT");
+        table.put(KEY_DIAHOREA , " TEXT");// 1 - text
+        table.put(KEY_FEVER , " TEXT");
+        table.put(KEY_MEASURE_FEVER , " TEXT");
+        table.put(KEY_STETHOSCOPE , " TEXT");
+        table.put(KEY_BREATHING_TEST , " TEXT");
+        table.put(KEY_EYE_TEST , " TEXT");
+        table.put(KEY_INFECTED_MOUTH , " TEXT");
+        table.put(KEY_NECK , " TEXT");
+        table.put(KEY_EAR , " TEXT");
+        table.put(KEY_HAND , " TEXT");
+        table.put(KEY_DEHYDRATION , " TEXT");
+        table.put(KEY_WEIGHT , " TEXT");
+        table.put(KEY_CLINIC_TEST , " TEXT");
+        table.put(KEY_BELLEY_BUTTON , " TEXT");
+        table.put(KEY_HEIGHT , " TEXT");
+        table.put(KEY_CIRCLE , " TEXT");
+        table.put(KEY_BMI , " TEXT");
+        table.put(KEY_RESULT , " TEXT");
+        table.put(KEY_END_TIME , " TEXT");
+        table.put(KEY_VILLAGE , " TEXT");
+        table.put(KEY_UPOZILLA , " TEXT");
+        table.put(KEY_DISTRICT , " TEXT");
+        table.put(KEY_UNION , " TEXT");
+        table.put(KEY_SUB_DISTRICT , " TEXT");
+        table.put(KEY_CT_CLIENT , " TEXT");
+        table.put(KEY_COMMENT , " TEXT");
+        table.put(DBRow.KEY_NAME , " TEXT");
+        table.put(DBRow.KEY_DIVISION , " TEXT");
+        table.put(DBRow.KEY_TIME_PICK , " TEXT");
+        table.put(DBRow.KEY_DATE_PICK , " TEXT");
+        table.put(DBRow.KEY_OBSTYPE , " TEXT");
+        table.put(DBRow.KEY_FACILITY , " TEXT");
+        table.put(KEY_FIELD , " TEXT");
+        table.put(KEY_STATUS , " integer ");
 
-    public void createTable() {
-        SQLiteDatabase db = openDB();
-
-        String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
-                + "( "
-                + KEY_ID + " INTEGER PRIMARY KEY, " // 0 - int
-                + KEY_FACILITY_ID + " INTEGER, "
-                + KEY_SP_CLIENT + " TEXT, "              // 1 - text
-                + KEY_SP_DESIGNATGION + " TEXT, "
-                + KEY_SERIAL_NO + " TEXT, "              // 1 - text
-                + KEY_FORM_DATE + " TEXT, "
-                + KEY_START_TIME + " TEXT, "              // 1 - text
-                + KEY_CHILD_DESCRIPTION + " TEXT, "
-                + KEY_AGE + " TEXT, "              // 1 - text
-                + KEY_FEED + " TEXT, "
-                + KEY_VOMIT + " TEXT, "              // 1 - text
-                + KEY_STUTTER + " TEXT, "
-                + KEY_COUGH + " TEXT, "
-                + KEY_DIAHOREA + " TEXT, "// 1 - text
-                + KEY_FEVER + " TEXT, "
-                + KEY_MEASURE_FEVER + " TEXT, "
-                + KEY_STETHOSCOPE + " TEXT, "
-                + KEY_BREATHING_TEST + " TEXT,"
-                + KEY_EYE_TEST + " TEXT, "
-                + KEY_INFECTED_MOUTH + " TEXT, "
-                + KEY_NECK + " TEXT, "
-                + KEY_EAR + " TEXT, "
-                + KEY_HAND + " TEXT, "
-                + KEY_DEHYDRATION + " TEXT, "
-                + KEY_WEIGHT + " TEXT, "
-                + KEY_CLINIC_TEST + " TEXT, "
-                + KEY_BELLEY_BUTTON + " TEXT, "
-                + KEY_HEIGHT + " TEXT, "
-                + KEY_CIRCLE + " TEXT, "
-                + KEY_BMI + " TEXT, "
-                + KEY_RESULT + " TEXT, "
-                + KEY_END_TIME + " TEXT, "
-                + KEY_VILLAGE + " TEXT, "
-                + KEY_UPOZILLA + " TEXT, "
-                + KEY_DISTRICT + " TEXT, "
-                + KEY_UNION + " TEXT, "
-                + KEY_SUB_DISTRICT + " TEXT, "
-                + KEY_CT_CLIENT + " TEXT, "
-                + KEY_COMMENT + " TEXT, "
-                + DBRow.KEY_NAME + " TEXT, "
-                + DBRow.KEY_DIVISION + " TEXT, "
-                + DBRow.KEY_TIME_PICK + " TEXT, "
-                + DBRow.KEY_DATE_PICK + " TEXT, "
-                + DBRow.KEY_OBSTYPE + " TEXT, "
-                + DBRow.KEY_FACILITY + " TEXT, "
-                + KEY_FIELD + " TEXT, "
-
-                + KEY_STATUS + " integer "
-                // 2 - text
-                + " )";
-        db.execSQL(CREATE_TABLE_SQL);
-        closeDB();
+        table.put(DBRow.KEY_COMMENTS,"text");
+        table.put(DBRow.KEY_FIELDS,"text");
+        table.put(DBRow.KEY_CHECKED_BY,"text");
+        table.put(DBRow.KEY_SUBMITTED_BY,"text");
+        setNewTable(TABLE_NAME, table);
     }
 
-    public SQLiteDatabase openDB() {
-        return DatabaseManager.getInstance(tContext).openDatabase();
-    }
 
-    public void closeDB() {
-        DatabaseManager.getInstance(tContext).closeDatabase();
-    }
-
-    public long insertItem(SickChildItem item) {
-//        return insertItem(sickChildItem.getId(),sickChildItem.getFacility_id(),sickChildItem.getSp_client(),sickChildItem.getSo_designation(),
-//                sickChildItem.getSerial_no(),sickChildItem.getForm_date(),
-//                sickChildItem.getStart_time(),sickChildItem.getChild_description(),
-//                sickChildItem.getAge(),sickChildItem.getFeed(),sickChildItem.getVomit(),
-//                sickChildItem.getStutter(),sickChildItem.getCough(),sickChildItem.getDiahorea(),
-//                sickChildItem.getFever(),sickChildItem.getMeasure_fever(),
-//                sickChildItem.getStethoscope(),sickChildItem.getBreathing_test(),
-//                sickChildItem.getEye_test(),sickChildItem.getInfected_mouth(),sickChildItem.getNeck(),
-//                sickChildItem.getEar(),sickChildItem.getHand(),sickChildItem.getDehydration(),
-//                sickChildItem.getWeight(),sickChildItem.getClinic_test(),
-//                sickChildItem.getBelly_button(),sickChildItem.getHeight(),sickChildItem.getResult(),
-//                sickChildItem.getEnd_time(),sickChildItem.getVillage(),
-//                sickChildItem.getDistrict(),sickChildItem.getUnion(),sickChildItem.getSub_district(),sickChildItem.getCt_client(),
-//                sickChildItem.getFields(),sickChildItem.getComments(),sickChildItem.getStatus());
+    public long insert(SickChildItem item) {
         ContentValues values= new ContentValues();
-//        values.put(KEY_ID,id);
         values.put(KEY_FACILITY_ID,item.facility_id);
         values.put(KEY_SP_CLIENT,item.sp_client);
         values.put(KEY_SP_DESIGNATGION,item.so_designation);
@@ -205,11 +177,25 @@ public class SickChildTable {
         values.put(DBRow.KEY_DATE_PICK,item.datepick);
         values.put(DBRow.KEY_OBSTYPE,item.obs_type);
         values.put(DBRow.KEY_FACILITY,item.facility);
+
+        values.put(DBRow.KEY_COMMENTS,item.comments);
+        values.put(DBRow.KEY_FIELDS,item.fields);
+        values.put(DBRow.KEY_CHECKED_BY,item.checkedBy);
+        values.put(DBRow.KEY_SUBMITTED_BY,item.submittedBy);
         SQLiteDatabase db = openDB();
-        if(item.id > 0){ //update
-            db.update(TABLE_NAME,values,KEY_ID + "=" + item.id,null);
+        if(item.id > 0){
+            values.put(KEY_ID,item.id);
+            boolean hasItem = hasItem(item.id);
+            if(hasItem) {
+                int status = db.update(TABLE_NAME, values, KEY_ID + "=" + item.id, null);
+                Log.e("update state: ",""+status);
+            }
+            else{
+                long status = db.insert(TABLE_NAME, null, values);
+                Log.e("update state: ",""+status);
+            }
         }
-        else{
+        else {
             item.id = db.insert(TABLE_NAME, null, values);
         }
         closeDB();
@@ -397,48 +383,50 @@ public class SickChildTable {
 
 
     public SickChildItem cursorlist(Cursor cursor)
-    {   int id = cursor.getInt(0);
-        int facility_id = cursor.getInt(1);
-        String sp_client = cursor.getString(2);
-        String so_designation =cursor.getString(3);
-        String serial_no = cursor.getString(4);
-        String form_date = cursor.getString(5);
-        String start_time = cursor.getString(6);
-        String child_description = cursor.getString(7);
-        String age = cursor.getString(8);
-        String feed= cursor.getString(9);
-        String vomit= cursor.getString(10);
-        String stutter= cursor.getString(11);
-        String cough =cursor.getString(12);
-        String diahorea = cursor.getString(13);
-        String fever = cursor.getString(14);
-        String measure_fever= cursor.getString(15);
-        String stethoscope= cursor.getString(16);
-        String breathing_test = cursor.getString(17);
-        String eye_test= cursor.getString(18);
-        String infected_mouth=cursor.getString(19);
-        String neck=cursor.getString(20);
-        String ear= cursor.getString(21);
-        String hand= cursor.getString(22);
-        String dehydration= cursor.getString(23);
-        String weight = cursor.getString(24);
+    {
+        SickChildItem item = new SickChildItem();
+        item.id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
+        item.facility_id = AppUtils.itos(cursor.getInt(cursor.getColumnIndex(KEY_FACILITY_ID)));
+        item.name = item.sp_client = cursor.getString(cursor.getColumnIndex(KEY_SP_CLIENT));
+        item.so_designation =cursor.getString(cursor.getColumnIndex(KEY_SP_DESIGNATGION));
+        item.serial_no = cursor.getString(cursor.getColumnIndex(KEY_SERIAL_NO));
+        item.form_date = cursor.getString(cursor.getColumnIndex(KEY_FORM_DATE));
+        item.start_time = cursor.getString(cursor.getColumnIndex(KEY_START_TIME));
+        item.child_description = cursor.getString(cursor.getColumnIndex(KEY_CHILD_DESCRIPTION));
+        item.age = cursor.getString(cursor.getColumnIndex(KEY_AGE));
+        item.feed= cursor.getString(cursor.getColumnIndex(KEY_FEED));
+        item.vomit= cursor.getString(cursor.getColumnIndex(KEY_VOMIT));
+        item.stutter= cursor.getString(cursor.getColumnIndex(KEY_STUTTER));
+        item.cough =cursor.getString(cursor.getColumnIndex(KEY_COUGH));
+        item.diahorea = cursor.getString(cursor.getColumnIndex(KEY_DIAHOREA));
+        item.fever = cursor.getString(cursor.getColumnIndex(KEY_FEVER));
+        item.measure_fever= cursor.getString(cursor.getColumnIndex(KEY_MEASURE_FEVER));
+        item.stethoscope= cursor.getString(cursor.getColumnIndex(KEY_STETHOSCOPE));
+        item.breathing_test = cursor.getString(cursor.getColumnIndex(KEY_BREATHING_TEST));
+        item.eye_test= cursor.getString(cursor.getColumnIndex(KEY_EYE_TEST));
+        item.infected_mouth=cursor.getString(cursor.getColumnIndex(KEY_INFECTED_MOUTH));
+        item.neck=cursor.getString(cursor.getColumnIndex(KEY_NECK));
+        item.ear= cursor.getString(cursor.getColumnIndex(KEY_EAR));
+        item.hand= cursor.getString(cursor.getColumnIndex(KEY_HAND));
+        item.dehydration= cursor.getString(cursor.getColumnIndex(KEY_DEHYDRATION));
+        item.weight = cursor.getString(cursor.getColumnIndex(KEY_WEIGHT));
+        item.clinic_test = cursor.getString(cursor.getColumnIndex(KEY_CLINIC_TEST));
+        item.belly_button=cursor.getString(cursor.getColumnIndex(KEY_BELLEY_BUTTON));
+        item.height= cursor.getString(cursor.getColumnIndex(KEY_HEIGHT));
+        item.result=cursor.getString(cursor.getColumnIndex(KEY_RESULT));
+        item.end_time=cursor.getString(cursor.getColumnIndex(KEY_END_TIME));
+        item.village= cursor.getString(cursor.getColumnIndex(KEY_VILLAGE));
+        item.district=cursor.getString(cursor.getColumnIndex(KEY_DISTRICT));
+        item.union= cursor.getString(cursor.getColumnIndex(KEY_UNION));
+        item.subdistrict = cursor.getString(cursor.getColumnIndex(KEY_SUB_DISTRICT));
+        item.ct_client = cursor.getString(cursor.getColumnIndex(KEY_CT_CLIENT));
+        item.status = cursor.getInt(cursor.getColumnIndex(KEY_STATUS));
 
-        String clinic_test = cursor.getString(25);
-        String belly_button=cursor.getString(26);
-        String height= cursor.getString(27);
-        String result=cursor.getString(28);
-        String end_time=cursor.getString(29);
-        String village= cursor.getString(30);
-        String district=cursor.getString(31);
-        String union= cursor.getString(32);
-        String sub_district = cursor.getString(33);
-        String ct_client = cursor.getString(34);
-        String field = cursor.getString(35);
-        String comment = cursor.getString(36);
-        int status = cursor.getInt(37);
-
-
-        return new SickChildItem (id,facility_id,sp_client, so_designation,  serial_no,  form_date,  start_time,  child_description,  age,feed, vomit,  stutter,  cough,  diahorea,  fever,  measure_fever,   stethoscope,  breathing_test,  eye_test,  infected_mouth,  neck,  ear,  hand,  dehydration,  weight,   clinic_test,  belly_button,  height,  result,  end_time,  village,  district,  union,  sub_district,ct_client,field, comment,status);
+        item.comments = cursor.getString(cursor.getColumnIndex(DBRow.KEY_COMMENTS));
+        item.fields = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FIELDS));
+        item.checkedBy = cursor.getString(cursor.getColumnIndex(DBRow.KEY_CHECKED_BY));
+        item.submittedBy = cursor.getString(cursor.getColumnIndex(DBRow.KEY_SUBMITTED_BY));
+        return item;
     }
 
 

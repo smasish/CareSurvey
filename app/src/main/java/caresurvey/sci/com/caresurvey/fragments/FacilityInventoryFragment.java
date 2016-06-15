@@ -245,7 +245,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             try {
                 if(!getContext().isAdmin()) {
                     collectData(getContext().getItem());
-                    getContext().getTable().insertItem(getContext().getItem());
+                    getContext().getTable().insert(getContext().getItem());
                 }
                 if(v.getId() == R.id.next) {
                     getContext().loadFragment(index + 1);
@@ -554,13 +554,8 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
                 sETv(R.id.fi_611_3,tokens[i]);
             }
         }
-
-        if(TextUtils.isEmpty(item.end_time)){
-            sETv(R.id.fi_612,getTime());
-        }
-        else{
-            sETv(R.id.fi_612,item.end_time);
-        }
+        item.end_time = getTime();
+        sETv(R.id.fi_612,item.end_time);
     }
     private void editable6(boolean state){
         sVEs(R.id.fi_601_1,state);
@@ -1612,7 +1607,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
 
     public String getTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
         return dateFormat.format(new Date()).toString();
     }
 

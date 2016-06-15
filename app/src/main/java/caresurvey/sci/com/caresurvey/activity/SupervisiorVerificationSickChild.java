@@ -1,7 +1,6 @@
 package caresurvey.sci.com.caresurvey.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,10 +12,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,11 +32,7 @@ import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.SickChildTable;
-import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 

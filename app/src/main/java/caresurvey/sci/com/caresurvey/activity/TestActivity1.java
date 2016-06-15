@@ -14,13 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.ExecutorDelivery;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -36,10 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
-import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 
 public class TestActivity1 extends AppCompatActivity {
@@ -201,7 +195,7 @@ public class TestActivity1 extends AppCompatActivity {
                 if(mark==1)
                 {
 
-                    if(sickChildTable.insertItem(sickChildItem) >= 0)
+                    if(sickChildTable.insert(sickChildItem) >= 0)
                     {
                         value++;
                         savevalue();

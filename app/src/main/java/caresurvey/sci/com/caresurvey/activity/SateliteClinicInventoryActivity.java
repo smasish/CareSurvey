@@ -1,6 +1,5 @@
 package caresurvey.sci.com.caresurvey.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -8,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -34,16 +32,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
-import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
-import utils.Utils;
 
 import static android.widget.Toast.*;
 
@@ -108,6 +101,25 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
     }
 
     private void loadForm() {
+        if(item.status == 2){ //reverted
+            EditText comment = (EditText) findViewById(R.id.comment);
+            comment.setText(item.comments);
+            comment.setFocusable(false);
+            findViewById(R.id.revert_submit).setVisibility(View.GONE);
+            LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+            fieldLayout.removeAllViews();
+            TextView textView = new TextView(this);
+            textView.setTextSize(25f);
+            textView.setText(item.fields);
+            fieldLayout.addView(textView);
+            findViewById(R.id.commentSection).setVisibility(View.VISIBLE);
+            findViewById(R.id.revert_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    findViewById(R.id.commentSection).setVisibility(View.GONE);
+                }
+            });
+        }
         sETv(R.id.date, item.date);
         sETv(R.id.start_time, item.startTime);
         sETv(R.id.end_time,item.endTime);
@@ -440,6 +452,9 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             final SatelliteClinicItem fpItem = genSatelliteClinicItem();
             if(fpItem == null){
                 return;
+            }
+            if(item.status == 2){ //reverted
+                item.status = 4;
             }
             table.insert(fpItem);
             final ProgressDialog dialog = new ProgressDialog(this);

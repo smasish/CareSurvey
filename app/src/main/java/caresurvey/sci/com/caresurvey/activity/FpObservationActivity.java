@@ -1,11 +1,9 @@
 package caresurvey.sci.com.caresurvey.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -35,14 +33,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.FpObservationTable;
-import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
-import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
 
@@ -115,10 +108,29 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
     }
 
     private void loadForm(){
+        if(item.status == 2){ //reverted
+            EditText comment = (EditText) findViewById(R.id.comment);
+            comment.setText(item.comments);
+            comment.setFocusable(false);
+            findViewById(R.id.revert_submit).setVisibility(View.GONE);
+            LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+            fieldLayout.removeAllViews();
+            TextView textView = new TextView(this);
+            textView.setTextSize(25f);
+            textView.setText(item.fields);
+            fieldLayout.addView(textView);
+            findViewById(R.id.commentSection).setVisibility(View.VISIBLE);
+            findViewById(R.id.revert_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    findViewById(R.id.commentSection).setVisibility(View.GONE);
+                }
+            });
+        }
         sETv(R.id.et_fp_101,item.serial_no);
         sETv(R.id.et_fp_102,item.date);
         sETv(R.id.et_fp_103,item.start_time);
-        sSPi(R.id.et_fp_104, item.client_name);
+//        sSPi(R.id.et_fp_104, item.client_name);
         sRGv(mFpQuesView1, item.cover);
         sRGv(mFpQuesView2,item.sound_prove);
         sRGv(mFpQuesView3,item.discuss_fp);
@@ -329,6 +341,9 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
                 if(fpItem == null){
                     Toast.makeText(FpObservationActivity.this, "Form is not complete", Toast.LENGTH_SHORT).show();
                     return;
+                }
+                if(fpItem.status == 2){ //reverted
+                    fpItem.status = 4;
                 }
                 long status = table.insert(fpItem);
                 if(status >= 0){

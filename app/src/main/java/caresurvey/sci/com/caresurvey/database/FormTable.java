@@ -4,13 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-import caresurvey.sci.com.caresurvey.activity.SelectionUserActivity;
-import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 
 /**
  *  Created by mazharul.islam on 3/6/2016.
@@ -116,11 +114,12 @@ public class FormTable  {
     private void closeDB() {
         DatabaseManager.getInstance(tContext).closeDatabase();
     }
-    public long insertItem(FormItem formItem) {
-        return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
-                formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
-                formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
-                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getC_name(),formItem.getDistrict(),formItem.getSubdistrict(),formItem.getUnion(),formItem.getVillage());
+    public long insertItem(ANCFormItem formItem) {
+//        return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
+//                formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
+//                formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
+//                formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getC_name(),formItem.getDistrict(),formItem.getSubdistrict(),formItem.getUnion(),formItem.getVillage());
+        return 0;
     }
     public long insertItem(int patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
@@ -169,8 +168,8 @@ public class FormTable  {
         closeDB();
         return ret;
     }
-    public ArrayList<FormItem> getAllInfo() {
-        ArrayList<FormItem> subCatList = new ArrayList<>();
+    public ArrayList<ANCFormItem> getAllInfo() {
+        ArrayList<ANCFormItem> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME , null);
@@ -205,8 +204,8 @@ public class FormTable  {
 
 
 
-    public ArrayList<FormItem> getAll() {
-        ArrayList<FormItem> FieldList = new ArrayList<>();
+    public ArrayList<ANCFormItem> getAll() {
+        ArrayList<ANCFormItem> FieldList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
@@ -222,8 +221,8 @@ public class FormTable  {
         return FieldList;
     }
 
-    public ArrayList<FormItem> getListfromuser(String name,String  facility) {
-        ArrayList<FormItem> subCatList = new ArrayList<>();
+    public ArrayList<ANCFormItem> getListfromuser(String name, String  facility) {
+        ArrayList<ANCFormItem> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE _district = '"+facility+"'" + " AND  _cname = '"+name+"'", null);
@@ -240,8 +239,8 @@ public class FormTable  {
     }
 
 
-    public ArrayList<FormItem> getSpecificItem(int cat_id) {
-        ArrayList<FormItem> subCatList = new ArrayList<>();
+    public ArrayList<ANCFormItem> getSpecificItem(int cat_id) {
+        ArrayList<ANCFormItem> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
 
@@ -260,8 +259,8 @@ public class FormTable  {
         return subCatList;
     }
 
-    public ArrayList<FormItem> getAllItem(int cat_id) {
-        ArrayList<FormItem> subCatList = new ArrayList<>();
+    public ArrayList<ANCFormItem> getAllItem(int cat_id) {
+        ArrayList<ANCFormItem> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
 
@@ -424,7 +423,7 @@ public class FormTable  {
     }
 
 
-    public FormItem cursorToSubCatList(Cursor cursor) {
+    public ANCFormItem cursorToSubCatList(Cursor cursor) {
         int _id = cursor.getInt(0);
         String _bloodpressure = cursor.getString(1);
         String _hemoglobintest = cursor.getString(2);
@@ -452,9 +451,9 @@ public class FormTable  {
 
 
 
-
-        return new FormItem(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_ins,_cname,_district,_subdistrict,_union,_village);
+        return new ANCFormItem();
+//        return new ANCFormItem(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
+//                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_ins,_cname,_district,_subdistrict,_union,_village);
     }
 
     public void dropTable() {

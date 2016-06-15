@@ -1216,4 +1216,141 @@ public class InventoryItem extends DBRow{
         }
         return  item;
     }
+
+    public static InventoryItem getUserObject(String json){
+        InventoryItem item = new InventoryItem();
+        try {
+            JSONObject object = new JSONObject(json);
+            JSONObject data = object.getJSONObject("data");
+
+            item.id = object.getInt("form_id");
+            item.status = object.getInt("status");
+            item.facility_id = AppUtils.getInt(data,InventoryTable.facility_id);
+            item.client_name = AppUtils.getString(data,InventoryTable.client_name);
+            item.start_time = AppUtils.getString(data,InventoryTable.start_time);
+            item.instrument_sp_name = AppUtils.getString(data, InventoryTable.instrument_sp_name);
+            item.instrument_sp_designation = AppUtils.getString(data, InventoryTable.instrument_sp_designation);
+            item.i_electronic_autoclev = AppUtils.getArray(data,InventoryTable.i_electronic_autoclev);
+            item.i_non_electronic_autoclev = AppUtils.getArray(data,InventoryTable.i_non_electronic_autoclev);
+            item.i_electric_sterilizer = AppUtils.getArray(data,InventoryTable.i_electric_sterilizer);
+            item.i_electric_steamer = AppUtils.getArray(data,InventoryTable.i_electric_steamer);
+            item.i_non_electric_pot = AppUtils.getArray(data,InventoryTable.i_non_electric_pot);
+            item.i_stove = AppUtils.getArray(data,InventoryTable.i_stove);
+
+            item.i_waste_sp_name = AppUtils.getString(data,InventoryTable.i_waste_sp_name);
+            item.i_waste_sp_designation = AppUtils.getString(data,InventoryTable.i_waste_sp_designation);
+            item.w_waste_option = AppUtils.getArray(data,InventoryTable.w_waste_option);
+            item.w_waste_dispose_how = AppUtils.getArray(data,InventoryTable.w_waste_dispose_how);
+            item.w_pointy_waste = AppUtils.getArray(data,InventoryTable.w_pointy_waste);
+            item.w_liquid_waste = AppUtils.getArray(data,InventoryTable.w_liquid_waste);
+            item.w_liquid_waste_store = AppUtils.getArray(data,InventoryTable.w_liquid_waste_store);
+            item.w_plastic_waste = AppUtils.getArray(data,InventoryTable.w_plastic_waste);
+            item.w_waste_normal = AppUtils.getArray(data,InventoryTable.w_waste_normal);
+            item.w_incinerator_seen = AppUtils.getArray(data,InventoryTable.w_incinerator_seen);
+            item.w_dumping_pit_seen = AppUtils.getArray(data,InventoryTable.w_dumping_pit_seen);
+
+            item.equipment_sp_name = AppUtils.getString(data,InventoryTable.equipment_sp_name);
+            item.equipment_sp_designation = AppUtils.getString(data,InventoryTable.equipment_sp_designation);
+            item.n_adult_wing_scale = AppUtils.getArray(data,InventoryTable.n_adult_wing_scale);
+            item.n_height_rod = AppUtils.getArray(data,InventoryTable.n_height_rod);
+            item.n_pressure_mechine = AppUtils.getArray(data,InventoryTable.n_pressure_mechine);
+            item.n_stethoscope = AppUtils.getArray(data,InventoryTable.n_stethoscope);
+            item.n_filter_stethoscope = AppUtils.getArray(data,InventoryTable.n_filter_stethoscope);
+            item.n_water = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_water));
+            item.n_hand_soap = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_hand_soap));
+            item.n_spirit = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_spirit));
+            item.n_waste = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_waste));
+            item.n_sharp_waste = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_sharp_waste));
+            item.n_gloves = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_gloves));
+            item.n_iron_folate = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_iron_folate));
+            item.n_urine_protien = AppUtils.getString(data,InventoryTable.n_urine_protien);
+            item.n_urine_tester = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_urine_tester));
+            item.n_urine_testtube = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_urine_testtube));
+            item.n_test_tube_rack = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_test_tube_rack));
+            item.n_dip_stick = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_dip_stick));
+            item.n_hemoglobin = AppUtils.getArray(data,InventoryTable.n_hemoglobin);
+            item.n_telecoil_book = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_telecoil_book));
+            item.n_telecoil_landset = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_telecoil_landset));
+            item.n_kolori_meter = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_kolori_meter));
+            item.n_litmus_paper = AppUtils.itos(AppUtils.getInt(data,InventoryTable.n_litmus_paper));
+
+            item.delivery_sp_name = AppUtils.getString(data,InventoryTable.delivery_sp_name);
+            item.delivery_sp_designation = AppUtils.getString(data,InventoryTable.delivery_sp_designation);
+            item.d_delivery_service = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_delivery_service));
+            item.d_delivery_table = AppUtils.getArray(data,InventoryTable.d_delivery_table);
+            item.d_pressure_mechine = AppUtils.getArray(data,InventoryTable.d_pressure_mechine);
+            item.d_stethoscope = AppUtils.getArray(data,InventoryTable.d_stethoscope);
+            item.d_filter_stethoscope = AppUtils.getArray(data,InventoryTable.d_filter_stethoscope);
+            item.d_newborn_recuscitation = AppUtils.getArray(data,InventoryTable.d_newborn_recuscitation);
+            item.d_recuscitation_mask_0 = AppUtils.getArray(data,InventoryTable.d_recuscitation_mask_0);
+            item.d_recuscitation_mask_1 = AppUtils.getArray(data,InventoryTable.d_recuscitation_mask_1);
+            item.d_peguin_sucker = AppUtils.getArray(data,InventoryTable.d_peguin_sucker);
+            item.d_cord_cutter = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_cord_cutter));
+            item.d_cord_clamp = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_cord_clamp));
+            item.d_partograf_paper = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_partograf_paper));
+            item.d_water = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_water));
+            item.d_hand_soap = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_hand_soap));
+            item.d_spirit = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_spirit));
+            item.d_waste_recycle = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_waste_recycle));
+            item.d_waste_storage = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_waste_storage));
+            item.d_latex_gloves = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_latex_gloves));
+            item.d_chlorine_sol = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_chlorine_sol));
+            item.d_detergent_water = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_detergent_water));
+            item.d_clean_water = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_clean_water));
+            item.d_misoprostol = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_misoprostol));
+            item.d_oxytocin = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_oxytocin));
+            item.d_mang_sulfate = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_mang_sulfate));
+            item.d_chlorhexidine = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_chlorhexidine));
+            item.d_paediatric_drop = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_paediatric_drop));
+            item.d_gentamycin = AppUtils.itos(AppUtils.getInt(data,InventoryTable.d_gentamycin));
+
+            item.ch_wing_scale = AppUtils.getArray(data,InventoryTable.ch_wing_scale);
+            item.ch_infant_wing_scale = AppUtils.getArray(data,InventoryTable.ch_infant_wing_scale);
+            item.ch_height_rod = AppUtils.getArray(data,InventoryTable.ch_height_rod);
+            item.ch_measuring_tip = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_measuring_tip));
+            item.ch_water = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_water));
+            item.ch_growth_monitor_boy = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_growth_monitor_boy));
+            item.ch_growth_monitor_girl = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_growth_monitor_girl));
+            item.ch_hand_soap = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_hand_soap));
+            item.ch_spirit = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_spirit));
+            item.ch_wastage_recycle = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_wastage_recycle));
+            item.ch_sharp_waste = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_sharp_waste));
+            item.ch_latex_gloves = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_latex_gloves));
+            item.ch_ors = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_ors));
+            item.ch_paediatric_drop = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_paediatric_drop));
+            item.ch_cotrimoxazole = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_cotrimoxazole));
+            item.ch_paracetamol = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_paracetamol));
+            item.ch_zinc = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_zinc));
+            item.ch_mebandazole = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_mebandazole));
+            item.ch_ceftriaxone = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_ceftriaxone));
+            item.ch_vitamin = AppUtils.itos(AppUtils.getInt(data,InventoryTable.ch_vitamin));
+            item.fp_soap = AppUtils.itos(AppUtils.getInt(data,InventoryTable.fp_soap));
+            item.fp_spirit = AppUtils.itos(AppUtils.getInt(data,InventoryTable.fp_spirit));
+            item.fp_waste_recycle = AppUtils.itos(AppUtils.getInt(data,InventoryTable.fp_waste_recycle));
+            item.fp_sharp_waste = AppUtils.itos(AppUtils.getInt(data,InventoryTable.fp_sharp_waste));
+            item.fp_latex_gloves = AppUtils.itos(AppUtils.getInt(data,InventoryTable.fp_latex_gloves));
+
+            item.r_healthy_newborn = AppUtils.getArray(data,InventoryTable.r_healthy_newborn);
+            item.r_newborn_death = AppUtils.getArray(data,InventoryTable.r_newborn_death);
+            item.r_mother_rate = AppUtils.getArray(data,InventoryTable.r_mother_rate);
+            item.r_elampsia = AppUtils.getArray(data,InventoryTable.r_elampsia);
+            item.r_mang_sulfate = AppUtils.getArray(data,InventoryTable.r_mang_sulfate);
+            item.r_pneumonis = AppUtils.getArray(data,InventoryTable.r_pneumonis);
+            item.r_paracetamol = AppUtils.getArray(data,InventoryTable.r_paracetamol);
+            item.r_psbi = AppUtils.getArray(data,InventoryTable.r_psbi);
+            item.r_psbi_care = AppUtils.getArray(data,InventoryTable.r_psbi_care);
+            item.r_starving_child = AppUtils.getArray(data,InventoryTable.r_starving_child);
+            item.r_starving_protocol = AppUtils.getArray(data,InventoryTable.r_starving_protocol);
+            item.end_time = AppUtils.getString(data,InventoryTable.end_time);
+
+            JSONObject meta = object.getJSONObject("meta");
+            item.checkedBy = AppUtils.getString(object,"checked_by");
+            item.fields = AppUtils.getString(meta,"fields");
+            item.comments = AppUtils.getString(meta,"comments");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return  item;
+    }
 }

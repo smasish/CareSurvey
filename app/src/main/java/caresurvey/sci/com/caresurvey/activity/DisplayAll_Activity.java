@@ -3,7 +3,6 @@ package caresurvey.sci.com.caresurvey.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,32 +10,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
-import caresurvey.sci.com.caresurvey.database.FormTable;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
-import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 
 public class DisplayAll_Activity extends AppCompatActivity {
@@ -57,7 +40,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
         Intent mIntent = getIntent();
         user = mIntent.getStringExtra("user");
         ArrayList<SickChildItemSupervisor> formItems;
-        FormItem formItem;
+        ANCFormItem formItem;
 
         final SickChildSupervisorTable formTable = new SickChildSupervisorTable(DisplayAll_Activity.this);
         formItems= formTable.getAllInfo();
@@ -159,7 +142,7 @@ public class DisplayAll_Activity extends AppCompatActivity {
 
         super.onResume();
         ArrayList<SickChildItemSupervisor> formItems;
-        FormItem formItem;
+        ANCFormItem formItem;
 
         final SickChildSupervisorTable formTable = new SickChildSupervisorTable(DisplayAll_Activity.this);
         formItems= formTable.getAllInfo();

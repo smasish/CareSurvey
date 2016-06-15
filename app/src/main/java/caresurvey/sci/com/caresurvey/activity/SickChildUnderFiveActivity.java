@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,12 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
-import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
@@ -161,6 +158,25 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
     }
 
     private void loadForm(){
+        if(item.status == 2){ //reverted
+            EditText comment = (EditText) findViewById(R.id.comment);
+            comment.setText(item.comments);
+            comment.setFocusable(false);
+            findViewById(R.id.revert_submit).setVisibility(View.GONE);
+            LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+            fieldLayout.removeAllViews();
+            TextView textView = new TextView(this);
+            textView.setTextSize(25f);
+            textView.setText(item.fields);
+            fieldLayout.addView(textView);
+            findViewById(R.id.commentSection).setVisibility(View.VISIBLE);
+            findViewById(R.id.revert_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    findViewById(R.id.commentSection).setVisibility(View.GONE);
+                }
+            });
+        }
         sETv(R.id.serial_no,item.serial_no);
         sETv(R.id.form_date,item.form_date);
         sETv(R.id.start_time,item.start_time);
@@ -337,7 +353,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         if(v.getId() == R.id.insert){
             try{
                 collectForm();
-                long id = table.insertItem(item);
+                long id = table.insert(item);
                 if(id > 0) {
                     Toast.makeText(this, "Form saved successfully", Toast.LENGTH_SHORT).show();
                 }
@@ -355,7 +371,10 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         else if(v.getId() == R.id.submit){
             try{
                 collectForm();
-                long id = table.insertItem(item);
+                if(item.status == 2){ //reverted
+                    item.status = 4;
+                }
+                long id = table.insert(item);
                 if(id == -1){
                     Toast.makeText(this, "An error occurred", Toast.LENGTH_SHORT).show();
                     return;

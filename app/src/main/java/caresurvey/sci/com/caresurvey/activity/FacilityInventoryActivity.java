@@ -27,18 +27,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.fragments.FacilityInventoryFragment;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
-import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
 
-import static caresurvey.sci.com.caresurvey.utils.AppUtils.getInt;
 import static caresurvey.sci.com.caresurvey.utils.AppUtils.setTextWithFonts;
 
 public class FacilityInventoryActivity extends AppCompatActivity implements View.OnClickListener {

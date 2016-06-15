@@ -6,6 +6,7 @@ package caresurvey.sci.com.caresurvey.model;
 public class DBRow {
 
     public String form_type;
+    public String checkedBy;
 
     public DBRow(){
         id = 0;
@@ -45,6 +46,11 @@ public class DBRow {
     public static final String KEY_FACILITY = "_facility";
     public static final String KEY_STATUS = "_status";
     public static final String KEY_FACI_ID = "_facilityid";
+
+    public static final String KEY_SUBMITTED_BY= "_submitted_by";
+    public static final String KEY_COMMENTS = "_comments";
+    public static final String KEY_FIELDS = "_fields";
+    public static final String KEY_CHECKED_BY = "_checked_by";
 
     public int facilityID;
 }

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -18,14 +20,14 @@ import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 /**
  * Created by shantanu on 5/26/16.
  */
-public class SatelliteClinicTable {
+public class SatelliteClinicTable extends SuperTable{
     public static final String ID = "_id";
     public static final String TABLE_NAME = "satellite_clinic";
-    private final Context context;
+    private static final String KEY_ID = "_id";
     private long rowSize;
     private ArrayList<SatelliteClinicItem> all;
 
-    public static void generateTable() // need to call this class once from application
+    public void generateTable() // need to call this class once from application
     {
         //creating table for save cart
         Hashtable<String,String> table = new Hashtable<String,String>();
@@ -61,6 +63,11 @@ public class SatelliteClinicTable {
         table.put(DBRow.KEY_OBSTYPE,"text");
         table.put(DBRow.KEY_FACILITY,"text");
         table.put(DBRow.KEY_FACI_ID,"integer");
+
+        table.put(DBRow.KEY_COMMENTS,"text");
+        table.put(DBRow.KEY_FIELDS,"text");
+        table.put(DBRow.KEY_CHECKED_BY,"text");
+        table.put(DBRow.KEY_SUBMITTED_BY,"text");
         setNewTable(TABLE_NAME, table);
 
         //another table
@@ -68,24 +75,9 @@ public class SatelliteClinicTable {
     }
 
     public SatelliteClinicTable(Context context){
-        this.context = context;
-        List<String> tableQuery = getCreateTableQuery();
-        SQLiteDatabase db = openDB();
-        for(int i=0;i<tableQuery.size();i++)
-        {
-            db.execSQL(tableQuery.get(i));
-        }
-        closeDB();
+        super(context,TABLE_NAME);
     }
 
-    private static Hashtable<String, Hashtable<String,String>> Tables = new Hashtable<String, Hashtable<String,String>>();
-    public static void setNewTable(String tableName, Hashtable<String,String> params){
-        Tables.put(tableName, params);
-    }
-    public static Hashtable<String, Hashtable<String,String>> getDbTable(){
-        generateTable();
-        return Tables;
-    }
 
     public long insert(SatelliteClinicItem item){
         if(item == null) return 0;
@@ -151,9 +143,23 @@ public class SatelliteClinicTable {
         values.put(DBRow.KEY_FACILITY,item.facility);
         values.put(DBRow.KEY_FACI_ID,item.facilityID);
 
+        values.put(DBRow.KEY_COMMENTS,item.comments);
+        values.put(DBRow.KEY_FIELDS,item.fields);
+        values.put(DBRow.KEY_CHECKED_BY,item.checkedBy);
+        values.put(DBRow.KEY_SUBMITTED_BY,item.submittedBy);
+
         SQLiteDatabase db = openDB();
         if(item.id > 0){
-            db.update(TABLE_NAME,values,ID + "=" + item.id,null);
+            values.put(KEY_ID,item.id);
+            boolean hasItem = hasItem(item.id);
+            if(hasItem) {
+                int status = db.update(TABLE_NAME, values, KEY_ID + "=" + item.id, null);
+                Log.e("update state: ",""+status);
+            }
+            else{
+                long status = db.insert(TABLE_NAME, null, values);
+                Log.e("update state: ",""+status);
+            }
         }
         else {
             item.id = db.insert(TABLE_NAME, null, values);
@@ -162,60 +168,6 @@ public class SatelliteClinicTable {
         return item.id;
     }
 
-    /*
-	 * Create table from class
-	 */
-    @SuppressWarnings("unchecked")
-    private List<String> getCreateTableQuery(){
-        List<String> queries = new ArrayList<String>();
-        Hashtable<String, Hashtable<String,String>> Tables = getDbTable();
-        @SuppressWarnings("rawtypes")
-        Set set = Tables.entrySet();
-        @SuppressWarnings("rawtypes")
-        Iterator it = set.iterator();
-//        tableList.clear();
-        while (it.hasNext())
-        {
-            @SuppressWarnings("rawtypes")
-            Map.Entry entry = (Map.Entry) it.next();
-            String tableName =(String) entry.getKey();
-            Hashtable<String,String> columns = (Hashtable<String,String>) entry.getValue();
-            String query="create table IF NOT EXISTS " + tableName + " (";
-//            tableList.add(tableName);
-            @SuppressWarnings("rawtypes")
-            Set columnSet = columns.entrySet();
-            @SuppressWarnings("rawtypes")
-            Iterator columnIt=columnSet.iterator();
-            while(columnIt.hasNext()){
-                @SuppressWarnings("rawtypes")
-                Map.Entry columnEntry = (Map.Entry) columnIt.next();
-                String columnName = (String) columnEntry.getKey();
-                String columnType = (String) columnEntry.getValue();
-                query += " " + columnName + " " + columnType;
-                if(columnIt.hasNext())
-                    query += ",";
-                else
-                    query+=" )";
-            }
-            queries.add(query);
-        }
-        return queries;
-    }
-
-    private SQLiteDatabase openDB() {
-        return DatabaseManager.getInstance(context).openDatabase();
-    }
-
-    private void closeDB() {
-        DatabaseManager.getInstance(context).closeDatabase();
-    }
-
-    public long getRowSize(){
-        SQLiteDatabase db = openDB();
-        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
-        closeDB();
-        return numRows;
-    }
 
     private SatelliteClinicItem cursorToSubCatList(Cursor cursor) {
         SatelliteClinicItem item = new SatelliteClinicItem();
@@ -279,6 +231,11 @@ public class SatelliteClinicTable {
         item.datepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DATE_PICK));
         item.facilityID = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_FACI_ID));
 
+        item.comments = cursor.getString(cursor.getColumnIndex(DBRow.KEY_COMMENTS));
+        item.fields = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FIELDS));
+        item.checkedBy = cursor.getString(cursor.getColumnIndex(DBRow.KEY_CHECKED_BY));
+        item.submittedBy = cursor.getString(cursor.getColumnIndex(DBRow.KEY_SUBMITTED_BY));
+
         return item;
     }
 
@@ -317,15 +274,4 @@ public class SatelliteClinicTable {
 
     }
 
-    public long getLastId(){
-        SQLiteDatabase db = openDB();
-        long lastId = 0;
-        String query = "SELECT _id from " +  TABLE_NAME +" order by _id DESC limit 1";
-        Cursor c = db.rawQuery(query,null);
-        if (c != null && c.moveToFirst()) {
-            lastId = c.getLong(0); //The 0 is the column index, we only have 1 column, so the index is 0
-        }
-        closeDB();
-        return lastId;
-    }
 }

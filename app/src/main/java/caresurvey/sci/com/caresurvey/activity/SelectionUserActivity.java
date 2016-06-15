@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.DatabaseUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,17 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
-
-import java.util.ArrayList;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.ANCTable;
 import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
 
 public class SelectionUserActivity extends AppCompatActivity {
 
@@ -111,7 +106,7 @@ public class SelectionUserActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         if(which == 0){
-                            FormTableUser formTableUser = new FormTableUser(SelectionUserActivity.this);
+                            ANCTable formTableUser = new ANCTable(SelectionUserActivity.this);
 
                             long rowSize =formTableUser.getRowSize();
                             if( rowSize > 0) {

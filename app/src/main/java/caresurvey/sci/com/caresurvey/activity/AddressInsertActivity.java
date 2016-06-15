@@ -22,6 +22,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
+import caresurvey.sci.com.caresurvey.database.ANCTable;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccess;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUnion;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUpazila;
@@ -31,6 +32,7 @@ import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.SickChildTable;
 
 public class AddressInsertActivity extends AppCompatActivity {
     Spinner sp1,sp2,sp3,sp4,obsSpinner;
@@ -165,7 +167,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                 if(position == 0){
                     // define layout here...visible or invisible
                     Log.d(">>>>>>>>>0", "=============sp position=========" );
-                    lastId = new FormTable(AddressInsertActivity.this).getLastId();
+                    lastId = new ANCTable(AddressInsertActivity.this).getLastId();
                 }
                 else if(position == 1){
                     ///define layout here...visible or invisible
@@ -175,7 +177,7 @@ public class AddressInsertActivity extends AppCompatActivity {
                 }
                 else if(position == 2){
                     ///define layout here...visible or invisible
-                    lastId = new SickChildSupervisorTable(AddressInsertActivity.this).getLastId();
+                    lastId = new SickChildTable(AddressInsertActivity.this).getLastId();
                 }
                 else if(position == 3){
                     ///define layout here...visible or invisible

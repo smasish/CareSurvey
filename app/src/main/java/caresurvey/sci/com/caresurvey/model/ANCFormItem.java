@@ -3,13 +3,12 @@ package caresurvey.sci.com.caresurvey.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 /**
  * Created by mazharul.islam on 3/6/2016.
  */
-public class FormItemUser extends DBRow{
+public class ANCFormItem extends DBRow{
     public String bloodpressure;
     public String hemoglobintest;
     public String urinetest;
@@ -32,7 +31,7 @@ public class FormItemUser extends DBRow{
     public String folicsideeffect;
     public String end_time;
 
-    public FormItemUser(){
+    public ANCFormItem(){
         date = AppUtils.getDate();
         start_time = AppUtils.getTime();
         end_time = AppUtils.getTime();
@@ -40,10 +39,10 @@ public class FormItemUser extends DBRow{
     }
 
 
-    public FormItemUser(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
-                        String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
-                        String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
-                        int status, String global_id, String name, String comments, String fields, String inS,String datepick, String timepick, String collector_name, String division, String upozila, String uniton, String village,String obs_type
+    public ANCFormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest,
+                       String pregnancyfood, String pregnancydanger, String fourparts, String delivery,
+                       String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance,
+                       int status, String global_id, String name, String comments, String fields, String inS, String datepick, String timepick, String collector_name, String division, String upozila, String uniton, String village, String obs_type
     ) {
         this.id = patientid;
         this.bloodpressure = bloodpressure;
@@ -75,7 +74,7 @@ public class FormItemUser extends DBRow{
 
     }
 
-    public FormItemUser(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance, String global_id) {
+    public ANCFormItem(int patientid, String bloodpressure, String hemoglobintest, String urinetest, String pregnancyfood, String pregnancydanger, String fourparts, String delivery, String feedbaby, String sixmonths, String familyplanning, String folictablet, String folictabletimportance, String global_id) {
         this.id =patientid;
         this.bloodpressure = bloodpressure;
         this.hemoglobintest = hemoglobintest;
@@ -255,7 +254,7 @@ public class FormItemUser extends DBRow{
         return obs_type;
     }
 
-    public static FormItemUser parseFormItem(int patientid,String global_id,JSONObject jo) throws JSONException {
+    public static ANCFormItem parseFormItem(int patientid, String global_id, JSONObject jo) throws JSONException {
         int _patientId=patientid;
         String _bloodpressure = jo.getString("bloodpressure");
         String _hemoglobintest = jo.getString("hemoglobintest");
@@ -274,12 +273,12 @@ public class FormItemUser extends DBRow{
         String _globalId = global_id;
 
 
-        return new FormItemUser(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
+        return new ANCFormItem(_patientId,_bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
                 _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_globalId);
     }
 
-    public static FormItemUser getObject(String json){
-        FormItemUser item = new FormItemUser();
+    public static ANCFormItem getObject(String json){
+        ANCFormItem item = new ANCFormItem();
         try {
             JSONObject object = new JSONObject(json);
             JSONObject data = object.getJSONObject("data");
@@ -322,6 +321,56 @@ public class FormItemUser extends DBRow{
             item.designation = AppUtils.getString(data,"doc_designation");
             item.end_time = AppUtils.getString(data,"end_time");//gETv(R.id.end_time);
             item.district = AppUtils.getString(data,"district");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return item;
+    }
+
+    public String getDistrict(){
+        return district;
+    }
+    public String getSubdistrict(){
+        return subdistrict;
+    }
+    public String getC_name(){
+        return "";
+    }
+
+    public static ANCFormItem getUserObject(String json){
+        ANCFormItem item = new ANCFormItem();
+        try {
+            JSONObject object = new JSONObject(json);
+            JSONObject data = object.getJSONObject("data");
+
+            item.id = object.getInt("form_id");
+            item.status = object.getInt("status");
+            item.date = AppUtils.getString(data,"date");
+            item.start_time = AppUtils.getString(data,"start_time");
+            item.serviceDescription = AppUtils.getString(data,"description");
+            item.bloodpressure = AppUtils.btos(AppUtils.getBoolean(data,"bloodpressure"));
+            item.weight = AppUtils.btos(AppUtils.getBoolean(data,"weight"));
+            item.hemoglobintest = AppUtils.btos(AppUtils.getBoolean(data,"hemoglobintest"));
+            item.urinetest = AppUtils.btos(AppUtils.getBoolean(data,"urinetest"));
+            item.pregnancyfood = AppUtils.btos(AppUtils.getBoolean(data,"pregnancyfood"));
+            item.pregnancydanger = AppUtils.btos(AppUtils.getBoolean(data,"pregnancydanger"));
+            item.fourparts = AppUtils.btos(AppUtils.getBoolean(data,"fourparts"));
+            item.delivery = AppUtils.btos(AppUtils.getBoolean(data,"delivery"));
+            item.feedbaby = AppUtils.btos(AppUtils.getBoolean(data,"feedbaby"));
+            item.sixmonths = AppUtils.btos(AppUtils.getBoolean(data,"sixmonths"));
+            item.familyplanning = AppUtils.btos(AppUtils.getBoolean(data,"familyplanning"));
+            item.folictablet = AppUtils.btos(AppUtils.getBoolean(data,"folictablet"));
+            item.folictabletimportance = AppUtils.btos(AppUtils.getBoolean(data,"folictabletimportance"));
+            item.folicsideeffect = AppUtils.btos(AppUtils.getBoolean(data,"folicsideeffect"));
+            item.designation = AppUtils.getString(data,"doc_designation");
+            item.end_time = AppUtils.getString(data,"end_time");//gETv(R.id.end_time);
+            item.district = AppUtils.getString(data,"district");
+
+            JSONObject meta = object.getJSONObject("meta");
+            item.checkedBy = AppUtils.getString(object,"checked_by");
+            item.fields = AppUtils.getString(meta,"fields");
+            item.comments = AppUtils.getString(meta,"comments");
 
         }catch (Exception e){
             e.printStackTrace();

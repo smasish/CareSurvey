@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,21 +31,23 @@ import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.ANCTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FormTable;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
-import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 //import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
 
@@ -177,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             finish();
                         }
-                    }, 3000);
+                    }, 5000);
 
                 }
                 //
@@ -409,7 +410,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else if(form.getString("form_type").equals("dh_antenantals")){
                                     ANCSupervisorTable table = new ANCSupervisorTable(LoginActivity.this);
-                                    table.insert(FormItemUser.getObject(form.toString()));
+                                    table.insert(ANCFormItem.getObject(form.toString()));
                                 }
                             }
 //                            for (int i = 0; i < formItemCount; i++) {
@@ -506,42 +507,64 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             JSONObject jo = new JSONObject(response);
                             JSONArray forms = jo.getJSONArray("forms");
+
+                            for(int i=0;i<forms.length();i++){
+                                JSONObject object = forms.getJSONObject(i);
+                                String formType = AppUtils.getString(object,"form_type");
+                                if(formType.equals("dh_familyplan")){
+                                    FpObservationTable table = new FpObservationTable(LoginActivity.this);
+                                    table.insert(FpObservationFormItem.getUserObjct(object.toString()));
+                                }
+                                else if(formType.equals("dh_satelliteclinic")){
+                                    SatelliteClinicTable table = new SatelliteClinicTable(LoginActivity.this);
+                                    table.insert(SatelliteClinicItem.getUserObject(object.toString()));
+                                }
+                                else if(formType.equals("dh_sickchild")){
+                                    SickChildTable table = new SickChildTable(LoginActivity.this);
+                                    table.insert(SickChildItem.getUserObject(object.toString()));
+                                }
+                                else if(formType.equals("dh_antenantals")){
+                                    ANCTable table = new ANCTable(LoginActivity.this);
+                                    table.insert(ANCFormItem.getUserObject(object.toString()));
+                                }
+                            }
+
 //                                JSONObject joes = new JSONObject();
 //                                joes= jo.getJSONObject("forms");
                             // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
-                            FormTableUser formTable = new FormTableUser(LoginActivity.this);
-                            int formItemCount = forms.length();
-
-
-
-
-
-                            for (int i = 0; i < formItemCount; i++) {
-                                try {
-                                    JSONObject record = forms.getJSONObject(i);
-                                    JSONObject fields = record.getJSONObject("meta");
-                                    //      FormItem et = FormItem.parseFormItem(i,record.getString("form_id"),fields);
-                                    int status,global_id;
-                                    String comments,fieldss;
-                                    status=record.getInt("status");
-                                    global_id=record.getInt("form_id");
-                                    comments=fields.getString("comments");
-                                    fieldss=fields.getString("fields");
-                                    JSONObject data= record.getJSONObject("data");
-                                    String name= data.getString("patient_name");
-                                    long vfdf,vfdf1,vfdf2;
-                                    //vfdf=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
-                                    vfdf2=formTable.updateglobalId(global_id, status, comments, fieldss,name);
-                                    //  vfdf1=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
-                                    //    Log.d(".....>>>>>>>>>>", "success" + vfdf);
-                                    Log.d(".....>>>>>>>>>>", "success" + vfdf2);
-                                    //    Log.d(".....>>>>>>>>>>", "success" + vfdf1);
-
-                                    //formTable.insertItem(et);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
+//                            FormTableUser formTable = new FormTableUser(LoginActivity.this);
+//                            int formItemCount = forms.length();
+//
+//
+//
+//
+//
+//                            for (int i = 0; i < formItemCount; i++) {
+//                                try {
+//                                    JSONObject record = forms.getJSONObject(i);
+//                                    JSONObject fields = record.getJSONObject("meta");
+//                                    //      FormItem et = FormItem.parseFormItem(i,record.getString("form_id"),fields);
+//                                    int status,global_id;
+//                                    String comments,fieldss;
+//                                    status=record.getInt("status");
+//                                    global_id=record.getInt("form_id");
+//                                    comments=fields.getString("comments");
+//                                    fieldss=fields.getString("fields");
+//                                    JSONObject data= record.getJSONObject("data");
+//                                    String name= data.getString("patient_name");
+//                                    long vfdf,vfdf1,vfdf2;
+//                                    //vfdf=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
+//                                    vfdf2=formTable.updateglobalId(global_id, status, comments, fieldss,name);
+//                                    //  vfdf1=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
+//                                    //    Log.d(".....>>>>>>>>>>", "success" + vfdf);
+//                                    Log.d(".....>>>>>>>>>>", "success" + vfdf2);
+//                                    //    Log.d(".....>>>>>>>>>>", "success" + vfdf1);
+//
+//                                    //formTable.insertItem(et);
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
 
 
 
@@ -551,7 +574,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("Timestamp", jo.getJSONObject("updated_at").toString());
+                            editor.putString("Timestamp", jo.getString("updated_at"));
                             editor.commit();
 
                         } catch (JSONException e) {

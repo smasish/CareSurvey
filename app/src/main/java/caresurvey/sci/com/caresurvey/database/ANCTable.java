@@ -3,16 +3,14 @@ package caresurvey.sci.com.caresurvey.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import caresurvey.sci.com.caresurvey.model.DBRow;
-import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
-import caresurvey.sci.com.caresurvey.model.SickChildItem;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 
 
 /**
@@ -20,7 +18,7 @@ import caresurvey.sci.com.caresurvey.model.SickChildItem;
  *
  * @author arafat
  */
-public class FormTableUser {
+public class ANCTable extends SuperTable{
     private static final String TAG = FormTable.class.getSimpleName();
 
     private static final String TABLE_NAME = DatabaseHelper.FORM_USER;
@@ -38,7 +36,6 @@ public class FormTableUser {
     private static final String KEY_FAMILY = "_familyplanning"; // 2 - text
     private static final String KEY_FOLICTAB = "_folictablet"; // 1 - text
     private static final String KEY_FOLICIMP = "_folictabletimportance"; // 1 - text
-    private static final String KEY_STATUS = "_status"; // 1 - text
     private static final String KEY_GLOBAL_ID = "_globalId"; // 1 - text
     private static final String KEY_NAME = "_names"; // 1 - text
     private static final String KEY_COMMENT = "_comments"; // 1 - text
@@ -59,71 +56,18 @@ public class FormTableUser {
     private static final String KEY_DISTRIC = "_district";
     private static final String KEY_SERVICE = "_service";
 
-
-    private Context tContext;
-
-    public FormTableUser(Context context) {
-        tContext = context;
-        createTable();
+    public ANCTable(Context context) {
+        super(context,TABLE_NAME);
     }
 
-    private void createTable() {
-        SQLiteDatabase db = openDB();
 
-        String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
-                + "( "
-                + KEY_ID + " INTEGER PRIMARY KEY, " // 0 - int
-                + KEY_DATE + " TEXT, "
-                + KEY_START_TIME + " TEXT, "
-                + KEY_END_TIME + " TEXT, "
-                + KEY_SERVICE + " TEXT, "
-                + KEY_BLOOD + " TEXT, "
-                + KEY_WEIGHT + " TEXT, "// 1 - text
-                + KEY_HEMO + " TEXT, "
-                + KEY_URINE + " TEXT, "              // 1 - text
-                + KEY_PREGFOOD + " TEXT, "
-                + KEY_PREGDANGER + " TEXT, "              // 1 - text
-                + KEY_FOURCENTER + " TEXT, "
-                + KEY_DELIVERY + " TEXT, "              // 1 - text
-                + KEY_FEED + " TEXT, "
-                + KEY_SIXMONTHS + " TEXT, "              // 1 - text
-                + KEY_FAMILY + " TEXT, "
-                + KEY_FOLICTAB + " TEXT, "
-                + KEY_FOLICIMP + " TEXT, "// 1 - text
-                + KEY_STATUS + " TEXT, "
-                + KEY_GLOBAL_ID + " TEXT, "
-                + KEY_NAME + " TEXT, "
-                + KEY_COMMENT + " TEXT,"
-                + KEY_FIELDS + " TEXT, "
-                + KEY_INS + " TEXT, "
-                + KEY_DATE_PICK + " TEXT, "
-                + KEY_TIME_PICK + " TEXT, "
-                + KEY_COLLECTOR_NAME + " TEXT, "
-                + KEY_DIVISION + " TEXT, "
-                + KEY_UPOZILA + " TEXT, "
-                + KEY_UNION + " TEXT, "
-                + KEY_VILLAGE + " TEXT, "
-                + KEY_OBSTYPE + " TEXT, "
-                + KEY_DISTRIC + " TEXT "
-
-                + " )";
-        db.execSQL(CREATE_TABLE_SQL);
-        closeDB();
-    }
-
-    private SQLiteDatabase openDB() {
-        return DatabaseManager.getInstance(tContext).openDatabase();
-    }
-
-    private void closeDB() {
-        DatabaseManager.getInstance(tContext).closeDatabase();
-    }
-    public long insertItem(FormItemUser formItem) {
+    public long insertItem(ANCFormItem formItem) {
         return insertItem(formItem.getPatientid(),formItem.getBloodpressure(),formItem.getHemoglobintest(),
                 formItem.getUrinetest(),formItem.getPregnancyfood(),formItem.getPregnancydanger(),formItem.getFourparts(),
                 formItem.getDelivery(),formItem.getFeedbaby(),formItem.getSixmonths(),formItem.getFamilyplanning(),formItem.getFolictablet(),
                 formItem.getFolictabletimportance(),formItem.getStatus(),formItem.getGlobal_id(),formItem.getName(),formItem.getComments(),formItem.getFields(),formItem.getInS(),formItem.getDatepick(),formItem.getTimepick(),formItem.getCollector_name(),formItem.getDivision(),formItem.getUpozila(),formItem.getUnion(),formItem.getVillage(),formItem.getObs_type());
     }
+
     public long insertItem(long patientid, String bloodpressure, String hemoglobintest,
                            String urinetest, String pregnancyfood, String pregnancydanger,
                            String fourparts, String delivery, String feedbaby,
@@ -149,7 +93,7 @@ public class FormTableUser {
         values.put(KEY_FAMILY, familyplanning);
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folictabletimportance);
-        values.put(KEY_STATUS, status);
+//        values.put(DBKEY_STATUS, status);
         values.put(KEY_GLOBAL_ID, globalId);
         values.put(KEY_NAME, name);
         values.put(KEY_COMMENT, comments);
@@ -164,15 +108,15 @@ public class FormTableUser {
         values.put(KEY_VILLAGE, village);
         values.put(KEY_OBSTYPE, obstype);
 
-
-
         SQLiteDatabase db = openDB();
         long ret= db.insert(TABLE_NAME, null, values);
         closeDB();
         return ret;
     }
-    public ArrayList<FormItemUser> getAllInfo() {
-        ArrayList<FormItemUser> subCatList = new ArrayList<>();
+
+
+    public ArrayList<ANCFormItem> getAllInfo() {
+        ArrayList<ANCFormItem> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME , null);
@@ -205,16 +149,8 @@ public class FormTableUser {
         return false;
     }
 
-
-    public long getRowSize(){
-        SQLiteDatabase db = openDB();
-        long numRows = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
-        closeDB();
-        return numRows;
-    }
-
-    public ArrayList<FormItemUser> getAll() {
-        ArrayList<FormItemUser> FieldList = new ArrayList<>();
+    public ArrayList<ANCFormItem> getAll() {
+        ArrayList<ANCFormItem> FieldList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
@@ -232,8 +168,8 @@ public class FormTableUser {
 
 
 
-    public ArrayList<FormItemUser> getSpecificItem(int cat_id) {
-        ArrayList<FormItemUser> subCatList = new ArrayList<>();
+    public ArrayList<ANCFormItem> getSpecificItem(int cat_id) {
+        ArrayList<ANCFormItem> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
 
@@ -254,8 +190,8 @@ public class FormTableUser {
 
 
 
-    public ArrayList<FormItemUser> dateconcate(int patient_id) {
-        ArrayList<FormItemUser> subCatList = new ArrayList<>();
+    public ArrayList<ANCFormItem> dateconcate(int patient_id) {
+        ArrayList<ANCFormItem> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
 
@@ -274,8 +210,8 @@ public class FormTableUser {
         return subCatList;
     }
 
-    public ArrayList<FormItemUser> getAllItem(int cat_id) {
-        ArrayList<FormItemUser> subCatList = new ArrayList<>();
+    public ArrayList<ANCFormItem> getAllItem(int cat_id) {
+        ArrayList<ANCFormItem> subCatList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
 
@@ -320,7 +256,7 @@ public class FormTableUser {
         values.put(KEY_FAMILY, familyplanning);
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folictabletimportance);
-        values.put(KEY_STATUS, status);
+//        values.put(KEY_STATUS, status);
         values.put(KEY_GLOBAL_ID, globalId);
         values.put(KEY_NAME, name);
         values.put(KEY_COMMENT, comments);
@@ -363,7 +299,7 @@ public class FormTableUser {
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folimp_status);
 
-        values.put(KEY_STATUS, status);
+//        values.put(KEY_STATUS, status);
         values.put(KEY_NAME, name);
         values.put(KEY_DATE_PICK, datepicker);
         values.put(KEY_TIME_PICK, timepicker);
@@ -406,7 +342,7 @@ public class FormTableUser {
         values.put(KEY_FOLICTAB, folictablet);
         values.put(KEY_FOLICIMP, folimp_status);
 
-        values.put(KEY_STATUS, status);
+//        values.put(KEY_STATUS, status);
         values.put(KEY_DATE_PICK,date);
 
 
@@ -444,7 +380,7 @@ public class FormTableUser {
 
         ContentValues values = new ContentValues();
         values.put(KEY_ID, patientId);
-        values.put(KEY_STATUS, status);
+//        values.put(KEY_STATUS, status);
         values.put(KEY_COMMENT, comments);
         values.put(KEY_FIELDS, fields);
 
@@ -464,7 +400,7 @@ public class FormTableUser {
     public long updateglobalId(int globalId, int patientId, String comments,String fields,String name) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, globalId);
-        values.put(KEY_STATUS, patientId);
+//        values.put(KEY_STATUS, patientId);
         values.put(KEY_COMMENT, comments);
         values.put(KEY_FIELDS, fields);
         values.put(KEY_NAME, name);
@@ -484,7 +420,7 @@ public class FormTableUser {
     public long updateglobalI(int globalId, int patientId) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, globalId);
-        values.put(KEY_STATUS, patientId);
+//        values.put(KEY_STATUS, patientId);
 
         SQLiteDatabase db = openDB();
 
@@ -544,39 +480,8 @@ public class FormTableUser {
     }
 
 
-    public FormItemUser cursorToSubCatList(Cursor cursor) {
-        int _id = cursor.getInt(0);
-        String _bloodpressure = cursor.getString(1);
-        String _hemoglobintest = cursor.getString(2);
-        String _urinetest = cursor.getString(3);
-        String _pregnancyfood =cursor.getString(4);
-        String _pregnancydanger = cursor.getString(5);
-        String _fourparts = cursor.getString(6);
-        String _delivery = cursor.getString(7);
-        String _feedbaby = cursor.getString(8);
-        String _sixmonths = cursor.getString(9);
-        String _familyplanning =cursor.getString(10);
-        String _folictablet = cursor.getString(11);
-        String _folictabletimportance = cursor.getString(12);
-        int _status = cursor.getInt(13);
-        String _globalId = cursor.getString(14);
-        String _name = cursor.getString(15);
-        String _comments = cursor.getString(16);
-        String _fields= cursor.getString(17);
-        String _inS= cursor.getString(18);
-        String _timepick= cursor.getString(19);
-        String _datepick= cursor.getString(20);
-        String _collectorName= cursor.getString(21);
-        String _division= cursor.getString(22);
-        String _upozila= cursor.getString(23);
-        String _union= cursor.getString(24);
-        String _village= cursor.getString(25);
-        String _obstype= cursor.getString(26);
-
-
-
-        return new FormItemUser(_id, _bloodpressure,_hemoglobintest,_urinetest,_pregnancyfood,_pregnancydanger,_fourparts,
-                _delivery,_feedbaby,_sixmonths,_familyplanning,_folictablet,_folictabletimportance,_status,_globalId,_name,_comments,_fields,_inS,_timepick,_datepick,_collectorName,_division,_upozila,_union,_village,_obstype);
+    public ANCFormItem cursorToSubCatList(Cursor cursor) {
+        return cursorlist(cursor);
     }
 
     public void dropTable() {
@@ -587,8 +492,50 @@ public class FormTableUser {
         closeDB();
     }
 
+    @Override
+    protected void generateTable() {
+        Hashtable<String,String> table = new Hashtable<String,String>();
+        table.put(KEY_ID, " integer primary key"); //must need to  add this key
+        table.put(KEY_DATE ," TEXT");
+        table.put(KEY_START_TIME ," TEXT");
+        table.put(KEY_END_TIME ," TEXT");
+        table.put(KEY_SERVICE ," TEXT");
+        table.put(KEY_BLOOD ," TEXT");
+        table.put(KEY_WEIGHT ," TEXT");// 1 - text
+        table.put(KEY_HEMO ," TEXT");
+        table.put(KEY_URINE ," TEXT");              // 1 - text
+        table.put(KEY_PREGFOOD ," TEXT");
+        table.put(KEY_PREGDANGER ," TEXT");              // 1 - text
+        table.put(KEY_FOURCENTER ," TEXT");
+        table.put(KEY_DELIVERY ," TEXT");              // 1 - text
+        table.put(KEY_FEED ," TEXT");
+        table.put(KEY_SIXMONTHS ," TEXT");              // 1 - text
+        table.put(KEY_FAMILY ," TEXT");
+        table.put(KEY_FOLICTAB ," TEXT");
+        table.put(KEY_FOLICIMP ," TEXT");// 1 - text
+        table.put(KEY_GLOBAL_ID ," TEXT");
+        table.put(KEY_NAME ," TEXT");
+        table.put(KEY_INS ," TEXT");
+        table.put(KEY_DATE_PICK ," TEXT");
+        table.put(KEY_TIME_PICK ," TEXT");
+        table.put(KEY_COLLECTOR_NAME ," TEXT");
+        table.put(KEY_DIVISION ," TEXT");
+        table.put(KEY_UPOZILA ," TEXT");
+        table.put(KEY_UNION ," TEXT");
+        table.put(KEY_VILLAGE ," TEXT");
+        table.put(KEY_OBSTYPE ," TEXT");
+        table.put(KEY_DISTRIC ," TEXT ");
+        table.put(DBRow.KEY_STATUS,"integer");
 
-    public long insert(FormItemUser item) {
+        table.put(DBRow.KEY_COMMENTS,"text");
+        table.put(DBRow.KEY_FIELDS,"text");
+        table.put(DBRow.KEY_CHECKED_BY,"text");
+        table.put(DBRow.KEY_SUBMITTED_BY,"text");
+        setNewTable(TABLE_NAME, table);
+    }
+
+
+    public long insert(ANCFormItem item) {
         ContentValues values = new ContentValues();
         values.put(KEY_DATE,item.date);
         values.put(KEY_START_TIME,item.start_time);
@@ -606,12 +553,7 @@ public class FormTableUser {
         values.put(KEY_FAMILY, item.familyplanning);
         values.put(KEY_FOLICTAB, item.folictablet);
         values.put(KEY_FOLICIMP, item.folictabletimportance);
-        values.put(KEY_STATUS, item.status);
-//        values.put(KEY_GLOBAL_ID, globalId);
         values.put(KEY_NAME, item.name);
-//        values.put(KEY_COMMENT, comments);
-//        values.put(KEY_FIELDS, fields);
-//        values.put(KEY_INS, inS);
         values.put(KEY_DATE_PICK,item.datepick);
         values.put(KEY_TIME_PICK, item.timepick);
         values.put(KEY_COLLECTOR_NAME, item.collector_name);
@@ -621,19 +563,34 @@ public class FormTableUser {
         values.put(KEY_VILLAGE, item.village);
         values.put(KEY_OBSTYPE, item.obs_type);
         values.put(KEY_DISTRIC, item.district);
+        values.put(DBRow.KEY_STATUS,item.status);
+
+        values.put(DBRow.KEY_COMMENTS,item.comments);
+        values.put(DBRow.KEY_FIELDS,item.fields);
+        values.put(DBRow.KEY_CHECKED_BY,item.checkedBy);
+        values.put(DBRow.KEY_SUBMITTED_BY,item.submittedBy);
         SQLiteDatabase db = openDB();
-        if(item.id > 0) //insert
-        {
-            db.update(TABLE_NAME,values,KEY_ID + "=" + item.id,null);
+        if(item.id > 0){
+            values.put(KEY_ID,item.id);
+            boolean hasItem = hasItem(item.id);
+            if(hasItem) {
+                int status = db.update(TABLE_NAME, values, KEY_ID + "=" + item.id, null);
+                Log.e("update state: ",""+status);
+            }
+            else{
+                long status = db.insert(TABLE_NAME, null, values);
+                Log.e("update state: ",""+status);
+            }
         }
-        else{
-            item.id = db.insert(TABLE_NAME,null,values);
+        else {
+            item.id = db.insert(TABLE_NAME, null, values);
         }
+        closeDB();
         return item.id;
     }
 
-    public FormItemUser get(long id) {
-        FormItemUser item = new FormItemUser();
+    public ANCFormItem get(long id) {
+        ANCFormItem item = new ANCFormItem();
         SQLiteDatabase db = openDB();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where _id=" + id, null);
 
@@ -650,9 +607,9 @@ public class FormTableUser {
 
     }
 
-    private FormItemUser cursorlist(Cursor cursor) {
-        FormItemUser item = new FormItemUser();
-        item.id = cursor.getInt(0);
+    private ANCFormItem cursorlist(Cursor cursor) {
+        ANCFormItem item = new ANCFormItem();
+        item.id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
         item.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
         item.start_time = cursor.getString(cursor.getColumnIndex(KEY_START_TIME));
         item.serviceDescription = cursor.getString(cursor.getColumnIndex(KEY_SERVICE));
@@ -677,8 +634,12 @@ public class FormTableUser {
         item.union = cursor.getString(cursor.getColumnIndex(KEY_UNION));
         item.village = cursor.getString(cursor.getColumnIndex(KEY_VILLAGE));
         item.district = cursor.getString(cursor.getColumnIndex(KEY_DISTRIC));
+        item.status = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_STATUS));
 
-
+        item.comments = cursor.getString(cursor.getColumnIndex(DBRow.KEY_COMMENTS));
+        item.fields = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FIELDS));
+        item.checkedBy = cursor.getString(cursor.getColumnIndex(DBRow.KEY_CHECKED_BY));
+        item.submittedBy = cursor.getString(cursor.getColumnIndex(DBRow.KEY_SUBMITTED_BY));
         return item;
     }
 }

@@ -5,17 +5,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.renderscript.Sampler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -28,33 +24,21 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import junit.framework.Test;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.FormTable;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
-import caresurvey.sci.com.caresurvey.database.SickChildTable;
-import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
-import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
+import caresurvey.sci.com.caresurvey.database.ANCTable;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 import caresurvey.sci.com.caresurvey.widgets.QCheckBox;
 
@@ -80,9 +64,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     // int id=intValue;
     String global_ida;
 
-    ArrayList<FormItemUser> formItemAll;
-    private FormItemUser item;
-    private FormTableUser table;
+    ArrayList<ANCFormItem> formItemAll;
+    private ANCFormItem item;
+    private ANCTable table;
 
     TextView tv1, tv2, tv3, comment, field;
     private String district;
@@ -446,7 +430,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test1);
         Intent mIntent = getIntent();
-        table = new FormTableUser(this);
+        table = new ANCTable(this);
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)) { //alreay have one
             if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
                 editable(false);
@@ -462,7 +446,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         else{
-            item = new FormItemUser();
+            item = new ANCFormItem();
             item.name = mIntent.getStringExtra("name");
             item.designation = mIntent.getStringExtra("designation");
             item.serviceDescription = mIntent.getStringExtra("description");
@@ -485,10 +469,29 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void loadForm(){
+        if(item.status == 2){ //reverted
+            EditText comment = (EditText) findViewById(R.id.comment);
+            comment.setText(item.comments);
+            comment.setFocusable(false);
+            findViewById(R.id.revert_submit).setVisibility(View.GONE);
+            LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
+            fieldLayout.removeAllViews();
+            TextView textView = new TextView(this);
+            textView.setTextSize(25f);
+            textView.setText(item.fields);
+            fieldLayout.addView(textView);
+            findViewById(R.id.commentSection).setVisibility(View.VISIBLE);
+            findViewById(R.id.revert_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    findViewById(R.id.commentSection).setVisibility(View.GONE);
+                }
+            });
+        }
         sETv(R.id.anc_101,item.serial_no);
         sETv(R.id.anc_102,item.date);
         sETv(R.id.anc_103,item.start_time);
-        sSPi(R.id.anc_104, item.serviceDescription);
+//        sSPi(R.id.anc_104, item.serviceDescription);
         sETv(R.id.anc_106, item.end_time);
         sRGv(R.id.bloodpressure, item.bloodpressure);
         sRGv(R.id.weight,item.weight);
@@ -561,7 +564,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         item.serial_no = gETv(R.id.anc_101);
         item.date = gETv(R.id.anc_102);
         item.start_time = gETv(R.id.anc_103);
-        item.serviceDescription = gSPi(R.id.anc_104);
+//        item.serviceDescription = gSPi(R.id.anc_104);
         item.bloodpressure = gRGv(R.id.bloodpressure);
         item.weight = gRGv(R.id.weight);
         item.hemoglobintest = gRGv(R.id.hemoglobintest);
@@ -708,6 +711,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         else if(v.getId() == R.id.submit){
             try{
                 collectData();
+                if(item.status == 2){ //reverted
+                    item.status = 4;
+                }
                 table.insert(item);
                 if(item.id > 0) {
                     submit();
@@ -724,7 +730,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             final ProgressDialog progressDialog = new ProgressDialog(TestActivity.this);
             progressDialog.setMessage("Please wait...");
             String url = "http://119.148.43.34/mamoni/survey/api/form";
-            final FormItemUser fItem = TestActivity.this.item;
+            final ANCFormItem fItem = TestActivity.this.item;
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
                         @Override
@@ -809,7 +815,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             final ProgressDialog progressDialog = new ProgressDialog(TestActivity.this);
             progressDialog.setMessage("Please wait...");
             String url = "http://119.148.43.34/mamoni/survey/api/form";
-            final FormItemUser fItem = TestActivity.this.item;
+            final ANCFormItem fItem = TestActivity.this.item;
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
                         @Override

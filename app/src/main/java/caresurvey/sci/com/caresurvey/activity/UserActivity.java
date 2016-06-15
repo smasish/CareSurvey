@@ -19,11 +19,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import caresurvey.sci.com.caresurvey.R;
-import caresurvey.sci.com.caresurvey.database.FormTable;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
-import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
-import caresurvey.sci.com.caresurvey.model.SickChildItem;
+import caresurvey.sci.com.caresurvey.database.ANCTable;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 
 public class UserActivity extends AppCompatActivity {
     Boolean firstRun;
@@ -101,7 +98,7 @@ public class UserActivity extends AppCompatActivity {
                 int child_sick_value = pref.getInt("cs_id", 0);
 
 
-                FormTableUser formTable = new FormTableUser(UserActivity.this);
+                ANCTable formTable = new ANCTable(UserActivity.this);
 
 
                 SharedPreferences settings = getSharedPreferences("prefs", 0);
@@ -117,7 +114,7 @@ public class UserActivity extends AppCompatActivity {
 
                     for (int i = 1; i <= 30; i++) {
 
-                        FormItemUser formItem = new FormItemUser(i, "No", "No", "No", "No", "No", "No"
+                        ANCFormItem formItem = new ANCFormItem(i, "No", "No", "No", "No", "No", "No"
                                 , "No", "No", "No", "No", "No", "No", 5, "", "", "", "", "3", "", "", "", "", "", "", "", "");
 
                         formTable.insertItem(formItem);

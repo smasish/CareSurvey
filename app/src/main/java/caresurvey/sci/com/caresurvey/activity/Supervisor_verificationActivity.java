@@ -1,8 +1,5 @@
 package caresurvey.sci.com.caresurvey.activity;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +33,7 @@ import java.util.Map;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.FormTable;
-import caresurvey.sci.com.caresurvey.model.FormItem;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 
 public class Supervisor_verificationActivity extends AppCompatActivity {
 
@@ -59,8 +56,8 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
             sixmonths, familyplanning, folictablet,
             folictabletimportance;
 
-    ArrayList<FormItem> formItemAll;
-    ArrayList<FormItem> formItems;
+    ArrayList<ANCFormItem> formItemAll;
+    ArrayList<ANCFormItem> formItems;
     TextView tv1,tv2,tv3;
 
     @Override
@@ -139,7 +136,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
         Intent mIntent = getIntent();
         intValue = mIntent.getIntExtra("position", 0)+1;
-        final ArrayList<FormItem> formItems1;
+        final ArrayList<ANCFormItem> formItems1;
         final FormTable formTable = new FormTable(Supervisor_verificationActivity.this);
         formItems= formTable.getSpecificItem(intValue);
         Save.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +178,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                                     Log.d(".....>>>>>>>>>>nnn", "ChekboxText " +status);
                                     if (status==2){
                                         FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
-                                        for(FormItem formItem1: formItems)
+                                        for(ANCFormItem formItem1: formItems)
                                         {
                                             long ts,vs,vs2;
 
@@ -225,14 +222,14 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                             //record
                             JSONObject requests = new JSONObject();
                             JSONArray jsonArray =new JSONArray();
-                            for(FormItem formItem1: formItems)
+                            for(ANCFormItem formItem1: formItems)
                             {
                                 JSONObject jf= new JSONObject();
                                 JSONObject meta=new JSONObject();
                                 meta.put("comments","");
                                 meta.put("fields", "");
                                 requests.put("meta",meta);
-                                requests.put("submitted_by",formItem1.getC_name());
+//                                requests.put("submitted_by",formItem1.getC_name());
                                 requests.put("form_id",formItem1.getGlobal_id());
                                 Log.d(".....>>>>>>>>>>", "response length      " + formItem1.getGlobal_id());
                                 requests.put("form_type","dh_antenantals");
@@ -373,7 +370,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
                                     if (status==2){
                                         FormTable formTable1= new FormTable(Supervisor_verificationActivity.this);
-                                        for(FormItem formItem1: formItems)
+                                        for(ANCFormItem formItem1: formItems)
                                         {
                                             String global_id= String.valueOf(intValue);
                                             long vvs;
@@ -426,7 +423,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
                             //record
                             JSONObject requests = new JSONObject();
                             JSONArray jsonArray =new JSONArray();
-                            for(FormItem formItem1: formItems)
+                            for(ANCFormItem formItem1: formItems)
                             {
                                 JSONObject jf= new JSONObject();
                                 JSONObject meta=new JSONObject();
@@ -503,7 +500,7 @@ public class Supervisor_verificationActivity extends AppCompatActivity {
 
 
 
-        for(FormItem ft: formItems)
+        for(ANCFormItem ft: formItems)
 
         {
 

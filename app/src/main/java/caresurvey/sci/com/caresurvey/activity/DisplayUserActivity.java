@@ -15,13 +15,13 @@ import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter2;
-import caresurvey.sci.com.caresurvey.database.FormTableUser;
+import caresurvey.sci.com.caresurvey.database.ANCTable;
 import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.DBRow;
-import caresurvey.sci.com.caresurvey.model.FormItemUser;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
 import caresurvey.sci.com.caresurvey.model.InventoryItem;
 import caresurvey.sci.com.caresurvey.model.SatelliteClinicItem;
@@ -46,12 +46,142 @@ public class DisplayUserActivity extends AppCompatActivity {
         names = in.getStringExtra("name");
         //     Log.d(".....>>>>>>>>>>", "response length" + names);
 
+
+//        int k = 0;
+//        int f = formItemsUser.size();
+//        int[] id = new int[f];
+//        String[] name = new String[f];
+//        final int[] status = new int[f];
+//        final String[] inS = new String[f];
+//        if (!formItemsUser.isEmpty()) {
+//            for (FormItemUser ft : formItemsUser)
+//
+//            {
+//                id[k] = ft.getPatientid();
+//                name[k] = ft.getName();
+//                status[k] = ft.getStatus();
+//                inS[k] = ft.getInS();
+//                k++;
+//
+//
+//            }
+//        }
+        adapter = new DisplayNamesWithStatusAdapter2(this,R.layout.display_an_item);
+
+        listView.setAdapter(adapter);
+        //     Helpes.getListViewSize(courseListView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Status.......ONClick", "response length");
+                Log.d("Status.......", "response length" + adapter.getItem(position).status);
+                if(adapter.getItem(position).status == 2) {
+                    if ((getIntent().getIntExtra(FORM, -1)) == 0) {
+                        Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
+                        iiv.putExtra("position", position + 1);
+                        iiv.putExtra("name", names);
+                        iiv.putExtra(FORM_ID,adapter.getItem(position).id);
+                        startActivity(iiv);
+                    } else if ((getIntent().getIntExtra(FORM, -1)) == 1) {
+                        Intent iiv = new Intent(DisplayUserActivity.this, SateliteClinicInventoryActivity.class);
+                        iiv.putExtra("position", position + 1);
+                        iiv.putExtra("name", names);
+                        iiv.putExtra(FORM_ID,adapter.getItem(position).id);
+                        startActivity(iiv);
+                    } else if ((getIntent().getIntExtra(FORM, -1)) == 2) {
+                        Intent iiv = new Intent(DisplayUserActivity.this, SickChildUnderFiveActivity.class);
+                        iiv.putExtra("position", position + 1);
+                        iiv.putExtra("name", names);
+                        iiv.putExtra(FORM_ID,adapter.getItem(position).id);
+                        startActivity(iiv);
+                    } else if ((getIntent().getIntExtra(FORM, -1)) == 3) {
+                        Intent iiv = new Intent(DisplayUserActivity.this, FacilityInventoryActivity.class);
+                        iiv.putExtra("position", position + 1);
+                        iiv.putExtra("name", names);
+                        iiv.putExtra(FORM_ID,adapter.getItem(position).id);
+                        startActivity(iiv);
+                    } else if ((getIntent().getIntExtra(FORM, -1)) == 4) {
+                        Intent iiv = new Intent(DisplayUserActivity.this, FpObservationActivity.class);
+                        iiv.putExtra("position", position + 1);
+                        iiv.putExtra("name", names);
+                        iiv.putExtra(FORM_ID,adapter.getItem(position).id);
+                        startActivity(iiv);
+                    }
+                }
+                else{
+                    AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",
+                            "");
+                }
+            }
+        });
+    }
+
+
+
+
+    @Override
+    protected void onResume() {
+
+//        ArrayList<ANCFormItem> formItemsUser;
+//        final ANCTable formTable = new ANCTable(DisplayUserActivity.this);
+//        formItemsUser = formTable.getAll();
+//
+//
+//        int k = 0;
+//        int f = formItemsUser.size();
+//
+//        long[] id = new long[f];
+//        String[] name = new String[f];
+//
+//        final int[] status = new int[f];
+//
+//        final String[] inS = new String[f];
+//
+//        if (!formItemsUser.isEmpty()) {
+//            for (ANCFormItem ft : formItemsUser)
+//
+//            {
+//                id[k] = ft.getPatientid();
+//                name[k] = ft.getName();
+//                status[k] = ft.getStatus();
+//                inS[k] = ft.getInS();
+//                k++;
+//
+//
+//            }
+//        }
+
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d("Status.......OnResume", "response length" + status[position]);
+//                if (status[position] == 3) {
+//                    AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",
+//                            "");
+//                } else if (status[position] == 5) {
+//                    AlertMessage.showMessage(DisplayUserActivity.this, "Form is empty",
+//                            "At first insert data");
+//                } else {
+//                    Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
+//                    iiv.putExtra("id", position + 1);
+//                    iiv.putExtra("name", names);
+//                    iiv.putExtra("mark", 2);
+//
+//                    startActivity(iiv);
+//                    finish();
+//                }
+//
+//
+//            }
+//        });
+
         List<DBRow> dbrows = new ArrayList<>();
 
         if(getIntent().getIntExtra(FORM,-1) == 0){
-            final FormTableUser formTable = new FormTableUser(DisplayUserActivity.this);
-            ArrayList<FormItemUser> formItemsUser = formTable.getAll();
-            for(FormItemUser ft : formItemsUser){
+            final ANCTable formTable = new ANCTable(DisplayUserActivity.this);
+            ArrayList<ANCFormItem> formItemsUser = formTable.getAll();
+            for(ANCFormItem ft : formItemsUser){
                 dbrows.add(ft);
             }
         }
@@ -83,114 +213,8 @@ public class DisplayUserActivity extends AppCompatActivity {
                 dbrows.add(item);
             }
         }
-
-//        int k = 0;
-//        int f = formItemsUser.size();
-//        int[] id = new int[f];
-//        String[] name = new String[f];
-//        final int[] status = new int[f];
-//        final String[] inS = new String[f];
-//        if (!formItemsUser.isEmpty()) {
-//            for (FormItemUser ft : formItemsUser)
-//
-//            {
-//                id[k] = ft.getPatientid();
-//                name[k] = ft.getName();
-//                status[k] = ft.getStatus();
-//                inS[k] = ft.getInS();
-//                k++;
-//
-//
-//            }
-//        }
-        adapter = new DisplayNamesWithStatusAdapter2(this,R.layout.display_an_item,dbrows);
-
-        listView.setAdapter(adapter);
-        //     Helpes.getListViewSize(courseListView);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Status.......ONClick", "response length");
-                Log.d("Status.......", "response length" + adapter.getItem(position).status);
-                if (adapter.getItem(position).status == 3) {
-
-                    AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",
-                            "");
-
-                } else if((getIntent().getIntExtra(FORM,-1)) == 3) {
-                    Intent iiv = new Intent(DisplayUserActivity.this, FpObservationActivity.class);
-                    iiv.putExtra("position", position + 1);
-                    iiv.putExtra("name", names);
-                    startActivity(iiv);
-                } else if(getIntent().getIntExtra(FORM,-1) == 0){
-                    Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
-                    iiv.putExtra("position", position + 1);
-                    iiv.putExtra("name", names);
-                    startActivity(iiv);
-                }
-            }
-        });
-    }
-
-
-    @Override
-    protected void onResume() {
-
-        ArrayList<FormItemUser> formItemsUser;
-        final FormTableUser formTable = new FormTableUser(DisplayUserActivity.this);
-        formItemsUser = formTable.getAll();
-
-
-        int k = 0;
-        int f = formItemsUser.size();
-
-        long[] id = new long[f];
-        String[] name = new String[f];
-
-        final int[] status = new int[f];
-
-        final String[] inS = new String[f];
-
-        if (!formItemsUser.isEmpty()) {
-            for (FormItemUser ft : formItemsUser)
-
-            {
-                id[k] = ft.getPatientid();
-                name[k] = ft.getName();
-                status[k] = ft.getStatus();
-                inS[k] = ft.getInS();
-                k++;
-
-
-            }
-        }
-
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Log.d("Status.......OnResume", "response length" + status[position]);
-//                if (status[position] == 3) {
-//                    AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",
-//                            "");
-//                } else if (status[position] == 5) {
-//                    AlertMessage.showMessage(DisplayUserActivity.this, "Form is empty",
-//                            "At first insert data");
-//                } else {
-//                    Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
-//                    iiv.putExtra("id", position + 1);
-//                    iiv.putExtra("name", names);
-//                    iiv.putExtra("mark", 2);
-//
-//                    startActivity(iiv);
-//                    finish();
-//                }
-//
-//
-//            }
-//        });
-
-
+        adapter.clear();
+        adapter.addAll(dbrows);
         super.onResume();
     }
 

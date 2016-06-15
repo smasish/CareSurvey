@@ -4,10 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,23 +18,19 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter;
 import caresurvey.sci.com.caresurvey.adapter.DisplayNamesWithStatusAdapter2;
 import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
 import caresurvey.sci.com.caresurvey.model.DBRow;
-import caresurvey.sci.com.caresurvey.model.FormItem;
-import caresurvey.sci.com.caresurvey.model.FpObservationFormItem;
+import caresurvey.sci.com.caresurvey.model.ANCFormItem;
 import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
-import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 public class SurveyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     public static final String FROM_ADMIN = "from_admin_page";
@@ -47,7 +41,7 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
     Spinner facilityspinner,collector_name;
     String facilityname,username;
     int valuecount;
-    ArrayList<FormItem> formItems;
+    ArrayList<ANCFormItem> formItems;
     ProgressBar progressBar,progressBar1,progressBar2,progressBar3,progressBar4;
     private Context con;
     private DisplayNamesWithStatusAdapter2 mAdapter;
