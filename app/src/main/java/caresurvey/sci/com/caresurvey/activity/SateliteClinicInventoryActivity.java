@@ -530,7 +530,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                         finalRequest.put("password",AppUtils.getPassword(SateliteClinicInventoryActivity.this));
                         JSONArray requests = new JSONArray();
                         JSONObject object = new JSONObject();
-                        object.put("form_id",formID);
+                        object.put("form_id",fpItem.id);
                         object.put("form_type","dh_satelliteclinic");
                         JSONObject data = new JSONObject();
                         data.put("facility_id",fpItem.facilityID);
