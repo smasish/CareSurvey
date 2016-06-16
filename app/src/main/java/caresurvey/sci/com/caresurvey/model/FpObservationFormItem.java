@@ -19,6 +19,7 @@ public class FpObservationFormItem extends DBRow{
         date = AppUtils.getDate();
         start_time = AppUtils.getTime();
         end_time = AppUtils.getTime();
+        status = 7;
     }
 
     public String sp_client;
@@ -240,7 +241,14 @@ public class FpObservationFormItem extends DBRow{
                         item.meta = "false";
                     }
                 }catch (Exception e){
-                    e.printStackTrace();
+                    JSONObject meta = null;
+                    try {
+                        meta = object.getJSONObject("meta");
+                    }catch(Exception ex){
+
+                    }
+                    item.fields = AppUtils.getString(meta,"fields");
+                    item.comments = AppUtils.getString(meta,"comments");
                 }
             }
             item.submittedBy = object.getString("submitted_by");
@@ -279,7 +287,6 @@ public class FpObservationFormItem extends DBRow{
         try {
             JSONObject object = new JSONObject(json);
             JSONObject data = object.getJSONObject("data");
-            JSONObject meta = object.getJSONObject("meta");
             item.id = object.getInt("form_id");
             item.status = object.getInt("status");
 
@@ -305,10 +312,26 @@ public class FpObservationFormItem extends DBRow{
             item.district = AppUtils.getString(data,"district");
             item.client_name = AppUtils.getString(data,"client_name");
 
+            if (object.has("meta")) {
+                try {
+                    boolean b = object.getBoolean("meta");
+                    if (b) {
+                        item.meta = "true";
+                    } else {
+                        item.meta = "false";
+                    }
+                } catch (Exception e) {
+                    JSONObject meta = null;
+                    try {
+                        meta = object.getJSONObject("meta");
+                    }catch(Exception ex){
 
+                    }
+                    item.fields = AppUtils.getString(meta,"fields");
+                    item.comments = AppUtils.getString(meta,"comments");
+                }
+            }
             item.checkedBy = AppUtils.getString(object,"checked_by");
-            item.fields = AppUtils.getString(meta,"fields");
-            item.comments = AppUtils.getString(meta,"comments");
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -272,14 +272,14 @@ public class AppUtils{
     }
 
     public static String getString(JSONObject data,String key) throws JSONException {
-        if(data.has(key)){
+        if(data != null && data.has(key)){
             return data.getString(key);
         }
         return "";
     }
 
     public static int getInt(JSONObject data,String key) throws JSONException {
-        if(data.has(key)){
+        if(data != null && data.has(key)){
             return data.getInt(key);
         }
         return 0;

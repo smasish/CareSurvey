@@ -138,7 +138,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         item.hand = gRGv(R.id.hand);
         item.dehydration = gRGv(R.id.dehydration);
         item.weight = gRGv(R.id.weight);
-        item.circle = gRGv(R.id.circle);
+        item.clinic_test = gRGv(R.id.clinic_test);
         item.belly_button = gRGv(R.id.belly);
         item.height = gRGv(R.id.height);
         item.bmi = gRGv(R.id.bmi);
@@ -206,9 +206,10 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         sRGv(R.id.infected_mouth,item.infected_mouth);
         sRGv(R.id.neck,item.neck);
         sRGv(R.id.ear,item.ear);
+        sRGv(R.id.hand,item.hand);
         sRGv(R.id.dehydration,item.dehydration);
         sRGv(R.id.weight,item.weight);
-        sRGv(R.id.circle,item.circle);
+        sRGv(R.id.clinic_test,item.clinic_test);
         sRGv(R.id.belly,item.belly_button);
         sRGv(R.id.height,item.height);
         sRGv(R.id.bmi,item.bmi);
@@ -244,9 +245,10 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         sRGs(R.id.infected_mouth,state);
         sRGs(R.id.neck,state);
         sRGs(R.id.ear,state);
+        sRGs(R.id.hand,state);
         sRGs(R.id.dehydration,state);
         sRGs(R.id.weight,state);
-        sRGs(R.id.circle,state);
+        sRGs(R.id.clinic_test,state);
         sRGs(R.id.belly,state);
         sRGs(R.id.height,state);
         sRGs(R.id.bmi,state);
@@ -581,6 +583,11 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.dismiss();
+                                            if(item.status == 7) //incomplete
+                                            {
+                                                item.status = 3;//pending
+                                                table.insert(item);
+                                            }
                                             finish();
                                         }
                                     });
@@ -658,6 +665,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
                     jf.put("clinic_test",sickChildItem.getClinic_test());
                     jf.put("belly_button",sickChildItem.getBelly_button());
                     jf.put("height",sickChildItem.getHeight());
+//                    jf.put("bmi",sickChildItem.bmi);
                     jf.put("result",sickChildItem.getResult());
                     jf.put("end_time",sickChildItem.getEnd_time());
                     jf.put("village",sickChildItem.getVillage());
@@ -729,9 +737,9 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
     private String getComments(){
         return ((EditText)findViewById(R.id.comment)).getText().toString();
     }
-    private static String FIELDS[] = {"105","105_1","106_1","106_2","106_3","107_1","107_2","107_3","108_1"
-            ,"108_2","108_3","108_4","108_5","108_6","108_7","108_8","108_9","108_10","108_11","108_12","108_13"
-            ,"108_14","109","110"};
+    private static String FIELDS[] = {"105","105-1","106-1","106-2","106-3","107-1","107-2","107-3","108-1"
+            ,"108-2","108-3","108-4","108-5","108-6","108-7","108-8","108-9","108-10","108-11","108-12","108-13"
+            ,"108-14","109","110"};
     private void generateFieldsBox(){
         LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
         fieldLayout.removeAllViews();

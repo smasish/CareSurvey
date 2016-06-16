@@ -138,6 +138,11 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
                                         dialog.dismiss();
                                         try {
                                             if (jo.getInt("errorCount") == 0) {
+                                                if(item.status == 7) //incomplete
+                                                {
+                                                    item.status = 3;//pending
+                                                    table.insert(item);
+                                                }
                                                 finish();
                                             }
                                         }catch(Exception e){
@@ -531,7 +536,7 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
                         params.put("data", data.toString());
                     }
                     catch (Exception e){
-
+                        e.printStackTrace();
                     }
 
                     return params;

@@ -534,7 +534,7 @@ public class InventoryTable extends SuperTable{
                 Log.e("update state: ",""+status);
             }
         }
-        else {
+        else if(item.id == -1){
             item.id = db.insert(TABLE_NAME, null, values);
         }
         closeDB();

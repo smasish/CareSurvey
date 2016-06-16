@@ -9,7 +9,7 @@ public class DBRow {
     public String checkedBy;
 
     public DBRow(){
-        id = 0;
+        id = -1;
     }
     public int status;
     public long id;

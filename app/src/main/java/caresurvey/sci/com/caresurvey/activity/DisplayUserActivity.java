@@ -76,7 +76,7 @@ public class DisplayUserActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("Status.......ONClick", "response length");
                 Log.d("Status.......", "response length" + adapter.getItem(position).status);
-                if(adapter.getItem(position).status == 2) {
+                if(adapter.getItem(position).status == 2 || adapter.getItem(position).status == 7 ) {
                     if ((getIntent().getIntExtra(FORM, -1)) == 0) {
                         Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
                         iiv.putExtra("position", position + 1);
@@ -108,6 +108,10 @@ public class DisplayUserActivity extends AppCompatActivity {
                         iiv.putExtra(FORM_ID,adapter.getItem(position).id);
                         startActivity(iiv);
                     }
+                }
+                else if(adapter.getItem(position).status == 1){
+                    AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit accepted observation",
+                            "");
                 }
                 else{
                     AlertMessage.showMessage(DisplayUserActivity.this, "You can not edit until supervisor review it",

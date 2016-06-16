@@ -200,6 +200,7 @@ public class SickChildSupervisorTable2 extends SuperTable{
         item.clinic_test = cursor.getString(cursor.getColumnIndex(KEY_CLINIC_TEST));
         item.belly_button=cursor.getString(cursor.getColumnIndex(KEY_BELLEY_BUTTON));
         item.height= cursor.getString(cursor.getColumnIndex(KEY_HEIGHT));
+        item.bmi = cursor.getString(cursor.getColumnIndex(KEY_BMI));
         item.result=cursor.getString(cursor.getColumnIndex(KEY_RESULT));
         item.end_time=cursor.getString(cursor.getColumnIndex(KEY_END_TIME));
         item.village= cursor.getString(cursor.getColumnIndex(KEY_VILLAGE));

@@ -14,7 +14,7 @@ public class SatelliteClinicItem extends DBRow{
         date = AppUtils.getDate();
         startTime = AppUtils.getTime();
         endTime = AppUtils.getTime();
-        status = 3;
+        status = 7;
     }
     public String csi101;
     public String csi102;
@@ -83,7 +83,14 @@ public class SatelliteClinicItem extends DBRow{
                         item.meta = "false";
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    JSONObject meta = null;
+                    try {
+                        meta = object.getJSONObject("meta");
+                    }catch(Exception ex){
+
+                    }
+                    item.fields = AppUtils.getString(meta,"fields");
+                    item.comments = AppUtils.getString(meta,"comments");
                 }
             }
             item.submittedBy = object.getString("submitted_by");
@@ -218,10 +225,26 @@ public class SatelliteClinicItem extends DBRow{
             item.union = AppUtils.getString(data,"union");
             item.subdistrict = AppUtils.getString(data,"sub_district");
 
-            JSONObject meta = object.getJSONObject("meta");
+            if (object.has("meta")) {
+                try {
+                    boolean b = object.getBoolean("meta");
+                    if (b) {
+                        item.meta = "true";
+                    } else {
+                        item.meta = "false";
+                    }
+                } catch (Exception e) {
+                    JSONObject meta = null;
+                    try {
+                        meta = object.getJSONObject("meta");
+                    }catch(Exception ex){
+
+                    }
+                    item.fields = AppUtils.getString(meta,"fields");
+                    item.comments = AppUtils.getString(meta,"comments");
+                }
+            }
             item.checkedBy = AppUtils.getString(object,"checked_by");
-            item.fields = AppUtils.getString(meta,"fields");
-            item.comments = AppUtils.getString(meta,"comments");
         }
         catch (Exception e){
             e.printStackTrace();

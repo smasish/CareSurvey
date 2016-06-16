@@ -75,12 +75,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             }
             submitBtn.setOnClickListener(this);
         }
-        try {
-            loadData(getContext().getItem());
-        }catch(Exception e){
-            e.printStackTrace();
-//            Toast.makeText(getActivity(),"Form load failed",Toast.LENGTH_SHORT).show();
-        }
+
         try{
             if(getContext().isAdmin()) {
                 editable(false);
@@ -129,6 +124,12 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             gRGi(R.id.fi_402_0).setOnCheckedChangeListener(this);
             gRGi(R.id.fi_403_0).setOnCheckedChangeListener(this);
             updateRadioGroupState5();
+        }
+        try {
+            loadData(getContext().getItem());
+        }catch(Exception e){
+            e.printStackTrace();
+//            Toast.makeText(getActivity(),"Form load failed",Toast.LENGTH_SHORT).show();
         }
     }
     int idx = -1;
@@ -245,6 +246,10 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             try {
                 if(!getContext().isAdmin()) {
                     collectData(getContext().getItem());
+                    InventoryItem item = getContext().getItem();
+                    if(item.status == 2){ //reverted
+                        item.status = 4;
+                    }
                     getContext().getTable().insert(getContext().getItem());
                 }
                 if(v.getId() == R.id.next) {
@@ -421,6 +426,8 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
 
     private void loadData6(InventoryItem item){
+        item.end_time = getTime();
+        sETv(R.id.fi_612,item.end_time);
         String tokens[];
         tokens = item.r_healthy_newborn.split(",");
         for(int i=0;i<tokens.length;i++){
@@ -432,6 +439,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             }
             else if(i == 2){
                 sETv(R.id.fi_601_3,tokens[i]);
+            }
+            else if(i == 3){
+                sETv(R.id.fi_601_4,tokens[i]);
             }
         }
         tokens = item.r_newborn_death.split(",");
@@ -445,6 +455,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             else if(i == 2){
                 sETv(R.id.fi_602_3,tokens[i]);
             }
+            else if(i == 3){
+                sETv(R.id.fi_602_4,tokens[i]);
+            }
         }
         tokens = item.r_mother_rate.split(",");
         for(int i=0;i<tokens.length;i++){
@@ -456,6 +469,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             }
             else if(i == 2){
                 sETv(R.id.fi_603_3,tokens[i]);
+            }
+            else if(i == 3){
+                sETv(R.id.fi_603_4,tokens[i]);
             }
         }
         tokens = item.r_elampsia.split(",");
@@ -469,6 +485,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             else if(i == 2){
                 sETv(R.id.fi_604_3,tokens[i]);
             }
+            else if(i == 3){
+                sETv(R.id.fi_604_4,tokens[i]);
+            }
         }
         tokens = item.r_mang_sulfate.split(",");
         for(int i=0;i<tokens.length;i++){
@@ -480,6 +499,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             }
             else if(i == 2){
                 sETv(R.id.fi_605_3,tokens[i]);
+            }
+            else if(i == 3){
+                sETv(R.id.fi_605_4,tokens[i]);
             }
         }
         tokens = item.r_pneumonis.split(",");
@@ -493,6 +515,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             else if(i == 2){
                 sETv(R.id.fi_606_3,tokens[i]);
             }
+            else if(i == 3){
+                sETv(R.id.fi_606_4,tokens[i]);
+            }
         }
         tokens = item.r_paracetamol.split(",");
         for(int i=0;i<tokens.length;i++){
@@ -504,6 +529,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             }
             else if(i == 2){
                 sETv(R.id.fi_607_3,tokens[i]);
+            }
+            else if(i == 3){
+                sETv(R.id.fi_607_4,tokens[i]);
             }
         }
         tokens = item.r_psbi.split(",");
@@ -517,6 +545,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             else if(i == 2){
                 sETv(R.id.fi_608_3,tokens[i]);
             }
+            else if(i == 3){
+                sETv(R.id.fi_608_4,tokens[i]);
+            }
         }
         tokens = item.r_psbi_care.split(",");
         for(int i=0;i<tokens.length;i++){
@@ -528,6 +559,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             }
             else if(i == 2){
                 sETv(R.id.fi_609_3,tokens[i]);
+            }
+            else if(i == 3){
+                sETv(R.id.fi_609_4,tokens[i]);
             }
         }
         tokens = item.r_starving_child.split(",");
@@ -541,6 +575,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             else if(i == 2){
                 sETv(R.id.fi_610_3,tokens[i]);
             }
+            else if(i == 3){
+                sETv(R.id.fi_610_4,tokens[i]);
+            }
         }
         tokens = item.r_starving_protocol.split(",");
         for(int i=0;i<tokens.length;i++){
@@ -553,9 +590,10 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             else if(i == 2){
                 sETv(R.id.fi_611_3,tokens[i]);
             }
+            else if(i == 3){
+                sETv(R.id.fi_611_4,tokens[i]);
+            }
         }
-        item.end_time = getTime();
-        sETv(R.id.fi_612,item.end_time);
     }
     private void editable6(boolean state){
         sVEs(R.id.fi_601_1,state);
@@ -979,7 +1017,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
                 lRGv(R.id.fi_5_1, ind);
             }
             else if(i == 2){
-                lRGv(R.id.fi_6_2, ind);
+                lRGv(R.id.fi_5_2, ind);
             }
         }
 
@@ -1029,7 +1067,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         sRGs(R.id.fi_4_2, state);
         sRGs(R.id.fi_5_0, state);
         sRGs(R.id.fi_5_1, state);
-        sRGs(R.id.fi_6_2, state);
+        sRGs(R.id.fi_5_2, state);
         sRGs(R.id.fi_6_0, state);
         sRGs(R.id.fi_6_1, state);
         sRGs(R.id.fi_6_2, state);

@@ -949,6 +949,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                                         dialog.dismiss();
                                         try {
                                             if (jo.getInt("errorCount") == 0) {
+                                                if(item.status == 7) //incomplete
+                                                {
+                                                    item.status = 3;//pending
+                                                    table.insert(item);
+                                                }
                                                 finish();
                                             }
                                         } catch (JSONException e) {

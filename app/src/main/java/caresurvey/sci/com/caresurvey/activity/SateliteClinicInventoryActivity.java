@@ -224,11 +224,11 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
     }
 
     private void sRGs(int id,boolean state){
-        RadioGroup radioGroup = (RadioGroup) findViewById(id);
-        for(int i=0;i<radioGroup.getChildCount();i++){
-            RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
+//        RadioGroup radioGroup = (RadioGroup) findViewById(id);
+//        for(int i=0;i<radioGroup.getChildCount();i++){
+            RadioButton btn = (RadioButton) findViewById(id);
             btn.setEnabled(state);
-        }
+//        }
     }
 
     private void sETv(int id,String val){
@@ -258,7 +258,6 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         return val;
     }
     private SatelliteClinicItem genSatelliteClinicItem(){
-        SatelliteClinicItem item = new SatelliteClinicItem();
         if( TextUtils.isEmpty(item.csi101 = getRGValue(R.id.csi_101_y, R.id.csi_101_n)) ){
             makeText(this, "Form is not complete.", LENGTH_SHORT).show();
             return null;
@@ -406,7 +405,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             makeText(this, "Form is not complete.", LENGTH_SHORT).show(); return null;
         }
 
-        item.endTime = AppUtils.getDate();
+        item.endTime = AppUtils.getTime();
         sETv(R.id.end_time,item.endTime);
 
 //        item.status = 3; //pending
@@ -489,6 +488,11 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                                         dialog.dismiss();
                                         try {
                                             if(jo.getInt("errorCount") == 0){
+                                                if(item.status == 7) //incomplete
+                                                {
+                                                    item.status = 3;//pending
+                                                    table.insert(item);
+                                                }
                                                 finish();
                                             }
                                         } catch (JSONException e) {
@@ -793,7 +797,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
     }
     private static String FIELDS[] = {"101","102","103","104","105","106","107","201","202","203","204"
             ,"205","206","207","208","209","210","211","212","213","214","215","216","217","218"
-            ,"219","220","221","222","223","224","225","226","227","228","229","230_1","230_2","231","232","233","234"};
+            ,"219","220","221","222","223","224","225","226","227","228","229","230-1","230-2","231","232","233","234"};
     private void generateFieldsBox(){
         LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
         fieldLayout.removeAllViews();

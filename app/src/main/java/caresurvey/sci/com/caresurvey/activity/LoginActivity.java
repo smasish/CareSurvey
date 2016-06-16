@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +37,7 @@ import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
+import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
@@ -140,45 +142,45 @@ public class LoginActivity extends AppCompatActivity {
                 if (flag) {
 
                     handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                /* start the activity */
-                            pd.dismiss();
-
-                            if (user.equals("admin")) {
-//                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                /* start the activity */
+//                            pd.dismiss();
+//
+//                            if (user.equals("admin")) {
+////                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
+////                                startActivity(intent);
+//
+//
+//                                Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
 //                                startActivity(intent);
-
-
-                                Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
-                                startActivity(intent);
-                            } else if (user.equals("user_hb1")) {
-                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                                startActivity(intentX);
-                            }
-
-
-                            else if (user.equals("user_hb2")) {
-                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                                startActivity(intentX);
-                            }
-
-                            else if (user.equals("user_hb3")) {
-                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                                startActivity(intentX);
-                            }
-
-                            else if (user.equals("user_hb4")) {
-                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                                startActivity(intentX);
-                            }
-                            //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                            overridePendingTransition(0, 0);
-
-                            finish();
-                        }
-                    }, 5000);
+//                            } else if (user.equals("user_hb1")) {
+//                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+//                                startActivity(intentX);
+//                            }
+//
+//
+//                            else if (user.equals("user_hb2")) {
+//                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+//                                startActivity(intentX);
+//                            }
+//
+//                            else if (user.equals("user_hb3")) {
+//                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+//                                startActivity(intentX);
+//                            }
+//
+//                            else if (user.equals("user_hb4")) {
+//                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+//                                startActivity(intentX);
+//                            }
+//                            //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+//                            overridePendingTransition(0, 0);
+//
+//                            finish();
+//                        }
+//                    }, 5000);
 
                 }
                 //
@@ -450,13 +452,15 @@ public class LoginActivity extends AppCompatActivity {
                         {
 
                         }
+                        finishActivity();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //  Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                          Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                         pd.dismiss();
+//                        finishActivity();
                     }
                 }) {
 
@@ -488,6 +492,49 @@ public class LoginActivity extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setMessage("Fetching The File....");
         pd.show();
+    }
+
+    private void finishActivity(){
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                /* start the activity */
+                pd.dismiss();
+
+                if (user.equals("admin")) {
+//                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
+//                                startActivity(intent);
+
+
+                    Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
+                    startActivity(intent);
+                } else if (user.equals("user_hb1")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+
+
+                else if (user.equals("user_hb2")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+
+                else if (user.equals("user_hb3")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+
+                else if (user.equals("user_hb4")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+                //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                overridePendingTransition(0, 0);
+
+                finish();
+            }
+        }, 1000);
+
     }
 
 
@@ -526,6 +573,10 @@ public class LoginActivity extends AppCompatActivity {
                                 else if(formType.equals("dh_antenantals")){
                                     ANCTable table = new ANCTable(LoginActivity.this);
                                     table.insert(ANCFormItem.getUserObject(object.toString()));
+                                }
+                                else if(formType.equals("dh_inventory")){
+                                    InventoryTable table = new InventoryTable(LoginActivity.this);
+                                    table.insert(InventoryItem.getUserObject(object.toString()));
                                 }
                             }
 
@@ -580,13 +631,15 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
+                        finishActivity();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //    Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+//                        finishActivity();
+                        pd.dismiss();
                     }
                 }) {
 

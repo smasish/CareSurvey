@@ -36,6 +36,7 @@ public class ANCTable extends SuperTable{
     private static final String KEY_FAMILY = "_familyplanning"; // 2 - text
     private static final String KEY_FOLICTAB = "_folictablet"; // 1 - text
     private static final String KEY_FOLICIMP = "_folictabletimportance"; // 1 - text
+    private static final String KEY_FOLICSIDEEFFECT = "_folicsideeffect";
     private static final String KEY_GLOBAL_ID = "_globalId"; // 1 - text
     private static final String KEY_NAME = "_names"; // 1 - text
     private static final String KEY_COMMENT = "_comments"; // 1 - text
@@ -513,6 +514,7 @@ public class ANCTable extends SuperTable{
         table.put(KEY_FAMILY ," TEXT");
         table.put(KEY_FOLICTAB ," TEXT");
         table.put(KEY_FOLICIMP ," TEXT");// 1 - text
+        table.put(KEY_FOLICSIDEEFFECT," TEXT ");
         table.put(KEY_GLOBAL_ID ," TEXT");
         table.put(KEY_NAME ," TEXT");
         table.put(KEY_INS ," TEXT");
@@ -553,6 +555,7 @@ public class ANCTable extends SuperTable{
         values.put(KEY_FAMILY, item.familyplanning);
         values.put(KEY_FOLICTAB, item.folictablet);
         values.put(KEY_FOLICIMP, item.folictabletimportance);
+        values.put(KEY_FOLICSIDEEFFECT,item.folicsideeffect);
         values.put(KEY_NAME, item.name);
         values.put(KEY_DATE_PICK,item.datepick);
         values.put(KEY_TIME_PICK, item.timepick);
@@ -621,10 +624,12 @@ public class ANCTable extends SuperTable{
         item.pregnancydanger = cursor.getString(cursor.getColumnIndex(KEY_PREGDANGER));
         item.fourparts = cursor.getString(cursor.getColumnIndex(KEY_FOURCENTER));
         item.delivery = cursor.getString(cursor.getColumnIndex(KEY_DELIVERY));
+        item.feedbaby = cursor.getString(cursor.getColumnIndex(KEY_FEED));
         item.sixmonths = cursor.getString(cursor.getColumnIndex(KEY_SIXMONTHS));
         item.familyplanning = cursor.getString(cursor.getColumnIndex(KEY_FAMILY));
         item.folictablet = cursor.getString(cursor.getColumnIndex(KEY_FOLICTAB));
         item.folictabletimportance = cursor.getString(cursor.getColumnIndex(KEY_FOLICIMP));
+        item.folicsideeffect = cursor.getString(cursor.getColumnIndex(KEY_FOLICSIDEEFFECT));
         item.name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
         item.datepick = cursor.getString(cursor.getColumnIndex(KEY_DATE_PICK));
         item.timepick = cursor.getString(cursor.getColumnIndex(KEY_TIME_PICK));

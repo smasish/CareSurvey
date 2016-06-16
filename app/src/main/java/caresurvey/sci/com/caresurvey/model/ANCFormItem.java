@@ -35,7 +35,7 @@ public class ANCFormItem extends DBRow{
         date = AppUtils.getDate();
         start_time = AppUtils.getTime();
         end_time = AppUtils.getTime();
-        status = 3;
+        status = 7;
     }
 
 
@@ -295,7 +295,14 @@ public class ANCFormItem extends DBRow{
                         item.meta = "false";
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    JSONObject meta = null;
+                    try {
+                        meta = object.getJSONObject("meta");
+                    }catch(Exception ex){
+
+                    }
+                    item.fields = AppUtils.getString(meta,"fields");
+                    item.comments = AppUtils.getString(meta,"comments");
                 }
             }
             item.submittedBy = object.getString("submitted_by");
@@ -367,10 +374,26 @@ public class ANCFormItem extends DBRow{
             item.end_time = AppUtils.getString(data,"end_time");//gETv(R.id.end_time);
             item.district = AppUtils.getString(data,"district");
 
-            JSONObject meta = object.getJSONObject("meta");
+            if (object.has("meta")) {
+                try {
+                    boolean b = object.getBoolean("meta");
+                    if (b) {
+                        item.meta = "true";
+                    } else {
+                        item.meta = "false";
+                    }
+                } catch (Exception e) {
+                    JSONObject meta = null;
+                    try {
+                        meta = object.getJSONObject("meta");
+                    }catch(Exception ex){
+
+                    }
+                    item.fields = AppUtils.getString(meta,"fields");
+                    item.comments = AppUtils.getString(meta,"comments");
+                }
+            }
             item.checkedBy = AppUtils.getString(object,"checked_by");
-            item.fields = AppUtils.getString(meta,"fields");
-            item.comments = AppUtils.getString(meta,"comments");
 
         }catch (Exception e){
             e.printStackTrace();

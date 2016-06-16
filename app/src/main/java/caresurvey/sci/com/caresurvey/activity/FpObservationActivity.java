@@ -380,6 +380,11 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
                                                 dialog.dismiss();
                                                 try {
                                                     if(jo.getInt("errorCount") == 0){
+                                                        if(fpItem.status == 7) //incomplete
+                                                        {
+                                                            fpItem.status = 3;//pending
+                                                            table.insert(fpItem);
+                                                        }
                                                         finish();
                                                     }
                                                 } catch (JSONException e) {

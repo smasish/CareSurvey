@@ -59,12 +59,18 @@ public class DisplayNamesWithStatusAdapter2 extends ArrayAdapter<DBRow>{
         }
 
         holder.id.setText("" +getItem(position).id);
-        if(TextUtils.isEmpty(getItem(position).name)){
-            holder.name.setText(""+getItem(position).collector_name);
+        if(!TextUtils.isEmpty(getItem(position).form_type)){
+            holder.name.setText(getItem(position).form_type + " #" + getItem(position).id);
         }
-        else {
-            holder.name.setText("" + getItem(position).name);
+        else{
+            holder.name.setText("#" + getItem(position).id);
         }
+//        if(TextUtils.isEmpty(getItem(position).name)){
+//            holder.name.setText(""+getItem(position).collector_name);
+//        }
+//        else {
+//            holder.name.setText("" + getItem(position).name);
+//        }
 //
 //        button=(Button) convertView.findViewById(R.id.button2);
 //
@@ -118,6 +124,10 @@ public class DisplayNamesWithStatusAdapter2 extends ArrayAdapter<DBRow>{
             holder.status.setText("Completed");
             holder.status.setBackgroundColor(Color.GRAY);
 
+        }
+        else if(getItem(position).status == 7){
+            holder.status.setText("Incomplete");
+            holder.status.setBackgroundColor(Color.CYAN);
         }
 
 

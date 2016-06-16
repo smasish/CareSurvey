@@ -98,7 +98,7 @@ public class SickChildItem extends DBRow{
         form_date = AppUtils.getDate();
         start_time = AppUtils.getTime();
         end_time = AppUtils.getTime();
-        status = 3;
+        status = 7;
     }
 
     public long getId() {
@@ -423,7 +423,14 @@ public class SickChildItem extends DBRow{
                         item.meta = "false";
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    JSONObject meta = null;
+                    try {
+                        meta = object.getJSONObject("meta");
+                    }catch(Exception ex){
+
+                    }
+                    item.fields = AppUtils.getString(meta,"fields");
+                    item.comments = AppUtils.getString(meta,"comments");
                 }
             }
 
@@ -436,7 +443,7 @@ public class SickChildItem extends DBRow{
             item.form_date = AppUtils.getString(data,"form_date");
             item.start_time = AppUtils.getString(data,"start_time");
             item.child_description = AppUtils.getString(data,"child_description");
-            item.age = AppUtils.itos(AppUtils.getInt(data,"age"));
+            item.age = AppUtils.getString(data,"age");
             item.feed = AppUtils.btos(AppUtils.getBoolean(data,"feed"));
             item.vomit = AppUtils.btos(AppUtils.getBoolean(data,"vomit"));
             item.stutter = AppUtils.btos(AppUtils.getBoolean(data,"stutter"));
@@ -456,7 +463,8 @@ public class SickChildItem extends DBRow{
             item.clinic_test = AppUtils.btos(AppUtils.getBoolean(data,"clinic_test"));
             item.belly_button = AppUtils.btos(AppUtils.getBoolean(data,"belly_button"));
             item.height = AppUtils.btos(AppUtils.getBoolean(data,"height"));
-            item.result = AppUtils.getArray(data,"result");
+            item.bmi = AppUtils.btos(AppUtils.getBoolean(data,"bmi"));
+            item.result = AppUtils.getString(data,"result");
             item.end_time = AppUtils.getString(data,"end_time");
             item.village = AppUtils.getString(data,"village");
             item.district = AppUtils.getString(data,"district");
@@ -486,7 +494,7 @@ public class SickChildItem extends DBRow{
             item.form_date = AppUtils.getString(data,"form_date");
             item.start_time = AppUtils.getString(data,"start_time");
             item.child_description = AppUtils.getString(data,"child_description");
-            item.age = AppUtils.itos(AppUtils.getInt(data,"age"));
+            item.age = AppUtils.getString(data,"age");
             item.feed = AppUtils.btos(AppUtils.getBoolean(data,"feed"));
             item.vomit = AppUtils.btos(AppUtils.getBoolean(data,"vomit"));
             item.stutter = AppUtils.btos(AppUtils.getBoolean(data,"stutter"));
@@ -506,6 +514,7 @@ public class SickChildItem extends DBRow{
             item.clinic_test = AppUtils.btos(AppUtils.getBoolean(data,"clinic_test"));
             item.belly_button = AppUtils.btos(AppUtils.getBoolean(data,"belly_button"));
             item.height = AppUtils.btos(AppUtils.getBoolean(data,"height"));
+            item.bmi = AppUtils.btos(AppUtils.getBoolean(data,"bmi"));
             item.result = AppUtils.getString(data,"result");
             item.end_time = AppUtils.getString(data,"end_time");
             item.village = AppUtils.getString(data,"village");
@@ -513,10 +522,27 @@ public class SickChildItem extends DBRow{
             item.union = AppUtils.getString(data,"union");
             item.subdistrict = AppUtils.getString(data,"sub_district");
 
-            JSONObject meta = object.getJSONObject("meta");
+
+            if (object.has("meta")) {
+                try {
+                    boolean b = object.getBoolean("meta");
+                    if (b) {
+                        item.meta = "true";
+                    } else {
+                        item.meta = "false";
+                    }
+                } catch (Exception e) {
+                    JSONObject meta = null;
+                    try {
+                        meta = object.getJSONObject("meta");
+                    }catch(Exception ex){
+
+                    }
+                    item.fields = AppUtils.getString(meta,"fields");
+                    item.comments = AppUtils.getString(meta,"comments");
+                }
+            }
             item.checkedBy = AppUtils.getString(object,"checked_by");
-            item.fields = AppUtils.getString(meta,"fields");
-            item.comments = AppUtils.getString(meta,"comments");
 
         }catch (Exception e){
             e.printStackTrace();
