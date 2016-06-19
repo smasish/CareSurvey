@@ -5,7 +5,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -665,7 +667,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
                     jf.put("clinic_test",sickChildItem.getClinic_test());
                     jf.put("belly_button",sickChildItem.getBelly_button());
                     jf.put("height",sickChildItem.getHeight());
-//                    jf.put("bmi",sickChildItem.bmi);
+                    jf.put("bmi",sickChildItem.bmi);
                     jf.put("result",sickChildItem.getResult());
                     jf.put("end_time",sickChildItem.getEnd_time());
                     jf.put("village",sickChildItem.getVillage());
@@ -719,6 +721,19 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         requestQueue.add(stringRequest);
 
     }
+
+    private boolean toBoolean(String bmi) {
+        if(TextUtils.isEmpty(bmi)){
+            return false;
+        }
+        else if(bmi.equals("true")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     private String getFields(){
         LinearLayout fieldLayout = (LinearLayout) findViewById(R.id.fields);
         int len = fieldLayout.getChildCount();
