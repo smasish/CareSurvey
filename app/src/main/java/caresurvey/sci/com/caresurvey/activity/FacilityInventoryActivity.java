@@ -244,7 +244,7 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
                         data.put(InventoryTable.n_litmus_paper,toInt(item.n_litmus_paper));
                         data.put(InventoryTable.delivery_sp_name,item.delivery_sp_name);
                         data.put(InventoryTable.delivery_sp_designation,item.delivery_sp_designation);
-//                        data.put(InventoryTable.d_delivery_service,item.d_delivery_service);
+                        data.put(InventoryTable.d_delivery_service,item.d_delivery_service);
                         data.put(InventoryTable.d_delivery_table,gJAv(item.d_delivery_table));
                         data.put(InventoryTable.d_pressure_mechine,gJAv(item.d_pressure_mechine));
                         data.put(InventoryTable.d_stethoscope,gJAv(item.d_stethoscope));

@@ -1022,6 +1022,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         data.put("familyplanning", toBool(item.familyplanning));
                         data.put("folictablet", toBool(item.folictablet));
                         data.put("folictabletimportance", toBool(item.folictabletimportance));
+                        data.put("folicacidsideeffect", toBool(item.folicsideeffect));
                         data.put("patient_name", item.collector_name);
                         data.put("district", item.district);
                         data.put("sub_district", item.subdistrict);

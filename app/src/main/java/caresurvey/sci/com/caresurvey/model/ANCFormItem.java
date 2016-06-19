@@ -324,7 +324,7 @@ public class ANCFormItem extends DBRow{
             item.familyplanning = AppUtils.btos(AppUtils.getBoolean(data,"familyplanning"));
             item.folictablet = AppUtils.btos(AppUtils.getBoolean(data,"folictablet"));
             item.folictabletimportance = AppUtils.btos(AppUtils.getBoolean(data,"folictabletimportance"));
-            item.folicsideeffect = AppUtils.btos(AppUtils.getBoolean(data,"folicsideeffect"));
+            item.folicsideeffect = AppUtils.btos(AppUtils.getBoolean(data,"folicacidsideeffect"));
             item.designation = AppUtils.getString(data,"doc_designation");
             item.end_time = AppUtils.getString(data,"end_time");//gETv(R.id.end_time);
             item.district = AppUtils.getString(data,"district");
@@ -369,7 +369,7 @@ public class ANCFormItem extends DBRow{
             item.familyplanning = AppUtils.btos(AppUtils.getBoolean(data,"familyplanning"));
             item.folictablet = AppUtils.btos(AppUtils.getBoolean(data,"folictablet"));
             item.folictabletimportance = AppUtils.btos(AppUtils.getBoolean(data,"folictabletimportance"));
-            item.folicsideeffect = AppUtils.btos(AppUtils.getBoolean(data,"folicsideeffect"));
+            item.folicsideeffect = AppUtils.btos(AppUtils.getBoolean(data,"folicacidsideeffect"));
             item.designation = AppUtils.getString(data,"doc_designation");
             item.end_time = AppUtils.getString(data,"end_time");//gETv(R.id.end_time);
             item.district = AppUtils.getString(data,"district");
