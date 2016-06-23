@@ -75,6 +75,8 @@ public class FpObservationTable extends  SuperTable{
         table.put(DBRow.KEY_DATE_PICK,"text");
         table.put(DBRow.KEY_OBSTYPE,"text");
         table.put(DBRow.KEY_FACILITY,"text");
+        table.put(DBRow.KEY_LAT,"TEXT");
+        table.put(DBRow.KEY_LON,"TEXT");
 
         table.put(DBRow.KEY_COMMENTS,"text");
         table.put(DBRow.KEY_FIELDS,"text");
@@ -118,6 +120,8 @@ public class FpObservationTable extends  SuperTable{
         values.put(DBRow.KEY_DATE_PICK,item.datepick);
         values.put(DBRow.KEY_OBSTYPE,item.obs_type);
         values.put(DBRow.KEY_FACILITY,item.facility);
+        values.put(DBRow.KEY_LAT,item.lat);
+        values.put(DBRow.KEY_LON,item.lon);
 
         values.put(DBRow.KEY_COMMENTS,item.comments);
         values.put(DBRow.KEY_FIELDS,item.fields);
@@ -189,6 +193,9 @@ public class FpObservationTable extends  SuperTable{
         item.division = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DIVISION));
         item.timepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_TIME_PICK));
         item.datepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DATE_PICK));
+        item.facility = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FACILITY));
+        item.lat = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LAT));
+        item.lon = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LON));
 
 
         item.comments = cursor.getString(cursor.getColumnIndex(DBRow.KEY_COMMENTS));

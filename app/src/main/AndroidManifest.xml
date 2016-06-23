@@ -3,6 +3,8 @@
     package="caresurvey.sci.com.caresurvey">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -75,6 +77,10 @@
         <!-- android:name=".activity.SelectionActivityUser" -->
         <!-- android:label="@string/title_activity_selection_activity_user" > -->
         <!-- </activity> -->
+
+        <activity
+            android:name=".activity.AddressInsertActivity2"
+            android:label="@string/title_activity_address_insert" />
         <activity
             android:name=".activity.SelectionUserActivity"
             android:label="@string/title_activity_selection_user" />

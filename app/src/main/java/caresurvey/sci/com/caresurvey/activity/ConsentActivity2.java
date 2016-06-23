@@ -26,13 +26,40 @@ public class ConsentActivity2 extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consent2);
+        getSupportActionBar().setTitle(getIntent().getStringExtra("obs_name"));
         findViewById(R.id.cnt).setOnClickListener(this);
-        name = getIntent().getStringExtra("name");
         loadData();
+        findViewById(R.id.no).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    private String getUser(){
+        String district = getIntent().getStringExtra("district");
+        if(TextUtils.isEmpty(district)) return "";
+        if(district.equals("Lakshmipur")){
+            return "Shrabani Ghatak";
+        }
+        else if(district.equals("Noakhali")){
+            return "Shrabani Ghatak";
+        }
+        else if(district.equals("Jhalakati")){
+            return "Salma Ummul Baraka";
+        }
+        else if(district.equals("Lakshmipur")){
+            return "Mitu Samaddar";
+        }
+        else if(district.equals("Habiganj")){
+            return "Shubhra Rani Roy";
+        }
+        return "";
     }
 
     private void loadData(){
-        sETv(R.id.user, name);
+        sETv(R.id.user, getUser());
         sETv(R.id.collector_name,collectorName);
         String[] designations = null;
         int formId = getIntent().getIntExtra(ConsentActivity1.FORM,0);
@@ -117,27 +144,11 @@ public class ConsentActivity2 extends AppCompatActivity implements View.OnClickL
             try {
                 collectData();
                 if(permitted.equals("true")) {
-                    int position = getIntent().getIntExtra(ConsentActivity1.FORM, 0);
                     Intent intent = getIntent();
+                    intent.setClass(this,ConsentActivity1.class);
                     intent.putExtra("c_name",collectorName);
                     intent.putExtra("designation",collectorDesignation);
-                    switch (position) {
-                        case 0:
-                            intent.setClass(this,TestActivity.class);
-                            break;
-                        case 1:
-                            intent.setClass(this,SateliteClinicInventoryActivity.class);
-                            break;
-                        case 2:
-                            intent.setClass(this,SickChildUnderFiveActivity.class);
-                            break;
-                        case 3:
-                            intent.setClass(this,FacilityInventoryActivity.class);
-                            break;
-                        case 4:
-                            intent.setClass(this,FpObservationActivity.class);
-                            break;
-                    }
+                    intent.putExtra("name",name);
                     startActivity(intent);
                     finish();
                 }

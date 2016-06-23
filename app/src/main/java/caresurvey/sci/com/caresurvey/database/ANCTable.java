@@ -533,6 +533,9 @@ public class ANCTable extends SuperTable{
         table.put(DBRow.KEY_FIELDS,"text");
         table.put(DBRow.KEY_CHECKED_BY,"text");
         table.put(DBRow.KEY_SUBMITTED_BY,"text");
+        table.put(DBRow.KEY_FACILITY,"text");
+        table.put(DBRow.KEY_LAT,"text");
+        table.put(DBRow.KEY_LON,"text");
         setNewTable(TABLE_NAME, table);
     }
 
@@ -567,6 +570,10 @@ public class ANCTable extends SuperTable{
         values.put(KEY_OBSTYPE, item.obs_type);
         values.put(KEY_DISTRIC, item.district);
         values.put(DBRow.KEY_STATUS,item.status);
+
+        values.put(DBRow.KEY_LAT,item.lat);
+        values.put(DBRow.KEY_LON,item.lon);
+        values.put(DBRow.KEY_FACILITY,item.facility);
 
         values.put(DBRow.KEY_COMMENTS,item.comments);
         values.put(DBRow.KEY_FIELDS,item.fields);
@@ -640,7 +647,9 @@ public class ANCTable extends SuperTable{
         item.village = cursor.getString(cursor.getColumnIndex(KEY_VILLAGE));
         item.district = cursor.getString(cursor.getColumnIndex(KEY_DISTRIC));
         item.status = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_STATUS));
-
+        item.facility = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FACILITY));
+        item.lat = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LAT));
+        item.lon = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LON));
         item.comments = cursor.getString(cursor.getColumnIndex(DBRow.KEY_COMMENTS));
         item.fields = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FIELDS));
         item.checkedBy = cursor.getString(cursor.getColumnIndex(DBRow.KEY_CHECKED_BY));

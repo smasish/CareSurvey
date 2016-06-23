@@ -6,7 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+
+import caresurvey.sci.com.caresurvey.model.AddressItem;
 
 /**
  * Created by israt.jahan on 4/11/2016.
@@ -20,7 +23,9 @@ public class DatabaseAccessUnion {
     static final String upazilaDID="UPAZILAID";
     static final String unionid="UNIONID";
     static final String unioname="UNIONNAME";
+    static final String unionnameeng = "UNIONNAMEENG";
     private static DatabaseAccessUnion instance;
+    private Hashtable<String,List<String> > restricted;
 
     /**
      * Private constructor to aboid object creation from outside classes.
@@ -29,6 +34,36 @@ public class DatabaseAccessUnion {
      */
     private DatabaseAccessUnion(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
+        restricted = new Hashtable<>();
+        List<String > list = new ArrayList<>();
+        list.add("Auskandi");
+        list.add("Debpara");
+        list.add("Paschim bara bhakhair");
+        list.add("Purba barar bakhair");
+        restricted.put("77",list);
+        list = new ArrayList<>();
+        list.add("Chenchri rampur");
+        list.add("Kanthalia");
+        list.add("Patikhalghaaata");
+        list.add("Saulajalia");
+        restricted.put("43",list);
+
+        list = new ArrayList<>();
+        list.add("Hajirhat");
+        list.add("Char kadira");
+        list.add("Char Falcon");
+        restricted.put("33",list);
+
+        list = new ArrayList<>();
+        list.add("Char Alexandar");
+        restricted.put("73",list);
+
+        list = new ArrayList<>();
+        list.add("Aleyapur");
+        list.add("Durgapur");
+        list.add("Gopalpur");
+        list.add("Narottampur");
+        restricted.put("7",list);
     }
 
     /**
@@ -81,6 +116,49 @@ public class DatabaseAccessUnion {
 
         cursor.close();
 
+        return list;
+    }
+
+    public List<AddressItem> getUnion(String upazilaId) {
+        List<AddressItem> list = new ArrayList<>();
+        List<String> checkList = restricted.get(upazilaId);
+        Cursor cursor = database.rawQuery("SELECT * FROM unions WHERE " + unionnameeng + " NOT LIKE 'WARD NO%' and UPAZILAID = ?", new String[]{ upazilaId });
+        if (cursor.moveToFirst()) {
+            do {
+                AddressItem item = new AddressItem();
+                item.id = cursor.getInt(cursor.getColumnIndex(unionid));
+                item.name = cursor.getString(cursor.getColumnIndex(unioname));
+                item.nameEng = cursor.getString(cursor.getColumnIndex(unionnameeng));
+                if(checkList != null){
+                    for(String checkItem : checkList){
+                        if(checkItem.equalsIgnoreCase(item.nameEng)){
+                            list.add(item);
+                            break;
+                        }
+                    }
+                }
+                else {
+                    list.add(item);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return list;
+    }
+
+    public List<AddressItem> getWard(String upazilaId) {
+        List<AddressItem> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM unions WHERE " + unionnameeng + " LIKE 'WARD NO%' and UPAZILAID = ? group by " + unionnameeng, new String[]{ upazilaId });
+        if (cursor.moveToFirst()) {
+            do {
+                AddressItem item = new AddressItem();
+                item.id = cursor.getInt(cursor.getColumnIndex(unionid));
+                item.name = cursor.getString(cursor.getColumnIndex(unioname));
+                item.nameEng = cursor.getString(cursor.getColumnIndex(unionnameeng));
+                list.add(item);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
         return list;
     }
   /*  public String GetDeptID(String Dept)

@@ -81,6 +81,8 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
         item.village = mIntent.getStringExtra("village");
         item.facility = mIntent.getStringExtra("facility");
         item.district = mIntent.getStringExtra("district");
+        item.lat = mIntent.getStringExtra("lat");
+        item.lon = mIntent.getStringExtra("lon");
 
         datespicker = mIntent.getStringExtra("datepicker");
         item.start_time = timepicker = mIntent.getStringExtra("timepicker");
@@ -312,6 +314,9 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
                         data.put("district",item.district);
                         data.put("union",item.union);
                         data.put("sub_district",item.subdistrict);
+                        data.put("facility",item.facility);
+                        data.put("lat",item.lat);
+                        data.put("lon",item.lon);
 
 
                         object.put("data",data);

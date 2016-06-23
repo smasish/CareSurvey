@@ -97,6 +97,8 @@ public class FPObservationSupervisorTable extends SuperTable{
         table.put(DBRow.KEY_DATE_PICK,"text");
         table.put(DBRow.KEY_OBSTYPE,"text");
         table.put(DBRow.KEY_FACILITY,"text");
+        table.put(DBRow.KEY_LAT,"TEXT");
+        table.put(DBRow.KEY_LON,"TEXT");
 
         //supervisor field
         table.put(KEY_USER_ID,"text");
@@ -153,6 +155,9 @@ public class FPObservationSupervisorTable extends SuperTable{
         item.division = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DIVISION));
         item.timepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_TIME_PICK));
         item.datepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DATE_PICK));
+        item.facility = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FACILITY));
+        item.lat = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LAT));
+        item.lon = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LON));
 
         item.comments = cursor.getString(cursor.getColumnIndex(KEY_COMMENTS));
         item.fields = cursor.getString(cursor.getColumnIndex(KEY_FIELDS));
@@ -195,6 +200,8 @@ public class FPObservationSupervisorTable extends SuperTable{
         values.put(DBRow.KEY_DATE_PICK,item.datepick);
         values.put(DBRow.KEY_OBSTYPE,item.obs_type);
         values.put(DBRow.KEY_FACILITY,item.facility);
+        values.put(DBRow.KEY_LAT,item.lat);
+        values.put(DBRow.KEY_LON,item.lon);
 
 
         values.put(KEY_USER_ID,item.user_id);

@@ -92,6 +92,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
             item.startTime = item.timepick = mIntent.getStringExtra("timepicker");
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
+            item.lat = mIntent.getStringExtra("lat");
+            item.lon = mIntent.getStringExtra("lon");
         }
         findViewById(R.id.accept).setOnClickListener(this);
         findViewById(R.id.revert).setOnClickListener(this);
@@ -587,6 +589,9 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
                         data.put("injectable",toBool(fpItem.csi232));
                         data.put("card",toBool(fpItem.csi233));
                         data.put("pictured_items",toBool(fpItem.csi234));
+                        data.put("facility",fpItem.facility);
+                        data.put("lat",fpItem.lat);
+                        data.put("lon",fpItem.lon);
 
                         data.put("end_time",toQStr(fpItem.endTime));
                         data.put("village",toQStr(fpItem.village));

@@ -80,6 +80,8 @@ public class SatelliteClinicSupervisorTable extends SuperTable{
         table.put(DBRow.KEY_OBSTYPE,"text");
         table.put(DBRow.KEY_FACILITY,"text");
         table.put(DBRow.KEY_FACI_ID,"integer");
+        table.put(DBRow.KEY_LAT,"text");
+        table.put(DBRow.KEY_LON,"text");
 
         //supervisor field
         table.put(KEY_USER_ID,"text");
@@ -193,6 +195,9 @@ public class SatelliteClinicSupervisorTable extends SuperTable{
         item.timepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_TIME_PICK));
         item.datepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DATE_PICK));
         item.facilityID = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_FACI_ID));
+        item.facility = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FACILITY));
+        item.lat = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LAT));
+        item.lon = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LON));
 
         item.comments = cursor.getString(cursor.getColumnIndex(KEY_COMMENTS));
         item.fields = cursor.getString(cursor.getColumnIndex(KEY_FIELDS));
@@ -268,6 +273,8 @@ public class SatelliteClinicSupervisorTable extends SuperTable{
         values.put(DBRow.KEY_OBSTYPE,item.obs_type);
         values.put(DBRow.KEY_FACILITY,item.facility);
         values.put(DBRow.KEY_FACI_ID,item.facilityID);
+        values.put(DBRow.KEY_LAT,item.lat);
+        values.put(DBRow.KEY_LON,item.lon);
 
         values.put(KEY_USER_ID,item.user_id);
         values.put(KEY_COMMENTS,item.comments);

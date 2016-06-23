@@ -91,6 +91,8 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
             item.district = mIntent.getStringExtra("district");
+            item.lat = mIntent.getStringExtra("lat");
+            item.lon = mIntent.getStringExtra("lon");
         }
 
         loadForm();
@@ -458,6 +460,9 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
                                 data.put("district",toQStr(fpItem.district));
                                 data.put("union",toQStr(fpItem.union));
                                 data.put("sub_district",toQStr(fpItem.subdistrict));
+                                data.put("facility",fpItem.facility);
+                                data.put("lat",fpItem.lat);
+                                data.put("lon",fpItem.lon);
 
                                 object.put("data",data);
                                 requests.put(object);

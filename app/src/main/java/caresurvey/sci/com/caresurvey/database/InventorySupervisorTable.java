@@ -408,6 +408,10 @@ public class InventorySupervisorTable extends SuperTable{
                 table.put(InventoryTable.sub_district
                 ," TEXT");
 
+        table.put(DBRow.KEY_FACILITY , " TEXT");
+        table.put(DBRow.KEY_LAT,"TEXT");
+        table.put(DBRow.KEY_LON,"TEXT");
+
         table.put(DBRow.KEY_STATUS,"integer");
 
         table.put(KEY_USER_ID,"text");
@@ -540,6 +544,9 @@ public class InventorySupervisorTable extends SuperTable{
         values.put(r_starving_child,item.r_starving_child);
         values.put(r_starving_protocol,item.r_starving_protocol);
         values.put(end_time,item.end_time);
+        values.put(DBRow.KEY_FACILITY,item.facility);
+        values.put(DBRow.KEY_LAT,item.lat);
+        values.put(DBRow.KEY_LON,item.lon);
 
         values.put(DBRow.KEY_STATUS,item.status);
         values.put(KEY_USER_ID,item.user_id);
@@ -704,6 +711,9 @@ public class InventorySupervisorTable extends SuperTable{
         item.r_starving_child = cursor.getString(cursor.getColumnIndex(r_starving_child));
         item.r_starving_protocol = cursor.getString(cursor.getColumnIndex(r_starving_protocol));
         item.end_time = cursor.getString(cursor.getColumnIndex(end_time));
+        item.facility = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FACILITY));
+        item.lat = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LAT));
+        item.lon = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LON));
 
         item.status = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_STATUS));
         item.comments = cursor.getString(cursor.getColumnIndex(KEY_COMMENTS));

@@ -32,32 +32,21 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_concent_1);
+        getSupportActionBar().setTitle(getIntent().getStringExtra("obs_name"));
         findViewById(R.id.cnt).setOnClickListener(this);
+        username = getIntent().getStringExtra("name");
         loadData();
+        findViewById(R.id.no).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
-    private String getUser(){
-        String district = getIntent().getStringExtra("district");
-        if(TextUtils.isEmpty(district)) return "";
-        if(district.equals("Lakshmipur")){
-            return "Shrabani Ghatak";
-        }
-        else if(district.equals("Noakhali")){
-            return "Shrabani Ghatak";
-        }
-        else if(district.equals("Jhalakati")){
-            return "Salma Ummul Baraka";
-        }
-        else if(district.equals("Lakshmipur")){
-            return "Mitu Samaddar";
-        }
-        else if(district.equals("Habiganj")){
-            return "Shubhra Rani Roy";
-        }
-        return "";
-    }
+
     private void loadData(){
-        sETv(R.id.userCareTaker,getUser());
+        sETv(R.id.userCareTaker,username);
         date = AppUtils.getDate();
         sETv(R.id.datepicker,date);
         startTime = AppUtils.getTime();
@@ -161,12 +150,31 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
                 }
                 else if(permitted.equals("true")){
                     Intent intent = getIntent();
-                    intent.setClass(this, ConsentActivity2.class);
+//                    intent.setClass(this, ConsentActivity2.class);
                     intent.putExtra("name", username);
                     intent.putExtra("datepicker",date);
                     intent.putExtra("timepicker",startTime);
                     intent.putExtra("description",description);
                     intent.putExtra("phone",phoneNumber);
+
+                    int position = getIntent().getIntExtra(ConsentActivity1.FORM, 0);
+                    switch (position) {
+                        case 0:
+                            intent.setClass(this,TestActivity.class);
+                            break;
+                        case 1:
+                            intent.setClass(this,SateliteClinicInventoryActivity.class);
+                            break;
+                        case 2:
+                            intent.setClass(this,SickChildUnderFiveActivity.class);
+                            break;
+                        case 3:
+                            intent.setClass(this,FacilityInventoryActivity.class);
+                            break;
+                        case 4:
+                            intent.setClass(this,FpObservationActivity.class);
+                            break;
+                    }
                     startActivity(intent);
                     finish();
                 }

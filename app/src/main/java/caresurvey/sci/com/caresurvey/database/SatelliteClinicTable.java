@@ -63,6 +63,8 @@ public class SatelliteClinicTable extends SuperTable{
         table.put(DBRow.KEY_OBSTYPE,"text");
         table.put(DBRow.KEY_FACILITY,"text");
         table.put(DBRow.KEY_FACI_ID,"integer");
+        table.put(DBRow.KEY_LAT,"TEXT");
+        table.put(DBRow.KEY_LON,"TEXT");
 
         table.put(DBRow.KEY_COMMENTS,"text");
         table.put(DBRow.KEY_FIELDS,"text");
@@ -142,6 +144,8 @@ public class SatelliteClinicTable extends SuperTable{
         values.put(DBRow.KEY_OBSTYPE,item.obs_type);
         values.put(DBRow.KEY_FACILITY,item.facility);
         values.put(DBRow.KEY_FACI_ID,item.facilityID);
+        values.put(DBRow.KEY_LAT,item.lat);
+        values.put(DBRow.KEY_LON,item.lon);
 
         values.put(DBRow.KEY_COMMENTS,item.comments);
         values.put(DBRow.KEY_FIELDS,item.fields);
@@ -230,6 +234,9 @@ public class SatelliteClinicTable extends SuperTable{
         item.timepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_TIME_PICK));
         item.datepick = cursor.getString(cursor.getColumnIndex(DBRow.KEY_DATE_PICK));
         item.facilityID = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_FACI_ID));
+        item.facility = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FACILITY));
+        item.lat = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LAT));
+        item.lon = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LON));
 
         item.comments = cursor.getString(cursor.getColumnIndex(DBRow.KEY_COMMENTS));
         item.fields = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FIELDS));

@@ -139,9 +139,11 @@ public class SickChildSupervisorTable2 extends SuperTable{
         table.put(DBRow.KEY_TIME_PICK , " TEXT");
         table.put(DBRow.KEY_DATE_PICK , " TEXT");
         table.put(DBRow.KEY_OBSTYPE , " TEXT");
-        table.put(DBRow.KEY_FACILITY , " TEXT");
         table.put(KEY_FIELD , " TEXT");
         table.put(KEY_STATUS , " integer ");
+        table.put(DBRow.KEY_FACILITY , " TEXT");
+        table.put(DBRow.KEY_LAT,"TEXT");
+        table.put(DBRow.KEY_LON,"TEXT");
 
         //supervisor field
         table.put(KEY_USER_ID,"text");
@@ -209,6 +211,9 @@ public class SickChildSupervisorTable2 extends SuperTable{
         item.subdistrict = cursor.getString(cursor.getColumnIndex(KEY_SUB_DISTRICT));
         item.ct_client = cursor.getString(cursor.getColumnIndex(KEY_CT_CLIENT));
         item.status = cursor.getInt(cursor.getColumnIndex(KEY_STATUS));
+        item.facility = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FACILITY));
+        item.lat = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LAT));
+        item.lon = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LON));
 
 
         item.comments = cursor.getString(cursor.getColumnIndex(KEY_COMMENTS));
@@ -269,6 +274,8 @@ public class SickChildSupervisorTable2 extends SuperTable{
         values.put(DBRow.KEY_DATE_PICK,item.datepick);
         values.put(DBRow.KEY_OBSTYPE,item.obs_type);
         values.put(DBRow.KEY_FACILITY,item.facility);
+        values.put(DBRow.KEY_LAT,item.lat);
+        values.put(DBRow.KEY_LON,item.lon);
 
         values.put(KEY_USER_ID,item.user_id);
         values.put(KEY_COMMENTS,item.comments);

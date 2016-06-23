@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import caresurvey.sci.com.caresurvey.model.AddressItem;
+
 /**
  * Created by israt.jahan on 4/11/2016.
  */
@@ -20,6 +22,7 @@ public class DatabaseAccessVillage {
     static final String villageaid="VILLAGEID";
     static final String unionid="UNIONID";
     static final String villagename="VILLAGENAME";
+    static final String villagenameeng = "VILLAGENAMEENG";
     private static DatabaseAccessVillage instance;
 
     /**
@@ -76,6 +79,24 @@ public class DatabaseAccessVillage {
             do {
                 //System.out.println("abc="+cursor.getString(4));
                 list.add(cursor.getString(cursor.getColumnIndex(villagename)));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return list;
+    }
+
+    public List<AddressItem> getVillage(String unionid){
+        List<AddressItem> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM village WHERE UNIONID = ?", new String[]{ unionid });
+        if (cursor.moveToFirst()) {
+            do {
+                AddressItem item = new AddressItem();
+                item.id = cursor.getInt(cursor.getColumnIndex(villageaid));
+                item.name = cursor.getString(cursor.getColumnIndex(villagename));
+                item.nameEng = cursor.getString(cursor.getColumnIndex(villagenameeng));
+                list.add(item);
             } while (cursor.moveToNext());
         }
 

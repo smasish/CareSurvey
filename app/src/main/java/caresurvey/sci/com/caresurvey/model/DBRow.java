@@ -26,6 +26,8 @@ public class DBRow {
     public String facility;
     public String obs_type;
     public String district;
+    public String lat;
+    public String lon;
 
     //for supervisor
     public String user_id;
@@ -51,6 +53,9 @@ public class DBRow {
     public static final String KEY_COMMENTS = "_comments";
     public static final String KEY_FIELDS = "_fields";
     public static final String KEY_CHECKED_BY = "_checked_by";
+
+    public static final String KEY_LAT = "_lat";
+    public static final String KEY_LON = "_lon";
 
     public int facilityID;
 }

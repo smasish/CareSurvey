@@ -460,6 +460,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
             item.district = mIntent.getStringExtra("district");
+            item.lat = mIntent.getStringExtra("lat");
+            item.lon = mIntent.getStringExtra("lon");
         }
         loadForm();
         findViewById(R.id.back).setOnClickListener(this);
@@ -1032,6 +1034,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         data.put("start_time",item.start_time);
                         data.put("end_time",item.end_time);
                         data.put("doc_designation",item.designation);
+                        data.put("facility",item.facility);
+                        data.put("lat",item.lat);
+                        data.put("lon",item.lon);
+                        data.put("weight",toBool(item.weight));
 
                         object.put("data", data);
                         requests.put(object);

@@ -80,6 +80,8 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
             item.district = mIntent.getStringExtra("district");
+            item.lat = mIntent.getStringExtra("lat");
+            item.lon = mIntent.getStringExtra("lon");
         }
         findViewById(R.id.insert).setOnClickListener(this);
         findViewById(R.id.submit).setOnClickListener(this);
@@ -674,6 +676,10 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
                     jf.put("district",sickChildItem.getDistrict());
                     jf.put("union",sickChildItem.getUnion());
                     jf.put("sub_district",sickChildItem.getSub_district());
+                    jf.put("facility",sickChildItem.facility);
+                    jf.put("lat",sickChildItem.lat);
+                    jf.put("lon",sickChildItem.lon);
+
                     fs.put("data",jf);
                     requests.put(fs);
 

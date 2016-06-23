@@ -27,11 +27,9 @@ import caresurvey.sci.com.caresurvey.database.DatabaseAccess;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUnion;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessUpazila;
 import caresurvey.sci.com.caresurvey.database.DatabaseAccessVillage;
-import caresurvey.sci.com.caresurvey.database.FormTable;
 import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
-import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 
 public class AddressInsertActivity extends AppCompatActivity {
@@ -57,7 +55,7 @@ public class AddressInsertActivity extends AppCompatActivity {
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
-    private Spinner divspinner,zillaspinner,upzillaspinner,unionspinner,mouzaspinner,villagespinner;
+    private Spinner facilityspinner,zillaspinner,upzillaspinner,unionspinner,mouzaspinner,villagespinner;
     private Spinner districtSpinner;
     String divname,zillname,upazilname="",unionname="",mouzaname,vilname="";
     String divid=String.valueOf(10);
@@ -124,7 +122,7 @@ public class AddressInsertActivity extends AppCompatActivity {
 
             }
         });
-        divspinner=(Spinner)findViewById(R.id.divisionspinner);
+        facilityspinner =(Spinner)findViewById(R.id.divisionspinner);
         villagespinner=(Spinner)findViewById(R.id.villagespinner);
         upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
         unionspinner=(Spinner)findViewById(R.id.unionspinner);
@@ -428,7 +426,7 @@ public class AddressInsertActivity extends AppCompatActivity {
     public void callspinner1()
     {
 
-        divspinner=(Spinner)findViewById(R.id.divisionspinner);
+        facilityspinner =(Spinner)findViewById(R.id.facility);
         databaseAccess.open();
         ArrayList<String> issue = new ArrayList<String>();
 
@@ -438,16 +436,16 @@ public class AddressInsertActivity extends AppCompatActivity {
         issue.add("Satellite Clinic");
 
         ArrayAdapter<String> adapterr = new ArrayAdapter<String>(this, R.layout.drop_down_list_addrees, issue);
-        divspinner.setAdapter(adapterr);
+        facilityspinner.setAdapter(adapterr);
 
 
 
 
-        divspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        facilityspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                divname = divspinner.getSelectedItem().toString();
+                divname = facilityspinner.getSelectedItem().toString();
                 if (position == 0) {
 
                     // upazila.setVisibility(View.GONE);
@@ -516,135 +514,5 @@ public class AddressInsertActivity extends AppCompatActivity {
         });
 
     }
-//    @Override
-//    protected Dialog onCreateDialog(int id) {
-//        // TODO Auto-generated method stub
-//        if (id == 999) {
-//
-//            Log.d(">>>","datepicker "+id);
-//            return new DatePickerDialog(this, myDateListener, year, month, day);
-//
-//        }
-//        else {
-//            return new TimePickerDialog(this, timePickerListener, hour, minute,
-//                    false);
-//        }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//    }
 
-//    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-//            // TODO Auto-generated method stub
-//            // arg1 = year
-//            // arg2 = month
-//            // arg3 = day
-//            showDate(arg1, arg2+1, arg3);
-//        }
-//    };
-
-//    private void showDate(int year, int month, int day) {
-//        datepicker.setText(new StringBuilder().append(day).append("/")
-//                .append(month).append("/").append(year));
-//    }
-
-
-
-
-
-
-
-//    private TimePickerDialog.OnTimeSetListener timePickerListener = new TimePickerDialog.OnTimeSetListener() {
-//
-//
-//        @Override
-//        public void onTimeSet(TimePicker view, int hourOfDay, int minutes) {
-//            // TODO Auto-generated method stub
-//            hour   = hourOfDay;
-//            minute = minutes;
-//
-//            updateTime(hour, minute);
-//
-//        }
-//
-//    };
-
-//    private static String utilTime(int value) {
-//
-//        if (value < 10)
-//            return "0" + String.valueOf(value);
-//        else
-//            return String.valueOf(value);
-//    }
-
-    // Used to convert 24hr format to 12hr format with AM/PM values
-//    private void updateTime(int hours, int mins) {
-//
-//        String timeSet = "";
-//        if (hours > 12) {
-//            hours -= 12;
-//            timeSet = "PM";
-//        } else if (hours == 0) {
-//            hours += 12;
-//            timeSet = "AM";
-//        } else if (hours == 12)
-//            timeSet = "PM";
-//        else
-//            timeSet = "AM";
-//
-//
-//        String minutes = "";
-//        if (mins < 10)
-//            minutes = "0" + mins;
-//        else
-//            minutes = String.valueOf(mins);
-//
-//        // Append in a StringBuilder
-//        String aTime = new StringBuilder().append(hours).append(':')
-//                .append(minutes).append(" ").append(timeSet).toString();
-//
-//        timepicker.setText(aTime);
-//    }
-//    @Override
-//    public void onBackPressed() {
-//        Intent intentv= new Intent(AddressInsertActivity.this,UserActivity.class);
-//        startActivity(intentv);
-//        finish();
-//
-//
-//    }
-
-
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_address_insert, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

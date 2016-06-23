@@ -116,6 +116,9 @@ public class ANCSupervisorTable extends SuperTable{
         table.put(KEY_OBSTYPE ," TEXT");
         table.put(KEY_DISTRIC ," TEXT ");
         table.put(KEY_FOLICSIDEEFFECT," TEXT ");
+        table.put(DBRow.KEY_FACILITY,"TEXT");
+        table.put(DBRow.KEY_LAT,"TEXT");
+        table.put(DBRow.KEY_LON,"TEXT");
 
         table.put(DBRow.KEY_STATUS,"integer");
         //supervisor field
@@ -175,6 +178,9 @@ public class ANCSupervisorTable extends SuperTable{
         item.village = cursor.getString(cursor.getColumnIndex(KEY_VILLAGE));
         item.district = cursor.getString(cursor.getColumnIndex(KEY_DISTRIC));
         item.status = cursor.getInt(cursor.getColumnIndex(DBRow.KEY_STATUS));
+        item.facility = cursor.getString(cursor.getColumnIndex(DBRow.KEY_FACILITY));
+        item.lat = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LAT));
+        item.lon = cursor.getString(cursor.getColumnIndex(DBRow.KEY_LON));
 
         item.comments = cursor.getString(cursor.getColumnIndex(KEY_COMMENTS));
         item.fields = cursor.getString(cursor.getColumnIndex(KEY_FIELDS));
@@ -218,6 +224,9 @@ public class ANCSupervisorTable extends SuperTable{
         values.put(KEY_OBSTYPE, item.obs_type);
         values.put(KEY_DISTRIC, item.district);
         values.put(DBRow.KEY_STATUS,item.status);
+        values.put(DBRow.KEY_FACILITY,item.facility);
+        values.put(DBRow.KEY_LAT,item.lat);
+        values.put(DBRow.KEY_LON,item.lon);
 
         values.put(KEY_USER_ID,item.user_id);
         values.put(KEY_COMMENTS,item.comments);
