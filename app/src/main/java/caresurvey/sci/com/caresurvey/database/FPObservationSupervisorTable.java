@@ -114,7 +114,7 @@ public class FPObservationSupervisorTable extends SuperTable{
         ArrayList<FpObservationFormItem> fpList = new ArrayList<>();
         //System.out.println(cat_id+"  "+sub_cat_id);
         SQLiteDatabase db = openDB();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where " + KEY_SUBMITTED_BY + "='" + cName + "'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " where " + KEY_SUBMITTED_BY + "='" + cName + "' and " + DBRow.KEY_FACILITY + "='" + facility + "'", null);
 
         if (cursor.moveToFirst()) {
             do {

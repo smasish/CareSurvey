@@ -152,6 +152,7 @@ public class SatelliteClinicItem extends DBRow{
             item.district = AppUtils.getString(data,"district");
             item.union = AppUtils.getString(data,"union");
             item.subdistrict = AppUtils.getString(data,"sub_district");
+            item.facility = AppUtils.getString(data,"facility");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -245,6 +246,7 @@ public class SatelliteClinicItem extends DBRow{
                 }
             }
             item.checkedBy = AppUtils.getString(object,"checked_by");
+            item.facility = AppUtils.getString(data,"facility");
         }
         catch (Exception e){
             e.printStackTrace();

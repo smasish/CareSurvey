@@ -328,6 +328,8 @@ public class ANCFormItem extends DBRow{
             item.designation = AppUtils.getString(data,"doc_designation");
             item.end_time = AppUtils.getString(data,"end_time");//gETv(R.id.end_time);
             item.district = AppUtils.getString(data,"district");
+            item.weight = AppUtils.btos(AppUtils.getBoolean(data,"weight"));
+            item.facility = AppUtils.getString(data,"facility");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -373,6 +375,8 @@ public class ANCFormItem extends DBRow{
             item.designation = AppUtils.getString(data,"doc_designation");
             item.end_time = AppUtils.getString(data,"end_time");//gETv(R.id.end_time);
             item.district = AppUtils.getString(data,"district");
+            item.weight = AppUtils.btos(AppUtils.getBoolean(data,"weight"));
+            item.facility = AppUtils.getString(data,"facility");
 
             if (object.has("meta")) {
                 try {

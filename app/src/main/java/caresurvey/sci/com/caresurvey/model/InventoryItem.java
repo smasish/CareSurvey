@@ -1224,6 +1224,7 @@ public class InventoryItem extends DBRow{
             item.r_starving_child = AppUtils.getArray(data,InventoryTable.r_starving_child);
             item.r_starving_protocol = AppUtils.getArray(data,InventoryTable.r_starving_protocol);
             item.end_time = AppUtils.getString(data,InventoryTable.end_time);
+            item.facility = AppUtils.getString(data,"facility");
         }
         catch(Exception e){
             e.printStackTrace();
@@ -1377,6 +1378,7 @@ public class InventoryItem extends DBRow{
                 }
             }
             item.checkedBy = AppUtils.getString(object,"checked_by");
+            item.facility = AppUtils.getString(data,"facility");
         }
         catch(Exception e){
             e.printStackTrace();

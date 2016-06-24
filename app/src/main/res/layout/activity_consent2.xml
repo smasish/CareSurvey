@@ -10,23 +10,23 @@
         android:layout_weight="0.8"
         android:orientation="vertical">
 
-        <TextView
+        <caresurvey.sci.com.caresurvey.widgets.QTextView
             android:id="@+id/textView241"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="সেবা প্রদানকারীর অনুমতি নিন"
+            android:text="†mevcÖ`vbKvixi AbygwZ wbb|"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/purple"
-            android:textSize="18dp" />
+             />
 
-        <TextView
+        <caresurvey.sci.com.caresurvey.widgets.QTextView
             android:id="@+id/textView251"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="আসসালামু আলাইকুম/ আদাব"
+            android:text="Avmmvjvgy AvjvBKzg/Av`ve,"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/purple"
-            android:textSize="18dp" />
+             />
 
 
         <LinearLayout
@@ -39,15 +39,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="আমি "
+                    android:text="Avwg "
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/purple"
 
 
-                    android:textSize="18dp" />
+                     />
 
                 <EditText
                     android:focusable="false"
@@ -56,14 +56,14 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                <TextView
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="মা-মনি এইচ. এস. এস. প্রজেক্টের পক্ষে   "
+                    android:text="gv-gwb GBP, Gm, Gm cÖ‡R±-Gi c‡ÿ ¯^v¯’¨ ‡mev "
                     android:textAppearance="?android:attr/textAppearanceLarge"
 
                     android:textColor="@color/purple"
-                    android:textSize="18dp" />
+                    />
 
 
             </LinearLayout>
@@ -73,14 +73,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
+                <caresurvey.sci.com.caresurvey.widgets.QTextView
+                    android:id="@+id/des_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="স্বাস্থ্যসেবা প্রদানের মান উন্নয়নে বিভিন্ন স্বাস্থ্যকেন্দ্রে একটি জরিপ পরিচালনা করেছি। এই জরিপের তথ্য সমূহ স্বাস্থ্যসেবার মান উন্নয়ন ও গবেষনার কাজে ব্যবহার করা হবে। এই স্বাস্থ্যকেন্দ্রে গর্ভবতী মায়ের সেবা কিভাবে দেয়া হয় তা বুঝার জন্য আমি এই ক্লায়েন্টের সাথে আপনার কনসালটেশনটি পর্যবেক্ষণ করতে চাই। আপনি ক্লায়েন্টকে যে সেবা প্রদান করেছেন তা মূল্যায়ন করা আমাদের উদ্দেশ্য নয় এবং এ ব্যাপারে আমি দক্ষও নই। এই পর্যবেক্ষণের তথ্য গোপন থাকবে। আপনার বা ক্লায়েন্টের নাম রিপোর্টে সংযুক্ত করা হবে না। যদি আপনি কোন পয়েন্ট অসস্তিবোধ করেন, তাহলে আমাকে এই স্থান ত্যাগ করতে বলতে পারেন। যা হোক, আমি আশা করব যে, আপনার 'চিকিৎসা/পরামর্শ প্রদান' পর্যবেক্ষণ করলে আপনি কিছু মনে করবেন না।
 আমাকে , আপনি কোন প্রশ্ন জিজ্ঞেস করতে চান কি? "
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/purple"
-                    android:textSize="18dp" />
+                     />
 
 
                 <LinearLayout
@@ -89,15 +90,15 @@
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.7"
-                        android:text="আমি কনসালটেশনের সময় উপস্থিত থাকার অনুমতি পেতে পারি কি?"
+                        android:text="Avwg Kbmvj‡Uk‡bi mgq Dcw¯’Z _vKvi AbygwZ †c‡Z cvwi wK?"
                         android:textAppearance="?android:attr/textAppearanceLarge"
 
                         android:textColor="@color/purple"
-                        android:textSize="18dp" />
+                         />
 
                     <RadioGroup
                         android:id="@+id/radios"
@@ -135,14 +136,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:text="সেবা প্রদানকারীর নামঃ"
+                        android:text="‡mevcÖ`vbKvixi bvg:"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/purple"
-                        android:textSize="18dp" />
+                         />
 
                     <EditText
                         android:id="@+id/collector_name"
@@ -162,15 +163,15 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <caresurvey.sci.com.caresurvey.widgets.QTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="পদবীঃ"
+                        android:text="c`ex:"
                         android:layout_marginRight="50dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/purple"
                         android:layout_weight=".50"
-                        android:textSize="18dp" />
+                        />
 
 
                     <Spinner

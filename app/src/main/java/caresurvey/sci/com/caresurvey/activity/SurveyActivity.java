@@ -281,31 +281,31 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-    @Override
-    public void onBackPressed() {
-
-        SickChildSupervisorTable sickChildSupervisorTable = new SickChildSupervisorTable(SurveyActivity.this);
-        ArrayList<SickChildItemSupervisor> sickChildItemSupervisors;
-        ArrayList<SickChildItemSupervisor> sickChildItemSupervisors1;
-        sickChildItemSupervisors = sickChildSupervisorTable.getAllInfo();
-        sickChildItemSupervisors1 = sickChildSupervisorTable.getAllInfo();
-
-
-
-        new AlertDialog.Builder(this)
-                .setTitle("Close")
-                .setMessage("Are you sure you want to close CareSuvey")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
+//    @Override
+//    public void onBackPressed() {
+//
+//        SickChildSupervisorTable sickChildSupervisorTable = new SickChildSupervisorTable(SurveyActivity.this);
+//        ArrayList<SickChildItemSupervisor> sickChildItemSupervisors;
+//        ArrayList<SickChildItemSupervisor> sickChildItemSupervisors1;
+//        sickChildItemSupervisors = sickChildSupervisorTable.getAllInfo();
+//        sickChildItemSupervisors1 = sickChildSupervisorTable.getAllInfo();
+//
+//
+//
+//        new AlertDialog.Builder(this)
+//                .setTitle("Close")
+//                .setMessage("Are you sure you want to close CareSuvey")
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        finish();
+//                    }
+//
+//                })
+//                .setNegativeButton("No", null)
+//                .show();
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -330,14 +330,27 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     private void genList(){
-        String cName = collector_name.getSelectedItem().toString();
-        String facility = facilityspinner.getSelectedItem().toString();
+//        String cName = collector_name.getSelectedItem().toString();
+//        String facility = facilityspinner.getSelectedItem().toString();
+        String cName = getIntent().getStringExtra("user");
+        String facility = getIntent().getStringExtra("facility");
+        String obs_type = getIntent().getStringExtra("obs_type");
         mAdapter.clear();
-        mAdapter.addAll(FPObservationSupervisorTable.toDbrow(fpTable.getList(cName, facility)));
-        mAdapter.addAll(SatelliteClinicSupervisorTable.toDbrow(scTable.getList(cName,facility)));
-        mAdapter.addAll(SickChildSupervisorTable2.toDbrow(sckTable.getList(cName,facility)));
-        mAdapter.addAll(InventorySupervisorTable.toDbrow(invTable.getList(cName,facility)));
-        mAdapter.addAll(ANCSupervisorTable.toDbrow(ancTable.getList(cName,facility)));
+        if(obs_type.equals("anc")){
+            mAdapter.addAll(ANCSupervisorTable.toDbrow(ancTable.getList(cName,facility)));
+        }
+        else if(obs_type.equals("fp")){
+            mAdapter.addAll(FPObservationSupervisorTable.toDbrow(fpTable.getList(cName, facility)));
+        }
+        else if(obs_type.equals("sc")){
+            mAdapter.addAll(SatelliteClinicSupervisorTable.toDbrow(scTable.getList(cName,facility)));
+        }
+        else if(obs_type.equals("sic")){
+            mAdapter.addAll(SickChildSupervisorTable2.toDbrow(sckTable.getList(cName,facility)));
+        }
+        else if (obs_type.equals("inv")){
+            mAdapter.addAll(InventorySupervisorTable.toDbrow(invTable.getList(cName,facility)));
+        }
     }
 
     @Override

@@ -41,6 +41,14 @@
         <!-- android:name=".activity.FormActivity" -->
         <!-- android:label="@string/form" /> -->
         <activity
+            android:name=".activity.FacilityAdminActivity"
+            android:screenOrientation="portrait"
+             />
+        <activity
+            android:name=".activity.ObservationAdminListActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
             android:name=".activity.PrepopSqliteDbActivity"
             android:label="@string/form" />
         <!--

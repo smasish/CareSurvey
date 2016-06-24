@@ -275,6 +275,8 @@ public class FpObservationFormItem extends DBRow{
             item.what_to_do = AppUtils.btos(AppUtils.getBoolean(data,"w_to_do"));
             item.district = AppUtils.getString(data,"district");
             item.client_name = AppUtils.getString(data,"client_name");
+            item.facility = AppUtils.getString(data,"facility");
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -311,6 +313,7 @@ public class FpObservationFormItem extends DBRow{
             item.what_to_do = AppUtils.btos(AppUtils.getBoolean(data,"w_to_do"));
             item.district = AppUtils.getString(data,"district");
             item.client_name = AppUtils.getString(data,"client_name");
+            item.facility = AppUtils.getString(data,"facility");
 
             if (object.has("meta")) {
                 try {

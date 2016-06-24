@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import caresurvey.sci.com.caresurvey.R;
@@ -89,6 +90,25 @@ public class ConsentActivity2 extends AppCompatActivity implements View.OnClickL
         else{
             findViewById(R.id.designation_layout).setVisibility(View.GONE);
         }
+        int position = getIntent().getIntExtra(ConsentActivity1.FORM, 0);
+        switch (position){
+            case 0:
+                ((TextView)findViewById(R.id.des_text)).setText("cÖ`v‡bi gvb Dbœq‡b wewfbœ ¯^v¯’¨‡K‡›`ª GKwU Rwic cwiPvjbv KiwQ| GB Rwi‡ci Z_¨ mg~n ¯^v¯’¨ †mevi gvb Dbœqb I M‡elYvi Kv‡R e¨envi Kiv n‡e| GB ¯^v¯’¨‡K‡›`ª Mf©eZx gv‡qi †mev wKfv‡e †`qv nq Zv eySvi Rb¨ Avwg GB K¬v‡q‡›Ui mv‡_ Avcbvi Kbmvj‡UkbwU ch©‡e¶Y Ki‡Z PvB| Avcwb K¬v‡q›U‡K †h †mev cÖ`vb Ki‡Qb Zv g~j¨vqb Kiv Avgv‡`i D‡Ïk¨ bq Ges G e¨vcv‡i Avwg `¶I bB| GB ch©‡e¶‡Yi Z_¨ †Mvcb _vK‡e| Avcbvi ev K¬v‡q‡›Ui bvg wi‡cv‡U© mshy³ Kiv n‡e bv| hw` Avcwb †Kvb c‡q‡›U A¯^w¯Í‡eva K‡ib, Zvn‡j Avgv‡K GB ¯’vb Z¨vM Ki‡Z ej‡Z cv‡ib| hv †nvK, Avwg Avkv Kie †h, Avcbvi ÔwPwKrmv/civgk© cÖ`vbÕ ch©‡e¶Y Ki‡j Avcwb wKQy g‡b Ki‡eb  bv| Avgv‡K, Avcwb †Kvb cÖkœ wR‡Ám Ki‡Z Pvb wK?");
+                break;
+            case 1:
+                ((TextView)findViewById(R.id.des_text)).setText("cÖ`v‡bi gvb Dbœq‡b wewfbœ ¯^v¯’¨‡K‡›`ª GKwU Rwic cwiPvjbv KiwQ| GB Rwi‡ci Z_¨ mg~n ¯^v¯’¨ †mevi gvb Dbœqb I M‡elYvi Kv‡R e¨envi Kiv n‡e| GB ¯^v¯’¨‡K‡›`ª †mev wKfv‡e †`qv nq Zv eySvi Rb¨ Avwg GB K¬v‡q‡›Ui mv‡_ Avcbvi Kbmvj‡UkbwU ch©‡e¶Y Ki‡Z PvB| Avcwb K¬v‡q›U‡K †h †mev cÖ`vb Ki‡Qb Zv g~j¨vqb Kiv Avgv‡`i D‡Ïk¨ bq Ges G e¨vcv‡i Avwg `¶I bB| GB ch©‡e¶‡Yi Z_¨ †Mvcb _vK‡e| Avcbvi ev K¬v‡q‡›Ui bvg wi‡cv‡U© mshy³ Kiv n‡e bv| hw` Avcwb †Kvb c‡q‡›U A¯^w¯Í‡eva K‡ib, Zvn‡j Avgv‡K GB ¯’vb Z¨vM Ki‡Z ej‡Z cv‡ib| hv †nvK, Avwg Avkv Kie †h, Avcbvi ÔwPwKrmv/civgk© cÖ`vbÕ ch©‡e¶Y Ki‡j Avcwb wKQy g‡b Ki‡eb  bv| Avgv‡K, Avcwb †Kvb cÖkœ wR‡Ám Ki‡Z Pvb wK?");
+                break;
+            case 2:
+                ((TextView)findViewById(R.id.des_text)).setText("cÖ`v‡bi gvb Dbœq‡b wewfbœ ¯^v¯’¨‡K‡›`ª GKwU Rwic cwiPvjbv KiwQ| GB Rwi‡ci Z_¨ mg~n ¯^v¯’¨ †mevi gvb Dbœqb I M‡elYvi Kv‡R e¨envi Kiv n‡e| GB ¯^v¯’¨‡K‡›`ª Amy¯’ wkïi †mev wKfv‡e †`qv nq Zv eySvi Rb¨ Avwg GB K¬v‡q‡›Ui mv‡_ Avcbvi Kbmvj‡UkbwU ch©‡e¶Y Ki‡Z PvB| Avcwb K¬v‡q›U‡K †h †mev cÖ`vb Ki‡Qb Zv g~j¨vqb Kiv Avgv‡`i D‡Ïk¨ bq Ges G e¨vcv‡i Avwg `¶I bB| GB ch©‡e¶‡Yi Z_¨ †Mvcb _vK‡e| Avcbvi ev K¬v‡q‡›Ui bvg wi‡cv‡U© mshy³ Kiv n‡e bv| hw` Avcwb †Kvb c‡q‡›U A¯^w¯Í‡eva K‡ib, Zvn‡j Avgv‡K GB ¯’vb Z¨vM Ki‡Z ej‡Z cv‡ib| hv †nvK, Avwg Avkv Kie †h, Avcbvi ÔwPwKrmv/civgk© cÖ`vbÕ ch©‡e¶Y Ki‡j Avcwb wKQy g‡b Ki‡eb  bv| Avgv‡K, Avcwb †Kvb cÖkœ wR‡Ám Ki‡Z Pvb wK?");
+                break;
+            case 3:
+                ((TextView)findViewById(R.id.des_text)).setText("cÖ`v‡bi gvb Dbœq‡b wewfbœ ¯^v¯’¨‡K‡›`ª GKwU Rwic cwiPvjbv KiwQ| GB Rwi‡ci Z_¨ mg~n ¯^v¯’¨ †mevi gvb Dbœqb I M‡elYvi Kv‡R e¨envi Kiv n‡e| GB ¯^v¯’¨‡K‡›`ª †mev wKfv‡e †`qv nq Zv eySvi Rb¨ Avwg GB K¬v‡q‡›Ui mv‡_ Avcbvi Kbmvj‡UkbwU ch©‡e¶Y Ki‡Z PvB| Avcwb K¬v‡q›U‡K †h †mev cÖ`vb Ki‡Qb Zv g~j¨vqb Kiv Avgv‡`i D‡Ïk¨ bq Ges G e¨vcv‡i Avwg `¶I bB| GB ch©‡e¶‡Yi Z_¨ †Mvcb _vK‡e| Avcbvi ev K¬v‡q‡›Ui bvg wi‡cv‡U© mshy³ Kiv n‡e bv| hw` Avcwb †Kvb c‡q‡›U A¯^w¯Í‡eva K‡ib, Zvn‡j Avgv‡K GB ¯’vb Z¨vM Ki‡Z ej‡Z cv‡ib| hv †nvK, Avwg Avkv Kie †h, Avcbvi ÔwPwKrmv/civgk© cÖ`vbÕ ch©‡e¶Y Ki‡j Avcwb wKQy g‡b Ki‡eb  bv| Avgv‡K, Avcwb †Kvb cÖkœ wR‡Ám Ki‡Z Pvb wK?");
+                break;
+            case 4:
+                ((TextView)findViewById(R.id.des_text)).setText("cÖ`v‡bi gvb Dbœq‡b wewfbœ ¯^v¯’¨‡K‡›`ª GKwU Rwic cwiPvjbv KiwQ| GB Rwi‡ci Z_¨ mg~n ¯^v¯’¨ †mevi gvb Dbœqb I M‡elYvi Kv‡R e¨envi Kiv n‡e| GB ¯^v¯’¨‡K‡›`ª cwievi cwiKíbv †mev wKfv‡e †`qv nq Zv eySvi Rb¨ Avwg GB K¬v‡q‡›Ui mv‡_ Avcbvi Kbmvj‡UkbwU ch©‡e¶Y Ki‡Z PvB| Avcwb K¬v‡q›U‡K †h †mev cÖ`vb Ki‡Qb Zv g~j¨vqb Kiv Avgv‡`i D‡Ïk¨ bq Ges G e¨vcv‡i Avwg `¶I bB| GB ch©‡e¶‡Yi Z_¨ †Mvcb _vK‡e| Avcbvi ev K¬v‡q‡›Ui bvg wi‡cv‡U© mshy³ Kiv n‡e bv| Avgv‡K, Avcwb †Kvb cÖkœ wR‡Ám Ki‡Z Pvb wK? hw` Avcwb †Kvb c‡q‡›U A¯^w¯Í‡eva K‡ib, Zvn‡j Avgv‡K GB ¯’vb Z¨vM Ki‡Z ej‡Z cv‡ib| hv †nvK, Avwg Avkv Kie †h, Avcbvi ÔwPwKrmv/civgk© cÖ`vbÕ ch©‡e¶Y Ki‡j Avcwb wKQy g‡b Ki‡eb  bv|");
+                break;
+        }
+
     }
 
     private void sETv(int id,String val){

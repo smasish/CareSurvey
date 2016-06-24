@@ -136,6 +136,52 @@ public class LoginActivity extends AppCompatActivity {
                     LoadDataCollector();
                     flag = true;
                 }
+
+                else if (user.equals("user_lk1") && pass.equalsIgnoreCase("pass_lk1")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+                else if (user.equals("user_lk2") && pass.equalsIgnoreCase("pass_lk2")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+                else if (user.equals("user_lk3") && pass.equalsIgnoreCase("pass_lk3")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+                else if (user.equals("user_nk1") && pass.equalsIgnoreCase("pass_nk1")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+                else if (user.equals("user_nk2") && pass.equalsIgnoreCase("pass_nk2")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+                else if (user.equals("user_nk3") && pass.equalsIgnoreCase("pass_nk3")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+                else if (user.equals("user_jk1") && pass.equalsIgnoreCase("pass_jk1")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+                else if (user.equals("user_jk2") && pass.equalsIgnoreCase("pass_jk2")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
+                else if (user.equals("user_jk3") && pass.equalsIgnoreCase("pass_jk3")) {
+
+                    LoadDataCollector();
+                    flag = true;
+                }
                 //  k="collector";
 
 
@@ -506,7 +552,8 @@ public class LoginActivity extends AppCompatActivity {
 //                                startActivity(intent);
 
 
-                    Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
+//                    Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, FacilityAdminActivity.class);
                     startActivity(intent);
                 } else if (user.equals("user_hb1")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,8 @@ import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
 import caresurvey.sci.com.caresurvey.model.AddressItem;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
+import utils.GPSTracker;
 
 /**
  * Created by shantanu on 6/23/16.
@@ -62,11 +65,13 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
     private String village;
     private int observationPosition;
     private String observationName;
+    private GPSTracker gpsTracker;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_insert);
+        gpsTracker = new GPSTracker(this);
         facilityID = (EditText) findViewById(R.id.facility_id_number);
         districtSpinner = (Spinner) findViewById(R.id.districtspinner);
         districtAdapter = new AddressAdapter(this, R.layout.drop_down_list_addrees);
@@ -119,24 +124,42 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
 
 
         findViewById(R.id.next).setOnClickListener(this);
-
+        loadData();
         //get location
-//        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-//        String locationProvider = LocationManager.NETWORK_PROVIDER;
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    ActivityCompat#requestPermissions
-//            // here to request the missing permissions, and then overriding
-//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//            //                                          int[] grantResults)
-//            // to handle the case where the user grants the permission. See the documentation
-//            // for ActivityCompat#requestPermissions for more details.
-//            return;
-//        }
-//        Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-//        Toast.makeText(this,"lat: " + lastKnownLocation.getLatitude(),Toast.LENGTH_SHORT).show();
+    }
 
+    private void loadData() {
+        String username = AppUtils.getUserName(this);
+        if(!TextUtils.isEmpty(username)){
+            String token[] = username.split("_");
+            if(token.length > 1){
+                if(token[1].startsWith("hb")){
+                    districtSpinner.setSelection(1);
+                }
+                else if(token[1].startsWith("lk")){
+                    districtSpinner.setSelection(2);
+                }
+                else if(token[1].startsWith("nk")){
+                    districtSpinner.setSelection(3);
+                }
+                else if(token[1].startsWith("jk")){
+                    districtSpinner.setSelection(4);
+                }
 
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        gpsTracker.getLocation();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gpsTracker.stopUsingGPS();
     }
 
     @Override
@@ -296,6 +319,15 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
         if(v.getId() == R.id.next){
             try{
                 collectData();
+                Location location = gpsTracker.getLocation();
+                if(location != null){
+                    ((EditText)findViewById(R.id.location)).setText(""+location.getLatitude() + "," + location.getLongitude());
+                }
+                else{
+                    Toast.makeText(this,"Location not found. Please enable gps, wait a moment and try again.",Toast.LENGTH_SHORT);
+                    gpsTracker.getLocation();
+                    return;
+                }
                 Intent intent = new Intent(this, ConsentActivity2.class);
                 intent.putExtra("facility",facility);
                 intent.putExtra("upozila", upazila);
@@ -305,6 +337,8 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 intent.putExtra("ward",ward);
                 intent.putExtra("serial",facilityID.getText().toString());
                 intent.putExtra("obs_name",observationName);
+                intent.putExtra("lat",(""+location.getLatitude()));
+                intent.putExtra("lon",(""+location.getLongitude()));
                 intent.putExtra(ConsentActivity1.FORM,observationPosition);
                 startActivity(intent);
                 finish();

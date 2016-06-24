@@ -470,6 +470,7 @@ public class SickChildItem extends DBRow{
             item.district = AppUtils.getString(data,"district");
             item.union = AppUtils.getString(data,"union");
             item.subdistrict = AppUtils.getString(data,"sub_district");
+            item.facility = AppUtils.getString(data,"facility");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -521,6 +522,7 @@ public class SickChildItem extends DBRow{
             item.district = AppUtils.getString(data,"district");
             item.union = AppUtils.getString(data,"union");
             item.subdistrict = AppUtils.getString(data,"sub_district");
+            item.facility = AppUtils.getString(data,"facility");
 
 
             if (object.has("meta")) {
