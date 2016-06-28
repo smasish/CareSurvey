@@ -313,7 +313,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
+    private final int MAX_RANGE = 30;
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.next){
@@ -327,6 +327,44 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                     Toast.makeText(this,"Location not found. Please enable gps, wait a moment and try again.",Toast.LENGTH_SHORT);
                     gpsTracker.getLocation();
                     return;
+                }
+
+                switch (observationPosition){
+                    case 0:
+                        if(new ANCTable(this).getRowSize() >= MAX_RANGE){
+                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+                            finish();
+                            return;
+                        }
+                        break;
+                    case 1:
+                        if(new SatelliteClinicTable(this).getRowSize() >= MAX_RANGE){
+                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+                            finish();
+                            return;
+                        }
+                        break;
+                    case 2:
+                        if(new SickChildTable(this).getRowSize() >= MAX_RANGE){
+                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+                            finish();
+                            return;
+                        }
+                        break;
+                    case 3:
+                        if(new InventoryTable(this).getRowSize() >= 1){
+                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+                            finish();
+                            return;
+                        }
+                        break;
+                    case 4:
+                        if(new FpObservationTable(this).getRowSize() >= MAX_RANGE){
+                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+                            finish();
+                            return;
+                        }
+                        break;
                 }
                 Intent intent = new Intent(this, ConsentActivity2.class);
                 intent.putExtra("facility",facility);

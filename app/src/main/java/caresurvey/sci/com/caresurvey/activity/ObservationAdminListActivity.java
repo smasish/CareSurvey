@@ -67,6 +67,11 @@ public class ObservationAdminListActivity extends AppCompatActivity implements V
         }
     }
 
+    String extractTitle(String title){
+        String tokens[] = title.split("/");
+        return tokens[0].substring(0,tokens[0].length()-2);
+    }
+
     @Override
     public void onClick(View v) {
         Intent intent = getIntent();
@@ -74,22 +79,27 @@ public class ObservationAdminListActivity extends AppCompatActivity implements V
         switch (v.getId()){
             case R.id.anc:
                 intent.putExtra("obs_type","anc");
+                intent.putExtra(SurveyActivity.TITLE,extractTitle( ((Button)findViewById(R.id.anc)).getText().toString()));
                 startActivity(intent);
                 break;
             case R.id.inventory:
                 intent.putExtra("obs_type","inv");
+                intent.putExtra(SurveyActivity.TITLE,extractTitle( ((Button)findViewById(R.id.inventory)).getText().toString()));
                 startActivity(intent);
                 break;
             case R.id.sick_child:
                 intent.putExtra("obs_type","sic");
+                intent.putExtra(SurveyActivity.TITLE,extractTitle( ((Button)findViewById(R.id.sick_child)).getText().toString()));
                 startActivity(intent);
                 break;
             case R.id.famility:
                 intent.putExtra("obs_type","fp");
+                intent.putExtra(SurveyActivity.TITLE,extractTitle( ((Button)findViewById(R.id.famility)).getText().toString()));
                 startActivity(intent);
                 break;
             case R.id.satellite_clinic:
                 intent.putExtra("obs_type","sc");
+                intent.putExtra(SurveyActivity.TITLE,extractTitle( ((Button)findViewById(R.id.satellite_clinic)).getText().toString()));
                 startActivity(intent);
                 break;
         }

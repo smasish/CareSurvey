@@ -3,6 +3,7 @@ package caresurvey.sci.com.caresurvey.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import caresurvey.sci.com.caresurvey.model.SickChildItem;
 public class DisplayUserActivity extends AppCompatActivity {
 
     public static final String FORM = "from_name";
+    public static final String TITLE = "form_title";
     String names;
     ListView listView;
     public static final String FORM_ID = "form_id";
@@ -44,6 +46,10 @@ public class DisplayUserActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.user_list);
         Intent in = getIntent();
         names = in.getStringExtra("name");
+        String title = in.getStringExtra(TITLE);
+        if(!TextUtils.isEmpty(title)){
+            getSupportActionBar().setTitle(title);
+        }
         //     Log.d(".....>>>>>>>>>>", "response length" + names);
 
 
@@ -222,12 +228,12 @@ public class DisplayUserActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_display_user, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_display_user, menu);
+//        return true;
+//    }
 
 
     @Override
@@ -243,18 +249,18 @@ public class DisplayUserActivity extends AppCompatActivity {
 //        finish();
 //    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }

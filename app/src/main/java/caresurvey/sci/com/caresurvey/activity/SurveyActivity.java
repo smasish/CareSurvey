@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,7 @@ import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
 
 public class SurveyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     public static final String FROM_ADMIN = "from_admin_page";
+    public static final String TITLE = "form_title";
     Button Survey;
     ListView listView;
     private String user;
@@ -54,7 +56,10 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
-
+        String title = getIntent().getStringExtra(TITLE);
+        if(!TextUtils.isEmpty(title)){
+            getSupportActionBar().setTitle(title);
+        }
         con = this;
         fpTable = new FPObservationSupervisorTable(this);
         scTable = new SatelliteClinicSupervisorTable(this);

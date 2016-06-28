@@ -32,6 +32,7 @@
             android:name="activity.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
+            android:theme="@style/AppTheme"
             android:name=".activity.SurveyActivity"
             android:label="@string/title_activity_survey" />
         <activity
@@ -41,12 +42,16 @@
         <!-- android:name=".activity.FormActivity" -->
         <!-- android:label="@string/form" /> -->
         <activity
+            android:theme="@style/AppTheme"
             android:name=".activity.FacilityAdminActivity"
             android:screenOrientation="portrait"
+            android:label="Facility Selection"
              />
         <activity
+            android:theme="@style/AppTheme"
             android:name=".activity.ObservationAdminListActivity"
             android:screenOrientation="portrait"
+            android:label="Observation Selection"
             />
         <activity
             android:name=".activity.PrepopSqliteDbActivity"
@@ -76,6 +81,7 @@
             android:name=".activity.UserActivity2"
             android:label="@string/title_activity_user" />
         <activity
+            android:theme="@style/AppTheme"
             android:name=".activity.DisplayUserActivity"
             android:label="@string/title_activity_display_user" />
         <activity
