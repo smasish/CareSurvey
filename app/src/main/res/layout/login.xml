@@ -15,9 +15,9 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
 
-            android:layout_weight="0.5">
+            >
 
             <LinearLayout
                 android:orientation="vertical"
@@ -35,44 +35,34 @@
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
                   android:textSize="28sp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="70dp"
                     android:id="@+id/button" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_weight="0.7">
+               >
+
+
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.15"
-                    android:layout_height="match_parent"></LinearLayout>
+                    android:layout_width="match_parent"
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
 
 
                     android:layout_height="match_parent">
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="0.1"
 
-                        android:background="#20489F"
-                        android:layout_height="wrap_content"></LinearLayout>
 
                     <LinearLayout
                         android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.7"
-
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:layout_height="match_parent">
 
 
@@ -83,6 +73,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#20489F"
+
                            >
 
                             <LinearLayout
@@ -95,12 +86,15 @@
                                 android:textAppearance="?android:attr/textAppearanceLarge"
                                 android:text="User Name"
                                 android:capitalize="words"
+                                android:layout_marginLeft="20dp"
                                 android:id="@+id/textView" />
 
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
                                 android:text="user_hb1"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
                                 android:background="@drawable/editbackground"
                                 android:id="@+id/us" />
 
@@ -114,12 +108,15 @@
                                 android:textAppearance="?android:attr/textAppearanceLarge"
                                 android:text="Password"
                                 android:capitalize="words"
+                                android:layout_marginLeft="20dp"
                                 android:id="@+id/textView2" />
 
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
                                 android:focusable="true"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
                                 android:focusableInTouchMode="true"
                                 android:background="@drawable/editbackground"
                                 android:text="pass_hb1"
@@ -137,9 +134,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Login"
+                                android:layout_marginTop="20dp"
                                 android:textColor="@color/white"
                                 android:background="@drawable/round_shaped"
                                 android:id="@+id/Login"
+                                android:layout_marginBottom="20dp"
                                 />
 
 

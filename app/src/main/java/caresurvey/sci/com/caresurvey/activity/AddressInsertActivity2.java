@@ -100,7 +100,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
         observationAdapter.add(new AddressItem(1, "Inventory of Satellite clinic", "Inventory of Satellite clinic"));
         observationAdapter.add(new AddressItem(2, "Observations of Sick Child Under Five", "Observations of Sick Child Under Five"));
         observationAdapter.add(new AddressItem(3, "Inventory of facility", "Inventory of facility"));
-        observationAdapter.add(new AddressItem(4, "FP Observation", "FP Observation"));
+        observationAdapter.add(new AddressItem(4, "Observation of FP ", "Observation FP "));
         observationSpinner.setAdapter(observationAdapter);
         observationSpinner.setOnItemSelectedListener(this);
 
@@ -177,7 +177,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                     observationAdapter.add(new AddressItem(0,"Observations of Antenatal Care Consultation","Observations of Antenatal Care Consultation"));
                     observationAdapter.add(new AddressItem(2,"Observations of Sick Child Under Five","Observations of Sick Child Under Five"));
                     observationAdapter.add(new AddressItem(3,"Inventory of facility","Inventory of facility"));
-                    observationAdapter.add(new AddressItem(4,"FP Observation","FP Observation"));
+                    observationAdapter.add(new AddressItem(4,"Observation of FP","Observation of FP "));
                     observationSpinner.setSelection(0);
                 }
                 findViewById(R.id.upazila_layout).setVisibility(View.GONE);
@@ -197,7 +197,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 observationAdapter.add(new AddressItem(0,"Observations of Antenatal Care Consultation","Observations of Antenatal Care Consultation"));
                 observationAdapter.add(new AddressItem(2,"Observations of Sick Child Under Five","Observations of Sick Child Under Five"));
                 observationAdapter.add(new AddressItem(3,"Inventory of facility","Inventory of facility"));
-                observationAdapter.add(new AddressItem(4,"FP Observation","FP Observation"));
+                observationAdapter.add(new AddressItem(4,"Observation of FP ","Observation of FP "));
                 observationSpinner.setSelection(0);
 
             }
@@ -212,7 +212,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 observationAdapter.add(new AddressItem(0,"Observations of Antenatal Care Consultation","Observations of Antenatal Care Consultation"));
                 observationAdapter.add(new AddressItem(2,"Observations of Sick Child Under Five","Observations of Sick Child Under Five"));
                 observationAdapter.add(new AddressItem(3,"Inventory of facility","Inventory of facility"));
-                observationAdapter.add(new AddressItem(4,"FP Observation","FP Observation"));
+                observationAdapter.add(new AddressItem(4,"Observation of FP ","Observation of FP "));
                 observationSpinner.setSelection(0);
             }
             else if(item.id == 3){ //satellite

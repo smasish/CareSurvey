@@ -63,7 +63,7 @@ public class ObservationAdminListActivity extends AppCompatActivity implements V
             ((Button)findViewById(R.id.anc)).setText("Observations of Antenatal Care Consultation " + new ANCSupervisorTable(this).getList(user,facility).size() + "/30");;
             ((Button)findViewById(R.id.inventory)).setText("Inventory of facility " + new InventorySupervisorTable(this).getList(user,facility).size() + "/1");
             ((Button)findViewById(R.id.sick_child)).setText("Observations of Sick Child Under Five " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
-            ((Button)findViewById(R.id.famility)).setText("Family Planing Observation " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
+            ((Button)findViewById(R.id.famility)).setText("Observation of Family Planing " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
         }
     }
 

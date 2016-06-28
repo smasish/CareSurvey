@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     String k;
     EditText username,password;
     Button login;
-    TextView text;
+   // TextView text;
     String user="",pass="";
     private Context con;
     private boolean flag = false;
@@ -68,8 +68,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        text=(TextView)findViewById(R.id.falsermal_text);
+        setContentView(R.layout.login);
+
 
 
         con = this;
@@ -238,8 +238,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        text.setText("MaMoni Health System Strengthening \n           (MaMoni HSS) Project");
-        text.setTextSize(25);
+//        text.setText("MaMoni Health System Strengthening \n           (MaMoni HSS) Project");
+//        text.setTextSize(25);
     }
 //    private void submitFeedback(){
 //        String url = "http://119.148.43.34/mamoni/survey/api/login";

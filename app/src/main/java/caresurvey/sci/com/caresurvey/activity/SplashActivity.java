@@ -31,7 +31,7 @@ public class SplashActivity extends ActionBarActivity {
         context = this;
         //getActionBar().setBackgroundDrawable((getResources().getDrawable(R.drawable.actionbar)));
 
-        TextView text = (TextView)findViewById(R.id.falsetice_id);
+     //   TextView text = (TextView)findViewById(R.id.falsetice_id);
 
 
 
