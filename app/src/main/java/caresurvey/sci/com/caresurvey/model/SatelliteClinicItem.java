@@ -59,7 +59,6 @@ public class SatelliteClinicItem extends DBRow{
     public String csi233;
     public String csi234;
 
-    public String date;
     public String startTime;
     public String clientName;
     public String designation;

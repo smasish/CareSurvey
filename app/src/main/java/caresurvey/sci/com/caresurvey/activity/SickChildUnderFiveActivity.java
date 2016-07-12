@@ -75,7 +75,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
             item.village = mIntent.getStringExtra("village");
             item.child_description = mIntent.getStringExtra("description");
             item.serial_no = item.facility_id = mIntent.getStringExtra("serial");
-            item.form_date = item.datepick = mIntent.getStringExtra("datepicker");
+            item.date = item.datepick = mIntent.getStringExtra("datepicker");
             item.start_time = item.timepick = mIntent.getStringExtra("timepicker");
             item.facility = mIntent.getStringExtra("facility");
             item.obs_type = mIntent.getStringExtra("obstype");
@@ -146,11 +146,12 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         item.belly_button = gRGv(R.id.belly);
         item.height = gRGv(R.id.height);
         item.bmi = gRGv(R.id.bmi);
-        item.result = gCBsv(R.id.checkBox1);
-        item.result += ","+gCBsv(R.id.checkBox2);
-        item.result += ","+gCBsv(R.id.checkBox3);
-        item.result += ","+gCBsv(R.id.checkBox4);
-        item.result += ","+gCBsv(R.id.checkBox5);
+        item.result = gRGi(R.id.result_group);
+//        item.result = gCBsv(R.id.checkBox1);
+//        item.result += ","+gCBsv(R.id.checkBox2);
+//        item.result += ","+gCBsv(R.id.checkBox3);
+//        item.result += ","+gCBsv(R.id.checkBox4);
+//        item.result += ","+gCBsv(R.id.checkBox5);
         item.end_time = gETv(R.id.end_time);
         item.end_time = AppUtils.getTime(); //update end time when load
         sETv(R.id.end_time,item.end_time);
@@ -182,7 +183,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
             });
         }
         sETv(R.id.serial_no,item.serial_no);
-        sETv(R.id.form_date,item.form_date);
+        sETv(R.id.form_date,item.date);
         sETv(R.id.start_time,item.start_time);
         sSPi(R.id.child_description, item.child_description);
         sETv(R.id.age,getAge(item.age));
@@ -217,13 +218,14 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         sRGv(R.id.belly,item.belly_button);
         sRGv(R.id.height,item.height);
         sRGv(R.id.bmi,item.bmi);
-        if(item.result != null) {
-            String tokens[] = item.result.split(",");
-            int ids[] = new int[]{R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox5};
-            for (int i = 0; i < tokens.length; i++) {
-                sCBv(ids[i], tokens[i].trim());
-            }
-        }
+//        if(item.result != null) {
+//            String tokens[] = item.result.split(",");
+//            int ids[] = new int[]{R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox5};
+//            for (int i = 0; i < tokens.length; i++) {
+//                sCBv(ids[i], tokens[i].trim());
+//            }
+//        }
+        sRGiv(R.id.result_group,item.result);
     }
 
     private void editable(boolean state){
@@ -297,6 +299,17 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         }
     }
 
+    private void sRGiv(int id, String value) {
+        if(value == null) return;
+        try {
+            RadioGroup btn = (RadioGroup) findViewById(id);
+            int index = Integer.parseInt(value);
+            ((RadioButton) btn.getChildAt(index)).setChecked(true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     private void sRBv(int id, boolean value) {
         RadioButton btn = (RadioButton) findViewById(id);
         btn.setChecked(value);
@@ -340,6 +353,13 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         else{
             return "false";
         }
+    }
+
+    private String gRGi(int id)throws Exception{
+        RadioGroup radioGroup = (RadioGroup) findViewById(id);
+        int rbId = radioGroup.getCheckedRadioButtonId();
+        if(rbId == -1) throw new Exception();
+        return Integer.toString(rbId);
     }
 
     private String gETv(int id) {

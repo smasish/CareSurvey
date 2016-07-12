@@ -102,7 +102,7 @@ Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|
     <string name="fp_ques_09">109) ch©‡eÿY ‡kl Kivi mgq:</string>
     <string name="fp_description">ক্লায়েন্ট যে সেবা নিতে এসেছে তার বিবরণ</string>
     <string-array name="fp_service_description">
-        <item>সিলেক্ট</item>
+        <item>Select</item>
         <item>পরিবার পরিকল্পনা পদ্বতি সেবা</item>
         <item>পরিবার পরিকল্পনা পদ্বতি জনিত পার্শ্বপ্রতিক্রিয়া ব্যবস্থাপনা</item>
         <item>অন্যান্য</item>
@@ -375,7 +375,7 @@ nq wK bv|</string>
     <string name="title_satelliteClinicInventory">Satellite Clicnic Inventory</string>
     <string name="sc_description">অসুস্থ শিশু যে সেবা নিতে এসেছে তার বিবরণ</string>
     <string-array name="child_sick_description">
-        <item>সিলেক্ট</item>
+        <item>Select</item>
         <item>অসুস্থতার চিকিৎসা</item>
         <item>অন্যান্য</item>
     </string-array>
@@ -401,7 +401,7 @@ nq wK bv|</string>
     <string name="anc_q_105_13">13 AvqiY dwjK Gwm‡Wi cÖ‡qvRbxqZv e¨vL¨v K‡i‡Qb</string>
     <string name="anc_q_105_14">14 AvqiY dwjK Gwm‡Wi cvk¦©-cÖwZwµqvi e¨vL¨v K‡i‡Qb</string>
     <string-array name="anc_service_description">
-        <item>সিলেক্ট</item>
+        <item>Select</item>
         <item>গর্ভকালীন রুটিন চেক-অাপ</item>
         <item>গর্ভজনিত সমস্যা</item>
         <item>অন্যান্য</item>

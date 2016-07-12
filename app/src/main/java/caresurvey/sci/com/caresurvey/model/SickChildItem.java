@@ -13,7 +13,6 @@ public class SickChildItem extends DBRow{
     public String sp_client;
     public String so_designation;
     public String serial_no;
-    public String form_date;
     public String start_time;
     public String child_description;
     public String age;
@@ -57,7 +56,7 @@ public class SickChildItem extends DBRow{
         this.name = sp_client;
         this.so_designation= sp_designataion;
         this.serial_no = serial_no;
-        this.form_date =form_date;
+        this.date =form_date;
         this.start_time = start_time;
         this.child_description = child_description;
         this.age = age;
@@ -95,7 +94,7 @@ public class SickChildItem extends DBRow{
     }
 
     public SickChildItem() {
-        form_date = AppUtils.getDate();
+        date = AppUtils.getDate();
         start_time = AppUtils.getTime();
         end_time = AppUtils.getTime();
         status = 7;
@@ -150,11 +149,11 @@ public class SickChildItem extends DBRow{
     }
 
     public String getForm_date() {
-        return form_date;
+        return date;
     }
 
     public void setForm_date(String form_date) {
-        this.form_date = form_date;
+        this.date = form_date;
     }
 
     public String getAge() {
@@ -440,7 +439,7 @@ public class SickChildItem extends DBRow{
             item.sp_client = AppUtils.getString(data,"sp_client");
             item.so_designation =  AppUtils.getString(data,"sp_designation");
             item.serial_no = AppUtils.itos(AppUtils.getInt(data,"seral_no"));
-            item.form_date = AppUtils.getString(data,"form_date");
+            item.date = AppUtils.getString(data,"form_date");
             item.start_time = AppUtils.getString(data,"start_time");
             item.child_description = AppUtils.getString(data,"child_description");
             item.age = AppUtils.getString(data,"age");
@@ -492,7 +491,7 @@ public class SickChildItem extends DBRow{
             item.sp_client = AppUtils.getString(data,"sp_client");
             item.so_designation =  AppUtils.getString(data,"sp_designation");
             item.serial_no = AppUtils.itos(AppUtils.getInt(data,"seral_no"));
-            item.form_date = AppUtils.getString(data,"form_date");
+            item.date = AppUtils.getString(data,"form_date");
             item.start_time = AppUtils.getString(data,"start_time");
             item.child_description = AppUtils.getString(data,"child_description");
             item.age = AppUtils.getString(data,"age");

@@ -16,9 +16,10 @@ import android.util.Log;
  * Created by shantanu on 6/25/16.
  */
 
-public class GPSTracker implements LocationListener {
+public class GPSTracker {
 
     private final Context mContext;
+    private final LocationListener locationListener;
 
     // flag for GPS status
     boolean isGPSEnabled = false;
@@ -37,13 +38,14 @@ public class GPSTracker implements LocationListener {
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
 
     // The minimum time between updates in milliseconds
-    private static final long MIN_TIME_BW_UPDATES = 2000; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 1500; // 1 minute
 
     // Declaring a Location Manager
     protected LocationManager locationManager;
 
-    public GPSTracker(Context context) {
+    public GPSTracker(Context context,LocationListener locationListener) {
         this.mContext = context;
+        this.locationListener = locationListener;
         locationManager = (LocationManager) mContext
                 .getSystemService(Context.LOCATION_SERVICE);
 //        getLocation();
@@ -72,7 +74,7 @@ public class GPSTracker implements LocationListener {
                     locationManager.requestLocationUpdates(
                             LocationManager.NETWORK_PROVIDER,
                             MIN_TIME_BW_UPDATES,
-                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, locationListener);
                     Log.d("Network", "Network");
                     if (locationManager != null) {
                         location = locationManager
@@ -89,7 +91,7 @@ public class GPSTracker implements LocationListener {
                         locationManager.requestLocationUpdates(
                                 LocationManager.GPS_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
-                                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                                MIN_DISTANCE_CHANGE_FOR_UPDATES, locationListener);
                         Log.d("GPS Enabled", "GPS Enabled");
                         if (locationManager != null) {
                             location = locationManager
@@ -116,7 +118,7 @@ public class GPSTracker implements LocationListener {
      * */
     public void stopUsingGPS(){
         if(locationManager != null){
-            locationManager.removeUpdates(GPSTracker.this);
+            locationManager.removeUpdates(locationListener);
         }
     }
 
@@ -183,22 +185,6 @@ public class GPSTracker implements LocationListener {
 
         // Showing Alert Message
         alertDialog.show();
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
     }
 
     public IBinder onBind(Intent arg0) {

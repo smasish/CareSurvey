@@ -395,7 +395,7 @@ public class TestActivity1 extends AppCompatActivity {
 
     private void loadForm() {
         sETv(serial_no, item.serial_no);
-        sETv(form_date, item.form_date);
+        sETv(form_date, item.date);
         sETv(start_time, item.start_time);
         sETv(child_description, item.child_description);
         sETv(age, item.age);

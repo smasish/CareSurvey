@@ -179,7 +179,7 @@ public class SickChildSupervisorTable2 extends SuperTable{
         item.name = item.sp_client = cursor.getString(cursor.getColumnIndex(KEY_SP_CLIENT));
         item.so_designation =cursor.getString(cursor.getColumnIndex(KEY_SP_DESIGNATGION));
         item.serial_no = cursor.getString(cursor.getColumnIndex(KEY_SERIAL_NO));
-        item.form_date = cursor.getString(cursor.getColumnIndex(KEY_FORM_DATE));
+        item.date = cursor.getString(cursor.getColumnIndex(KEY_FORM_DATE));
         item.start_time = cursor.getString(cursor.getColumnIndex(KEY_START_TIME));
         item.child_description = cursor.getString(cursor.getColumnIndex(KEY_CHILD_DESCRIPTION));
         item.age = cursor.getString(cursor.getColumnIndex(KEY_AGE));
@@ -232,7 +232,7 @@ public class SickChildSupervisorTable2 extends SuperTable{
         values.put(KEY_SP_CLIENT,item.sp_client);
         values.put(KEY_SP_DESIGNATGION,item.so_designation);
         values.put(KEY_SERIAL_NO,item.serial_no);
-        values.put(KEY_FORM_DATE,item.form_date);
+        values.put(KEY_FORM_DATE,item.date);
         values.put(KEY_START_TIME,item.start_time);
         values.put(KEY_CHILD_DESCRIPTION,item.child_description);
         values.put(KEY_AGE,item.age);

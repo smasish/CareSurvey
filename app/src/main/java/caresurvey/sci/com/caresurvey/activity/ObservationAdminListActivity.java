@@ -33,10 +33,10 @@ public class ObservationAdminListActivity extends AppCompatActivity implements V
         facility = getIntent().getStringExtra("facility");
         if(facility.equals("Satellite Clinic")){
             findViewById(R.id.satellite_clinic).setVisibility(View.VISIBLE);
-            findViewById(R.id.anc).setVisibility(View.GONE);
-            findViewById(R.id.sick_child).setVisibility(View.GONE);
+            findViewById(R.id.anc).setVisibility(View.VISIBLE);
+            findViewById(R.id.sick_child).setVisibility(View.VISIBLE);
             findViewById(R.id.inventory).setVisibility(View.GONE);
-            findViewById(R.id.famility).setVisibility(View.GONE);
+            findViewById(R.id.famility).setVisibility(View.VISIBLE);
         }
         else{
             findViewById(R.id.satellite_clinic).setVisibility(View.GONE);
@@ -56,15 +56,16 @@ public class ObservationAdminListActivity extends AppCompatActivity implements V
     }
 
     private void loadData(){
-        if(findViewById(R.id.satellite_clinic).getVisibility() == View.VISIBLE){
-            ((Button)findViewById(R.id.satellite_clinic)).setText("Inventory of Satellite clinic " + new SatelliteClinicSupervisorTable(this).getList(user,facility).size() + "/30");;
-        }
-        else{
-            ((Button)findViewById(R.id.anc)).setText("Observations of Antenatal Care Consultation " + new ANCSupervisorTable(this).getList(user,facility).size() + "/30");;
-            ((Button)findViewById(R.id.inventory)).setText("Inventory of facility " + new InventorySupervisorTable(this).getList(user,facility).size() + "/1");
-            ((Button)findViewById(R.id.sick_child)).setText("Observations of Sick Child Under Five " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
-            ((Button)findViewById(R.id.famility)).setText("Observation of Family Planing " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
-        }
+//        if(findViewById(R.id.satellite_clinic).getVisibility() == View.VISIBLE){
+//            ((Button)findViewById(R.id.satellite_clinic)).setText("Inventory of satellite clinic " + new SatelliteClinicSupervisorTable(this).getList(user,facility).size() + "/30");;
+//        }
+//        else{
+            ((Button)findViewById(R.id.satellite_clinic)).setText("Inventory of satellite clinic " + new SatelliteClinicSupervisorTable(this).getList(user,facility).size() + "/30");;
+            ((Button)findViewById(R.id.anc)).setText("Observation of ANC " + new ANCSupervisorTable(this).getList(user,facility).size() + "/30");;
+            ((Button)findViewById(R.id.inventory)).setText("Inventory of Facility " + new InventorySupervisorTable(this).getList(user,facility).size() + "/1");
+            ((Button)findViewById(R.id.sick_child)).setText("Sick child " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
+            ((Button)findViewById(R.id.famility)).setText("Family planning " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
+//        }
     }
 
     String extractTitle(String title){

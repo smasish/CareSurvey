@@ -12,25 +12,6 @@
 
         <Button
             android:padding="10dp"
-            android:id="@+id/anc"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:background="@drawable/row_bg"/>
-
-        <Button
-            android:padding="10dp"
-            android:layout_marginTop="20dp"
-            android:id="@+id/sick_child"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:background="@drawable/row_bg"/>
-
-        <Button
-            android:padding="10dp"
             android:layout_marginTop="20dp"
             android:id="@+id/inventory"
             android:layout_width="match_parent"
@@ -48,6 +29,28 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"
             android:background="@drawable/row_bg"/>
+
+        <Button
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/anc"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@drawable/row_bg"/>
+
+        <Button
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/sick_child"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:background="@drawable/row_bg"/>
+
+
 
         <Button
             android:padding="10dp"

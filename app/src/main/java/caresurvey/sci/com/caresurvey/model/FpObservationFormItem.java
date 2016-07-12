@@ -205,7 +205,6 @@ public class FpObservationFormItem extends DBRow{
     public String sp_designation;
     public String client_name;
     public String serial_no;
-    public String date;
     public String start_time;
     public String concent;
     public String cover;

@@ -27,6 +27,7 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
     private String date;
     private String description;
     private String phoneNumber;
+    private TextView pageName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
         getSupportActionBar().setTitle(getIntent().getStringExtra("obs_name"));
         findViewById(R.id.cnt).setOnClickListener(this);
         username = getIntent().getStringExtra("name");
+        pageName = (TextView) findViewById(R.id.page_name);
         loadData();
         findViewById(R.id.no).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +59,7 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
             case 0:
                 sTvv(R.id.description, getResources().getString(R.string.anc_description_text));
                 descriptions = getResources().getStringArray(R.array.anc_service_description);
+                pageName.setText("CONSENT: CLIENT");
                 break;
             case 1:
                 //not applicable
@@ -64,6 +67,7 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
             case 2:
                 sTvv(R.id.description, getResources().getString(R.string.sc_description));
                 descriptions = getResources().getStringArray(R.array.child_sick_description);
+                pageName.setText("CONSENT: CARETAKER OF SICK CHILD");
                 break;
             case 3:
                 //no applicable
@@ -71,6 +75,7 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
             case 4:
                 sTvv(R.id.description, getResources().getString(R.string.fp_description));
                 descriptions = getResources().getStringArray(R.array.fp_service_description);
+                pageName.setText("CONSENT: CLIENT");
                 break;
         }
         Spinner s = (Spinner) findViewById(R.id.description_value);
@@ -122,12 +127,10 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
         if(findViewById(R.id.description_value).getVisibility() == View.VISIBLE) {
             description = gSPi(R.id.description_value);
         }
-        try {
-            phoneNumber = gETv(R.id.phone_number);
-        }catch (Exception e){
-            phoneNumber = "";
+        phoneNumber = gETv(R.id.phone_number);
+        if(phoneNumber.length() != 11){
+            throw  new Exception();
         }
-
     }
 
     private String gSPi(int id) throws Exception {

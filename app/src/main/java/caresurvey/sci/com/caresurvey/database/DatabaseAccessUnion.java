@@ -156,6 +156,9 @@ public class DatabaseAccessUnion {
                 item.name = cursor.getString(cursor.getColumnIndex(unioname));
                 item.nameEng = cursor.getString(cursor.getColumnIndex(unionnameeng));
                 list.add(item);
+                if(list.size() >= 4){
+                    break;
+                }
             } while (cursor.moveToNext());
         }
         cursor.close();

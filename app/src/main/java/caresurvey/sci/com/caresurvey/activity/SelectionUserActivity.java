@@ -83,11 +83,11 @@ public class SelectionUserActivity extends AppCompatActivity {
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.select_dialog_singlechoice);
-        arrayAdapter.add("Observations of Antenatal Care Consultation");
-        arrayAdapter.add("Inventory of Satellite Clinic");
-        arrayAdapter.add("Observation of Sick Child Under Five");
         arrayAdapter.add("Inventory of Facility");
-        arrayAdapter.add("Observation of FP ");
+        arrayAdapter.add("Inventory of satellite clinic");
+        arrayAdapter.add("Observation of ANC");
+        arrayAdapter.add("Sick Child");
+        arrayAdapter.add("Family planning");
 
 
         builderSingle.setNegativeButton(

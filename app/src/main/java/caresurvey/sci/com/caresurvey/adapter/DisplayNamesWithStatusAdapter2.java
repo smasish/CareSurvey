@@ -57,10 +57,14 @@ public class DisplayNamesWithStatusAdapter2 extends ArrayAdapter<DBRow>{
         {
             holder = (ViewHolder) convertView.getTag();
         }
-
         holder.id.setText("" +getItem(position).id);
         if(!TextUtils.isEmpty(getItem(position).form_type)){
-            holder.name.setText(getItem(position).form_type + " #" + getItem(position).id);
+            if(!TextUtils.isEmpty(getItem(position).date)) {
+                holder.name.setText(getItem(position).form_type + " (" + getItem(position).date + ")");
+            }
+            else{
+                holder.name.setText(getItem(position).form_type);
+            }
         }
         else{
             holder.name.setText("#" + getItem(position).id);

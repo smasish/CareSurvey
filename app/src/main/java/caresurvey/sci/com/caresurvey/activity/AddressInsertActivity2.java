@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,8 +42,9 @@ import utils.GPSTracker;
  * Created by shantanu on 6/23/16.
  */
 
-public class AddressInsertActivity2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class AddressInsertActivity2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener, LocationListener {
     private Spinner districtSpinner;
+    private TextView districtText;
     AddressAdapter districtAdapter;
     private Spinner facilitySpinner;
     private AddressAdapter facilityAdapter;
@@ -56,7 +58,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
     private AddressAdapter wardAdapter;
     private Spinner villageSpinner;
     private AddressAdapter villageAdapter;
-    private EditText facilityID;
+    private TextView facilityID;
     private String district;
     private String facility;
     private String upazila;
@@ -71,9 +73,10 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_insert);
-        gpsTracker = new GPSTracker(this);
-        facilityID = (EditText) findViewById(R.id.facility_id_number);
+        gpsTracker = new GPSTracker(this,this);
+        facilityID = (TextView) findViewById(R.id.facility_id_number);
         districtSpinner = (Spinner) findViewById(R.id.districtspinner);
+        districtText = (TextView) findViewById(R.id.districtText);
         districtAdapter = new AddressAdapter(this, R.layout.drop_down_list_addrees);
         districtAdapter.add(new AddressItem(-1, "Select", "Select"));
         districtAdapter.add(new AddressItem(36, "Habiganj", "হবিগঞ্জ"));
@@ -96,11 +99,11 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
         observationSpinner = (Spinner) findViewById(R.id.obsSpinner);
         observationAdapter = new AddressAdapter(this, R.layout.drop_down_list_addrees);
         observationAdapter.add(new AddressItem(-1, "Select", "Select"));
-        observationAdapter.add(new AddressItem(0, "Observations of Antenatal Care Consultation", "Observations of Antenatal Care Consultation"));
-        observationAdapter.add(new AddressItem(1, "Inventory of Satellite clinic", "Inventory of Satellite clinic"));
-        observationAdapter.add(new AddressItem(2, "Observations of Sick Child Under Five", "Observations of Sick Child Under Five"));
-        observationAdapter.add(new AddressItem(3, "Inventory of facility", "Inventory of facility"));
-        observationAdapter.add(new AddressItem(4, "Observation of FP ", "Observation FP "));
+        observationAdapter.add(new AddressItem(3, "Inventory of Facility", "Inventory of Facility"));
+        observationAdapter.add(new AddressItem(1, "Inventory of satellite clinic", "Inventory of satellite clinic"));
+        observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
+        observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
+        observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
         observationSpinner.setAdapter(observationAdapter);
         observationSpinner.setOnItemSelectedListener(this);
 
@@ -145,7 +148,13 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 else if(token[1].startsWith("jk")){
                     districtSpinner.setSelection(4);
                 }
-
+                AddressItem districtItem = districtAdapter.getItem(districtSpinner.getSelectedItemPosition());
+                if(districtItem.id >= 0) {
+                    districtText.setText(districtItem.name);
+                }
+                else{
+                    districtText.setText("");
+                }
             }
         }
     }
@@ -153,7 +162,10 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
     @Override
     protected void onResume() {
         super.onResume();
-        gpsTracker.getLocation();
+        Location location = gpsTracker.getLocation();
+        if(location != null){
+            ((TextView)findViewById(R.id.location)).setText(""+location.getLatitude() + "," + location.getLongitude());
+        }
     }
 
     @Override
@@ -173,11 +185,11 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 }
                 else{
                     findViewById(R.id.observation_layout).setVisibility(View.VISIBLE);
-                    observationAdapter.add(new AddressItem(-1,"Select","Select"));
-                    observationAdapter.add(new AddressItem(0,"Observations of Antenatal Care Consultation","Observations of Antenatal Care Consultation"));
-                    observationAdapter.add(new AddressItem(2,"Observations of Sick Child Under Five","Observations of Sick Child Under Five"));
-                    observationAdapter.add(new AddressItem(3,"Inventory of facility","Inventory of facility"));
-                    observationAdapter.add(new AddressItem(4,"Observation of FP","Observation of FP "));
+                    observationAdapter.add(new AddressItem(-1, "Select", "Select"));
+                    observationAdapter.add(new AddressItem(3, "Inventory of Facility", "Inventory of Facility"));
+                    observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
+                    observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
+                    observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
                     observationSpinner.setSelection(0);
                 }
                 findViewById(R.id.upazila_layout).setVisibility(View.GONE);
@@ -193,11 +205,11 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 findViewById(R.id.ward_layout).setVisibility(View.GONE);
                 findViewById(R.id.village_layout).setVisibility(View.GONE);
 
-                observationAdapter.add(new AddressItem(-1,"Select","Select"));
-                observationAdapter.add(new AddressItem(0,"Observations of Antenatal Care Consultation","Observations of Antenatal Care Consultation"));
-                observationAdapter.add(new AddressItem(2,"Observations of Sick Child Under Five","Observations of Sick Child Under Five"));
-                observationAdapter.add(new AddressItem(3,"Inventory of facility","Inventory of facility"));
-                observationAdapter.add(new AddressItem(4,"Observation of FP ","Observation of FP "));
+                observationAdapter.add(new AddressItem(-1, "Select", "Select"));
+                observationAdapter.add(new AddressItem(3, "Inventory of Facility", "Inventory of Facility"));
+                observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
+                observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
+                observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
                 observationSpinner.setSelection(0);
 
             }
@@ -208,11 +220,11 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 findViewById(R.id.ward_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.village_layout).setVisibility(View.GONE);
 
-                observationAdapter.add(new AddressItem(-1,"Select","Select"));
-                observationAdapter.add(new AddressItem(0,"Observations of Antenatal Care Consultation","Observations of Antenatal Care Consultation"));
-                observationAdapter.add(new AddressItem(2,"Observations of Sick Child Under Five","Observations of Sick Child Under Five"));
-                observationAdapter.add(new AddressItem(3,"Inventory of facility","Inventory of facility"));
-                observationAdapter.add(new AddressItem(4,"Observation of FP ","Observation of FP "));
+                observationAdapter.add(new AddressItem(-1, "Select", "Select"));
+                observationAdapter.add(new AddressItem(3, "Inventory of Facility", "Inventory of Facility"));
+                observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
+                observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
+                observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
                 observationSpinner.setSelection(0);
             }
             else if(item.id == 3){ //satellite
@@ -222,8 +234,11 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 findViewById(R.id.ward_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.village_layout).setVisibility(View.VISIBLE);
 
-                observationAdapter.add(new AddressItem(-1,"Select","Select"));
-                observationAdapter.add(new AddressItem(1,"Inventory of Satellite clinic","Inventory of Satellite clinic"));
+                observationAdapter.add(new AddressItem(-1, "Select", "Select"));
+                observationAdapter.add(new AddressItem(1, "Inventory of satellite clinic", "Inventory of satellite clinic"));
+                observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
+                observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
+                observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
                 observationSpinner.setSelection(0);
             }
         }
@@ -241,6 +256,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 upazilaAdapter.addAll(databaseAccessUpazila.getUpazila(Integer.toString(item.id)));
                 databaseAccessUpazila.close();
                 upazilaSpinner.setSelection(0);
+                districtText.setText(item.name);
             }
         }
         else if(parent == upazilaSpinner){
@@ -283,6 +299,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
             }
         }
         else if(parent == observationSpinner){
+            String totalObservation = "/30";
             AddressItem item = observationAdapter.getItem(position);
             long lastId = 0;
             if(item.id == 0){
@@ -296,6 +313,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
             }
             else if(item.id == 3){
                 lastId = new InventoryTable(AddressInsertActivity2.this).getLastId();
+                totalObservation = "/1";
             }
             else if(item.id == 4){
                 lastId = new FpObservationTable(AddressInsertActivity2.this).getLastId();
@@ -304,7 +322,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 facilityID.setText("");
             }
             else {
-                facilityID.setText("" + (++lastId));
+                facilityID.setText("" + (++lastId) + totalObservation);
             }
         }
     }
@@ -321,7 +339,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 collectData();
                 Location location = gpsTracker.getLocation();
                 if(location != null){
-                    ((EditText)findViewById(R.id.location)).setText(""+location.getLatitude() + "," + location.getLongitude());
+                    ((TextView)findViewById(R.id.location)).setText(""+location.getLatitude() + "," + location.getLongitude());
                 }
                 else{
                     Toast.makeText(this,"Location not found. Please enable gps, wait a moment and try again.",Toast.LENGTH_SHORT);
@@ -329,43 +347,43 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                     return;
                 }
 
-                switch (observationPosition){
-                    case 0:
-                        if(new ANCTable(this).getRowSize() >= MAX_RANGE){
-                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
-                            finish();
-                            return;
-                        }
-                        break;
-                    case 1:
-                        if(new SatelliteClinicTable(this).getRowSize() >= MAX_RANGE){
-                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
-                            finish();
-                            return;
-                        }
-                        break;
-                    case 2:
-                        if(new SickChildTable(this).getRowSize() >= MAX_RANGE){
-                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
-                            finish();
-                            return;
-                        }
-                        break;
-                    case 3:
-                        if(new InventoryTable(this).getRowSize() >= 1){
-                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
-                            finish();
-                            return;
-                        }
-                        break;
-                    case 4:
-                        if(new FpObservationTable(this).getRowSize() >= MAX_RANGE){
-                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
-                            finish();
-                            return;
-                        }
-                        break;
-                }
+//                switch (observationPosition){
+//                    case 0:
+//                        if(new ANCTable(this).getRowSize() >= MAX_RANGE){
+//                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+//                            finish();
+//                            return;
+//                        }
+//                        break;
+//                    case 1:
+//                        if(new SatelliteClinicTable(this).getRowSize() >= MAX_RANGE){
+//                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+//                            finish();
+//                            return;
+//                        }
+//                        break;
+//                    case 2:
+//                        if(new SickChildTable(this).getRowSize() >= MAX_RANGE){
+//                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+//                            finish();
+//                            return;
+//                        }
+//                        break;
+//                    case 3:
+//                        if(new InventoryTable(this).getRowSize() >= 1){
+//                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+//                            finish();
+//                            return;
+//                        }
+//                        break;
+//                    case 4:
+//                        if(new FpObservationTable(this).getRowSize() >= MAX_RANGE){
+//                            Toast.makeText(this,"Maximum observation has been completed",Toast.LENGTH_SHORT).show();
+//                            finish();
+//                            return;
+//                        }
+//                        break;
+//                }
                 Intent intent = new Intent(this, ConsentActivity2.class);
                 intent.putExtra("facility",facility);
                 intent.putExtra("upozila", upazila);
@@ -385,6 +403,28 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 Toast.makeText(this,"Form is not complete",Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        if(location != null){
+            ((TextView)findViewById(R.id.location)).setText(""+location.getLatitude() + "," + location.getLongitude());
+        }
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 
     private class AddressAdapter extends ArrayAdapter<AddressItem>{

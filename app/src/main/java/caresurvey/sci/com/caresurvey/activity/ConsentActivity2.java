@@ -23,12 +23,15 @@ public class ConsentActivity2 extends AppCompatActivity implements View.OnClickL
     private String permitted;
     private String collectorName;
     private String collectorDesignation;
+    private TextView pageName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consent2);
         getSupportActionBar().setTitle(getIntent().getStringExtra("obs_name"));
         findViewById(R.id.cnt).setOnClickListener(this);
+        pageName = (TextView) findViewById(R.id.page_name);
         loadData();
         findViewById(R.id.no).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,18 +70,23 @@ public class ConsentActivity2 extends AppCompatActivity implements View.OnClickL
         switch (formId){
             case 0:
                 designations = getResources().getStringArray(R.array.anc_designation);
+                pageName.setText("CONSENT: SERVICE PROVIDER");
                 break;
             case 1:
                 designations = getResources().getStringArray(R.array.sci_designation);
+                pageName.setText("CONSENT");
                 break;
             case 2:
                 designations = getResources().getStringArray(R.array.scuf_designation);
+                pageName.setText("CONSENT: SERVICE PROVIDER");
                 break;
             case 3:
                 findViewById(R.id.collector_layout).setVisibility(View.GONE);
+                pageName.setText("CONSENT");
                 break;
             case 4:
                 designations = getResources().getStringArray(R.array.scuf_designation);
+                pageName.setText("CONSENT: SERVICE PROVIDER");
                 break;
         }
         Spinner s = (Spinner) findViewById(R.id.sp_designation);

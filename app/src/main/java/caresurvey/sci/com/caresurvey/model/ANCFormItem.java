@@ -24,7 +24,6 @@ public class ANCFormItem extends DBRow{
     public String global_id;
     public String inS;
     public String serial_no;
-    public String date;
     public String start_time;
     public String serviceDescription;
     public String weight;

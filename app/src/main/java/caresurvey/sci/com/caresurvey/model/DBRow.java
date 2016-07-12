@@ -28,6 +28,7 @@ public class DBRow {
     public String district;
     public String lat;
     public String lon;
+    public String date;
 
     //for supervisor
     public String user_id;
