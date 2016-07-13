@@ -127,9 +127,16 @@ public class ConsentActivity1 extends AppCompatActivity implements View.OnClickL
         if(findViewById(R.id.description_value).getVisibility() == View.VISIBLE) {
             description = gSPi(R.id.description_value);
         }
-        phoneNumber = gETv(R.id.phone_number);
-        if(phoneNumber.length() != 11){
-            throw  new Exception();
+        try {
+            phoneNumber = gETv(R.id.phone_number);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(!TextUtils.isEmpty(phoneNumber)){
+            if(phoneNumber.length() != 11){
+
+                throw new Exception();
+            }
         }
     }
 

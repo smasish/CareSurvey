@@ -102,8 +102,8 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
         observationAdapter.add(new AddressItem(3, "Inventory of Facility", "Inventory of Facility"));
         observationAdapter.add(new AddressItem(1, "Inventory of satellite clinic", "Inventory of satellite clinic"));
         observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
-        observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
-        observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
+        observationAdapter.add(new AddressItem(2, "Observation of Sick Child ", "Observation of Sick Child "));
+        observationAdapter.add(new AddressItem(4, "Observation of Family planning", "Observation of Family planning"));
         observationSpinner.setAdapter(observationAdapter);
         observationSpinner.setOnItemSelectedListener(this);
 
@@ -188,8 +188,8 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                     observationAdapter.add(new AddressItem(-1, "Select", "Select"));
                     observationAdapter.add(new AddressItem(3, "Inventory of Facility", "Inventory of Facility"));
                     observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
-                    observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
-                    observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
+                    observationAdapter.add(new AddressItem(2, "Observation of Sick Child ", "Observation of Sick Child "));
+                    observationAdapter.add(new AddressItem(4, "Observation of Family planning", "Observation of Family planning"));
                     observationSpinner.setSelection(0);
                 }
                 findViewById(R.id.upazila_layout).setVisibility(View.GONE);
@@ -208,8 +208,8 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 observationAdapter.add(new AddressItem(-1, "Select", "Select"));
                 observationAdapter.add(new AddressItem(3, "Inventory of Facility", "Inventory of Facility"));
                 observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
-                observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
-                observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
+                observationAdapter.add(new AddressItem(2, "Observation of Sick Child ", "Observation of Sick Child "));
+                observationAdapter.add(new AddressItem(4, "Observation of Family planning", "Observation of Family planning"));
                 observationSpinner.setSelection(0);
 
             }
@@ -223,8 +223,8 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 observationAdapter.add(new AddressItem(-1, "Select", "Select"));
                 observationAdapter.add(new AddressItem(3, "Inventory of Facility", "Inventory of Facility"));
                 observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
-                observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
-                observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
+                observationAdapter.add(new AddressItem(2, "Observation of Sick Child ", "Observation of Sick Child "));
+                observationAdapter.add(new AddressItem(4, "Observation of Family planning", "Observation of Family planning"));
                 observationSpinner.setSelection(0);
             }
             else if(item.id == 3){ //satellite
@@ -237,8 +237,8 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 observationAdapter.add(new AddressItem(-1, "Select", "Select"));
                 observationAdapter.add(new AddressItem(1, "Inventory of satellite clinic", "Inventory of satellite clinic"));
                 observationAdapter.add(new AddressItem(0, "Observation of ANC", "Observation of ANC"));
-                observationAdapter.add(new AddressItem(2, "Sick Child", "Sick Child"));
-                observationAdapter.add(new AddressItem(4, "Family planning", "Family planning"));
+                observationAdapter.add(new AddressItem(2, "Observation of Sick Child ", "Observation of Sick Child "));
+                observationAdapter.add(new AddressItem(4, "Observation of Family planning", "Observation of Family planning"));
                 observationSpinner.setSelection(0);
             }
         }
@@ -255,7 +255,12 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 upazilaAdapter.add(new AddressItem(-1,"Select","Select"));
                 upazilaAdapter.addAll(databaseAccessUpazila.getUpazila(Integer.toString(item.id)));
                 databaseAccessUpazila.close();
-                upazilaSpinner.setSelection(0);
+                if(upazilaAdapter.getCount() == 2){
+                    upazilaSpinner.setSelection(1);
+                }
+                else{
+                    upazilaSpinner.setSelection(0);
+                }
                 districtText.setText(item.name);
             }
         }
@@ -274,9 +279,19 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                     wardAdapter.insert(new AddressItem(-1,"Select","Select"),0);
                 }
                 databaseAccessUnion.close();
-                unionSpinner.setSelection(0);
+                if(unionAdapter.getCount() == 2){
+                    unionSpinner.setSelection(1);
+                }
+                else {
+                    unionSpinner.setSelection(0);
+                }
                 try{
-                    wardSpinner.setSelection(0);
+                    if(wardAdapter.getCount() == 2){
+                        wardSpinner.setSelection(1);
+                    }
+                    else {
+                        wardSpinner.setSelection(0);
+                    }
                 }catch (Exception e){
 
                 }
@@ -293,7 +308,10 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                     villageAdapter.insert(new AddressItem(-1,"Select","Select"),0);
                 }
                 databaseAccessVillage.close();
-                if(villageAdapter.getCount() > 0){
+                if(villageAdapter.getCount() == 2){
+                    villageSpinner.setSelection(1);
+                }
+                else if(villageAdapter.getCount() > 0){
                     villageSpinner.setSelection(0);
                 }
             }

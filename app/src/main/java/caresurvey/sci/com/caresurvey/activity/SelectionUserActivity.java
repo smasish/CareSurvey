@@ -86,8 +86,8 @@ public class SelectionUserActivity extends AppCompatActivity {
         arrayAdapter.add("Inventory of Facility");
         arrayAdapter.add("Inventory of satellite clinic");
         arrayAdapter.add("Observation of ANC");
-        arrayAdapter.add("Sick Child");
-        arrayAdapter.add("Family planning");
+        arrayAdapter.add("Observation of Sick Child");
+        arrayAdapter.add("Observation of Family Planning");
 
 
         builderSingle.setNegativeButton(
