@@ -945,9 +945,11 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         sETv(R.id.fi_101_0,item.instrument_sp_name);
         sSPi(R.id.fi_101_1,item.instrument_sp_designation);
         String tmp = "";
-        String tokens[];
+        String tokens[] = new String[0];
         tmp = item.i_electronic_autoclev;
-        tokens = tmp.split(",");
+        if(tmp != null) {
+            tokens = tmp.split(",");
+        }
         for(int i=0;i<tokens.length;i++){
             int ind = gRGI(tokens[i]);
             if(i == 0) {

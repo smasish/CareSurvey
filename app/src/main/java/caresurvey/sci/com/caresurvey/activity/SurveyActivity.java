@@ -246,6 +246,18 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         Collector_name.add("user_hb2");
         Collector_name.add("user_hb3");
         Collector_name.add("user_hb4");
+
+        Collector_name.add("user_lk1");
+        Collector_name.add("user_lk2");
+        Collector_name.add("user_lk3");
+
+        Collector_name.add("user_nk1");
+        Collector_name.add("user_nk2");
+        Collector_name.add("user_nk3");
+
+        Collector_name.add("user_jk1");
+        Collector_name.add("user_jk2");
+        Collector_name.add("user_jk3");
         Collector_name.add("collector");
         ArrayAdapter<String> name_adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, Collector_name);
         collector_name = (Spinner)findViewById(R.id.spinner1);
@@ -312,27 +324,27 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
 //                .show();
 //    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_survey, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_survey, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private void genList(){
 //        String cName = collector_name.getSelectedItem().toString();

@@ -40,7 +40,7 @@
 
 
     <string name="form">Form</string>
-    <string name="title_activity_test">ANC Observation</string>
+    <string name="title_activity_test">Observation of ANC</string>
     <string name="title_activity_supervisor_verification">Supervisor_verificationActivity</string>
     <string name="title_activity_display_all_">DisplayAll_Activity</string>
     <string name="title_activity_user">UserActivity</string>
@@ -54,7 +54,7 @@
     <string name="title_activity_selection_user">SelectionUserActivity</string>
     <string name="title_activity_user_activity_service_provider">UserActivityServiceProvider
     </string>
-    <string name="title_activity_test1">Sick Child Under Five</string>
+    <string name="title_activity_test1">Observation of Sick Child</string>
     <string name="title_activity_display_user_form">DisplayUserFormActivity</string>
 
     <string name="title_invetory_section_1">hš¿cvwZ cybivq e¨env‡ii Rb¨ †hLv‡b Rxevbygy³ Kiv nq †mB ¯’vbwU †`wL‡q w`‡Z ejyb| ¯^v¯’¨‡K‡›`ªi hš¿cvwZ Rxevbygy³ Kiv m¤ú‡K© whwb me‡P‡q fvj Rv‡bb Zv‡K
@@ -368,11 +368,11 @@ nq wK bv|</string>
     <string name="sci_q232">232 cwievi cwiKíbv c×wZ: Bb‡RK‡Uej</string>
     <string name="sci_q233">233 Mf©Kvjxb †mev KvW</string>
     <string name="sci_q234">234 ¯^v¯’¨wkÿvi Rb¨ Qwehy³ DcKiY</string>
-    <string name="title_fp_observation" >FP Observation</string>
+    <string name="title_fp_observation" >Observation of Family Planning</string>
     <string name="title_consent_page1">Consent Page1</string>
     <string name="title_consent_page2">Consent Page2</string>
-    <string name="title_facility_inventory">Facility Inventory</string>
-    <string name="title_satelliteClinicInventory">Satellite Clicnic Inventory</string>
+    <string name="title_facility_inventory">Inventory of Facility</string>
+    <string name="title_satelliteClinicInventory">Inventory of Satellite Clinic</string>
     <string name="sc_description">অসুস্থ শিশু যে সেবা নিতে এসেছে তার বিবরণ</string>
     <string-array name="child_sick_description">
         <item>Select</item>
@@ -496,6 +496,18 @@ nq wK bv|</string>
         <item>user_hb2</item>
         <item>user_hb3</item>
         <item>user_hb4</item>
+
+        <item>user_lk1</item>
+        <item>user_lk2</item>
+        <item>user_lk3</item>
+
+        <item>user_nk1</item>
+        <item>user_nk2</item>
+        <item>user_nk3</item>
+
+        <item>user_jk1</item>
+        <item>user_jk2</item>
+        <item>user_jk3</item>
     </array>
 
     <array name="facility_list">

@@ -68,9 +68,10 @@ public class SelectionUserActivity extends AppCompatActivity {
                     startActivity(intent1);
 //                    finish();
                 }
-                else
+                else {
                     AlertMessage.showMessage(SelectionUserActivity.this, "You can not insert new form",
                             "You have already inserted 30 form for this session");
+                }
 
             }
         });
@@ -83,11 +84,11 @@ public class SelectionUserActivity extends AppCompatActivity {
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.select_dialog_singlechoice);
-        arrayAdapter.add("Inventory of Facility");
-        arrayAdapter.add("Inventory of satellite clinic");
-        arrayAdapter.add("Observation of ANC");
-        arrayAdapter.add("Observation of Sick Child");
-        arrayAdapter.add("Observation of Family Planning");
+        arrayAdapter.add("Inventory of Facility"); //0
+        arrayAdapter.add("Inventory of Satellite Clinic"); //1
+        arrayAdapter.add("Observation of ANC"); //2
+        arrayAdapter.add("Observation of Sick Child"); //3
+        arrayAdapter.add("Observation of Family Planning"); // 4
 
 
         builderSingle.setNegativeButton(
@@ -105,7 +106,7 @@ public class SelectionUserActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        if(which == 0){
+                        if(which == 2){
                             ANCTable formTableUser = new ANCTable(SelectionUserActivity.this);
 
                             long rowSize =formTableUser.getRowSize();
@@ -135,7 +136,7 @@ public class SelectionUserActivity extends AppCompatActivity {
                                         "No data is Inserted yet");
                             }
                         }
-                        else if(which == 2){
+                        else if(which == 3){
 
                             SickChildTable table = new SickChildTable(SelectionUserActivity.this);
                             long rowSize = table.getRowSize();
@@ -150,7 +151,7 @@ public class SelectionUserActivity extends AppCompatActivity {
                                         "No data is Inserted yet");
                             }
                         }
-                        else if(which == 3){
+                        else if(which == 0){
                             InventoryTable table = new InventoryTable(SelectionUserActivity.this);
                             long rowSize = table.getRowSize();
                             if(rowSize > 0) {

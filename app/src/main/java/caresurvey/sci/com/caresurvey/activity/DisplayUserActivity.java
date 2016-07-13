@@ -83,7 +83,7 @@ public class DisplayUserActivity extends AppCompatActivity {
                 Log.d("Status.......ONClick", "response length");
                 Log.d("Status.......", "response length" + adapter.getItem(position).status);
                 if(adapter.getItem(position).status == 2 || adapter.getItem(position).status == 7 ) {
-                    if ((getIntent().getIntExtra(FORM, -1)) == 0) {
+                    if ((getIntent().getIntExtra(FORM, -1)) == 2) {
                         Intent iiv = new Intent(DisplayUserActivity.this, TestActivity.class);
                         iiv.putExtra("position", position + 1);
                         iiv.putExtra("name", names);
@@ -95,13 +95,13 @@ public class DisplayUserActivity extends AppCompatActivity {
                         iiv.putExtra("name", names);
                         iiv.putExtra(FORM_ID,adapter.getItem(position).id);
                         startActivity(iiv);
-                    } else if ((getIntent().getIntExtra(FORM, -1)) == 2) {
+                    } else if ((getIntent().getIntExtra(FORM, -1)) == 3) {
                         Intent iiv = new Intent(DisplayUserActivity.this, SickChildUnderFiveActivity.class);
                         iiv.putExtra("position", position + 1);
                         iiv.putExtra("name", names);
                         iiv.putExtra(FORM_ID,adapter.getItem(position).id);
                         startActivity(iiv);
-                    } else if ((getIntent().getIntExtra(FORM, -1)) == 3) {
+                    } else if ((getIntent().getIntExtra(FORM, -1)) == 0) {
                         Intent iiv = new Intent(DisplayUserActivity.this, FacilityInventoryActivity.class);
                         iiv.putExtra("position", position + 1);
                         iiv.putExtra("name", names);

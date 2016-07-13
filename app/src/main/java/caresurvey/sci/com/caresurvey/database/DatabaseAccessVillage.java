@@ -101,7 +101,11 @@ public class DatabaseAccessVillage {
         }
 
         cursor.close();
-
+        AddressItem item = new AddressItem();
+        item.id = 999;
+        item.name = "অন্যান্য";
+        item.nameEng = "annanyo";
+        list.add(item);
         return list;
     }
   /*  public String GetDeptID(String Dept)
