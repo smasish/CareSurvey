@@ -137,17 +137,17 @@ public class LoginActivity extends AppCompatActivity {
                     flag = true;
                 }
 
-                else if (user.equals("user_lk1") && pass.equalsIgnoreCase("pass_lk1")) {
+                else if (user.equals("user_lp1") && pass.equalsIgnoreCase("pass_lp1")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_lk2") && pass.equalsIgnoreCase("pass_lk2")) {
+                else if (user.equals("user_lp2") && pass.equalsIgnoreCase("pass_lp2")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_lk3") && pass.equalsIgnoreCase("pass_lk3")) {
+                else if (user.equals("user_lp3") && pass.equalsIgnoreCase("pass_lp3")) {
 
                     LoadDataCollector();
                     flag = true;
