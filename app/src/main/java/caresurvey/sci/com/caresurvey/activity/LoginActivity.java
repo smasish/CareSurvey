@@ -575,6 +575,42 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
+				else if (user.equals("user_nk1")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+				else if (user.equals("user_nk2")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+				else if (user.equals("user_nk3")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+				else if (user.equals("user_lk1")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+				else if (user.equals("user_lk2")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+				else if (user.equals("user_lk3")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+				else if (user.equals("user_jk1")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+				else if (user.equals("user_jk2")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
+				else if (user.equals("user_jk3")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
                 //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 overridePendingTransition(0, 0);
 
