@@ -139,7 +139,7 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 if(token[1].startsWith("hb")){
                     districtSpinner.setSelection(1);
                 }
-                else if(token[1].startsWith("lk")){
+                else if(token[1].startsWith("lp")){
                     districtSpinner.setSelection(2);
                 }
                 else if(token[1].startsWith("nk")){

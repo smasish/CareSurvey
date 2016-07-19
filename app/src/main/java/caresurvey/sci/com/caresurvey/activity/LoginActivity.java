@@ -104,50 +104,70 @@ public class LoginActivity extends AppCompatActivity {
                 if (user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
                     AlertMessage.showMessage(con, getString(R.string.title),
                             getString(R.string.msg));
-                } else if (user.equals("admin") && pass.equalsIgnoreCase("admin")) {
+                } else if (user.equals("admin") && pass.equals("admin")) {
                     LoadDataSupervisor();
 //                    LoadDataSupervisorChildSick();
 
                     flag = true;
 
                     //      k = "supervisor";
-                } else if (user.equals("user_hb1") && pass.equalsIgnoreCase("pass_hb1")) {
+
+                }
+
+                else if (user.equals("supervisor_hb") && pass.equals("AhEh4196")) {
+                    LoadDataSupervisor();
+//                    LoadDataSupervisorChildSick();
+
+                    flag = true;
+
+                    //      k = "supervisor";
+                }
+                else if (user.equals("supervisor_jk") && pass.equals("q4rjXA6L")) {
+                    LoadDataSupervisor();
+//                    LoadDataSupervisorChildSick();
+
+                    flag = true;
+
+                    //      k = "supervisor";
+                }
+                else if (user.equals("supervisor_lp") && pass.equals("8rCNw3OB")) {
+                    LoadDataSupervisor();
+//                    LoadDataSupervisorChildSick();
+
+                    flag = true;
+
+                    //      k = "supervisor";
+                }
+                else if (user.equals("user_hb1") && pass.equals("h6tsnaMl")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
 
 
-                else if (user.equals("user_hb2") && pass.equalsIgnoreCase("pass_hb2")) {
+                else if (user.equals("user_hb2") && pass.equals("Kw1YekNJ")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
 
 
-                else if (user.equals("user_hb3") && pass.equalsIgnoreCase("pass_hb3")) {
+                else if (user.equals("user_hb3") && pass.equals("9UvRtf3F")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-
-                else if (user.equals("user_hb4") && pass.equalsIgnoreCase("pass_hb4")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-
-                else if (user.equals("user_lk1") && pass.equalsIgnoreCase("pass_lk1")) {
+                else if (user.equals("user_lp1") && pass.equals("D6W4zgBO")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_lk2") && pass.equalsIgnoreCase("pass_lk2")) {
+                else if (user.equals("user_lp2") && pass.equals("rfALMb77")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_lk3") && pass.equalsIgnoreCase("pass_lk3")) {
+                else if (user.equals("user_lp3") && pass.equals("jD7jjjNK")) {
 
                     LoadDataCollector();
                     flag = true;
@@ -157,27 +177,27 @@ public class LoginActivity extends AppCompatActivity {
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_nk2") && pass.equalsIgnoreCase("pass_nk2")) {
+                else if (user.equals("user_nk2") && pass.equals("pass_nk2")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_nk3") && pass.equalsIgnoreCase("pass_nk3")) {
+                else if (user.equals("user_nk3") && pass.equals("pass_nk3")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_jk1") && pass.equalsIgnoreCase("pass_jk1")) {
+                else if (user.equals("user_jk1") && pass.equals("wlk94WOS")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_jk2") && pass.equalsIgnoreCase("pass_jk2")) {
+                else if (user.equals("user_jk2") && pass.equals("7Lm4JjDV")) {
 
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_jk3") && pass.equalsIgnoreCase("pass_jk3")) {
+                else if (user.equals("user_jk3") && pass.equals("Sm2VU7vB")) {
 
                     LoadDataCollector();
                     flag = true;
@@ -228,6 +248,9 @@ public class LoginActivity extends AppCompatActivity {
 //                        }
 //                    }, 5000);
 
+                }
+                else{
+                    Toast.makeText(LoginActivity.this,"Wrong user or password",Toast.LENGTH_SHORT).show();
                 }
                 //
 //              Intent in = new Intent(LoginActivity.this,DisplayAll_Activity.class);
@@ -518,8 +541,8 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     //data
                     JSONObject data = new JSONObject();
-                    data.put("username", "supervisor");
-                    data.put("password", "supervisor");
+                    data.put("username", AppUtils.getUserName(LoginActivity.this));
+                    data.put("password", AppUtils.getPassword(LoginActivity.this));
                     data.put("get_all", true);
                     params.put("data", data.toString());
                 }
@@ -547,7 +570,8 @@ public class LoginActivity extends AppCompatActivity {
                 /* start the activity */
                 pd.dismiss();
 
-                if (user.equals("admin")) {
+                if (user.equals("admin") || user.equals("supervisor_hb") || user.equals("supervisor_jk")
+                        || user.equals("supervisor_lp")) {
 //                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
 //                                startActivity(intent);
 
@@ -555,9 +579,6 @@ public class LoginActivity extends AppCompatActivity {
 //                    Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
                     Intent intent = new Intent(LoginActivity.this, FacilityAdminActivity.class);
                     startActivity(intent);
-                } else if (user.equals("user_hb1")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
                 }
 
 
@@ -571,7 +592,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intentX);
                 }
 
-                else if (user.equals("user_hb4")) {
+                else if (user.equals("user_hb1")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
@@ -587,15 +608,15 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
-				else if (user.equals("user_lk1")) {
+				else if (user.equals("user_lp1")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
-				else if (user.equals("user_lk2")) {
+				else if (user.equals("user_lp2")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
-				else if (user.equals("user_lk3")) {
+				else if (user.equals("user_lp3")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }

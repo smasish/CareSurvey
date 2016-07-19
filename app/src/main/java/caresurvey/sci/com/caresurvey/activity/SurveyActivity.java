@@ -245,11 +245,10 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         Collector_name.add("user_hb1");
         Collector_name.add("user_hb2");
         Collector_name.add("user_hb3");
-        Collector_name.add("user_hb4");
 
-        Collector_name.add("user_lk1");
-        Collector_name.add("user_lk2");
-        Collector_name.add("user_lk3");
+        Collector_name.add("user_lp1");
+        Collector_name.add("user_lp2");
+        Collector_name.add("user_lp3");
 
         Collector_name.add("user_nk1");
         Collector_name.add("user_nk2");
@@ -258,7 +257,6 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         Collector_name.add("user_jk1");
         Collector_name.add("user_jk2");
         Collector_name.add("user_jk3");
-        Collector_name.add("collector");
         ArrayAdapter<String> name_adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, Collector_name);
         collector_name = (Spinner)findViewById(R.id.spinner1);
         collector_name.setAdapter(name_adapter);
