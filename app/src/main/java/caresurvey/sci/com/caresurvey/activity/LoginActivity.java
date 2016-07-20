@@ -172,21 +172,21 @@ public class LoginActivity extends AppCompatActivity {
                     LoadDataCollector();
                     flag = true;
                 }
-                else if (user.equals("user_nk1") && pass.equalsIgnoreCase("pass_nk1")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-                else if (user.equals("user_nk2") && pass.equals("pass_nk2")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-                else if (user.equals("user_nk3") && pass.equals("pass_nk3")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
+//                else if (user.equals("user_nk1") && pass.equalsIgnoreCase("pass_nk1")) {
+//
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
+//                else if (user.equals("user_nk2") && pass.equals("pass_nk2")) {
+//
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
+//                else if (user.equals("user_nk3") && pass.equals("pass_nk3")) {
+//
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
                 else if (user.equals("user_jk1") && pass.equals("wlk94WOS")) {
 
                     LoadDataCollector();
@@ -596,18 +596,18 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
-				else if (user.equals("user_nk1")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-				else if (user.equals("user_nk2")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-				else if (user.equals("user_nk3")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
+//				else if (user.equals("user_nk1")) {
+//                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+//                    startActivity(intentX);
+//                }
+//				else if (user.equals("user_nk2")) {
+//                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+//                    startActivity(intentX);
+//                }
+//				else if (user.equals("user_nk3")) {
+//                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+//                    startActivity(intentX);
+//                }
 				else if (user.equals("user_lp1")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);

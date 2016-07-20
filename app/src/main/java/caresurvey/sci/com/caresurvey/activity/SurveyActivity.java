@@ -250,9 +250,9 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         Collector_name.add("user_lp2");
         Collector_name.add("user_lp3");
 
-        Collector_name.add("user_nk1");
-        Collector_name.add("user_nk2");
-        Collector_name.add("user_nk3");
+//        Collector_name.add("user_nk1");
+//        Collector_name.add("user_nk2");
+//        Collector_name.add("user_nk3");
 
         Collector_name.add("user_jk1");
         Collector_name.add("user_jk2");
