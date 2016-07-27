@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
                     AlertMessage.showMessage(con, getString(R.string.title),
                             getString(R.string.msg));
-                } else if (user.equals("admin") && pass.equals("admin")) {
+                } else if (user.equals("admin") && pass.equals("(gbX2+ee")) {
                     LoadDataSupervisor();
 //                    LoadDataSupervisorChildSick();
 
