@@ -30,13 +30,16 @@
         </activity>
         <activity
             android:name="activity.LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_login" />
         <activity
             android:theme="@style/AppTheme"
             android:name=".activity.SurveyActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_survey" />
         <activity
             android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_survey" />
         <!-- <activity -->
         <!-- android:name=".activity.FormActivity" -->
@@ -55,6 +58,7 @@
             />
         <activity
             android:name=".activity.PrepopSqliteDbActivity"
+            android:screenOrientation="portrait"
             android:label="@string/form" />
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -67,25 +71,32 @@
         <activity
             android:theme="@style/AppTheme"
             android:name=".activity.TestActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_test" />
         <activity
             android:name=".activity.Supervisor_verificationActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_supervisor_verification" />
         <activity
             android:name=".activity.DisplayAll_Activity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_display_all_" />
         <activity
             android:name=".activity.UserActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_user" />
         <activity
             android:name=".activity.UserActivity2"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_user" />
         <activity
             android:theme="@style/AppTheme"
             android:name=".activity.DisplayUserActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_display_user" />
         <activity
             android:name=".activity.AddressInsertActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_address_insert" />
         <!-- <activity -->
         <!-- android:name=".activity.SelectionActivityUser" -->
@@ -94,23 +105,32 @@
 
         <activity
             android:name=".activity.AddressInsertActivity2"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_address_insert" />
         <activity
             android:name=".activity.SelectionUserActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_selection_user" />
 
         <activity
             android:name=".activity.UserActivityServiceProvider"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_user_activity_service_provider" />
         <activity
             android:theme="@style/AppTheme"
             android:name=".activity.SickChildUnderFiveActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_test1" />
         <activity
             android:name=".activity.DisplayUserFormActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_display_user_form" />
-        <activity android:name=".activity.SupervisiorVerificationSickChild" />
-        <activity android:name=".activity.SelectionActivity" />
+        <activity android:name=".activity.SupervisiorVerificationSickChild"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.SelectionActivity"
+            android:screenOrientation="portrait"
+            />
 
         <activity
             android:theme="@style/AppTheme"
@@ -125,18 +145,22 @@
         <activity
             android:theme="@style/AppTheme"
             android:name=".activity.FpObservationActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_fp_observation"/>
 
         <activity
             android:theme="@style/AppTheme"
             android:name=".activity.ConsentActivity1"
+            android:screenOrientation="portrait"
             android:label="@string/title_consent_page1"/>
         <activity
             android:theme="@style/AppTheme"
             android:name=".activity.ConsentActivity2"
+            android:screenOrientation="portrait"
             android:label="@string/title_consent_page2"/>
         <activity android:name=".activity.FacilityInventoryActivity"
             android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
             android:label="@string/title_facility_inventory">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->

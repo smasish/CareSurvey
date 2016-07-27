@@ -92,7 +92,7 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
-                                android:text="supervisor_hb"
+                                android:text=""
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="20dp"
                                 android:background="@drawable/editbackground"
@@ -120,7 +120,7 @@
                                 android:focusableInTouchMode="true"
                                 android:background="@drawable/editbackground"
                                 android:inputType="textPassword"
-                                android:text="AhEh4196"
+                                android:text=""
                                 android:id="@+id/password" />
                         </LinearLayout>
 
