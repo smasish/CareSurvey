@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
@@ -53,11 +55,11 @@ import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 //import caresurvey.sci.com.caresurvey.activity.SurveyActivity;
 
-public class LoginActivity extends AppCompatActivity {
-    ProgressDialog pd;
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+
     String p;
     String k;
-    EditText username,password;
+    private EditText username,password;
     Button login;
    // TextView text;
     String user="",pass="";
@@ -65,6 +67,15 @@ public class LoginActivity extends AppCompatActivity {
     private boolean flag = false;
     int increment;
     Handler handler;
+
+    private static final String REGISTER_URL = "http://119.148.43.34/mamoni/survey/api/login";
+
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_PASSWORD = "password";
+    private static ProgressDialog pd;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         con = this;
-        username=(EditText)findViewById(R.id.us);
+        username=(EditText)findViewById(R.id.user);
         flag = false;
 
 
@@ -85,240 +96,308 @@ public class LoginActivity extends AppCompatActivity {
 
         //      p= "admin";
 
-        login =(Button)findViewById(R.id.Login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user = username.getText().toString().trim();
-                pass = password.getText().toString().trim();
-
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("username", user);
-                editor.putString("password", pass);
-
-                editor.commit();
-
-
-                Log.d(".....>>>>>>>>>>", "response lengthcc   " + user);
-                if (user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
-                    AlertMessage.showMessage(con, getString(R.string.title),
-                            getString(R.string.msg));
-                } else if (user.equals("admin") && pass.equals("(gbX2+ee")) {
-                    LoadDataSupervisor();
-//                    LoadDataSupervisorChildSick();
-
-                    flag = true;
-
-                    //      k = "supervisor";
-
-                }
-
-                else if (user.equals("supervisor_hb") && pass.equals("AhEh4196")) {
-                    LoadDataSupervisor();
-//                    LoadDataSupervisorChildSick();
-
-                    flag = true;
-
-                    //      k = "supervisor";
-                }
-                else if (user.equals("supervisor_jk") && pass.equals("q4rjXA6L")) {
-                    LoadDataSupervisor();
-//                    LoadDataSupervisorChildSick();
-
-                    flag = true;
-
-                    //      k = "supervisor";
-                }
-                else if (user.equals("supervisor_lp") && pass.equals("8rCNw3OB")) {
-                    LoadDataSupervisor();
-//                    LoadDataSupervisorChildSick();
-
-                    flag = true;
-
-                    //      k = "supervisor";
-                }
-                else if (user.equals("user_hb1") && pass.equals("h6tsnaMl")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-
-
-                else if (user.equals("user_hb2") && pass.equals("Kw1YekNJ")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-
-
-                else if (user.equals("user_hb3") && pass.equals("9UvRtf3F")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-                else if (user.equals("user_lp1") && pass.equals("D6W4zgBO")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-                else if (user.equals("user_lp2") && pass.equals("rfALMb77")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-                else if (user.equals("user_lp3") && pass.equals("jD7jjjNK")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-//                else if (user.equals("user_nk1") && pass.equalsIgnoreCase("pass_nk1")) {
+        login =(Button)findViewById(R.id.login);
+        login.setOnClickListener(this);
+//        login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                user = username.getText().toString().trim();
+//                pass = password.getText().toString().trim();
+//
+//                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = pref.edit();
+//                editor.putString("username", user);
+//                editor.putString("password", pass);
+//
+//                editor.commit();
+//
+//
+//                Log.d(".....>>>>>>>>>>", "response lengthcc   " + user);
+//                if (user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
+//                    AlertMessage.showMessage(con, getString(R.string.title),
+//                            getString(R.string.msg));
+//                } else if (user.equals("admin") && pass.equals("(gbX2+ee")) {
+//                    LoadDataSupervisor();
+////                    LoadDataSupervisorChildSick();
+//
+//                    flag = true;
+//
+//                    //      k = "supervisor";
+//
+//                }
+//
+//                else if (user.equals("supervisor_hb") && pass.equals("AhEh4196")) {
+//                    LoadDataSupervisor();
+////                    LoadDataSupervisorChildSick();
+//
+//                    flag = true;
+//
+//                    //      k = "supervisor";
+//                }
+//                else if (user.equals("supervisor_jk") && pass.equals("q4rjXA6L")) {
+//                    LoadDataSupervisor();
+////                    LoadDataSupervisorChildSick();
+//
+//                    flag = true;
+//
+//                    //      k = "supervisor";
+//                }
+//                else if (user.equals("supervisor_lp") && pass.equals("8rCNw3OB")) {
+//                    LoadDataSupervisor();
+////                    LoadDataSupervisorChildSick();
+//
+//                    flag = true;
+//
+//                    //      k = "supervisor";
+//                }
+//                else if (user.equals("user_hb1") && pass.equals("h6tsnaMl")) {
 //
 //                    LoadDataCollector();
 //                    flag = true;
 //                }
-//                else if (user.equals("user_nk2") && pass.equals("pass_nk2")) {
+//
+//
+//                else if (user.equals("user_hb2") && pass.equals("Kw1YekNJ")) {
 //
 //                    LoadDataCollector();
 //                    flag = true;
 //                }
-//                else if (user.equals("user_nk3") && pass.equals("pass_nk3")) {
+//
+//
+//                else if (user.equals("user_hb3") && pass.equals("9UvRtf3F")) {
 //
 //                    LoadDataCollector();
 //                    flag = true;
 //                }
-                else if (user.equals("user_jk1") && pass.equals("wlk94WOS")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-                else if (user.equals("user_jk2") && pass.equals("7Lm4JjDV")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-                else if (user.equals("user_jk3") && pass.equals("Sm2VU7vB")) {
-
-                    LoadDataCollector();
-                    flag = true;
-                }
-                //  k="collector";
-
-
-                if (flag) {
-
-                    handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                /* start the activity */
-//                            pd.dismiss();
+//                else if (user.equals("user_lp1") && pass.equals("D6W4zgBO")) {
 //
-//                            if (user.equals("admin")) {
-////                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
+//                else if (user.equals("user_lp2") && pass.equals("rfALMb77")) {
+//
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
+//                else if (user.equals("user_lp3") && pass.equals("jD7jjjNK")) {
+//
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
+////                else if (user.equals("user_nk1") && pass.equalsIgnoreCase("pass_nk1")) {
+////
+////                    LoadDataCollector();
+////                    flag = true;
+////                }
+////                else if (user.equals("user_nk2") && pass.equals("pass_nk2")) {
+////
+////                    LoadDataCollector();
+////                    flag = true;
+////                }
+////                else if (user.equals("user_nk3") && pass.equals("pass_nk3")) {
+////
+////                    LoadDataCollector();
+////                    flag = true;
+////                }
+//                else if (user.equals("user_jk1") && pass.equals("wlk94WOS")) {
+//
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
+//                else if (user.equals("user_jk2") && pass.equals("7Lm4JjDV")) {
+//
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
+//                else if (user.equals("user_jk3") && pass.equals("Sm2VU7vB")) {
+//
+//                    LoadDataCollector();
+//                    flag = true;
+//                }
+//                //  k="collector";
+//
+//
+//                if (flag) {
+//
+//                    handler = new Handler();
+////                    handler.postDelayed(new Runnable() {
+////                        @Override
+////                        public void run() {
+////                /* start the activity */
+////                            pd.dismiss();
+////
+////                            if (user.equals("admin")) {
+//////                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
+//////                                startActivity(intent);
+////
+////
+////                                Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
 ////                                startActivity(intent);
+////                            } else if (user.equals("user_hb1")) {
+////                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+////                                startActivity(intentX);
+////                            }
+////
+////
+////                            else if (user.equals("user_hb2")) {
+////                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+////                                startActivity(intentX);
+////                            }
+////
+////                            else if (user.equals("user_hb3")) {
+////                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+////                                startActivity(intentX);
+////                            }
+////
+////                            else if (user.equals("user_hb4")) {
+////                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+////                                startActivity(intentX);
+////                            }
+////                            //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+////                            overridePendingTransition(0, 0);
+////
+////                            finish();
+////                        }
+////                    }, 5000);
 //
+//                }
+//                else{
+//                    Toast.makeText(LoginActivity.this,"Wrong user or password",Toast.LENGTH_SHORT).show();
+//                }
+//                //
+////              Intent in = new Intent(LoginActivity.this,DisplayAll_Activity.class);
+////             startActivity(in);
 //
-//                                Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
-//                                startActivity(intent);
-//                            } else if (user.equals("user_hb1")) {
-//                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-//                                startActivity(intentX);
-//                            }
-//
-//
-//                            else if (user.equals("user_hb2")) {
-//                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-//                                startActivity(intentX);
-//                            }
-//
-//                            else if (user.equals("user_hb3")) {
-//                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-//                                startActivity(intentX);
-//                            }
-//
-//                            else if (user.equals("user_hb4")) {
-//                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-//                                startActivity(intentX);
-//                            }
-//                            //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-//                            overridePendingTransition(0, 0);
-//
-//                            finish();
-//                        }
-//                    }, 5000);
-
-                }
-                else{
-                    Toast.makeText(LoginActivity.this,"Wrong user or password",Toast.LENGTH_SHORT).show();
-                }
-                //
-//              Intent in = new Intent(LoginActivity.this,DisplayAll_Activity.class);
-//             startActivity(in);
-
-            }
-        });
+//            }
+//        });
 
 
 
 //        text.setText("MaMoni Health System Strengthening \n           (MaMoni HSS) Project");
 //        text.setTextSize(25);
     }
-//    private void submitFeedback(){
-//        String url = "http://119.148.43.34/mamoni/survey/api/login";
-//
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                      //  Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
-//                    }
-//                }){
-//            @Override
-//            protected Map<String,String> getParams(){
-//                Map<String,String> params = new HashMap<String, String>();
-//
-//                try {
-//
-//               JSONObject data = new JSONObject();
-//
-//
-//               data.put("username",username.toString().trim());
-//               data.put("password",password.toString().trim());
-//               params.put("data",data.toString());
-//
-//
-//
-//               }
-//
-//
-//              catch (Exception e)
-//                  {
-//
-//                     }
-//                return params;
-//            }
-//
-//        };
-//
-//
-//
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(stringRequest);
-//    }
 
 
 
 
 
 
+
+    private class loginoperation extends AsyncTask<String, Void, String> {
+        String url = "";
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+
+                loginUser();
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            pd.cancel();
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
+    }
+
+
+    public void onClick(View v) {
+        if(v == login){
+
+
+            String title = "loading";
+            String message = "Checking username \nPlease wait...";
+            pd = ProgressDialog.show(con, title, message, true, true);
+
+            new loginoperation().execute("");
+        }
+    }
+
+    private void loginUser(){
+        user= username.getText().toString().trim();
+
+        pass = password.getText().toString().trim();
+        //  final String email = editTextEmail.getText().toString().trim();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("response---", "********" + response.toString());
+                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
+
+                        String username =  response.toString();
+                        StringTokenizer st = new StringTokenizer(username);
+                        while (st.hasMoreElements()) {
+
+
+                           // System.out.println(st.nextElement());
+                            String get = st.nextElement().toString();
+                            if (get.equals("collector")) {
+
+                                LoadDataCollector();
+                                flag = true;
+                            }
+                            else if(get.equals("supervisor")){
+                                LoadDataSupervisor();
+                            }
+                            else if(get.equals("admin")){
+
+                            }
+                        }
+
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put(KEY_USERNAME,user);
+                params.put(KEY_PASSWORD,pass);
+
+
+                try {
+                    JSONObject data = new JSONObject();
+                    data.put("username", user);
+                    data.put("password", pass);
+
+                    params.put("data", data.toString());
+                }catch (Exception e){
+
+                }
+                //params.put("data", "{'username':'"+username+"','password':'"+password+"'}");
+                return params;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 
 
 
@@ -505,9 +584,6 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
-
 
                         try
                         {

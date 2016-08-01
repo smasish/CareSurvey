@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quality of Care</string>
+    <string name="app_name">QOC Monitoring</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Sign in</string>
     <string name="home">Home/View Observation</string>
@@ -456,8 +456,6 @@ nq wK bv|</string>
     </string-array>
     <string-array name="fp_designation">
         <item>Select</item>
-        <item>Civil Surgeon</item>
-        <item>Deputy Civil Surgeon</item>
         <item>Senior Consultant(Gynae)</item>
         <item>Senior Consultant (Medicine)</item>
         <item>Upozila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
@@ -466,12 +464,19 @@ nq wK bv|</string>
         <item>Emergency Medical Officer (EMO)</item>
         <item>Medical Officer (MO)</item>
         <item>Asstt. Surgeon</item>
-        <item>Senior Staff Nurse</item>
-        <item>Sub-assistant Community Medical Officer (SACMO)</item>
         <item>Medical Officer (Clinic)</item>
         <item>Medical Officer (MCH-FP)</item>
+        <item>Nursing Supervisor</item>
+        <item>Senior Staff Nurse</item>
+        <item>Staff Nurse</item>
+        <item>Assistant Nurse</item>
         <item>Assistant Family Welfare Officer (AFWO)</item>
+        <item>Family Welfare Visitor (FWV)</item>
         <item>Paramedic</item>
+        <item>Sub-assistant Community Medical Officer (SACMO)</item>
+        <item>Radiologist</item>
+        <item>Pathologist</item>
+        <item>Pharmacist</item>
         <item>Others</item>
     </string-array>
 
