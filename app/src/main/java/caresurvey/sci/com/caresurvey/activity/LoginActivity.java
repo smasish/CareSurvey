@@ -219,7 +219,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //
 //                if (flag) {
 //
-//                    handler = new Handler();
+                    handler = new Handler();
 ////                    handler.postDelayed(new Runnable() {
 ////                        @Override
 ////                        public void run() {
@@ -344,12 +344,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
 
                         String username =  response.toString();
-                        StringTokenizer st = new StringTokenizer(username);
+                        StringTokenizer st = new StringTokenizer(username, ",");
                         while (st.hasMoreElements()) {
 
 
                            // System.out.println(st.nextElement());
                             String get = st.nextElement().toString();
+                            Log.d("response---", "********" + get);
+                            get = get.substring(1);
                             if (get.equals("collector")) {
 
                                 LoadDataCollector();
@@ -360,6 +362,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                             else if(get.equals("admin")){
 
+                                //////
                             }
                         }
 
@@ -644,7 +647,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void run() {
                 /* start the activity */
-                pd.dismiss();
+
+                if(pd != null)
+                    pd.dismiss();
 
                 if (user.equals("admin") || user.equals("supervisor_hb") || user.equals("supervisor_jk")
                         || user.equals("supervisor_lp")) {
