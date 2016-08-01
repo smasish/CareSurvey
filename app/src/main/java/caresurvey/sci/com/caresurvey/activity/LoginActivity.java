@@ -651,8 +651,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(pd != null)
                     pd.dismiss();
 
-                if (user.equals("admin") || user.equals("supervisor_hb") || user.equals("supervisor_jk")
-                        || user.equals("supervisor_lp")) {
+                if (user.equals("admin") || user.equals("Papia") || user.equals("Firoza")
+                        || user.equals("Ripon")) {
 //                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
 //                                startActivity(intent);
 
@@ -663,7 +663,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
 
-                else if (user.equals("user_hb2")) {
+                else if (user.equals("Shubhra")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
@@ -677,10 +677,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
-//				else if (user.equals("user_nk1")) {
-//                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-//                    startActivity(intentX);
-//                }
+				else if (user.equals("Salma")) {
+                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
+                    startActivity(intentX);
+                }
 //				else if (user.equals("user_nk2")) {
 //                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
 //                    startActivity(intentX);
@@ -689,7 +689,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
 //                    startActivity(intentX);
 //                }
-				else if (user.equals("user_lp1")) {
+				else if (user.equals("Shrabani")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
@@ -701,7 +701,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
-				else if (user.equals("user_jk1")) {
+				else if (user.equals("Mitu")) {
                     Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
                     startActivity(intentX);
                 }
