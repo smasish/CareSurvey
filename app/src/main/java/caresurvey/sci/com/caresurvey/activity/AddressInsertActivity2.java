@@ -262,6 +262,28 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                     upazilaSpinner.setSelection(0);
                 }
                 districtText.setText(item.name);
+                final DatabaseAccessVillage databaseAccessVillage = DatabaseAccessVillage.getInstance(this);
+                try {
+
+                    AddressItem selectedDistrict = districtAdapter.getItem(districtSpinner.getSelectedItemPosition());
+                    AddressItem selectedUpazilla = upazilaAdapter.getItem(upazilaSpinner.getSelectedItemPosition());
+                    AddressItem selectedUnion = unionAdapter.getItem(unionSpinner.getSelectedItemPosition());
+                    databaseAccessVillage.open();
+                    villageAdapter.addAll(databaseAccessVillage.getVillage(Integer.toString(selectedDistrict.id), Integer.toString(selectedUpazilla.id), Integer.toString(selectedUnion.id)));
+                    databaseAccessVillage.close();
+                    if (villageAdapter.getCount() > 0) {
+                        villageAdapter.insert(new AddressItem(-1, "Select", "Select"), 0);
+                    }
+                    if (villageAdapter.getCount() == 2) {
+                        villageSpinner.setSelection(1);
+                    } else if (villageAdapter.getCount() > 0) {
+                        villageSpinner.setSelection(0);
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    databaseAccessVillage.close();
+                }
             }
         }
         else if(parent == upazilaSpinner){
@@ -295,24 +317,55 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
                 }catch (Exception e){
 
                 }
+                final DatabaseAccessVillage databaseAccessVillage = DatabaseAccessVillage.getInstance(this);
+                try {
+
+                    AddressItem selectedDistrict = districtAdapter.getItem(districtSpinner.getSelectedItemPosition());
+                    AddressItem selectedUpazilla = upazilaAdapter.getItem(upazilaSpinner.getSelectedItemPosition());
+                    AddressItem selectedUnion = unionAdapter.getItem(unionSpinner.getSelectedItemPosition());
+                    databaseAccessVillage.open();
+                    villageAdapter.addAll(databaseAccessVillage.getVillage(Integer.toString(selectedDistrict.id), Integer.toString(selectedUpazilla.id), Integer.toString(selectedUnion.id)));
+                    databaseAccessVillage.close();
+                    if (villageAdapter.getCount() > 0) {
+                        villageAdapter.insert(new AddressItem(-1, "Select", "Select"), 0);
+                    }
+                    if (villageAdapter.getCount() == 2) {
+                        villageSpinner.setSelection(1);
+                    } else if (villageAdapter.getCount() > 0) {
+                        villageSpinner.setSelection(0);
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    databaseAccessVillage.close();
+                }
             }
         }
         else if(parent == unionSpinner){
             AddressItem item = unionAdapter.getItem(position);
             villageAdapter.clear();
             if(item.id > 0){
-                final DatabaseAccessVillage databaseAccessVillage =DatabaseAccessVillage.getInstance(this);
-                databaseAccessVillage.open();
-                villageAdapter.addAll(databaseAccessVillage.getVillage(Integer.toString(item.id)));
-                if(villageAdapter.getCount() > 0){
-                    villageAdapter.insert(new AddressItem(-1,"Select","Select"),0);
-                }
-                databaseAccessVillage.close();
-                if(villageAdapter.getCount() == 2){
-                    villageSpinner.setSelection(1);
-                }
-                else if(villageAdapter.getCount() > 0){
-                    villageSpinner.setSelection(0);
+                final DatabaseAccessVillage databaseAccessVillage = DatabaseAccessVillage.getInstance(this);
+                try {
+
+                    AddressItem selectedDistrict = districtAdapter.getItem(districtSpinner.getSelectedItemPosition());
+                    AddressItem selectedUpazilla = upazilaAdapter.getItem(upazilaSpinner.getSelectedItemPosition());
+                    AddressItem selectedUnion = unionAdapter.getItem(unionSpinner.getSelectedItemPosition());
+                    databaseAccessVillage.open();
+                    villageAdapter.addAll(databaseAccessVillage.getVillage(Integer.toString(selectedDistrict.id), Integer.toString(selectedUpazilla.id), Integer.toString(selectedUnion.id)));
+                    databaseAccessVillage.close();
+                    if (villageAdapter.getCount() > 0) {
+                        villageAdapter.insert(new AddressItem(-1, "Select", "Select"), 0);
+                    }
+                    if (villageAdapter.getCount() == 2) {
+                        villageSpinner.setSelection(1);
+                    } else if (villageAdapter.getCount() > 0) {
+                        villageSpinner.setSelection(0);
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    databaseAccessVillage.close();
                 }
             }
         }

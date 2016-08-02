@@ -94,8 +94,8 @@ Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|
     <string name="fp_ques_01">01) ‡mev cÖ`vb hv‡Z †`Lv bv hvq Zv wbwðZ K‡i‡Qb</string>
     <string name="fp_ques_02">02) ‡mev cÖ`v‡bi ‡Kvb wKQy hv‡Z evB‡i †kvbv bv hvq Zv wbwðZ K‡i‡Qb</string>
     <string name="fp_ques_03">03) ‡mev MÖnxZvi †Kvb Amyweav Av‡Q wK bv Zv Av‡jvPbv K‡i‡Qb</string>
-    <string name="fp_ques_04">04) c×wZi cvk¦©cÖwZwµqv m¤ú‡K© Av‡jvPbv K‡i‡Qb (c×wZ MÖnYKvix/e¨enviKvix MÖnxZvi †ÿ‡Î)</string>
-    <string name="fp_ques_05">05) c×wZi cvk¦©cÖwZwµqv †`Lv w`‡j wK Ki‡eb Zv Av‡jvPbv K‡i‡Qb (c×wZ MÖnYKvix/e¨enviKvix MÖnxZvi †ÿ‡Î)</string>
+    <string name="fp_ques_04">04) c×wZi cvk¦©cÖwZwµqv m¤ú‡K© Av‡jvPbv K‡i‡Qb</string>
+    <string name="fp_ques_05">05) c×wZi cvk¦©cÖwZwµqv †`Lv w`‡j wK Ki‡eb Zv Av‡jvPbv K‡i‡Qb</string>
     <string name="fp_ques_06">06) ‡mev MÖnxZvi †Kvb cÖkœ Av‡Q wK bv, Zv wRÁvmv K‡i‡Qb Ges cÖkœ wRÁvmv Ki‡Z DrmvwnZ K‡i‡Qb</string>
     <string name="fp_ques_07">07) ‡mevcÖ`v‡bi mgq h_vh_ Kg© mnvwqKv (Re GBW) e¨envi K‡i‡Qb</string>
     <string name="fp_ques_08">08) cieZ©x wfwRU (d‡jvAvc wfwRU) Gi ZvwiL MÖnxZv‡K Rvwb‡q w`‡q‡Qb</string>
@@ -425,6 +425,8 @@ nq wK bv|</string>
         <item>Medical Officer (MCH-FP)</item>
         <item>Assistant Family Welfare Officer (AFWO)</item>
         <item>Paramedic</item>
+        <item>FWV</item>
+        <item>Sr. FWV</item>
         <item>Others</item>
     </string-array>
     <string-array name="sci_designation">
@@ -432,6 +434,8 @@ nq wK bv|</string>
         <item>Assistant Family Welfare Officer (AFWO)</item>
         <item>Family Welfare Visitor (FWV)</item>
         <item>Paramedic</item>
+        <item>FWV</item>
+        <item>Sr. FWV</item>
         <item>Others</item>
     </string-array>
     <string-array name="scuf_designation">
@@ -452,6 +456,8 @@ nq wK bv|</string>
         <item>Medical Officer (MCH-FP)</item>
         <item>Assistant Family Welfare Officer (AFWO)</item>
         <item>Paramedic</item>
+        <item>FWV</item>
+        <item>Sr. FWV</item>
         <item>Others</item>
     </string-array>
     <string-array name="fp_designation">

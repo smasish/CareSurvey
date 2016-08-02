@@ -87,9 +87,9 @@ public class DatabaseAccessVillage {
         return list;
     }
 
-    public List<AddressItem> getVillage(String unionid){
+    public List<AddressItem> getVillage(String districtid,String upazilaid, String unionid){
         List<AddressItem> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM village WHERE UNIONID = ?", new String[]{ unionid });
+        Cursor cursor = database.rawQuery("SELECT * FROM village WHERE ZILLAID = ? and UPAZILAID = ? and UNIONID = ?", new String[]{ districtid,upazilaid,unionid });
         if (cursor.moveToFirst()) {
             do {
                 AddressItem item = new AddressItem();

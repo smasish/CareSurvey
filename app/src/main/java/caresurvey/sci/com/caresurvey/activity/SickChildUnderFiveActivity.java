@@ -146,12 +146,12 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         item.belly_button = gRGv(R.id.belly);
         item.height = gRGv(R.id.height);
         item.bmi = gRGv(R.id.bmi);
-        item.result = gRGi(R.id.result_group);
-//        item.result = gCBsv(R.id.checkBox1);
-//        item.result += ","+gCBsv(R.id.checkBox2);
-//        item.result += ","+gCBsv(R.id.checkBox3);
-//        item.result += ","+gCBsv(R.id.checkBox4);
-//        item.result += ","+gCBsv(R.id.checkBox5);
+//        item.result = gRGi(R.id.result_group);
+        item.result = gCBsv(R.id.checkBox1);
+        item.result += ","+gCBsv(R.id.checkBox2);
+        item.result += ","+gCBsv(R.id.checkBox3);
+        item.result += ","+gCBsv(R.id.checkBox4);
+        item.result += ","+gCBsv(R.id.checkBox5);
         item.end_time = gETv(R.id.end_time);
         item.end_time = AppUtils.getTime(); //update end time when load
         sETv(R.id.end_time,item.end_time);
@@ -218,14 +218,14 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         sRGv(R.id.belly,item.belly_button);
         sRGv(R.id.height,item.height);
         sRGv(R.id.bmi,item.bmi);
-//        if(item.result != null) {
-//            String tokens[] = item.result.split(",");
-//            int ids[] = new int[]{R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox5};
-//            for (int i = 0; i < tokens.length; i++) {
-//                sCBv(ids[i], tokens[i].trim());
-//            }
-//        }
-        sRGiv(R.id.result_group,item.result);
+        if(item.result != null) {
+            String tokens[] = item.result.split(",");
+            int ids[] = new int[]{R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox5};
+            for (int i = 0; i < tokens.length; i++) {
+                sCBv(ids[i], tokens[i].trim());
+            }
+        }
+//        sRGiv(R.id.result_group,item.result);
     }
 
     private void editable(boolean state){
