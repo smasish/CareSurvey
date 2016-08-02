@@ -409,21 +409,19 @@ nq wK bv|</string>
     <string name="anc_description_text">গর্ভবতী মহিলা যে সেবা নিতে এসেছেন তার বিবরণ</string>
     <string-array name="anc_designation">
         <item>Select</item>
-        <item>Civil Surgeon</item>
-        <item>Deputy Civil Surgeon</item>
         <item>Senior Consultant(Gynae)</item>
-        <item>Senior Consultant (Medicine)</item>
-        <item>Upozila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
-        <item>Junior Consultant (Pediatrics)</item>
+        <item>Upazila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
         <item>Resident Medical Officer (RMO)</item>
         <item>Emergency Medical Officer (EMO)</item>
         <item>Medical Officer (MO)</item>
         <item>Asstt. Surgeon</item>
         <item>Senior Staff Nurse</item>
+        <item>Assistant Nurse</item>
         <item>Sub-assistant Community Medical Officer (SACMO)</item>
         <item>Medical Officer (Clinic)</item>
         <item>Medical Officer (MCH-FP)</item>
         <item>Assistant Family Welfare Officer (AFWO)</item>
+        <item>Family Welfare Visitor (FWV)</item>
         <item>Paramedic</item>
         <item>FWV</item>
         <item>Sr. FWV</item>
@@ -441,16 +439,15 @@ nq wK bv|</string>
     <string-array name="scuf_designation">
         <item>Select</item>
         <item>Civil Surgeon</item>
-        <item>Deputy Civil Surgeon</item>
-        <item>Senior Consultant(Gynae)</item>
-        <item>Senior Consultant (Medicine)</item>
-        <item>Upozila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
+        <item>Upazila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
         <item>Junior Consultant (Pediatrics)</item>
         <item>Resident Medical Officer (RMO)</item>
         <item>Emergency Medical Officer (EMO)</item>
         <item>Medical Officer (MO)</item>
         <item>Asstt. Surgeon</item>
         <item>Senior Staff Nurse</item>
+        <item>Assistant Nurse</item>
+        <item>Family Welfare Visitor (FWV)</item>
         <item>Sub-assistant Community Medical Officer (SACMO)</item>
         <item>Medical Officer (Clinic)</item>
         <item>Medical Officer (MCH-FP)</item>
@@ -462,27 +459,12 @@ nq wK bv|</string>
     </string-array>
     <string-array name="fp_designation">
         <item>Select</item>
-        <item>Senior Consultant(Gynae)</item>
-        <item>Senior Consultant (Medicine)</item>
-        <item>Upozila Health &amp; Family Planning Officer (UH&amp;FPO)</item>
-        <item>Junior Consultant (Pediatrics)</item>
-        <item>Resident Medical Officer (RMO)</item>
-        <item>Emergency Medical Officer (EMO)</item>
-        <item>Medical Officer (MO)</item>
-        <item>Asstt. Surgeon</item>
         <item>Medical Officer (Clinic)</item>
         <item>Medical Officer (MCH-FP)</item>
-        <item>Nursing Supervisor</item>
-        <item>Senior Staff Nurse</item>
-        <item>Staff Nurse</item>
-        <item>Assistant Nurse</item>
         <item>Assistant Family Welfare Officer (AFWO)</item>
         <item>Family Welfare Visitor (FWV)</item>
         <item>Paramedic</item>
         <item>Sub-assistant Community Medical Officer (SACMO)</item>
-        <item>Radiologist</item>
-        <item>Pathologist</item>
-        <item>Pharmacist</item>
         <item>Others</item>
     </string-array>
 
@@ -493,11 +475,11 @@ nq wK bv|</string>
         <item>Nursing Supervisor</item>
         <item>Senior Staff Nurse</item>
         <item>Staff Nurse</item>
+        <item>Assistant Nurse</item>
         <item>Sub-assistant Community Medical Officer (SACMO)</item>
         <item>Assistant Family Welfare Officer (AFWO)</item>
-        <item>Family Welfare Officer (AFWO)</item>
+        <item>Family Welfare Visitor (FWV)</item>
         <item>Pharmacist</item>
-        <item>Paramedic</item>
         <item>Others</item>
     </string-array>
 
