@@ -73,267 +73,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
     private static ProgressDialog pd;
-
+    private String userDistrict;
+    private String userType;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
-
-
         con = this;
         username=(EditText)findViewById(R.id.user);
-        flag = false;
-
-
         password=(EditText)findViewById(R.id.password);
-        //    p=username.getText().toString();
-
-
-        Log.d(".....>>>>>>>>>>", "response length      " + user);
-
-        //      p= "admin";
-
         login =(Button)findViewById(R.id.login);
         login.setOnClickListener(this);
-//        login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                user = username.getText().toString().trim();
-//                pass = password.getText().toString().trim();
-//
-//                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-//                SharedPreferences.Editor editor = pref.edit();
-//                editor.putString("username", user);
-//                editor.putString("password", pass);
-//
-//                editor.commit();
-//
-//
-//                Log.d(".....>>>>>>>>>>", "response lengthcc   " + user);
-//                if (user.equalsIgnoreCase("") || pass.equalsIgnoreCase("")) {
-//                    AlertMessage.showMessage(con, getString(R.string.title),
-//                            getString(R.string.msg));
-//                } else if (user.equals("admin") && pass.equals("(gbX2+ee")) {
-//                    LoadDataSupervisor();
-////                    LoadDataSupervisorChildSick();
-//
-//                    flag = true;
-//
-//                    //      k = "supervisor";
-//
-//                }
-//
-//                else if (user.equals("supervisor_hb") && pass.equals("AhEh4196")) {
-//                    LoadDataSupervisor();
-////                    LoadDataSupervisorChildSick();
-//
-//                    flag = true;
-//
-//                    //      k = "supervisor";
-//                }
-//                else if (user.equals("supervisor_jk") && pass.equals("q4rjXA6L")) {
-//                    LoadDataSupervisor();
-////                    LoadDataSupervisorChildSick();
-//
-//                    flag = true;
-//
-//                    //      k = "supervisor";
-//                }
-//                else if (user.equals("supervisor_lp") && pass.equals("8rCNw3OB")) {
-//                    LoadDataSupervisor();
-////                    LoadDataSupervisorChildSick();
-//
-//                    flag = true;
-//
-//                    //      k = "supervisor";
-//                }
-//                else if (user.equals("user_hb1") && pass.equals("h6tsnaMl")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-//
-//
-//                else if (user.equals("user_hb2") && pass.equals("Kw1YekNJ")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-//
-//
-//                else if (user.equals("user_hb3") && pass.equals("9UvRtf3F")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-//                else if (user.equals("user_lp1") && pass.equals("D6W4zgBO")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-//                else if (user.equals("user_lp2") && pass.equals("rfALMb77")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-//                else if (user.equals("user_lp3") && pass.equals("jD7jjjNK")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-////                else if (user.equals("user_nk1") && pass.equalsIgnoreCase("pass_nk1")) {
-////
-////                    LoadDataCollector();
-////                    flag = true;
-////                }
-////                else if (user.equals("user_nk2") && pass.equals("pass_nk2")) {
-////
-////                    LoadDataCollector();
-////                    flag = true;
-////                }
-////                else if (user.equals("user_nk3") && pass.equals("pass_nk3")) {
-////
-////                    LoadDataCollector();
-////                    flag = true;
-////                }
-//                else if (user.equals("user_jk1") && pass.equals("wlk94WOS")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-//                else if (user.equals("user_jk2") && pass.equals("7Lm4JjDV")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-//                else if (user.equals("user_jk3") && pass.equals("Sm2VU7vB")) {
-//
-//                    LoadDataCollector();
-//                    flag = true;
-//                }
-//                //  k="collector";
-//
-//
-//                if (flag) {
-//
-                    handler = new Handler();
-////                    handler.postDelayed(new Runnable() {
-////                        @Override
-////                        public void run() {
-////                /* start the activity */
-////                            pd.dismiss();
-////
-////                            if (user.equals("admin")) {
-//////                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
-//////                                startActivity(intent);
-////
-////
-////                                Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
-////                                startActivity(intent);
-////                            } else if (user.equals("user_hb1")) {
-////                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-////                                startActivity(intentX);
-////                            }
-////
-////
-////                            else if (user.equals("user_hb2")) {
-////                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-////                                startActivity(intentX);
-////                            }
-////
-////                            else if (user.equals("user_hb3")) {
-////                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-////                                startActivity(intentX);
-////                            }
-////
-////                            else if (user.equals("user_hb4")) {
-////                                Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-////                                startActivity(intentX);
-////                            }
-////                            //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-////                            overridePendingTransition(0, 0);
-////
-////                            finish();
-////                        }
-////                    }, 5000);
-//
-//                }
-//                else{
-//                    Toast.makeText(LoginActivity.this,"Wrong user or password",Toast.LENGTH_SHORT).show();
-//                }
-//                //
-////              Intent in = new Intent(LoginActivity.this,DisplayAll_Activity.class);
-////             startActivity(in);
-//
-//            }
-//        });
-
-
-
-//        text.setText("MaMoni Health System Strengthening \n           (MaMoni HSS) Project");
-//        text.setTextSize(25);
     }
-
-
-
-
-
-
-
-    private class loginoperation extends AsyncTask<String, Void, String> {
-        String url = "";
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            try {
-
-                loginUser();
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            pd.cancel();
-
-        }
-
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-        }
-    }
-
 
     public void onClick(View v) {
         if(v == login){
-
-
             String title = "loading";
             String message = "Checking username \nPlease wait...";
             pd = ProgressDialog.show(con, title, message, true, true);
-
-            new loginoperation().execute("");
+            loginUser();
         }
     }
 
     private void loginUser(){
         user= username.getText().toString().trim();
-
         pass = password.getText().toString().trim();
+        AppUtils.setUserName(LoginActivity.this,user);
+        AppUtils.setUserPassword(LoginActivity.this,pass);
         //  final String email = editTextEmail.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
@@ -341,38 +109,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(String response) {
                         Log.d("response---", "********" + response.toString());
-                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
+                        pd.dismiss();
+                        String responseStr = response.toString();
+                        responseStr = responseStr.replaceAll("\"","");
+                        String tokens[] =  responseStr.split(",");
 
-                        String username =  response.toString();
-                        StringTokenizer st = new StringTokenizer(username, ",");
-                        while (st.hasMoreElements()) {
-
-
-                           // System.out.println(st.nextElement());
-                            String get = st.nextElement().toString();
-                            Log.d("response---", "********" + get);
-                            get = get.substring(1);
-                            if (get.equals("collector")) {
-
+                        if(tokens.length != 3){ //invalid response
+                            Toast.makeText(LoginActivity.this, "Invalid response", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            userDistrict = tokens[2];
+                            userType = tokens[0];
+                            if("collector".equalsIgnoreCase(userType)){
                                 LoadDataCollector();
-                                flag = true;
                             }
-                            else if(get.equals("supervisor")){
+                            else if("supervisor".equalsIgnoreCase(userType) || "admin".equalsIgnoreCase(userType)){
                                 LoadDataSupervisor();
                             }
-                            else if(get.equals("admin")){
 
-                                //////
-                            }
                         }
-
-
 
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        pd.dismiss();
                         Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
@@ -382,15 +144,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 params.put(KEY_USERNAME,user);
                 params.put(KEY_PASSWORD,pass);
 
-
                 try {
                     JSONObject data = new JSONObject();
                     data.put("username", user);
                     data.put("password", pass);
-
                     params.put("data", data.toString());
                 }catch (Exception e){
-
+                    e.printStackTrace();
                 }
                 //params.put("data", "{'username':'"+username+"','password':'"+password+"'}");
                 return params;
@@ -403,125 +163,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
-    public void LoadDataSupervisorChildSick()
-    {
-
-        FormTable formTablec = new FormTable(LoginActivity.this);
-        //  formTablec.dropTable();
-        String tag_json_obj = "json_obj_req";
-
-        String url = "http://119.148.43.34/mamoni/survey/api/sync";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //     Toast.makeText(DisplayAll_Activity.this,response,Toast.LENGTH_SHORT).show();
-                        Log.e("supervisor child:",response);
-                        try {
-                            JSONObject jo = new JSONObject(response);
-                            JSONArray forms = jo.getJSONArray("forms");
-//                                JSONObject joes = new JSONObject();
-//                                joes= jo.getJSONObject("forms");
-                            // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
-
-                            SickChildSupervisorTable sickChildSupervisorTable= new SickChildSupervisorTable(LoginActivity.this);
-                            // formTable.dropTable();
-                            int formItemCount = forms.length();
-                            Log.d(".....>>>>>>>>>>", "formItemCount    " + formItemCount);
-                            increment=1;
-                            for (int i = 0; i < formItemCount; i++) {
-                                try {
-
-                                    JSONObject record = forms.getJSONObject(i);
-                                    String s;
-                                    s=record.getString("submitted_by");
-                                    Log.d(".....>>>>>>>>>>", "i    " + i);
-                                    JSONObject fields = record.getJSONObject("data");
-
-                                    SickChildItemSupervisor sickChildItemSupervisor = SickChildItemSupervisor.parseSickChildItemSupervisor(increment, record.getString("form_id"), record.getInt("status"), fields, record.getString("submitted_by"));
-
-                                    long success;
-                                    success=sickChildSupervisorTable.insertItem(sickChildItemSupervisor);
-                                    if(success==1)
-                                        increment++;
-
-                                }
-                                catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-
-
-                        try
-                        {
-                            JSONObject jox = new JSONObject(response);
-                            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("Timestamp_supervisor", jox.getJSONObject("updated_at").toString());
-                            editor.commit();
-                        }
-                        catch (Exception e)
-                        {
-
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //  Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
-                        pd.dismiss();
-                    }
-                }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-
-                Map<String, String> params = new HashMap<>();
-
-                try {
-                    //data
-                    JSONObject data = new JSONObject();
-                    data.put("username", "supervisor");
-                    data.put("password", "supervisor");
-                    data.put("get_all", true);
-                    params.put("data", data.toString());
-                }
-                catch (Exception e){
-
-                }
-
-                return params;
-            }
-        };
-
-// Adding request to request queue
-
-        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
-        requestQueue.add(stringRequest);
-        pd = new ProgressDialog(this);
-        pd.setMessage("Fetching The File....");
-        pd.show();
-    }
-
-
-
-
-
-
-
     public void LoadDataSupervisor()
     {
-
+        pd.setMessage("Fetching The File....");
+        pd.show();
         FormTable formTablec = new FormTable(LoginActivity.this);
         //  formTablec.dropTable();
         String tag_json_obj = "json_obj_req";
@@ -532,16 +177,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //     Toast.makeText(DisplayAll_Activity.this,response,Toast.LENGTH_SHORT).show();
                         Log.e("supervisor:", response);
+                        pd.dismiss();
                         try {
                             JSONObject jo = new JSONObject(response);
                             JSONArray forms = jo.getJSONArray("forms");
-////                                JSONObject joes = new JSONObject();
-////                                joes= jo.getJSONObject("forms");
-//                            // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
-//                            FormTable formTable = new FormTable(LoginActivity.this);
-//                            // formTable.dropTable();
                             int formItemCount = forms.length();
                             for(int i=0;i<formItemCount;i++){
                                 JSONObject form = forms.getJSONObject(i);
@@ -566,26 +206,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     table.insert(ANCFormItem.getObject(form.toString()));
                                 }
                             }
-//                            for (int i = 0; i < formItemCount; i++) {
-//                                try {
-//                                    JSONObject record = forms.getJSONObject(i);
-//                                    String s;
-//                                    s=record.getString("submitted_by");
-//                                    Log.d(".....>>>>>>>>>>", "response length" + record);
-//                                    JSONObject fields = record.getJSONObject("data");
-//                                    FormItem et = FormItem.parseFormItem(i+1, record.getString("form_id"),record.getInt("status"), fields,record.getString("submitted_by"));
-//                                    int q;
-//                                    q=record.getInt("form_id");
-//                                    formTable.insertItem(et);
-//                                }
-//                                catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(LoginActivity.this,"An error occurred during sync " + e.toString(),Toast.LENGTH_SHORT).show();
+                            return;
                         }
 
                         try
@@ -598,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                         catch (Exception e)
                         {
-
+                            e.printStackTrace();
                         }
                         finishActivity();
                     }
@@ -606,7 +231,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                          Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                         pd.dismiss();
 //                        finishActivity();
                     }
@@ -623,6 +248,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     data.put("username", AppUtils.getUserName(LoginActivity.this));
                     data.put("password", AppUtils.getPassword(LoginActivity.this));
                     data.put("get_all", true);
+                    Log.e("sync supervisor request",data.toString());
                     params.put("data", data.toString());
                 }
                 catch (Exception e){
@@ -637,97 +263,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
         requestQueue.add(stringRequest);
-        pd = new ProgressDialog(this);
-        pd.setMessage("Fetching The File....");
-        pd.show();
+
     }
 
     private void finishActivity(){
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                /* start the activity */
-
-                if(pd != null)
-                    pd.dismiss();
-
-                if (user.equals("admin") || user.equals("Papia") || user.equals("Firoza")
-                        || user.equals("Ripon")) {
-//                                Intent intent = new Intent(LoginActivity.this, DisplayAll_Activity.class);
-//                                startActivity(intent);
-
-
-//                    Intent intent = new Intent(LoginActivity.this, SurveyActivity.class);
-                    Intent intent = new Intent(LoginActivity.this, FacilityAdminActivity.class);
-                    startActivity(intent);
-                }
-
-
-                else if (user.equals("Shubhra")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-
-                else if (user.equals("user_hb3")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-
-                else if (user.equals("user_hb1")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-				else if (user.equals("Salma")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-//				else if (user.equals("user_nk2")) {
-//                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-//                    startActivity(intentX);
-//                }
-//				else if (user.equals("user_nk3")) {
-//                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-//                    startActivity(intentX);
-//                }
-				else if (user.equals("Shrabani")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-				else if (user.equals("user_lp2")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-				else if (user.equals("user_lp3")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-				else if (user.equals("Mitu")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-				else if (user.equals("user_jk2")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-				else if (user.equals("user_jk3")) {
-                    Intent intentX = new Intent(LoginActivity.this, SelectionUserActivity.class);
-                    startActivity(intentX);
-                }
-                //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                overridePendingTransition(0, 0);
-
-                finish();
-            }
-        }, 1000);
-
+        if("collector".equalsIgnoreCase(userType)){
+            Intent intent = new Intent(LoginActivity.this, SelectionUserActivity.class);
+            intent.putExtra(SelectionActivity.EXTRA_DISTRICT,userDistrict);
+            startActivity(intent);
+        }
+        else if("supervisor".equalsIgnoreCase(userType) || "admin".equalsIgnoreCase(userType)){
+            Intent intent = new Intent(LoginActivity.this, FacilityAdminActivity.class);
+            intent.putExtra(FacilityAdminActivity.EXTRA_DISTRICT,userDistrict);
+            intent.putExtra(FacilityAdminActivity.EXTRA_USER_TYPE,userType);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(LoginActivity.this,"Invalid user type",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        finish();
     }
 
 
 
     public void LoadDataCollector()
     {
+        pd.setMessage("Fetching The File....");
+        pd.show();
         String tag_json_obj = "json_obj_req";
-
+        String u = AppUtils.getUserName(LoginActivity.this);
+        String p = AppUtils.getPassword(LoginActivity.this);
         String url = "http://119.148.43.34/mamoni/survey/api/sync";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -735,6 +301,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(String response) {
                         //        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
                         Log.e("response: ", response);
                         try {
                             JSONObject jo = new JSONObject(response);
@@ -765,48 +332,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 }
                             }
 
-//                                JSONObject joes = new JSONObject();
-//                                joes= jo.getJSONObject("forms");
-                            // saveForm(jo.getJSONArray(AppConstants.KEY_DATA));
-//                            FormTableUser formTable = new FormTableUser(LoginActivity.this);
-//                            int formItemCount = forms.length();
-//
-//
-//
-//
-//
-//                            for (int i = 0; i < formItemCount; i++) {
-//                                try {
-//                                    JSONObject record = forms.getJSONObject(i);
-//                                    JSONObject fields = record.getJSONObject("meta");
-//                                    //      FormItem et = FormItem.parseFormItem(i,record.getString("form_id"),fields);
-//                                    int status,global_id;
-//                                    String comments,fieldss;
-//                                    status=record.getInt("status");
-//                                    global_id=record.getInt("form_id");
-//                                    comments=fields.getString("comments");
-//                                    fieldss=fields.getString("fields");
-//                                    JSONObject data= record.getJSONObject("data");
-//                                    String name= data.getString("patient_name");
-//                                    long vfdf,vfdf1,vfdf2;
-//                                    //vfdf=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
-//                                    vfdf2=formTable.updateglobalId(global_id, status, comments, fieldss,name);
-//                                    //  vfdf1=  formTable.updatefieldforuser(global_id, status, comments, fieldss);
-//                                    //    Log.d(".....>>>>>>>>>>", "success" + vfdf);
-//                                    Log.d(".....>>>>>>>>>>", "success" + vfdf2);
-//                                    //    Log.d(".....>>>>>>>>>>", "success" + vfdf1);
-//
-//                                    //formTable.insertItem(et);
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-
-
-
-
-
-
 
                             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                             SharedPreferences.Editor editor = pref.edit();
@@ -815,6 +340,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(LoginActivity.this,"An error occurred during sync " + e.toString(),Toast.LENGTH_SHORT).show();
+                            return;
                         }
                         finishActivity();
                     }
@@ -839,11 +366,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     data.put("username", username.getText().toString().trim());
                     data.put("password", password.getText().toString().trim());
                     data.put("get_all", true);
-
+                    Log.e("sync collector request",data.toString());
                     params.put("data", data.toString());
                 }
                 catch (Exception e){
-
+                    e.printStackTrace();
                 }
 
                 return params;
@@ -855,38 +382,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
         requestQueue.add(stringRequest);
-
-
-        pd = new ProgressDialog(this);
-        pd.setMessage("Fetching The File....");
-        pd.show();
-
-
-    }
-
-
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login_activity1, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

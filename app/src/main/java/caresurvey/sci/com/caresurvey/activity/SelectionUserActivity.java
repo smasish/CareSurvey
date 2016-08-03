@@ -64,7 +64,8 @@ public class SelectionUserActivity extends AppCompatActivity {
                 int first_value = pref.getInt("id", 0);
 
                 if(first_value<31) {
-                    Intent intent1 = new Intent(SelectionUserActivity.this, AddressInsertActivity2.class);
+                    Intent intent1 = getIntent();
+                    intent1.setClass(SelectionUserActivity.this,AddressInsertActivity2.class);
                     startActivity(intent1);
 //                    finish();
                 }

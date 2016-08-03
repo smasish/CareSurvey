@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
@@ -21,9 +23,15 @@ import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 public class FacilityAdminActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String EXTRA_DISTRICT = "user_district";
+    public static final String EXTRA_USER_TYPE = "user_type";
     private Spinner userSpinner;
     private Spinner facilitySpinner;
     private ArrayAdapter<String> mAdapter;
+    private static final String COLLECTOR_HB[] = {"Shubhra"};
+    private static final String COLLECTOR_NK[] = {"Salma"};
+    private static final String COLLECTOR_LP[] = {"Shrabani"};
+    private static final String COLLECTOR_JK[] = {"Mitu"};
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,35 +42,29 @@ public class FacilityAdminActivity extends AppCompatActivity implements View.OnC
         mAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        String username = AppUtils.getUserName(this);
+//        String username = AppUtils.getUserName(this);
+        String district = getIntent().getStringExtra(EXTRA_DISTRICT);
+        String userType = getIntent().getStringExtra(EXTRA_USER_TYPE);
         mAdapter.add("Select user");
-        if("supervisor_hb".equals(username)){
-            mAdapter.add("user_hb1");
-            mAdapter.add("user_hb2");
-            mAdapter.add("user_hb3");
+        if("admin".equalsIgnoreCase(userType)){
+            mAdapter.addAll(Arrays.asList(COLLECTOR_HB));
+            mAdapter.addAll(Arrays.asList(COLLECTOR_NK));
+            mAdapter.addAll(Arrays.asList(COLLECTOR_LP));
+            mAdapter.addAll(Arrays.asList(COLLECTOR_JK));
         }
-        else if("supervisor_jk".equals(username)){
-            mAdapter.add("user_jk1");
-            mAdapter.add("user_jk2");
-            mAdapter.add("user_jk3");
-        }
-        else if("supervisor_lp".equals(username)){
-            mAdapter.add("user_lp1");
-            mAdapter.add("user_lp2");
-            mAdapter.add("user_lp3");
-        }
-        else if("admin".equals(username)){
-            mAdapter.add("user_hb1");
-            mAdapter.add("user_hb2");
-            mAdapter.add("user_hb3");
-
-            mAdapter.add("user_jk1");
-            mAdapter.add("user_jk2");
-            mAdapter.add("user_jk3");
-
-            mAdapter.add("user_lp1");
-            mAdapter.add("user_lp2");
-            mAdapter.add("user_lp3");
+        else if("supervisor".equalsIgnoreCase(userType)){
+            if("Habiganj".equalsIgnoreCase(district)){
+                mAdapter.addAll(Arrays.asList(COLLECTOR_HB));
+            }
+            else if("Lakshmipur".equalsIgnoreCase(district)){
+                mAdapter.addAll(Arrays.asList(COLLECTOR_LP));
+            }
+            else if("Noakhali".equalsIgnoreCase(district)){
+                mAdapter.addAll(Arrays.asList(COLLECTOR_NK));
+            }
+            else if("Jhalakati".equalsIgnoreCase(district)){
+                mAdapter.addAll(Arrays.asList(COLLECTOR_JK));
+            }
         }
         userSpinner.setAdapter(mAdapter);
     }

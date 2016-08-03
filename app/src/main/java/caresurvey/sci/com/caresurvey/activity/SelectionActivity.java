@@ -10,6 +10,7 @@ import caresurvey.sci.com.caresurvey.R;
 
 public class SelectionActivity extends AppCompatActivity {
 
+    public static final String EXTRA_DISTRICT = "user_district";
     Button anc,cs;
 
     @Override

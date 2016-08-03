@@ -231,6 +231,16 @@ public class AppUtils{
 //        password = pref.getString("password", null);
     }
 
+    public static void setUserName(Context context,String user){
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        pref.edit().putString("username",user).commit();
+    }
+
+    public static void setUserPassword(Context context,String password){
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        pref.edit().putString("password",password).commit();
+    }
+
     public static String getPassword(Context context){
         SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         return pref.getString("password", "");

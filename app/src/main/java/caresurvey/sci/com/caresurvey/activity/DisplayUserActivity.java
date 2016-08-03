@@ -188,7 +188,7 @@ public class DisplayUserActivity extends AppCompatActivity {
 
         List<DBRow> dbrows = new ArrayList<>();
 
-        if(getIntent().getIntExtra(FORM,-1) == 0){
+        if(getIntent().getIntExtra(FORM,-1) == 2){
             final ANCTable formTable = new ANCTable(DisplayUserActivity.this);
             ArrayList<ANCFormItem> formItemsUser = formTable.getAll();
             for(ANCFormItem ft : formItemsUser){
@@ -202,14 +202,14 @@ public class DisplayUserActivity extends AppCompatActivity {
                 dbrows.add(item);
             }
         }
-        else if(getIntent().getIntExtra(FORM,-1) == 2){
+        else if(getIntent().getIntExtra(FORM,-1) == 3){
             final SickChildTable table = new SickChildTable(this);
             ArrayList<SickChildItem> list = table.getAllInfo();
             for(SickChildItem item : list){
                 dbrows.add(item);
             }
         }
-        else if(getIntent().getIntExtra(FORM,-1) == 3){
+        else if(getIntent().getIntExtra(FORM,-1) == 0){
             final InventoryTable table = new InventoryTable(this);
             ArrayList<InventoryItem> list = table.getAllInfo();
             for(InventoryItem item : list){

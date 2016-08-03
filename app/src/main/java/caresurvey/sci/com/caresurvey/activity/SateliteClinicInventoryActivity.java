@@ -678,8 +678,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
 
                         //data
                         JSONObject data = new JSONObject();
-                        data.put("username", "supervisor");
-                        data.put("password", "supervisor");
+                        data.put("username", AppUtils.getUserName(SateliteClinicInventoryActivity.this));
+                        data.put("password", AppUtils.getPassword(SateliteClinicInventoryActivity.this));
                         data.put("requests", jsonArray);
                         params.put("data", data.toString());
                     }
@@ -762,8 +762,8 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
 
                         //data
                         JSONObject data = new JSONObject();
-                        data.put("username", "supervisor");
-                        data.put("password", "supervisor");
+                        data.put("username", AppUtils.getUserName(SateliteClinicInventoryActivity.this));
+                        data.put("password", AppUtils.getPassword(SateliteClinicInventoryActivity.this));
                         data.put("requests", jsonArray);
                         params.put("data", data.toString());
                     }

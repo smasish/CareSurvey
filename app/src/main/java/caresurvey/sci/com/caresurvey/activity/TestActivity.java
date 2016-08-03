@@ -27,6 +27,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import junit.framework.Test;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -753,7 +755,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                             catch (Exception e)
                             {
-
+                                e.printStackTrace();
                             }
                             //   Toast.makeText(Supervisor_verificationActivity.this, response, Toast.LENGTH_SHORT).show();
                         }
@@ -788,10 +790,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                         //data
                         JSONObject data = new JSONObject();
-                        data.put("username", "supervisor");
-                        data.put("password", "supervisor");
+                        data.put("username", AppUtils.getUserName(TestActivity.this));
+                        data.put("password", AppUtils.getPassword(TestActivity.this));
                         data.put("requests", jsonArray);
                         params.put("data", data.toString());
+                        Log.e("accept request",data.toString());
                     }
                     catch (Exception e){
 
@@ -873,8 +876,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
                         //data
                         JSONObject data = new JSONObject();
-                        data.put("username", "supervisor");
-                        data.put("password", "supervisor");
+                        data.put("username", AppUtils.getUserName(TestActivity.this));
+                        data.put("password", AppUtils.getPassword(TestActivity.this));
                         data.put("requests", jsonArray);
                         params.put("data", data.toString());
                     }

@@ -450,8 +450,8 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
 
                         //data
                         JSONObject data = new JSONObject();
-                        data.put("username", "supervisor");
-                        data.put("password", "supervisor");
+                        data.put("username", AppUtils.getUserName(FacilityInventoryActivity.this));
+                        data.put("password", AppUtils.getPassword(FacilityInventoryActivity.this));
                         data.put("requests", jsonArray);
                         params.put("data", data.toString());
                     }
@@ -535,8 +535,8 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
 
                         //data
                         JSONObject data = new JSONObject();
-                        data.put("username", "supervisor");
-                        data.put("password", "supervisor");
+                        data.put("username", AppUtils.getUserName(FacilityInventoryActivity.this));
+                        data.put("password", AppUtils.getPassword(FacilityInventoryActivity.this));
                         data.put("requests", jsonArray);
                         params.put("data", data.toString());
                     }

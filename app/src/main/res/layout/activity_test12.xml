@@ -1065,39 +1065,46 @@
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="wPwKrmv w`‡q evox cvVv‡bv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/checkBox1" />
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="wkï‡K GKB †mev‡K‡›`ªi Ab¨ †mevcÖ`vbKvixi wbKU cvVv‡bv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/checkBox2" />
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="wkï‡K GKB †mev‡K‡›`ª fwZ© Kiv‡bv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/checkBox3" />
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="wkï‡K cix¶vi Rb¨ j¨ve-G cvVv‡bv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/checkBox4" />
+                    <caresurvey.sci.com.caresurvey.widgets.QCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="wkï‡K Ab¨ †mev‡K‡›`ª (D”PZi †mevi Rb¨) ‡idvi Kiv n‡q‡Q"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/checkBox5" />
 
 
+                </LinearLayout>
 
-                <caresurvey.sci.com.caresurvey.widgets.QCheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="wPwKrmv w`‡q evox cvVv‡bv n‡q‡Q"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/checkBox1" />
-                <caresurvey.sci.com.caresurvey.widgets.QCheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="wkï‡K GKB †mev‡K‡›`ªi Ab¨ †mevcÖ`vbKvixi wbKU cvVv‡bv n‡q‡Q"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/checkBox2" />
-                <caresurvey.sci.com.caresurvey.widgets.QCheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="wkï‡K GKB †mev‡K‡›`ª fwZ© Kiv‡bv n‡q‡Q"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/checkBox3" />
-                <caresurvey.sci.com.caresurvey.widgets.QCheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="wkï‡K cix¶vi Rb¨ j¨ve-G cvVv‡bv n‡q‡Q"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/checkBox4" />
-                <caresurvey.sci.com.caresurvey.widgets.QCheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="wkï‡K Ab¨ †mev‡K‡›`ª (D”PZi †mevi Rb¨) ‡idvi Kiv n‡q‡Q"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/checkBox5" />
+
 
 
 

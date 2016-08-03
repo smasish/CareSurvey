@@ -544,8 +544,8 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
 
                             //data
                             JSONObject data = new JSONObject();
-                            data.put("username", "supervisor");
-                            data.put("password", "supervisor");
+                            data.put("username", AppUtils.getUserName(FpObservationActivity.this));
+                            data.put("password", AppUtils.getPassword(FpObservationActivity.this));
                             data.put("requests", jsonArray);
                             params.put("data", data.toString());
                         }
@@ -627,8 +627,8 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
 
                             //data
                             JSONObject data = new JSONObject();
-                            data.put("username", "supervisor");
-                            data.put("password", "supervisor");
+                            data.put("username", AppUtils.getUserName(FpObservationActivity.this));
+                            data.put("password", AppUtils.getPassword(FpObservationActivity.this));
                             data.put("requests", jsonArray);
                             params.put("data", data.toString());
                         }

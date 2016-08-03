@@ -471,9 +471,10 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
 
                         //data
                         JSONObject data = new JSONObject();
-                        data.put("username", "supervisor");
-                        data.put("password", "supervisor");
+                        data.put("username", AppUtils.getUserName(SickChildUnderFiveActivity.this));
+                        data.put("password", AppUtils.getPassword(SickChildUnderFiveActivity.this));
                         data.put("requests", jsonArray);
+                        Log.e("accept request",data.toString());
                         params.put("data", data.toString());
                     }
                     catch (Exception e){
@@ -556,8 +557,8 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
 
                         //data
                         JSONObject data = new JSONObject();
-                        data.put("username", "supervisor");
-                        data.put("password", "supervisor");
+                        data.put("username", AppUtils.getUserName(SickChildUnderFiveActivity.this));
+                        data.put("password", AppUtils.getPassword(SickChildUnderFiveActivity.this));
                         data.put("requests", jsonArray);
                         params.put("data", data.toString());
                     }

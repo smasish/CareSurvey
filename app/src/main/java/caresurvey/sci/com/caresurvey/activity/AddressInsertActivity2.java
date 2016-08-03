@@ -132,29 +132,22 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
     }
 
     private void loadData() {
-        String username = AppUtils.getUserName(this);
-        if(!TextUtils.isEmpty(username)){
-            String token[] = username.split("_");
-            if(token.length > 1){
-                if(token[1].startsWith("hb")){
-                    districtSpinner.setSelection(1);
-                }
-                else if(token[1].startsWith("lp")){
-                    districtSpinner.setSelection(2);
-                }
-                else if(token[1].startsWith("nk")){
-                    districtSpinner.setSelection(3);
-                }
-                else if(token[1].startsWith("jk")){
-                    districtSpinner.setSelection(4);
-                }
-                AddressItem districtItem = districtAdapter.getItem(districtSpinner.getSelectedItemPosition());
-                if(districtItem.id >= 0) {
-                    districtText.setText(districtItem.name);
-                }
-                else{
-                    districtText.setText("");
-                }
+        String district = getIntent().getStringExtra(SelectionActivity.EXTRA_DISTRICT);
+        if(!TextUtils.isEmpty(district)){
+            if("Habiganj".equalsIgnoreCase(district)){
+                districtSpinner.setSelection(1);
+            }
+            else if("Lakshmipur".equalsIgnoreCase(district)){
+                districtSpinner.setSelection(2);
+            }
+            else if("Noakhali".equalsIgnoreCase(district)){
+                districtSpinner.setSelection(3);
+            }
+            else if("Jhalakati".equalsIgnoreCase(district)){
+                districtSpinner.setSelection(4);
+            }
+            else{
+                districtSpinner.setSelection(0);
             }
         }
     }
