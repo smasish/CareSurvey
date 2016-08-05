@@ -27,8 +27,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import junit.framework.Test;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -434,7 +432,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         Intent mIntent = getIntent();
         table = new ANCTable(this);
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)) { //alreay have one
-            if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+            if(mIntent.hasExtra(SurveyActivity.FROM_SUPERVISOR)){
                 editable(false);
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.user_btn_layout).setVisibility(View.GONE);

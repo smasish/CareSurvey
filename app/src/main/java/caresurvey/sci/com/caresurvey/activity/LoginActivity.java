@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("response---", "********" + response.toString());
+                        Log.e("response---", "********" + response.toString());
                         pd.dismiss();
                         String responseStr = response.toString();
                         responseStr = responseStr.replaceAll("\"","");
@@ -116,14 +116,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         if(tokens.length != 3){ //invalid response
                             Toast.makeText(LoginActivity.this, "Invalid response", Toast.LENGTH_SHORT).show();
+                            AppUtils.setUserType(LoginActivity.this,"");
                         }
                         else{
-                            userDistrict = tokens[2];
+                            userDistrict = tokens[2].trim();
                             userType = tokens[0];
+                            AppUtils.setUserType(LoginActivity.this,userType);
                             if("collector".equalsIgnoreCase(userType)){
                                 LoadDataCollector();
                             }
-                            else if("supervisor".equalsIgnoreCase(userType) || "admin".equalsIgnoreCase(userType)){
+                            else if("supervisor".equalsIgnoreCase(userType) || "admin".equalsIgnoreCase(userType) || "districtadmin".equalsIgnoreCase(userType)){
                                 LoadDataSupervisor();
                             }
 
@@ -148,6 +150,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     JSONObject data = new JSONObject();
                     data.put("username", user);
                     data.put("password", pass);
+                    Log.e("request",data.toString());
                     params.put("data", data.toString());
                 }catch (Exception e){
                     e.printStackTrace();
@@ -200,6 +203,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 else if(form.getString("form_type").equals("dh_inventory")){
                                     InventorySupervisorTable table = new InventorySupervisorTable(LoginActivity.this);
                                     table.insert(InventoryItem.getObject(form.toString()));
+                                    Log.e("Inventory table row","" + table.getRowSize());
                                 }
                                 else if(form.getString("form_type").equals("dh_antenantals")){
                                     ANCSupervisorTable table = new ANCSupervisorTable(LoginActivity.this);
@@ -272,7 +276,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             intent.putExtra(SelectionActivity.EXTRA_DISTRICT,userDistrict);
             startActivity(intent);
         }
-        else if("supervisor".equalsIgnoreCase(userType) || "admin".equalsIgnoreCase(userType)){
+        else if("supervisor".equalsIgnoreCase(userType) || "admin".equalsIgnoreCase(userType)  || "districtadmin".equalsIgnoreCase(userType)){
             Intent intent = new Intent(LoginActivity.this, FacilityAdminActivity.class);
             intent.putExtra(FacilityAdminActivity.EXTRA_DISTRICT,userDistrict);
             intent.putExtra(FacilityAdminActivity.EXTRA_USER_TYPE,userType);

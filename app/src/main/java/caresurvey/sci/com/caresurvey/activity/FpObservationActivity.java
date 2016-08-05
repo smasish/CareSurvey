@@ -62,8 +62,15 @@ public class FpObservationActivity extends AppCompatActivity implements View.OnC
         initQuestion();
         Intent mIntent = getIntent();
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
-            if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+            if(mIntent.hasExtra(SurveyActivity.FROM_SUPERVISOR)){
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
+                findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
+                editable(false);
+                FPObservationSupervisorTable supervisorTable = new FPObservationSupervisorTable(this);
+                item = supervisorTable.get(mIntent.getLongExtra(DisplayUserActivity.FORM_ID,0L));
+            }
+            else if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+                findViewById(R.id.admin_btn_layout).setVisibility(View.GONE);
                 findViewById(R.id.user_btn_layout).setVisibility(View.GONE);
                 editable(false);
                 FPObservationSupervisorTable supervisorTable = new FPObservationSupervisorTable(this);

@@ -33,6 +33,7 @@ import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.activity.FacilityInventoryActivity;
+import caresurvey.sci.com.caresurvey.activity.LoginActivity;
 import caresurvey.sci.com.caresurvey.model.DBRow;
 
 
@@ -241,6 +242,16 @@ public class AppUtils{
         pref.edit().putString("password",password).commit();
     }
 
+    public static void setUserType(Context context, String userType) {
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        pref.edit().putString("usertype",userType).commit();
+    }
+
+    public static String getUserType(Context context){
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        return pref.getString("usertype","");
+    }
+
     public static String getPassword(Context context){
         SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         return pref.getString("password", "");
@@ -294,4 +305,5 @@ public class AppUtils{
         }
         return 0;
     }
+
 }

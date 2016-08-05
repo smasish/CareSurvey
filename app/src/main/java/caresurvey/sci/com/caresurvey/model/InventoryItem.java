@@ -1,5 +1,7 @@
 package caresurvey.sci.com.caresurvey.model;
 
+import android.util.Log;
+
 import org.json.JSONObject;
 
 import caresurvey.sci.com.caresurvey.R;
@@ -1083,6 +1085,7 @@ public class InventoryItem extends DBRow{
             JSONObject data = object.getJSONObject("data");
 
             item.id = object.getInt("form_id");
+            Log.e("Inventory form id: ", "" + item.id);
             item.status = object.getInt("status");
             item.user_id = Integer.toString(object.getInt("user_id"));
             if (object.has("meta")) {

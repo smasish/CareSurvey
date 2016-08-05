@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +59,7 @@ public class SateliteClinicInventoryActivity extends AppCompatActivity implement
         table = new SatelliteClinicTable(this);
         Intent mIntent = getIntent();
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
-            if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+            if(mIntent.hasExtra(SurveyActivity.FROM_SUPERVISOR)){
                 editable(false);
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.user_btn_layout).setVisibility(View.GONE);

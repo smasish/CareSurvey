@@ -1,14 +1,10 @@
 package caresurvey.sci.com.caresurvey.activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,15 +23,15 @@ import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
-import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
 import caresurvey.sci.com.caresurvey.model.DBRow;
 import caresurvey.sci.com.caresurvey.model.ANCFormItem;
-import caresurvey.sci.com.caresurvey.model.SickChildItemSupervisor;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 public class SurveyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
-    public static final String FROM_ADMIN = "from_admin_page";
+    public static final String FROM_SUPERVISOR = "from_supervisor_page";
     public static final String TITLE = "form_title";
+    public  static final String FROM_ADMIN = "from_admin_page";
     Button Survey;
     ListView listView;
     private String user;
@@ -57,7 +53,7 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
         String title = getIntent().getStringExtra(TITLE);
-        if(!TextUtils.isEmpty(title)){
+        if (!TextUtils.isEmpty(title)) {
             getSupportActionBar().setTitle(title);
         }
         con = this;
@@ -92,18 +88,17 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
 //                Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
 
 
-
 //        progressBar1.getProgressDrawable().setColorFilter(
         //              Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
 //
 //        progressBar3.getProgressDrawable().setColorFilter(
 //                Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
 
-        listView=(ListView)findViewById(R.id.antenatalList);
-        mAdapter = new DisplayNamesWithStatusAdapter2(this,R.layout.display_an_item);
+        listView = (ListView) findViewById(R.id.antenatalList);
+        mAdapter = new DisplayNamesWithStatusAdapter2(this, R.layout.display_an_item);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(this);
-        Survey = (Button)findViewById(R.id.survey_button);
+        Survey = (Button) findViewById(R.id.survey_button);
 //        Survey.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -119,126 +114,17 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         username = "user_hb1";
 
 
-
         ArrayList<String> survey_result = new ArrayList<String>();
         survey_result.add("District Hospital");
         survey_result.add("Upazila Health Complex");
         survey_result.add("Union Health & Family Welfare Center");
         survey_result.add("Satellite Clinic");
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, survey_result);
-        facilityspinner = (Spinner)findViewById(R.id.spinner);
+        facilityspinner = (Spinner) findViewById(R.id.spinner);
         facilityspinner.setAdapter(adapter);
 
 
-//        facilityspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                facilityname = facilityspinner.getSelectedItem().toString();
-//                FormTable formTable = new FormTable(SurveyActivity.this);
-//        //        ArrayList<FormItem> formItemArrayList;
-//          //      formItemArrayList=formTable.getAll();
-//
-//                formItems = formTable.getListfromuser(username, facilityname);
-//                valuecount=formItems.size();
-//                //   facilityspinner.setAdapter(null);
-//
-////                adapter.notifyDataSetChanged();
-////                adapter.notifyDataSetChanged();
-////
-////                adapter.notifyDataSetChanged();
-//
-//                Log.d("...>>>>>>", "valuecount " + valuecount);
-//                if(valuecount ==0)
-//                    listView.setAdapter(null);
-//
-//                if(!formItems.isEmpty())
-//                {
-//                    int k=0;
-//                    int f= formItems.size();
-//
-//                    long[] id_admin=new long[f];
-//                    String[] name_admin=new String[f];
-//                    final int[] status_admin= new int[f];
-//                    final String[] inS= new String[f];
-//
-//                    for(FormItem ft: formItems)
-//                    {
-//                        id_admin[k]= Integer.parseInt(ft.getGlobal_id());
-//                        name_admin[k]=ft.getName();
-//                        status_admin[k]=ft.getStatus();
-//                        inS[k]= ft.getInS();
-//
-//                        Log.d(".....>>>>>>>>>>", "status" +ft.getStatus());
-//
-//                        k++;
-//                    }
-//                    listadapter=new DisplayNamesWithStatusAdapter(SurveyActivity.this,id_admin,name_admin,status_admin,inS);
-//
-//                    listView.setAdapter(listadapter);
-//
-//                    //     Helpes.getListViewSize(courseListView);
-//
-//                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                            Log.d("Status.......OnResume", "response length" + status_admin[position]);
-//                            Log.d("Status.......OnResume", "response length");
-//                            if(status_admin[position]==2)
-//                            {
-//                                AlertMessage.showMessage(SurveyActivity.this, getString(R.string.title),
-//                                        getString(R.string.msg));
-//
-//                            }
-//                            else {
-//                                Intent iiv = new Intent(SurveyActivity.this,Supervisor_verificationActivity.class);
-//                                iiv.putExtra("position",position);
-//                                // iiv.putExtra("name",names);
-//                                startActivity(iiv);
-//                                finish();
-//                            }
-//
-//                        }
-//                    });
-//
-//                }
-//
-////                else {
-////                    new AlertDialog.Builder(SurveyActivity.this)
-////                            .setTitle("Alert")
-////                            .setMessage("No data found for review!")
-////                            .setPositiveButton("Close", new DialogInterface.OnClickListener() {
-////                                @Override
-////                                public void onClick(DialogInterface dialog, int which) {
-////                                    finish();
-////                                }
-////
-////                            })
-////
-////                            .show();
-////
-////                }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//
-//
-//        });
-
         facilityspinner.setOnItemSelectedListener(this);
-
 
 
         ArrayList<String> Collector_name = new ArrayList<String>();
@@ -258,92 +144,10 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
         Collector_name.add("user_jk2");
         Collector_name.add("user_jk3");
         ArrayAdapter<String> name_adapter = new ArrayAdapter<String>(this, R.layout.dropdown_text_survey, Collector_name);
-        collector_name = (Spinner)findViewById(R.id.spinner1);
+        collector_name = (Spinner) findViewById(R.id.spinner1);
         collector_name.setAdapter(name_adapter);
         collector_name.setOnItemSelectedListener(this);
-
-//        collector_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                username = collector_name.getSelectedItem().toString();
-//
-//
-////                formItems = formTable.getListfromuser(username, facilityname);
-////                valuecount=formItems.size();
-//                //facilityspinner.setAdapter(null);
-//
-//
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//
-//
-//        });
-
-
-
-
-
-
     }
-
-
-
-//    @Override
-//    public void onBackPressed() {
-//
-//        SickChildSupervisorTable sickChildSupervisorTable = new SickChildSupervisorTable(SurveyActivity.this);
-//        ArrayList<SickChildItemSupervisor> sickChildItemSupervisors;
-//        ArrayList<SickChildItemSupervisor> sickChildItemSupervisors1;
-//        sickChildItemSupervisors = sickChildSupervisorTable.getAllInfo();
-//        sickChildItemSupervisors1 = sickChildSupervisorTable.getAllInfo();
-//
-//
-//
-//        new AlertDialog.Builder(this)
-//                .setTitle("Close")
-//                .setMessage("Are you sure you want to close CareSuvey")
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-//                {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        finish();
-//                    }
-//
-//                })
-//                .setNegativeButton("No", null)
-//                .show();
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_survey, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
     private void genList(){
 //        String cName = collector_name.getSelectedItem().toString();
 //        String facility = facilityspinner.getSelectedItem().toString();
@@ -388,9 +192,15 @@ public class SurveyActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         DBRow item = mAdapter.getItem(position);
-        if(item.status != 1 && item.status != 2) {
+        String userType = AppUtils.getUserType(SurveyActivity.this);
+        if( (item.status != 1 && item.status != 2) || "admin".equalsIgnoreCase(userType) || "districtadmin".equalsIgnoreCase(userType)) {
             Intent intent = new Intent();
-            intent.putExtra(FROM_ADMIN, true);
+            if("supervisor".equalsIgnoreCase(userType)) {
+                intent.putExtra(FROM_SUPERVISOR, true);
+            }
+            else{
+                intent.putExtra(FROM_ADMIN, true);
+            }
             intent.putExtra(DisplayUserActivity.FORM_ID, item.id);
             if (item.form_type.equals("dh_familyplan")) {
                 intent.setClass(this, FpObservationActivity.class);

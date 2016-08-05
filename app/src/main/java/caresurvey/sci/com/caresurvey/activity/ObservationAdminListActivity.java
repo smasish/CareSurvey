@@ -12,6 +12,7 @@ import java.util.List;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.ANCSupervisorTable;
+import caresurvey.sci.com.caresurvey.database.FPObservationSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.InventorySupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicSupervisorTable;
 import caresurvey.sci.com.caresurvey.database.SickChildSupervisorTable2;
@@ -64,7 +65,7 @@ public class ObservationAdminListActivity extends AppCompatActivity implements V
             ((Button)findViewById(R.id.anc)).setText("Observation of ANC " + new ANCSupervisorTable(this).getList(user,facility).size() + "/30");;
             ((Button)findViewById(R.id.inventory)).setText("Inventory of Facility " + new InventorySupervisorTable(this).getList(user,facility).size() + "/1");
             ((Button)findViewById(R.id.sick_child)).setText("Observation of Sick Child " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
-            ((Button)findViewById(R.id.famility)).setText("Observation of Family Planning " + new SickChildSupervisorTable2(this).getList(user,facility).size() + "/30");
+            ((Button)findViewById(R.id.famility)).setText("Observation of Family Planning " + new FPObservationSupervisorTable(this).getList(user,facility).size() + "/30");
 //        }
     }
 

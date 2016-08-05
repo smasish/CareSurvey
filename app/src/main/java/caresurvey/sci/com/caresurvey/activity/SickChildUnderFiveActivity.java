@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -52,7 +51,7 @@ public class SickChildUnderFiveActivity extends AppCompatActivity implements Vie
         Intent mIntent = getIntent();
         table = new SickChildTable(this);
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)) { //alreay have one
-            if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+            if(mIntent.hasExtra(SurveyActivity.FROM_SUPERVISOR)){
                 editable(false);
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.user_btn_layout).setVisibility(View.GONE);

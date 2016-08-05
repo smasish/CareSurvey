@@ -55,7 +55,7 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
         table = new InventoryTable(this);
         Intent mIntent = getIntent();
         if(mIntent.hasExtra(DisplayUserActivity.FORM_ID)){ //alreay have one
-            if(mIntent.hasExtra(SurveyActivity.FROM_ADMIN)){
+            if(mIntent.hasExtra(SurveyActivity.FROM_SUPERVISOR)){
                 findViewById(R.id.admin_btn_layout).setVisibility(View.VISIBLE);
                 findViewById(R.id.accept).setOnClickListener(this);
                 findViewById(R.id.revert).setOnClickListener(this);
@@ -71,29 +71,28 @@ public class FacilityInventoryActivity extends AppCompatActivity implements View
         }
         else{
             item = new InventoryItem();
+            item.name = mIntent.getStringExtra("name");
+            item.designation = mIntent.getStringExtra("designation");
+            mark = mIntent.getIntExtra("mark", 0);
+            item.collector_name = mIntent.getStringExtra("c_name");
+            item.upozila = mIntent.getStringExtra("upozila");
+            item.union = mIntent.getStringExtra("union");
+            item.village = mIntent.getStringExtra("village");
+            item.facility = mIntent.getStringExtra("facility");
+            item.district = mIntent.getStringExtra("district");
+            item.lat = mIntent.getStringExtra("lat");
+            item.lon = mIntent.getStringExtra("lon");
+            datespicker = mIntent.getStringExtra("datepicker");
+            item.start_time = timepicker = mIntent.getStringExtra("timepicker");
+            obsType = mIntent.getStringExtra("obstype");
+            item.facility_id = mIntent.getIntExtra("serial",0);
         }
-        item.name = mIntent.getStringExtra("name");
-        item.designation = mIntent.getStringExtra("designation");
-        mark = mIntent.getIntExtra("mark", 0);
-        item.collector_name = mIntent.getStringExtra("c_name");
-        item.upozila = mIntent.getStringExtra("upozila");
-        item.union = mIntent.getStringExtra("union");
-        item.village = mIntent.getStringExtra("village");
-        item.facility = mIntent.getStringExtra("facility");
-        item.district = mIntent.getStringExtra("district");
-        item.lat = mIntent.getStringExtra("lat");
-        item.lon = mIntent.getStringExtra("lon");
-
-        datespicker = mIntent.getStringExtra("datepicker");
-        item.start_time = timepicker = mIntent.getStringExtra("timepicker");
-        obsType = mIntent.getStringExtra("obstype");
-        item.facility_id = mIntent.getIntExtra("serial",0);
         loadFragment(0);
 
     }
 
     public boolean isAdmin(){
-        if(getIntent().hasExtra(SurveyActivity.FROM_ADMIN)){
+        if(getIntent().hasExtra(SurveyActivity.FROM_SUPERVISOR)){
             return true;
         }
         return false;

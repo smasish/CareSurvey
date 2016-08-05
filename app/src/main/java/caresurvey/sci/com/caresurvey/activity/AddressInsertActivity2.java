@@ -134,20 +134,11 @@ public class AddressInsertActivity2 extends AppCompatActivity implements Adapter
     private void loadData() {
         String district = getIntent().getStringExtra(SelectionActivity.EXTRA_DISTRICT);
         if(!TextUtils.isEmpty(district)){
-            if("Habiganj".equalsIgnoreCase(district)){
-                districtSpinner.setSelection(1);
-            }
-            else if("Lakshmipur".equalsIgnoreCase(district)){
-                districtSpinner.setSelection(2);
-            }
-            else if("Noakhali".equalsIgnoreCase(district)){
-                districtSpinner.setSelection(3);
-            }
-            else if("Jhalakati".equalsIgnoreCase(district)){
-                districtSpinner.setSelection(4);
-            }
-            else{
-                districtSpinner.setSelection(0);
+            districtSpinner.setSelection(0);
+            for(int i=0;i<districtAdapter.getCount();i++){
+                if(districtAdapter.getItem(i).nameEng.equalsIgnoreCase(district)){
+                    districtSpinner.setSelection(i);
+                }
             }
         }
     }
