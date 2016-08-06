@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 import caresurvey.sci.com.caresurvey.R;
 import caresurvey.sci.com.caresurvey.database.ANCTable;
@@ -18,6 +19,7 @@ import caresurvey.sci.com.caresurvey.database.FpObservationTable;
 import caresurvey.sci.com.caresurvey.database.InventoryTable;
 import caresurvey.sci.com.caresurvey.database.SatelliteClinicTable;
 import caresurvey.sci.com.caresurvey.database.SickChildTable;
+import caresurvey.sci.com.caresurvey.utils.AppUtils;
 
 public class SelectionUserActivity extends AppCompatActivity {
 
@@ -32,7 +34,7 @@ public class SelectionUserActivity extends AppCompatActivity {
 
         home=(Button)findViewById(R.id.home);
         insert=(Button)findViewById(R.id.addForm);
-
+        ((TextView)findViewById(R.id.username)).setText("Welcome " + AppUtils.getFullName(this));
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         else{
                             userDistrict = tokens[2].trim();
                             userType = tokens[0];
+                            AppUtils.setFullName(LoginActivity.this,tokens[1]);
                             AppUtils.setUserType(LoginActivity.this,userType);
                             if("collector".equalsIgnoreCase(userType)){
                                 LoadDataCollector();

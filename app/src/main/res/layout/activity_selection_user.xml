@@ -8,30 +8,47 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_layout"
+        android:layout_centerInParent="true"
         android:gravity="center">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-
             android:id="@+id/home"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
             android:text="@string/home" />
 
 
 
         <Button
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/addForm"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:text="@string/add_form" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_layout"
+        android:maxLines="1"
+        android:layout_marginBottom="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        />
 </RelativeLayout>

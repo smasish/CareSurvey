@@ -306,4 +306,13 @@ public class AppUtils{
         return 0;
     }
 
+    public static void setFullName(Context context, String fullName) {
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        pref.edit().putString("full_name",fullName).commit();
+    }
+
+    public static String getFullName(Context context){
+        SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        return pref.getString("full_name","");
+    }
 }

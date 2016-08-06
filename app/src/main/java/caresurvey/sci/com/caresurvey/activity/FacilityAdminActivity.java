@@ -93,12 +93,13 @@ public class FacilityAdminActivity extends AppCompatActivity implements View.OnC
             public void onResponse(String response) {
                 progressDialog.dismiss();
                 response = response.replaceAll("\"","");
-                String tokens[] = response.split("\n");
+                String tokens[] = response.split("\\n");
                 if(tokens.length > 0){
                     for(int i=0;i<tokens.length;i++) {
-                        String userInfo[] = tokens[i].split(",");
-                        if(userInfo.length >= 1) {
-                            mAdapter.add(userInfo[1].trim());
+                        String token = tokens[i].replace("\\n","");
+                        String userInfo[] = token.split(",");
+                        if(userInfo.length >= 3) {
+                            mAdapter.add(userInfo[3].trim());
                         }
                     }
                 }
