@@ -60,26 +60,26 @@ public class FacilityAdminActivity extends AppCompatActivity implements View.OnC
         String district = getIntent().getStringExtra(EXTRA_DISTRICT);
         String userType = getIntent().getStringExtra(EXTRA_USER_TYPE);
         mAdapter.add("Select user");
-        if("admin".equalsIgnoreCase(userType)){
-            mAdapter.addAll(Arrays.asList(COLLECTOR_HB));
-            mAdapter.addAll(Arrays.asList(COLLECTOR_NK));
-            mAdapter.addAll(Arrays.asList(COLLECTOR_LP));
-            mAdapter.addAll(Arrays.asList(COLLECTOR_JK));
-        }
-        else if("supervisor".equalsIgnoreCase(userType) || "districtadmin".equalsIgnoreCase(userType)){
-            if("Habiganj".equalsIgnoreCase(district)){
-                mAdapter.addAll(Arrays.asList(COLLECTOR_HB));
-            }
-            else if("Lakshmipur".equalsIgnoreCase(district)){
-                mAdapter.addAll(Arrays.asList(COLLECTOR_LP));
-            }
-            else if("Noakhali".equalsIgnoreCase(district)){
-                mAdapter.addAll(Arrays.asList(COLLECTOR_NK));
-            }
-            else if("Jhalakati".equalsIgnoreCase(district)){
-                mAdapter.addAll(Arrays.asList(COLLECTOR_JK));
-            }
-        }
+//        if("admin".equalsIgnoreCase(userType)){
+//            mAdapter.addAll(Arrays.asList(COLLECTOR_HB));
+//            mAdapter.addAll(Arrays.asList(COLLECTOR_NK));
+//            mAdapter.addAll(Arrays.asList(COLLECTOR_LP));
+//            mAdapter.addAll(Arrays.asList(COLLECTOR_JK));
+//        }
+//        else if("supervisor".equalsIgnoreCase(userType) || "districtadmin".equalsIgnoreCase(userType)){
+//            if("Habiganj".equalsIgnoreCase(district)){
+//                mAdapter.addAll(Arrays.asList(COLLECTOR_HB));
+//            }
+//            else if("Lakshmipur".equalsIgnoreCase(district)){
+//                mAdapter.addAll(Arrays.asList(COLLECTOR_LP));
+//            }
+//            else if("Noakhali".equalsIgnoreCase(district)){
+//                mAdapter.addAll(Arrays.asList(COLLECTOR_NK));
+//            }
+//            else if("Jhalakati".equalsIgnoreCase(district)){
+//                mAdapter.addAll(Arrays.asList(COLLECTOR_JK));
+//            }
+//        }
         userSpinner.setAdapter(mAdapter);
         loadUser();
     }
@@ -92,7 +92,19 @@ public class FacilityAdminActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();
-                Log.e("user response",response);
+                response = response.replaceAll("\"","");
+                String tokens[] = response.split("\n");
+                if(tokens.length > 0){
+                    for(int i=0;i<tokens.length;i++) {
+                        String userInfo[] = tokens[i].split(",");
+                        if(userInfo.length >= 1) {
+                            mAdapter.add(userInfo[1].trim());
+                        }
+                    }
+                }
+                else{
+                    Toast.makeText(FacilityAdminActivity.this,"No user found",Toast.LENGTH_SHORT).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override

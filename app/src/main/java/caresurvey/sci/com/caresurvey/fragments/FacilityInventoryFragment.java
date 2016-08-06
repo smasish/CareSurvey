@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -599,36 +600,47 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         sVEs(R.id.fi_601_1,state);
         sVEs(R.id.fi_601_2,state);
         sVEs(R.id.fi_601_3,state);
+        sVEs(R.id.fi_601_4,state);
         sVEs(R.id.fi_602_1,state);
         sVEs(R.id.fi_602_2,state);
         sVEs(R.id.fi_602_3,state);
+        sVEs(R.id.fi_602_4,state);
         sVEs(R.id.fi_603_1,state);
         sVEs(R.id.fi_603_2,state);
         sVEs(R.id.fi_603_3,state);
+        sVEs(R.id.fi_603_4,state);
         sVEs(R.id.fi_604_1,state);
         sVEs(R.id.fi_604_2,state);
         sVEs(R.id.fi_604_3,state);
+        sVEs(R.id.fi_604_4,state);
         sVEs(R.id.fi_605_1,state);
         sVEs(R.id.fi_605_2,state);
         sVEs(R.id.fi_605_3,state);
+        sVEs(R.id.fi_605_4,state);
         sVEs(R.id.fi_606_1,state);
         sVEs(R.id.fi_606_2,state);
         sVEs(R.id.fi_606_3,state);
+        sVEs(R.id.fi_606_4,state);
         sVEs(R.id.fi_607_1,state);
         sVEs(R.id.fi_607_2,state);
         sVEs(R.id.fi_607_3,state);
+        sVEs(R.id.fi_607_4,state);
         sVEs(R.id.fi_608_1,state);
         sVEs(R.id.fi_608_2,state);
         sVEs(R.id.fi_608_3,state);
+        sVEs(R.id.fi_608_4,state);
         sVEs(R.id.fi_609_1,state);
         sVEs(R.id.fi_609_2,state);
         sVEs(R.id.fi_609_3,state);
+        sVEs(R.id.fi_609_4,state);
         sVEs(R.id.fi_610_1,state);
         sVEs(R.id.fi_610_2,state);
         sVEs(R.id.fi_610_3,state);
+        sVEs(R.id.fi_610_4,state);
         sVEs(R.id.fi_611_1,state);
         sVEs(R.id.fi_611_2,state);
         sVEs(R.id.fi_611_3,state);
+        sVEs(R.id.fi_611_4,state);
         sVEs(R.id.fi_612,state);
         sVEs(R.id.fi_612,state);
     }
@@ -1358,9 +1370,13 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         item.w_waste_option = gCBv(R.id.fi_202_1) + "," + gCBv(R.id.fi_202_2) + "," +gCBv(R.id.fi_202_3);
         item.w_waste_dispose_how = gCBv(R.id.fi_203_1) + "," + gCBv(R.id.fi_203_2) + ","+
                 gCBv(R.id.fi_203_3) + "," + gCBv(R.id.fi_203_4) + "," + gCBv(R.id.fi_203_5) + "," + gCBv(R.id.fi_203_6) + "," + gCBv(R.id.fi_203_7) + "," + gCBv(R.id.fi_203_8) + "," + gCBv(R.id.fi_203_9);
-        item.w_pointy_waste = gCBv(R.id.fi_204_1) + "," + gCBv(R.id.fi_204_2) + ","+ gCBv(R.id.fi_204_3) + "," + gCBv(R.id.fi_204_4);
+        if(view.findViewById(R.id.fi_204_1).isEnabled()) {
+            item.w_pointy_waste = gCBv(R.id.fi_204_1) + "," + gCBv(R.id.fi_204_2) + "," + gCBv(R.id.fi_204_3) + "," + gCBv(R.id.fi_204_4);
+        }
         item.w_liquid_waste = gCBv(R.id.fi_205_1) + "," + gCBv(R.id.fi_205_2) + ","+ gCBv(R.id.fi_205_3) + "," + gCBv(R.id.fi_205_4)+ "," + gCBv(R.id.fi_205_5)+ "," + gCBv(R.id.fi_205_6)+ "," + gCBv(R.id.fi_205_7)+ "," + gCBv(R.id.fi_205_8)+ "," + gCBv(R.id.fi_205_9);
-        item.w_liquid_waste_store = gCBv(R.id.fi_206_1) + "," + gCBv(R.id.fi_206_2) + ","+ gCBv(R.id.fi_206_3) + "," + gCBv(R.id.fi_206_4);
+        if(view.findViewById(R.id.fi_206_1).isEnabled()) {
+            item.w_liquid_waste_store = gCBv(R.id.fi_206_1) + "," + gCBv(R.id.fi_206_2) + "," + gCBv(R.id.fi_206_3) + "," + gCBv(R.id.fi_206_4);
+        }
         item.w_plastic_waste = gCBv(R.id.fi_207_1) + "," + gCBv(R.id.fi_207_2) + ","+ gCBv(R.id.fi_207_3) + "," + gCBv(R.id.fi_207_4);
         item.w_waste_normal = gCBv(R.id.fi_208_1) + "," + gCBv(R.id.fi_208_2) + ","+ gCBv(R.id.fi_208_3) + "," + gCBv(R.id.fi_208_4);
         item.w_incinerator_seen = gCBv(R.id.fi_210_1) + "," + gCBv(R.id.fi_210_2);
@@ -1368,6 +1384,24 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
 
     private void loadData2(InventoryItem item){
+        ((CheckBox)view.findViewById(R.id.fi_203_9)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                sVEs(R.id.fi_204_1,!isChecked);
+                sVEs(R.id.fi_204_2,!isChecked);
+                sVEs(R.id.fi_204_3,!isChecked);
+                sVEs(R.id.fi_204_4,!isChecked);
+            }
+        });
+        ((CheckBox)view.findViewById(R.id.fi_205_9)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                sVEs(R.id.fi_206_1,!isChecked);
+                sVEs(R.id.fi_206_2,!isChecked);
+                sVEs(R.id.fi_206_3,!isChecked);
+                sVEs(R.id.fi_206_4,!isChecked);
+            }
+        });
         String tokens[];
         sETv(R.id.fi_201_0,item.i_waste_sp_name);
         sSPi(R.id.fi_201_1,item.i_waste_sp_designation);

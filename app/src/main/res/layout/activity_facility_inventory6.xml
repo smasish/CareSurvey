@@ -70,21 +70,21 @@
 
                 <EditText
                     android:id="@+id/fi_601_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_601_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_601_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -95,6 +95,7 @@
             <EditText
                 android:id="@+id/fi_601_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -126,21 +127,21 @@
 
                 <EditText
                     android:id="@+id/fi_602_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_602_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_602_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -151,6 +152,7 @@
             <EditText
                 android:id="@+id/fi_602_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -182,21 +184,21 @@
 
                 <EditText
                     android:id="@+id/fi_603_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_603_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_603_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -207,6 +209,7 @@
             <EditText
                 android:id="@+id/fi_603_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -274,21 +277,21 @@
 
                 <EditText
                     android:id="@+id/fi_604_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_604_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_604_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -299,6 +302,7 @@
             <EditText
                 android:id="@+id/fi_604_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -330,21 +334,21 @@
 
                 <EditText
                     android:id="@+id/fi_605_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_605_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_605_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -355,6 +359,7 @@
             <EditText
                 android:id="@+id/fi_605_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -422,21 +427,21 @@
 
                 <EditText
                     android:id="@+id/fi_606_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_606_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_606_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -447,6 +452,7 @@
             <EditText
                 android:id="@+id/fi_606_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -478,21 +484,21 @@
 
                 <EditText
                     android:id="@+id/fi_607_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_607_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_607_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -503,6 +509,7 @@
             <EditText
                 android:id="@+id/fi_607_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -533,21 +540,21 @@
 
                 <EditText
                     android:id="@+id/fi_608_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_608_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_608_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -557,6 +564,7 @@
 
             <EditText
                 android:id="@+id/fi_608_4"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
@@ -589,21 +597,21 @@
 
                 <EditText
                     android:id="@+id/fi_609_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_609_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_609_3"
-                    android:inputType="number"
+
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -614,6 +622,7 @@
             <EditText
                 android:id="@+id/fi_609_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -645,21 +654,21 @@
 
                 <EditText
                     android:id="@+id/fi_610_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_610_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_610_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -670,6 +679,7 @@
             <EditText
                 android:id="@+id/fi_610_4"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
                 />
@@ -701,21 +711,21 @@
 
                 <EditText
                     android:id="@+id/fi_611_1"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_611_2"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/fi_611_3"
-                    android:inputType="number"
+                    
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
@@ -725,6 +735,7 @@
 
             <EditText
                 android:id="@+id/fi_611_4"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".30"
