@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -59,7 +60,7 @@ public class DatabaseAccessUnion {
         restricted.put("73",list);
 
         list = new ArrayList<>();
-        list.add("Aleyapur");
+        list.add("Alyerapur");
         list.add("Durgapur");
         list.add("Gopalpur");
         list.add("Narottampur");
@@ -111,6 +112,8 @@ public class DatabaseAccessUnion {
             do {
                 //System.out.println("abc="+cursor.getString(4));
                 list.add(cursor.getString(cursor.getColumnIndex(unioname)));
+                Log.d("id-----","....======");
+                Log.d("union name=====" + cursor.getString(cursor.getColumnIndex(unioname)), "");
             } while (cursor.moveToNext());
         }
 
@@ -123,15 +126,20 @@ public class DatabaseAccessUnion {
         List<AddressItem> list = new ArrayList<>();
         List<String> checkList = restricted.get(upazilaId);
         Cursor cursor = database.rawQuery("SELECT * FROM unions WHERE " + unionnameeng + " NOT LIKE 'WARD NO%' and UPAZILAID = ?", new String[]{ upazilaId });
+
         if (cursor.moveToFirst()) {
             do {
                 AddressItem item = new AddressItem();
                 item.id = cursor.getInt(cursor.getColumnIndex(unionid));
                 item.name = cursor.getString(cursor.getColumnIndex(unioname));
                 item.nameEng = cursor.getString(cursor.getColumnIndex(unionnameeng));
+
+
+
                 if(checkList != null){
                     for(String checkItem : checkList){
                         if(checkItem.equalsIgnoreCase(item.nameEng)){
+                            Log.d("id-----","....======"+item.nameEng);
                             list.add(item);
                             break;
                         }

@@ -110,9 +110,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(String response) {
                         Log.e("response---", "********" + response.toString());
                         pd.dismiss();
+
+
                         String responseStr = response.toString();
                         responseStr = responseStr.replaceAll("\"","");
-                        String tokens[] =  responseStr.split(",");
+                        String s[] = responseStr.split("~");
+                        for(int i =0;i<s.length;i++){
+
+
+                        String tokens[] =  s[i].split(",");
 
                         if(tokens.length != 3){ //invalid response
                             Toast.makeText(LoginActivity.this, "Invalid response", Toast.LENGTH_SHORT).show();
@@ -130,6 +136,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 LoadDataSupervisor();
                             }
 
+                        }
                         }
 
                     }

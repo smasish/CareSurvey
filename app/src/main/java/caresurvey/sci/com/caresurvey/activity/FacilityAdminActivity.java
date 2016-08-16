@@ -81,6 +81,7 @@ public class FacilityAdminActivity extends AppCompatActivity implements View.OnC
 //            }
 //        }
         userSpinner.setAdapter(mAdapter);
+        Log.d("------------>>>>" , "||");
         loadUser();
     }
 
@@ -92,6 +93,8 @@ public class FacilityAdminActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();
+
+                Log.d("------------>>>>"+response,"||");
                 response = response.replaceAll("\"","");
                 String tokens[] = response.split("\\n");
                 if(tokens.length > 0){
