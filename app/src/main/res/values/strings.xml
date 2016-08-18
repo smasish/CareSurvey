@@ -354,7 +354,8 @@ nq wK bv|</string>
     <string name="sci_q219">219 j¨v‡U· Møvfm (mvwR©K¨vj Møvfm)</string>
     <string name="sci_q220">220 BDwib †cÖvwUb †U‡ói Rb¨ ‡Uó wUDe</string>
     <string name="sci_q221">221 BDwib †cÖvwUb †U‡ói ‡Uó wUDe †nvìvi</string>
-    <string name="sci_q222">222 BDwib †cÖvwUb †U‡ói Rb¨  wWc wóKm (‰ea †gqv‡`i)</string>
+  <!--  <string name="sci_q222">222 BDwib †cÖvwUb †U‡ói Rb¨  wWc wóKm (‰ea †gqv‡`i)</string>-->
+    <string name="sci_q222">222 ইউরিন প্রোটিন টেস্টের টেস্ট টিউব র‍্যাক</string>
     <string name="sci_q223">223 BDwib †cÖvwUb †U‡ói Rb¨  wWc wóKm (‰ea †gqv‡`i)</string>
     <string name="sci_q224">224 wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU eyK</string>
     <string name="sci_q225">225 wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU j¨vb‡mU</string>
@@ -432,8 +433,6 @@ nq wK bv|</string>
         <item>Assistant Family Welfare Officer (AFWO)</item>
         <item>Family Welfare Visitor (FWV)</item>
         <item>Paramedic</item>
-        <item>FWV</item>
-        <item>Sr. FWV</item>
         <item>Others</item>
     </string-array>
     <string-array name="scuf_designation">

@@ -94,16 +94,31 @@ public class FacilityAdminActivity extends AppCompatActivity implements View.OnC
             public void onResponse(String response) {
                 progressDialog.dismiss();
 
-                Log.d("------------>>>>"+response,"||");
+               // Log.d("------------>>>>" + response, "||");
+               // Log.d("------------>>>>" , "||");
                 response = response.replaceAll("\"","");
-                String tokens[] = response.split("\\n");
+              //  String tokens[] = response.split("\\n");
+            //    Log.d("-------len----->>>>" , "||"+tokens.length);
+
+
+                String temp = response.toString();
+                temp = temp.replace("\\n","#");
+                String tokens[] = temp.split("#");
+                Log.d("----len-->>>>"+tokens.length,"---"+temp);
+                Log.d("----test--->>>>" ,"");
                 if(tokens.length > 0){
                     for(int i=0;i<tokens.length;i++) {
-                        String token = tokens[i].replace("\\n","");
-                        String userInfo[] = token.split(",");
-                        if(userInfo.length >= 3) {
-                            mAdapter.add(userInfo[3].trim());
+
+                        String token[] = tokens[i].split(",");
+
+                        Log.d("------token1----->>>>"+token.length , "||"+token[1]);
+                        for(int j=0;j<token.length;j++) {
+                            String userInfo[] = token[j].split(",");
+                            Log.d("------userlist----->>>>" , "||"+userInfo[0]);
+                            if(j== 3)
+                                mAdapter.add(userInfo[0].trim());
                         }
+
                     }
                 }
                 else{
@@ -126,6 +141,7 @@ public class FacilityAdminActivity extends AppCompatActivity implements View.OnC
                     JSONObject data = new JSONObject();
                     data.put("username", AppUtils.getUserName(FacilityAdminActivity.this));
                     data.put("password", AppUtils.getPassword(FacilityAdminActivity.this));
+                    Log.d("------data------>>>>" + data, "||");
                     params.put("data", data.toString());
                 }catch (Exception e){
                     e.printStackTrace();

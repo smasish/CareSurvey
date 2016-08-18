@@ -40,7 +40,7 @@ public class DatabaseAccessUnion {
         list.add("Auskandi");
         list.add("Debpara");
         list.add("Paschim bara bhakhair");
-        list.add("Purba barar bakhair");
+        list.add("Purba bara bakhair");
         restricted.put("77",list);
         list = new ArrayList<>();
         list.add("Chenchri rampur");
@@ -138,6 +138,7 @@ public class DatabaseAccessUnion {
 
                 if(checkList != null){
                     for(String checkItem : checkList){
+                        Log.d("id-----","....======"+item.nameEng);
                         if(checkItem.equalsIgnoreCase(item.nameEng)){
                             Log.d("id-----","....======"+item.nameEng);
                             list.add(item);
