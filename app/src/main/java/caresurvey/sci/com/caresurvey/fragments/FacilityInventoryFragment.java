@@ -893,7 +893,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             }
             else if(i == 1){
                 lRGv(R.id.fi_319_1, ind);
+
             }
+//
         }
         lRGv(R.id.fi_320_0, gRGI(item.n_telecoil_book));
         lRGv(R.id.fi_321_0, gRGI(item.n_telecoil_landset));
@@ -1232,6 +1234,8 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         if(tmp.equals("1")){
             String v = gRGv(R.id.fi_319_1);
             tmp += ("," + v);
+
+
         }
         item.n_hemoglobin = tmp;
         item.n_telecoil_book = gRGv(R.id.fi_320_0);
@@ -1678,6 +1682,12 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         RadioGroup group = (RadioGroup) view.findViewById(id);
         RadioButton btn = (RadioButton) group.getChildAt(index);
         btn.setChecked(true);
+    }
+
+    private void lRGvDisable(int id,int index){
+        RadioGroup group = (RadioGroup) view.findViewById(id);
+        RadioButton btn = (RadioButton) group.getChildAt(index);
+        btn.setChecked(false);
     }
 
     public String getTime() {

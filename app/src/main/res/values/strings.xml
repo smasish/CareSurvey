@@ -302,7 +302,7 @@ nq wK bv|</string>
     <string name="inventory_ques_601_header1">‡Wwjfvix msµvšÍ Z_¨</string>
     <string name="inventory_ques_601_header2">‡h gv‡m Rwic Ki‡Qb Zvi c~e©eZ©x 3 gv‡mi Z_¨ gvm wfwËK †iKW© Kiæb</string>
     <string name="inventory_ques_601_header3">‡h †iwR÷vi/Drm †_‡K Z_¨ †iKW© Kiv n‡q‡Q, †mB †iwR÷vi/Dr‡mi bvg wjLyb| †h †Kvb Drm †_‡K GB Z_¨ cvIqv bv †M‡j h_vh_ Kjv‡g GbwR wjLyb|</string>
-    <string name="inventory_ques_601_header4">wcÖ-GKjv¤úwkqv/GKjv¤úwkqv wPwKrmv msµvšÍ Z_¨(ïay gvÎ DH Ges UHC Gi †ÿ‡Î cÖ‡hvR¨ )</string>
+    <string name="inventory_ques_601_header4">wcÖ-GKjv¤úwkqv/GKjv¤úwkqv wPwKrmv msµvšÍ Z_¨(ïay gvÎ ডি এইচ Ges ইউ এইস সি  Gi †ÿ‡Î cÖ‡hvR¨ )</string>
     <string name="inventory_ques_601_header5">‡h gv‡m Rwic Ki‡Qb Zvi c~e©eZ©x 3 gv‡mi Z_¨ gvm wfwËK †iKW© Kiæb</string>
     <string name="inventory_ques_601_header6">‡h †iwR÷vi/Drm †_‡K Z_¨ †iKW© Kiv n‡q‡Q, †mB †iwR÷vi/Dr‡mi bvg wjLyb| †h †Kvb Drm †_‡K GB Z_¨ cvIqv bv †M‡j h_vh_ Kjv‡g GbwR wjLyb|</string>
     <string name="inventory_ques_601_header7">Amy¯’ wkïi wPwKrmv msµvšÍ Z_¨</string>
@@ -314,9 +314,9 @@ nq wK bv|</string>
     <string name="inventory_ques_604">gvivZœK wcÖ-GKjv¤úwkqv/GKjv¤úwkqv wb‡q fwZ© †ivMxi msL¨v</string>
     <string name="inventory_ques_605">Bb‡RKkb g¨vM‡bwkqvg mvj‡dU w`‡q wPwKrmvcÖvß †ivMxi msL¨v</string>
     <string name="inventory_ques_606">wbD‡gvwbqv AvµvšÍ wkïi msL¨v</string>
-    <string name="inventory_ques_607">wbD‡gvwbqv AvµvšÍ wkïi g‡a¨ mwVK wPwKrmv (Cotrimoxazole or Amoxycillin + Paracetamol) cÖvß wkkyi msL¨v</string>
-    <string name="inventory_ques_608">Lye gvivZœK †ivM/‡mcwmm (PSBI) AvµvšÍ wkïi msL¨v</string>
-    <string name="inventory_ques_609">Lye gvivZœK †ivM/‡mcwmm (PSBI) AvµvšÍ wkïi g‡a¨ mwVK wPwKrmv (Inj. Gentamycin +  Amoxycillin) cÖvß wkïi msL¨v</string>
+    <string name="inventory_ques_607">wbD‡gvwbqv AvµvšÍ wkïi g‡a¨ mwVK wPwKrmv (কট্রিমোক্সাজোল অর অ্যামোক্সিলিন+ প্যারাসিটামল) cÖvß wkkyi msL¨v</string>
+    <string name="inventory_ques_608">Lye gvivZœK †ivM/‡mcwmm (পি. এস. বি. আই.) AvµvšÍ wkïi msL¨v</string>
+    <string name="inventory_ques_609">Lye gvivZœK †ivM/‡mcwmm (পি. এস. বি. আই.) AvµvšÍ wkïi g‡a¨ mwVK wPwKrmv (ইনজেকশন জেন্টামাইসিন + অ্যামোক্সিসিলিন) cÖvß wkïi msL¨v</string>
     <string name="inventory_ques_610">gvivZœK Acywó‡Z AvµvšÍ wkïi msL¨v</string>
     <string name="inventory_ques_611">gvivZœK Acywó‡Z AvµvšÍ wkïi g‡a¨ cÖUKj Avbyhvwq †_ivwcDwUK wdwWs cÖvß wkïi msL¨v</string>
     <string name="inventory_ques_612">mv¶vrKvi ‡kl Kivi mgq</string>
@@ -359,10 +359,10 @@ nq wK bv|</string>
     <string name="sci_q223">223 BDwib †cÖvwUb †U‡ói Rb¨  wWc wóKm (‰ea †gqv‡`i)</string>
     <string name="sci_q224">224 wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU eyK</string>
     <string name="sci_q225">225 wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU j¨vb‡mU</string>
-    <string name="sci_q226">226 Tab. Iron-Folate (‰ea †gqv‡`i)</string>
-    <string name="sci_q227">227 Tab. Calcium (‰ea †gqv‡`i)</string>
-    <string name="sci_q228">228 Tab. Misoprostol (‰ea †gqv‡`i)</string>
-    <string name="sci_q229">229 Amoxycillin (‰ea †gqv‡`i)</string>
+    <string name="sci_q226">226 ট্যাবলেট আয়রন ফসিলেট (‰ea †gqv‡`i)</string>
+    <string name="sci_q227">227 ট্যাবলেট ক্যালসিয়াম (‰ea †gqv‡`i)</string>
+    <string name="sci_q228">228 ট্যাবলেট মিসোপ্রোস্টল (‰ea †gqv‡`i)</string>
+    <string name="sci_q229">229 অ্যামোক্সিলিন (‰ea †gqv‡`i)</string>
     <string name="sci_q230_1">230a cwievi cwiKíbv c×wZ: wcj (myLx)</string>
     <string name="sci_q230_2">230b cwievi cwiKíbv c×wZ: wcj (Avcb)</string>
     <string name="sci_q231">231 cwievi cwiKíbv c×wZ: KbWg</string>
