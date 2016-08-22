@@ -212,7 +212,7 @@ nq wK bv|</string>
 
 
     <!--Inventory suply and equipment questions-->
-    <string name="inventory_title3">wb‡`©kbvt  District Hospital I Upazila Health Complex Gi †ÿ‡Î †h K‡ÿ Mf©Kvjxb †mev †`qv nq Ges UH&amp;FWC Gi †ÿ‡Î FWV Gi Kÿ cwi`k©b Kiæb| wb‡R ch©‡eÿY Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|</string>
+    <string name="inventory_title3">wb‡`©kbvt  wW.GBm. I  BD.GBm.wm Gi †ÿ‡Î †h K‡ÿ Mf©Kvjxb †mev †`qv nq Ges BD.GBm.GesGd.WvweøD.wm Gi †ÿ‡Î Gd.WvweøD.wf Gi Kÿ cwi`k©b Kiæb| wb‡R ch©‡eÿY Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|</string>
     <string name="inventory_ques_300_header">wb‡¤œi mieivn Ges hš¿cvwZ cÖavb †mev GjvKvq Av‡Q wK bv Ges GB¸wj mPj wK bv Zv hvPvB Kiæb|</string>
     <string name="inventory_ques_301">301 DËi`vZvi bvgt</string>
     <string name="inventory_ques_301_1">c`ext</string>c`ext
@@ -228,7 +228,7 @@ nq wK bv|</string>
     <string name="inventory_ques_311">311 mvc© I‡q÷ ivLvi cvÎ (†mdwU e·)</string>
     <string name="inventory_ques_312">312 j¨v‡U· Møvfm (mvwR©K¨vj Møvfm)</string>
     <string name="inventory_ques_313">313 Avqib Ges dwjK GwmW U¨ve‡jU Av‡Q (‰ea †gqv‡`i)</string>
-    <string name="inventory_ques_313_1">†mev cÖ`vbKvix Mf©eZx gwnjv‡`i wb‡¤œi cixÿv¸wj K‡ib wK? hw` cixÿv bv K‡ib, Z‡e †cÖve K‡i wbwðZ †nvb|</string>
+    <string name="inventory_ques_313_1">G.Gb.wm †mev cÖ`vbKvix Mf©eZx gwnjv‡`i wb‡¤œi cixÿv¸wj K‡ib wK? hw` cixÿv bv K‡ib, Z‡e †cÖve K‡i wbwðZ †nvb|</string>
     <string name="inventory_ques_313_2">mPj/KvR K‡i</string>
     <string name="inventory_ques_314">314 BDwib †cÖvwUb</string>
     <string name="inventory_ques_314_ans_1">নিজেই করেন</string>
@@ -271,7 +271,7 @@ nq wK bv|</string>
     <string name="inventory_ques_349">349 7.1% ‡K¬vi‡nw·wWb mjykb (‰ea †gqv‡`i)</string>
     <string name="inventory_ques_350">350 Ggw·wmwjb c¨vwWqvwU«K W«c (‰ea †gqv‡`i)</string>
     <string name="inventory_ques_351">351 Bb‡R±. ‡R›Uvwgwmb (‰ea †gqv‡`i)</string>
-    <string name="inventory_ques_title4">wb‡`©kbvt  wb‡R ch©‡eÿY Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|</string>
+    <string name="inventory_ques_title4">wb‡`©kbvt  wW.GBm. I  BD.GBm.wm Gi †ÿ‡Î AvB.Gg.wm.AvB. KY©vi A_ev †h K‡ÿ wkï mv¯’¨ †mev †mev †`qv nq Ges BD.GBm.GesGd.WvweøD.wm Gi †ÿ‡Î mvK‡gv Gi Kÿ cwi`k©b Kiæb| wb‡R ch©‡eÿY Kiæb, cÖ‡qvRb n‡j mswkøó †mevcÖ`vbKvix‡K cÖkœ K‡i †R‡b wbb|</string>
     <string name="inventory_ques_325_1">GB †mev †K›`ª †_‡K wK ¯^vfvweK cÖme †mev cÖ`vb Kiv nq?</string>
     <string name="inventory_ques_401">401 PvBì IBs †¯‹j</string>
     <string name="inventory_ques_402">402 Bbd¨v›U IBs †¯‹j</string>
@@ -301,22 +301,22 @@ nq wK bv|</string>
     <string name="inventory_ques_505">505 j¨v‡U· Møvfm (mvwR©K¨vj Møvfm)</string>
     <string name="inventory_ques_601_header1">‡Wwjfvix msµvšÍ Z_¨</string>
     <string name="inventory_ques_601_header2">‡h gv‡m Rwic Ki‡Qb Zvi c~e©eZ©x 3 gv‡mi Z_¨ gvm wfwËK †iKW© Kiæb</string>
-    <string name="inventory_ques_601_header3">‡h †iwR÷vi/Drm †_‡K Z_¨ †iKW© Kiv n‡q‡Q, †mB †iwR÷vi/Dr‡mi bvg wjLyb| †h †Kvb Drm †_‡K GB Z_¨ cvIqv bv †M‡j h_vh_ Kjv‡g GbwR wjLyb|</string>
-    <string name="inventory_ques_601_header4">wcÖ-GKjv¤úwkqv/GKjv¤úwkqv wPwKrmv msµvšÍ Z_¨(ïay gvÎ ডি এইচ Ges ইউ এইস সি  Gi †ÿ‡Î cÖ‡hvR¨ )</string>
+    <string name="inventory_ques_601_header3">‡h †iwR÷vi/Drm †_‡K Z_¨ †iKW© Kiv n‡q‡Q, †mB †iwR÷vi/Dr‡mi bvg wjLyb| †h †Kvb Drm †_‡K GB Z_¨ cvIqv bv †M‡j h_vh_ Kjv‡g Gb.G wjLyb|</string>
+    <string name="inventory_ques_601_header4">wcÖ-GKjv¤úwkqv/GKjv¤úwkqv wPwKrmv msµvšÍ Z_¨(ïay gvÎ wW.GBm Ges BD.GBm.wm  Gi †ÿ‡Î cÖ‡hvR¨ )</string>
     <string name="inventory_ques_601_header5">‡h gv‡m Rwic Ki‡Qb Zvi c~e©eZ©x 3 gv‡mi Z_¨ gvm wfwËK †iKW© Kiæb</string>
-    <string name="inventory_ques_601_header6">‡h †iwR÷vi/Drm †_‡K Z_¨ †iKW© Kiv n‡q‡Q, †mB †iwR÷vi/Dr‡mi bvg wjLyb| †h †Kvb Drm †_‡K GB Z_¨ cvIqv bv †M‡j h_vh_ Kjv‡g GbwR wjLyb|</string>
+    <string name="inventory_ques_601_header6">‡h †iwR÷vi/Drm †_‡K Z_¨ †iKW© Kiv n‡q‡Q, †mB †iwR÷vi/Dr‡mi bvg wjLyb| †h †Kvb Drm †_‡K GB Z_¨ cvIqv bv †M‡j h_vh_ Kjv‡g Gb.G wjLyb|</string>
     <string name="inventory_ques_601_header7">Amy¯’ wkïi wPwKrmv msµvšÍ Z_¨</string>
     <string name="inventory_ques_601_header8">‡h gv‡m Rwic Ki‡Qb Zvi c~e©eZ©x 3 gv‡mi Z_¨ gvm wfwËK †iKW© Kiæb</string>
-    <string name="inventory_ques_601_header9">‡h †iwR÷vi/Drm †_‡K Z_¨ †iKW© Kiv n‡q‡Q, †mB †iwR÷vi/Dr‡mi bvg wjLyb| †h †Kvb Drm †_‡K GB Z_¨ cvIqv bv †M‡j h_vh_ Kjv‡g GbwR wjLyb|</string>
+    <string name="inventory_ques_601_header9">‡h †iwR÷vi/Drm †_‡K Z_¨ †iKW© Kiv n‡q‡Q, †mB †iwR÷vi/Dr‡mi bvg wjLyb| †h †Kvb Drm †_‡K GB Z_¨ cvIqv bv †M‡j h_vh_ Kjv‡g Gb.G wjLyb|</string>
     <string name="inventory_ques_601">RxweZ R‡b¥i msL¨v</string>
     <string name="inventory_ques_602">g„Z R‡b¥i msL¨v</string>
     <string name="inventory_ques_603">ev”Pv R‡b¥i 1 wgwb‡Ui g‡a¨ Aw·Uwmb cÖvß gwnjvi msL¨v</string>
     <string name="inventory_ques_604">gvivZœK wcÖ-GKjv¤úwkqv/GKjv¤úwkqv wb‡q fwZ© †ivMxi msL¨v</string>
     <string name="inventory_ques_605">Bb‡RKkb g¨vM‡bwkqvg mvj‡dU w`‡q wPwKrmvcÖvß †ivMxi msL¨v</string>
     <string name="inventory_ques_606">wbD‡gvwbqv AvµvšÍ wkïi msL¨v</string>
-    <string name="inventory_ques_607">wbD‡gvwbqv AvµvšÍ wkïi g‡a¨ mwVK wPwKrmv (কট্রিমোক্সাজোল অর অ্যামোক্সিলিন+ প্যারাসিটামল) cÖvß wkkyi msL¨v</string>
-    <string name="inventory_ques_608">Lye gvivZœK †ivM/‡mcwmm (পি. এস. বি. আই.) AvµvšÍ wkïi msL¨v</string>
-    <string name="inventory_ques_609">Lye gvivZœK †ivM/‡mcwmm (পি. এস. বি. আই.) AvµvšÍ wkïi g‡a¨ mwVK wPwKrmv (ইনজেকশন জেন্টামাইসিন + অ্যামোক্সিসিলিন) cÖvß wkïi msL¨v</string>
+    <string name="inventory_ques_607">wbD‡gvwbqv AvµvšÍ wkïi g‡a¨ mwVK wPwKrmv (KwUªgKSvRj A_ev GgKwRwmwjb + ‡civwmUvgj) cÖvß wkkyi msL¨v </string>
+    <string name="inventory_ques_608">Lye gvivZœK †ivM/‡mcwmm (wc.Gm.we.AvB)  AvµvšÍ wkïi msL¨v</string>
+    <string name="inventory_ques_609">Lye gvivZœK †ivM/‡mcwmm (wc.Gm.we.AvB)  AvµvšÍ wkïi g‡a¨ mwVK wPwKrmv (Bb‡RKkb †RbUvgvBwmb + GgKwRwmwjb) cÖvß wkïi msL¨v</string>
     <string name="inventory_ques_610">gvivZœK Acywó‡Z AvµvšÍ wkïi msL¨v</string>
     <string name="inventory_ques_611">gvivZœK Acywó‡Z AvµvšÍ wkïi g‡a¨ cÖUKj Avbyhvwq †_ivwcDwUK wdwWs cÖvß wkïi msL¨v</string>
     <string name="inventory_ques_612">mv¶vrKvi ‡kl Kivi mgq</string>
@@ -359,10 +359,10 @@ nq wK bv|</string>
     <string name="sci_q223">223 BDwib †cÖvwUb †U‡ói Rb¨  wWc wóKm (‰ea †gqv‡`i)</string>
     <string name="sci_q224">224 wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU eyK</string>
     <string name="sci_q225">225 wn‡gv‡Møvweb cixÿvi Rb¨ †Uwj‡Kv‡qU j¨vb‡mU</string>
-    <string name="sci_q226">226 ট্যাবলেট আয়রন ফসিলেট (‰ea †gqv‡`i)</string>
-    <string name="sci_q227">227 ট্যাবলেট ক্যালসিয়াম (‰ea †gqv‡`i)</string>
-    <string name="sci_q228">228 ট্যাবলেট মিসোপ্রোস্টল (‰ea †gqv‡`i)</string>
-    <string name="sci_q229">229 অ্যামোক্সিলিন (‰ea †gqv‡`i)</string>
+    <string name="sci_q226">226 ‡Ue‡jU Avqib †dv‡jU (‰ea †gqv‡`i)</string>
+    <string name="sci_q227">227 ‡Ue‡jU K¨vjwmqvg (‰ea †gqv‡`i)</string>
+    <string name="sci_q228">228 ‡Ue‡jU wg‡mv‡cÖv÷j 200Gg.wR (‰ea †gqv‡`i)</string>
+    <string name="sci_q229">229 Ggw·wmwjb  (‰ea †gqv‡`i)</string>
     <string name="sci_q230_1">230a cwievi cwiKíbv c×wZ: wcj (myLx)</string>
     <string name="sci_q230_2">230b cwievi cwiKíbv c×wZ: wcj (Avcb)</string>
     <string name="sci_q231">231 cwievi cwiKíbv c×wZ: KbWg</string>

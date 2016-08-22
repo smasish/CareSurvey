@@ -597,9 +597,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         }
     }
     private void editable6(boolean state){
-        sVEs(R.id.fi_601_1,state);
-        sVEs(R.id.fi_601_2,state);
-        sVEs(R.id.fi_601_3,state);
+        sVEs(R.id.fi_601_1, state);
+        sVEs(R.id.fi_601_2, state);
+        sVEs(R.id.fi_601_3, state);
         sVEs(R.id.fi_601_4,state);
         sVEs(R.id.fi_602_1,state);
         sVEs(R.id.fi_602_2,state);
@@ -625,28 +625,28 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         sVEs(R.id.fi_607_2,state);
         sVEs(R.id.fi_607_3,state);
         sVEs(R.id.fi_607_4,state);
-        sVEs(R.id.fi_608_1,state);
-        sVEs(R.id.fi_608_2,state);
-        sVEs(R.id.fi_608_3,state);
-        sVEs(R.id.fi_608_4,state);
-        sVEs(R.id.fi_609_1,state);
-        sVEs(R.id.fi_609_2,state);
-        sVEs(R.id.fi_609_3,state);
-        sVEs(R.id.fi_609_4,state);
-        sVEs(R.id.fi_610_1,state);
-        sVEs(R.id.fi_610_2,state);
-        sVEs(R.id.fi_610_3,state);
-        sVEs(R.id.fi_610_4,state);
-        sVEs(R.id.fi_611_1,state);
-        sVEs(R.id.fi_611_2,state);
-        sVEs(R.id.fi_611_3,state);
-        sVEs(R.id.fi_611_4,state);
-        sVEs(R.id.fi_612,state);
-        sVEs(R.id.fi_612,state);
+        sVEs(R.id.fi_608_1, state);
+        sVEs(R.id.fi_608_2, state);
+        sVEs(R.id.fi_608_3, state);
+        sVEs(R.id.fi_608_4, state);
+        sVEs(R.id.fi_609_1, state);
+        sVEs(R.id.fi_609_2, state);
+        sVEs(R.id.fi_609_3, state);
+        sVEs(R.id.fi_609_4, state);
+        sVEs(R.id.fi_610_1, state);
+        sVEs(R.id.fi_610_2, state);
+        sVEs(R.id.fi_610_3, state);
+        sVEs(R.id.fi_610_4, state);
+        sVEs(R.id.fi_611_1, state);
+        sVEs(R.id.fi_611_2, state);
+        sVEs(R.id.fi_611_3, state);
+        sVEs(R.id.fi_611_4, state);
+        sVEs(R.id.fi_612, state);
+        sVEs(R.id.fi_612, state);
     }
     private void loadData4(InventoryItem item){
-        sETv(R.id.fi_325_0,item.delivery_sp_name);
-        sSPi(R.id.fi_325_1,item.delivery_sp_designation);
+        sETv(R.id.fi_325_0, item.delivery_sp_name);
+        sSPi(R.id.fi_325_1, item.delivery_sp_designation);
         lRGv(R.id.fi_325_2, gRGI(item.d_delivery_service));
         String tmp = "";
         String tokens[];
@@ -761,8 +761,8 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
 
     private void editable4(boolean state){
-        sVEs(R.id.fi_325_0,state);
-        sVEs(R.id.fi_325_1,state);
+        sVEs(R.id.fi_325_0, state);
+        sVEs(R.id.fi_325_1, state);
         sRGs(R.id.fi_325_2, state);
         sRGs(R.id.fi_326_0, state);
         sRGs(R.id.fi_326_1, state);
@@ -803,8 +803,8 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
 
     private void loadData3(InventoryItem item){
-        sETv(R.id.fi_301_0,item.equipment_sp_name);
-        sSPi(R.id.fi_301_1,item.equipment_sp_designation);
+        sETv(R.id.fi_301_0, item.equipment_sp_name);
+        sSPi(R.id.fi_301_1, item.equipment_sp_designation);
         String tmp = "";
         String tokens[];
         tmp = item.n_adult_wing_scale;
@@ -1237,11 +1237,13 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
 
 
         }
-        item.n_hemoglobin = tmp;
-        item.n_telecoil_book = gRGv(R.id.fi_320_0);
-        item.n_telecoil_landset = gRGv(R.id.fi_321_0);
-        item.n_kolori_meter = gRGv(R.id.fi_322_0);
-        item.n_litmus_paper = gRGv(R.id.fi_323_0);
+
+            item.n_hemoglobin = tmp;
+            item.n_telecoil_book = gRGv(R.id.fi_320_0);
+            item.n_telecoil_landset = gRGv(R.id.fi_321_0);
+            item.n_kolori_meter = gRGv(R.id.fi_322_0);
+            item.n_litmus_paper = gRGv(R.id.fi_323_0);
+
     }
     private void collectData4(InventoryItem item) throws Exception {
         if( (item.delivery_sp_name = gETv(R.id.fi_325_0)) == null){
@@ -1683,6 +1685,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         RadioButton btn = (RadioButton) group.getChildAt(index);
         btn.setChecked(true);
     }
+
 
     private void lRGvDisable(int id,int index){
         RadioGroup group = (RadioGroup) view.findViewById(id);
