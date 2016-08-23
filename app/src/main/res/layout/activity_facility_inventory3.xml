@@ -476,7 +476,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/inventory_ques_308"/>
 
-                <RadioGroup
+                 <RadioGroup
                     android:id="@+id/fi_308_0"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

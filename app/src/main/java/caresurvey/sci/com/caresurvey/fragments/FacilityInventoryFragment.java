@@ -107,6 +107,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             gRGi(R.id.fi_306_0).setOnCheckedChangeListener(this);
             gRGi(R.id.fi_314_0).setOnCheckedChangeListener(this);
             gRGi(R.id.fi_319_0).setOnCheckedChangeListener(this);
+            gRGi(R.id.fi_319_1).setOnCheckedChangeListener(this);
             updateRadioGroupState3();
         }
         else if(resourceID == R.layout.activity_facility_inventory4) {
@@ -168,6 +169,28 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         sRGu(R.id.fi_306_0, R.id.fi_306_1);
         sRGu(R.id.fi_314_0, R.id.fi_314_1);
         sRGu(R.id.fi_319_0, R.id.fi_319_1);
+
+        int selectedIndex = gRGsi(R.id.fi_319_1);
+        int sIdx_fi_319 = gRGsi(R.id.fi_319_0);
+        if(sIdx_fi_319 == 0 && selectedIndex == 1){
+            sRGs(R.id.fi_320_0,false);
+            sRGs(R.id.fi_321_0,false);
+            sRGs(R.id.fi_322_0,true);
+            sRGs(R.id.fi_323_0,true);
+        }
+        else if(sIdx_fi_319 == 0 && selectedIndex == 2){
+            sRGs(R.id.fi_320_0,false);
+            sRGs(R.id.fi_321_0,false);
+            sRGs(R.id.fi_322_0,false);
+            sRGs(R.id.fi_323_0,false);
+        }
+        else{
+            sRGs(R.id.fi_320_0,true);
+            sRGs(R.id.fi_321_0,true);
+            sRGs(R.id.fi_322_0,true);
+            sRGs(R.id.fi_323_0,true);
+        }
+
     }
 
     void updateRadioGroupState4(){
@@ -222,7 +245,10 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
 
     private boolean gRBv(RadioGroup group,int index){
         RadioButton btn = (RadioButton) group.getChildAt(index);
-        return btn.isChecked();
+        if(btn != null) {
+            return btn.isChecked();
+        }
+        return false;
     }
 
     private int gIRGc(RadioGroup group,int id){
@@ -1058,6 +1084,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         view.findViewById(id).setEnabled(state);
     }
 
+
     private void sRGs(int id,boolean state){
         RadioGroup radioGroup = (RadioGroup) view.findViewById(id);
         for(int i=0;i<radioGroup.getChildCount();i++){
@@ -1234,15 +1261,13 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         if(tmp.equals("1")){
             String v = gRGv(R.id.fi_319_1);
             tmp += ("," + v);
-
-
         }
 
-            item.n_hemoglobin = tmp;
-            item.n_telecoil_book = gRGv(R.id.fi_320_0);
-            item.n_telecoil_landset = gRGv(R.id.fi_321_0);
-            item.n_kolori_meter = gRGv(R.id.fi_322_0);
-            item.n_litmus_paper = gRGv(R.id.fi_323_0);
+        item.n_hemoglobin = tmp;
+        item.n_telecoil_book = gRGv(R.id.fi_320_0);
+        item.n_telecoil_landset = gRGv(R.id.fi_321_0);
+        item.n_kolori_meter = gRGv(R.id.fi_322_0);
+        item.n_litmus_paper = gRGv(R.id.fi_323_0);
 
     }
     private void collectData4(InventoryItem item) throws Exception {
@@ -1675,9 +1700,24 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
     private String gRGv(int id){
         RadioGroup group = (RadioGroup) view.findViewById(id);
+        if(group.getChildCount() > 0 &&  !group.getChildAt(0).isEnabled()){
+            return "";
+        }
         int radioId = group.getCheckedRadioButtonId();
         int index = group.indexOfChild(view.findViewById(radioId));
         return radioValue[index];
+    }
+
+    private int gRGsi(int id){
+        RadioGroup group = (RadioGroup) view.findViewById(id);
+        int radioId = group.getCheckedRadioButtonId();
+        int index = -1;
+        try {
+            index = group.indexOfChild(view.findViewById(radioId));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return index;
     }
 
     private void lRGv(int id,int index){
