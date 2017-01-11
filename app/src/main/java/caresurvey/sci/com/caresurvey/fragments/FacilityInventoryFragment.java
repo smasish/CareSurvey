@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import caresurvey.sci.com.caresurvey.R;
@@ -135,6 +138,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         }
     }
     int idx = -1;
+    int insulin = 0,insulin2 = 0;
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         idx = gIRGc(group,checkedId);
@@ -172,7 +176,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
 
         int selectedIndex = gRGsi(R.id.fi_319_1);
         int sIdx_fi_319 = gRGsi(R.id.fi_319_0);
+        Log.d(">>>>>>>>>"+sIdx_fi_319,"--"+selectedIndex);
         if(sIdx_fi_319 == 0 && selectedIndex == 1){
+            Log.d(">>>>>>>>>","--"+selectedIndex);
             sRGs(R.id.fi_320_0,false);
             sRGs(R.id.fi_321_0,false);
             sRGs(R.id.fi_322_0,true);
@@ -185,6 +191,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             sRGs(R.id.fi_323_0,false);
         }
         else{
+            Log.d(">>>>>>>>>","-all true-");
             sRGs(R.id.fi_320_0,true);
             sRGs(R.id.fi_321_0,true);
             sRGs(R.id.fi_322_0,true);
@@ -316,6 +323,7 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             collectData5(item);
         }
         else if(resourceID == R.layout.activity_facility_inventory6){
+
             collectData6(item);
         }
     }
@@ -337,7 +345,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
             editable5(state);
         }
         else if(resourceID == R.layout.activity_facility_inventory6){
-            editable6(state);
+            TextView a,b,c;
+
+                    editable6(state);
         }
     }
 
@@ -454,6 +464,78 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
 
     private void loadData6(InventoryItem item){
         item.end_time = getTime();
+        TextView a,b,c,x,y,z,d,e,f;
+        a = (TextView) view.findViewById(R.id.fi_601_1a);
+        b = (TextView) view.findViewById(R.id.fi_601_2a);
+        c = (TextView) view.findViewById(R.id.fi_601_3a);
+
+        x = (TextView) view.findViewById(R.id.fi_604_1a);
+        y = (TextView) view.findViewById(R.id.fi_604_2a);
+        z = (TextView) view.findViewById(R.id.fi_604_3a);
+
+        d = (TextView) view.findViewById(R.id.fi_606_1a);
+        e = (TextView) view.findViewById(R.id.fi_606_2a);
+        f = (TextView) view.findViewById(R.id.fi_606_3a);
+
+        String[] monthNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        Calendar cal= Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("M");
+        String month_name = month_date.format(cal.getTime());
+        int in = Integer.parseInt(month_name);
+        if(in>3){
+            a.setText(monthNames[in-4]);
+            b.setText(monthNames[in-3]);
+            c.setText(monthNames[in-2]);
+
+            x.setText(monthNames[in-4]);
+            y.setText(monthNames[in-3]);
+            z.setText(monthNames[in-2]);
+
+            d.setText(monthNames[in-4]);
+            e.setText(monthNames[in-3]);
+            f.setText(monthNames[in-2]);
+        }
+        else if(in==3){
+            a.setText(monthNames[11]);
+            b.setText(monthNames[0]);
+            c.setText(monthNames[1]);
+
+            x.setText(monthNames[11]);
+            y.setText(monthNames[0]);
+            z.setText(monthNames[1]);
+
+            d.setText(monthNames[11]);
+            e.setText(monthNames[0]);
+            f.setText(monthNames[1]);
+        }
+        else if(in==2){
+            a.setText(monthNames[10]);
+            b.setText(monthNames[11]);
+            c.setText(monthNames[1]);
+
+            x.setText(monthNames[10]);
+            y.setText(monthNames[11]);
+            z.setText(monthNames[1]);
+
+            d.setText(monthNames[10]);
+            e.setText(monthNames[11]);
+            f.setText(monthNames[1]);
+        }
+        else if(in==1){
+            a.setText(monthNames[9]);
+            b.setText(monthNames[10]);
+            c.setText(monthNames[11]);
+
+            x.setText(monthNames[9]);
+            y.setText(monthNames[10]);
+            z.setText(monthNames[11]);
+
+            d.setText(monthNames[9]);
+            e.setText(monthNames[10]);
+            f.setText(monthNames[11]);
+        }
+
+
         sETv(R.id.fi_612,item.end_time);
         String tokens[];
         tokens = item.r_healthy_newborn.split(",");
@@ -623,6 +705,9 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
         }
     }
     private void editable6(boolean state){
+
+        TextView a,b,c;
+
         sVEs(R.id.fi_601_1, state);
         sVEs(R.id.fi_601_2, state);
         sVEs(R.id.fi_601_3, state);
@@ -1415,6 +1500,11 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
     }
 
     private void loadData2(InventoryItem item){
+        boolean fl = false;
+
+        sVEs(R.id.fi_210_1, false);
+        sVEs(R.id.fi_210_2, false);
+
         ((CheckBox)view.findViewById(R.id.fi_203_9)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -1424,6 +1514,20 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
                 sVEs(R.id.fi_204_4,!isChecked);
             }
         });
+        ((CheckBox)view.findViewById(R.id.fi_203_1)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                insulin = 1;
+                if(insulin == 1 || insulin2 == 1) {
+                    sVEs(R.id.fi_210_1, true);
+                    sVEs(R.id.fi_210_2, true);
+                    Log.d("====||||=", "------");
+                }
+
+
+            }
+        });
+
         ((CheckBox)view.findViewById(R.id.fi_205_9)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -1433,6 +1537,22 @@ public class FacilityInventoryFragment extends Fragment implements View.OnClickL
                 sVEs(R.id.fi_206_4,!isChecked);
             }
         });
+        ((CheckBox)view.findViewById(R.id.fi_205_1)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                insulin2 = 1;
+
+                if(insulin == 1 || insulin2 == 1) {
+                    sVEs(R.id.fi_210_1, true);
+                    sVEs(R.id.fi_210_2, true);
+                    Log.d("====||||=", "------");
+                }
+            }
+        });
+
+
+
         String tokens[];
         sETv(R.id.fi_201_0,item.i_waste_sp_name);
         sSPi(R.id.fi_201_1,item.i_waste_sp_designation);

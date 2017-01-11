@@ -59,6 +59,8 @@ public class SatelliteClinicItem extends DBRow{
     public String csi233;
     public String csi234;
 
+    //  for round   public String csi234;
+
     public String startTime;
     public String clientName;
     public String designation;
@@ -102,6 +104,9 @@ public class SatelliteClinicItem extends DBRow{
             item.clientName = AppUtils.getString(data,"client_name");
             item.date = AppUtils.getString(data,"form_date");
             item.startTime = AppUtils.getString(data,"start_time");
+
+            // for round no
+            //   item.csi101 = AppUtils.btos(AppUtils.getBoolean(data,"round_no"));
 
             item.csi101 = AppUtils.btos(AppUtils.getBoolean(data,"waiting_place"));
             item.csi102 = AppUtils.btos(AppUtils.getBoolean(data,"furniture"));
@@ -175,6 +180,10 @@ public class SatelliteClinicItem extends DBRow{
             item.clientName = AppUtils.getString(data,"client_name");
             item.date = AppUtils.getString(data,"form_date");
             item.startTime = AppUtils.getString(data,"start_time");
+
+
+            // round no
+            //  item.csi101 = AppUtils.btos(AppUtils.getBoolean(data,"waiting_place"));
 
             item.csi101 = AppUtils.btos(AppUtils.getBoolean(data,"waiting_place"));
             item.csi102 = AppUtils.btos(AppUtils.getBoolean(data,"furniture"));

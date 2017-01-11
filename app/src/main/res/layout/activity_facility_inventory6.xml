@@ -4,10 +4,21 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
+
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/inventory_section6_header"/>
 
         <LinearLayout
             android:layout_marginTop="15dp"
@@ -46,6 +57,7 @@
         </LinearLayout>
 
 
+        <!--start-->
         <LinearLayout
             android:background="@drawable/row_bg"
             android:padding="8dp"
@@ -53,6 +65,69 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text=""/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <TextView
+                    android:id="@+id/fi_601_1a"
+
+                    android:text="jan"
+                    android:layout_width="0dp"
+                    android:paddingLeft="5dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/fi_601_2a"
+                    android:text="feb"
+                    android:paddingLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/fi_601_3a"
+                    android:text="mar"
+                    android:paddingLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fi_601_4a"
+                android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
+        <!--finish-->
+
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+<!--jkhjkhsjkdfh-->
             <caresurvey.sci.com.caresurvey.widgets.QTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -254,6 +329,69 @@
 
         </LinearLayout>
 
+
+        <!--start-->
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text=""/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <TextView
+                    android:id="@+id/fi_604_1a"
+
+                    android:text="jan"
+                    android:layout_width="0dp"
+                    android:paddingLeft="5dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/fi_604_2a"
+                    android:text="feb"
+                    android:paddingLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/fi_604_3a"
+                    android:text="mar"
+                    android:paddingLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fi_604_4a"
+                android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
+
+
+        </LinearLayout>
+
         <LinearLayout
             android:background="@drawable/row_bg"
             android:padding="8dp"
@@ -400,6 +538,69 @@
                 android:layout_gravity="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/inventory_ques_601_header9"/>
+
+
+        </LinearLayout>
+
+
+        <!--start-->
+        <LinearLayout
+            android:background="@drawable/row_bg"
+            android:padding="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <caresurvey.sci.com.caresurvey.widgets.QTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".40"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginRight="5dp"
+                android:text=""/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.30">
+
+                <TextView
+                    android:id="@+id/fi_606_1a"
+
+                    android:text="jan"
+                    android:layout_width="0dp"
+                    android:paddingLeft="5dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/fi_606_2a"
+                    android:text="feb"
+                    android:paddingLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/fi_606_3a"
+                    android:text="mar"
+                    android:paddingLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fi_606_4a"
+                android:layout_width="0dp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./-_$@"
+                android:layout_height="wrap_content"
+                android:layout_weight=".30"
+                />
 
 
         </LinearLayout>

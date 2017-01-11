@@ -66,6 +66,8 @@ public class SatelliteClinicTable extends SuperTable{
         table.put(DBRow.KEY_LAT,"TEXT");
         table.put(DBRow.KEY_LON,"TEXT");
 
+        // add round no  table.put(DBRow.KEY_round,"INT");
+
         table.put(DBRow.KEY_COMMENTS,"text");
         table.put(DBRow.KEY_FIELDS,"text");
         table.put(DBRow.KEY_CHECKED_BY,"text");
@@ -94,6 +96,8 @@ public class SatelliteClinicTable extends SuperTable{
         values.put("csi201",item.csi201);
         values.put("csi202",item.csi202);
         values.put("csi203",item.csi203);
+
+        //     values.put("csi203",item.csi203);  // FOR ROUND NO ....COLUMN NO csi203
         values.put("csi204",item.csi204);
         values.put("csi205",item.csi205);
         values.put("csi206",item.csi206);
@@ -181,6 +185,11 @@ public class SatelliteClinicTable extends SuperTable{
         item.csi102 = cursor.getString(cursor.getColumnIndex("csi102"));
         item.csi103 = cursor.getString(cursor.getColumnIndex("csi103"));
         item.csi104 = cursor.getString(cursor.getColumnIndex("csi104"));
+
+       ////  for round no
+        // item.csi104 = cursor.getString(cursor.getColumnIndex("csi104"));
+
+
         item.csi105 = cursor.getString(cursor.getColumnIndex("csi105"));
         item.csi106 = cursor.getString(cursor.getColumnIndex("csi106"));
         item.csi107 = cursor.getString(cursor.getColumnIndex("csi107"));

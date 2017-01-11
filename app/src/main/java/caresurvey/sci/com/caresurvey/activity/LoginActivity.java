@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -76,6 +77,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String userDistrict;
     private String userType;
 
+    // http://stackoverflow.com/questions/9997976/android-pulling-sqlite-database-android-device
+    //http://blog.shvetsov.com/2013/02/access-android-app-data-without-root.html
+//https://www.youtube.com/watch?v=SLM01rdQa8s&feature=youtu.be
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +120,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         String responseStr = response.toString();
                         responseStr = responseStr.replaceAll("\"","");
                         String s[] = responseStr.split("~");
+
+                        Log.d(">>>>>>>>>>"+s.length,"====="+s[0]);
                         for(int i =0;i<s.length;i++){
 
 
@@ -183,7 +190,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String tag_json_obj = "json_obj_req";
 
         String url = "http://119.148.43.34/mamoni/survey/api/sync";
-
+        Log.d(">>>>>>>>>>","=====");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -270,7 +277,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return params;
             }
         };
-
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 // Adding request to request queue
 
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
@@ -390,6 +397,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         };
 
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(40000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+// Ad
 // Adding request to request queue
 
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);

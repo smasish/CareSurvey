@@ -14,9 +14,6 @@ public class AppConstants {
 
 
 
-
-
-
     public static final String API_URL = "http://kolorob.net/mamoni/survey/api/sync";
     public static final double CAT_LIST_LG_WIDTH_PERC = 0.15;
     public static final double CAT_LIST_SM_WIDTH_PERC = 0.11;

@@ -34,7 +34,8 @@ import caresurvey.sci.com.caresurvey.database.SickChildTable;
 
 public class AddressInsertActivity extends AppCompatActivity {
     Spinner sp1,sp2,sp3,sp4,obsSpinner;
-    EditText timepicker,datepicker,facility_id_number;
+    EditText timepicker,datepicker;
+    TextView facility_id_number;
     Button timepickerbutton, datepickerbutton;
     String name,datespicker,timespicker,radioselection,Obsname;
     int id;
@@ -126,7 +127,7 @@ public class AddressInsertActivity extends AppCompatActivity {
         villagespinner=(Spinner)findViewById(R.id.villagespinner);
         upzillaspinner=(Spinner)findViewById(R.id.upzillaspinner);
         unionspinner=(Spinner)findViewById(R.id.unionspinner);
-        facility_id_number=(EditText)findViewById(R.id.facility_id_number);
+        facility_id_number=(TextView)findViewById(R.id.facility_id_number);
         //  listView = (ListView) findViewById(R.id.listView);
 
 
